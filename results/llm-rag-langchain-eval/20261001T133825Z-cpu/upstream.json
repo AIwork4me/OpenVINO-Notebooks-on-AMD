@@ -1,0 +1,8 @@
+{
+  "repository": "openvinotoolkit/openvino_notebooks",
+  "branch": "latest",
+  "commit": "a8809170cc4fc6aa633fbb9c22214be67ac20b47",
+  "path": "notebooks/llm-rag-langchain/llm-rag-langchain-eval.ipynb",
+  "url": "https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/llm-rag-langchain/llm-rag-langchain-eval.ipynb",
+  "notebook_sha256": "c7f3924635afce9ddbdc8bb12986b291791a36f732ac9fbe02bdf9bab45267a9"
+}

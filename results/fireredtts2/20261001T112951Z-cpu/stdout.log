@@ -1,0 +1,7 @@
+[cell 0 START +    0.4s] # Multi-speaker dialogue generation with FireRedTTS‑2 and OpenVINO |  | Fi
+[cell 1 START +    0.4s] ## Prerequisites | [back to top ⬆️](#Table-of-contents:)
+[cell 2 START +    0.4s] # Fetch `notebook_utils` module | import requests | from pathlib import Pa
+[cell 2 DONE  +    0.4s]
+[cell 3 START +    0.4s] from cmd_helper import clone_repo | from pip_helper import pip_install |  | 
+[cell 3 DONE  +  261.8s]
+NBEXEC_RESULT={"ok": false, "n_cells": 8, "n_skipped": 0, "n_substituted": 0, "stopped_after": null, "error_cell": null, "error_type": "CellExecutionError", "error_head": "\u001b[31mCalledProcessError\u001b[39m: Command '['git', 'clone', 'https://github.com/openvino-dev-samples/FireRedTTS2.git']' returned non-zero exit status 128.", "duration_s": 262.0, "patch_notes": []}

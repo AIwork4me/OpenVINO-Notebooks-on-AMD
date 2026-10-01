@@ -1,0 +1,19 @@
+/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-gpu/lib/python3.12/site-packages/torch/nn/modules/rnn.py:1011: UserWarning: dropout option adds dropout after all but last recurrent layer, so non-zero dropout expects num_layers greater than 1, but got dropout=0.2 and num_layers=1
+  super().__init__("LSTM", *args, **kwargs)
+/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-gpu/lib/python3.12/site-packages/torch/nn/utils/weight_norm.py:145: FutureWarning: `torch.nn.utils.weight_norm` is deprecated in favor of `torch.nn.utils.parametrizations.weight_norm`.
+  WeightNorm.apply(module, name, dim)
+/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-gpu/lib/python3.12/site-packages/torch/jit/_script.py:1491: FutureWarning: `torch.jit.script` is deprecated. Please switch to `torch.compile` or `torch.export`.
+  warnings.warn(
+MIOpen(HIP): Warning [ParseAndLoadDb] File is unreadable: "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-gpu/lib/python3.12/site-packages/_rocm_sdk_libraries/share/miopen/db/gfx1151_20.HIP.fdb.txt"
+MIOpen(HIP): Warning [IsEnoughWorkspace] [EvaluateInvokers] Solver <GemmFwdRest>, workspace required: 18636800, provided ptr: 0 size: 0
+MIOpen(HIP): Warning [IsEnoughWorkspace] [EvaluateInvokers] Solver <GemmFwdRest>, workspace required: 18636800, provided ptr: 0 size: 0
+MIOpen(HIP): Warning [IsEnoughWorkspace] [EvaluateInvokers] Solver <GemmFwdRest>, workspace required: 7987200, provided ptr: 0 size: 0
+MIOpen(HIP): Warning [IsEnoughWorkspace] [EvaluateInvokers] Solver <GemmFwdRest>, workspace required: 7987200, provided ptr: 0 size: 0
+MIOpen(HIP): Warning [IsEnoughWorkspace] [EvaluateInvokers] Solver <GemmFwdRest>, workspace required: 29286400, provided ptr: 0 size: 0
+MIOpen(HIP): Warning [IsEnoughWorkspace] [EvaluateInvokers] Solver <GemmFwdRest>, workspace required: 29286400, provided ptr: 0 size: 0
+MIOpen(HIP): Warning [IsEnoughWorkspace] [EvaluateInvokers] Solver <GemmFwdRest>, workspace required: 87864832, provided ptr: 0 size: 0
+MIOpen(HIP): Warning [IsEnoughWorkspace] [EvaluateInvokers] Solver <GemmFwdRest>, workspace required: 87864832, provided ptr: 0 size: 0
+MIOpen(HIP): Warning [IsEnoughWorkspace] [EvaluateInvokers] Solver <GemmFwdRest>, workspace required: 23963136, provided ptr: 0 size: 0
+MIOpen(HIP): Warning [IsEnoughWorkspace] [EvaluateInvokers] Solver <GemmFwdRest>, workspace required: 23963136, provided ptr: 0 size: 0
+MIOpen(HIP): Warning [IsEnoughWorkspace] [EvaluateInvokers] Solver <GemmFwdRest>, workspace required: 55913984, provided ptr: 0 size: 0
+MIOpen(HIP): Warning [IsEnoughWorkspace] [EvaluateInvokers] Solver <GemmFwdRest>, workspace required: 55913984, provided ptr: 0 size: 0

@@ -1,0 +1,10 @@
+[cell 0 START +    0.4s] # Controllable Music Generation with MusicGen and OpenVINO |  | MusicGen i
+[cell 1 START +    0.4s]  | #### Table of contents: |  | - [Prerequisites](#Prerequisites) |     - [Ins
+[cell 2 START +    0.4s] ## Prerequisites | [back to top ⬆️](#Table-of-contents:) | 
+[cell 3 START +    0.4s] ### Install requirements | [back to top ⬆️](#Table-of-contents:) | 
+[cell 4 START +    0.4s] %pip install -q "openvino>=2025.4.0" | %pip install -q "torch>=2.1" "gra
+[cell 4 DONE  +    1.2s]
+[cell 5 START +    1.2s] ### Imports | [back to top ⬆️](#Table-of-contents:) | 
+[cell 6 START +    1.2s] from collections import namedtuple | from functools import partial | impor
+[cell 6 DONE  +    3.5s]
+NBEXEC_RESULT={"ok": false, "n_cells": 17, "n_skipped": 0, "n_substituted": 3, "stopped_after": null, "error_cell": null, "error_type": "CellExecutionError", "error_head": "\u001b[31mModuleNotFoundError\u001b[39m: Could not import module 'AutoProcessor'. Are this object's requirements defined correctly? Set the logging verbosity to DEBUG for the original import error.", "duration_s": 4.53, "patch_notes": ["substituted 1 occurrence(s) in cell 4", "substituted 2 occurrence(s) in cell 27", "substituted 1 occurrence(s) in cell 36"]}

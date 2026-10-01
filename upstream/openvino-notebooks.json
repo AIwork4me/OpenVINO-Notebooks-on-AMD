@@ -1,0 +1,13 @@
+{
+  "repository": "openvinotoolkit/openvino_notebooks",
+  "branch": "latest",
+  "commit": "a8809170cc4fc6aa633fbb9c22214be67ac20b47",
+  "commit_date": "2026-09-30T13:40:38Z",
+  "commit_subject": "Bump ipykernel from 6.31.0 to 7.3.0 in /.docker (#3704)",
+  "discovered_at": "2026-10-01T09:53:40Z",
+  "local_path": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.cache/upstream",
+  "fetch_method": "github git-blobs API (sha1-verified); git protocol throttled ~47KB/s, raw CDN stalls on this network",
+  "files_ok": 0,
+  "files_cached": 570,
+  "files_failed": 1
+}

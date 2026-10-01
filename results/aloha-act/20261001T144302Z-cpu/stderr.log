@@ -1,0 +1,115 @@
+[IPKernelApp] WARNING | Kernel is running over TCP without encryption. All communication (including code and outputs) is sent in plain text and is susceptible to eavesdropping. Use IPC transport or launch with kernel manager-provisioned CurveZMQ keys to enable transport encryption.
+Traceback (most recent call last):
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/ov_amd/_nbexec.py", line 122, in main
+    client.execute()
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/jupyter_core/utils/__init__.py", line 165, in wrapped
+    return loop.run_until_complete(inner)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/base_events.py", line 687, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/nbclient/client.py", line 709, in async_execute
+    await self.async_execute_cell(
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/nbclient/client.py", line 1062, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/nbclient/client.py", line 918, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+# Run this cell to download and extract the sim_insertion_scripted package if you haven't done so already
+import requests
+import zipfile
+import pathlib
+
+# Define target directory and download URL
+TARGET_DIR = pathlib.Path.cwd()  # Current directory
+ZIP_URL = "//huggingface\.co :https://hf-mirror.com://eci.intel.com/embodied-sdk-docs/_downloads/sim_insertion_scripted.zip"
+ZIP_PATH = TARGET_DIR / "sim_insertion_scripted.zip"
+
+# Create target directory if it doesn't exist
+TARGET_DIR.mkdir(parents=True, exist_ok=True)
+
+# Download the zip file
+print(f"[STEP] Downloading {ZIP_URL}...")
+response = requests.get(ZIP_URL, stream=True)
+response.raise_for_status()
+
+with open(ZIP_PATH, "wb") as f:
+    for chunk in response.iter_content(chunk_size=8192):
+        f.write(chunk)
+print(f"[INFO] Downloaded to {ZIP_PATH}")
+
+# Unzip the file
+print(f"[STEP] Extracting {ZIP_PATH}...")
+with zipfile.ZipFile(ZIP_PATH, "r") as zip_ref:
+    zip_ref.extractall(TARGET_DIR)
+print(f"[INFO] Extracted to {TARGET_DIR}")
+
+# Remove the zip file
+ZIP_PATH.unlink()
+print(f"[INFO] Removed {ZIP_PATH}")
+print("[DONE] Download and extraction complete.")
+------------------
+
+----- stdout -----
+[STEP] Downloading //huggingface\.co :https://hf-mirror.com://eci.intel.com/embodied-sdk-docs/_downloads/sim_insertion_scripted.zip...
+----- stderr -----
+<>:8: SyntaxWarning: invalid escape sequence '\.'
+<>:8: SyntaxWarning: invalid escape sequence '\.'
+/tmp/ipykernel_78022/1060612102.py:8: SyntaxWarning: invalid escape sequence '\.'
+  ZIP_URL = "//huggingface\.co :https://hf-mirror.com://eci.intel.com/embodied-sdk-docs/_downloads/sim_insertion_scripted.zip"
+------------------
+
+[31m---------------------------------------------------------------------------[39m
+[31mInvalidSchema[39m                             Traceback (most recent call last)
+[36mCell[39m[36m [39m[32mIn[1][39m[32m, line 16[39m
+[32m     12[39m TARGET_DIR.mkdir(parents=[38;5;28;01mTrue[39;00m, exist_ok=[38;5;28;01mTrue[39;00m)
+[32m     13[39m 
+[32m     14[39m [38;5;66;03m# Download the zip file[39;00m
+[32m     15[39m print(f"[STEP] Downloading {ZIP_URL}...")
+[32m---> [39m[32m16[39m response = requests.get(ZIP_URL, stream=[38;5;28;01mTrue[39;00m)
+[32m     17[39m response.raise_for_status()
+[32m     18[39m 
+[32m     19[39m [38;5;28;01mwith[39;00m open(ZIP_PATH, [33m"wb"[39m) [38;5;28;01mas[39;00m f:
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/requests/api.py:87[39m, in [36mget[39m[34m(url, params, **kwargs)[39m
+[32m     74[39m [38;5;28;01mdef[39;00m[38;5;250m [39m[34mget[39m(
+[32m     75[39m     url: _t.UriType, params: _t.ParamsType = [38;5;28;01mNone[39;00m, **kwargs: Unpack[_t.GetKwargs]
+[32m     76[39m ) -> Response:
+[32m     77[39m [38;5;250m    [39m[33mr[39m[33;03m"""Sends a GET request.[39;00m
+[32m     78[39m 
+[32m     79[39m [33;03m    :param url: URL for the new :class:`Request` object.[39;00m
+[32m   (...)[39m[32m     84[39m [33;03m    :rtype: requests.Response[39;00m
+[32m     85[39m [33;03m    """[39;00m
+[32m---> [39m[32m87[39m     [38;5;28;01mreturn[39;00m [30;43mrequest[39;49m[30;43m([39;49m[30;43m"[39;49m[30;43mget[39;49m[30;43m"[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43murl[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mparams[39;49m[30;43m=[39;49m[30;43mparams[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43m*[39;49m[30;43m*[39;49m[30;43mkwargs[39;49m[30;43m)[39;49m
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/requests/api.py:71[39m, in [36mrequest[39m[34m(method, url, **kwargs)[39m
+[32m     67[39m [38;5;66;03m# By using the 'with' statement we are sure the session is closed, thus we[39;00m
+[32m     68[39m [38;5;66;03m# avoid leaving sockets open which can trigger a ResourceWarning in some[39;00m
+[32m     69[39m [38;5;66;03m# cases, and look like a memory leak in others.[39;00m
+[32m     70[39m [38;5;28;01mwith[39;00m sessions.Session() [38;5;28;01mas[39;00m session:
+[32m---> [39m[32m71[39m     [38;5;28;01mreturn[39;00m [30;43msession[39;49m[30;43m.[39;49m[30;43mrequest[39;49m[30;43m([39;49m[30;43mmethod[39;49m[30;43m=[39;49m[30;43mmethod[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43murl[39;49m[30;43m=[39;49m[30;43murl[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43m*[39;49m[30;43m*[39;49m[30;43mkwargs[39;49m[30;43m)[39;49m
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/requests/sessions.py:651[39m, in [36mSession.request[39m[34m(self, method, url, params, data, headers, cookies, files, auth, timeout, allow_redirects, proxies, hooks, stream, verify, cert, json)[39m
+[32m    646[39m send_kwargs = {
+[32m    647[39m     [33m"[39m[33mtimeout[39m[33m"[39m: timeout,
+[32m    648[39m     [33m"[39m[33mallow_redirects[39m[33m"[39m: allow_redirects,
+[32m    649[39m }
+[32m    650[39m send_kwargs.update(settings)
+[32m--> [39m[32m651[39m resp = [30;43mself[39;49m[30;43m.[39;49m[30;43msend[39;49m[30;43m([39;49m[30;43mprep[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43m*[39;49m[30;43m*[39;49m[30;43msend_kwargs[39;49m[30;43m)[39;49m
+[32m    653[39m [38;5;28;01mreturn[39;00m resp
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/requests/sessions.py:778[39m, in [36mSession.send[39m[34m(self, request, **kwargs)[39m
+[32m    775[39m hooks = request.hooks
+[32m    777[39m [38;5;66;03m# Get the appropriate adapter to use[39;00m
+[32m--> [39m[32m778[39m adapter = [30;43mself[39;49m[30;43m.[39;49m[30;43mget_adapter[39;49m[30;43m([39;49m[30;43murl[39;49m[30;43m=[39;49m[30;43mrequest[39;49m[30;43m.[39;49m[30;43murl[39;49m[30;43m)[39;49m
+[32m    780[39m [38;5;66;03m# Start time (approximately) of the request[39;00m
+[32m    781[39m start = preferred_clock()
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/requests/sessions.py:881[39m, in [36mSession.get_adapter[39m[34m(self, url)[39m
+[32m    878[39m         [38;5;28;01mreturn[39;00m adapter
+[32m    880[39m [38;5;66;03m# Nothing matches :-/[39;00m
+[32m--> [39m[32m881[39m [38;5;28;01mraise[39;00m InvalidSchema([33mf[39m[33m"[39m[33mNo connection adapters were found for [39m[38;5;132;01m{[39;00murl[38;5;132;01m!r}[39;00m[33m"[39m)
+
+[31mInvalidSchema[39m: No connection adapters were found for '//huggingface\\.co :https://hf-mirror.com://eci.intel.com/embodied-sdk-docs/_downloads/sim_insertion_scripted.zip'
+

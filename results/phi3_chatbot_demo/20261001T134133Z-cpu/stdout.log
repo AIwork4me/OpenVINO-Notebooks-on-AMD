@@ -1,0 +1,10 @@
+[cell 0 START +    0.4s] # Intel Labs: Chat and Code with Phi-3 with OpenVINO and 🤗 Optimum on 
+[cell 1 START +    0.4s] ## Install dependencies | Make sure you have the latest GPU drivers inst
+[cell 2 START +    0.4s] # ! pip install optimum[openvino,nncf] torch
+[cell 2 DONE  +    0.4s]
+[cell 3 START +    0.4s] To use Phi-3 we need to use nightly version of optimum-intel until it 
+[cell 4 START +    0.4s] # ! pip install git+//huggingface\.co :https://hf-mirror.com://github.
+[cell 4 DONE  +    0.4s]
+[cell 5 START +    0.4s] import os |  | from transformers import AutoTokenizer | from optimum.intel i
+[cell 5 DONE  +    1.2s]
+NBEXEC_RESULT={"ok": false, "n_cells": 14, "n_skipped": 0, "n_substituted": 2, "stopped_after": null, "error_cell": null, "error_type": "CellExecutionError", "error_head": "\u001b[31mModuleNotFoundError\u001b[39m: No module named 'optimum.intel'", "duration_s": 1.45, "patch_notes": ["substituted 1 occurrence(s) in cell 4", "substituted 1 occurrence(s) in cell 17"]}

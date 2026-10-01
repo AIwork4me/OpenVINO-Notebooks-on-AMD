@@ -1,0 +1,17 @@
+[cell 0 START +    0.4s] ## Visual-language assistant with Phi3-Vision and OpenVINO |  | The Phi-3-
+[cell 1 START +    0.4s] ## Prerequisites | [back to top ⬆️](#Table-of-contents:) |  | install requir
+[cell 2 START +    0.4s] %pip uninstall -q -y optimum optimum-intel optimum-onnx | %pip install -
+[cell 2 DONE  +    3.4s]
+[cell 3 START +    3.4s] import requests | from pathlib import Path |  | if not Path("cmd_helper.py")
+[cell 3 DONE  +    3.5s]
+[cell 4 START +    3.5s] ## Select Model | [back to top ⬆️](#Table-of-contents:) |  | The tutorial su
+[cell 5 START +    3.5s] import ipywidgets as widgets |  | # Select model | model_ids = [ |     "micros
+[cell 5 DONE  +    3.5s]
+[cell 6 START +    3.5s] model_id = model_dropdown.value | print(f"Selected {model_id}") | MODEL_DI
+[cell 6 DONE  +    3.5s]
+[cell 7 START +    3.5s] ## Convert and Optimize model | [back to top ⬆️](#Table-of-contents:) |  | P
+[cell 8 START +    3.5s] to_compress = widgets.Checkbox(value=True, description="Compress model
+[cell 8 DONE  +    3.5s]
+[cell 9 START +    3.5s] from cmd_helper import optimum_cli |  | model_dir = MODEL_DIR / "INT4" if 
+[cell 9 DONE  +    3.6s]
+NBEXEC_RESULT={"ok": false, "n_cells": 12, "n_skipped": 0, "n_substituted": 4, "stopped_after": null, "error_cell": null, "error_type": "CellExecutionError", "error_head": "\u001b[31mFileNotFoundError\u001b[39m: [Errno 2] No such file or directory: 'optimum-cli'", "duration_s": 3.87, "patch_notes": ["substituted 4 occurrence(s) in cell 2", "substituted 4 occurrence(s) in cell 3", "substituted 1 occurrence(s) in cell 14", "substituted 1 occurrence(s) in cell 18"]}

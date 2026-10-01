@@ -1,0 +1,25 @@
+[cell 0 START +    0.4s] # End-to-End Speech Recognition with Fun-ASR-Nano and OpenVINO |  | Fun-AS
+[cell 1 START +    0.4s] ## Prerequisites | [back to top ⬆️](#Table-of-contents:)
+[cell 2 START +    0.4s] # Fetch `notebook_utils` module | import requests | from pathlib import Pa
+[cell 2 DONE  +    0.4s]
+[cell 3 START +    0.4s] from cmd_helper import clone_repo | from pip_helper import pip_install |  | 
+[cell 3 DONE  +  108.8s]
+[cell 4 START +  108.8s] ## Convert and Optimize model | [back to top ⬆️](#Table-of-contents:) | 
+[cell 5 START +  108.8s] import ipywidgets as widgets |  | model_ids = ["FunAudioLLM/Fun-ASR-Nano-2
+[cell 5 DONE  +  108.8s]
+[cell 6 START +  108.8s] The FunASR-Nano pipeline consists of four important parts: |  | * **Audio 
+[cell 7 START +  108.8s] from ov_funasr_helper import convert_funasr | from huggingface_hub impor
+[cell 7 DONE  +  398.9s]
+[cell 8 START +  398.9s] ## Create Inference Pipeline | [back to top ⬆️](#Table-of-contents:) |  | ##
+[cell 9 START +  398.9s] from notebook_utils import device_widget |  | device = device_widget("CPU"
+[cell 9 DONE  +  399.1s]
+[cell 10 START +  399.1s] llm_ov_config = { |     "CPU": {}, |     "GPU": {"ACTIVATIONS_SCALE_FACTOR
+[cell 10 DONE  +  399.1s]
+[cell 11 START +  399.1s] from ov_funasr_helper import OVFunASRNano |  | ov_model = OVFunASRNano(ov_
+[cell 11 DONE  +  401.3s]
+[cell 12 START +  401.3s] To deploy LLM on NPU, you can try
+[cell 13 START +  401.3s] ### Run Speech Recognition | [back to top ⬆️](#Table-of-contents:)
+[cell 14 START +  401.3s] wav_path = str(model_dir / "example/en.mp3") | res = ov_model.inference(
+[cell 14 DONE  +  402.1s]
+[cell 15 START +  402.1s] ## Interactive demo | [back to top ⬆️](#Table-of-contents:)
+[cell 16 START +  402.1s] from gradio_helper import make_demo |  | demo = make_demo(ov_model, model_

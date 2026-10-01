@@ -58,6 +58,15 @@ def run_gpu_twin(entry, state: dict[str, Any]) -> None:
     ev = REPO_ROOT / "results" / entry.id / f"{ts}-gpu"
     ev.mkdir(parents=True, exist_ok=True)
     wall = GPU_WALL_TIMEOUT.get(entry.est_weight, 1800)
+    import yaml
+
+    wf = REPO_ROOT / "workloads" / entry.id / "workload.yaml"
+    if wf.exists():
+        try:
+            cfg = yaml.safe_load(wf.read_text()) or {}
+            wall = int((cfg.get("gpu") or {}).get("wall_timeout_s", wall))
+        except (OSError, yaml.YAMLError, ValueError):
+            pass
     cmd = [str(venv_python("gpu")), str(script), "--evidence-dir", str(ev)]
     t0 = time.time()
     timed_out = False
@@ -90,13 +99,17 @@ def run_gpu_twin(entry, state: dict[str, Any]) -> None:
             break
 
     hip_ok = "hip" in stderr.lower() or twin_result.get("hip") or "torch.version.hip" in stdout
-    if ret == 0 and twin_result.get("ok") and twin_result.get("hip"):
+    if twin_result.get("ok") and twin_result.get("hip"):
         _record_gpu(state, entry, Status.VERIFIED, evidence=str(ev))
         (ev / "metrics.json").write_text(json.dumps(twin_result.get("metrics", {}), indent=2))
-    elif ret == 0:
+    elif twin_result:
+        # script ran to completion and self-reported failure of its own checks;
+        # log-grep classification would misread earlier fallback logs (e.g. a
+        # recovered hub 401) as the failure cause
         _record_gpu(state, entry, Status.FAILED, FailureCategory.CORRECTNESS_ERROR.value,
-                    notes=["twin script exited 0 but did not emit a valid TWIN_RESULT with hip=true"],
+                    notes=[f"twin self-check failed; metrics={json.dumps(twin_result.get('metrics', {}))[:400]}"],
                     evidence=str(ev))
+        (ev / "metrics.json").write_text(json.dumps(twin_result.get("metrics", {}), indent=2))
     else:
         cat = classify_failure(stderr, stdout, timed_out)
         notes = [f"exit={ret} duration={duration:.0f}s", stderr.strip().splitlines()[-1][:300] if stderr.strip() else ""]

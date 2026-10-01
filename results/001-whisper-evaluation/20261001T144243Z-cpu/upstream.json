@@ -1,0 +1,8 @@
+{
+  "repository": "openvinotoolkit/openvino_notebooks",
+  "branch": "latest",
+  "commit": "a8809170cc4fc6aa633fbb9c22214be67ac20b47",
+  "path": "supplementary_materials/notebooks/001-whisper-evaluation/001-whisper-evaluation.ipynb",
+  "url": "https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/supplementary_materials/notebooks/001-whisper-evaluation/001-whisper-evaluation.ipynb",
+  "notebook_sha256": "2af60448d54d46ed549c7317c28209d855100027144f110a14eb090d14350d2b"
+}

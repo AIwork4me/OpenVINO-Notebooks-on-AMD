@@ -1,0 +1,8 @@
+[cell 0 START +    0.4s] # Qwen3-ASR Speech Recognition with OpenVINO™ |  | The Qwen3-ASR family in
+[cell 1 START +    0.4s] ## Prerequisites | [back to top ⬆️](#Table-of-contents:) | 
+[cell 2 START +    0.4s] import requests | from pathlib import Path |  | if not Path("notebook_utils.
+[cell 2 DONE  +    0.5s]
+[cell 3 START +    0.5s] ### Install dependencies |  | The HuggingFace-native Qwen3-ASR models (`Qw
+[cell 4 START +    0.5s] from pip_helper import pip_install |  | # 1. Base runtime dependencies | pip
+[cell 4 DONE  +    0.8s]
+NBEXEC_RESULT={"ok": false, "n_cells": 10, "n_skipped": 0, "n_substituted": 3, "stopped_after": null, "error_cell": null, "error_type": "CellExecutionError", "error_head": "\u001b[31mCalledProcessError\u001b[39m: Command '['/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/bin/python', '-m', 'pip', 'install', '-q', '--extra-index-url', '//huggingface\\\\.co', ':https://hf-mirror.com://download.pytorch.org/whl/cpu', 'torch>=2.6', 'torchaudio', 'librosa', 'soundfile', 'gradio>=4.19', 'scipy', 'nncf>=2.19.0', 'openvino>=2025.4.0', 'openvino-tokenizers>=2025.4.0']' returned non-zero exit status 1.", "duration_s": 1.01, "patch_notes": ["substituted 3 occurrence(s) in cell 2", "substituted 2 occurrence(s) in cell 4", "substituted 1 occurrence(s) in cell 13"]}

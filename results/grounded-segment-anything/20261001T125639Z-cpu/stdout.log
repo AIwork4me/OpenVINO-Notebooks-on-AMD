@@ -1,0 +1,14 @@
+[cell 0 START +    0.4s] # Object detection and masking from prompts with GroundedSAM (Groundin
+[cell 1 START +    0.4s] ### Clone repositories and install requirements | [back to top ⬆️](#Tabl
+[cell 2 START +    0.4s] %pip install -q "openvino>=2026.0" "torch==2.8" opencv-python "Pillow>
+[cell 2 DONE  +   20.4s]
+[cell 3 START +   20.4s] For faster computation and to limit RAM by default we use `EfficientSA
+[cell 4 START +   20.4s] import ipywidgets as widgets |  | sam_type_widget = widgets.Dropdown( |     
+[cell 4 DONE  +   20.5s]
+[cell 5 START +   20.5s] use_efficient_sam = sam_type_widget.value == "EfficientSAM"
+[cell 5 DONE  +   20.5s]
+[cell 6 START +   20.5s] import requests | from pathlib import Path |  | if not Path("notebook_utils.
+[cell 6 DONE  +   20.5s]
+[cell 7 START +   20.5s] from pathlib import Path | import sys | import os |  | from cmd_helper import 
+[cell 7 DONE  +  110.9s]
+NBEXEC_RESULT={"ok": false, "n_cells": 32, "n_skipped": 0, "n_substituted": 0, "stopped_after": null, "error_cell": null, "error_type": "CellExecutionError", "error_head": "\u001b[31mCalledProcessError\u001b[39m: Command '['git', 'clone', 'https://github.com/wenyi5608/GroundingDINO.git']' returned non-zero exit status 128.", "duration_s": 111.18, "patch_notes": []}

@@ -1,0 +1,80 @@
+[IPKernelApp] WARNING | Kernel is running over TCP without encryption. All communication (including code and outputs) is sent in plain text and is susceptible to eavesdropping. Use IPC transport or launch with kernel manager-provisioned CurveZMQ keys to enable transport encryption.
+Traceback (most recent call last):
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/ov_amd/_nbexec.py", line 122, in main
+    client.execute()
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/jupyter_core/utils/__init__.py", line 165, in wrapped
+    return loop.run_until_complete(inner)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/base_events.py", line 687, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/nbclient/client.py", line 709, in async_execute
+    await self.async_execute_cell(
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/nbclient/client.py", line 1062, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/nbclient/client.py", line 918, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+# Download the image from the openvino_notebooks storage
+img = Path("data/coco_close.png")
+
+if not img.exists():
+    download_file(
+        "//huggingface\.co :https://hf-mirror.com://storage.openvinotoolkit.org/repositories/openvino_notebooks/data/data/image/coco_close.png",
+        directory="data",
+    )
+
+IMAGE_FILENAME = img.as_posix()
+
+MODEL_NAME = "MobileNetV3_large_x1_0"
+MODEL_DIR = Path("model")
+if not MODEL_DIR.exists():
+    MODEL_DIR.mkdir()
+
+if not (MODEL_DIR / "{}_infer".format(MODEL_NAME)).exists():
+    MODEL_URL = "//huggingface\.co :https://hf-mirror.com://paddle-imagenet-models-name.bj.bcebos.com/dygraph/inference/{}_infer.tar".format(MODEL_NAME)
+    download_file(MODEL_URL, directory=MODEL_DIR)
+    file = tarfile.open(MODEL_DIR / "{}_infer.tar".format(MODEL_NAME))
+    res = file.extractall(MODEL_DIR)
+    if not res:
+        print(f'Model Extracted to "./{MODEL_DIR}".')
+    else:
+        print("Error Extracting the model. Please check the network.")
+------------------
+
+----- stderr -----
+<>:6: SyntaxWarning: invalid escape sequence '\.'
+<>:18: SyntaxWarning: invalid escape sequence '\.'
+<>:6: SyntaxWarning: invalid escape sequence '\.'
+<>:18: SyntaxWarning: invalid escape sequence '\.'
+/tmp/ipykernel_71352/667681365.py:6: SyntaxWarning: invalid escape sequence '\.'
+  "//huggingface\.co :https://hf-mirror.com://storage.openvinotoolkit.org/repositories/openvino_notebooks/data/data/image/coco_close.png",
+/tmp/ipykernel_71352/667681365.py:18: SyntaxWarning: invalid escape sequence '\.'
+  MODEL_URL = "//huggingface\.co :https://hf-mirror.com://paddle-imagenet-models-name.bj.bcebos.com/dygraph/inference/{}_infer.tar".format(MODEL_NAME)
+------------------
+
+[31m---------------------------------------------------------------------------[39m
+[31mException[39m                                 Traceback (most recent call last)
+[36mCell[39m[36m [39m[32mIn[3][39m[32m, line 5[39m
+[32m      1[39m [38;5;66;03m# Download the image from the openvino_notebooks storage[39;00m
+[32m      2[39m img = Path([33m"data/coco_close.png"[39m)
+[32m      3[39m 
+[32m      4[39m [38;5;28;01mif[39;00m [38;5;28;01mnot[39;00m img.exists():
+[32m----> [39m[32m5[39m     download_file(
+[32m      6[39m         [33m"//huggingface\.co :https://hf-mirror.com://storage.openvinotoolkit.org/repositories/openvino_notebooks/data/data/image/coco_close.png"[39m,
+[32m      7[39m         directory=[33m"data"[39m,
+[32m      8[39m     )
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/results/paddle-to-openvino-classification/workdir-cpu/notebook_utils.py:154[39m, in [36mdownload_file[39m[34m(url, filename, directory, show_progress)[39m
+[32m    149[39m     [38;5;28;01mraise[39;00m [38;5;167;01mException[39;00m(
+[32m    150[39m         [33m"[39m[33mConnection timed out. If you access the internet through a proxy server, please [39m[33m"[39m
+[32m    151[39m         [33m"[39m[33mmake sure the proxy is set in the shell from where you launched Jupyter.[39m[33m"[39m
+[32m    152[39m     ) [38;5;28;01mfrom[39;00m[38;5;250m [39m[38;5;28;01mNone[39;00m
+[32m    153[39m [38;5;28;01mexcept[39;00m requests.exceptions.RequestException [38;5;28;01mas[39;00m error:
+[32m--> [39m[32m154[39m     [38;5;28;01mraise[39;00m [38;5;167;01mException[39;00m([33mf[39m[33m"[39m[33mFile downloading failed with error: [39m[38;5;132;01m{[39;00merror[38;5;132;01m}[39;00m[33m"[39m) [38;5;28;01mfrom[39;00m[38;5;250m [39m[38;5;28;01mNone[39;00m
+[32m    156[39m [38;5;66;03m# download the file if it does not exist[39;00m
+[32m    157[39m filesize = [38;5;28mint[39m(response.headers.get([33m"[39m[33mContent-length[39m[33m"[39m, [32m0[39m))
+
+[31mException[39m: File downloading failed with error: No connection adapters were found for '//huggingface\\.co :https://hf-mirror.com://storage.openvinotoolkit.org/repositories/openvino_notebooks/data/data/image/coco_close.png'
+

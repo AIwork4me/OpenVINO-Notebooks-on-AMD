@@ -1,0 +1,8 @@
+{
+  "repository": "openvinotoolkit/openvino_notebooks",
+  "branch": "latest",
+  "commit": "a8809170cc4fc6aa633fbb9c22214be67ac20b47",
+  "path": "notebooks/aloha-act/aloha-act.ipynb",
+  "url": "https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/aloha-act/aloha-act.ipynb",
+  "notebook_sha256": "b328bde94e44588fe7234ed04cb86abf38bbb026da03e557052701981714c022"
+}

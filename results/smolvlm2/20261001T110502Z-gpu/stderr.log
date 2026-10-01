@@ -1,0 +1,20 @@
+[transformers] Model config: pad_token_id must be `None` or an integer within the vocabulary (between 0 and 31999), got 128002. This may result in unexpected behavior.
+Traceback (most recent call last):
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/workloads/smolvlm2/rocm/run.py", line 86, in <module>
+    raise SystemExit(main())
+                     ^^^^^^
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/workloads/smolvlm2/rocm/run.py", line 40, in main
+    processor = AutoProcessor.from_pretrained(MODEL)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-gpu/lib/python3.12/site-packages/transformers/models/auto/processing_auto.py", line 346, in from_pretrained
+    return processor_class.from_pretrained(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-gpu/lib/python3.12/site-packages/transformers/processing_utils.py", line 1755, in from_pretrained
+    return cls.from_args_and_dict(args, processor_dict, **instantiation_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-gpu/lib/python3.12/site-packages/transformers/processing_utils.py", line 1516, in from_args_and_dict
+    processor = cls(*args, **valid_kwargs)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-gpu/lib/python3.12/site-packages/transformers/models/smolvlm/processing_smolvlm.py", line 137, in __init__
+    raise ImportError(
+ImportError: Package `num2words` is required to run SmolVLM processor. Install it with `pip install num2words`.

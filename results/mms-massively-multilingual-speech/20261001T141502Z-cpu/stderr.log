@@ -1,0 +1,84 @@
+[IPKernelApp] WARNING | Kernel is running over TCP without encryption. All communication (including code and outputs) is sent in plain text and is susceptible to eavesdropping. Use IPC transport or launch with kernel manager-provisioned CurveZMQ keys to enable transport encryption.
+nstead, similarly to `kv_length` and `kv_offset`[39m[33m"[39m
+[32m    491[39m     )
+[32m--> [39m[32m492[39m     q_length, q_offset = [30;43mq_length[39;49m[30;43m.[39;49m[30;43mshape[39;49m[30;43m[[39;49m[30;43m0[39;49m[30;43m][39;49m, q_length[[32m0[39m].to(device)
+[32m    494[39m [38;5;66;03m# Potentially pad the 2D mask[39;00m
+
+[31mIndexError[39m: tuple index out of range
+
+The above exception was the direct cause of the following exception:
+
+[31mRuntimeError[39m                              Traceback (most recent call last)
+[36mCell[39m[36m [39m[32mIn[10][39m[32m, line 20[39m
+[32m     16[39m         [38;5;28;01mreturn[39;00m core.compile_model(model_path, device_name=device.value)
+[32m     17[39m     [38;5;28;01mreturn[39;00m core.read_model(model_path)
+[32m     18[39m 
+[32m     19[39m 
+[32m---> [39m[32m20[39m compiled_lid_model = get_lid_model(lid_model_xml_path)
+
+[36mCell[39m[36m [39m[32mIn[10][39m[32m, line 11[39m, in [36mget_lid_model[39m[34m(model_path, compiled)[39m
+[32m      7[39m     input_values = torch.zeros([[32m1[39m, MAX_SEQ_LENGTH], dtype=torch.float)
+[32m      8[39m 
+[32m      9[39m     [38;5;28;01mif[39;00m [38;5;28;01mnot[39;00m model_path.exists() [38;5;28;01mand[39;00m model_path == lid_model_xml_path:
+[32m     10[39m         lid_model_xml_path.parent.mkdir(parents=[38;5;28;01mTrue[39;00m, exist_ok=[38;5;28;01mTrue[39;00m)
+[32m---> [39m[32m11[39m         converted_model = ov.convert_model(lid_model, example_input={[33m"input_values"[39m: input_values})
+[32m     12[39m         ov.save_model(converted_model, lid_model_xml_path)
+[32m     13[39m         [38;5;28;01mif[39;00m [38;5;28;01mnot[39;00m compiled:
+[32m     14[39m             [38;5;28;01mreturn[39;00m converted_model
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/openvino/tools/ovc/convert.py:115[39m, in [36mconvert_model[39m[34m(input_model, input, output, example_input, extension, verbose, share_weights, dynamo)[39m
+[32m    113[39m logger_state = get_logger_state()
+[32m    114[39m cli_parser = get_all_cli_parser()
+[32m--> [39m[32m115[39m ov_model, _ = [30;43m_convert[39;49m[30;43m([39;49m[30;43mcli_parser[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mparams[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43;01mTrue[39;49;00m[30;43m)[39;49m
+[32m    116[39m restore_logger_state(logger_state)
+[32m    117[39m [38;5;28;01mreturn[39;00m ov_model
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/openvino/tools/ovc/convert_impl.py:587[39m, in [36m_convert[39m[34m(cli_parser, args, python_api_used)[39m
+[32m    585[39m send_conversion_result([33m'[39m[33mfail[39m[33m'[39m)
+[32m    586[39m [38;5;28;01mif[39;00m python_api_used:
+[32m--> [39m[32m587[39m     [38;5;28;01mraise[39;00m e
+[32m    588[39m [38;5;28;01melse[39;00m:
+[32m    589[39m     [38;5;28;01mreturn[39;00m [38;5;28;01mNone[39;00m, argv
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/openvino/tools/ovc/convert_impl.py:476[39m, in [36m_convert[39m[34m(cli_parser, args, python_api_used)[39m
+[32m    472[39m     [38;5;28;01melif[39;00m [33m'[39m[33mexample_inputs[39m[33m'[39m [38;5;129;01min[39;00m args:
+[32m    473[39m         [38;5;28;01mraise[39;00m [38;5;167;01mAssertionError[39;00m(
+[32m    474[39m             [33m"[39m[33m'[39m[33mexample_inputs[39m[33m'[39m[33m argument is not recognized, maybe you meant to provide [39m[33m'[39m[33mexample_input[39m[33m'[39m[33m?[39m[33m"[39m)
+[32m--> [39m[32m476[39m     [30;43mget_pytorch_decoder[39;49m[30;43m([39;49m[30;43margs[39;49m[30;43m[[39;49m[30;43m'[39;49m[30;43minput_model[39;49m[30;43m'[39;49m[30;43m][39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mexample_inputs[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43margs[39;49m[30;43m)[39;49m
+[32m    477[39m [38;5;28;01mif[39;00m model_framework == [33m"[39m[33mpaddle[39m[33m"[39m:
+[32m    478[39m     example_inputs = [38;5;28;01mNone[39;00m
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/openvino/tools/ovc/moc_frontend/pytorch_frontend_utils.py:162[39m, in [36mget_pytorch_decoder[39m[34m(model, example_inputs, args)[39m
+[32m    156[39m         decoder = TorchFXPythonDecoder.from_model(
+[32m    157[39m             model,
+[32m    158[39m             example_inputs=inputs,
+[32m    159[39m             dynamic_shapes=dynamic_shapes,
+[32m    160[39m             module_extensions=extract_module_extensions(args))
+[32m    161[39m     [38;5;28;01melse[39;00m:
+[32m--> [39m[32m162[39m         decoder = [30;43mTorchScriptPythonDecoder[39;49m[30;43m([39;49m
+[32m    163[39m [30;43m            [39;49m[30;43mmodel[39;49m[30;43m,[39;49m
+[32m    164[39m [30;43m            [39;49m[30;43mexample_input[39;49m[30;43m=[39;49m[30;43minputs[39;49m[30;43m,[39;49m
+[32m    165[39m [30;43m            [39;49m[30;43mshared_memory[39;49m[30;43m=[39;49m[30;43margs[39;49m[30;43m.[39;49m[30;43mget[39;49m[30;43m([39;49m[30;43m"[39;49m[30;43mshare_weights[39;49m[30;43m"[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43;01mTrue[39;49;00m[30;43m)[39;49m[30;43m,[39;49m
+[32m    166[39m [30;43m            [39;49m[30;43mmodule_extensions[39;49m[30;43m=[39;49m[30;43mextract_module_extensions[39;49m[30;43m([39;49m[30;43margs[39;49m[30;43m)[39;49m[30;43m)[39;49m
+[32m    167[39m [38;5;28;01melse[39;00m:
+[32m    168[39m     decoder = model
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/openvino/frontend/pytorch/ts_decoder.py:84[39m, in [36mTorchScriptPythonDecoder.__init__[39m[34m(self, pt_module, graph_element, example_input, alias_db, shared_memory, skip_freeze, constant_cache, module_extensions, trace_kwargs)[39m
+[32m     81[39m         msg = [33m"[39m[33mscripting[39m[33m"[39m
+[32m     82[39m         help_msg = ([33m"[39m[33mTracing sometimes provide better results, [39m[33m"[39m
+[32m     83[39m                     [33m"[39m[33mplease provide valid [39m[33m'[39m[33mexample_input[39m[33m'[39m[33m argument.[39m[38;5;130;01m\n[39;00m[33m"[39m)
+[32m---> [39m[32m84[39m     [38;5;28;01mraise[39;00m [38;5;167;01mRuntimeError[39;00m(
+[32m     85[39m         [33mf[39m[33m"[39m[33mCouldn[39m[33m'[39m[33mt get TorchScript module by [39m[38;5;132;01m{[39;00mmsg[38;5;132;01m}[39;00m[33m.[39m[38;5;130;01m\n[39;00m[33mException:[39m[38;5;130;01m\n[39;00m[38;5;132;01m{[39;00me[38;5;132;01m}[39;00m[38;5;130;01m\n[39;00m[33m"[39m
+[32m     86[39m         [33mf[39m[33m"[39m[38;5;132;01m{[39;00mhelp_msg[38;5;132;01m}[39;00m[33m You can also provide TorchScript module that you obtained[39m[33m"[39m
+[32m     87[39m         [33m"[39m[33m yourself, please refer to PyTorch documentation: [39m[33m"[39m
+[32m     88[39m         [33m"[39m[33mhttps://pytorch.org/tutorials/beginner/Intro_to_TorchScript_tutorial.html.[39m[33m"[39m
+[32m     89[39m     ) [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01me[39;00m
+[32m     90[39m [38;5;28mself[39m.graph_element = pt_module.inlined_graph
+[32m     91[39m [38;5;28mself[39m.alias_db = [38;5;28mself[39m.graph_element.alias_db()
+
+[31mRuntimeError[39m: Couldn't get TorchScript module by tracing.
+Exception:
+tuple index out of range
+Please check correctness of provided 'example_input'. Sometimes models can be converted in scripted mode, please try running conversion without 'example_input'.
+ You can also provide TorchScript module that you obtained yourself, please refer to PyTorch documentation: https://pytorch.org/tutorials/beginner/Intro_to_TorchScript_tutorial.html.
+

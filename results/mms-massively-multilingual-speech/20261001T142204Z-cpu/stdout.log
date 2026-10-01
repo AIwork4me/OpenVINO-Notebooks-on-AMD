@@ -1,0 +1,33 @@
+[cell 0 START +    0.4s] # MMS: Scaling Speech Technology to 1000+ languages with OpenVINO™ |  | Th
+[cell 1 START +    0.4s]  | #### Table of contents: |  | - [Prerequisites](#Prerequisites) | - [Prepare
+[cell 2 START +    0.4s] ## Prerequisites | [back to top ⬆️](#Table-of-contents:) | 
+[cell 3 START +    0.4s] %pip install -q --upgrade pip | %pip install -q  "openvino>=2023.1.0" "n
+[cell 3 DONE  +    1.7s]
+[cell 4 START +    1.7s] from pathlib import Path |  | import torch |  | import openvino as ov |  | import 
+[cell 4 DONE  +    2.6s]
+[cell 5 START +    2.6s] ## Prepare an example audio | [back to top ⬆️](#Table-of-contents:) |  | Rea
+[cell 6 START +    2.6s] import ipywidgets as widgets |  | SAMPLE_LANG = widgets.Dropdown( |     opti
+[cell 6 DONE  +    2.6s]
+[cell 7 START +    2.6s] Specify `streaming=True` to not download the entire dataset.
+[cell 8 START +    2.6s] from datasets import load_dataset |  | mls_dataset = load_dataset("faceboo
+[cell 8 DONE  +   40.6s]
+[cell 9 START +   40.6s] Example has a dictionary structure. It contains an audio data and a te
+[cell 10 START +   40.6s] print(example)  # look at structure
+[cell 10 DONE  +   40.6s]
+[cell 11 START +   40.6s] import IPython.display as ipd |  | print(example["transcript"]) | ipd.Audio(
+[cell 11 DONE  +   40.6s]
+[cell 12 START +   40.6s] ## Language Identification (LID)  | [back to top ⬆️](#Table-of-contents:
+[cell 13 START +   40.6s] ### Download pretrained model and processor | [back to top ⬆️](#Table-of
+[cell 14 START +   40.6s] from transformers import Wav2Vec2ForSequenceClassification, AutoFeatur
+[cell 14 DONE  +  275.6s]
+[cell 15 START +  275.6s] ### Use the original model to run an inference | [back to top ⬆️](#Table
+[cell 16 START +  275.6s] inputs = lid_processor(example["audio"]["array"], sampling_rate=16_000
+[cell 16 DONE  +  281.1s]
+[cell 17 START +  281.1s] ### Convert to OpenVINO IR model and run an inference | [back to top ⬆️]
+[cell 18 START +  281.1s] Select device from dropdown list for running inference using OpenVINO
+[cell 19 START +  281.1s] from notebook_utils import device_widget |  | core = ov.Core() |  | device = d
+[cell 19 DONE  +  281.3s]
+[cell 20 START +  281.3s] Convert model to OpenVINO format and compile it
+[cell 21 START +  281.3s] MAX_SEQ_LENGTH = 30480 |  | lid_model_xml_path = Path("models/ov_lid_model
+[cell 21 DONE  +  282.4s]
+NBEXEC_RESULT={"ok": false, "n_cells": 34, "n_skipped": 0, "n_substituted": 4, "stopped_after": null, "error_cell": null, "error_type": "CellExecutionError", "error_head": " You can also provide TorchScript module that you obtained yourself, please refer to PyTorch documentation: https://pytorch.org/tutorials/beginner/Intro_to_TorchScript_tutorial.html.", "duration_s": 285.18, "patch_notes": ["substituted 1 occurrence(s) in cell 3", "substituted 2 occurrence(s) in cell 4", "substituted 1 occurrence(s) in cell 45", "substituted 2 occurrence(s) in cell 66"]}

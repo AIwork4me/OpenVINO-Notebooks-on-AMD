@@ -1,0 +1,8 @@
+{
+  "repository": "openvinotoolkit/openvino_notebooks",
+  "branch": "latest",
+  "commit": "a8809170cc4fc6aa633fbb9c22214be67ac20b47",
+  "path": "notebooks/physical-ai-robotics/physical-ai-robotics.ipynb",
+  "url": "https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/physical-ai-robotics/physical-ai-robotics.ipynb",
+  "notebook_sha256": "6285c8fc4233a3b1df7d27a7077113f5b400af7144c620d2f254b6d3a63fd675"
+}

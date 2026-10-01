@@ -1,0 +1,100 @@
+[IPKernelApp] WARNING | Kernel is running over TCP without encryption. All communication (including code and outputs) is sent in plain text and is susceptible to eavesdropping. Use IPC transport or launch with kernel manager-provisioned CurveZMQ keys to enable transport encryption.
+39;49m[30;43m,[39;49m
+[32m    799[39m [30;43m    [39;49m[30;43mheaders[39;49m[30;43m=[39;49m[30;43mheaders[39;49m[30;43m,[39;49m
+[32m    800[39m [30;43m    [39;49m[30;43mchunked[39;49m[30;43m=[39;49m[30;43mchunked[39;49m[30;43m,[39;49m
+[32m    801[39m [30;43m    [39;49m[30;43mretries[39;49m[30;43m=[39;49m[30;43mretries[39;49m[30;43m,[39;49m
+[32m    802[39m [30;43m    [39;49m[30;43mresponse_conn[39;49m[30;43m=[39;49m[30;43mresponse_conn[39;49m[30;43m,[39;49m
+[32m    803[39m [30;43m    [39;49m[30;43mpreload_content[39;49m[30;43m=[39;49m[30;43mpreload_content[39;49m[30;43m,[39;49m
+[32m    804[39m [30;43m    [39;49m[30;43mdecode_content[39;49m[30;43m=[39;49m[30;43mdecode_content[39;49m[30;43m,[39;49m
+[32m    805[39m [30;43m    [39;49m[30;43m*[39;49m[30;43m*[39;49m[30;43mresponse_kw[39;49m[30;43m,[39;49m
+[32m    806[39m [30;43m[39;49m[30;43m)[39;49m
+[32m    808[39m [38;5;66;03m# Everything went great![39;00m
+[32m    809[39m clean_exit = [38;5;28;01mTrue[39;00m
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/urllib3/connectionpool.py:470[39m, in [36mHTTPConnectionPool._make_request[39m[34m(self, conn, method, url, body, headers, retries, timeout, chunked, response_conn, preload_content, decode_content, enforce_content_length)[39m
+[32m    467[39m [38;5;28;01mtry[39;00m:
+[32m    468[39m     [38;5;66;03m# Trigger any extra validation we need to do.[39;00m
+[32m    469[39m     [38;5;28;01mtry[39;00m:
+[32m--> [39m[32m470[39m         [30;43mself[39;49m[30;43m.[39;49m[30;43m_validate_conn[39;49m[30;43m([39;49m[30;43mconn[39;49m[30;43m)[39;49m
+[32m    471[39m     [38;5;28;01mexcept[39;00m (SocketTimeout, BaseSSLError) [38;5;28;01mas[39;00m e:
+[32m    472[39m         [38;5;28mself[39m._raise_timeout(err=e, url=url, timeout_value=conn.timeout)
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/urllib3/connectionpool.py:1125[39m, in [36mHTTPSConnectionPool._validate_conn[39m[34m(self, conn)[39m
+[32m   1123[39m [38;5;66;03m# Force connect early to allow us to validate the connection.[39;00m
+[32m   1124[39m [38;5;28;01mif[39;00m conn.is_closed:
+[32m-> [39m[32m1125[39m     [30;43mconn[39;49m[30;43m.[39;49m[30;43mconnect[39;49m[30;43m([39;49m[30;43m)[39;49m
+[32m   1127[39m [38;5;66;03m# TODO revise this, see https://github.com/urllib3/urllib3/issues/2791[39;00m
+[32m   1128[39m [38;5;28;01mif[39;00m [38;5;129;01mnot[39;00m conn.is_verified [38;5;129;01mand[39;00m [38;5;129;01mnot[39;00m conn.proxy_is_verified:
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/urllib3/connection.py:827[39m, in [36mHTTPSConnection.connect[39m[34m(self)[39m
+[32m    825[39m [38;5;28;01mtry[39;00m:
+[32m    826[39m     sock: socket.socket | ssl.SSLSocket
+[32m--> [39m[32m827[39m     [38;5;28mself[39m.sock = sock = [30;43mself[39;49m[30;43m.[39;49m[30;43m_new_conn[39;49m[30;43m([39;49m[30;43m)[39;49m
+[32m    828[39m     server_hostname: [38;5;28mstr[39m = [38;5;28mself[39m.host
+[32m    829[39m     tls_in_tls = [38;5;28;01mFalse[39;00m
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/urllib3/connection.py:239[39m, in [36mHTTPConnection._new_conn[39m[34m(self)[39m
+[32m    234[39m [38;5;250m[39m[33;03m"""Establish a socket connection and set nodelay settings on it.[39;00m
+[32m    235[39m 
+[32m    236[39m [33;03m:return: New socket connection.[39;00m
+[32m    237[39m [33;03m"""[39;00m
+[32m    238[39m [38;5;28;01mtry[39;00m:
+[32m--> [39m[32m239[39m     sock = [30;43mconnection[39;49m[30;43m.[39;49m[30;43mcreate_connection[39;49m[30;43m([39;49m
+[32m    240[39m [30;43m        [39;49m[30;43m([39;49m[30;43mself[39;49m[30;43m.[39;49m[30;43m_dns_host[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mself[39;49m[30;43m.[39;49m[30;43mport[39;49m[30;43m)[39;49m[30;43m,[39;49m
+[32m    241[39m [30;43m        [39;49m[30;43mself[39;49m[30;43m.[39;49m[30;43mtimeout[39;49m[30;43m,[39;49m
+[32m    242[39m [30;43m        [39;49m[30;43msource_address[39;49m[30;43m=[39;49m[30;43mself[39;49m[30;43m.[39;49m[30;43msource_address[39;49m[30;43m,[39;49m
+[32m    243[39m [30;43m        [39;49m[30;43msocket_options[39;49m[30;43m=[39;49m[30;43mself[39;49m[30;43m.[39;49m[30;43msocket_options[39;49m[30;43m,[39;49m
+[32m    244[39m [30;43m    [39;49m[30;43m)[39;49m
+[32m    245[39m [38;5;28;01mexcept[39;00m socket.gaierror [38;5;28;01mas[39;00m e:
+[32m    246[39m     [38;5;28;01mraise[39;00m NameResolutionError([38;5;28mself[39m.host, [38;5;28mself[39m, e) [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01me[39;00m
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/urllib3/util/connection.py:73[39m, in [36mcreate_connection[39m[34m(address, timeout, source_address, socket_options)[39m
+[32m     71[39m [38;5;28;01mif[39;00m source_address:
+[32m     72[39m     sock.bind(source_address)
+[32m---> [39m[32m73[39m [30;43msock[39;49m[30;43m.[39;49m[30;43mconnect[39;49m[30;43m([39;49m[30;43msa[39;49m[30;43m)[39;49m
+[32m     74[39m [38;5;66;03m# Break explicitly a reference cycle[39;00m
+[32m     75[39m err = [38;5;28;01mNone[39;00m
+
+[31mKeyboardInterrupt[39m: 
+
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/jupyter_client/manager.py", line 111, in wrapper
+    self._ready.set_result(None)
+asyncio.exceptions.InvalidStateError: invalid state
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/nbclient/client.py", line 509, in _async_cleanup_kernel
+    await ensure_async(self.km.shutdown_kernel(now=now))
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/jupyter_core/utils/__init__.py", line 214, in ensure_async
+    result = await obj
+             ^^^^^^^^^
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/jupyter_client/manager.py", line 114, in wrapper
+    self._ready.set_exception(e)
+asyncio.exceptions.InvalidStateError: invalid state
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/ov_amd/_nbexec.py", line 122, in main
+    client.execute()
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/jupyter_core/utils/__init__.py", line 165, in wrapped
+    return loop.run_until_complete(inner)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/base_events.py", line 687, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/nbclient/client.py", line 693, in async_execute
+    async with self.async_setup_kernel(**kwargs):
+  File "/usr/lib/python3.12/contextlib.py", line 231, in __aexit__
+    await self.gen.athrow(value)
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/nbclient/client.py", line 660, in async_setup_kernel
+    await self._async_cleanup_kernel()
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/nbclient/client.py", line 516, in _async_cleanup_kernel
+    await ensure_async(self.km.cleanup_resources())
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'cleanup_resources'

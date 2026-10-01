@@ -28,20 +28,21 @@ CATALOG = REPO_ROOT / "catalog" / "notebooks.yaml"
 # category detection rules, evaluated in order on the upstream-relative path
 CATEGORY_RULES: list[tuple[str, str]] = [
     (r"hello-world|hellogenerateimage", "API"),
-    (r"openvino-api|openvino-2024|pot-quantization|model-server|model_api|async-api", "API"),
-    (r"segformer|segment-anything|segmentation|maskrcnn|monodepth|depth", "Vision"),
-    (r"yolo|detection|object-detection|ssd|retinaface|owl-vit|dino|rtdetr", "Vision"),
+    (r"openvino-api|openvino-2024|pot-quantization|model-server|model_api|async-api|auto-device|gpu-device|hello-npu|hugging-face-hub|openvino-tokenizers|optimize-preprocessing", "API"),
+    (r"tensorflow|onnx|pytorch|detectron2|modelscope|tflite|convert|export|migration", "Conversion"),
+    (r"neural-compression|quantization|weight-compression|compression|language-quantize", "Optimization"),
+    (r"whisper|asr|speech-recognition|wav2vec|speech-to-text|mms-massively|omnivoice", "ASR"),
+    (r"tts|text-to-speech|speech-synthesis|sunset|kokoro|fish-speech|bark-text-to-audio|openvoice|freevc|voice-conversion|music-generation|ace-step", "TTS"),
+    (r"wav2lip|animate-anyone|catvton|instant-id|ernie-image|muse-glimmer|image-to-image-genai|text-to-image-genai|rmbg|background-removal|darkir|photo-restoration|inpainting|image-editing", "Image Generation"),
+    (r"stable-diffusion|latent-consistency|flux|animatediff|kandinsky|image-generation|unet|style", "Image Generation"),
+    (r"florence2|glm4|glm4\.1|minicpm|internvl|vlm|visual-language|llava|git-base|grounding-dino|grounded-segment|molmo|smolvlm|video-llm|multimodal|visual-chat|omnimodal", "VLM"),
+    (r"ocr|paddle|docling|mineru|smoldocling|omniparser|meter-reader", "OCR"),
+    (r"llm|qwen|llama|chatbot|question-answering|rag|agent|phi-|gemma|mistral|ministral|deepseek|opt-|gpt2|text-generation|instruction|translation|nuextract|speculative|simplifying|hunyuan|physical-ai|aloha", "LLM"),
+    (r"yolo|detection|object-detection|ssd|retinaface|owl-vit|dino|rtdetr|pointpillars|person-counting", "Vision"),
+    (r"pose-estimation|segmentation|maskrcnn|monodepth|depth|segformer|segment-anything|sam2|sam3", "Vision"),
     (r"classification|mobilenet|resnet|vit|clip|image-classification|similarity", "Vision"),
-    (r"whisper|asr|speech-recognition|wav2vec|speech-to-text|mms-speech", "ASR"),
-    (r"tts|text-to-speech|speech-synthesis|sunset|kokoro|fish-speech", "TTS"),
-    (r"stable-diffusion|latent-consistency|flux|animatediff|kandinsky|image-generation|inpainting|image-editing|photos|stable-diffusion-xl|turbo|unet|photo-restoration|style", "Image Generation"),
-    (r"llm|qwen|llama|chatbot|question-answering|rag|agent|phi-|gemma|mistral|deepseek|opt-|gpt2|text-generation|instruction|reinforcement-learning-rl|simplifying", "LLM"),
-    (r"internvl|internvl3|internvl2_5|internvl2|vlm|visual-language|llava|git-base| Florence|-- VL|grounding-dino|grounded-segment|molmo|smolvlm|video-llm|multimodal|visual-chat", "VLM"),
-    (r"ocr|paddle|paddleocr", "OCR"),
     (r"video|action-recognition|tracking", "Video"),
     (r"anomaly|industrial|anomalib", "Industrial"),
-    (r"neural-compression|quantization|weight-compression|compression", "Optimization"),
-    (r"tensorflow|onnx|pytorch|convert|export|migration", "Conversion"),
 ]
 
 HEAVY_DEPS = {
@@ -54,7 +55,7 @@ HEAVY_DEPS = {
     "nncf": "small",
 }
 
-WEIGHT_BY_SIZE = [(25_000, "huge"), (10_000, "large"), (3_000, "medium"), (0, "small")]
+WEIGHT_BY_SOURCE = [(400_000, "huge"), (100_000, "large"), (30_000, "medium"), (0, "small")]
 
 TWIN_RULES: list[tuple[str, str]] = [
     (r"openvino-api|pot-quantization|model-server|async-api|neural-compression|weight-compression|nncf|optimization|convert|export|migration|tensorflow-to-openvino|pytorch-to-openvino|onnx", TwinLevel.OPENVINO_SPECIFIC.value),
@@ -108,9 +109,73 @@ def title_of(path: Path) -> str:
     return name.replace("-", " ").replace("_", " ").strip().title()
 
 
+def source_bytes(nb: Path) -> int:
+    """Code volume only (embedded output images excluded)."""
+
+    try:
+        import json
+
+        data = json.loads(nb.read_text(errors="ignore"))
+        total = 0
+        for cell in data.get("cells", []):
+            if cell.get("cell_type") == "code":
+                src = cell.get("source", "")
+                total += len("".join(src) if isinstance(src, list) else src)
+        return total
+    except (OSError, ValueError):
+        return nb_size(nb)
+
+
+def source_text(nb: Path) -> str:
+    """All cell source text (code only)."""
+
+    try:
+        import json
+
+        data = json.loads(nb.read_text(errors="ignore"))
+        chunks = []
+        for cell in data.get("cells", []):
+            if cell.get("cell_type") == "code":
+                src = cell.get("source", "")
+                chunks.append("".join(src) if isinstance(src, list) else src)
+        return "\n".join(chunks)
+    except (OSError, ValueError):
+        return ""
+
+
+def model_weight_bump(nb: Path) -> str | None:
+    """Weight implied by referenced model scale (params/diffusion keywords).
+
+    Code size says nothing about the model a notebook downloads; a 20KB
+    notebook can pull a 30GB checkpoint. Rough but far better than nothing.
+    """
+
+    text = source_text(nb)
+    if not text:
+        return None
+    big = re.findall(r"(\d+(?:\.\d+)?)\s*[Bb]\b", text)
+    if big:
+        params = [float(x) for x in big]
+        m = max(params)
+        if m >= 13:
+            return "huge"
+        if m >= 2:
+            return "large"
+        if m >= 0.5:
+            return "medium"
+    for kw in ("flux", "sd3", "stable-diffusion-3", "video", "hunyuan", "wan2", "animatediff", "sdxl"):
+        if kw in text.lower():
+            return "large"
+    return None
+
+
 def weight_for(nb: Path, req: Path | None) -> str:
-    size = nb_size(nb)
-    w = next((label for bound, label in WEIGHT_BY_SIZE if size >= bound), "small")
+    w = next((label for bound, label in WEIGHT_BY_SOURCE if source_bytes(nb) >= bound), "small")
+    bump = model_weight_bump(nb)
+    if bump:
+        rank = {"small": 0, "medium": 1, "large": 2, "huge": 3}
+        if rank[bump] > rank[w]:
+            w = bump
     if req and req.exists():
         text = req.read_text(errors="ignore").lower()
         for dep, heavy in HEAVY_DEPS.items():

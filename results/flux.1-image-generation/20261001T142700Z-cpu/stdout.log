@@ -1,0 +1,16 @@
+[cell 0 START +    0.4s] # Image generation with Flux.1 and OpenVINO |  | Flux is a AI image genera
+[cell 1 START +    0.4s] ## Prerequisites | [back to top ⬆️](#Table-of-contents:)
+[cell 2 START +    0.4s] %pip install -q "gradio>=4.19,<6" "torch==2.8" "transformers==4.57.6" 
+[cell 2 DONE  +    2.4s]
+[cell 3 START +    2.4s] import requests | from pathlib import Path |  | if not Path("cmd_helper.py")
+[cell 3 DONE  +    2.5s]
+[cell 4 START +    2.5s] ## Select model | [back to top ⬆️](#Table-of-contents:) |  | To strike a bal
+[cell 5 START +    2.5s] import ipywidgets as widgets |  | model_ids = ["black-forest-labs/FLUX.1-s
+[cell 5 DONE  +    2.5s]
+[cell 6 START +    2.5s] ## Convert model with OpenVINO | [back to top ⬆️](#Table-of-contents:) |  | 
+[cell 7 START +    2.5s] use_preconverted = widgets.Checkbox(value="schnell" in model_selector.
+[cell 7 DONE  +    2.5s]
+[cell 8 START +    2.5s] from pathlib import Path |  | model_id = model_selector.value |  | model_base_
+[cell 8 DONE  +    2.5s]
+[cell 9 START +    2.5s] from cmd_helper import optimum_cli | from huggingface_hub import snapsho
+NBEXEC_RESULT={"ok": false, "n_cells": 12, "n_skipped": 0, "n_substituted": 3, "stopped_after": null, "error_cell": null, "error_type": "CellTimeoutError", "error_head": "-------------------", "duration_s": 905.14, "patch_notes": ["substituted 2 occurrence(s) in cell 2", "substituted 4 occurrence(s) in cell 3", "substituted 1 occurrence(s) in cell 19"]}

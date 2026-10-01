@@ -1,0 +1,7 @@
+[cell 0 START +    0.4s] # Document Parsing using Unlimited-OCR and OpenVINO |  | **[Unlimited-OCR]
+[cell 1 START +    0.4s] ## Prerequisites | [back to top ⬆️](#Table-of-contents:)
+[cell 2 START +    0.4s] import requests | from pathlib import Path |  | utility_files = ["cmd_helper
+[cell 2 DONE  +    0.4s]
+[cell 3 START +    0.4s] from pip_helper import pip_install |  | pip_install("-Uq", "--pre", "openv
+[cell 3 DONE  +    0.7s]
+NBEXEC_RESULT={"ok": false, "n_cells": 10, "n_skipped": 0, "n_substituted": 5, "stopped_after": null, "error_cell": null, "error_type": "CellExecutionError", "error_head": "\u001b[31mCalledProcessError\u001b[39m: Command '['/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/bin/python', '-m', 'pip', 'install', '-Uq', '--pre', 'openvino', '--extra-index-url', '//huggingface\\\\.co', ':https://hf-mirror.com://storage.openvinotoolkit.org/simple/wheels/nightly']' returned non-zero exit status 1.", "duration_s": 0.94, "patch_notes": ["substituted 1 occurrence(s) in cell 2", "substituted 2 occurrence(s) in cell 3", "substituted 1 occurrence(s) in cell 5", "substituted 1 occurrence(s) in cell 14", "substituted 1 occurrence(s) in cell 17"]}

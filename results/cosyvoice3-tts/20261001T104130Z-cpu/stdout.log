@@ -1,0 +1,7 @@
+[cell 0 START +    0.4s] #  Text-to-Speech (TTS) system with Fun-CosyVoice 3.0 and OpenVINO |  | Fu
+[cell 1 START +    0.4s] ## Prerequisites | [back to top ⬆️](#Table-of-contents:)
+[cell 2 START +    0.4s] # Fetch `notebook_utils` module | import requests | from pathlib import Pa
+[cell 2 DONE  +    0.4s]
+[cell 3 START +    0.4s] from cmd_helper import clone_repo | from pip_helper import pip_install | i
+[cell 3 DONE  +    0.5s]
+NBEXEC_RESULT={"ok": false, "n_cells": 13, "n_skipped": 0, "n_substituted": 0, "stopped_after": null, "error_cell": null, "error_type": "CellExecutionError", "error_head": "\u001b[31mCalledProcessError\u001b[39m: Command '['/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/bin/python', '-m', 'pip', 'install', '-q', '--extra-index-url', 'https://download.pytorch.org/whl/cpu', 'setuptools<82', 'nncf', 'openvino>=2025.4.0', 'gradio', 'huggingface_hub']' returned non-zero exit status 1.", "duration_s": 0.78, "patch_notes": []}

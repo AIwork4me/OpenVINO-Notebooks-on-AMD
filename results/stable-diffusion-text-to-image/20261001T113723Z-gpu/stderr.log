@@ -1,0 +1,95 @@
+/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-gpu/lib/python3.12/site-packages/diffusers/utils/deprecation_utils.py:23: FutureWarning: `torch_dtype` is deprecated and will be removed in version 1.0.0. Please use `dtype` instead.
+  deprecate("torch_dtype", "1.0.0", _TORCH_DTYPE_DEPRECATION_MESSAGE)
+Couldn't connect to the Hub: 401 Client Error. (Request ID: Root=1-6abe45f8-4ad231547cddc4fa1780e47e;2f140d5b-3165-4e50-8f6b-70456651635c)
+
+Repository Not Found for url: https://hf-mirror.com/api/models/stabilityai/stable-diffusion-2-1.
+Please make sure you specified the correct `repo_id` and `repo_type`.
+If you are trying to access a private or gated repo, make sure you are authenticated and your token has the required permissions.
+For more details, see https://huggingface.co/docs/huggingface_hub/authentication
+Invalid username or password..
+Will try to load from local cache.
+Loading pipeline components...:   0%|          | 0/6 [00:00<?, ?it/s]
+Loading weights:   0%|          | 0/372 [00:00<?, ?it/s][ALoading weights: 100%|██████████| 372/372 [00:00<00:00, 8403.74it/s]
+Loading pipeline components...:  17%|█▋        | 1/6 [00:00<00:00,  7.72it/s]CLIPFeatureExtractor appears to have been deprecated in transformers. Using CLIPImageProcessor instead.
+Loading pipeline components...:  67%|██████▋   | 4/6 [00:00<00:00, 20.65it/s]
+Traceback (most recent call last):
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-gpu/lib/python3.12/site-packages/huggingface_hub/utils/_http.py", line 836, in hf_raise_for_status
+    response.raise_for_status()
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-gpu/lib/python3.12/site-packages/httpx/_models.py", line 829, in raise_for_status
+    raise HTTPStatusError(message, request=request, response=self)
+httpx.HTTPStatusError: Client error '401 Unauthorized' for url 'https://hf-mirror.com/api/models/stabilityai/stable-diffusion-2-1'
+For more information check: https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/401
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-gpu/lib/python3.12/site-packages/diffusers/pipelines/pipeline_utils.py", line 1649, in download
+    info = model_info(pretrained_model_name, token=token, revision=revision)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-gpu/lib/python3.12/site-packages/huggingface_hub/utils/_validators.py", line 89, in _inner_fn
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-gpu/lib/python3.12/site-packages/huggingface_hub/hf_api.py", line 3323, in model_info
+    hf_raise_for_status(r)
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-gpu/lib/python3.12/site-packages/huggingface_hub/utils/_http.py", line 923, in hf_raise_for_status
+    raise _format(RepositoryNotFoundError, message, response, repo_type=repo_type, repo_id=repo_id) from e
+huggingface_hub.errors.RepositoryNotFoundError: 401 Client Error. (Request ID: Root=1-6abe45f8-4ad231547cddc4fa1780e47e;2f140d5b-3165-4e50-8f6b-70456651635c)
+
+Repository Not Found for url: https://hf-mirror.com/api/models/stabilityai/stable-diffusion-2-1.
+Please make sure you specified the correct `repo_id` and `repo_type`.
+If you are trying to access a private or gated repo, make sure you are authenticated and your token has the required permissions.
+For more details, see https://huggingface.co/docs/huggingface_hub/authentication
+Invalid username or password.
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/workloads/stable-diffusion-text-to-image/rocm/run.py", line 37, in _load_pipeline
+    pipe = StableDiffusionPipeline.from_pretrained(MODEL, torch_dtype=torch.float16)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-gpu/lib/python3.12/site-packages/huggingface_hub/utils/_validators.py", line 89, in _inner_fn
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-gpu/lib/python3.12/site-packages/diffusers/pipelines/pipeline_utils.py", line 880, in from_pretrained
+    cached_folder = cls.download(
+                    ^^^^^^^^^^^^^
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-gpu/lib/python3.12/site-packages/huggingface_hub/utils/_validators.py", line 89, in _inner_fn
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-gpu/lib/python3.12/site-packages/diffusers/pipelines/pipeline_utils.py", line 1859, in download
+    raise EnvironmentError(
+OSError: Cannot load model stabilityai/stable-diffusion-2-1: the model is not fully cached locally (Cannot find an appropriate cached snapshot folder for the specified revision on the local disk and outgoing traffic has been disabled. To enable repo look-ups and downloads online, pass 'local_files_only=False' as input.) and an error occurred while trying to fetch metadata from the Hub. Please check out the root cause in the stacktrace above.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/workloads/stable-diffusion-text-to-image/rocm/run.py", line 103, in <module>
+    raise SystemExit(main())
+                     ^^^^^^
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/workloads/stable-diffusion-text-to-image/rocm/run.py", line 59, in main
+    pipe, load_s, source = _load_pipeline(evidence)
+                           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/workloads/stable-diffusion-text-to-image/rocm/run.py", line 46, in _load_pipeline
+    pipe = StableDiffusionPipeline.from_pretrained(str(local), torch_dtype=torch.float16)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-gpu/lib/python3.12/site-packages/huggingface_hub/utils/_validators.py", line 89, in _inner_fn
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-gpu/lib/python3.12/site-packages/diffusers/pipelines/pipeline_utils.py", line 1064, in from_pretrained
+    loaded_sub_model = load_sub_model(
+                       ^^^^^^^^^^^^^^^
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-gpu/lib/python3.12/site-packages/diffusers/pipelines/pipeline_loading_utils.py", line 907, in load_sub_model
+    loaded_sub_model = load_method(cached_folder, **loading_kwargs)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-gpu/lib/python3.12/site-packages/huggingface_hub/utils/_validators.py", line 89, in _inner_fn
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-gpu/lib/python3.12/site-packages/diffusers/models/modeling_utils.py", line 1135, in from_pretrained
+    config, unused_kwargs, commit_hash = cls.load_config(
+                                         ^^^^^^^^^^^^^^^^
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-gpu/lib/python3.12/site-packages/huggingface_hub/utils/_validators.py", line 89, in _inner_fn
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-gpu/lib/python3.12/site-packages/diffusers/configuration_utils.py", line 417, in load_config
+    raise EnvironmentError(
+OSError: Error no file named config.json found in directory /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/workloads/stable-diffusion-text-to-image/rocm/weights.

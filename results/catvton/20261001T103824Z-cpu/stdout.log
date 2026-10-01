@@ -1,0 +1,12 @@
+[cell 0 START +    0.4s] # Virtual Try-On with CatVTON and OpenVINO |  | Virtual try-on methods bas
+[cell 1 START +    0.4s] ## Prerequisites | [back to top ⬆️](#Table-of-contents:)
+[cell 2 START +    0.4s] %pip install -q "openvino>=2024.4" "nncf>=2.13.0" | %pip install -q "tor
+[cell 2 DONE  +    0.8s]
+[cell 3 START +    0.8s] import requests | from pathlib import Path |  | if not Path("notebook_utils.
+[cell 3 DONE  +    0.8s]
+[cell 4 START +    0.8s] from cmd_helper import clone_repo |  | clone_repo("https://github.com/Zhen
+[cell 4 DONE  +  125.0s]
+[cell 5 START +  125.0s] ### Convert the model to OpenVINO IR | [back to top ⬆️](#Table-of-conten
+[cell 6 START +  125.0s] from ov_catvton_helper import download_models, convert_pipeline_models
+[cell 6 DONE  +  125.1s]
+NBEXEC_RESULT={"ok": false, "n_cells": 14, "n_skipped": 0, "n_substituted": 0, "stopped_after": null, "error_cell": null, "error_type": "CellExecutionError", "error_head": "\u001b[31mModuleNotFoundError\u001b[39m: No module named 'ov_catvton_helper'", "duration_s": 125.21, "patch_notes": []}

@@ -1,0 +1,13 @@
+{
+  "python": "3.12.3",
+  "openvino": {
+    "version": null,
+    "devices": []
+  },
+  "torch_rocm": {
+    "torch": null,
+    "cuda_available": false,
+    "device": null
+  },
+  "rocm_dir": "/opt/rocm"
+}

@@ -1,0 +1,25 @@
+id: parler-tts-text-to-speech
+title: Parler Tts Text To Speech
+category: TTS
+upstream:
+  repository: openvinotoolkit/openvino_notebooks
+  branch: latest
+  commit: a8809170cc4fc6aa633fbb9c22214be67ac20b47
+  path: notebooks/parler-tts-text-to-speech/parler-tts-text-to-speech.ipynb
+  url: https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/parler-tts-text-to-speech/parler-tts-text-to-speech.ipynb
+model:
+  name: ''
+  source: ''
+  revision: ''
+  license: ''
+cpu:
+  runtime: openvino
+  status: FAILED
+gpu:
+  runtime: ''
+  status: NOT_TESTED
+twin:
+  level: WORKLOAD_TWIN
+validation: {}
+patches: {}
+last_verified: ''

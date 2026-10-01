@@ -1,0 +1,9 @@
+{
+  "start": "2026-10-01T13:39:46+00:00",
+  "end": "2026-10-01T13:39:50+00:00",
+  "duration_s": 4.87,
+  "exit_code": 1,
+  "retry_count": 3,
+  "status": "ERROR",
+  "failure_category": "DEPENDENCY"
+}

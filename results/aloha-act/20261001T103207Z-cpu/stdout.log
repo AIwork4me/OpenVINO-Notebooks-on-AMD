@@ -1,0 +1,8 @@
+[cell 0 START +    0.4s] # Imitation Learning - ACT |  | Imitation learning is a machine learning a
+[cell 1 START +    0.4s] ## Prerequisites |  | Download our pre-trained weights from this link: [Do
+[cell 2 START +    0.4s] # Run this cell to download and extract the sim_insertion_scripted pac
+[cell 2 DONE  +   26.1s]
+[cell 3 START +   26.1s] ## Dependency and Environment Setup |  | Run the next cell to set up the A
+[cell 4 START +   26.1s] # Environment Setup (Aloha ACT Pipeline) | import requests | import os | imp
+[cell 4 DONE  +   26.2s]
+NBEXEC_RESULT={"ok": false, "n_cells": 5, "n_skipped": 0, "n_substituted": 0, "stopped_after": null, "error_cell": null, "error_type": "CellExecutionError", "error_head": "\u001b[31mCalledProcessError\u001b[39m: Command '['/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/bin/python', '-m', 'pip', 'install', '-q', 'ipywidgets']' returned non-zero exit status 1.", "duration_s": 26.45, "patch_notes": []}

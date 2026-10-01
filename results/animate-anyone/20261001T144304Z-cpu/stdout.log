@@ -1,0 +1,20 @@
+[cell 0 START +    0.4s] # Image-to-Video synthesis with AnimateAnyone and OpenVINO | ![](./anima
+[cell 1 START +    0.4s] ## Prerequisites | [back to top ⬆️](#Table-of-contents:)
+[cell 2 START +    0.4s] from pathlib import Path | import requests |  | %pip install -q "torch==2.8"
+[cell 2 DONE  +  279.8s]
+[cell 3 START +  279.8s] Note that we clone a fork of original repo with tweaked forward method
+[cell 4 START +  279.8s] MODEL_DIR = Path("models") | VAE_ENCODER_PATH = MODEL_DIR / "vae_encoder
+[cell 4 DONE  +  279.8s]
+[cell 5 START +  279.8s] from datetime import datetime | from typing import Optional, Union, Call
+[cell 5 DONE  +  282.4s]
+[cell 6 START +  282.4s] %%skip not $SHOULD_CONVERT | from pathlib import PurePosixPath | import gc
+[cell 6 DONE  +  282.8s]
+[cell 7 START +  282.8s] ## Prepare base model | [back to top ⬆️](#Table-of-contents:)
+[cell 8 START +  282.8s] %%skip not $SHOULD_CONVERT | local_dir = Path("./pretrained_weights/stab
+[cell 8 DONE  + 1134.8s]
+[cell 9 START + 1134.8s] ## Prepare image encoder | [back to top ⬆️](#Table-of-contents:)
+[cell 10 START + 1134.8s] %%skip not $SHOULD_CONVERT | local_dir = Path("./pretrained_weights") | lo
+[cell 10 DONE  + 1466.0s]
+[cell 11 START + 1466.0s] ## Download weights | [back to top ⬆️](#Table-of-contents:)
+[cell 12 START + 1466.0s] %%skip not $SHOULD_CONVERT | snapshot_download( |     repo_id="stabilityai
+NBEXEC_RESULT={"ok": false, "n_cells": 28, "n_skipped": 0, "n_substituted": 2, "stopped_after": null, "error_cell": null, "error_type": "CellTimeoutError", "error_head": "-------------------", "duration_s": 2368.65, "patch_notes": ["substituted 4 occurrence(s) in cell 2", "substituted 2 occurrence(s) in cell 45"]}

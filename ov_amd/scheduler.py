@@ -48,6 +48,31 @@ def load_state() -> dict[str, Any]:
 
 
 def save_state(state: dict[str, Any]) -> None:
+    """Merge-on-write checkpoint.
+
+    The CPU marathon and GPU twin runners are separate processes writing the
+    same file; a blind overwrite clobbers concurrent records. Each attempt
+    record carries `updated`, so the newest per (workload, backend) wins.
+    """
+
+    if STATE_PATH.exists():
+        try:
+            disk = json.loads(STATE_PATH.read_text())
+            disk_att = disk.get("attempts", {})
+            mem_att = state.setdefault("attempts", {})
+            for wid, recs in disk_att.items():
+                for backend, rec in recs.items():
+                    mine = mem_att.get(wid, {}).get(backend)
+                    if mine is None or str(rec.get("updated", "")) > str(mine.get("updated", "")):
+                        mem_att.setdefault(wid, {})[backend] = rec
+            extras = state.setdefault("installed_extras", [])
+            seen = {json.dumps(e, sort_keys=True) for e in extras}
+            for e in disk.get("installed_extras", []):
+                k = json.dumps(e, sort_keys=True)
+                if k not in seen:
+                    extras.append(e)
+        except (OSError, json.JSONDecodeError):
+            pass
     STATE_PATH.parent.mkdir(parents=True, exist_ok=True)
     state["last_checkpoint"] = datetime.now(timezone.utc).isoformat(timespec="seconds")
     tmp = STATE_PATH.with_suffix(".tmp")
@@ -93,8 +118,8 @@ def next_runnable(
         if rec is None:
             return True
         st = rec.get("status")
-        if st in (Status.QUEUED.value, Status.RUNNING.value):
-            return True  # interrupted mid-run
+        if st in (Status.QUEUED.value, Status.RUNNING.value, Status.REVALIDATION_REQUIRED.value):
+            return True  # interrupted mid-run or pending revalidation
         if retry_failed and st == Status.FAILED.value:
             return True
         return False

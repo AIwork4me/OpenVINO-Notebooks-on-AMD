@@ -1,0 +1,27 @@
+[cell 0 START +    0.4s] # Hello Object Detection |  | A very basic introduction to using object de
+[cell 1 START +    0.4s] # Install openvino package | %pip install -q "openvino>=2023.1.0" opencv
+[cell 1 DONE  +    0.6s]
+[cell 2 START +    0.6s] ## Imports | [back to top ⬆️](#Table-of-contents:) | 
+[cell 3 START +    0.6s] import cv2 | import matplotlib.pyplot as plt | import numpy as np | import o
+[cell 3 DONE  +    1.0s]
+[cell 4 START +    1.0s] ## Download model weights | [back to top ⬆️](#Table-of-contents:) | 
+[cell 5 START +    1.0s] base_model_dir = Path("./model").expanduser() |  | model_name = "horizonta
+[cell 5 DONE  +   10.4s]
+[cell 6 START +   10.4s] ## Select inference device | [back to top ⬆️](#Table-of-contents:) |  | sele
+[cell 7 START +   10.4s] device = device_widget() | device
+[cell 7 DONE  +   10.6s]
+[cell 8 START +   10.6s] ## Load the Model | [back to top ⬆️](#Table-of-contents:) | 
+[cell 9 START +   10.6s] core = ov.Core() |  | model = core.read_model(model=model_xml_path) | compil
+[cell 9 DONE  +   10.9s]
+[cell 10 START +   10.9s] ## Load an Image | [back to top ⬆️](#Table-of-contents:) | 
+[cell 11 START +   10.9s] # Download the image from the openvino_notebooks storage |  | image_filena
+[cell 11 DONE  +   12.9s]
+[cell 12 START +   12.9s] ## Do Inference | [back to top ⬆️](#Table-of-contents:) | 
+[cell 13 START +   12.9s] # Create an inference request. | boxes = compiled_model([input_image])[o
+[cell 13 DONE  +   12.9s]
+[cell 14 START +   12.9s] ## Visualize Results | [back to top ⬆️](#Table-of-contents:) | 
+[cell 15 START +   12.9s] # For each detection, the description is in the [x_min, y_min, x_max, 
+[cell 15 DONE  +   12.9s]
+[cell 16 START +   12.9s] plt.figure(figsize=(10, 6)) | plt.axis("off") | plt.imshow(convert_result_
+[cell 16 DONE  +   13.1s]
+NBEXEC_RESULT={"ok": true, "n_cells": 9, "n_skipped": 0, "n_substituted": 0, "stopped_after": null, "error_cell": null, "error_type": null, "error_head": null, "duration_s": 13.42, "patch_notes": []}

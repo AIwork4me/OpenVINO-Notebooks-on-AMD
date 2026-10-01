@@ -1,0 +1,21 @@
+id: stable-diffusion-xl
+title: stable-diffusion-xl
+category: GPU twin
+upstream:
+  repository: openvinotoolkit/openvino_notebooks
+  branch: latest
+  commit: a8809170cc4fc6aa633fbb9c22214be67ac20b47
+  path: ''
+  url: ''
+cpu:
+  runtime: openvino
+  status: FAILED
+gpu:
+  runtime: pytorch-rocm
+  status: NOT_TESTED
+  wall_timeout_s: 3600
+twin:
+  level: ''
+validation: {}
+patches: {}
+last_verified: ''

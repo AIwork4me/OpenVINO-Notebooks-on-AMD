@@ -1,0 +1,9 @@
+Traceback (most recent call last):
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/workloads/smolvlm2/rocm/run.py", line 84, in <module>
+    raise SystemExit(main())
+                     ^^^^^^
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/workloads/smolvlm2/rocm/run.py", line 32, in main
+    fetch(IMG_URL, img_path)
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/ov_amd/twin_lib.py", line 112, in fetch
+    raise RuntimeError(f"download failed: {url}")
+RuntimeError: download failed: https://user-images.githubusercontent.com/29454499/255799218-611e7189-8979-4ef5-8a8b-d5766acb6254.png

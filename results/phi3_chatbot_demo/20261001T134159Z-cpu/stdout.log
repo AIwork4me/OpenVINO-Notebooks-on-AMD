@@ -1,0 +1,15 @@
+[cell 0 START +    0.4s] # Intel Labs: Chat and Code with Phi-3 with OpenVINO and 🤗 Optimum on 
+[cell 1 START +    0.4s] ## Install dependencies | Make sure you have the latest GPU drivers inst
+[cell 2 START +    0.4s] # ! pip install optimum[openvino,nncf] torch
+[cell 2 DONE  +    0.4s]
+[cell 3 START +    0.4s] To use Phi-3 we need to use nightly version of optimum-intel until it 
+[cell 4 START +    0.4s] # ! pip install git+//huggingface\.co :https://hf-mirror.com://github.
+[cell 4 DONE  +    0.4s]
+[cell 5 START +    0.4s] import os |  | from transformers import AutoTokenizer | from optimum.intel i
+[cell 5 DONE  +    7.7s]
+[cell 6 START +    7.7s] ## Configuration | Here we will configure which model to load and other 
+[cell 7 START +    7.7s] model_name = "microsoft/Phi-3-mini-4k-instruct" | save_name = model_name
+[cell 7 DONE  +    7.7s]
+[cell 8 START +    7.7s] With this configuration we expect the model size to reduce to around t
+[cell 9 START +    7.7s] ## Export & quantize | OpenVINO together with 🤗 Optimum enables you to l
+[cell 10 START +    7.7s] import openvino.properties as props | import openvino.properties.hint as

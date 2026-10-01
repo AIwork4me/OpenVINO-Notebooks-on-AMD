@@ -87,3 +87,20 @@ Every attempt writes `results/<workload>/<timestamp>-<backend>/` with
 hardware.json, software.json, upstream.json, execution.json, metrics.json,
 stdout.log, stderr.log, executed.ipynb, summary.md. Failures are preserved —
 they are project value, not garbage.
+
+## D11 — Upstream transport: GitHub Git Blobs API, sha1-verified
+
+On this network: `git clone`/codeload is throttled to ~47KB/s and
+`raw.githubusercontent.com` stalls after an initial burst, while
+authenticated `api.github.com` is fast and stable. Upstream snapshots are
+therefore fetched through the Git Blobs API (one request per file, gh-token
+authenticated, well within the 5000/h limit). Each blob is verified against
+the tree's git blob SHA-1 before writing — the transport mirror cannot
+tamper content. `scripts/fetch_upstream.py` is resumable (size+sha checks).
+
+## D12 — PyTorch for ROCm twins comes from the rocm7.14 wheel index
+
+Per operator instruction (2026-10-01), GPU twins use
+`pip install torch torchvision --index-url https://download.pytorch.org/whl/rocm7.14`
+against system ROCm 7.2.1 on gfx1151. Verified by `torch.version.hip` +
+`torch.cuda.is_available()` before any twin is allowed to report VERIFIED.

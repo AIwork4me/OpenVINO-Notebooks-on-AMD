@@ -1,0 +1,26 @@
+[cell 0 START +    0.4s] # Florence-2: Open Source Vision Foundation Model |  | Florence-2 is a lig
+[cell 1 START +    0.4s] ## Prerequisites | [back to top ⬆️](#Table-of-contents:)
+[cell 2 START +    0.4s] %pip install -q "einops" "torch==2.8" "torchvision==0.23.0" "matplotli
+[cell 2 DONE  +    2.4s]
+[cell 3 START +    2.4s] import requests | from pathlib import Path |  | if not Path("ov_florence2_he
+[cell 3 DONE  +    2.4s]
+[cell 4 START +    2.4s] ## Select model | [back to top ⬆️](#Table-of-contents:) |  | The Florence-2 
+[cell 5 START +    2.4s] from ov_florence2_helper import convert_florence2, get_model_selector | 
+[cell 5 DONE  +    4.8s]
+[cell 6 START +    4.8s] ## Convert model | [back to top ⬆️](#Table-of-contents:) |  | Florence2 is P
+[cell 7 START +    4.8s] model_id = model_selector.value | model_path = Path(model_id.split("/")[
+[cell 7 DONE  +    4.8s]
+[cell 8 START +    4.8s] convert_florence2(model_id, model_path)
+[cell 8 DONE  +    4.8s]
+[cell 9 START +    4.8s] ## Select inference device | [back to top ⬆️](#Table-of-contents:)
+[cell 10 START +    4.8s] from notebook_utils import device_widget |  | device = device_widget(exclu
+[cell 10 DONE  +    4.9s]
+[cell 11 START +    4.9s] ## Run model inference | [back to top ⬆️](#Table-of-contents:) |  | `OvFlore
+[cell 12 START +    4.9s] from ov_florence2_helper import OVFlorence2Model |  | # Uncomment the line
+[cell 12 DONE  +    4.9s]
+[cell 13 START +    4.9s] model = OVFlorence2Model(model_path, device.value)
+[cell 13 DONE  +    5.5s]
+[cell 14 START +    5.5s] Additionally, for model usage we also need `Processor` class, that dis
+[cell 15 START +    5.5s] import requests | from PIL import Image |  | from transformers import AutoPr
+[cell 15 DONE  +  275.1s]
+NBEXEC_RESULT={"ok": false, "n_cells": 12, "n_skipped": 0, "n_substituted": 0, "stopped_after": null, "error_cell": null, "error_type": "CellExecutionError", "error_head": "\u001b[31mConnectTimeout\u001b[39m: HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /datasets/huggingface/documentation-images/resolve/main/transformers/tasks/car.jpg?download=true (Caused by ConnectTimeoutError(<HTTPSConnection(host='huggingface.co', port=443) at 0x746ee4742d20>, 'Connection to huggingface.co timed out. (connect timeout=None)'))", "duration_s": 276.79, "patch_notes": []}

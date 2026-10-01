@@ -1,0 +1,108 @@
+[IPKernelApp] WARNING | Kernel is running over TCP without encryption. All communication (including code and outputs) is sent in plain text and is susceptible to eavesdropping. Use IPC transport or launch with kernel manager-provisioned CurveZMQ keys to enable transport encryption.
+Traceback (most recent call last):
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/ov_amd/_nbexec.py", line 122, in main
+    client.execute()
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/jupyter_core/utils/__init__.py", line 165, in wrapped
+    return loop.run_until_complete(inner)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/base_events.py", line 687, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/nbclient/client.py", line 709, in async_execute
+    await self.async_execute_cell(
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/nbclient/client.py", line 1062, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/nbclient/client.py", line 918, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+from datasets import load_dataset
+from nltk.tokenize import sent_tokenize
+from functools import reduce
+import pandas as pd
+import os
+
+from langchain_community.embeddings.sentence_transformer import SentenceTransformerEmbeddings
+from langchain_community.vectorstores import Chroma
+from langchain_core.documents.base import Document
+
+
+def articles_to_passages(articles, sent_count_per_passage=3):
+    """Split a list of articles to a list of passages"""
+
+    def map(text):
+        sents = sent_tokenize(text)
+        sentence_df = pd.DataFrame(sents, columns=["sentence"]).reset_index()
+        sentence_df["batch"] = sentence_df["index"] // sent_count_per_passage
+        passages = list(sentence_df.groupby("batch")["sentence"].apply(lambda x: " ".join(x)))
+        return passages
+
+    return reduce(lambda l1, l2: l1 + l2, [map(p) for p in articles], [])
+
+
+embedding_function = SentenceTransformerEmbeddings(model_name="BAAI/bge-small-en-v1.5")
+
+chroma_db_path = "./chroma_db"
+if os.path.exists(chroma_db_path):
+    database = Chroma(persist_directory=chroma_db_path, embedding_function=embedding_function)
+    print("Loaded dataset from disk")
+else:
+    dataset = load_dataset("RealTimeData/bbc_latest", split="train", revision="2024-03-18")
+    # Filter only sports arctiles
+    sports_articles = dataset.filter(lambda e: "sport" in e["link"])["content"]
+    sports_articles = pd.DataFrame(sports_articles).drop_duplicates()[0].to_list()
+    # Split documents to passages
+    sport_passages = articles_to_passages(sports_articles)
+    database = Chroma.from_documents([Document(page_content=doc) for doc in sport_passages], embedding_function, persist_directory=chroma_db_path)
+    print(f"Number of sports arcticles found: {len(sports_articles)}\nNumber of embedded passages: {len(sport_passages)}")
+------------------
+
+----- stderr -----
+/tmp/ipykernel_73207/2476150379.py:7: DeprecationWarning: `langchain-community` is being sunset and is no longer actively maintained. See https://github.com/langchain-ai/langchain-community/issues/674 for details and migration guidance toward standalone integration packages.
+  from langchain_community.embeddings.sentence_transformer import SentenceTransformerEmbeddings
+----- stderr -----
+/tmp/ipykernel_73207/2476150379.py:25: LangChainDeprecationWarning: The class `HuggingFaceEmbeddings` was deprecated in LangChain 0.2.2 and will be removed in 1.0. An updated version of the class exists in the `langchain-huggingface package and should be used instead. To use it run `pip install -U `langchain-huggingface` and import as `from `langchain_huggingface import HuggingFaceEmbeddings``.
+  embedding_function = SentenceTransformerEmbeddings(model_name="BAAI/bge-small-en-v1.5")
+------------------
+
+[31m---------------------------------------------------------------------------[39m
+[31mModuleNotFoundError[39m                       Traceback (most recent call last)
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/langchain_community/embeddings/huggingface.py:84[39m, in [36mHuggingFaceEmbeddings.__init__[39m[34m(self, **kwargs)[39m
+[32m     83[39m [38;5;28;01mtry[39;00m:
+[32m---> [39m[32m84[39m     [38;5;28;01mimport[39;00m[38;5;250m [39m[34;01msentence_transformers[39;00m
+[32m     86[39m [38;5;28;01mexcept[39;00m [38;5;167;01mImportError[39;00m [38;5;28;01mas[39;00m exc:
+
+[31mModuleNotFoundError[39m: No module named 'sentence_transformers'
+
+The above exception was the direct cause of the following exception:
+
+[31mImportError[39m                               Traceback (most recent call last)
+[36mCell[39m[36m [39m[32mIn[2][39m[32m, line 25[39m
+[32m     21[39m 
+[32m     22[39m     [38;5;28;01mreturn[39;00m reduce([38;5;28;01mlambda[39;00m l1, l2: l1 + l2, [map(p) [38;5;28;01mfor[39;00m p [38;5;28;01min[39;00m articles], [])
+[32m     23[39m 
+[32m     24[39m 
+[32m---> [39m[32m25[39m embedding_function = SentenceTransformerEmbeddings(model_name=[33m"BAAI/bge-small-en-v1.5"[39m)
+[32m     26[39m 
+[32m     27[39m chroma_db_path = [33m"./chroma_db"[39m
+[32m     28[39m [38;5;28;01mif[39;00m os.path.exists(chroma_db_path):
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/langchain_core/_api/deprecation.py:274[39m, in [36mdeprecated.<locals>.deprecate.<locals>.finalize.<locals>.warn_if_direct_instance[39m[34m(self, *args, **kwargs)[39m
+[32m    271[39m     [38;5;66;03m# Only mark the warning as emitted if it was not intentionally[39;00m
+[32m    272[39m     [38;5;66;03m# suppressed by `suppress_langchain_deprecation_warning()`.[39;00m
+[32m    273[39m     warned = [38;5;129;01mnot[39;00m _SUPPRESSING_LANGCHAIN_DEPRECATION_WARNING.get()
+[32m--> [39m[32m274[39m [38;5;28;01mreturn[39;00m [30;43mwrapped[39;49m[30;43m([39;49m[30;43mself[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43m*[39;49m[30;43margs[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43m*[39;49m[30;43m*[39;49m[30;43mkwargs[39;49m[30;43m)[39;49m
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/langchain_community/embeddings/huggingface.py:87[39m, in [36mHuggingFaceEmbeddings.__init__[39m[34m(self, **kwargs)[39m
+[32m     84[39m     [38;5;28;01mimport[39;00m[38;5;250m [39m[34;01msentence_transformers[39;00m
+[32m     86[39m [38;5;28;01mexcept[39;00m [38;5;167;01mImportError[39;00m [38;5;28;01mas[39;00m exc:
+[32m---> [39m[32m87[39m     [38;5;28;01mraise[39;00m [38;5;167;01mImportError[39;00m(
+[32m     88[39m         [33m"[39m[33mCould not import sentence_transformers python package. [39m[33m"[39m
+[32m     89[39m         [33m"[39m[33mPlease install it with `pip install sentence-transformers`.[39m[33m"[39m
+[32m     90[39m     ) [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01mexc[39;00m
+[32m     92[39m [38;5;28mself[39m.client = sentence_transformers.SentenceTransformer(
+[32m     93[39m     [38;5;28mself[39m.model_name, cache_folder=[38;5;28mself[39m.cache_folder, **[38;5;28mself[39m.model_kwargs
+[32m     94[39m )
+
+[31mImportError[39m: Could not import sentence_transformers python package. Please install it with `pip install sentence-transformers`.
+

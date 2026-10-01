@@ -1,0 +1,30 @@
+{
+  "model": "hexgrad/Kokoro-82M",
+  "precision": "default (model dtype)",
+  "load_s": 2.92,
+  "runs": [
+    {
+      "latency_s": 0.634,
+      "audio_s": 3.25,
+      "rtf": 5.13
+    },
+    {
+      "latency_s": 0.643,
+      "audio_s": 3.25,
+      "rtf": 5.06
+    },
+    {
+      "latency_s": 0.63,
+      "audio_s": 3.25,
+      "rtf": 5.16
+    }
+  ],
+  "sample_rate": 24000,
+  "seconds_generated": 3.25,
+  "finite_waveform": true,
+  "deterministic_exact": false,
+  "max_sample_diff": 0,
+  "deterministic": true,
+  "peak_vram_gb": 0.66,
+  "peak_rss_gb": 2.72
+}

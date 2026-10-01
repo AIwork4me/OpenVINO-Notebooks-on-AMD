@@ -1,0 +1,92 @@
+[IPKernelApp] WARNING | Kernel is running over TCP without encryption. All communication (including code and outputs) is sent in plain text and is susceptible to eavesdropping. Use IPC transport or launch with kernel manager-provisioned CurveZMQ keys to enable transport encryption.
+s,
+[32m     10[39m     _meta_registrations,
+[32m     11[39m     datasets,
+[32m     12[39m     io,
+[32m     13[39m     models,
+[32m     14[39m     ops,
+[32m     15[39m     transforms,
+[32m     16[39m     utils,
+[32m     17[39m )  [38;5;66;03m# usort:skip[39;00m
+[32m     19[39m [38;5;28;01mtry[39;00m:
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/torchvision/models/__init__.py:2[39m
+[32m      1[39m [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01m.[39;00m[34;01malexnet[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m *
+[32m----> [39m[32m2[39m [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01m.[39;00m[34;01mconvnext[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m *
+[32m      3[39m [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01m.[39;00m[34;01mdensenet[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m *
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/torchvision/models/convnext.py:9[39m
+[32m      7[39m [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01mtorch[39;00m[34;01m.[39;00m[34;01mnn[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m functional [38;5;28;01mas[39;00m F
+[32m----> [39m[32m9[39m [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01m.[39;00m[34;01m.[39;00m[34;01mops[39;00m[34;01m.[39;00m[34;01mmisc[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m Conv2dNormActivation, Permute
+[32m     10[39m [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01m.[39;00m[34;01m.[39;00m[34;01mops[39;00m[34;01m.[39;00m[34;01mstochastic_depth[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m StochasticDepth
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/torchvision/ops/__init__.py:23[39m
+[32m     22[39m [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01m.[39;00m[34;01mmisc[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m Conv2dNormActivation, Conv3dNormActivation, FrozenBatchNorm2d, MLP, Permute, SqueezeExcitation
+[32m---> [39m[32m23[39m [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01m.[39;00m[34;01mpoolers[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m MultiScaleRoIAlign
+[32m     24[39m [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01m.[39;00m[34;01mps_roi_align[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m ps_roi_align, PSRoIAlign
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/torchvision/ops/poolers.py:10[39m
+[32m      9[39m [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01m.[39;00m[34;01m.[39;00m[34;01mutils[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m _log_api_usage_once
+[32m---> [39m[32m10[39m [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01m.[39;00m[34;01mroi_align[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m roi_align
+[32m     13[39m [38;5;66;03m# copying result_idx_in_level to a specific index in result[][39;00m
+[32m     14[39m [38;5;66;03m# is not supported by ONNX tracing yet.[39;00m
+[32m     15[39m [38;5;66;03m# _onnx_merge_levels() is an implementation supported by ONNX[39;00m
+[32m     16[39m [38;5;66;03m# that merges the levels to the right indices[39;00m
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/torchvision/ops/roi_align.py:7[39m
+[32m      6[39m [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01mtorch[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m nn, Tensor
+[32m----> [39m[32m7[39m [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01mtorch[39;00m[34;01m.[39;00m[34;01m_dynamo[39;00m[34;01m.[39;00m[34;01mutils[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m is_compile_supported
+[32m      8[39m [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01mtorch[39;00m[34;01m.[39;00m[34;01mjit[39;00m[34;01m.[39;00m[34;01mannotations[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m BroadcastingList2
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/torch/_dynamo/__init__.py:13[39m
+[32m     11[39m [38;5;28;01mimport[39;00m torch
+[32m     12[39m 
+[32m---> [39m[32m13[39m [38;5;28;01mfrom[39;00m . [38;5;28;01mimport[39;00m config, convert_frame, eval_frame, resume_execution
+[32m     14[39m [38;5;28;01mfrom[39;00m .backends.registry [38;5;28;01mimport[39;00m list_backends, lookup_backend, register_backend
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/torch/_dynamo/aot_compile.py:17[39m
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/torch/_dynamo/convert_frame.py:62[39m
+[32m     60[39m     signpost_event,
+[32m     61[39m )
+[32m---> [39m[32m62[39m [38;5;28;01mfrom[39;00m torch.fx._lazy_graph_module [38;5;28;01mimport[39;00m _use_lazy_graph_module
+[32m     63[39m from torch.fx.experimental.symbolic_shapes import (
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/torch/_dynamo/symbolic_convert.py:54[39m
+[32m     52[39m [38;5;28;01mfrom[39;00m torch._dynamo.exc [38;5;28;01mimport[39;00m TensorifyScalarRestartAnalysis
+[32m     53[39m [38;5;28;01mfrom[39;00m torch._guards [38;5;28;01mimport[39;00m tracing, TracingContext
+[32m---> [39m[32m54[39m [38;5;28;01mfrom[39;00m torch._logging.structured [38;5;28;01mimport[39;00m dump_file
+[32m     55[39m [38;5;28;01mfrom[39;00m torch.fx.experimental.symbolic_shapes [38;5;28;01mimport[39;00m guard_bool
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/torch/_dynamo/exc.py:72[39m
+[32m     70[39m     [38;5;28;01mpass[39;00m
+[32m     71[39m 
+[32m---> [39m[32m72[39m 
+[32m     73[39m [38;5;28;01mclass[39;00m RestartAnalysis(TorchDynamoException):
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/torch/_dynamo/utils.py:78[39m
+[32m     76[39m     _push_on_torch_function_stack,
+[32m     77[39m )
+[32m---> [39m[32m78[39m [38;5;28;01mfrom[39;00m torch._dispatch.python [38;5;28;01mimport[39;00m enable_python_dispatcher
+[32m     79[39m [38;5;28;01mfrom[39;00m torch._dynamo.metrics_context [38;5;28;01mimport[39;00m MetricsContext, RuntimeMetricsContext
+
+[31mModuleNotFoundError[39m: No module named 'torch._dynamo.metrics_context'
+
+The above exception was the direct cause of the following exception:
+
+[31mModuleNotFoundError[39m                       Traceback (most recent call last)
+[36mCell[39m[36m [39m[32mIn[3][39m[32m, line 1[39m
+[32m----> [39m[32m1[39m [38;5;28;01mfrom[39;00m transformers [38;5;28;01mimport[39;00m pipeline
+[32m      2[39m [38;5;28;01mimport[39;00m huggingface_hub
+[32m      3[39m [38;5;28;01mimport[39;00m librosa
+[32m      4[39m [38;5;28;01mimport[39;00m numpy [38;5;28;01mas[39;00m np
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/transformers/utils/import_utils.py:2672[39m, in [36m_LazyModule.__getattr__[39m[34m(self, name)[39m
+[32m   2670[39m         [38;5;28;01melse[39;00m:
+[32m   2671[39m             logger.debug([33mf[39m[33m"[39m[33mOriginal import error for [39m[33m'[39m[38;5;132;01m{[39;00mname[38;5;132;01m}[39;00m[33m'[39m[33m: [39m[38;5;132;01m{[39;00me[38;5;132;01m}[39;00m[33m"[39m)
+[32m-> [39m[32m2672[39m             [38;5;28;01mraise[39;00m [38;5;167;01mModuleNotFoundError[39;00m(import_error_message) [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01me[39;00m
+[32m   2674[39m [38;5;28;01melif[39;00m name [38;5;129;01min[39;00m [38;5;28mself[39m._modules:
+[32m   2675[39m     [38;5;28;01mtry[39;00m:
+
+[31mModuleNotFoundError[39m: Could not import module 'pipeline'. Are this object's requirements defined correctly? Set the logging verbosity to DEBUG for the original import error.
+

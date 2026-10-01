@@ -1,0 +1,27 @@
+{
+  "model": "deepseek-ai/DeepSeek-R1-Distill-Llama-8B",
+  "weights_source": "deepseek-ai/DeepSeek-R1-Distill-Llama-8B (ModelScope mirror; HF mirror stalls on deepseek-ai files)",
+  "precision": "bf16",
+  "load_s": 1071.89,
+  "runs": [
+    {
+      "total_s": 8.599,
+      "new_tokens": 96,
+      "tokens_per_s": 11.16
+    },
+    {
+      "total_s": 8.619,
+      "new_tokens": 96,
+      "tokens_per_s": 11.14
+    },
+    {
+      "total_s": 8.598,
+      "new_tokens": 96,
+      "tokens_per_s": 11.17
+    }
+  ],
+  "deterministic": true,
+  "output_preview": "\u010aNext,\u0120I'll\u0120multiply\u012017\u0120by\u012020,\u0120resulting\u0120in\u0120340.\u010a\u010aFinally,\u0120I'll\u0120add\u0120the\u0120two\u0120partial\u0120products\u0120together:\u012051\u0120plus\u0120340\u0120equals\u0120391.\u010a</think>\u010a\u010a**Solution:**\u010a\u010aTo\u0120find\u0120the\u0120product\u0120of\u012017\u0120and\u012023,\u0120follow\u0120these\u0120steps:\u010a\u010a1.\u0120**Multiply",
+  "peak_vram_gb": 15.05,
+  "peak_rss_gb": 16.24
+}

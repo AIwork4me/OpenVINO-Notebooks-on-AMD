@@ -1,0 +1,13 @@
+[cell 0 START +    0.4s] # Whisper and Distil-Whisper model evaluation |  | Here we perform evaluat
+[cell 1 START +    0.4s] import ipywidgets as widgets | from openvino import Core |  | core = Core() | 
+[cell 1 DONE  +    0.6s]
+[cell 2 START +    0.6s] SAMPLING_RATE = 16000 |  | AVAILABLE_MODELS = []
+[cell 2 DONE  +    0.6s]
+[cell 3 START +    0.6s] from IPython.display import display |  | load_whisper_model_pt = widgets.C
+[cell 3 DONE  +    0.6s]
+[cell 4 START +    0.6s] ## Whisper
+[cell 5 START +    0.6s] from transformers import AutoProcessor, AutoModelForSpeechSeq2Seq |  | # P
+[cell 5 DONE  +  393.7s]
+[cell 6 START +  393.7s] from pathlib import Path | from optimum.intel.openvino import OVModelFor
+[cell 6 DONE  +  393.8s]
+NBEXEC_RESULT={"ok": false, "n_cells": 13, "n_skipped": 0, "n_substituted": 0, "stopped_after": null, "error_cell": null, "error_type": "CellExecutionError", "error_head": "\u001b[31mModuleNotFoundError\u001b[39m: No module named 'optimum.intel'", "duration_s": 396.02, "patch_notes": []}

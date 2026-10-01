@@ -1,0 +1,21 @@
+[cell 0 START +    0.4s] # Hello NPU |  | ## Working with NPU in OpenVINO™ |  | #### Table of contents:
+[cell 1 START +    0.4s] This tutorial provides a high-level overview of working with the NPU d
+[cell 2 START +    0.4s] ## Introduction | [back to top ⬆️](#Table-of-contents:)
+[cell 3 START +    0.4s] The Neural Processing Unit (NPU) is a low power hardware solution whic
+[cell 4 START +    0.4s] ### Install required packages | [back to top ⬆️](#Table-of-contents:)
+[cell 5 START +    0.4s] %pip install -q "openvino>=2024.1.0" huggingface_hub
+[cell 5 DONE  +    1.0s]
+[cell 6 START +    1.0s] import requests | from pathlib import Path |  | if not Path("notebook_utils.
+[cell 6 DONE  +    1.0s]
+[cell 7 START +    1.0s] ## Checking NPU with Query Device | [back to top ⬆️](#Table-of-contents:
+[cell 8 START +    1.0s] In this section, we will see how to list the available NPU and check i
+[cell 9 START +    1.0s] ### List the NPU with core.available_devices | [back to top ⬆️](#Table-o
+[cell 10 START +    1.0s] OpenVINO Runtime provides the ```available_devices``` method for check
+[cell 11 START +    1.0s] import openvino as ov |  | core = ov.Core() | core.available_devices
+[cell 11 DONE  +    1.2s]
+[cell 12 START +    1.2s] ### Check Properties with core.get_property | [back to top ⬆️](#Table-of
+[cell 13 START +    1.2s] To get information about the NPU, we can use device properties. In Ope
+[cell 14 START +    1.2s] To get the value of a property, such as the device name, we can use th
+[cell 15 START +    1.2s] import openvino.properties as props |  | device = "NPU" |  | core.get_property
+[cell 15 DONE  +    1.3s]
+NBEXEC_RESULT={"ok": false, "n_cells": 20, "n_skipped": 0, "n_substituted": 1, "stopped_after": null, "error_cell": null, "error_type": "CellExecutionError", "error_head": "Unsupported configuration key: FULL_DEVICE_NAME", "duration_s": 1.41, "patch_notes": ["substituted 2 occurrence(s) in cell 6"]}

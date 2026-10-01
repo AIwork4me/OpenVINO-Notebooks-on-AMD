@@ -1,0 +1,81 @@
+[IPKernelApp] WARNING | Kernel is running over TCP without encryption. All communication (including code and outputs) is sent in plain text and is susceptible to eavesdropping. Use IPC transport or launch with kernel manager-provisioned CurveZMQ keys to enable transport encryption.
+[31mERROR: pip's dependency resolver does not currently take into account all the packages that are installed. This behaviour is the source of the following dependency conflicts.
+mineru-vl-utils 2.0.5 requires pydantic<3,>=2.12.5, but you have pydantic 2.12.3 which is incompatible.[0m[31m
+[0m[31mERROR: Invalid requirement: 'git+//huggingface\\.co': Expected semicolon (after name with no version specifier) or end
+    git+//huggingface\.co
+       ^
+Hint: It looks like a path. File 'git+//huggingface\.co' does not exist.[0m[31m
+[0mINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages (from fastapi<1.0,>=0.115.2->gradio>=4.19) (0.0.5)
+Requirement already satisfied: opentelemetry-api>=1.44.0 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages (from fastapi<1.0,>=0.115.2->gradio>=4.19) (1.45.0)
+Requirement already satisfied: certifi in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages (from httpx<1.0,>=0.24.1->gradio>=4.19) (2026.7.22)
+Requirement already satisfied: httpcore==1.* in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages (from httpx<1.0,>=0.24.1->gradio>=4.19) (1.0.9)
+Requirement already satisfied: h11>=0.16 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages (from httpcore==1.*->httpx<1.0,>=0.24.1->gradio>=4.19) (0.16.0)
+Requirement already satisfied: click<9.0.0,>=8.4.2 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages (from huggingface-hub<2.0,>=0.33.5->gradio>=4.19) (8.5.0)
+Requirement already satisfied: filelock>=3.10.0 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages (from huggingface-hub<2.0,>=0.33.5->gradio>=4.19) (4.0.8)
+Requirement already satisfied: hf-xet<2.0.0,>=1.6.0 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages (from huggingface-hub<2.0,>=0.33.5->gradio>=4.19) (1.6.0)
+Requirement already satisfied: tqdm>=4.42.1 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages (from huggingface-hub<2.0,>=0.33.5->gradio>=4.19) (4.70.1)
+Requirement already satisfied: python-dateutil>=2.8.2 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages (from pandas<3.0,>=1.0->gradio>=4.19) (2.9.0.post0)
+Requirement already satisfied: pytz>=2020.1 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages (from pandas<3.0,>=1.0->gradio>=4.19) (2026.4)
+Requirement already satisfied: tzdata>=2022.7 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages (from pandas<3.0,>=1.0->gradio>=4.19) (2026.4)
+Requirement already satisfied: annotated-types>=0.6.0 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages (from pydantic<=2.12.3,>=2.0->gradio>=4.19) (0.8.0)
+----- stdout -----
+Collecting pydantic-core==2.41.4 (from pydantic<=2.12.3,>=2.0->gradio>=4.19)
+  Using cached pydantic_core-2.41.4-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (7.3 kB)
+Requirement already satisfied: shellingham>=1.3.0 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages (from typer<1.0,>=0.12->gradio>=4.19) (1.5.4)
+Requirement already satisfied: rich>=13.8.0 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages (from typer<1.0,>=0.12->gradio>=4.19) (15.0.0)
+Requirement already satisfied: six>=1.5 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages (from python-dateutil>=2.8.2->pandas<3.0,>=1.0->gradio>=4.19) (1.17.0)
+Requirement already satisfied: markdown-it-py>=2.2.0 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages (from rich>=13.8.0->typer<1.0,>=0.12->gradio>=4.19) (4.2.0)
+Requirement already satisfied: pygments<3.0.0,>=2.13.0 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages (from rich>=13.8.0->typer<1.0,>=0.12->gradio>=4.19) (2.21.0)
+Requirement already satisfied: mdurl~=0.1 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages (from markdown-it-py>=2.2.0->rich>=13.8.0->typer<1.0,>=0.12->gradio>=4.19) (0.1.2)
+Using cached pydantic-2.12.3-py3-none-any.whl (462 kB)
+Using cached pydantic_core-2.41.4-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (2.1 MB)
+Installing collected packages: pydantic-core, pydantic
+[?25l[2K  Attempting uninstall: pydantic-core
+[2K    Found existing installation: pydantic_core 2.46.5
+[2K    Uninstalling pydantic_core-2.46.5:
+[2K      Successfully uninstalled pydantic_core-2.46.5
+[2K  Attempting uninstall: pydantic
+[2K    Found existing installation: pydantic 2.13.5
+[2K    Uninstalling pydantic-2.13.5:
+[2K      Successfully uninstalled pydantic-2.13.5
+----- stdout -----
+[2K   [38;2;249;38;114m━━━━━━━━━━━━━━━━━━━━[0m[38;5;237m╺[0m[38;5;237m━━━━━━━━━━━━━━━━━━━[0m [32m1/2[0m [pydantic][2K   [38;2;114;156;31m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m2/2[0m [pydantic]
+[?25h[1A[2KSuccessfully installed pydantic-2.12.3 pydantic-core-2.41.4
+----- stderr -----
+[31mERROR: pip's dependency resolver does not currently take into account all the packages that are installed. This behaviour is the source of the following dependency conflicts.
+mineru-vl-utils 2.0.5 requires pydantic<3,>=2.12.5, but you have pydantic 2.12.3 which is incompatible.[0m[31m
+[0m
+----- stderr -----
+[31mERROR: Invalid requirement: 'git+//huggingface\\.co': Expected semicolon (after name with no version specifier) or end
+    git+//huggingface\.co
+       ^
+Hint: It looks like a path. File 'git+//huggingface\.co' does not exist.[0m[31m
+[0m
+------------------
+
+[31m---------------------------------------------------------------------------[39m
+[31mCalledProcessError[39m                        Traceback (most recent call last)
+[36mCell[39m[36m [39m[32mIn[1][39m[32m, line 26[39m
+[32m     22[39m [38;5;28;01mfrom[39;00m pip_helper [38;5;28;01mimport[39;00m pip_install
+[32m     23[39m 
+[32m     24[39m pip_install([33m"gradio>=4.19"[39m)
+[32m     25[39m 
+[32m---> [39m[32m26[39m pip_install(
+[32m     27[39m     [33m"-q"[39m,
+[32m     28[39m     [33m"git+//huggingface\.co :https://hf-mirror.com://github.com/ace-step/ACE-Step.git@6ae0852b1388de6dc0cca26b31a86d711f723cb3"[39m,
+[32m     29[39m     [33m"torch==2.10"[39m,
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/results/ace-step-music-generation/workdir-cpu/pip_helper.py:10[39m, in [36mpip_install[39m[34m(*args)[39m
+[32m      8[39m [38;5;28;01mfor[39;00m arg [38;5;129;01min[39;00m args:
+[32m      9[39m     cli_args.extend([38;5;28mstr[39m(arg).split([33m"[39m[33m [39m[33m"[39m))
+[32m---> [39m[32m10[39m [30;43msubprocess[39;49m[30;43m.[39;49m[30;43mrun[39;49m[30;43m([39;49m[30;43m[[39;49m[30;43msys[39;49m[30;43m.[39;49m[30;43mexecutable[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43m"[39;49m[30;43m-m[39;49m[30;43m"[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43m"[39;49m[30;43mpip[39;49m[30;43m"[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43m"[39;49m[30;43minstall[39;49m[30;43m"[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43m*[39;49m[30;43mcli_args[39;49m[30;43m][39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mcheck[39;49m[30;43m=[39;49m[30;43;01mTrue[39;49;00m[30;43m)[39;49m
+
+[36mFile [39m[32m/usr/lib/python3.12/subprocess.py:571[39m, in [36mrun[39m[34m(input, capture_output, timeout, check, *popenargs, **kwargs)[39m
+[32m    569[39m     retcode = process.poll()
+[32m    570[39m     [38;5;28;01mif[39;00m check [38;5;129;01mand[39;00m retcode:
+[32m--> [39m[32m571[39m         [38;5;28;01mraise[39;00m CalledProcessError(retcode, process.args,
+[32m    572[39m                                  output=stdout, stderr=stderr)
+[32m    573[39m [38;5;28;01mreturn[39;00m CompletedProcess(process.args, retcode, stdout, stderr)
+
+[31mCalledProcessError[39m: Command '['/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/bin/python', '-m', 'pip', 'install', '-q', 'git+//huggingface\\.co', ':https://hf-mirror.com://github.com/ace-step/ACE-Step.git@6ae0852b1388de6dc0cca26b31a86d711f723cb3', 'torch==2.10', 'torchaudio==2.10', 'peft==0.17.1', '--extra-index-url', '//huggingface\\.co', ':https://hf-mirror.com://download.pytorch.org/whl/cpu']' returned non-zero exit status 1.
+

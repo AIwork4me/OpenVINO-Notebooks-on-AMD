@@ -45,3 +45,10 @@ def test_detect_device():
     assert detect_device_used("Selected device: NPU") == "NPU"
     assert detect_device_used("device = 'CPU'") == "CPU"
     assert detect_device_used("nothing") == ""
+
+
+def test_detect_device_widget_value_wins():
+    assert detect_device_used("Dropdown(value='AUTO', options=['CPU','GPU'])") == "AUTO"
+    assert detect_device_used("Dropdown(value='GPU')\nDropdown(value='CPU')") == "CPU"
+    # device list alone must not claim GPU as the used device
+    assert detect_device_used("available devices: ['CPU', 'GPU']") == "GPU"  # word fallback only when no value=...

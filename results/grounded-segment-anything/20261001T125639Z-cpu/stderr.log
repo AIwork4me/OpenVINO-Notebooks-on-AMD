@@ -1,0 +1,73 @@
+[IPKernelApp] WARNING | Kernel is running over TCP without encryption. All communication (including code and outputs) is sent in plain text and is susceptible to eavesdropping. Use IPC transport or launch with kernel manager-provisioned CurveZMQ keys to enable transport encryption.
+Traceback (most recent call last):
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/ov_amd/_nbexec.py", line 122, in main
+    client.execute()
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/jupyter_core/utils/__init__.py", line 165, in wrapped
+    return loop.run_until_complete(inner)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/base_events.py", line 687, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/nbclient/client.py", line 709, in async_execute
+    await self.async_execute_cell(
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/nbclient/client.py", line 1062, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/nbclient/client.py", line 918, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+from pathlib import Path
+import sys
+import os
+
+from cmd_helper import clone_repo
+
+repo_dir = Path("Grounded-Segment-Anything")
+ground_dino_dir = Path("GroundingDINO")
+efficient_sam_dir = Path("EfficientSAM")
+
+# we use grounding dino from a fork which contains modifications that allow conversion to OpenVINO IR
+clone_repo("https://github.com/wenyi5608/GroundingDINO.git")
+
+if use_efficient_sam:
+    clone_repo("https://github.com/yformer/EfficientSAM.git")
+if not use_efficient_sam:
+    clone_repo("https://github.com/IDEA-Research/Grounded-Segment-Anything.git", add_to_sys_path=False)
+    sys.path.append(repo_dir / "segment_anything")
+------------------
+
+----- stdout -----
+Failed to clone the repository: Cloning into 'GroundingDINO'...
+fatal: unable to access 'https://github.com/wenyi5608/GroundingDINO.git/': GnuTLS recv error (-110): The TLS connection was non-properly terminated.
+------------------
+
+[31m---------------------------------------------------------------------------[39m
+[31mCalledProcessError[39m                        Traceback (most recent call last)
+[36mCell[39m[36m [39m[32mIn[5][39m[32m, line 12[39m
+[32m      8[39m ground_dino_dir = Path([33m"GroundingDINO"[39m)
+[32m      9[39m efficient_sam_dir = Path([33m"EfficientSAM"[39m)
+[32m     10[39m 
+[32m     11[39m [38;5;66;03m# we use grounding dino from a fork which contains modifications that allow conversion to OpenVINO IR[39;00m
+[32m---> [39m[32m12[39m clone_repo([33m"https://github.com/wenyi5608/GroundingDINO.git"[39m)
+[32m     13[39m 
+[32m     14[39m [38;5;28;01mif[39;00m use_efficient_sam:
+[32m     15[39m     clone_repo([33m"https://github.com/yformer/EfficientSAM.git"[39m)
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/results/grounded-segment-anything/workdir-cpu/cmd_helper.py:14[39m, in [36mclone_repo[39m[34m(repo_url, revision, add_to_sys_path)[39m
+[32m     12[39m [38;5;28;01mif[39;00m [38;5;129;01mnot[39;00m repo_path.exists():
+[32m     13[39m     [38;5;28;01mtry[39;00m:
+[32m---> [39m[32m14[39m         [30;43msubprocess[39;49m[30;43m.[39;49m[30;43mrun[39;49m[30;43m([39;49m
+[32m     15[39m [30;43m            [39;49m[30;43m[[39;49m[30;43m"[39;49m[30;43mgit[39;49m[30;43m"[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43m"[39;49m[30;43mclone[39;49m[30;43m"[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mrepo_url[39;49m[30;43m][39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mcheck[39;49m[30;43m=[39;49m[30;43;01mTrue[39;49;00m[30;43m,[39;49m[30;43m [39;49m[30;43mstdout[39;49m[30;43m=[39;49m[30;43msubprocess[39;49m[30;43m.[39;49m[30;43mPIPE[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mstderr[39;49m[30;43m=[39;49m[30;43msubprocess[39;49m[30;43m.[39;49m[30;43mPIPE[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mtext[39;49m[30;43m=[39;49m[30;43;01mTrue[39;49;00m
+[32m     16[39m [30;43m        [39;49m[30;43m)[39;49m  [38;5;66;03m# nosec B603 B607 - hardcoded git command[39;00m
+[32m     17[39m     [38;5;28;01mexcept[39;00m [38;5;167;01mException[39;00m [38;5;28;01mas[39;00m exc:
+[32m     18[39m         [38;5;28mprint[39m([33mf[39m[33m"[39m[33mFailed to clone the repository: [39m[38;5;132;01m{[39;00mexc.stderr[38;5;132;01m}[39;00m[33m"[39m)
+
+[36mFile [39m[32m/usr/lib/python3.12/subprocess.py:571[39m, in [36mrun[39m[34m(input, capture_output, timeout, check, *popenargs, **kwargs)[39m
+[32m    569[39m     retcode = process.poll()
+[32m    570[39m     [38;5;28;01mif[39;00m check [38;5;129;01mand[39;00m retcode:
+[32m--> [39m[32m571[39m         [38;5;28;01mraise[39;00m CalledProcessError(retcode, process.args,
+[32m    572[39m                                  output=stdout, stderr=stderr)
+[32m    573[39m [38;5;28;01mreturn[39;00m CompletedProcess(process.args, retcode, stdout, stderr)
+
+[31mCalledProcessError[39m: Command '['git', 'clone', 'https://github.com/wenyi5608/GroundingDINO.git']' returned non-zero exit status 128.
+

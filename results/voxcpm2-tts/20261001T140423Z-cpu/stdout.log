@@ -1,0 +1,7 @@
+[cell 0 START +    0.4s] # VoxCPM2 Text-to-Speech with OpenVINO™ |  | [VoxCPM2](https://github.com/
+[cell 1 START +    0.4s] ## Prerequisites | [back to top ⬆️](#Table-of-contents:) |  | Install depend
+[cell 2 START +    0.4s] import requests | from pathlib import Path |  | # Fetch utility helpers | for 
+[cell 2 DONE  +    0.4s]
+[cell 3 START +    0.4s] from cmd_helper import clone_repo | from pip_helper import pip_install |  | 
+[cell 3 DONE  +    0.7s]
+NBEXEC_RESULT={"ok": false, "n_cells": 12, "n_skipped": 0, "n_substituted": 2, "stopped_after": null, "error_cell": null, "error_type": "CellExecutionError", "error_head": "\u001b[31mCalledProcessError\u001b[39m: Command '['/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/bin/python', '-m', 'pip', 'install', '-q', '--extra-index-url', '//huggingface\\\\.co', ':https://hf-mirror.com://download.pytorch.org/whl/cpu', 'torch>=2.4', 'openvino>=2026.0', 'nncf', 'tokenizers', 'transformers', 'librosa', 'soundfile', 'scipy', 'gradio>=4.19', 'pydantic', 'einops', 'safetensors', 'tqdm']' returned non-zero exit status 1.", "duration_s": 0.94, "patch_notes": ["substituted 2 occurrence(s) in cell 2", "substituted 2 occurrence(s) in cell 3"]}

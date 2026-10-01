@@ -1,0 +1,10 @@
+/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-gpu/lib/python3.12/site-packages/diffusers/utils/deprecation_utils.py:23: FutureWarning: `torch_dtype` is deprecated and will be removed in version 1.0.0. Please use `dtype` instead.
+  deprecate("torch_dtype", "1.0.0", _TORCH_DTYPE_DEPRECATION_MESSAGE)
+Couldn't connect to the Hub: 401 Client Error. (Request ID: Root=1-6abe3a85-19459b685364c36f4a490d83;170bed38-a853-4525-b1bb-d448574e43eb)
+
+Repository Not Found for url: https://hf-mirror.com/api/models/stabilityai/stable-diffusion-2-1.
+Please make sure you specified the correct `repo_id` and `repo_type`.
+If you are trying to access a private or gated repo, make sure you are authenticated and your token has the required permissions.
+For more details, see https://huggingface.co/docs/huggingface_hub/authentication
+Invalid username or password..
+Will try to load from local cache.

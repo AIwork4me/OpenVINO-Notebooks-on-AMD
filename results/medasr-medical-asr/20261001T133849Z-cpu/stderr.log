@@ -1,0 +1,133 @@
+[IPKernelApp] WARNING | Kernel is running over TCP without encryption. All communication (including code and outputs) is sent in plain text and is susceptible to eavesdropping. Use IPC transport or launch with kernel manager-provisioned CurveZMQ keys to enable transport encryption.
+e
+import huggingface_hub
+import librosa
+import numpy as np
+import torch
+from pathlib import Path
+import time
+
+MODEL_ID = "google/medasr"
+print(f"Loading model: {MODEL_ID}")
+
+# Load model using pipeline
+pipe = pipeline("automatic-speech-recognition", model=MODEL_ID, trust_remote_code=True)
+
+# Extract model components
+model = pipe.model
+feature_extractor = pipe.feature_extractor
+tokenizer = pipe.tokenizer
+
+print(f"✓ Model loaded: {type(model).__name__}")
+print(f"✓ Feature extractor: {type(feature_extractor).__name__}")
+print(f"✓ Tokenizer vocab size: {tokenizer.vocab_size}")
+------------------
+
+
+[31m---------------------------------------------------------------------------[39m
+[31mImportError[39m                               Traceback (most recent call last)
+[36mCell[39m[36m [39m[32mIn[3][39m[32m, line 1[39m
+[32m----> [39m[32m1[39m [38;5;28;01mfrom[39;00m transformers [38;5;28;01mimport[39;00m pipeline
+[32m      2[39m [38;5;28;01mimport[39;00m huggingface_hub
+[32m      3[39m [38;5;28;01mimport[39;00m librosa
+[32m      4[39m [38;5;28;01mimport[39;00m numpy [38;5;28;01mas[39;00m np
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/transformers/__init__.py:30[39m
+[32m     27[39m [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01mtyping[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m TYPE_CHECKING
+[32m     29[39m [38;5;66;03m# Check the dependencies satisfy the minimal versions required.[39;00m
+[32m---> [39m[32m30[39m [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01m.[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m dependency_versions_check
+[32m     31[39m [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01m.[39;00m[34;01mutils[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m (
+[32m     32[39m     OptionalDependencyNotAvailable,
+[32m     33[39m     _LazyModule,
+[32m   (...)[39m[32m     40[39m     is_pretty_midi_available,
+[32m     41[39m )
+[32m     43[39m [38;5;66;03m# Note: the following symbols are deliberately exported with `as`[39;00m
+[32m     44[39m [38;5;66;03m# so that mypy, pylint or other static linters can recognize them,[39;00m
+[32m     45[39m [38;5;66;03m# given that they are not exported using `__all__` in this file.[39;00m
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/transformers/dependency_versions_check.py:16[39m
+[32m      1[39m [38;5;66;03m# Copyright 2020 The HuggingFace Team. All rights reserved.[39;00m
+[32m      2[39m [38;5;66;03m#[39;00m
+[32m      3[39m [38;5;66;03m# Licensed under the Apache License, Version 2.0 (the "License");[39;00m
+[32m   (...)[39m[32m     12[39m [38;5;66;03m# See the License for the specific language governing permissions and[39;00m
+[32m     13[39m [38;5;66;03m# limitations under the License.[39;00m
+[32m     15[39m [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01m.[39;00m[34;01mdependency_versions_table[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m deps
+[32m---> [39m[32m16[39m [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01m.[39;00m[34;01mutils[39;00m[34;01m.[39;00m[34;01mversions[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m require_version, require_version_core
+[32m     19[39m [38;5;66;03m# define which module versions we always want to check at run time[39;00m
+[32m     20[39m [38;5;66;03m# (usually the ones defined in `install_requires` in setup.py)[39;00m
+[32m     21[39m [38;5;66;03m#[39;00m
+[32m     22[39m [38;5;66;03m# order specific notes:[39;00m
+[32m     23[39m [38;5;66;03m# - tqdm must be checked before tokenizers[39;00m
+[32m     25[39m pkgs_to_check_at_runtime = [
+[32m     26[39m     [33m"[39m[33mpython[39m[33m"[39m,
+[32m     27[39m     [33m"[39m[33mtqdm[39m[33m"[39m,
+[32m   (...)[39m[32m     36[39m     [33m"[39m[33mpyyaml[39m[33m"[39m,
+[32m     37[39m ]
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/transformers/utils/__init__.py:77[39m
+[32m     36[39m [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01m.[39;00m[34;01mdoc[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m (
+[32m     37[39m     add_code_sample_docstrings,
+[32m     38[39m     add_end_docstrings,
+[32m   (...)[39m[32m     42[39m     replace_return_docstrings,
+[32m     43[39m )
+[32m     44[39m [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01m.[39;00m[34;01mgeneric[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m (
+[32m     45[39m     ContextManagers,
+[32m     46[39m     ExplicitEnum,
+[32m   (...)[39m[32m     75[39m     transpose,
+[32m     76[39m )
+[32m---> [39m[32m77[39m [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01m.[39;00m[34;01mhub[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m (
+[32m     78[39m     CHAT_TEMPLATE_DIR,
+[32m     79[39m     CHAT_TEMPLATE_FILE,
+[32m     80[39m     CLOUDFRONT_DISTRIB_PREFIX,
+[32m     81[39m     HF_MODULES_CACHE,
+[32m     82[39m     LEGACY_PROCESSOR_CHAT_TEMPLATE_FILE,
+[32m     83[39m     S3_BUCKET_PREFIX,
+[32m     84[39m     TRANSFORMERS_DYNAMIC_MODULE_NAME,
+[32m     85[39m     EntryNotFoundError,
+[32m     86[39m     PushInProgress,
+[32m     87[39m     PushToHubMixin,
+[32m     88[39m     RepositoryNotFoundError,
+[32m     89[39m     RevisionNotFoundError,
+[32m     90[39m     cached_file,
+[32m     91[39m     define_sagemaker_information,
+[32m     92[39m     extract_commit_hash,
+[32m     93[39m     has_file,
+[32m     94[39m     hf_api,
+[32m     95[39m     http_user_agent,
+[32m     96[39m     list_repo_templates,
+[32m     97[39m     resolve_revision,
+[32m     98[39m     try_to_load_from_cache,
+[32m     99[39m )
+[32m    100[39m [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01m.[39;00m[34;01mimport_utils[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m (
+[32m    101[39m     ACCELERATE_MIN_VERSION,
+[32m    102[39m     BITSANDBYTES_MIN_VERSION,
+[32m   (...)[39m[32m    271[39m     torch_only_method,
+[32m    272[39m )
+[32m    273[39m [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01m.[39;00m[34;01mkernel_config[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m KernelConfig
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/transformers/utils/hub.py:29[39m
+[32m     26[39m [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01mtyping[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m TypedDict
+[32m     27[39m [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01muuid[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m uuid4
+[32m---> [39m[32m29[39m [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01mhuggingface_hub[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m (
+[32m     30[39m     _CACHED_NO_EXIST,
+[32m     31[39m     CommitOperationAdd,
+[32m     32[39m     HfApi,
+[32m     33[39m     ModelCard,
+[32m     34[39m     ModelCardData,
+[32m     35[39m     ResolvedRevision,
+[32m     36[39m     constants,
+[32m     37[39m     hf_hub_download,
+[32m     38[39m     hf_hub_url,
+[32m     39[39m     is_offline_mode,
+[32m     40[39m     snapshot_download,
+[32m     41[39m     try_to_load_from_cache,
+[32m     42[39m )
+[32m     43[39m [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01mhuggingface_hub[39;00m[34;01m.[39;00m[34;01mfile_download[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m REGEX_COMMIT_HASH
+[32m     44[39m [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01mhuggingface_hub[39;00m[34;01m.[39;00m[34;01mutils[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m (
+[32m     45[39m     EntryNotFoundError,
+[32m     46[39m     GatedRepoError,
+[32m   (...)[39m[32m     55[39m     httpx,
+[32m     56[39m )
+
+[31mImportError[39m: cannot import name 'ResolvedRevision' from 'huggingface_hub' (/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/huggingface_hub/__init__.py)
+

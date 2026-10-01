@@ -30,3 +30,13 @@ outputs/
 # Keep small intentional fixtures (tests/data/**) via negation
 !tests/data/**
 !tests/data/**
+results/*/workdir-cpu/
+results/*/sd21_weights/
+workloads/*/rocm/weights/
+results/*/2*/executed.ipynb
+results/*/2*/*.png
+results/*/2*/*.jpg
+results/*/2*/*.wav
+results/*/2*/*.pt
+*.incomplete
+results/*/2*/sd21_weights/

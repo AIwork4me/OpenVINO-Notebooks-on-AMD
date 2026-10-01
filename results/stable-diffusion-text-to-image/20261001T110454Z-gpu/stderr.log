@@ -1,0 +1,21 @@
+/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-gpu/lib/python3.12/site-packages/diffusers/utils/deprecation_utils.py:23: FutureWarning: `torch_dtype` is deprecated and will be removed in version 1.0.0. Please use `dtype` instead.
+  deprecate("torch_dtype", "1.0.0", _TORCH_DTYPE_DEPRECATION_MESSAGE)
+Couldn't connect to the Hub: 401 Client Error. (Request ID: Root=1-6abe3e5a-6ed058160d997da3327068c3;6827e95c-1eeb-4701-980e-b0a98e58ac95)
+
+Repository Not Found for url: https://hf-mirror.com/api/models/stabilityai/stable-diffusion-2-1.
+Please make sure you specified the correct `repo_id` and `repo_type`.
+If you are trying to access a private or gated repo, make sure you are authenticated and your token has the required permissions.
+For more details, see https://huggingface.co/docs/huggingface_hub/authentication
+Invalid username or password..
+Will try to load from local cache.
+Traceback (most recent call last):
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/workloads/stable-diffusion-text-to-image/rocm/run.py", line 110, in <module>
+    raise SystemExit(main())
+                     ^^^^^^
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/workloads/stable-diffusion-text-to-image/rocm/run.py", line 66, in main
+    pipe, load_s, source = _load_pipeline(evidence)
+                           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/workloads/stable-diffusion-text-to-image/rocm/run.py", line 51, in _load_pipeline
+    raise RuntimeError(f"ModelScope fallback failed: {r.stderr[-500:]}") from None
+RuntimeError: ModelScope fallback failed: /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-gpu/bin/python: No module named modelscope.__main__; 'modelscope' is a package and cannot be directly executed
+

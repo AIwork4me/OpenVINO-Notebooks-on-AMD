@@ -1,0 +1,25 @@
+id: mineru2.5
+title: Mineru2.5
+category: OCR
+upstream:
+  repository: openvinotoolkit/openvino_notebooks
+  branch: latest
+  commit: a8809170cc4fc6aa633fbb9c22214be67ac20b47
+  path: notebooks/mineru2.5/mineru2.5.ipynb
+  url: https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/mineru2.5/mineru2.5.ipynb
+model:
+  name: ''
+  source: ''
+  revision: ''
+  license: ''
+cpu:
+  runtime: openvino
+  status: FAILED
+gpu:
+  runtime: ''
+  status: NOT_TESTED
+twin:
+  level: NOT_CLASSIFIED
+validation: {}
+patches: {}
+last_verified: ''

@@ -1,0 +1,8 @@
+{
+  "repository": "openvinotoolkit/openvino_notebooks",
+  "branch": "latest",
+  "commit": "a8809170cc4fc6aa633fbb9c22214be67ac20b47",
+  "path": "notebooks/mms-massively-multilingual-speech/mms-massively-multilingual-speech.ipynb",
+  "url": "https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/mms-massively-multilingual-speech/mms-massively-multilingual-speech.ipynb",
+  "notebook_sha256": "cfa54b2fbcb5d68686c57b95d5b6cfd5858c7789ade710805e951c2fea129f33"
+}

@@ -7,10 +7,21 @@ def test_missing_pkg_gradio():
     assert _missing_pkg("ModuleNotFoundError: No module named 'gradio'") == "gradio"
 
 
+def test_missing_pkg_ansi_codes():
+    ansi = "\x1b[31mModuleNotFoundError\x1b[39m: No module named 'kagglehub'"
+    assert _missing_pkg(ansi) == "kagglehub"
+
+
 def test_missing_pkg_mapped():
     assert _missing_pkg("ModuleNotFoundError: No module named 'cv2'") == "opencv-python"
     assert _missing_pkg("ModuleNotFoundError: No module named 'PIL'") == "pillow"
     assert _missing_pkg("ModuleNotFoundError: No module named 'sklearn'") == "scikit-learn"
+
+
+def test_missing_pkg_special_namespaces():
+    assert _missing_pkg("ModuleNotFoundError: No module named 'optimum.intel'") == "optimum-intel"
+    assert _missing_pkg("ModuleNotFoundError: No module named 'openvino.genai'") == "openvino-genai"
+    assert _missing_pkg("ModuleNotFoundError: No module named 'openvino.tokenizers'") == "openvino-tokenizers"
 
 
 def test_missing_pkg_dotted():

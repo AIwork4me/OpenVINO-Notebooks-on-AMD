@@ -1,0 +1,100 @@
+[IPKernelApp] WARNING | Kernel is running over TCP without encryption. All communication (including code and outputs) is sent in plain text and is susceptible to eavesdropping. Use IPC transport or launch with kernel manager-provisioned CurveZMQ keys to enable transport encryption.
+NO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/nbclient/client.py", line 1062, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/nbclient/client.py", line 918, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+text_decoder = model.text_decoder
+text_decoder.eval()
+
+TEXT_DECODER_OV = Path("blip_text_decoder_with_past.xml")
+
+# prepare example inputs
+input_ids = torch.tensor([[30522]])  # begin of sequence token id
+attention_mask = torch.tensor([[1]])  # attention mask for input_ids
+encoder_hidden_states = torch.rand((1, 10, 768))  # encoder last hidden state from text_encoder
+encoder_attention_mask = torch.ones((1, 10), dtype=torch.long)  # attention mask for encoder hidden states
+
+input_dict = {
+    "input_ids": input_ids,
+    "attention_mask": attention_mask,
+    "encoder_hidden_states": encoder_hidden_states,
+    "encoder_attention_mask": encoder_attention_mask,
+}
+text_decoder_outs = text_decoder(**input_dict)
+# extend input dictionary with hidden states from previous step
+input_dict["past_key_values"] = text_decoder_outs["past_key_values"]
+
+text_decoder.config.torchscript = True
+if not TEXT_DECODER_OV.exists():
+    # export PyTorch model
+    with torch.no_grad():
+        ov_text_decoder = ov.convert_model(text_decoder, example_input=input_dict)
+    # save model on disk for next usages
+    ov.save_model(ov_text_decoder, TEXT_DECODER_OV)
+    print(f"Text decoder successfuly converted and saved to {TEXT_DECODER_OV}")
+else:
+    print(f"Text decoder will be loaded from {TEXT_DECODER_OV}")
+------------------
+
+
+[31m---------------------------------------------------------------------------[39m
+[31mError[39m                                     Traceback (most recent call last)
+[36mCell[39m[36m [39m[32mIn[7][39m[32m, line 26[39m
+[32m     22[39m text_decoder.config.torchscript = [38;5;28;01mTrue[39;00m
+[32m     23[39m [38;5;28;01mif[39;00m [38;5;28;01mnot[39;00m TEXT_DECODER_OV.exists():
+[32m     24[39m     [38;5;66;03m# export PyTorch model[39;00m
+[32m     25[39m     [38;5;28;01mwith[39;00m torch.no_grad():
+[32m---> [39m[32m26[39m         ov_text_decoder = ov.convert_model(text_decoder, example_input=input_dict)
+[32m     27[39m     [38;5;66;03m# save model on disk for next usages[39;00m
+[32m     28[39m     ov.save_model(ov_text_decoder, TEXT_DECODER_OV)
+[32m     29[39m     print(f"Text decoder successfuly converted and saved to {TEXT_DECODER_OV}")
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/openvino/tools/ovc/convert.py:115[39m, in [36mconvert_model[39m[34m(input_model, input, output, example_input, extension, verbose, share_weights, dynamo)[39m
+[32m    113[39m logger_state = get_logger_state()
+[32m    114[39m cli_parser = get_all_cli_parser()
+[32m--> [39m[32m115[39m ov_model, _ = [30;43m_convert[39;49m[30;43m([39;49m[30;43mcli_parser[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mparams[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43;01mTrue[39;49;00m[30;43m)[39;49m
+[32m    116[39m restore_logger_state(logger_state)
+[32m    117[39m [38;5;28;01mreturn[39;00m ov_model
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/openvino/tools/ovc/convert_impl.py:587[39m, in [36m_convert[39m[34m(cli_parser, args, python_api_used)[39m
+[32m    585[39m send_conversion_result([33m'[39m[33mfail[39m[33m'[39m)
+[32m    586[39m [38;5;28;01mif[39;00m python_api_used:
+[32m--> [39m[32m587[39m     [38;5;28;01mraise[39;00m e
+[32m    588[39m [38;5;28;01melse[39;00m:
+[32m    589[39m     [38;5;28;01mreturn[39;00m [38;5;28;01mNone[39;00m, argv
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/openvino/tools/ovc/convert_impl.py:476[39m, in [36m_convert[39m[34m(cli_parser, args, python_api_used)[39m
+[32m    472[39m     [38;5;28;01melif[39;00m [33m'[39m[33mexample_inputs[39m[33m'[39m [38;5;129;01min[39;00m args:
+[32m    473[39m         [38;5;28;01mraise[39;00m [38;5;167;01mAssertionError[39;00m(
+[32m    474[39m             [33m"[39m[33m'[39m[33mexample_inputs[39m[33m'[39m[33m argument is not recognized, maybe you meant to provide [39m[33m'[39m[33mexample_input[39m[33m'[39m[33m?[39m[33m"[39m)
+[32m--> [39m[32m476[39m     [30;43mget_pytorch_decoder[39;49m[30;43m([39;49m[30;43margs[39;49m[30;43m[[39;49m[30;43m'[39;49m[30;43minput_model[39;49m[30;43m'[39;49m[30;43m][39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mexample_inputs[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43margs[39;49m[30;43m)[39;49m
+[32m    477[39m [38;5;28;01mif[39;00m model_framework == [33m"[39m[33mpaddle[39m[33m"[39m:
+[32m    478[39m     example_inputs = [38;5;28;01mNone[39;00m
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/openvino/tools/ovc/moc_frontend/pytorch_frontend_utils.py:142[39m, in [36mget_pytorch_decoder[39m[34m(model, example_inputs, args)[39m
+[32m    138[39m     [38;5;28;01mif[39;00m [38;5;129;01mnot[39;00m is_good_version:
+[32m    139[39m         [38;5;28;01mraise[39;00m [38;5;167;01mRuntimeError[39;00m([33m"[39m[33mNNCF models produced by nncf<2.6 are not [39m[33m"[39m
+[32m    140[39m                            [33m"[39m[33msupported directly. Please upgrade nncf or [39m[33m"[39m
+[32m    141[39m                            [33m"[39m[33mexport to ONNX first.[39m[33m"[39m)
+[32m--> [39m[32m142[39m inputs = [30;43mprepare_torch_inputs[39;49m[30;43m([39;49m[30;43mexample_inputs[39;49m[30;43m)[39;49m
+[32m    143[39m use_dynamo = args.get([33m"[39m[33mdynamo[39m[33m"[39m, [38;5;28;01mFalse[39;00m)
+[32m    144[39m [38;5;28;01mif[39;00m [38;5;129;01mnot[39;00m [38;5;28misinstance[39m(model, (TorchScriptPythonDecoder, TorchFXPythonDecoder)):
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/openvino/tools/ovc/moc_frontend/pytorch_frontend_utils.py:432[39m, in [36mprepare_torch_inputs[39m[34m(example_inputs)[39m
+[32m    429[39m     [38;5;28;01mfor[39;00m name, tensor [38;5;129;01min[39;00m inputs.items():
+[32m    430[39m         [38;5;28;01massert[39;00m [38;5;28misinstance[39m(name, [38;5;28mstr[39m), [33m"[39m[33mExpected dictionary where keys are input names of string type and[39m[33m"[39m \
+[32m    431[39m                                       [33m"[39m[33m values are tensors. Got key of type [39m[38;5;132;01m{}[39;00m[33m"[39m.format([38;5;28mtype[39m(name))
+[32m--> [39m[32m432[39m         inputs[name] = [30;43mto_torch_tensor[39;49m[30;43m([39;49m[30;43mtensor[39;49m[30;43m)[39;49m
+[32m    433[39m [38;5;28;01melse[39;00m:
+[32m    434[39m     inputs = to_torch_tensor(inputs)
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/openvino/tools/ovc/moc_frontend/pytorch_frontend_utils.py:415[39m, in [36mto_torch_tensor[39m[34m(tensor)[39m
+[32m    413[39m     [38;5;28;01mreturn[39;00m [38;5;28;01mNone[39;00m
+[32m    414[39m [38;5;28;01melse[39;00m:
+[32m--> [39m[32m415[39m     [38;5;28;01mraise[39;00m Error([33m"[39m[33mUnexpected type of example_input. Supported types torch.Tensor, np.array or ov.Tensor. [39m[33m"[39m
+[32m    416[39m                 [33m"[39m[33mGot [39m[38;5;132;01m{}[39;00m[33m"[39m.format([38;5;28mtype[39m(tensor)))
+
+[31mError[39m: Unexpected type of example_input. Supported types torch.Tensor, np.array or ov.Tensor. Got <class 'transformers.cache_utils.EncoderDecoderCache'>
+

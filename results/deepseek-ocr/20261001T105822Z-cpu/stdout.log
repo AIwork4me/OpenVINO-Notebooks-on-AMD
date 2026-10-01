@@ -1,0 +1,17 @@
+[cell 0 START +    0.4s] # Document Parsing using DeepSeek-OCR/DeepSeek-OCR-2 and OpenVINO |  | ## 
+[cell 1 START +    0.4s] ## Prerequisites | [back to top ⬆️](#Table-of-contents:) | 
+[cell 2 START +    0.4s] import requests | from pathlib import Path |  | utility_files = ["cmd_helper
+[cell 2 DONE  +    0.4s]
+[cell 3 START +    0.4s] from pip_helper import pip_install |  | pip_install("-Uq", "--pre", "openv
+[cell 3 DONE  +   67.9s]
+[cell 4 START +   67.9s] ## Select model | [back to top ⬆️](#Table-of-contents:)
+[cell 5 START +   67.9s] import ipywidgets as widgets |  | model_ids = ["deepseek-ai/DeepSeek-OCR-2
+[cell 5 DONE  +   67.9s]
+[cell 6 START +   67.9s] from huggingface_hub import snapshot_download |  | # Read more about telem
+[cell 6 DONE  +  588.8s]
+[cell 7 START +  588.8s] ## Convert model to OpenVINO Intermediate Representation | [back to top 
+[cell 8 START +  588.8s] from pathlib import Path | import shutil |  | # Copy deepencoder.py to repla
+[cell 8 DONE  +  588.8s]
+[cell 9 START +  588.8s] import ipywidgets as widgets |  | to_compress = widgets.Checkbox(value=Tru
+[cell 9 DONE  +  588.8s]
+[cell 10 START +  588.8s] import nncf |  | if is_v2_model: |     from ov_deepseek_ocr2_helper import c

@@ -1,0 +1,167 @@
+[IPKernelApp] WARNING | Kernel is running over TCP without encryption. All communication (including code and outputs) is sent in plain text and is susceptible to eavesdropping. Use IPC transport or launch with kernel manager-provisioned CurveZMQ keys to enable transport encryption.
+/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/bin/python: No module named pip
+ACT_URL = "https://github.com/tonyzhaozh/act.git"
+TONYZ_ACT_COMMIT = "742c753c0d4a5d87076c8f69e5628c79a8cc5488"
+
+if not TOP_DIR.exists():
+    print("[STEP] Cloning repo with sparse checkout:", TOP_REPO_URL)
+    env = os.environ.copy()
+    env["GIT_LFS_SKIP_SMUDGE"] = "1"
+    subprocess.check_call(["git", "clone", "--filter=blob:none", "--sparse", TOP_REPO_URL, str(TOP_DIR)], env=env)
+
+# Enable cone mode and set only the act-sample path
+subprocess.check_call(["git", "-C", str(TOP_DIR), "sparse-checkout", "init", "--cone"])
+subprocess.check_call(["git", "-C", str(TOP_DIR), "sparse-checkout", "set", SPARSE_PATH])
+print("[INFO] Checked out subdir:", REPO_DIR)
+
+# Initialize only the 'act' submodule inside act-sample (if present)
+try:
+    submodule_path = str(pathlib.Path(SPARSE_PATH) / "act")
+    subprocess.check_call(["git", "-C", str(TOP_DIR), "submodule", "update", "--init", "--depth", "1", submodule_path])
+    print("[INFO] act submodule initialized.")
+except subprocess.CalledProcessError:
+    print("[WARN] act submodule init failed; proceeding with fallback clone.")
+
+# Fallback: clone ACT repo to populate act/ if still empty
+if not ACT_DIR.exists() or not any(ACT_DIR.iterdir()):
+    ACT_DIR.mkdir(parents=True, exist_ok=True)
+    print("[STEP] Fallback clone TonyZhao ACT into:", ACT_DIR)
+    subprocess.check_call(["git", "clone", TONYZ_ACT_URL, str(ACT_DIR)])
+    subprocess.check_call(["git", "-C", str(ACT_DIR), "checkout", TONYZ_ACT_COMMIT])
+    print("[INFO] ACT repo checked out at commit:", TONYZ_ACT_COMMIT)
+
+# Create __init__.py to make detr a proper Python package
+DETR_DIR = ACT_DIR / "detr"
+detr_init = DETR_DIR / "__init__.py"
+if DETR_DIR.exists() and not detr_init.exists():
+    print("[STEP] Creating __init__.py in DETR directory")
+    detr_init.write_text("# DETR package\n")
+    print("[INFO] __init__.py created")
+
+# Also check if detr/models exists and has __init__.py
+models_dir = DETR_DIR / "models"
+models_init = models_dir / "__init__.py"
+if models_dir.exists() and not models_init.exists():
+    print("[STEP] Creating __init__.py in models directory")
+    models_init.write_text("# DETR models\n")
+    print("[INFO] models/__init__.py created")
+
+# Apply patches from act-sample/patches
+PATCHES_SUBDIRS = ["ov", "ipex"]
+SKIP_PATCHES = ["0006-add-ros2-node-and-use-fixed-cube-pose.patch"]
+
+for subdir in PATCHES_SUBDIRS:
+    PATCHES_DIR = REPO_DIR / "patches" / subdir
+    if PATCHES_DIR.exists():
+        print(f"\n[INFO] Found patches directory: {PATCHES_DIR}")
+        patch_files = sorted(PATCHES_DIR.glob("*.patch"))
+        print(f"[INFO] Found {len(patch_files)} patch files in {subdir}/")
+
+        for patch_file in patch_files:
+            if patch_file.name in SKIP_PATCHES:
+                print(f"\n[STEP] Skipping patch: {patch_file.name}")
+                continue
+
+            print(f"\n[STEP] Applying patch: {patch_file.name}")
+            res = subprocess.run(["git", "-C", str(ACT_DIR), "apply", str(patch_file.resolve())], capture_output=True, text=True)
+            if res.returncode == 0:
+                print(f"[INFO] Patch applied successfully: {patch_file.name}")
+            else:
+                print(f"[WARN] Failed to apply patch {patch_file.name}")
+                print(f"[ERROR] {res.stderr}")
+    else:
+        print(f"[WARN] Patches directory not found: {PATCHES_DIR}")
+
+# Install required packages
+pip_install("-U", "pip", "setuptools", "wheel")
+print("[STEP] Install required packages via pip_install")
+
+# Install torch and torchvision with CPU-only index
+pip_install("-q", "--index-url", "https://download.pytorch.org/whl/cpu", "torch==2.7.1", "torchvision==0.22.1")
+
+# Install the rest of the packages
+pip_install(
+    "-q",
+    *[
+        "pyquaternion==0.9.9",
+        "pyyaml==6.0.1",
+        "rospkg==1.5.0",
+        "pexpect==4.8.0",
+        "mujoco==3.2.6",
+        "dm_control==1.0.26",
+        "matplotlib==3.10.0",
+        "einops==0.6.0",
+        "packaging==23.0",
+        "h5py==3.12.1",
+        "ipython==8.12.0",
+        "opencv-python==4.10.0.84",
+        "transformers==4.37.0",
+        "accelerate==0.23.0",
+        "huggingface-hub==0.24.7",
+        "openvino==2025.4.1",
+        "numpy<2.0",
+    ],
+)
+
+# Install DETR from the act repo (global install)
+DETR_DIR = ACT_DIR / "detr"
+print("[STEP] Installing DETR from:", DETR_DIR)
+if DETR_DIR.exists():
+    # Debug: list DETR directory structure
+    print("[DEBUG] DETR_DIR contents:", list(DETR_DIR.iterdir())[:15])
+    detr_src = DETR_DIR / "src"
+    if detr_src.exists():
+        print("[DEBUG] src/ contents:", list(detr_src.iterdir())[:15])
+
+    subprocess.check_call([sys.executable, "-m", "pip", "install", "."], cwd=str(DETR_DIR))
+    print("[INFO] DETR installed globally.")
+
+    # Verify import
+    import importlib
+
+    try:
+        detr_mod = importlib.import_module("detr")
+        print("[INFO] detr import OK from:", getattr(detr_mod, "__file__", "<namespace>"))
+    except Exception as e:
+        print("[WARN] detr import failing in notebook kernel (may work in subprocess):", e)
+else:
+    print("[ERROR] DETR directory not found:", DETR_DIR)
+
+print("[DONE] Setup complete.")
+
+# Read more about telemetry collection at https://github.com/openvinotoolkit/openvino_notebooks?tab=readme-ov-file#-telemetry
+from notebook_utils import collect_telemetry
+
+collect_telemetry("aloha-act.ipynb")
+------------------
+
+----- stderr -----
+/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/bin/python: No module named pip
+------------------
+
+[31m---------------------------------------------------------------------------[39m
+[31mCalledProcessError[39m                        Traceback (most recent call last)
+[36mCell[39m[36m [39m[32mIn[2][39m[32m, line 19[39m
+[32m     15[39m     open([33m"pip_helper.py"[39m, [33m"w"[39m).write(r.text)
+[32m     16[39m 
+[32m     17[39m [38;5;28;01mfrom[39;00m pip_helper [38;5;28;01mimport[39;00m pip_install
+[32m     18[39m 
+[32m---> [39m[32m19[39m pip_install([33m"-q"[39m, [33m"ipywidgets"[39m)
+[32m     20[39m 
+[32m     21[39m [38;5;66;03m# Sparse checkout for act-sample subdir from edge-ai-suites[39;00m
+[32m     22[39m TOP_REPO_URL = [33m"https://github.com/open-edge-platform/edge-ai-suites.git"[39m
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/results/aloha-act/workdir-cpu/pip_helper.py:10[39m, in [36mpip_install[39m[34m(*args)[39m
+[32m      8[39m [38;5;28;01mfor[39;00m arg [38;5;129;01min[39;00m args:
+[32m      9[39m     cli_args.extend([38;5;28mstr[39m(arg).split([33m"[39m[33m [39m[33m"[39m))
+[32m---> [39m[32m10[39m [30;43msubprocess[39;49m[30;43m.[39;49m[30;43mrun[39;49m[30;43m([39;49m[30;43m[[39;49m[30;43msys[39;49m[30;43m.[39;49m[30;43mexecutable[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43m"[39;49m[30;43m-m[39;49m[30;43m"[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43m"[39;49m[30;43mpip[39;49m[30;43m"[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43m"[39;49m[30;43minstall[39;49m[30;43m"[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43m*[39;49m[30;43mcli_args[39;49m[30;43m][39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mcheck[39;49m[30;43m=[39;49m[30;43;01mTrue[39;49;00m[30;43m)[39;49m
+
+[36mFile [39m[32m/usr/lib/python3.12/subprocess.py:571[39m, in [36mrun[39m[34m(input, capture_output, timeout, check, *popenargs, **kwargs)[39m
+[32m    569[39m     retcode = process.poll()
+[32m    570[39m     [38;5;28;01mif[39;00m check [38;5;129;01mand[39;00m retcode:
+[32m--> [39m[32m571[39m         [38;5;28;01mraise[39;00m CalledProcessError(retcode, process.args,
+[32m    572[39m                                  output=stdout, stderr=stderr)
+[32m    573[39m [38;5;28;01mreturn[39;00m CompletedProcess(process.args, retcode, stdout, stderr)
+
+[31mCalledProcessError[39m: Command '['/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/bin/python', '-m', 'pip', 'install', '-q', 'ipywidgets']' returned non-zero exit status 1.
+

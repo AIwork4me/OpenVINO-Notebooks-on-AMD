@@ -1,0 +1,45 @@
+[IPKernelApp] WARNING | Kernel is running over TCP without encryption. All communication (including code and outputs) is sent in plain text and is susceptible to eavesdropping. Use IPC transport or launch with kernel manager-provisioned CurveZMQ keys to enable transport encryption.
+Traceback (most recent call last):
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/ov_amd/_nbexec.py", line 122, in main
+    client.execute()
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/jupyter_core/utils/__init__.py", line 165, in wrapped
+    return loop.run_until_complete(inner)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/base_events.py", line 687, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/nbclient/client.py", line 709, in async_execute
+    await self.async_execute_cell(
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/nbclient/client.py", line 1062, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/nbclient/client.py", line 918, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+from pathlib import Path
+from optimum.intel.openvino import OVModelForSpeechSeq2Seq
+
+# OV FP32 Whisper
+
+DISTIL_WHISPER_DIR = Path("../../../notebooks/267-distil-whisper-asr")
+WHISPER_OV_PATH = DISTIL_WHISPER_DIR / whisper_model_id.replace("/", "_")
+
+
+if load_whisper_model_ov.value:
+    whisper_model_ov_fp32 = OVModelForSpeechSeq2Seq.from_pretrained(WHISPER_OV_PATH, compile=False).to(device.value)
+    whisper_model_ov_fp32.compile()
+    AVAILABLE_MODELS.append((whisper_model_ov_fp32, whisper_processor, f"Whisper large-v2 OpenVINO"))
+------------------
+
+
+[31m---------------------------------------------------------------------------[39m
+[31mModuleNotFoundError[39m                       Traceback (most recent call last)
+[36mCell[39m[36m [39m[32mIn[5][39m[32m, line 2[39m
+[32m      1[39m [38;5;28;01mfrom[39;00m pathlib [38;5;28;01mimport[39;00m Path
+[32m----> [39m[32m2[39m [38;5;28;01mfrom[39;00m optimum.intel.openvino [38;5;28;01mimport[39;00m OVModelForSpeechSeq2Seq
+[32m      3[39m 
+[32m      4[39m [38;5;66;03m# OV FP32 Whisper[39;00m
+[32m      5[39m 
+
+[31mModuleNotFoundError[39m: No module named 'optimum.intel'
+

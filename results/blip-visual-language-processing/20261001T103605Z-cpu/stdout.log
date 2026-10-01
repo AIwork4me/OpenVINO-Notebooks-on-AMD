@@ -1,0 +1,23 @@
+[cell 0 START +    0.5s] # Visual Question Answering and Image Captioning using BLIP and OpenVI
+[cell 1 START +    0.5s]  | #### Table of contents: |  | - [Background](#Background) |     - [Image Cap
+[cell 2 START +    0.5s] ## Background | [back to top ⬆️](#Table-of-contents:) |  | Visual language p
+[cell 3 START +    0.5s] ## Instantiate Model | [back to top ⬆️](#Table-of-contents:) |  | The BLIP m
+[cell 4 START +    0.5s] %pip install -q --extra-index-url https://download.pytorch.org/whl/cpu
+[cell 4 DONE  +    0.8s]
+[cell 5 START +    0.8s] import time | from PIL import Image | from transformers import BlipProcess
+[cell 5 DONE  +  130.1s]
+[cell 6 START +  130.1s] print(f"Processing time: {end:.4f} s")
+[cell 6 DONE  +  130.1s]
+[cell 7 START +  130.1s] from pathlib import Path |  | if not Path("./utils.py").exists(): |     down
+[cell 7 DONE  +  131.5s]
+[cell 8 START +  131.5s] ## Convert Models to OpenVINO IR | [back to top ⬆️](#Table-of-contents:)
+[cell 9 START +  131.5s] ### Vision Model | [back to top ⬆️](#Table-of-contents:) |  | The vision mod
+[cell 10 START +  131.5s] import torch | from pathlib import Path | import openvino as ov |  | VISION_MO
+[cell 10 DONE  +  134.2s]
+[cell 11 START +  134.2s] ### Text Encoder | [back to top ⬆️](#Table-of-contents:) |  | The text encod
+[cell 12 START +  134.2s] TEXT_ENCODER_OV = Path("blip_text_encoder.xml") |  |  | text_encoder = model
+[cell 12 DONE  +  135.9s]
+[cell 13 START +  135.9s] ### Text Decoder | [back to top ⬆️](#Table-of-contents:) |  | The text decod
+[cell 14 START +  135.9s] text_decoder = model.text_decoder | text_decoder.eval() |  | TEXT_DECODER_OV
+[cell 14 DONE  +  136.1s]
+NBEXEC_RESULT={"ok": false, "n_cells": 36, "n_skipped": 0, "n_substituted": 0, "stopped_after": null, "error_cell": null, "error_type": "CellExecutionError", "error_head": "\u001b[31mError\u001b[39m: Unexpected type of example_input. Supported types torch.Tensor, np.array or ov.Tensor. Got <class 'transformers.cache_utils.EncoderDecoderCache'>", "duration_s": 138.72, "patch_notes": []}

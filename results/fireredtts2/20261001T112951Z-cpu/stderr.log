@@ -1,0 +1,116 @@
+[IPKernelApp] WARNING | Kernel is running over TCP without encryption. All communication (including code and outputs) is sent in plain text and is susceptible to eavesdropping. Use IPC transport or launch with kernel manager-provisioned CurveZMQ keys to enable transport encryption.
+[31mERROR: pip's dependency resolver does not currently take into account all the packages that are installed. This behaviour is the source of the following dependency conflicts.
+optimum-intel 1.20.1 requires transformers<4.47,>=4.36, but you have transformers 4.55.0 which is incompatible.[0m[31m
+[0mTraceback (most recent call last):
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/ov_amd/_nbexec.py", line 122, in main
+    client.execute()
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/jupyter_core/utils/__init__.py", line 165, in wrapped
+    return loop.run_until_complete(inner)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/base_events.py", line 687, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/nbclient/client.py", line 709, in async_execute
+    await self.async_execute_cell(
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/nbclient/client.py", line 1062, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/nbclient/client.py", line 918, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+from cmd_helper import clone_repo
+from pip_helper import pip_install
+
+!pip uninstall -y fireredtts2
+
+pip_install(
+    "-q",
+    "--extra-index-url",
+    "https://download.pytorch.org/whl/cpu",
+    "torch==2.7.1",
+    "torchvision==0.22.1",
+    "torchaudio==2.7.1",
+    "torchao==0.11.0",
+    "nncf",
+    "openvino>=2025.3.0",
+    "transformers==4.55",
+    "gradio",
+    "huggingface_hub",
+)
+
+repo_dir = Path("FireRedTTS2")
+revision = "bfacbfb7bb88cade9c0b9ab2644ebd7f75c6989c"
+clone_repo("https://github.com/openvino-dev-samples/FireRedTTS2.git", revision)
+
+pip_install(
+    "-q -e",
+    str(repo_dir),
+)
+
+pip_install(
+    "-q -r",
+    str(repo_dir / "requirements.txt"),
+)
+------------------
+
+----- stdout -----
+[1;31merror[0m: [1mexternally-managed-environment[0m
+
+[31m×[0m This environment is externally managed
+[31m╰─>[0m To install Python packages system-wide, try apt install
+[31m   [0m python3-xyz, where xyz is the package you are trying to
+[31m   [0m install.
+[31m   [0m 
+[31m   [0m If you wish to install a non-Debian-packaged Python package,
+[31m   [0m create a virtual environment using python3 -m venv path/to/venv.
+[31m   [0m Then use path/to/venv/bin/python and path/to/venv/bin/pip. Make
+[31m   [0m sure you have python3-full installed.
+[31m   [0m 
+[31m   [0m If you wish to install a non-Debian packaged Python application,
+[31m   [0m it may be easiest to use pipx install xyz, which will manage a
+[31m   [0m virtual environment for you. Make sure you have pipx installed.
+[31m   [0m 
+[31m   [0m See /usr/share/doc/python3.12/README.venv for more information.
+
+[1;35mnote[0m: If you believe this is a mistake, please contact your Python installation or OS distribution provider. You can override this, at the risk of breaking your Python installation or OS, by passing --break-system-packages.
+[1;36mhint[0m: See PEP 668 for the detailed specification.
+----- stderr -----
+[31mERROR: pip's dependency resolver does not currently take into account all the packages that are installed. This behaviour is the source of the following dependency conflicts.
+optimum-intel 1.20.1 requires transformers<4.47,>=4.36, but you have transformers 4.55.0 which is incompatible.[0m[31m
+[0m
+----- stdout -----
+Failed to clone the repository: Cloning into 'FireRedTTS2'...
+error: RPC failed; curl 28 Operation too slow. Less than 1000 bytes/sec transferred the last 30 seconds
+fatal: expected flush after ref listing
+------------------
+
+[31m---------------------------------------------------------------------------[39m
+[31mCalledProcessError[39m                        Traceback (most recent call last)
+[36mCell[39m[36m [39m[32mIn[2][39m[32m, line 23[39m
+[32m     19[39m )
+[32m     20[39m 
+[32m     21[39m repo_dir = Path([33m"FireRedTTS2"[39m)
+[32m     22[39m revision = [33m"bfacbfb7bb88cade9c0b9ab2644ebd7f75c6989c"[39m
+[32m---> [39m[32m23[39m clone_repo([33m"https://github.com/openvino-dev-samples/FireRedTTS2.git"[39m, revision)
+[32m     24[39m 
+[32m     25[39m pip_install(
+[32m     26[39m     [33m"-q -e"[39m,
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/results/fireredtts2/workdir-cpu/cmd_helper.py:14[39m, in [36mclone_repo[39m[34m(repo_url, revision, add_to_sys_path)[39m
+[32m     12[39m [38;5;28;01mif[39;00m [38;5;129;01mnot[39;00m repo_path.exists():
+[32m     13[39m     [38;5;28;01mtry[39;00m:
+[32m---> [39m[32m14[39m         [30;43msubprocess[39;49m[30;43m.[39;49m[30;43mrun[39;49m[30;43m([39;49m
+[32m     15[39m [30;43m            [39;49m[30;43m[[39;49m[30;43m"[39;49m[30;43mgit[39;49m[30;43m"[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43m"[39;49m[30;43mclone[39;49m[30;43m"[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mrepo_url[39;49m[30;43m][39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mcheck[39;49m[30;43m=[39;49m[30;43;01mTrue[39;49;00m[30;43m,[39;49m[30;43m [39;49m[30;43mstdout[39;49m[30;43m=[39;49m[30;43msubprocess[39;49m[30;43m.[39;49m[30;43mPIPE[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mstderr[39;49m[30;43m=[39;49m[30;43msubprocess[39;49m[30;43m.[39;49m[30;43mPIPE[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mtext[39;49m[30;43m=[39;49m[30;43;01mTrue[39;49;00m
+[32m     16[39m [30;43m        [39;49m[30;43m)[39;49m  [38;5;66;03m# nosec B603 B607 - hardcoded git command[39;00m
+[32m     17[39m     [38;5;28;01mexcept[39;00m [38;5;167;01mException[39;00m [38;5;28;01mas[39;00m exc:
+[32m     18[39m         [38;5;28mprint[39m([33mf[39m[33m"[39m[33mFailed to clone the repository: [39m[38;5;132;01m{[39;00mexc.stderr[38;5;132;01m}[39;00m[33m"[39m)
+
+[36mFile [39m[32m/usr/lib/python3.12/subprocess.py:571[39m, in [36mrun[39m[34m(input, capture_output, timeout, check, *popenargs, **kwargs)[39m
+[32m    569[39m     retcode = process.poll()
+[32m    570[39m     [38;5;28;01mif[39;00m check [38;5;129;01mand[39;00m retcode:
+[32m--> [39m[32m571[39m         [38;5;28;01mraise[39;00m CalledProcessError(retcode, process.args,
+[32m    572[39m                                  output=stdout, stderr=stderr)
+[32m    573[39m [38;5;28;01mreturn[39;00m CompletedProcess(process.args, retcode, stdout, stderr)
+
+[31mCalledProcessError[39m: Command '['git', 'clone', 'https://github.com/openvino-dev-samples/FireRedTTS2.git']' returned non-zero exit status 128.
+

@@ -102,7 +102,23 @@ def main() -> int:
                     cell.get("metadata", {})["amd_skip_reason"] = "after stop pattern"
                 kept.append(cell)
             nb.cells = kept
-        client = NotebookClient(nb, timeout=args.per_cell_timeout, kernel_name="python3", allow_errors=False)
+        t_start = time.time()
+
+        def _on_start(cell, cell_index):
+            src = cell_source(cell)[:70].replace("\n", " | ")
+            print(f"[cell {cell_index} START +{time.time() - t_start:7.1f}s] {src}", flush=True)
+
+        def _on_done(cell, cell_index, execute_reply=None):
+            print(f"[cell {cell_index} DONE  +{time.time() - t_start:7.1f}s]", flush=True)
+
+        client = NotebookClient(
+            nb,
+            timeout=args.per_cell_timeout,
+            kernel_name="python3",
+            allow_errors=False,
+            on_cell_start=_on_start,
+            on_cell_executed=_on_done,
+        )
         client.execute()
         result["ok"] = True
     except Exception as e:  # noqa: BLE001 - record whatever the kernel raised

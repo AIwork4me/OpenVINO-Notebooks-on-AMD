@@ -1,0 +1,5 @@
+[cell 0 START +    0.4s] # Create MCP Agent using OpenVINO and Qwen-Agent |  | MCP is an open proto
+[cell 1 START +    0.4s] ## Prerequisites |  | [back to top ⬆️](#Table-of-contents:) | 
+[cell 2 START +    0.4s] import os | from pathlib import Path | import requests |  | os.environ["GIT_CL
+[cell 2 DONE  +  535.4s]
+[cell 3 START +  535.4s] from cmd_helper import clone_repo |  | clone_repo("https://github.com/open

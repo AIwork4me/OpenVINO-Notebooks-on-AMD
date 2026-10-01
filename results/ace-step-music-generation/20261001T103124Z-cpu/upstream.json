@@ -1,0 +1,8 @@
+{
+  "repository": "openvinotoolkit/openvino_notebooks",
+  "branch": "latest",
+  "commit": "a8809170cc4fc6aa633fbb9c22214be67ac20b47",
+  "path": "notebooks/ace-step-music-generation/ace-step-music-generation.ipynb",
+  "url": "https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/ace-step-music-generation/ace-step-music-generation.ipynb",
+  "notebook_sha256": "fee5ef144118decac1e5d20a847278f8c683d2b4131b2b406ee0d02764aaa74d"
+}

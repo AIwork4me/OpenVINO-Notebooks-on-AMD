@@ -1,0 +1,8 @@
+[cell 0 START +    0.4s] # Low-Light Image Restoration with DarkIR model using OpenVINO™ |  | [Dark
+[cell 1 START +    0.4s] ## Prerequisites | [back to top ⬆️](#Table-of-contents:) |  | Install requir
+[cell 2 START +    0.4s] %pip install -q --extra-index-url https://download.pytorch.org/whl/cpu
+[cell 2 DONE  +    0.7s]
+[cell 3 START +    0.7s] ## Run PyTorch model inference | [back to top ⬆️](#Table-of-contents:)
+[cell 4 START +    0.7s] ### Prepare model | [back to top ⬆️](#Table-of-contents:) |  |  | At first, we
+[cell 5 START +    0.7s] from cmd_helper import clone_repo |  | clone_repo("https://github.com/cida
+NBEXEC_RESULT={"ok": false, "n_cells": 23, "n_skipped": 0, "n_substituted": 0, "stopped_after": null, "error_cell": null, "error_type": "CellTimeoutError", "error_head": "-------------------", "duration_s": 601.05, "patch_notes": []}

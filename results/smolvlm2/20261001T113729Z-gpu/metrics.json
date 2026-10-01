@@ -1,0 +1,26 @@
+{
+  "model": "HuggingFaceTB/SmolVLM2-2.2B-Instruct",
+  "precision": "bf16",
+  "load_s": 575.87,
+  "runs": [
+    {
+      "total_s": 1.326,
+      "new_tokens": 20,
+      "tokens_per_s": 15.09
+    },
+    {
+      "total_s": 1.305,
+      "new_tokens": 20,
+      "tokens_per_s": 15.33
+    },
+    {
+      "total_s": 1.314,
+      "new_tokens": 20,
+      "tokens_per_s": 15.22
+    }
+  ],
+  "output": "A black dog sits in front of a white and orange barricade with graffiti on it.",
+  "output_stable": true,
+  "peak_vram_gb": 4.58,
+  "peak_rss_gb": 9.63
+}

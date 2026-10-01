@@ -1,0 +1,8 @@
+{
+  "repository": "openvinotoolkit/openvino_notebooks",
+  "branch": "latest",
+  "commit": "a8809170cc4fc6aa633fbb9c22214be67ac20b47",
+  "path": "notebooks/stable-diffusion-xl/stable-diffusion-xl.ipynb",
+  "url": "https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/stable-diffusion-xl/stable-diffusion-xl.ipynb",
+  "notebook_sha256": "aef59a0117c436066f9e41f33cc5f1b6cd8294d73890a401444d5b83b4f58b31"
+}

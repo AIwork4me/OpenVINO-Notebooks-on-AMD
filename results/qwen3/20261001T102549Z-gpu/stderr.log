@@ -1,0 +1,4 @@
+Traceback (most recent call last):
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/workloads/qwen3/rocm/run.py", line 18, in <module>
+    from twin_lib import PeakMemory, emit, setup
+ModuleNotFoundError: No module named 'twin_lib'

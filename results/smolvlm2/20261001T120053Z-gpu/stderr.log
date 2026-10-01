@@ -1,0 +1,5 @@
+[transformers] Model config: pad_token_id must be `None` or an integer within the vocabulary (between 0 and 31999), got 128002. This may result in unexpected behavior.
+[transformers] `torch_dtype` is deprecated! Use `dtype` instead!
+Loading weights:   0%|          | 0/657 [00:00<?, ?it/s]Loading weights:   6%|▌         | 39/657 [00:00<00:01, 384.50it/s]Loading weights:  15%|█▍        | 96/657 [00:00<00:01, 489.45it/s]Loading weights:  24%|██▍       | 159/657 [00:00<00:00, 530.82it/s]Loading weights:  47%|████▋     | 306/657 [00:00<00:00, 890.66it/s]Loading weights: 100%|██████████| 657/657 [00:00<00:00, 1449.78it/s]
+[transformers] Kwargs passed to `processor.__call__` have to be in `processor_kwargs` dict, not in `**kwargs`
+MIOpen(HIP): Warning [ParseAndLoadDb] File is unreadable: "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-gpu/lib/python3.12/site-packages/_rocm_sdk_libraries/share/miopen/db/gfx1151_20.HIP.fdb.txt"

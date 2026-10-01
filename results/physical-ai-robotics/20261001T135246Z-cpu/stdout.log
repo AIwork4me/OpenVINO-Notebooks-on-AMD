@@ -1,0 +1,4 @@
+[cell 0 START +    0.4s] # Physical AI Robotics Tutorials with OpenVINO™ |  | <img src="https://git
+[cell 1 START +    0.4s] ## What you will find |  | The tutorials live in the [physicalai](https://
+[cell 2 START +    0.4s] ## Requirements |  | Running the tutorials needs Intel® hardware for OpenV
+NBEXEC_RESULT={"ok": true, "n_cells": 0, "n_skipped": 0, "n_substituted": 0, "stopped_after": null, "error_cell": null, "error_type": null, "error_head": null, "duration_s": 0.52, "patch_notes": []}

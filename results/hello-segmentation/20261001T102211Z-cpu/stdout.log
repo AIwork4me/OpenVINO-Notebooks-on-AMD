@@ -1,0 +1,28 @@
+[cell 0 START +    0.4s] # Hello Image Segmentation |  | A very basic introduction to using segment
+[cell 1 START +    0.4s] # Install required packages | %pip install -q "openvino>=2023.1.0" openc
+[cell 1 DONE  +    0.5s]
+[cell 2 START +    0.5s] ## Imports | [back to top ⬆️](#Table-of-contents:) | 
+[cell 3 START +    0.5s] import cv2 | import matplotlib.pyplot as plt | import numpy as np | import o
+[cell 3 DONE  +    0.9s]
+[cell 4 START +    0.9s] ## Download model weights | [back to top ⬆️](#Table-of-contents:) | 
+[cell 5 START +    0.9s] from pathlib import Path |  | base_model_dir = Path("./model").expanduser(
+[cell 5 DONE  +    0.9s]
+[cell 6 START +    0.9s] ## Select inference device | [back to top ⬆️](#Table-of-contents:) |  | sele
+[cell 7 START +    0.9s] device = device_widget() | device
+[cell 7 DONE  +    1.0s]
+[cell 8 START +    1.0s] ## Load the Model | [back to top ⬆️](#Table-of-contents:) | 
+[cell 9 START +    1.0s] core = ov.Core() |  | model = core.read_model(model=model_xml_path) | compil
+[cell 9 DONE  +    1.2s]
+[cell 10 START +    1.2s] ## Load an Image | [back to top ⬆️](#Table-of-contents:) | A sample image 
+[cell 11 START +    1.2s] # Download the image from the openvino_notebooks storage | image_filenam
+[cell 11 DONE  +    1.4s]
+[cell 12 START +    1.4s] ## Do Inference | [back to top ⬆️](#Table-of-contents:) | 
+[cell 13 START +    1.4s] # Run the inference. | result = compiled_model([input_image])[output_lay
+[cell 13 DONE  +    1.5s]
+[cell 14 START +    1.5s] ## Prepare Data for Visualization | [back to top ⬆️](#Table-of-contents:
+[cell 15 START +    1.5s] # Define colormap, each color represents a class. | colormap = np.array(
+[cell 15 DONE  +    1.5s]
+[cell 16 START +    1.5s] ## Visualize data | [back to top ⬆️](#Table-of-contents:) | 
+[cell 17 START +    1.5s] # Define titles with images. | data = {"Base Photo": rgb_image, "Segment
+[cell 17 DONE  +    1.7s]
+NBEXEC_RESULT={"ok": true, "n_cells": 9, "n_skipped": 0, "n_substituted": 0, "stopped_after": null, "error_cell": null, "error_type": null, "error_head": null, "duration_s": 2.04, "patch_notes": []}

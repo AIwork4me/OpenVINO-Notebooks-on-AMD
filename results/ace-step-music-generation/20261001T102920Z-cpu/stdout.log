@@ -1,0 +1,5 @@
+[cell 0 START +    0.4s] # Music generation using ACE Step and OpenVINO |  | [ACE-Step](https://ace
+[cell 1 START +    0.4s] ## Prerequisites | [back to top ⬆️](#Table-of-contents:) |  | **Note:** FFmp
+[cell 2 START +    0.4s] import requests | from pathlib import Path |  | if not Path("ov_ace_helper.p
+[cell 2 DONE  +  123.2s]
+NBEXEC_RESULT={"ok": false, "n_cells": 20, "n_skipped": 0, "n_substituted": 0, "stopped_after": null, "error_cell": null, "error_type": "AttributeError", "error_head": "AttributeError: 'NoneType' object has no attribute 'cleanup_resources'", "duration_s": 123.46, "patch_notes": []}

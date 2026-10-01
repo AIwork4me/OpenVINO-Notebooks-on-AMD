@@ -1,0 +1,74 @@
+[IPKernelApp] WARNING | Kernel is running over TCP without encryption. All communication (including code and outputs) is sent in plain text and is susceptible to eavesdropping. Use IPC transport or launch with kernel manager-provisioned CurveZMQ keys to enable transport encryption.
+Traceback (most recent call last):
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/ov_amd/_nbexec.py", line 122, in main
+    client.execute()
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/jupyter_core/utils/__init__.py", line 165, in wrapped
+    return loop.run_until_complete(inner)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/base_events.py", line 687, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/nbclient/client.py", line 709, in async_execute
+    await self.async_execute_cell(
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/nbclient/client.py", line 1062, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/nbclient/client.py", line 918, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+from datasets import load_dataset
+from nltk.tokenize import sent_tokenize
+from functools import reduce
+import pandas as pd
+import os
+
+from langchain_community.embeddings.sentence_transformer import SentenceTransformerEmbeddings
+from langchain_community.vectorstores import Chroma
+from langchain_core.documents.base import Document
+
+
+def articles_to_passages(articles, sent_count_per_passage=3):
+    """Split a list of articles to a list of passages"""
+
+    def map(text):
+        sents = sent_tokenize(text)
+        sentence_df = pd.DataFrame(sents, columns=["sentence"]).reset_index()
+        sentence_df["batch"] = sentence_df["index"] // sent_count_per_passage
+        passages = list(sentence_df.groupby("batch")["sentence"].apply(lambda x: " ".join(x)))
+        return passages
+
+    return reduce(lambda l1, l2: l1 + l2, [map(p) for p in articles], [])
+
+
+embedding_function = SentenceTransformerEmbeddings(model_name="BAAI/bge-small-en-v1.5")
+
+chroma_db_path = "./chroma_db"
+if os.path.exists(chroma_db_path):
+    database = Chroma(persist_directory=chroma_db_path, embedding_function=embedding_function)
+    print("Loaded dataset from disk")
+else:
+    dataset = load_dataset("RealTimeData/bbc_latest", split="train", revision="2024-03-18")
+    # Filter only sports arctiles
+    sports_articles = dataset.filter(lambda e: "sport" in e["link"])["content"]
+    sports_articles = pd.DataFrame(sports_articles).drop_duplicates()[0].to_list()
+    # Split documents to passages
+    sport_passages = articles_to_passages(sports_articles)
+    database = Chroma.from_documents([Document(page_content=doc) for doc in sport_passages], embedding_function, persist_directory=chroma_db_path)
+    print(f"Number of sports arcticles found: {len(sports_articles)}\nNumber of embedded passages: {len(sport_passages)}")
+------------------
+
+
+[31m---------------------------------------------------------------------------[39m
+[31mModuleNotFoundError[39m                       Traceback (most recent call last)
+[36mCell[39m[36m [39m[32mIn[2][39m[32m, line 7[39m
+[32m      3[39m [38;5;28;01mfrom[39;00m functools [38;5;28;01mimport[39;00m reduce
+[32m      4[39m [38;5;28;01mimport[39;00m pandas [38;5;28;01mas[39;00m pd
+[32m      5[39m [38;5;28;01mimport[39;00m os
+[32m      6[39m 
+[32m----> [39m[32m7[39m [38;5;28;01mfrom[39;00m langchain_community.embeddings.sentence_transformer [38;5;28;01mimport[39;00m SentenceTransformerEmbeddings
+[32m      8[39m [38;5;28;01mfrom[39;00m langchain_community.vectorstores [38;5;28;01mimport[39;00m Chroma
+[32m      9[39m [38;5;28;01mfrom[39;00m langchain_core.documents.base [38;5;28;01mimport[39;00m Document
+[32m     10[39m 
+
+[31mModuleNotFoundError[39m: No module named 'langchain_community'
+

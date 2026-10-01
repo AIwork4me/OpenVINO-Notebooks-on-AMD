@@ -1,0 +1,5 @@
+[cell 0 START +    0.4s] # Document parsing with GLM-OCR and OpenVINO |  | [GLM-OCR](https://huggin
+[cell 1 START +    0.4s] ## Prerequisites | [back to top ⬆️](#Table-of-contents:) |  | GLM-OCR lives 
+[cell 2 START +    0.4s] import requests | from pathlib import Path |  | if not Path("cmd_helper.py")
+[cell 2 DONE  +    0.4s]
+[cell 3 START +    0.4s] %pip uninstall -q -y optimum optimum-intel optimum-onnx |  | from notebook

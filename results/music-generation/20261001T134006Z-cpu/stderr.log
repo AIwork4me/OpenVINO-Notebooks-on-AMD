@@ -1,0 +1,69 @@
+[IPKernelApp] WARNING | Kernel is running over TCP without encryption. All communication (including code and outputs) is sent in plain text and is susceptible to eavesdropping. Use IPC transport or launch with kernel manager-provisioned CurveZMQ keys to enable transport encryption.
+nsion[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m _HAS_OPS  [38;5;66;03m# usort:skip[39;00m
+[32m---> [39m[32m10[39m [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01mtorchvision[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m _meta_registrations, datasets, io, models, ops, transforms, utils  [38;5;66;03m# usort:skip[39;00m
+[32m     12[39m [38;5;28;01mtry[39;00m:
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/torchvision/_meta_registrations.py:163[39m
+[32m    160[39m     [38;5;28;01mreturn[39;00m grad.new_empty((batch_size, channels, height, width))
+[32m--> [39m[32m163[39m [30;43m@torch[39;49m[30;43m.[39;49m[30;43mlibrary[39;49m[30;43m.[39;49m[30;43mregister_fake[39;49m[30;43m([39;49m[30;43m"[39;49m[30;43mtorchvision::nms[39;49m[30;43m"[39;49m[30;43m)[39;49m
+[32m    164[39m [30;43;01mdef[39;49;00m[30;43m [39;49m[30;43mmeta_nms[39;49m[30;43m([39;49m[30;43mdets[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mscores[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43miou_threshold[39;49m[30;43m)[39;49m[30;43m:[39;49m
+[32m    165[39m [30;43m    [39;49m[30;43mtorch[39;49m[30;43m.[39;49m[30;43m_check[39;49m[30;43m([39;49m[30;43mdets[39;49m[30;43m.[39;49m[30;43mdim[39;49m[30;43m([39;49m[30;43m)[39;49m[30;43m [39;49m[30;43m==[39;49m[30;43m [39;49m[30;43m2[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43;01mlambda[39;49;00m[30;43m:[39;49m[30;43m [39;49m[30;43mf[39;49m[30;43m"[39;49m[30;43mboxes should be a 2d tensor, got [39;49m[30;43;01m{[39;49;00m[30;43mdets[39;49m[30;43m.[39;49m[30;43mdim[39;49m[30;43m([39;49m[30;43m)[39;49m[30;43;01m}[39;49;00m[30;43mD[39;49m[30;43m"[39;49m[30;43m)[39;49m
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/torch/library.py:1271[39m, in [36mregister_fake.<locals>.register[39m[34m(func)[39m
+[32m   1270[39m use_lib = _library_for_registration(namespace, lib)
+[32m-> [39m[32m1271[39m [30;43muse_lib[39;49m[30;43m.[39;49m[30;43m_register_fake[39;49m[30;43m([39;49m
+[32m   1272[39m [30;43m    [39;49m[30;43mop_name[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mfunc[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43m_stacklevel[39;49m[30;43m=[39;49m[30;43mstacklevel[39;49m[30;43m [39;49m[30;43m+[39;49m[30;43m [39;49m[30;43m1[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mallow_override[39;49m[30;43m=[39;49m[30;43mallow_override[39;49m
+[32m   1273[39m [30;43m[39;49m[30;43m)[39;49m
+[32m   1274[39m [38;5;28;01mreturn[39;00m func
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/torch/library.py:354[39m, in [36mLibrary._register_fake[39m[34m(self, op_name, fn, _stacklevel, allow_override)[39m
+[32m    352[39m     func_to_register = fn
+[32m--> [39m[32m354[39m handle = [30;43mentry[39;49m[30;43m.[39;49m[30;43mfake_impl[39;49m[30;43m.[39;49m[30;43mregister[39;49m[30;43m([39;49m
+[32m    355[39m [30;43m    [39;49m[30;43mfunc_to_register[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43msource[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mlib[39;49m[30;43m=[39;49m[30;43mself[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mallow_override[39;49m[30;43m=[39;49m[30;43mallow_override[39;49m
+[32m    356[39m [30;43m[39;49m[30;43m)[39;49m
+[32m    357[39m [38;5;28mself[39m._registration_handles.append(handle)
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/torch/_library/fake_impl.py:87[39m, in [36mFakeImplHolder.register[39m[34m(self, func, source, lib, allow_override)[39m
+[32m     86[39m [38;5;28;01mtry[39;00m:
+[32m---> [39m[32m87[39m     [30;43mlib[39;49m[30;43m.[39;49m[30;43mimpl[39;49m[30;43m([39;49m[30;43mself[39;49m[30;43m.[39;49m[30;43mqualname[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mmeta_kernel[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43m"[39;49m[30;43mMeta[39;49m[30;43m"[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mallow_override[39;49m[30;43m=[39;49m[30;43mallow_override[39;49m[30;43m)[39;49m
+[32m     88[39m [38;5;28;01mexcept[39;00m [38;5;167;01mException[39;00m:
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/torch/library.py:496[39m, in [36mLibrary.impl[39m[34m(self, op_name, fn, dispatch_key, with_keyset, allow_override)[39m
+[32m    492[39m [38;5;66;03m# Internally, we shouldn't be registering meta kernels for any operators that[39;00m
+[32m    493[39m [38;5;66;03m# have CompositeImplicitAutograd kernels.[39;00m
+[32m    494[39m [38;5;66;03m# Instead, we should be letting those decompositions run, and writing meta kernels[39;00m
+[32m    495[39m [38;5;66;03m# only for the base operators.[39;00m
+[32m--> [39m[32m496[39m [38;5;28;01mif[39;00m [30;43mtorch[39;49m[30;43m.[39;49m[30;43m_C[39;49m[30;43m.[39;49m[30;43m_dispatch_has_kernel_for_dispatch_key[39;49m[30;43m([39;49m
+[32m    497[39m [30;43m    [39;49m[30;43mdispatcher_op_name[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43m"[39;49m[30;43mCompositeImplicitAutograd[39;49m[30;43m"[39;49m
+[32m    498[39m [30;43m[39;49m[30;43m)[39;49m:
+[32m    499[39m     [38;5;28;01mraise[39;00m [38;5;167;01mRuntimeError[39;00m(
+[32m    500[39m         [33mf[39m[33m"[39m[33mWe should not register a meta kernel directly to the operator [39m[33m'[39m[38;5;132;01m{[39;00mname[38;5;132;01m}[39;00m[33m'[39m[33m,[39m[33m"[39m
+[32m    501[39m         [33m"[39m[33m because it has a CompositeImplicitAutograd kernel in core.[39m[33m"[39m
+[32m    502[39m         [33m"[39m[33m Instead we should let the operator decompose, and ensure that we have meta kernels[39m[33m"[39m
+[32m    503[39m         [33m"[39m[33m for the base ops that it decomposes into.[39m[33m"[39m
+[32m    504[39m     )
+
+[31mRuntimeError[39m: operator torchvision::nms does not exist
+
+The above exception was the direct cause of the following exception:
+
+[31mModuleNotFoundError[39m                       Traceback (most recent call last)
+[36mCell[39m[36m [39m[32mIn[2][39m[32m, line 13[39m
+[32m      9[39m [38;5;28;01mimport[39;00m openvino [38;5;28;01mas[39;00m ov
+[32m     10[39m [38;5;28;01mimport[39;00m numpy [38;5;28;01mas[39;00m np
+[32m     11[39m [38;5;28;01mimport[39;00m torch
+[32m     12[39m [38;5;28;01mfrom[39;00m torch.jit [38;5;28;01mimport[39;00m TracerWarning
+[32m---> [39m[32m13[39m [38;5;28;01mfrom[39;00m transformers [38;5;28;01mimport[39;00m AutoProcessor, MusicgenForConditionalGeneration
+[32m     14[39m from transformers.modeling_outputs import (
+[32m     15[39m     BaseModelOutputWithPastAndCrossAttentions,
+[32m     16[39m     CausalLMOutputWithCrossAttentions,
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/transformers/utils/import_utils.py:2672[39m, in [36m_LazyModule.__getattr__[39m[34m(self, name)[39m
+[32m   2670[39m         [38;5;28;01melse[39;00m:
+[32m   2671[39m             logger.debug([33mf[39m[33m"[39m[33mOriginal import error for [39m[33m'[39m[38;5;132;01m{[39;00mname[38;5;132;01m}[39;00m[33m'[39m[33m: [39m[38;5;132;01m{[39;00me[38;5;132;01m}[39;00m[33m"[39m)
+[32m-> [39m[32m2672[39m             [38;5;28;01mraise[39;00m [38;5;167;01mModuleNotFoundError[39;00m(import_error_message) [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01me[39;00m
+[32m   2674[39m [38;5;28;01melif[39;00m name [38;5;129;01min[39;00m [38;5;28mself[39m._modules:
+[32m   2675[39m     [38;5;28;01mtry[39;00m:
+
+[31mModuleNotFoundError[39m: Could not import module 'AutoProcessor'. Are this object's requirements defined correctly? Set the logging verbosity to DEBUG for the original import error.
+

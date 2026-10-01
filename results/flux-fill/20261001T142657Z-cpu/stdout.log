@@ -1,0 +1,13 @@
+[cell 0 START +    0.4s] # Image inpainting and outpainting with FLUX.1 Fill |  | inpainting is tas
+[cell 1 START +    0.4s] ## Prerequisites | [back to top ⬆️](#Table-of-contents:)
+[cell 2 START +    0.4s] import requests | from pathlib import Path |  | utility_files = ["cmd_helper
+[cell 2 DONE  +    1.8s]
+[cell 3 START +    1.8s] >**Note**: run Flux.1-Fill-dev model with notebook, you will need to a
+[cell 4 START +    1.8s] # uncomment these lines to login to huggingfacehub to get access to pr
+[cell 4 DONE  +    1.8s]
+[cell 5 START +    1.8s] # Convert model with OpenVINO | [back to top ⬆️](#Table-of-contents:) |  | S
+[cell 6 START +    1.8s] from cmd_helper import optimum_cli | import ipywidgets as widgets |  | # Rea
+[cell 6 DONE  +    1.9s]
+[cell 7 START +    1.9s] model_id = "black-forest-labs/FLUX.1-Fill-dev" |  | model_base_dir = Path(
+[cell 7 DONE  +    2.0s]
+NBEXEC_RESULT={"ok": false, "n_cells": 10, "n_skipped": 0, "n_substituted": 4, "stopped_after": null, "error_cell": null, "error_type": "CellExecutionError", "error_head": "\u001b[31mFileNotFoundError\u001b[39m: [Errno 2] No such file or directory: 'optimum-cli'", "duration_s": 2.24, "patch_notes": ["substituted 5 occurrence(s) in cell 2", "substituted 1 occurrence(s) in cell 6", "substituted 2 occurrence(s) in cell 13", "substituted 2 occurrence(s) in cell 17"]}

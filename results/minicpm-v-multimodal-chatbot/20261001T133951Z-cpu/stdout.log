@@ -1,0 +1,13 @@
+[cell 0 START +    0.4s] # Visual-language assistant with MiniCPM-V and OpenVINO |  | MiniCPM-V 4.5
+[cell 1 START +    0.4s] ## Prerequisites | [back to top ⬆️](#Table-of-contents:)
+[cell 2 START +    0.4s] %pip uninstall -q -y optimum optimum-intel optimum-onnx openvino openv
+[cell 2 DONE  +   13.7s]
+[cell 3 START +   13.7s] import requests | from pathlib import Path |  | if not Path("cmd_helper.py")
+[cell 3 DONE  +   13.7s]
+[cell 4 START +   13.7s] ## Convert model to OpenVINO Intermediate Representation | [back to top 
+[cell 5 START +   13.7s] import ipywidgets as widgets |  | model_ids = ["openbmb/MiniCPM-V-4_5", "o
+[cell 5 DONE  +   13.8s]
+[cell 6 START +   13.8s] ### Compress Language Model Weights to 4 bits | [back to top ⬆️](#Table-
+[cell 7 START +   13.8s] from cmd_helper import optimum_cli | import openvino as ov |  | additional_a
+[cell 7 DONE  +   14.0s]
+NBEXEC_RESULT={"ok": false, "n_cells": 10, "n_skipped": 0, "n_substituted": 4, "stopped_after": null, "error_cell": null, "error_type": "CellExecutionError", "error_head": "\u001b[31mFileNotFoundError\u001b[39m: [Errno 2] No such file or directory: 'optimum-cli'", "duration_s": 14.27, "patch_notes": ["substituted 5 occurrence(s) in cell 2", "substituted 4 occurrence(s) in cell 3", "substituted 2 occurrence(s) in cell 13", "substituted 1 occurrence(s) in cell 17"]}

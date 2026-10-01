@@ -13,7 +13,7 @@ import yaml
 
 from ov_amd import hardware
 from ov_amd.correctness import evaluate
-from ov_amd.environment import REPO_ROOT, disk_free_mb, pip_install, ram_available_mb, venv_python
+from ov_amd.environment import REPO_ROOT, disk_free_mb, pip_install, ram_available_mb, upstream_root, venv_python
 from ov_amd.notebook_runner import detect_device_used, extract_outputs_text, run_notebook
 from ov_amd.scheduler import TIER_TIMEOUTS, checkpoint, resources_ok, save_state
 from ov_amd.schemas import FailureCategory, NotebookEntry, Status, transition_ok
@@ -35,15 +35,6 @@ MODULE_TO_PKG = {
 
 def _utcnow() -> str:
     return datetime.now(timezone.utc).isoformat(timespec="seconds")
-
-
-def upstream_root() -> Path | None:
-    meta_path = REPO_ROOT / "upstream" / "openvino-notebooks.json"
-    if not meta_path.exists():
-        return None
-    meta = json.loads(meta_path.read_text())
-    root = Path(meta.get("local_path", ""))
-    return root if root and root.exists() else None
 
 
 def load_upstream_meta() -> dict[str, Any]:
@@ -98,13 +89,31 @@ def ensure_workload_dir(entry: NotebookEntry) -> Path:
     return d
 
 
+ANSI_RE = re.compile(r"\x1b\[[0-9;]*m")
+
+
+def _strip_ansi(text: str) -> str:
+    return ANSI_RE.sub("", text)
+
+
 def _missing_pkg(stderr: str) -> str | None:
-    m = re.search(r"ModuleNotFoundError: No module named '([\w\.]+)'", stderr)
+    clean = _strip_ansi(stderr)
+    m = re.search(r"ModuleNotFoundError: No module named '([\w\.]+)'", clean)
     if not m:
-        m = re.search(r"ImportError: cannot import name .+ from '([\w\.]+)'", stderr)
+        m = re.search(r"ImportError: cannot import name .+ from '([\w\.]+)'", clean)
     if not m:
         return None
-    top = m.group(1).split(".")[0]
+    module = m.group(1)
+    # namespace packages whose pip name differs from the import path
+    special = {
+        "optimum.intel": "optimum-intel",
+        "optimum.exporters": "optimum",
+        "openvino.genai": "openvino-genai",
+        "openvino.tokenizers": "openvino-tokenizers",
+    }
+    if module in special:
+        return special[module]
+    top = module.split(".")[0]
     return MODULE_TO_PKG.get(top, top)
 
 
@@ -122,6 +131,54 @@ def _repeats_for(entry: NotebookEntry, cfg: dict[str, Any]) -> int:
     if override:
         return int(override)
     return 3 if entry.est_weight in ("small", "medium") else 1
+
+
+_GOLDEN_PKGS = ["optimum-intel>=1.23", "transformers>=5.15", "protobuf>=4.25.8", "sentence-transformers"]
+
+_ENV_HEALTH_CODE = (
+    "import importlib.metadata as md, subprocess, sys\n"
+    "problems = []\n"
+    "try:\n"
+    "    import transformers\n"
+    "    if int(transformers.__version__.split('.')[0]) < 5:\n"
+    "        problems.append('transformers-old')\n"
+    "except Exception:\n"
+    "    problems.append('transformers-missing')\n"
+    "cli = sys.argv[1]\n"
+    "r = subprocess.run([cli, '--help'], capture_output=True)\n"
+    "if r.returncode != 0:\n"
+    "    problems.append('optimum-cli-broken')\n"
+    "try:\n"
+    "    v = md.version('protobuf')\n"
+    "    if int(v.split('.')[0]) < 4:\n"
+    "        problems.append('protobuf-old')\n"
+    "except Exception:\n"
+    "    problems.append('protobuf-missing')\n"
+    "print(';'.join(problems))\n"
+)
+
+
+def env_health_check(state: dict[str, Any]) -> bool:
+    """Detect env drift caused by notebooks running %pip install; repair the
+    golden set when broken. Returns True when the env was healthy on entry."""
+
+    import subprocess
+
+    py = str(venv_python("cpu"))
+    cli = str(venv_python("cpu").parent / "optimum-cli")
+    try:
+        r = subprocess.run([py, "-c", _ENV_HEALTH_CODE, cli], capture_output=True, text=True, timeout=120)
+        problems = [p for p in (r.stdout or "").strip().split(";") if p]
+    except (OSError, subprocess.TimeoutExpired):
+        problems = ["healthcheck-failed"]
+    if not problems:
+        return True
+    print(f"[env-repair] drift detected: {problems} -> reinstalling golden set", flush=True)
+    state.setdefault("env_repairs", []).append({"problems": problems, "at": _utcnow()})
+    ok, _log = pip_install(_GOLDEN_PKGS, "cpu")
+    if not ok:  # one bounded retry with a clean index query
+        ok, _log = pip_install(["--force-reinstall", "--no-deps", "optimum-intel>=1.23"], "cpu")
+    return False
 
 
 class AttemptOutcome:
@@ -151,6 +208,7 @@ def run_workload_cpu(entry: NotebookEntry, state: dict[str, Any], dry_run: bool 
 
     cfg = workload_config(entry)
     ensure_workload_dir(entry)
+    env_health_check(state)
     root = upstream_root()
     if root is None:
         out.status = Status.BLOCKED
@@ -175,15 +233,24 @@ def run_workload_cpu(entry: NotebookEntry, state: dict[str, Any], dry_run: bool 
     wall = TIER_TIMEOUTS.get(entry.est_weight, TIER_TIMEOUTS["medium"])
     wall = int(cpu_cfg.get("wall_timeout_s", wall))
     repeats = _repeats_for(entry, cfg)
-    max_attempts = 1 + 2  # initial + up to 2 remediation retries
+    # transport mirror rewrite (decision D2): direct huggingface.co URLs inside
+    # notebook code stall on this network; the mirror serves identical weights
+    subs = list(patches.get("cell_subs", [])) + [r"https://huggingface\.co :https://hf-mirror.com"]
     remediations = 0
     network_retries = 0
-    attempt_no = 0
+    total_failures = 0
     last_info: dict[str, Any] = {}
     stop_reason = ""
 
-    while attempt_no < max_attempts:
-        attempt_no += 1
+    workdir = RESULTS_DIR / entry.id / "workdir-cpu"
+    workdir.mkdir(parents=True, exist_ok=True)  # persistent across repeats: model downloads reused
+    remediations = 0
+    network_retries = 0
+    total_failures = 0
+    last_info: dict[str, Any] = {}
+    stop_reason = ""
+
+    while True:
         ts = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
         ev = RESULTS_DIR / entry.id / f"{ts}-cpu"
         info, nbres = run_notebook(
@@ -194,9 +261,10 @@ def run_workload_cpu(entry: NotebookEntry, state: dict[str, Any], dry_run: bool 
             per_cell_timeout_s=min(wall, 900),
             skip_res=patches.get("skip_cells_matching"),
             stop_after_re=patches.get("stop_after_cell_matching"),
-            subs=patches.get("cell_subs"),
+            subs=subs,
+            cwd=workdir,
         )
-        info.retry_count = attempt_no - 1
+        info.retry_count = total_failures
         out.evidence_dir = ev
         last_info = {"execution": info.to_dict(), "nbexec": nbres}
         _write_evidence_meta(ev, entry, info, nbres)
@@ -206,6 +274,8 @@ def run_workload_cpu(entry: NotebookEntry, state: dict[str, Any], dry_run: bool 
             if len(out.durations) >= repeats:
                 break
             continue  # repeatability run
+
+        total_failures += 1
         cat = FailureCategory(info.failure_category or FailureCategory.UNKNOWN.value)
         stop_reason = nbres.get("error_head") or ""
         stderr = (ev / "stderr.log").read_text(errors="replace") if (ev / "stderr.log").exists() else ""
@@ -215,20 +285,24 @@ def run_workload_cpu(entry: NotebookEntry, state: dict[str, Any], dry_run: bool 
             continue
         if cat == FailureCategory.DEPENDENCY and remediations < 2:
             remediations += 1
-            req = _requirements_for(nb_path)
             pkg = _missing_pkg(stderr)
-            if req is not None:
-                ok, log = _pip_file(req, "cpu")
-            elif pkg:
+            if pkg:
+                # targeted install of just the missing package: a blanket
+                # `-r requirements.txt` could downgrade the baseline openvino
                 ok, log = pip_install([pkg], "cpu")
             else:
-                break
+                req = _requirements_for(nb_path)
+                if req is None:
+                    break
+                ok, log = _pip_file(req, "cpu")
             state.setdefault("installed_extras", []).append(
-                {"workload": entry.id, "source": str(req or pkg), "ok": ok, "log_tail": log[-2000:]}
+                {"workload": entry.id, "source": str(pkg or req), "ok": ok, "log_tail": log[-2000:]}
             )
             if not ok:
                 break
             continue
+        if total_failures >= 3:
+            break
         break
 
     # --- status decision ---
@@ -250,6 +324,11 @@ def run_workload_cpu(entry: NotebookEntry, state: dict[str, Any], dry_run: bool 
         if out.status == Status.VERIFIED and runs_needed < 3:
             out.status = Status.VERIFIED_WITH_LIMITATIONS
             out.notes.append("repeatability: single successful run (resource-bounded); 3-run policy not met")
+        if out.status == Status.VERIFIED and out.device_used not in ("CPU", ""):
+            out.status = Status.VERIFIED_WITH_LIMITATIONS
+            out.notes.append(
+                f"device selection shows '{out.device_used}', not CPU — CORE path verified but device premise limited"
+            )
         if out.status == Status.VERIFIED and last_info.get("nbexec", {}).get("n_skipped", 0):
             out.status = Status.VERIFIED_WITH_LIMITATIONS
             out.notes.append("CORE_INFERENCE_VERIFIED; INTERACTIVE_UI_NOT_TESTED (cells skipped via documented patch)")

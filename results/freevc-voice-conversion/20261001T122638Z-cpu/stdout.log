@@ -1,0 +1,11 @@
+[cell 0 START +    0.4s] # High-Quality Text-Free One-Shot Voice Conversion with FreeVC and Ope
+[cell 1 START +    0.4s]  | #### Table of contents: |  | - [Pre-requisites](#Pre-requisites) | - [Impor
+[cell 2 START +    0.4s] ## Pre-requisites | [back to top ⬆️](#Table-of-contents:) |  | This steps ca
+[cell 3 START +    0.4s] Install extra requirements
+[cell 4 START +    0.4s] %pip install -q "setuptools<82" "openvino>=2023.3.0" "librosa>=0.8.1" 
+[cell 4 DONE  +   27.2s]
+[cell 5 START +   27.2s] # Fetch `notebook_utils` module | import requests | from pathlib import Pa
+[cell 5 DONE  +   27.2s]
+[cell 6 START +   27.2s] from pathlib import Path |  | from huggingface_hub import hf_hub_download | 
+[cell 6 DONE  +  258.1s]
+[cell 7 START +  258.1s] freevc_chpt_dir = Path("checkpoints") | freevc_chpt_name = "freevc.pth" | 

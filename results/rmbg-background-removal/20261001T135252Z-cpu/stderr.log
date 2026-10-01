@@ -1,0 +1,82 @@
+[IPKernelApp] WARNING | Kernel is running over TCP without encryption. All communication (including code and outputs) is sent in plain text and is susceptible to eavesdropping. Use IPC transport or launch with kernel manager-provisioned CurveZMQ keys to enable transport encryption.
+.12/site-packages/nbclient/client.py", line 709, in async_execute
+    await self.async_execute_cell(
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/nbclient/client.py", line 1062, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/nbclient/client.py", line 918, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+from transformers import AutoModelForImageSegmentation
+
+net = AutoModelForImageSegmentation.from_pretrained("briaai/RMBG-1.4", trust_remote_code=True)
+------------------
+
+----- stderr -----
+A new version of the following files was downloaded from https://huggingface.co/briaai/RMBG-1.4:
+- MyConfig.py
+. Make sure to double-check they do not contain any added malicious code. To avoid downloading new versions of the code file, you can pin a revision.
+----- stderr -----
+A new version of the following files was downloaded from https://huggingface.co/briaai/RMBG-1.4:
+- briarmbg.py
+. Make sure to double-check they do not contain any added malicious code. To avoid downloading new versions of the code file, you can pin a revision.
+------------------
+
+[31m---------------------------------------------------------------------------[39m
+[31mAttributeError[39m                            Traceback (most recent call last)
+[36mCell[39m[36m [39m[32mIn[3][39m[32m, line 3[39m
+[32m      1[39m [38;5;28;01mfrom[39;00m transformers [38;5;28;01mimport[39;00m AutoModelForImageSegmentation
+[32m      2[39m 
+[32m----> [39m[32m3[39m net = AutoModelForImageSegmentation.from_pretrained([33m"briaai/RMBG-1.4"[39m, trust_remote_code=[38;5;28;01mTrue[39;00m)
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/transformers/models/auto/auto_factory.py:380[39m, in [36m_BaseAutoModelClass.from_pretrained[39m[34m(cls, pretrained_model_name_or_path, *model_args, **kwargs)[39m
+[32m    378[39m         model_class.register_for_auto_class(auto_class=[38;5;28mcls[39m)
+[32m    379[39m     model_class = add_generation_mixin_to_remote_model(model_class)
+[32m--> [39m[32m380[39m     [38;5;28;01mreturn[39;00m [30;43mmodel_class[39;49m[30;43m.[39;49m[30;43mfrom_pretrained[39;49m[30;43m([39;49m
+[32m    381[39m [30;43m        [39;49m[30;43mpretrained_model_name_or_path[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43m*[39;49m[30;43mmodel_args[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mconfig[39;49m[30;43m=[39;49m[30;43mconfig[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43m*[39;49m[30;43m*[39;49m[30;43mhub_kwargs[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43m*[39;49m[30;43m*[39;49m[30;43mkwargs[39;49m
+[32m    382[39m [30;43m    [39;49m[30;43m)[39;49m
+[32m    383[39m [38;5;28;01melif[39;00m has_local_code:
+[32m    384[39m     model_class = _get_model_class(config, [38;5;28mcls[39m._model_mapping)
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/transformers/modeling_utils.py:4136[39m, in [36mPreTrainedModel.from_pretrained[39m[34m(cls, pretrained_model_name_or_path, config, cache_dir, ignore_mismatched_sizes, force_download, local_files_only, token, revision, use_safetensors, weights_only, *model_args, **kwargs)[39m
+[32m   4119[39m load_config = LoadStateDictConfig(
+[32m   4120[39m     pretrained_model_name_or_path=pretrained_model_name_or_path,
+[32m   4121[39m     ignore_mismatched_sizes=ignore_mismatched_sizes,
+[32m   (...)[39m[32m   4133[39m     download_kwargs=download_kwargs,
+[32m   4134[39m )
+[32m   4135[39m loading_info, disk_offload_index = [38;5;28mcls[39m._load_pretrained_model(model, state_dict, checkpoint_files, load_config)
+[32m-> [39m[32m4136[39m loading_info = [30;43mcls[39;49m[30;43m.[39;49m[30;43m_finalize_model_loading[39;49m[30;43m([39;49m[30;43mmodel[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mload_config[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mloading_info[39;49m[30;43m)[39;49m
+[32m   4137[39m model.eval()  [38;5;66;03m# Set model in evaluation mode to deactivate Dropout modules by default[39;00m
+[32m   4138[39m model.set_use_kernels(use_kernels, kernel_config)
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/transformers/modeling_utils.py:4282[39m, in [36mPreTrainedModel._finalize_model_loading[39m[34m(model, load_config, loading_info)[39m
+[32m   4278[39m model.mark_tied_weights_as_initialized(loading_info)
+[32m   4280[39m [38;5;66;03m# Move missing (and potentially mismatched) keys and non-persistent buffers back to their expected device from[39;00m
+[32m   4281[39m [38;5;66;03m# meta device (because they were not moved when loading the weights as they were not in the loaded state dict)[39;00m
+[32m-> [39m[32m4282[39m [30;43mmodel[39;49m[30;43m.[39;49m[30;43m_move_missing_keys_from_meta_to_device[39;49m[30;43m([39;49m
+[32m   4283[39m [30;43m    [39;49m[30;43mloading_info[39;49m[30;43m.[39;49m[30;43mmissing_and_mismatched[39;49m[30;43m([39;49m[30;43m)[39;49m[30;43m,[39;49m
+[32m   4284[39m [30;43m    [39;49m[30;43mload_config[39;49m[30;43m.[39;49m[30;43mdevice_map[39;49m[30;43m,[39;49m
+[32m   4285[39m [30;43m    [39;49m[30;43mload_config[39;49m[30;43m.[39;49m[30;43mdevice_mesh[39;49m[30;43m,[39;49m
+[32m   4286[39m [30;43m    [39;49m[30;43mload_config[39;49m[30;43m.[39;49m[30;43mhf_quantizer[39;49m[30;43m,[39;49m
+[32m   4287[39m [30;43m[39;49m[30;43m)[39;49m
+[32m   4289[39m [38;5;66;03m# Correctly initialize the missing (and potentially mismatched) keys (all parameters without the `_is_hf_initialized` flag)[39;00m
+[32m   4290[39m model._initialize_missing_keys(load_config.is_quantized)
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/transformers/modeling_utils.py:4529[39m, in [36mPreTrainedModel._move_missing_keys_from_meta_to_device[39m[34m(self, missing_keys, device_map, device_mesh, hf_quantizer)[39m
+[32m   4524[39m     [38;5;28;01mreturn[39;00m
+[32m   4526[39m [38;5;66;03m# The tied weight keys are in the "missing" usually, but they should not be moved (they will be tied anyway)[39;00m
+[32m   4527[39m [38;5;66;03m# This is especially important because if they are moved, they will lose the `_is_hf_initialized` flag, and they[39;00m
+[32m   4528[39m [38;5;66;03m# will be re-initialized for nothing (which can be quite long)[39;00m
+[32m-> [39m[32m4529[39m [38;5;28;01mfor[39;00m key [38;5;129;01min[39;00m missing_keys - [30;43mself[39;49m[30;43m.[39;49m[30;43mall_tied_weights_keys[39;49m.keys():
+[32m   4530[39m     param = [38;5;28mself[39m.get_parameter_or_buffer(key)
+[32m   4531[39m     param_device = get_device(device_map, key, valid_torch_device=[38;5;28;01mTrue[39;00m)
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/torch/nn/modules/module.py:1972[39m, in [36mModule.__getattr__[39m[34m(self, name)[39m
+[32m   1970[39m     [38;5;28;01mif[39;00m name [38;5;129;01min[39;00m modules:
+[32m   1971[39m         [38;5;28;01mreturn[39;00m modules[name]
+[32m-> [39m[32m1972[39m [38;5;28;01mraise[39;00m [38;5;167;01mAttributeError[39;00m(
+[32m   1973[39m     [33mf[39m[33m"[39m[33m'[39m[38;5;132;01m{[39;00m[38;5;28mtype[39m([38;5;28mself[39m).[34m__name__[39m[38;5;132;01m}[39;00m[33m'[39m[33m object has no attribute [39m[33m'[39m[38;5;132;01m{[39;00mname[38;5;132;01m}[39;00m[33m'[39m[33m"[39m
+[32m   1974[39m )
+
+[31mAttributeError[39m: 'BriaRMBG' object has no attribute 'all_tied_weights_keys'
+

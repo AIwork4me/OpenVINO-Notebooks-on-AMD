@@ -1,21 +1,25 @@
 #!/usr/bin/env python3
-"""Fetch the pinned upstream snapshot via GitHub API + raw CDN.
+"""Fetch the pinned upstream snapshot via the GitHub Git Blobs API.
 
-Why not `git clone`: bulk git/https transfer to github.com is throttled to
-~47KB/s on this network, while api.github.com and raw.githubusercontent.com
-run at full speed. We fetch the exact same blobs (verified by path+size from
-the tree API) and pin the branch head commit SHA from the API.
+Transport history on this network (see docs/engineering-decisions.md D11):
+- git clone / codeload tarball: throttled to ~47KB/s — unusable
+- raw.githubusercontent.com: stalls after an initial burst — unusable in parallel
+- api.github.com (authenticated via `gh auth token`): fast and stable
 
-Files: every .ipynb/.txt/.py/.json/.csv/.yaml/.yml/.xml/.md/.png/.jpg/.gif
-blob under the tree (assets notebooks need at runtime), into .cache/upstream/.
+Every file is fetched as a base64 git blob and verified against the tree's
+git blob SHA-1 before writing, so transport cannot corrupt or tamper content.
 """
 
 from __future__ import annotations
 
+import base64
+import hashlib
 import json
+import os
+import shutil
+import subprocess
 import sys
 import time
-import urllib.request
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
 
@@ -28,63 +32,89 @@ DEST = REPO_ROOT / ".cache" / "upstream"
 META_PATH = REPO_ROOT / "upstream" / "openvino-notebooks.json"
 
 KEEP_EXT = (".ipynb", ".txt", ".py", ".json", ".csv", ".yaml", ".yml", ".xml", ".md", ".png", ".jpg", ".jpeg", ".gif")
-SKIP_PREFIX = (".")
+SKIP_PREFIX = (".",)
+
+CURL = shutil.which("curl") or "/usr/bin/curl"
 
 
-def get_json(url: str, tries: int = 3) -> dict:
+def gh_token() -> str:
+    r = subprocess.run(["gh", "auth", "token"], capture_output=True, text=True, timeout=30)
+    tok = r.stdout.strip()
+    if not tok:
+        raise SystemExit("gh auth token unavailable — cannot use Blobs API (rate limits)")
+    return tok
+
+
+TOKEN = os.environ.get("GH_TOKEN") or gh_token()
+
+
+def api_get(url: str, tries: int = 4, timeout: int = 300) -> bytes:
     for i in range(tries):
-        try:
-            with urllib.request.urlopen(url, timeout=60) as r:
-                return json.loads(r.read())
-        except Exception as e:  # noqa: BLE001
-            if i == tries - 1:
-                raise
-            print(f"retry {url}: {e}", file=sys.stderr)
-            time.sleep(5 * (i + 1))
+        r = subprocess.run(
+            [CURL, "-sSfL", "--max-time", str(timeout),
+             "-H", f"Authorization: Bearer {TOKEN}",
+             "-H", "Accept: application/vnd.github+json", url],
+            capture_output=True, timeout=timeout + 30,
+        )
+        if r.returncode == 0:
+            return r.stdout
+        err = r.stderr.decode(errors="replace")[:200]
+        if i == tries - 1:
+            raise RuntimeError(f"curl {r.returncode}: {err}")
+        time.sleep(5 * (i + 1))  # backoff; also covers transient rate limits
     raise RuntimeError("unreachable")
 
 
-def fetch_one(commit: str, path: str, size: int, tries: int = 4) -> tuple[str, str]:
+def api_json(url: str) -> dict:
+    return json.loads(api_get(url, timeout=60))
+
+
+def git_blob_sha(data: bytes) -> str:
+    return hashlib.sha1(b"blob %d\x00" % len(data) + data).hexdigest()
+
+
+def fetch_one(path: str, blob_sha: str, size: int) -> tuple[str, str]:
     out = DEST / path
     if out.exists() and out.stat().st_size == size:
         return path, "cached"
     out.parent.mkdir(parents=True, exist_ok=True)
-    url = f"https://raw.githubusercontent.com/{REPO}/{commit}/{path}"
-    for i in range(tries):
+    url = f"https://api.github.com/repos/{REPO}/git/blobs/{blob_sha}"
+    for i in range(4):
         try:
-            with urllib.request.urlopen(url, timeout=180) as r:
-                data = r.read()
-            if len(data) != size:
-                raise RuntimeError(f"size mismatch {len(data)} != {size}")
+            d = json.loads(api_get(url, timeout=600))
+            data = base64.b64decode(d["content"])
+            if git_blob_sha(data) != blob_sha:
+                raise RuntimeError("blob sha mismatch")
             out.write_bytes(data)
             return path, "ok"
         except Exception as e:  # noqa: BLE001
-            if i == tries - 1:
+            if i == 3:
                 return path, f"FAIL: {e}"
-            time.sleep(3 * (i + 1))
+            time.sleep(5 * (i + 1))
     return path, "FAIL"
 
 
 def main() -> int:
-    head = get_json(f"https://api.github.com/repos/{REPO}/commits/{BRANCH}")
+    head = api_json(f"https://api.github.com/repos/{REPO}/commits/{BRANCH}")
     commit = head["sha"]
     commit_date = head["commit"]["committer"]["date"]
     commit_subject = head["commit"]["message"].splitlines()[0]
-    print(f"pinned {BRANCH} @ {commit[:12]} ({commit_subject[:60]})")
+    print(f"pinned {BRANCH} @ {commit[:12]} ({commit_subject[:60]})", flush=True)
 
-    tree = get_json(f"https://api.github.com/repos/{REPO}/git/trees/{commit}?recursive=1")
+    tree = api_json(f"https://api.github.com/repos/{REPO}/git/trees/{commit}?recursive=1")
     if tree.get("truncated"):
         print("WARNING: tree truncated by API", file=sys.stderr)
     blobs = [t for t in tree["tree"]
              if t["type"] == "blob" and t["path"].endswith(KEEP_EXT)
              and not t["path"].startswith(SKIP_PREFIX)]
     total = sum(t.get("size", 0) for t in blobs)
-    print(f"{len(blobs)} files, {total / 1e6:.1f} MB")
+    print(f"{len(blobs)} files, {total / 1e6:.1f} MB", flush=True)
 
     ok = fail = cached = 0
     fails: list[str] = []
-    with ThreadPoolExecutor(max_workers=12) as ex:
-        futs = {ex.submit(fetch_one, commit, t["path"], t.get("size", 0)): t["path"] for t in blobs}
+    t0 = time.time()
+    with ThreadPoolExecutor(max_workers=8) as ex:
+        futs = {ex.submit(fetch_one, t["path"], t["sha"], t.get("size", 0)): t["path"] for t in blobs}
         for i, fut in enumerate(as_completed(futs)):
             path, status = fut.result()
             if status == "ok":
@@ -94,8 +124,10 @@ def main() -> int:
             else:
                 fail += 1
                 fails.append(f"{path} {status}")
-            if (i + 1) % 50 == 0:
-                print(f"  {i + 1}/{len(blobs)} ok={ok} cached={cached} fail={fail}", flush=True)
+            if (i + 1) % 25 == 0:
+                mb = sum(f.stat().st_size for f in DEST.rglob("*") if f.is_file()) / 1e6
+                print(f"  {i + 1}/{len(blobs)} ok={ok} cached={cached} fail={fail} "
+                      f"({mb:.0f}MB, {time.time() - t0:.0f}s)", flush=True)
 
     META_PATH.parent.mkdir(parents=True, exist_ok=True)
     META_PATH.write_text(json.dumps({
@@ -106,7 +138,7 @@ def main() -> int:
         "commit_subject": commit_subject,
         "discovered_at": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
         "local_path": str(DEST),
-        "fetch_method": "github-api-tree + raw.githubusercontent (git protocol throttled ~47KB/s on this network)",
+        "fetch_method": "github git-blobs API (sha1-verified); git protocol throttled ~47KB/s, raw CDN stalls on this network",
         "files_ok": ok, "files_cached": cached, "files_failed": fail,
     }, indent=2))
 

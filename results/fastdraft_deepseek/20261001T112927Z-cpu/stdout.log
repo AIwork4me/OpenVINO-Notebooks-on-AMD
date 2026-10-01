@@ -1,0 +1,14 @@
+[cell 0 START +    0.4s] # Fast LLM reasoning with DeepSeek-R1-Distill-Llama-8B and FastDraft |  | 
+[cell 1 START +    0.4s] ## Prerequisites |  | > Note: we recommend running this notebook in a virt
+[cell 2 START +    0.4s] import os | import platform |  | os.environ["GIT_CLONE_PROTECTION_ACTIVE"] =
+[cell 2 DONE  +   22.3s]
+[cell 3 START +   22.3s] ## Generation with OpenVINO GenAI | We will first need to convert the mo
+[cell 4 START +   22.3s] from pathlib import Path |  | model_name = "DeepSeek-R1-Distill-Llama-8B" | 
+[cell 4 DONE  +   22.3s]
+[cell 5 START +   22.3s] ### Convert model using Optimum-CLI tool |  |  |  | 🤗 [Optimum Intel](https://
+[cell 6 START +   22.3s] if not model_dir.exists(): |     ! optimum-cli export openvino --model $
+[cell 6 DONE  +   22.5s]
+[cell 7 START +   22.5s] ### Instantiate pipeline with OpenVINO Generate API |  | We will use [Open
+[cell 8 START +   22.5s] import openvino_genai as ov_genai |  | from llm_pipeline_with_hf_tokenizer
+[cell 8 DONE  +   23.5s]
+NBEXEC_RESULT={"ok": false, "n_cells": 17, "n_skipped": 0, "n_substituted": 0, "stopped_after": null, "error_cell": null, "error_type": "CellExecutionError", "error_head": "Could not find a model in the directory '\"DeepSeek-R1-Distill-Llama-8B-int4-ov\"'", "duration_s": 24.11, "patch_notes": []}

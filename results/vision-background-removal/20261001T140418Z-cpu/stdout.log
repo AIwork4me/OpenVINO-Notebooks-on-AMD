@@ -1,0 +1,10 @@
+[cell 0 START +    0.4s] # Image Background Removal with U^2-Net and OpenVINO™ |  | This notebook d
+[cell 1 START +    0.4s] ## Preparation | [back to top ⬆️](#Table-of-contents:) |  | ### Install requ
+[cell 2 START +    0.4s] %pip install -q "openvino>=2023.1.0" | %pip install -q --extra-index-url
+[cell 2 DONE  +    2.1s]
+[cell 3 START +    2.1s] ### Import the PyTorch Library and U$^2$-Net | [back to top ⬆️](#Table-o
+[cell 4 START +    2.1s] import os | import time | from collections import namedtuple | from pathlib 
+[cell 4 DONE  +    3.3s]
+[cell 5 START +    3.3s] # Import local modules | import requests |  | if not Path("./notebook_utils.
+[cell 5 DONE  +    3.4s]
+NBEXEC_RESULT={"ok": false, "n_cells": 13, "n_skipped": 0, "n_substituted": 5, "stopped_after": null, "error_cell": null, "error_type": "CellExecutionError", "error_head": "\u001b[31mException\u001b[39m: File downloading failed with error: No connection adapters were found for '//huggingface\\\\.co :https://hf-mirror.com://raw.githubusercontent.com/openvinotoolkit/openvino_notebooks/latest/notebooks/vision-background-removal/model/u2net.py'", "duration_s": 4.12, "patch_notes": ["substituted 1 occurrence(s) in cell 2", "substituted 3 occurrence(s) in cell 5", "substituted 3 occurrence(s) in cell 7", "substituted 1 occurrence(s) in cell 16", "substituted 1 occurrence(s) in cell 24"]}

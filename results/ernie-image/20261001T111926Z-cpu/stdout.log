@@ -1,0 +1,3 @@
+[cell 0 START +    0.4s] # Text-to-Image Generation with ERNIE-Image-Turbo and OpenVINO |  | [ERNIE
+[cell 1 START +    0.4s] ## Prerequisites | [back to top ⬆️](#Table-of-contents:)
+[cell 2 START +    0.4s] import requests | from pathlib import Path |  | if not Path("cmd_helper.py")

@@ -1,0 +1,8 @@
+Collecting en-core-web-sm==3.8.0
+  Downloading en_core_web_sm-3.8.0-py3-none-any.whl (12.8 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 12.8/12.8 MB 36.3 kB/s  0:08:52
+Installing collected packages: en-core-web-sm
+Successfully installed en-core-web-sm-3.8.0
+[38;5;2m✔ Download and installation successful[0m
+You can now load the package via spacy.load('en_core_web_sm')
+TWIN_RESULT={"ok": false, "hip": "7.14.60850", "device": "AMD Radeon 8060S Graphics", "gcn_arch": "gfx115", "metrics": {"model": "hexgrad/Kokoro-82M", "precision": "default (model dtype)", "load_s": 584.12, "runs": [{"latency_s": 0.62, "audio_s": 3.25, "rtf": 5.24}, {"latency_s": 0.637, "audio_s": 3.25, "rtf": 5.1}, {"latency_s": 0.632, "audio_s": 3.25, "rtf": 5.14}], "sample_rate": 24000, "seconds_generated": 3.25, "finite_waveform": true, "deterministic": false, "peak_vram_gb": 0.71, "peak_rss_gb": 3.32}}

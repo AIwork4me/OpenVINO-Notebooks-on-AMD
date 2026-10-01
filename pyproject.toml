@@ -32,6 +32,7 @@ packages = ["ov_amd"]
 [tool.ruff]
 line-length = 120
 target-version = "py310"
+extend-exclude = [".cache", "results", "workloads", "hardware"]
 
 [tool.ruff.lint]
 select = ["E", "F", "W", "I", "UP", "B"]

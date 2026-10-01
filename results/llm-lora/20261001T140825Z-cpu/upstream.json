@@ -1,0 +1,8 @@
+{
+  "repository": "openvinotoolkit/openvino_notebooks",
+  "branch": "latest",
+  "commit": "a8809170cc4fc6aa633fbb9c22214be67ac20b47",
+  "path": "notebooks/llm-lora/llm-lora.ipynb",
+  "url": "https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/llm-lora/llm-lora.ipynb",
+  "notebook_sha256": "9848b6eb535d36c3f2fc5cfbc7ec9e9b41c393cf66d79500b9e9107b23c52dbe"
+}
