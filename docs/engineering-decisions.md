@@ -104,3 +104,31 @@ Per operator instruction (2026-10-01), GPU twins use
 `pip install torch torchvision --index-url https://download.pytorch.org/whl/rocm7.14`
 against system ROCm 7.2.1 on gfx1151. Verified by `torch.version.hip` +
 `torch.cuda.is_available()` before any twin is allowed to report VERIFIED.
+
+## D13 — Global default socket timeout (75s)
+
+Many upstream notebooks call `requests.get()`/`urlopen()` without a timeout.
+On this network a blocked CDN turns that into an infinite hang that stalls a
+cell until the wall clock. The venv `.pth` hook sets
+`socket.setdefaulttimeout(75)` so such cells fail fast and classify as
+NETWORK. Side effect (accepted, recorded): gradio servers blocking on accept
+also fail after 75s — those cells are UI-only and covered by the skip policy
+(D4/§22) anyway.
+
+## D14 — Evidence transport slimming
+
+Evidence directories keep everything on disk, but git carries only the
+lightweight contract files (hardware/software/upstream/execution/validation/
+metrics JSON, stdout/stderr logs, summary). `executed.ipynb` copies and
+generated media stay local: 100+ attempts produced >9 GB of executed
+notebooks + partial model blobs, unpushable at this network's ~47KB/s
+upstream (a single intermediate history reached 9.2 GiB and had to be
+squashed). The evidence contract (§19) remains satisfied by the JSON+logs;
+full artifacts are re-generable via `python -m ov_amd run <id>`.
+
+## D15 — Cell substitution delimiter
+
+The generic cell substitution used a `PAT:REP` string, which is ambiguous for
+patterns containing `:` (e.g. `https://...`): the first-colon split turned the
+huggingface.co mirror rewrite into a catastrophic "https → garbage"
+replacement. Delimiter is now `PAT||REP`; affected attempts were re-run.
