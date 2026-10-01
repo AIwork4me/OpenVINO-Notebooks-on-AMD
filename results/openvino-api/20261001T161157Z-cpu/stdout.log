@@ -1,0 +1,45 @@
+[cell 0 START +    0.4s] # OpenVINO™ Runtime API Tutorial |  | This notebook explains the basics of
+[cell 1 START +    0.4s] # Required imports. Please execute this cell first. | %pip install -q "o
+[cell 1 DONE  +    1.4s]
+[cell 2 START +    1.4s] ## Loading OpenVINO Runtime and Showing Info | [back to top ⬆️](#Table-o
+[cell 3 START +    1.4s] import openvino as ov |  | core = ov.Core()
+[cell 3 DONE  +    1.5s]
+[cell 4 START +    1.5s] OpenVINO Runtime can load a network on a device. A device in this cont
+[cell 5 START +    1.5s] import openvino.properties as props |  | devices = core.available_devices | 
+[cell 5 DONE  +    1.6s]
+[cell 6 START +    1.6s] ### Select device for inference |  | You can specify which device from ava
+[cell 7 START +    1.6s] device = device_widget(exclude=["NPU"]) |  | device
+[cell 7 DONE  +    1.7s]
+[cell 8 START +    1.7s] ## Loading a Model | [back to top ⬆️](#Table-of-contents:) |  | After initia
+[cell 9 START +    1.7s] ir_model_url = "//huggingface\.co :https://hf-mirror.com://storage.ope
+[cell 9 DONE  +    1.7s]
+[cell 10 START +    1.7s] import openvino as ov |  | core = ov.Core() | classification_model_xml = "mo
+[cell 10 DONE  +    1.8s]
+[cell 11 START +    1.8s] ### ONNX Model | [back to top ⬆️](#Table-of-contents:) |  | [ONNX](https://o
+[cell 12 START +    1.8s] onnx_model_url = "//huggingface\.co :https://hf-mirror.com://storage.o
+[cell 12 DONE  +    1.8s]
+[cell 13 START +    1.8s] import openvino as ov |  | core = ov.Core() | onnx_model_path = "model/segme
+[cell 13 DONE  +    1.9s]
+[cell 14 START +    1.9s] The ONNX model can be exported to OpenVINO IR with `save_model()`:
+[cell 15 START +    1.9s] ov.save_model(model_onnx, output_model="model/exported_onnx_model.xml"
+[cell 15 DONE  +    1.9s]
+[cell 16 START +    1.9s] ### PaddlePaddle Model | [back to top ⬆️](#Table-of-contents:) |  | [PaddleP
+[cell 17 START +    1.9s] paddle_model_url = "//huggingface\.co :https://hf-mirror.com://storage
+[cell 17 DONE  +    1.9s]
+[cell 18 START +    1.9s] import openvino as ov |  | core = ov.Core() | paddle_model_path = "model/inf
+[cell 18 DONE  +    2.1s]
+[cell 19 START +    2.1s] ov.save_model(model_paddle, output_model="model/exported_paddle_model.
+[cell 19 DONE  +    2.1s]
+[cell 20 START +    2.1s] ### TensorFlow Model | [back to top ⬆️](#Table-of-contents:) |  | TensorFlow
+[cell 21 START +    2.1s] pb_model_url = "//huggingface\.co :https://hf-mirror.com://storage.ope
+[cell 21 DONE  +    2.1s]
+[cell 22 START +    2.1s] import openvino as ov |  | core = ov.Core() | tf_model_path = "model/classif
+[cell 22 DONE  +    2.2s]
+[cell 23 START +    2.2s] ov.save_model(model_tf, output_model="model/exported_tf_model.xml")
+[cell 23 DONE  +    2.2s]
+[cell 24 START +    2.2s] ### TensorFlow Lite Model | [back to top ⬆️](#Table-of-contents:) |  | [TFLi
+[cell 25 START +    2.2s] %pip install -q kagglehub
+[cell 25 DONE  +    2.7s]
+[cell 26 START +    2.7s] from pathlib import Path | import kagglehub |  | tflite_model_dir = kagglehu
+[cell 26 DONE  +  598.6s]
+[cell 27 START +  598.6s] import openvino as ov |  | core = ov.Core() |  | model_tflite = core.read_mode

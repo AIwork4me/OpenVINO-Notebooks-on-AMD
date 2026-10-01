@@ -1,0 +1,8 @@
+{
+  "repository": "openvinotoolkit/openvino_notebooks",
+  "branch": "latest",
+  "commit": "a8809170cc4fc6aa633fbb9c22214be67ac20b47",
+  "path": "notebooks/smoldocling/smoldocling.ipynb",
+  "url": "https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/smoldocling/smoldocling.ipynb",
+  "notebook_sha256": "cb1097e18a0d15840d8426a3bd60af84c1edf8f52544ec1378237ba21784170a"
+}

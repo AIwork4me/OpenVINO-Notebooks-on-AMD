@@ -1,0 +1,91 @@
+[IPKernelApp] WARNING | Kernel is running over TCP without encryption. All communication (including code and outputs) is sent in plain text and is susceptible to eavesdropping. Use IPC transport or launch with kernel manager-provisioned CurveZMQ keys to enable transport encryption.
+Traceback (most recent call last):
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/ov_amd/_nbexec.py", line 122, in main
+    client.execute()
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/jupyter_core/utils/__init__.py", line 165, in wrapped
+    return loop.run_until_complete(inner)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/base_events.py", line 687, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/nbclient/client.py", line 709, in async_execute
+    await self.async_execute_cell(
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/nbclient/client.py", line 1062, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/nbclient/client.py", line 918, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+from ov_catvton_helper import download_models, convert_pipeline_models, convert_automasker_models
+
+pipeline, mask_processor, automasker = download_models()
+vae_scaling_factor = pipeline.vae.config.scaling_factor
+convert_pipeline_models(pipeline)
+convert_automasker_models(automasker)
+------------------
+
+
+[31m---------------------------------------------------------------------------[39m
+[31mImportError[39m                               Traceback (most recent call last)
+[36mCell[39m[36m [39m[32mIn[4][39m[32m, line 1[39m
+[32m----> [39m[32m1[39m [38;5;28;01mfrom[39;00m ov_catvton_helper [38;5;28;01mimport[39;00m download_models, convert_pipeline_models, convert_automasker_models
+[32m      2[39m 
+[32m      3[39m pipeline, mask_processor, automasker = download_models()
+[32m      4[39m vae_scaling_factor = pipeline.vae.config.scaling_factor
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/results/catvton/workdir-cpu/ov_catvton_helper.py:7[39m
+[32m      4[39m [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01mpathlib[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m Path
+[32m      5[39m [38;5;28;01mimport[39;00m[38;5;250m [39m[34;01mwarnings[39;00m
+[32m----> [39m[32m7[39m [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01mdiffusers[39;00m[34;01m.[39;00m[34;01mimage_processor[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m VaeImageProcessor
+[32m      8[39m [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01mdiffusers[39;00m[34;01m.[39;00m[34;01mmodels[39;00m[34;01m.[39;00m[34;01mautoencoders[39;00m[34;01m.[39;00m[34;01mvae[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m DiagonalGaussianDistribution
+[32m      9[39m [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01mhuggingface_hub[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m snapshot_download
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/diffusers/__init__.py:5[39m
+[32m      1[39m __version__ = [33m"[39m[33m0.24.0[39m[33m"[39m
+[32m      3[39m [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01mtyping[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m TYPE_CHECKING
+[32m----> [39m[32m5[39m [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01m.[39;00m[34;01mutils[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m (
+[32m      6[39m     DIFFUSERS_SLOW_IMPORT,
+[32m      7[39m     OptionalDependencyNotAvailable,
+[32m      8[39m     _LazyModule,
+[32m      9[39m     is_flax_available,
+[32m     10[39m     is_k_diffusion_available,
+[32m     11[39m     is_librosa_available,
+[32m     12[39m     is_note_seq_available,
+[32m     13[39m     is_onnx_available,
+[32m     14[39m     is_scipy_available,
+[32m     15[39m     is_torch_available,
+[32m     16[39m     is_torchsde_available,
+[32m     17[39m     is_transformers_available,
+[32m     18[39m )
+[32m     21[39m [38;5;66;03m# Lazy Import based on[39;00m
+[32m     22[39m [38;5;66;03m# https://github.com/huggingface/transformers/blob/main/src/transformers/__init__.py[39;00m
+[32m     23[39m 
+[32m     24[39m [38;5;66;03m# When adding a new object to this init, please add it to `_import_structure`. The `_import_structure` is a dictionary submodule to list of object names,[39;00m
+[32m     25[39m [38;5;66;03m# and is used to defer the actual importing for when the objects are requested.[39;00m
+[32m     26[39m [38;5;66;03m# This way `import diffusers` provides the names in the namespace without actually importing anything (and especially none of the backends).[39;00m
+[32m     28[39m _import_structure = {
+[32m     29[39m     [33m"[39m[33mconfiguration_utils[39m[33m"[39m: [[33m"[39m[33mConfigMixin[39m[33m"[39m],
+[32m     30[39m     [33m"[39m[33mmodels[39m[33m"[39m: [],
+[32m   (...)[39m[32m     50[39m     ],
+[32m     51[39m }
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/diffusers/utils/__init__.py:38[39m
+[32m     36[39m [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01m.[39;00m[34;01mdeprecation_utils[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m deprecate
+[32m     37[39m [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01m.[39;00m[34;01mdoc_utils[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m replace_example_docstring
+[32m---> [39m[32m38[39m [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01m.[39;00m[34;01mdynamic_modules_utils[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m get_class_from_dynamic_module
+[32m     39[39m [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01m.[39;00m[34;01mexport_utils[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m export_to_gif, export_to_obj, export_to_ply, export_to_video
+[32m     40[39m [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01m.[39;00m[34;01mhub_utils[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m (
+[32m     41[39m     HF_HUB_OFFLINE,
+[32m     42[39m     PushToHubMixin,
+[32m   (...)[39m[32m     46[39m     http_user_agent,
+[32m     47[39m )
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/diffusers/utils/dynamic_modules_utils.py:28[39m
+[32m     25[39m [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01mtyping[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m Dict, Optional, Union
+[32m     26[39m [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01murllib[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m request
+[32m---> [39m[32m28[39m [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01mhuggingface_hub[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m HfFolder, cached_download, hf_hub_download, model_info
+[32m     29[39m [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01mpackaging[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m version
+[32m     31[39m [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01m.[39;00m[34;01m.[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m __version__
+
+[31mImportError[39m: cannot import name 'cached_download' from 'huggingface_hub' (/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/huggingface_hub/__init__.py)
+

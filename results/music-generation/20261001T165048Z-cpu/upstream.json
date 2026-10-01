@@ -1,0 +1,8 @@
+{
+  "repository": "openvinotoolkit/openvino_notebooks",
+  "branch": "latest",
+  "commit": "a8809170cc4fc6aa633fbb9c22214be67ac20b47",
+  "path": "notebooks/music-generation/music-generation.ipynb",
+  "url": "https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/music-generation/music-generation.ipynb",
+  "notebook_sha256": "17293fe5d4281b4c5da1518327c59d6492e22af94dbac5348b4c3ee0768a5573"
+}

@@ -1,0 +1,27 @@
+[cell 0 START +    0.4s] # Create MCP Agent using OpenVINO and Qwen-Agent |  | MCP is an open proto
+[cell 1 START +    0.4s] ## Prerequisites |  | [back to top ⬆️](#Table-of-contents:) | 
+[cell 2 START +    0.4s] import os | from pathlib import Path | import requests |  | os.environ["GIT_CL
+[cell 2 DONE  +    2.5s]
+[cell 3 START +    2.5s] from cmd_helper import clone_repo |  | clone_repo("//huggingface\.co :http
+[cell 3 DONE  +   71.9s]
+[cell 4 START +   71.9s] ## Select device for inference | [back to top ⬆️](#Table-of-contents:)
+[cell 5 START +   71.9s] from notebook_utils import device_widget |  | device = device_widget(defau
+[cell 5 DONE  +   72.3s]
+[cell 6 START +   72.3s] ## Select model for inference | [back to top ⬆️](#Table-of-contents:) |  | L
+[cell 7 START +   72.3s] from llm_config import get_llm_selection_widget |  | form, lang, model_id_
+[cell 7 DONE  +   72.3s]
+[cell 8 START +   72.3s] model_configuration = model_id_widget.value | model_id = model_id_widget
+[cell 8 DONE  +   72.3s]
+[cell 9 START +   72.3s] ## Convert model using Optimum-CLI tool | [back to top ⬆️](#Table-of-con
+[cell 10 START +   72.3s] from llm_config import convert_and_compress_model |  | model_dir = convert
+[cell 10 DONE  +  166.7s]
+[cell 11 START +  166.7s] ## Configure MCP servers |  | [back to top ⬆️](#Table-of-contents:) |  | MCP s
+[cell 12 START +  166.7s] ## Create An agent |  | [back to top ⬆️](#Table-of-contents:) |  | Function ca
+[cell 13 START +  166.7s] %%writefile mcp_test.py |  | import argparse | import openvino.properties as
+[cell 13 DONE  +  166.7s]
+[cell 14 START +  166.7s] !python mcp_test.py --model_dir {str(model_dir)} --device {device.valu
+[cell 14 DONE  +  167.8s]
+[cell 15 START +  167.8s] ## Interactive Demo |  | [back to top ⬆️](#Table-of-contents:) |  | Let's crea
+[cell 16 START +  167.8s] from pathlib import Path | from PIL import Image | import requests |  | openvi
+[cell 16 DONE  +  167.9s]
+NBEXEC_RESULT={"ok": false, "n_cells": 11, "n_skipped": 0, "n_substituted": 3, "stopped_after": null, "error_cell": null, "error_type": "CellExecutionError", "error_head": "\u001b[31mInvalidSchema\u001b[39m: No connection adapters were found for '//huggingface\\\\.co :https://hf-mirror.com://cdn-avatars.huggingface.co/v1/production/uploads/1671615670447-6346651be2dcb5422bcd13dd.png'", "duration_s": 168.27, "patch_notes": ["substituted 6 occurrence(s) in cell 2", "substituted 1 occurrence(s) in cell 3", "substituted 1 occurrence(s) in cell 16"]}

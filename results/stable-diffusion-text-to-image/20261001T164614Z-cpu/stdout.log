@@ -1,0 +1,14 @@
+[cell 0 START +    0.4s] # Text-to-Image Generation with Stable Diffusion and OpenVINO™ |  | Stable
+[cell 1 START +    0.4s] #### Table of contents: |  | - [Prerequisites](#Prerequisites) | - [Load and
+[cell 2 START +    0.4s] ## Prerequisites | [back to top ⬆️](#Table-of-contents:)
+[cell 3 START +    0.4s] %pip uninstall -q -y optimum optimum-intel optimum-onnx | %pip install -
+[cell 3 DONE  +    1.3s]
+[cell 4 START +    1.3s] # Fetch `notebook_utils` module | import requests | from pathlib import Pa
+[cell 4 DONE  +    1.4s]
+[cell 5 START +    1.4s] ## Load and convert model | [back to top ⬆️](#Table-of-contents:) |  | There
+[cell 6 START +    1.4s] import ipywidgets as widgets |  | models = {"openjourney": "prompthero/ope
+[cell 6 DONE  +    1.4s]
+[cell 7 START +    1.4s] ### Convert model using Optimum-CLI tool | [back to top ⬆️](#Table-of-co
+[cell 8 START +    1.4s] from cmd_helper import optimum_cli |  | MODEL_ID = models[model_descr.valu
+[cell 8 DONE  +    1.5s]
+NBEXEC_RESULT={"ok": false, "n_cells": 20, "n_skipped": 2, "n_substituted": 4, "stopped_after": null, "error_cell": null, "error_type": "CellExecutionError", "error_head": "\u001b[31mFileNotFoundError\u001b[39m: [Errno 2] No such file or directory: 'optimum-cli'", "duration_s": 1.78, "patch_notes": ["substituted 3 occurrence(s) in cell 3", "substituted 4 occurrence(s) in cell 4", "skipped cell 24: matched skip pattern", "substituted 1 occurrence(s) in cell 27", "substituted 1 occurrence(s) in cell 31", "skipped cell 36: matched skip pattern"]}

@@ -1,0 +1,8 @@
+{
+  "repository": "openvinotoolkit/openvino_notebooks",
+  "branch": "latest",
+  "commit": "a8809170cc4fc6aa633fbb9c22214be67ac20b47",
+  "path": "notebooks/freevc-voice-conversion/freevc-voice-conversion.ipynb",
+  "url": "https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/freevc-voice-conversion/freevc-voice-conversion.ipynb",
+  "notebook_sha256": "53ba9155ed03a427854cae1046bfb38ee89e1199e2c98e847a522c8bbef9351a"
+}

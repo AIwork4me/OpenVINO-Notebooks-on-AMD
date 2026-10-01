@@ -1,0 +1,8 @@
+{
+  "repository": "openvinotoolkit/openvino_notebooks",
+  "branch": "latest",
+  "commit": "a8809170cc4fc6aa633fbb9c22214be67ac20b47",
+  "path": "notebooks/omniparser/omniparser.ipynb",
+  "url": "https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/omniparser/omniparser.ipynb",
+  "notebook_sha256": "dc4bc0fb505f5ecefe97d14c507f6ab1590af18fb952b70ede5879174b3d4c66"
+}

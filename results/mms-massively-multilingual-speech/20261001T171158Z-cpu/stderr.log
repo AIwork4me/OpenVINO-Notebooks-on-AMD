@@ -1,0 +1,64 @@
+[IPKernelApp] WARNING | Kernel is running over TCP without encryption. All communication (including code and outputs) is sent in plain text and is susceptible to eavesdropping. Use IPC transport or launch with kernel manager-provisioned CurveZMQ keys to enable transport encryption.
+Traceback (most recent call last):
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/ov_amd/_nbexec.py", line 122, in main
+    client.execute()
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/jupyter_core/utils/__init__.py", line 165, in wrapped
+    return loop.run_until_complete(inner)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/base_events.py", line 687, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/nbclient/client.py", line 709, in async_execute
+    await self.async_execute_cell(
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/nbclient/client.py", line 1062, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/nbclient/client.py", line 918, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+from pathlib import Path
+
+import torch
+
+import openvino as ov
+
+import requests
+
+if not Path("notebook_utils.py").exists():
+    r = requests.get(
+        url="//huggingface\.co :https://hf-mirror.com://raw.githubusercontent.com/openvinotoolkit/openvino_notebooks/latest/utils/notebook_utils.py",
+    )
+    open("notebook_utils.py", "w").write(r.text)
+
+# Read more about telemetry collection at //huggingface\.co :https://hf-mirror.com://github.com/openvinotoolkit/openvino_notebooks?tab=readme-ov-file#-telemetry
+from notebook_utils import collect_telemetry
+
+collect_telemetry("mms-massively-multilingual-speech.ipynb")
+------------------
+
+----- stderr -----
+<>:11: SyntaxWarning: invalid escape sequence '\.'
+<>:11: SyntaxWarning: invalid escape sequence '\.'
+/tmp/ipykernel_96732/1396705866.py:11: SyntaxWarning: invalid escape sequence '\.'
+  url="//huggingface\.co :https://hf-mirror.com://raw.githubusercontent.com/openvinotoolkit/openvino_notebooks/latest/utils/notebook_utils.py",
+------------------
+
+[31m---------------------------------------------------------------------------[39m
+[31mImportError[39m                               Traceback (most recent call last)
+[36mCell[39m[36m [39m[32mIn[2][39m[32m, line 3[39m
+[32m      1[39m [38;5;28;01mfrom[39;00m pathlib [38;5;28;01mimport[39;00m Path
+[32m      2[39m 
+[32m----> [39m[32m3[39m [38;5;28;01mimport[39;00m torch
+[32m      4[39m 
+[32m      5[39m [38;5;28;01mimport[39;00m openvino [38;5;28;01mas[39;00m ov
+[32m      6[39m 
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/torch/__init__.py:496[39m
+[32m    494[39m     [38;5;28;01mif[39;00m USE_GLOBAL_DEPS:
+[32m    495[39m         _load_global_deps()
+[32m--> [39m[32m496[39m     [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01mtorch[39;00m[34;01m.[39;00m[34;01m_C[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m *  [38;5;66;03m# noqa: F403[39;00m
+[32m    499[39m _PrimType = _TypeVar([33m"[39m[33m_PrimType[39m[33m"[39m)
+[32m    500[39m _SymType = _TypeVar([33m"[39m[33m_SymType[39m[33m"[39m)
+
+[31mImportError[39m: /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/torch/lib/libtorch_cuda.so: undefined symbol: ncclCommResume
+

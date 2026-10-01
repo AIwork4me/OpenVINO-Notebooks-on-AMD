@@ -1,0 +1,5 @@
+[cell 0 START +    0.5s] # Text-to-Speech Generation with OpenVINO GenAI |  | [OpenVINO™ GenAI](htt
+[cell 1 START +    0.5s] ## Prerequisites | [back to top ⬆️](#Table-of-contents:)
+[cell 2 START +    0.5s] import requests | from pathlib import Path |  | if not Path("pip_helper.py")
+[cell 2 DONE  +    0.8s]
+NBEXEC_RESULT={"ok": false, "n_cells": 8, "n_skipped": 1, "n_substituted": 2, "stopped_after": null, "error_cell": null, "error_type": "CellExecutionError", "error_head": "\u001b[31mCalledProcessError\u001b[39m: Command '['/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/bin/python', '-m', 'pip', 'install', '-U', 'transformers[sentencepiece]>=4.45', 'soundfile', 'torch==2.11.*', 'torchaudio==2.11.*', 'torchvision==0.26.*', 'datasets<4.0.0', 'librosa', 'speechbrain', 'gradio', 'git+//huggingface\\\\.co', ':https://hf-mirror.com://github.com/huggingface/optimum-intel.git', '--extra-index-url', '//huggingface\\\\.co', ':https://hf-mirror.com://download.pytorch.org/whl/cpu']' ", "duration_s": 1.06, "patch_notes": ["substituted 6 occurrence(s) in cell 2", "substituted 4 occurrence(s) in cell 3", "skipped cell 14: matched skip pattern"]}

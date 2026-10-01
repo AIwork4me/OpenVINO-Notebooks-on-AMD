@@ -60,11 +60,11 @@
         "ok_runs": 0,
         "durations_s": [],
         "device_used": "",
-        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/hello-npu/20261001T143241Z-cpu",
+        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/hello-npu/20261001T161154Z-cpu",
         "notes": [
           "ok_runs=0/3: Unsupported configuration key: FULL_DEVICE_NAME"
         ],
-        "updated": "2026-10-01T14:32:43+00:00"
+        "updated": "2026-10-01T16:11:56+00:00"
       }
     },
     "hello-segmentation": {
@@ -90,11 +90,11 @@
         "ok_runs": 0,
         "durations_s": [],
         "device_used": "",
-        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/openvino-api/20261001T143243Z-cpu",
+        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/openvino-api/20261001T161157Z-cpu",
         "notes": [
           "ok_runs=0/3: "
         ],
-        "updated": "2026-10-01T14:42:43+00:00"
+        "updated": "2026-10-01T16:21:57+00:00"
       }
     },
     "001-whisper-evaluation": {
@@ -104,25 +104,25 @@
         "ok_runs": 0,
         "durations_s": [],
         "device_used": "",
-        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/001-whisper-evaluation/20261001T144253Z-cpu",
+        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/001-whisper-evaluation/20261001T162241Z-cpu",
         "notes": [
-          "ok_runs=0/3: Please note that you may need to restart your runtime after installation."
+          "ok_runs=0/3: \u001b[31mImportError\u001b[39m: cannot import name 'hf_cache_home' from 'huggingface_hub.constants' (/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/huggingface_hub/constants.py)"
         ],
-        "updated": "2026-10-01T14:42:57+00:00"
+        "updated": "2026-10-01T16:23:02+00:00"
       }
     },
     "ace-step-music-generation": {
       "cpu": {
         "status": "FAILED",
-        "failure_category": "PACKAGE_CONFLICT",
+        "failure_category": "UNKNOWN",
         "ok_runs": 0,
         "durations_s": [],
         "device_used": "",
-        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/ace-step-music-generation/20261001T144257Z-cpu",
+        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/ace-step-music-generation/20261001T162303Z-cpu",
         "notes": [
           "ok_runs=0/3: \u001b[31mCalledProcessError\u001b[39m: Command '['/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/bin/python', '-m', 'pip', 'install', '-q', 'git+//huggingface\\\\.co', ':https://hf-mirror.com://github.com/ace-step/ACE-Step.git@6ae0852b1388de6dc0cca26b31a86d711f723cb3', 'torch==2.10', 'torchaudio==2.10',"
         ],
-        "updated": "2026-10-01T14:43:01+00:00"
+        "updated": "2026-10-01T16:23:08+00:00"
       }
     },
     "aloha-act": {
@@ -132,53 +132,55 @@
         "ok_runs": 0,
         "durations_s": [],
         "device_used": "",
-        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/aloha-act/20261001T144302Z-cpu",
+        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/aloha-act/20261001T162309Z-cpu",
         "notes": [
           "ok_runs=0/3: \u001b[31mInvalidSchema\u001b[39m: No connection adapters were found for '//huggingface\\\\.co :https://hf-mirror.com://eci.intel.com/embodied-sdk-docs/_downloads/sim_insertion_scripted.zip'"
         ],
-        "updated": "2026-10-01T14:43:03+00:00"
+        "updated": "2026-10-01T16:23:10+00:00"
       }
     },
     "animate-anyone": {
       "cpu": {
-        "status": "FAILED",
-        "failure_category": "DEPENDENCY",
-        "ok_runs": 0,
-        "durations_s": [],
-        "device_used": "",
-        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/animate-anyone/20261001T103234Z-cpu",
-        "notes": [
-          "ok_runs=0/3: \u001b[31mModuleNotFoundError\u001b[39m: No module named 'torchvision'"
+        "status": "VERIFIED_WITH_LIMITATIONS",
+        "failure_category": "",
+        "ok_runs": 1,
+        "durations_s": [
+          579.49
         ],
-        "updated": "2026-10-01T10:35:03+00:00"
+        "device_used": "",
+        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/animate-anyone/20261001T162311Z-cpu",
+        "notes": [
+          "repeatability: single successful run (resource-bounded); 3-run policy not met"
+        ],
+        "updated": "2026-10-01T16:32:50+00:00"
       }
     },
     "bark-text-to-audio": {
       "cpu": {
         "status": "FAILED",
-        "failure_category": "DEPENDENCY",
+        "failure_category": "MODEL_ACCESS",
         "ok_runs": 0,
         "durations_s": [],
         "device_used": "",
-        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/bark-text-to-audio/20261001T103503Z-cpu",
+        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/bark-text-to-audio/20261001T163412Z-cpu",
         "notes": [
-          "ok_runs=0/3: \u001b[31mModuleNotFoundError\u001b[39m: No module named 'bark'"
+          "ok_runs=0/3: \u001b[31mOSError\u001b[39m: libcudart.so.13: cannot open shared object file: No such file or directory"
         ],
-        "updated": "2026-10-01T10:36:05+00:00"
+        "updated": "2026-10-01T16:34:16+00:00"
       }
     },
     "blip-visual-language-processing": {
       "cpu": {
         "status": "FAILED",
-        "failure_category": "CONVERSION_ERROR",
+        "failure_category": "OPENVINO_ERROR",
         "ok_runs": 0,
         "durations_s": [],
         "device_used": "",
-        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/blip-visual-language-processing/20261001T103605Z-cpu",
+        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/blip-visual-language-processing/20261001T163519Z-cpu",
         "notes": [
-          "ok_runs=0/3: \u001b[31mError\u001b[39m: Unexpected type of example_input. Supported types torch.Tensor, np.array or ov.Tensor. Got <class 'transformers.cache_utils.EncoderDecoderCache'>"
+          "ok_runs=0/3: \u001b[31mInvalidSchema\u001b[39m: No connection adapters were found for '//huggingface\\\\.co :https://hf-mirror.com://raw.githubusercontent.com/openvinotoolkit/openvino_notebooks/latest/utils/skip_kernel_extension.py'"
         ],
-        "updated": "2026-10-01T10:38:24+00:00"
+        "updated": "2026-10-01T16:35:36+00:00"
       }
     },
     "catvton": {
@@ -188,67 +190,73 @@
         "ok_runs": 0,
         "durations_s": [],
         "device_used": "",
-        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/catvton/20261001T103824Z-cpu",
+        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/catvton/20261001T163653Z-cpu",
         "notes": [
-          "ok_runs=0/3: \u001b[31mModuleNotFoundError\u001b[39m: No module named 'ov_catvton_helper'"
+          "ok_runs=0/3: \u001b[31mImportError\u001b[39m: cannot import name 'cached_download' from 'huggingface_hub' (/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/huggingface_hub/__init__.py)"
         ],
-        "updated": "2026-10-01T10:41:30+00:00"
+        "updated": "2026-10-01T16:36:56+00:00"
       }
     },
     "cosyvoice3-tts": {
       "cpu": {
         "status": "FAILED",
-        "failure_category": "DEPENDENCY",
+        "failure_category": "UNKNOWN",
         "ok_runs": 0,
         "durations_s": [],
         "device_used": "",
-        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/cosyvoice3-tts/20261001T104130Z-cpu",
+        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/cosyvoice3-tts/20261001T163759Z-cpu",
         "notes": [
-          "ok_runs=0/3: \u001b[31mCalledProcessError\u001b[39m: Command '['/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/bin/python', '-m', 'pip', 'install', '-q', '--extra-index-url', 'https://download.pytorch.org/whl/cpu', 'setuptools<82', 'nncf', 'openvino>=2025.4.0', 'gradio', 'huggingface_hub']' returned non-zero exit s"
+          "ok_runs=0/3: \u001b[31mCalledProcessError\u001b[39m: Command '['/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/bin/python', '-m', 'pip', 'install', '-q', '--extra-index-url', '//huggingface\\\\.co', ':https://hf-mirror.com://download.pytorch.org/whl/cpu', 'setuptools<82', 'nncf', 'openvino>=2025.4.0', 'gradio', 'hugg"
         ],
-        "updated": "2026-10-01T10:41:32+00:00"
+        "updated": "2026-10-01T16:38:01+00:00"
       }
     },
     "darkir-image-restoration": {
       "cpu": {
-        "status": "FAILED",
-        "failure_category": "TIMEOUT",
-        "ok_runs": 0,
-        "durations_s": [],
-        "device_used": "",
-        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/darkir-image-restoration/20261001T104822Z-cpu",
-        "notes": [
-          "ok_runs=0/3: "
+        "status": "VERIFIED_WITH_LIMITATIONS",
+        "failure_category": "",
+        "ok_runs": 1,
+        "durations_s": [
+          119.34
         ],
-        "updated": "2026-10-01T10:58:22+00:00"
+        "device_used": "CPU",
+        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/darkir-image-restoration/20261001T163904Z-cpu",
+        "notes": [
+          "repeatability: single successful run (resource-bounded); 3-run policy not met"
+        ],
+        "updated": "2026-10-01T16:41:04+00:00"
       }
     },
     "deepseek-ocr": {
       "cpu": {
         "status": "FAILED",
-        "failure_category": "TIMEOUT",
+        "failure_category": "UNKNOWN",
         "ok_runs": 0,
         "durations_s": [],
         "device_used": "",
-        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/deepseek-ocr/20261001T105822Z-cpu",
+        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/deepseek-ocr/20261001T164207Z-cpu",
         "notes": [
-          "ok_runs=0/3: "
+          "ok_runs=0/3: \u001b[31mCalledProcessError\u001b[39m: Command '['/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/bin/python', '-m', 'pip', 'install', '-Uq', '--pre', 'openvino', '--extra-index-url', '//huggingface\\\\.co', ':https://hf-mirror.com://storage.openvinotoolkit.org/simple/wheels/nightly']' returned non-zero "
         ],
-        "updated": "2026-10-01T11:08:23+00:00"
+        "updated": "2026-10-01T16:42:09+00:00"
       }
     },
     "deepseek-r1": {
       "cpu": {
-        "status": "FAILED",
-        "failure_category": "TIMEOUT",
-        "ok_runs": 0,
-        "durations_s": [],
-        "device_used": "",
-        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/deepseek-r1/20261001T110823Z-cpu",
-        "notes": [
-          "ok_runs=0/3: "
+        "status": "VERIFIED_WITH_LIMITATIONS",
+        "failure_category": "",
+        "ok_runs": 3,
+        "durations_s": [
+          5.08,
+          4.77,
+          4.72
         ],
-        "updated": "2026-10-01T11:18:23+00:00"
+        "device_used": "CPU",
+        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/deepseek-r1/20261001T164340Z-cpu",
+        "notes": [
+          "CORE_INFERENCE_VERIFIED; INTERACTIVE_UI_NOT_TESTED (cells skipped via documented patch)"
+        ],
+        "updated": "2026-10-01T16:43:45+00:00"
       },
       "gpu": {
         "status": "VERIFIED",
@@ -261,29 +269,29 @@
     "deepseek-vl2": {
       "cpu": {
         "status": "FAILED",
-        "failure_category": "OPENVINO_ERROR",
+        "failure_category": "UNKNOWN",
         "ok_runs": 0,
         "durations_s": [],
         "device_used": "",
-        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/deepseek-vl2/20261001T111823Z-cpu",
+        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/deepseek-vl2/20261001T164449Z-cpu",
         "notes": [
-          "ok_runs=0/3: \u001b[31mCalledProcessError\u001b[39m: Command '['git', 'clone', 'https://github.com/deepseek-ai/DeepSeek-VL2.git']' returned non-zero exit status 128."
+          "ok_runs=0/3: \u001b[31mCalledProcessError\u001b[39m: Command '['/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/bin/python', '-m', 'pip', 'install', '-q', 'torch==2.8', 'torchvision', 'gradio>=4.19', 'einops', 'transformers==4.53.3', 'timm>=0.9.16', 'accelerate', 'sentencepiece', 'attrdict', 'mdtex2html', 'pypinyin'"
         ],
-        "updated": "2026-10-01T11:19:26+00:00"
+        "updated": "2026-10-01T16:44:52+00:00"
       }
     },
     "ernie-image": {
       "cpu": {
         "status": "FAILED",
-        "failure_category": "TIMEOUT",
+        "failure_category": "DEPENDENCY",
         "ok_runs": 0,
         "durations_s": [],
         "device_used": "",
-        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/ernie-image/20261001T111926Z-cpu",
+        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/ernie-image/20261001T164556Z-cpu",
         "notes": [
-          "ok_runs=0/3: "
+          "ok_runs=0/3: \u001b[31mCalledProcessError\u001b[39m: Command '['/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/bin/python', '-m', 'pip', 'install', '-q', 'gradio>=4.19,<6', 'torch>=2.8', 'nncf>=2.15.0', 'accelerate', '--extra-index-url', '//huggingface\\\\.co', ':https://hf-mirror.com://download.pytorch.org/whl/cpu']"
         ],
-        "updated": "2026-10-01T11:29:26+00:00"
+        "updated": "2026-10-01T16:45:58+00:00"
       }
     },
     "fastdraft_deepseek": {
@@ -293,25 +301,25 @@
         "ok_runs": 0,
         "durations_s": [],
         "device_used": "",
-        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/fastdraft_deepseek/20261001T112927Z-cpu",
+        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/fastdraft_deepseek/20261001T164559Z-cpu",
         "notes": [
-          "ok_runs=0/3: Could not find a model in the directory '\"DeepSeek-R1-Distill-Llama-8B-int4-ov\"'"
+          "ok_runs=0/1: Could not find a model in the directory '\"DeepSeek-R1-Distill-Llama-8B-int4-ov\"'"
         ],
-        "updated": "2026-10-01T11:29:51+00:00"
+        "updated": "2026-10-01T16:46:10+00:00"
       }
     },
     "fireredtts2": {
       "cpu": {
         "status": "FAILED",
-        "failure_category": "PACKAGE_CONFLICT",
+        "failure_category": "UNKNOWN",
         "ok_runs": 0,
         "durations_s": [],
         "device_used": "",
-        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/fireredtts2/20261001T112951Z-cpu",
+        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/fireredtts2/20261001T164611Z-cpu",
         "notes": [
-          "ok_runs=0/3: \u001b[31mCalledProcessError\u001b[39m: Command '['git', 'clone', 'https://github.com/openvino-dev-samples/FireRedTTS2.git']' returned non-zero exit status 128."
+          "ok_runs=0/3: \u001b[31mCalledProcessError\u001b[39m: Command '['/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/bin/python', '-m', 'pip', 'install', '-q', '--extra-index-url', '//huggingface\\\\.co', ':https://hf-mirror.com://download.pytorch.org/whl/cpu', 'torch==2.7.1', 'torchvision==0.22.1', 'torchaudio==2.7.1', 't"
         ],
-        "updated": "2026-10-01T11:34:14+00:00"
+        "updated": "2026-10-01T16:46:13+00:00"
       }
     },
     "stable-diffusion-text-to-image": {
@@ -328,11 +336,11 @@
         "ok_runs": 0,
         "durations_s": [],
         "device_used": "",
-        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/stable-diffusion-text-to-image/20261001T140356Z-cpu",
+        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/stable-diffusion-text-to-image/20261001T164614Z-cpu",
         "notes": [
           "ok_runs=0/3: \u001b[31mFileNotFoundError\u001b[39m: [Errno 2] No such file or directory: 'optimum-cli'"
         ],
-        "updated": "2026-10-01T14:03:58+00:00"
+        "updated": "2026-10-01T16:46:16+00:00"
       }
     },
     "smolvlm2": {
@@ -347,15 +355,15 @@
     "flex.2-image-generation": {
       "cpu": {
         "status": "FAILED",
-        "failure_category": "NETWORK",
+        "failure_category": "UNKNOWN",
         "ok_runs": 0,
         "durations_s": [],
         "device_used": "",
-        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/flex.2-image-generation/20261001T120528Z-cpu",
+        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/flex.2-image-generation/20261001T164618Z-cpu",
         "notes": [
-          "ok_runs=0/3: \u001b[31mConnectTimeout\u001b[39m: HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /spaces/VIDraft/Flex-preview/resolve/main/pipeline.py (Caused by ConnectTimeoutError(<HTTPSConnection(host='huggingface.co', port=443) at 0x7e8114922090>, 'Connection to huggingface.co time"
+          "ok_runs=0/3: \u001b[31mInvalidSchema\u001b[39m: No connection adapters were found for '//huggingface\\\\.co :https://hf-mirror.com://huggingface.co/spaces/VIDraft/Flex-preview/resolve/main/pipeline.py'"
         ],
-        "updated": "2026-10-01T12:11:58+00:00"
+        "updated": "2026-10-01T16:46:20+00:00"
       }
     },
     "qwen3": {
@@ -383,39 +391,39 @@
         "ok_runs": 0,
         "durations_s": [],
         "device_used": "",
-        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/florence2/20261001T122307Z-cpu",
+        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/florence2/20261001T164621Z-cpu",
         "notes": [
-          "ok_runs=0/3: "
+          "ok_runs=0/3: \u001b[31mInvalidSchema\u001b[39m: No connection adapters were found for '//huggingface\\\\.co :https://hf-mirror.com://huggingface.co/datasets/huggingface/documentation-images/resolve/main/transformers/tasks/car.jpg?download=true'"
         ],
-        "updated": "2026-10-01T12:26:38+00:00"
+        "updated": "2026-10-01T16:46:30+00:00"
       }
     },
     "freevc-voice-conversion": {
       "cpu": {
         "status": "FAILED",
-        "failure_category": "TIMEOUT",
+        "failure_category": "NETWORK",
         "ok_runs": 0,
         "durations_s": [],
         "device_used": "",
-        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/freevc-voice-conversion/20261001T122638Z-cpu",
+        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/freevc-voice-conversion/20261001T164634Z-cpu",
         "notes": [
-          "ok_runs=0/3: "
+          "ok_runs=0/3: \u001b[31mException\u001b[39m: File downloading failed with error: No connection adapters were found for '//huggingface\\\\.co :https://hf-mirror.com://huggingface.co/spaces/OlaWod/FreeVC/resolve/main/p225_001.wav'"
         ],
-        "updated": "2026-10-01T12:36:38+00:00"
+        "updated": "2026-10-01T16:46:36+00:00"
       }
     },
     "funasr-nano": {
       "cpu": {
         "status": "FAILED",
-        "failure_category": "TIMEOUT",
+        "failure_category": "UNKNOWN",
         "ok_runs": 0,
         "durations_s": [],
         "device_used": "",
-        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/funasr-nano/20261001T123638Z-cpu",
+        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/funasr-nano/20261001T164637Z-cpu",
         "notes": [
-          "ok_runs=0/3: "
+          "ok_runs=0/3: \u001b[31mCalledProcessError\u001b[39m: Command '['/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/bin/python', '-m', 'pip', 'install', '-q', '--extra-index-url', '//huggingface\\\\.co', ':https://hf-mirror.com://download.pytorch.org/whl/cpu', 'torch', 'nncf', 'torchaudio', 'openvino>=2025.4.0', 'optimum>"
         ],
-        "updated": "2026-10-01T12:46:39+00:00"
+        "updated": "2026-10-01T16:46:40+00:00"
       }
     },
     "kokoro": {
@@ -427,30 +435,34 @@
         "updated": "2026-10-01T13:28:24+00:00"
       },
       "cpu": {
-        "status": "FAILED",
-        "failure_category": "NETWORK",
-        "ok_runs": 0,
-        "durations_s": [],
-        "device_used": "",
-        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/kokoro/20261001T131357Z-cpu",
-        "notes": [
-          "ok_runs=0/3: \u001b[31mConnectTimeout\u001b[39m: HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /spaces/hexgrad/Kokoro-TTS/raw/main/en.txt (Caused by ConnectTimeoutError(<HTTPSConnection(host='huggingface.co', port=443) at 0x715d323a7b90>, 'Connection to huggingface.co timed out. (con"
+        "status": "VERIFIED_WITH_LIMITATIONS",
+        "failure_category": "",
+        "ok_runs": 3,
+        "durations_s": [
+          5.07,
+          4.98,
+          5.18
         ],
-        "updated": "2026-10-01T13:15:03+00:00"
+        "device_used": "CPU",
+        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/kokoro/20261001T164651Z-cpu",
+        "notes": [
+          "CORE_INFERENCE_VERIFIED; INTERACTIVE_UI_NOT_TESTED (cells skipped via documented patch)"
+        ],
+        "updated": "2026-10-01T16:46:56+00:00"
       }
     },
     "glm-ocr": {
       "cpu": {
         "status": "FAILED",
-        "failure_category": "TIMEOUT",
+        "failure_category": "DEPENDENCY",
         "ok_runs": 0,
         "durations_s": [],
         "device_used": "",
-        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/glm-ocr/20261001T124639Z-cpu",
+        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/glm-ocr/20261001T164656Z-cpu",
         "notes": [
-          "ok_runs=0/3: "
+          "ok_runs=0/3: \u001b[31mCalledProcessError\u001b[39m: Command '['/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/bin/python', '-m', 'pip', 'install', '-q', 'torch>=2.8', 'torchvision', '--extra-index-url', '//huggingface\\\\.co', ':https://hf-mirror.com://download.pytorch.org/whl/cpu']' returned non-zero exit status 1."
         ],
-        "updated": "2026-10-01T12:56:39+00:00"
+        "updated": "2026-10-01T16:46:58+00:00"
       }
     },
     "grounded-segment-anything": {
@@ -460,11 +472,11 @@
         "ok_runs": 0,
         "durations_s": [],
         "device_used": "",
-        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/grounded-segment-anything/20261001T125639Z-cpu",
+        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/grounded-segment-anything/20261001T164659Z-cpu",
         "notes": [
-          "ok_runs=0/3: \u001b[31mCalledProcessError\u001b[39m: Command '['git', 'clone', 'https://github.com/wenyi5608/GroundingDINO.git']' returned non-zero exit status 128."
+          "ok_runs=0/3: \u001b[31mCalledProcessError\u001b[39m: Command '['git', 'clone', '//huggingface\\\\.co :https://hf-mirror.com://github.com/wenyi5608/GroundingDINO.git']' returned non-zero exit status 128."
         ],
-        "updated": "2026-10-01T12:58:31+00:00"
+        "updated": "2026-10-01T16:47:00+00:00"
       }
     },
     "handwritten-ocr": {
@@ -490,11 +502,11 @@
         "ok_runs": 0,
         "durations_s": [],
         "device_used": "",
-        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/inpainting-genai/20261001T130444Z-cpu",
+        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/inpainting-genai/20261001T164701Z-cpu",
         "notes": [
           "ok_runs=0/3: \u001b[31mFileNotFoundError\u001b[39m: [Errno 2] No such file or directory: 'optimum-cli'"
         ],
-        "updated": "2026-10-01T13:11:13+00:00"
+        "updated": "2026-10-01T16:47:03+00:00"
       }
     },
     "latent-consistency-models-image-generation": {
@@ -504,11 +516,11 @@
         "ok_runs": 0,
         "durations_s": [],
         "device_used": "",
-        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/latent-consistency-models-image-generation/20261001T131503Z-cpu",
+        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/latent-consistency-models-image-generation/20261001T164704Z-cpu",
         "notes": [
           "ok_runs=0/3: \u001b[31mFileNotFoundError\u001b[39m: [Errno 2] No such file or directory: 'optimum-cli'"
         ],
-        "updated": "2026-10-01T13:22:00+00:00"
+        "updated": "2026-10-01T16:47:08+00:00"
       }
     },
     "stable-diffusion-xl": {
@@ -525,25 +537,25 @@
         "ok_runs": 0,
         "durations_s": [],
         "device_used": "",
-        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/stable-diffusion-xl/20261001T140358Z-cpu",
+        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/stable-diffusion-xl/20261001T164708Z-cpu",
         "notes": [
           "ok_runs=0/3: \u001b[31mFileNotFoundError\u001b[39m: [Errno 2] No such file or directory: 'optimum-cli'"
         ],
-        "updated": "2026-10-01T14:04:01+00:00"
+        "updated": "2026-10-01T16:47:11+00:00"
       }
     },
     "llm-agent-mcp": {
       "cpu": {
         "status": "FAILED",
-        "failure_category": "TIMEOUT",
+        "failure_category": "UNKNOWN",
         "ok_runs": 0,
         "durations_s": [],
         "device_used": "",
-        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/llm-agent-mcp/20261001T132200Z-cpu",
+        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/llm-agent-mcp/20261001T164712Z-cpu",
         "notes": [
-          "ok_runs=0/3: "
+          "ok_runs=0/3: \u001b[31mInvalidSchema\u001b[39m: No connection adapters were found for '//huggingface\\\\.co :https://hf-mirror.com://cdn-avatars.huggingface.co/v1/production/uploads/1671615670447-6346651be2dcb5422bcd13dd.png'"
         ],
-        "updated": "2026-10-01T13:32:01+00:00"
+        "updated": "2026-10-01T16:50:00+00:00"
       }
     },
     "llm-chatbot-generate-api": {
@@ -553,11 +565,11 @@
         "ok_runs": 0,
         "durations_s": [],
         "device_used": "",
-        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/llm-chatbot-generate-api/20261001T133823Z-cpu",
+        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/llm-chatbot-generate-api/20261001T165001Z-cpu",
         "notes": [
           "ok_runs=0/3: \u001b[31mInvalidSchema\u001b[39m: No connection adapters were found for '//huggingface\\\\.co :https://hf-mirror.com://raw.githubusercontent.com/openvinotoolkit/openvino_notebooks/latest/utils/llm_config.py'"
         ],
-        "updated": "2026-10-01T13:38:25+00:00"
+        "updated": "2026-10-01T16:50:03+00:00"
       }
     },
     "llm-rag-langchain-eval": {
@@ -567,11 +579,11 @@
         "ok_runs": 0,
         "durations_s": [],
         "device_used": "",
-        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/llm-rag-langchain-eval/20261001T133825Z-cpu",
+        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/llm-rag-langchain-eval/20261001T165004Z-cpu",
         "notes": [
           "ok_runs=0/3: \u001b[31mInvalidSchema\u001b[39m: No connection adapters were found for '//huggingface\\\\.co :https://hf-mirror.com://github.com/openvinotoolkit/openvino_notebooks/files/15039728/Platform.Brief_Intel.vPro.with.Intel.Core.Ultra_Final.pdf'"
         ],
-        "updated": "2026-10-01T13:38:26+00:00"
+        "updated": "2026-10-01T16:50:06+00:00"
       }
     },
     "medasr-medical-asr": {
@@ -581,11 +593,11 @@
         "ok_runs": 0,
         "durations_s": [],
         "device_used": "",
-        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/medasr-medical-asr/20261001T133946Z-cpu",
+        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/medasr-medical-asr/20261001T165006Z-cpu",
         "notes": [
-          "ok_runs=0/3: \u001b[31mModuleNotFoundError\u001b[39m: Could not import module 'pipeline'. Are this object's requirements defined correctly? Set the logging verbosity to DEBUG for the original import error."
+          "ok_runs=0/3: \u001b[31mImportError\u001b[39m: /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/torch/lib/libtorch_cuda.so: undefined symbol: ncclCommResume"
         ],
-        "updated": "2026-10-01T13:39:51+00:00"
+        "updated": "2026-10-01T16:50:40+00:00"
       }
     },
     "minicpm-v-multimodal-chatbot": {
@@ -595,11 +607,11 @@
         "ok_runs": 0,
         "durations_s": [],
         "device_used": "",
-        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/minicpm-v-multimodal-chatbot/20261001T133951Z-cpu",
+        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/minicpm-v-multimodal-chatbot/20261001T165041Z-cpu",
         "notes": [
           "ok_runs=0/3: \u001b[31mFileNotFoundError\u001b[39m: [Errno 2] No such file or directory: 'optimum-cli'"
         ],
-        "updated": "2026-10-01T13:40:06+00:00"
+        "updated": "2026-10-01T16:50:47+00:00"
       }
     },
     "music-generation": {
@@ -609,11 +621,11 @@
         "ok_runs": 0,
         "durations_s": [],
         "device_used": "",
-        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/music-generation/20261001T134006Z-cpu",
+        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/music-generation/20261001T165048Z-cpu",
         "notes": [
-          "ok_runs=0/3: \u001b[31mModuleNotFoundError\u001b[39m: Could not import module 'AutoProcessor'. Are this object's requirements defined correctly? Set the logging verbosity to DEBUG for the original import error."
+          "ok_runs=0/3: \u001b[31mImportError\u001b[39m: /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/torch/lib/libtorch_cuda.so: undefined symbol: ncclCommResume"
         ],
-        "updated": "2026-10-01T13:40:11+00:00"
+        "updated": "2026-10-01T16:50:51+00:00"
       }
     },
     "omniparser": {
@@ -623,11 +635,11 @@
         "ok_runs": 0,
         "durations_s": [],
         "device_used": "",
-        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/omniparser/20261001T134011Z-cpu",
+        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/omniparser/20261001T165052Z-cpu",
         "notes": [
           "ok_runs=0/3: \u001b[31mCalledProcessError\u001b[39m: Command '['/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/bin/python', '-m', 'pip', 'install', 'torch>=2.1', 'torchvision', 'accelerate', 'transformers>=4.45,<4.52', 'timm', 'einops==0.8.0', 'ultralytics==8.3.236', 'pillow', 'opencv-python', 'gradio>=4.19,<6', 'd"
         ],
-        "updated": "2026-10-01T13:40:12+00:00"
+        "updated": "2026-10-01T16:50:54+00:00"
       }
     },
     "omnivoice": {
@@ -637,11 +649,11 @@
         "ok_runs": 0,
         "durations_s": [],
         "device_used": "",
-        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/omnivoice/20261001T134012Z-cpu",
+        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/omnivoice/20261001T165055Z-cpu",
         "notes": [
           "ok_runs=0/3: \u001b[31mCalledProcessError\u001b[39m: Command '['/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/bin/python', '-m', 'pip', 'install', '-q', '--extra-index-url', '//huggingface\\\\.co', ':https://hf-mirror.com://download.pytorch.org/whl/cpu', 'torch>=2.4', 'torchaudio>=2.4', 'transformers>=5.17', 'openvi"
         ],
-        "updated": "2026-10-01T13:40:14+00:00"
+        "updated": "2026-10-01T16:50:57+00:00"
       }
     },
     "paddle-to-openvino-classification": {
@@ -651,11 +663,11 @@
         "ok_runs": 0,
         "durations_s": [],
         "device_used": "",
-        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/paddle-to-openvino-classification/20261001T134115Z-cpu",
+        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/paddle-to-openvino-classification/20261001T165113Z-cpu",
         "notes": [
           "ok_runs=0/3: \u001b[31mException\u001b[39m: File downloading failed with error: No connection adapters were found for '//huggingface\\\\.co :https://hf-mirror.com://storage.openvinotoolkit.org/repositories/openvino_notebooks/data/data/image/coco_close.png'"
         ],
-        "updated": "2026-10-01T13:41:21+00:00"
+        "updated": "2026-10-01T16:51:21+00:00"
       }
     },
     "paddleocr_vl": {
@@ -665,25 +677,25 @@
         "ok_runs": 0,
         "durations_s": [],
         "device_used": "",
-        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/paddleocr_vl/20261001T134121Z-cpu",
+        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/paddleocr_vl/20261001T165122Z-cpu",
         "notes": [
           "ok_runs=0/3: \u001b[31mCalledProcessError\u001b[39m: Command '['/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/bin/python', '-m', 'pip', 'install', '-q', '-U', '--index-url', '//huggingface\\\\.co', ':https://hf-mirror.com://download.pytorch.org/whl/cpu', 'torch==2.8.0', 'torchvision==0.23.0', 'torchaudio==2.8.0']' r"
         ],
-        "updated": "2026-10-01T13:41:23+00:00"
+        "updated": "2026-10-01T16:51:24+00:00"
       }
     },
     "parler-tts-text-to-speech": {
       "cpu": {
         "status": "FAILED",
-        "failure_category": "UNKNOWN",
+        "failure_category": "DEPENDENCY",
         "ok_runs": 0,
         "durations_s": [],
         "device_used": "",
-        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/parler-tts-text-to-speech/20261001T134124Z-cpu",
+        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/parler-tts-text-to-speech/20261001T165125Z-cpu",
         "notes": [
           "ok_runs=0/3: \u001b[31mCalledProcessError\u001b[39m: Command '['/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/bin/python', '-m', 'pip', 'install', '-q', 'openvino>=2024.2.0', 'torch', '--extra-index-url', '//huggingface\\\\.co', ':https://hf-mirror.com://download.pytorch.org/whl/cpu']' returned non-zero exit status "
         ],
-        "updated": "2026-10-01T13:41:26+00:00"
+        "updated": "2026-10-01T16:51:28+00:00"
       }
     },
     "phi-3-vision": {
@@ -693,11 +705,11 @@
         "ok_runs": 0,
         "durations_s": [],
         "device_used": "",
-        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/phi-3-vision/20261001T134126Z-cpu",
+        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/phi-3-vision/20261001T165129Z-cpu",
         "notes": [
           "ok_runs=0/3: \u001b[31mFileNotFoundError\u001b[39m: [Errno 2] No such file or directory: 'optimum-cli'"
         ],
-        "updated": "2026-10-01T13:41:30+00:00"
+        "updated": "2026-10-01T16:51:33+00:00"
       }
     },
     "phi-4-multimodal": {
@@ -707,25 +719,25 @@
         "ok_runs": 0,
         "durations_s": [],
         "device_used": "",
-        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/phi-4-multimodal/20261001T134130Z-cpu",
+        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/phi-4-multimodal/20261001T165134Z-cpu",
         "notes": [
           "ok_runs=0/3: \u001b[31mFileNotFoundError\u001b[39m: [Errno 2] No such file or directory: 'optimum-cli'"
         ],
-        "updated": "2026-10-01T13:41:33+00:00"
+        "updated": "2026-10-01T16:51:37+00:00"
       }
     },
     "phi3_chatbot_demo": {
       "cpu": {
         "status": "FAILED",
-        "failure_category": "TIMEOUT",
+        "failure_category": "DEPENDENCY",
         "ok_runs": 0,
         "durations_s": [],
         "device_used": "",
-        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/phi3_chatbot_demo/20261001T134159Z-cpu",
+        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/phi3_chatbot_demo/20261001T165148Z-cpu",
         "notes": [
-          "ok_runs=0/3: "
+          "ok_runs=0/3: \u001b[31mImportError\u001b[39m: /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/torch/lib/libtorch_cuda.so: undefined symbol: ncclCommResume"
         ],
-        "updated": "2026-10-01T13:52:00+00:00"
+        "updated": "2026-10-01T16:51:52+00:00"
       }
     },
     "phi3_rag_on_client": {
@@ -735,11 +747,11 @@
         "ok_runs": 0,
         "durations_s": [],
         "device_used": "",
-        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/phi3_rag_on_client/20261001T135242Z-cpu",
+        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/phi3_rag_on_client/20261001T165255Z-cpu",
         "notes": [
           "ok_runs=0/3: \u001b[31mImportError\u001b[39m: Could not import sentence_transformers python package. Please install it with `pip install sentence-transformers`."
         ],
-        "updated": "2026-10-01T13:52:46+00:00"
+        "updated": "2026-10-01T16:53:02+00:00"
       }
     },
     "physical-ai-robotics": {
@@ -761,15 +773,15 @@
     "qwen-image": {
       "cpu": {
         "status": "FAILED",
-        "failure_category": "UNKNOWN",
+        "failure_category": "DEPENDENCY",
         "ok_runs": 0,
         "durations_s": [],
         "device_used": "",
-        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/qwen-image/20261001T135249Z-cpu",
+        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/qwen-image/20261001T165406Z-cpu",
         "notes": [
           "ok_runs=0/3: \u001b[31mCalledProcessError\u001b[39m: Command '['/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/bin/python', '-m', 'pip', 'install', '-q', 'gradio>=4.19,<6', 'torch>=2.1,<2.9', 'transformers>=4.45,<4.58', 'nncf>=2.15.0', 'opencv-python', 'pillow', 'soxr==1.0.0', 'peft>=0.15.0,<0.19', '--extra-index-u"
         ],
-        "updated": "2026-10-01T13:52:50+00:00"
+        "updated": "2026-10-01T16:54:09+00:00"
       }
     },
     "qwen-image-2.1": {
@@ -779,25 +791,25 @@
         "ok_runs": 0,
         "durations_s": [],
         "device_used": "",
-        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/qwen-image-2.1/20261001T135250Z-cpu",
+        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/qwen-image-2.1/20261001T165410Z-cpu",
         "notes": [
           "ok_runs=0/3: \u001b[31mCalledProcessError\u001b[39m: Command '['/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/bin/python', '-m', 'pip', 'install', '-qU', 'gradio', 'torch', 'accelerate', 'nncf', 'numpy', 'pillow', 'ipywidgets', 'tqdm', '--extra-index-url', '//huggingface\\\\.co', ':https://hf-mirror.com://download.p"
         ],
-        "updated": "2026-10-01T13:52:52+00:00"
+        "updated": "2026-10-01T16:54:12+00:00"
       }
     },
     "rmbg-background-removal": {
       "cpu": {
         "status": "FAILED",
-        "failure_category": "UNKNOWN",
+        "failure_category": "DEPENDENCY",
         "ok_runs": 0,
         "durations_s": [],
         "device_used": "",
-        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/rmbg-background-removal/20261001T135252Z-cpu",
+        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/rmbg-background-removal/20261001T165413Z-cpu",
         "notes": [
-          "ok_runs=0/3: \u001b[31mAttributeError\u001b[39m: 'BriaRMBG' object has no attribute 'all_tied_weights_keys'"
+          "ok_runs=0/3: \u001b[31mImportError\u001b[39m: /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/torch/lib/libtorch_cuda.so: undefined symbol: ncclCommResume"
         ],
-        "updated": "2026-10-01T13:53:52+00:00"
+        "updated": "2026-10-01T16:54:18+00:00"
       }
     },
     "smoldocling": {
@@ -807,39 +819,41 @@
         "ok_runs": 0,
         "durations_s": [],
         "device_used": "",
-        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/smoldocling/20261001T135353Z-cpu",
+        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/smoldocling/20261001T165419Z-cpu",
         "notes": [
           "ok_runs=0/3: \u001b[31mFileNotFoundError\u001b[39m: [Errno 2] No such file or directory: 'optimum-cli'"
         ],
-        "updated": "2026-10-01T13:53:56+00:00"
+        "updated": "2026-10-01T16:54:23+00:00"
       }
     },
     "speculative-sampling": {
       "cpu": {
-        "status": "FAILED",
-        "failure_category": "TIMEOUT",
-        "ok_runs": 0,
-        "durations_s": [],
-        "device_used": "",
-        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/speculative-sampling/20261001T135356Z-cpu",
-        "notes": [
-          "ok_runs=0/3: "
+        "status": "VERIFIED",
+        "failure_category": "",
+        "ok_runs": 3,
+        "durations_s": [
+          344.02,
+          339.43,
+          342.05
         ],
-        "updated": "2026-10-01T14:03:56+00:00"
+        "device_used": "CPU",
+        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/speculative-sampling/20261001T170548Z-cpu",
+        "notes": [],
+        "updated": "2026-10-01T17:11:30+00:00"
       }
     },
     "text-to-image-genai": {
       "cpu": {
         "status": "FAILED",
-        "failure_category": "UNKNOWN",
+        "failure_category": "DEPENDENCY",
         "ok_runs": 0,
         "durations_s": [],
         "device_used": "",
-        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/text-to-image-genai/20261001T140401Z-cpu",
+        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/text-to-image-genai/20261001T171131Z-cpu",
         "notes": [
           "ok_runs=0/3: \u001b[31mCalledProcessError\u001b[39m: Command '['/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/bin/python', '-m', 'pip', 'install', '-q', '-U', '--pre', 'openvino>=2025.4', '--extra-index-url', '//huggingface\\\\.co', ':https://hf-mirror.com://storage.openvinotoolkit.org/simple/wheels/nightly']' retur"
         ],
-        "updated": "2026-10-01T14:04:03+00:00"
+        "updated": "2026-10-01T17:11:33+00:00"
       }
     },
     "text-to-speech-genai": {
@@ -849,11 +863,11 @@
         "ok_runs": 0,
         "durations_s": [],
         "device_used": "",
-        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/text-to-speech-genai/20261001T140403Z-cpu",
+        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/text-to-speech-genai/20261001T171134Z-cpu",
         "notes": [
           "ok_runs=0/3: \u001b[31mCalledProcessError\u001b[39m: Command '['/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/bin/python', '-m', 'pip', 'install', '-U', 'transformers[sentencepiece]>=4.45', 'soundfile', 'torch==2.11.*', 'torchaudio==2.11.*', 'torchvision==0.26.*', 'datasets<4.0.0', 'librosa', 'speechbrain', 'gradi"
         ],
-        "updated": "2026-10-01T14:04:05+00:00"
+        "updated": "2026-10-01T17:11:36+00:00"
       }
     },
     "unlimited-ocr": {
@@ -863,25 +877,25 @@
         "ok_runs": 0,
         "durations_s": [],
         "device_used": "",
-        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/unlimited-ocr/20261001T140405Z-cpu",
+        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/unlimited-ocr/20261001T171137Z-cpu",
         "notes": [
           "ok_runs=0/3: \u001b[31mCalledProcessError\u001b[39m: Command '['/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/bin/python', '-m', 'pip', 'install', '-Uq', '--pre', 'openvino', '--extra-index-url', '//huggingface\\\\.co', ':https://hf-mirror.com://storage.openvinotoolkit.org/simple/wheels/nightly']' returned non-zero "
         ],
-        "updated": "2026-10-01T14:04:06+00:00"
+        "updated": "2026-10-01T17:11:39+00:00"
       }
     },
     "vision-background-removal": {
       "cpu": {
         "status": "FAILED",
-        "failure_category": "NETWORK",
+        "failure_category": "DEPENDENCY",
         "ok_runs": 0,
         "durations_s": [],
         "device_used": "",
-        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/vision-background-removal/20261001T140418Z-cpu",
+        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/vision-background-removal/20261001T171140Z-cpu",
         "notes": [
-          "ok_runs=0/3: \u001b[31mException\u001b[39m: File downloading failed with error: No connection adapters were found for '//huggingface\\\\.co :https://hf-mirror.com://raw.githubusercontent.com/openvinotoolkit/openvino_notebooks/latest/notebooks/vision-background-removal/model/u2net.py'"
+          "ok_runs=0/3: \u001b[31mImportError\u001b[39m: /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/torch/lib/libtorch_cuda.so: undefined symbol: ncclCommResume"
         ],
-        "updated": "2026-10-01T14:04:23+00:00"
+        "updated": "2026-10-01T17:11:45+00:00"
       }
     },
     "voxcpm2-tts": {
@@ -891,11 +905,11 @@
         "ok_runs": 0,
         "durations_s": [],
         "device_used": "",
-        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/voxcpm2-tts/20261001T140423Z-cpu",
+        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/voxcpm2-tts/20261001T171146Z-cpu",
         "notes": [
           "ok_runs=0/3: \u001b[31mCalledProcessError\u001b[39m: Command '['/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/bin/python', '-m', 'pip', 'install', '-q', '--extra-index-url', '//huggingface\\\\.co', ':https://hf-mirror.com://download.pytorch.org/whl/cpu', 'torch>=2.4', 'openvino>=2026.0', 'nncf', 'tokenizers', 'trans"
         ],
-        "updated": "2026-10-01T14:04:25+00:00"
+        "updated": "2026-10-01T17:11:48+00:00"
       }
     },
     "llm-lora": {
@@ -921,25 +935,25 @@
         "ok_runs": 0,
         "durations_s": [],
         "device_used": "",
-        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/mineru2.5/20261001T140850Z-cpu",
+        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/mineru2.5/20261001T171149Z-cpu",
         "notes": [
           "ok_runs=0/3: \u001b[31mFileNotFoundError\u001b[39m: [Errno 2] No such file or directory: 'optimum-cli'"
         ],
-        "updated": "2026-10-01T14:15:02+00:00"
+        "updated": "2026-10-01T17:11:57+00:00"
       }
     },
     "mms-massively-multilingual-speech": {
       "cpu": {
         "status": "FAILED",
-        "failure_category": "CONVERSION_ERROR",
+        "failure_category": "DEPENDENCY",
         "ok_runs": 0,
         "durations_s": [],
         "device_used": "",
-        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/mms-massively-multilingual-speech/20261001T142204Z-cpu",
+        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/mms-massively-multilingual-speech/20261001T171158Z-cpu",
         "notes": [
-          "ok_runs=0/3:  You can also provide TorchScript module that you obtained yourself, please refer to PyTorch documentation: https://pytorch.org/tutorials/beginner/Intro_to_TorchScript_tutorial.html."
+          "ok_runs=0/3: \u001b[31mImportError\u001b[39m: /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/torch/lib/libtorch_cuda.so: undefined symbol: ncclCommResume"
         ],
-        "updated": "2026-10-01T14:26:50+00:00"
+        "updated": "2026-10-01T17:12:04+00:00"
       }
     },
     "qwen3-asr": {
@@ -949,25 +963,25 @@
         "ok_runs": 0,
         "durations_s": [],
         "device_used": "",
-        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/qwen3-asr/20261001T142651Z-cpu",
+        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/qwen3-asr/20261001T171205Z-cpu",
         "notes": [
           "ok_runs=0/3: \u001b[31mCalledProcessError\u001b[39m: Command '['/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/bin/python', '-m', 'pip', 'install', '-q', '--extra-index-url', '//huggingface\\\\.co', ':https://hf-mirror.com://download.pytorch.org/whl/cpu', 'torch>=2.6', 'torchaudio', 'librosa', 'soundfile', 'gradio>=4"
         ],
-        "updated": "2026-10-01T14:26:52+00:00"
+        "updated": "2026-10-01T17:12:07+00:00"
       }
     },
     "qwen3-tts": {
       "cpu": {
         "status": "FAILED",
-        "failure_category": "UNKNOWN",
+        "failure_category": "DEPENDENCY",
         "ok_runs": 0,
         "durations_s": [],
         "device_used": "",
-        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/qwen3-tts/20261001T142653Z-cpu",
+        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/qwen3-tts/20261001T171208Z-cpu",
         "notes": [
           "ok_runs=0/3: \u001b[31mCalledProcessError\u001b[39m: Command '['/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/bin/python', '-m', 'pip', 'install', '-q', '--extra-index-url', '//huggingface\\\\.co', ':https://hf-mirror.com://download.pytorch.org/whl/cpu', 'torch==2.8.0', 'nncf', 'torchaudio==2.8.0', 'openvino>=2025.4"
         ],
-        "updated": "2026-10-01T14:26:55+00:00"
+        "updated": "2026-10-01T17:12:11+00:00"
       }
     },
     "controlnet-stable-diffusion": {
@@ -977,11 +991,11 @@
         "ok_runs": 0,
         "durations_s": [],
         "device_used": "",
-        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/controlnet-stable-diffusion/20261001T142656Z-cpu",
+        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/controlnet-stable-diffusion/20261001T171211Z-cpu",
         "notes": [
           "ok_runs=0/1: \u001b[31mCalledProcessError\u001b[39m: Command '['/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/bin/python', '-m', 'pip', 'install', '-qU', 'torch==2.8', 'torchvision', '--extra-index-url', '//huggingface\\\\.co', ':https://hf-mirror.com://download.pytorch.org/whl/cpu']' returned non-zero exit status 1"
         ],
-        "updated": "2026-10-01T14:26:57+00:00"
+        "updated": "2026-10-01T17:12:13+00:00"
       }
     },
     "flux-fill": {
@@ -991,11 +1005,11 @@
         "ok_runs": 0,
         "durations_s": [],
         "device_used": "",
-        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/flux-fill/20261001T142657Z-cpu",
+        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/flux-fill/20261001T171213Z-cpu",
         "notes": [
           "ok_runs=0/1: \u001b[31mFileNotFoundError\u001b[39m: [Errno 2] No such file or directory: 'optimum-cli'"
         ],
-        "updated": "2026-10-01T14:27:00+00:00"
+        "updated": "2026-10-01T17:12:17+00:00"
       }
     }
   },
@@ -1053,8 +1067,112 @@
       "source": "transformers",
       "ok": true,
       "log_tail": " typer->transformers) (1.5.4)\nRequirement already satisfied: rich>=13.8.0 in ./.venv-cpu/lib/python3.12/site-packages (from typer->transformers) (15.0.0)\nRequirement already satisfied: annotated-doc>=0.0.2 in ./.venv-cpu/lib/python3.12/site-packages (from typer->transformers) (0.0.5)\nRequirement already satisfied: markdown-it-py>=2.2.0 in ./.venv-cpu/lib/python3.12/site-packages (from rich>=13.8.0->typer->transformers) (4.2.0)\nRequirement already satisfied: pygments<3.0.0,>=2.13.0 in ./.venv-cpu/lib/python3.12/site-packages (from rich>=13.8.0->typer->transformers) (2.21.0)\nRequirement already satisfied: mdurl~=0.1 in ./.venv-cpu/lib/python3.12/site-packages (from markdown-it-py>=2.2.0->rich>=13.8.0->typer->transformers) (0.1.2)\nUsing cached transformers-5.18.0-py3-none-any.whl (12.6 MB)\nUsing cached tokenizers-0.23.2-cp310-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (3.4 MB)\nUsing cached huggingface_hub-1.33.0-py3-none-any.whl (846 kB)\nInstalling collected packages: huggingface-hub, tokenizers, transformers\n  Attempting uninstall: huggingface-hub\n    Found existing installation: huggingface_hub 1.21.0\n    Uninstalling huggingface_hub-1.21.0:\n      Successfully uninstalled huggingface_hub-1.21.0\n  Attempting uninstall: tokenizers\n    Found existing installation: tokenizers 0.22.2\n    Uninstalling tokenizers-0.22.2:\n      Successfully uninstalled tokenizers-0.22.2\n\nSuccessfully installed huggingface-hub-1.33.0 tokenizers-0.23.2 transformers-5.18.0\nERROR: pip's dependency resolver does not currently take into account all the packages that are installed. This behaviour is the source of the following dependency conflicts.\nsentence-transformers 6.1.0 requires torch>=2.2, which is not installed.\naccelerate 1.15.0 requires torch>=2.0.0, which is not installed.\ntimm 1.0.30 requires torch, which is not installed.\ntimm 1.0.30 requires torchvision, which is not installed.\ngradio 5.50.0 requires pydantic<=2.12.3,>=2.0, but you have pydantic 2.13.5 which is incompatible.\n"
+    },
+    {
+      "workload": "001-whisper-evaluation",
+      "source": "optimum-intel",
+      "ok": true,
+      "log_tail": "site-packages (from torch>=2.1->optimum-intel) (12.8.90)\nRequirement already satisfied: nvidia-nvjitlink-cu12==12.8.93 in ./.venv-cpu/lib/python3.12/site-packages (from torch>=2.1->optimum-intel) (12.8.93)\nRequirement already satisfied: nvidia-cufile-cu12==1.13.1.3 in ./.venv-cpu/lib/python3.12/site-packages (from torch>=2.1->optimum-intel) (1.13.1.3)\nRequirement already satisfied: triton==3.4.0 in ./.venv-cpu/lib/python3.12/site-packages (from torch>=2.1->optimum-intel) (3.4.0)\nRequirement already satisfied: mpmath<1.4,>=1.1.0 in ./.venv-cpu/lib/python3.12/site-packages (from sympy>=1.13.3->torch>=2.1->optimum-intel) (1.3.0)\nRequirement already satisfied: MarkupSafe>=2.0 in ./.venv-cpu/lib/python3.12/site-packages (from jinja2->torch>=2.1->optimum-intel) (2.1.5)\nRequirement already satisfied: pillow!=8.3.*,>=5.3.0 in ./.venv-cpu/lib/python3.12/site-packages (from torchvision->optimum-intel) (11.3.0)\nUsing cached optimum_intel-2.2.0-py3-none-any.whl (479 kB)\nUsing cached optimum-2.3.0-py3-none-any.whl (160 kB)\nUsing cached transformers-5.5.4-py3-none-any.whl (10.2 MB)\nUsing cached huggingface_hub-1.21.0-py3-none-any.whl (721 kB)\nUsing cached tokenizers-0.22.2-cp39-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (3.3 MB)\nInstalling collected packages: huggingface-hub, tokenizers, transformers, optimum, optimum-intel\n  Attempting uninstall: huggingface-hub\n    Found existing installation: huggingface-hub 0.25.2\n    Uninstalling huggingface-hub-0.25.2:\n      Successfully uninstalled huggingface-hub-0.25.2\n  Attempting uninstall: tokenizers\n    Found existing installation: tokenizers 0.21.4\n    Uninstalling tokenizers-0.21.4:\n      Successfully uninstalled tokenizers-0.21.4\n  Attempting uninstall: transformers\n    Found existing installation: transformers 4.48.3\n    Uninstalling transformers-4.48.3:\n      Successfully uninstalled transformers-4.48.3\n\nSuccessfully installed huggingface-hub-1.21.0 optimum-2.3.0 optimum-intel-2.2.0 tokenizers-0.22.2 transformers-5.5.4\n"
+    },
+    {
+      "workload": "001-whisper-evaluation",
+      "source": "huggingface_hub",
+      "ok": true,
+      "log_tail": "eady satisfied: tqdm>=4.42.1 in ./.venv-cpu/lib/python3.12/site-packages (from huggingface_hub) (4.70.1)\nRequirement already satisfied: typer<0.26.0,>=0.20.0 in ./.venv-cpu/lib/python3.12/site-packages (from huggingface_hub) (0.25.1)\nRequirement already satisfied: typing-extensions>=4.1.0 in ./.venv-cpu/lib/python3.12/site-packages (from huggingface_hub) (4.16.0)\nRequirement already satisfied: anyio in ./.venv-cpu/lib/python3.12/site-packages (from httpx<1,>=0.23.0->huggingface_hub) (4.15.1)\nRequirement already satisfied: certifi in ./.venv-cpu/lib/python3.12/site-packages (from httpx<1,>=0.23.0->huggingface_hub) (2026.7.22)\nRequirement already satisfied: httpcore==1.* in ./.venv-cpu/lib/python3.12/site-packages (from httpx<1,>=0.23.0->huggingface_hub) (1.0.9)\nRequirement already satisfied: idna in ./.venv-cpu/lib/python3.12/site-packages (from httpx<1,>=0.23.0->huggingface_hub) (3.20)\nRequirement already satisfied: h11>=0.16 in ./.venv-cpu/lib/python3.12/site-packages (from httpcore==1.*->httpx<1,>=0.23.0->huggingface_hub) (0.16.0)\nRequirement already satisfied: shellingham>=1.3.0 in ./.venv-cpu/lib/python3.12/site-packages (from typer<0.26.0,>=0.20.0->huggingface_hub) (1.5.4)\nRequirement already satisfied: rich>=13.8.0 in ./.venv-cpu/lib/python3.12/site-packages (from typer<0.26.0,>=0.20.0->huggingface_hub) (15.0.0)\nRequirement already satisfied: annotated-doc>=0.0.2 in ./.venv-cpu/lib/python3.12/site-packages (from typer<0.26.0,>=0.20.0->huggingface_hub) (0.0.5)\nRequirement already satisfied: markdown-it-py>=2.2.0 in ./.venv-cpu/lib/python3.12/site-packages (from rich>=13.8.0->typer<0.26.0,>=0.20.0->huggingface_hub) (4.2.0)\nRequirement already satisfied: pygments<3.0.0,>=2.13.0 in ./.venv-cpu/lib/python3.12/site-packages (from rich>=13.8.0->typer<0.26.0,>=0.20.0->huggingface_hub) (2.21.0)\nRequirement already satisfied: mdurl~=0.1 in ./.venv-cpu/lib/python3.12/site-packages (from markdown-it-py>=2.2.0->rich>=13.8.0->typer<0.26.0,>=0.20.0->huggingface_hub) (0.1.2)\n"
+    },
+    {
+      "workload": "bark-text-to-audio",
+      "source": "bark",
+      "ok": true,
+      "log_tail": "tisfied: nvidia-cufile-cu12==1.13.1.3 in ./.venv-cpu/lib/python3.12/site-packages (from torch->bark) (1.13.1.3)\nRequirement already satisfied: triton==3.4.0 in ./.venv-cpu/lib/python3.12/site-packages (from torch->bark) (3.4.0)\nRequirement already satisfied: mpmath<1.4,>=1.1.0 in ./.venv-cpu/lib/python3.12/site-packages (from sympy>=1.13.3->torch->bark) (1.3.0)\nRequirement already satisfied: MarkupSafe>=2.0 in ./.venv-cpu/lib/python3.12/site-packages (from jinja2->torch->bark) (2.1.5)\nRequirement already satisfied: regex!=2019.12.17 in ./.venv-cpu/lib/python3.12/site-packages (from transformers->bark) (2026.9.29)\nRequirement already satisfied: safetensors>=0.4.1 in ./.venv-cpu/lib/python3.12/site-packages (from transformers->bark) (0.8.0)\nDownloading bark-0.1.5-py3-none-any.whl (2.6 MB)\n   \u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501 2.6/2.6 MB 11.6 MB/s  0:00:00\nDownloading boto3-1.43.106-py3-none-any.whl (140 kB)\nDownloading botocore-1.43.106-py3-none-any.whl (16.0 MB)\n   \u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501 16.0/16.0 MB 21.6 MB/s  0:00:00\nDownloading s3transfer-0.19.2-py3-none-any.whl (90 kB)\nDownloading funcy-2.1-py3-none-any.whl (29 kB)\nDownloading torchaudio-2.11.0-cp312-cp312-manylinux_2_28_x86_64.whl (1.8 MB)\n   \u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501 1.8/1.8 MB 70.4 MB/s  0:00:00\nBuilding wheels for collected packages: encodec\n  Building wheel for encodec (pyproject.toml): started\n  Building wheel for encodec (pyproject.toml): finished with status 'done'\n  Created wheel for encodec: filename=encodec-0.1.1-py3-none-any.whl size=45853 sha256=2f1fa75b4144a671b938bc1cabbbb5f2d801bb863383697202765d4d2aea8b74\n  Stored in directory: /home/amd/.cache/pip/wheels/b8/eb/9f/e13610cc46ab39d3199fbabebd1c3e142d44b679526e0f228a\nSuccessfully built encodec\nInstalling collected packages: torchaudio, funcy, botocore, s3transfer, encodec, boto3, bark\n\nSuccessfully installed bark-0.1.5 boto3-1.43.106 botocore-1.43.106 encodec-0.1.1 funcy-2.1 s3transfer-0.19.2 torchaudio-2.11.0\n"
+    },
+    {
+      "workload": "catvton",
+      "source": "huggingface_hub",
+      "ok": true,
+      "log_tail": "Requirement already satisfied: huggingface_hub in ./.venv-cpu/lib/python3.12/site-packages (0.36.2)\nRequirement already satisfied: filelock in ./.venv-cpu/lib/python3.12/site-packages (from huggingface_hub) (4.0.8)\nRequirement already satisfied: fsspec>=2023.5.0 in ./.venv-cpu/lib/python3.12/site-packages (from huggingface_hub) (2025.3.0)\nRequirement already satisfied: hf-xet<2.0.0,>=1.1.3 in ./.venv-cpu/lib/python3.12/site-packages (from huggingface_hub) (1.6.0)\nRequirement already satisfied: packaging>=20.9 in ./.venv-cpu/lib/python3.12/site-packages (from huggingface_hub) (26.3)\nRequirement already satisfied: pyyaml>=5.1 in ./.venv-cpu/lib/python3.12/site-packages (from huggingface_hub) (6.0.3)\nRequirement already satisfied: requests in ./.venv-cpu/lib/python3.12/site-packages (from huggingface_hub) (2.34.2)\nRequirement already satisfied: tqdm>=4.42.1 in ./.venv-cpu/lib/python3.12/site-packages (from huggingface_hub) (4.70.1)\nRequirement already satisfied: typing-extensions>=3.7.4.3 in ./.venv-cpu/lib/python3.12/site-packages (from huggingface_hub) (4.16.0)\nRequirement already satisfied: charset_normalizer<4,>=2 in ./.venv-cpu/lib/python3.12/site-packages (from requests->huggingface_hub) (3.5.2)\nRequirement already satisfied: idna<4,>=2.5 in ./.venv-cpu/lib/python3.12/site-packages (from requests->huggingface_hub) (3.20)\nRequirement already satisfied: urllib3<3,>=1.26 in ./.venv-cpu/lib/python3.12/site-packages (from requests->huggingface_hub) (2.8.0)\nRequirement already satisfied: certifi>=2023.5.7 in ./.venv-cpu/lib/python3.12/site-packages (from requests->huggingface_hub) (2026.7.22)\n"
+    },
+    {
+      "workload": "catvton",
+      "source": "huggingface_hub",
+      "ok": true,
+      "log_tail": "Requirement already satisfied: huggingface_hub in ./.venv-cpu/lib/python3.12/site-packages (0.36.2)\nRequirement already satisfied: filelock in ./.venv-cpu/lib/python3.12/site-packages (from huggingface_hub) (4.0.8)\nRequirement already satisfied: fsspec>=2023.5.0 in ./.venv-cpu/lib/python3.12/site-packages (from huggingface_hub) (2025.3.0)\nRequirement already satisfied: hf-xet<2.0.0,>=1.1.3 in ./.venv-cpu/lib/python3.12/site-packages (from huggingface_hub) (1.6.0)\nRequirement already satisfied: packaging>=20.9 in ./.venv-cpu/lib/python3.12/site-packages (from huggingface_hub) (26.3)\nRequirement already satisfied: pyyaml>=5.1 in ./.venv-cpu/lib/python3.12/site-packages (from huggingface_hub) (6.0.3)\nRequirement already satisfied: requests in ./.venv-cpu/lib/python3.12/site-packages (from huggingface_hub) (2.34.2)\nRequirement already satisfied: tqdm>=4.42.1 in ./.venv-cpu/lib/python3.12/site-packages (from huggingface_hub) (4.70.1)\nRequirement already satisfied: typing-extensions>=3.7.4.3 in ./.venv-cpu/lib/python3.12/site-packages (from huggingface_hub) (4.16.0)\nRequirement already satisfied: charset_normalizer<4,>=2 in ./.venv-cpu/lib/python3.12/site-packages (from requests->huggingface_hub) (3.5.2)\nRequirement already satisfied: idna<4,>=2.5 in ./.venv-cpu/lib/python3.12/site-packages (from requests->huggingface_hub) (3.20)\nRequirement already satisfied: urllib3<3,>=1.26 in ./.venv-cpu/lib/python3.12/site-packages (from requests->huggingface_hub) (2.8.0)\nRequirement already satisfied: certifi>=2023.5.7 in ./.venv-cpu/lib/python3.12/site-packages (from requests->huggingface_hub) (2026.7.22)\n"
+    },
+    {
+      "workload": "phi3_chatbot_demo",
+      "source": "optimum",
+      "ok": true,
+      "log_tail": " (2026.9.29)\nRequirement already satisfied: tokenizers<0.24.0,>=0.23.1 in ./.venv-cpu/lib/python3.12/site-packages (from transformers>=4.29->optimum) (0.23.2)\nRequirement already satisfied: typer in ./.venv-cpu/lib/python3.12/site-packages (from transformers>=4.29->optimum) (0.25.1)\nRequirement already satisfied: safetensors>=0.8.0 in ./.venv-cpu/lib/python3.12/site-packages (from transformers>=4.29->optimum) (0.8.0)\nRequirement already satisfied: MarkupSafe>=2.0 in ./.venv-cpu/lib/python3.12/site-packages (from jinja2->torch>=1.11->optimum) (2.1.5)\nRequirement already satisfied: shellingham>=1.3.0 in ./.venv-cpu/lib/python3.12/site-packages (from typer->transformers>=4.29->optimum) (1.5.4)\nRequirement already satisfied: rich>=13.8.0 in ./.venv-cpu/lib/python3.12/site-packages (from typer->transformers>=4.29->optimum) (15.0.0)\nRequirement already satisfied: annotated-doc>=0.0.2 in ./.venv-cpu/lib/python3.12/site-packages (from typer->transformers>=4.29->optimum) (0.0.5)\nRequirement already satisfied: markdown-it-py>=2.2.0 in ./.venv-cpu/lib/python3.12/site-packages (from rich>=13.8.0->typer->transformers>=4.29->optimum) (4.2.0)\nRequirement already satisfied: pygments<3.0.0,>=2.13.0 in ./.venv-cpu/lib/python3.12/site-packages (from rich>=13.8.0->typer->transformers>=4.29->optimum) (2.21.0)\nRequirement already satisfied: mdurl~=0.1 in ./.venv-cpu/lib/python3.12/site-packages (from markdown-it-py>=2.2.0->rich>=13.8.0->typer->transformers>=4.29->optimum) (0.1.2)\nUsing cached optimum-2.3.0-py3-none-any.whl (160 kB)\nUsing cached torch-2.14.1-cp312-cp312-manylinux_2_28_x86_64.whl (554.6 MB)\nInstalling collected packages: torch, optimum\n\nSuccessfully installed optimum-2.3.0 torch-2.14.1\nERROR: pip's dependency resolver does not currently take into account all the packages that are installed. This behaviour is the source of the following dependency conflicts.\nencodec 0.1.1 requires torchaudio, which is not installed.\ntimm 1.0.30 requires torchvision, which is not installed.\n"
     }
   ],
-  "last_checkpoint": "2026-10-01T14:53:52+00:00",
-  "current_workload": "flux.1-image-generation"
+  "last_checkpoint": "2026-10-01T17:12:17+00:00",
+  "current_workload": "flux.1-image-generation",
+  "env_repairs": [
+    {
+      "problems": [
+        "transformers-old"
+      ],
+      "at": "2026-10-01T16:32:52+00:00"
+    },
+    {
+      "problems": [
+        "transformers-old"
+      ],
+      "at": "2026-10-01T16:34:17+00:00"
+    },
+    {
+      "problems": [
+        "transformers-old"
+      ],
+      "at": "2026-10-01T16:35:38+00:00"
+    },
+    {
+      "problems": [
+        "transformers-old"
+      ],
+      "at": "2026-10-01T16:36:58+00:00"
+    },
+    {
+      "problems": [
+        "transformers-old"
+      ],
+      "at": "2026-10-01T16:38:03+00:00"
+    },
+    {
+      "problems": [
+        "transformers-old"
+      ],
+      "at": "2026-10-01T16:41:06+00:00"
+    },
+    {
+      "problems": [
+        "transformers-old"
+      ],
+      "at": "2026-10-01T16:42:10+00:00"
+    },
+    {
+      "problems": [
+        "transformers-old"
+      ],
+      "at": "2026-10-01T16:43:47+00:00"
+    },
+    {
+      "problems": [
+        "transformers-old"
+      ],
+      "at": "2026-10-01T16:44:54+00:00"
+    },
+    {
+      "problems": [
+        "protobuf-old"
+      ],
+      "at": "2026-10-01T16:51:54+00:00"
+    },
+    {
+      "problems": [
+        "protobuf-old"
+      ],
+      "at": "2026-10-01T16:53:03+00:00"
+    }
+  ]
 }

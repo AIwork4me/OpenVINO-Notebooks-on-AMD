@@ -1,0 +1,5 @@
+[cell 0 START +    0.5s] # RAG Performance & Fairness Evaluation Toolkit (OpenVINO + LangChain)
+[cell 1 START +    0.5s] ## 1. Environment Setup | [back to top ⬆️](#Table-of-contents:) |  |  | First,
+[cell 2 START +    0.5s] import os | import requests | from pathlib import Path | import io |  | if not P
+[cell 2 DONE  +    0.6s]
+NBEXEC_RESULT={"ok": false, "n_cells": 18, "n_skipped": 0, "n_substituted": 2, "stopped_after": null, "error_cell": null, "error_type": "CellExecutionError", "error_head": "\u001b[31mInvalidSchema\u001b[39m: No connection adapters were found for '//huggingface\\\\.co :https://hf-mirror.com://github.com/openvinotoolkit/openvino_notebooks/files/15039728/Platform.Brief_Intel.vPro.with.Intel.Core.Ultra_Final.pdf'", "duration_s": 0.72, "patch_notes": ["substituted 5 occurrence(s) in cell 2", "substituted 2 occurrence(s) in cell 12"]}

@@ -1,0 +1,14 @@
+[cell 0 START +    0.5s] # Multimodal assistant with Phi-4-multimodal and OpenVINO |  | Phi-4-multi
+[cell 1 START +    0.5s] ## Prerequisites | [back to top ⬆️](#Table-of-contents:)
+[cell 2 START +    0.5s] %pip uninstall -q -y optimum optimum-intel optimum-onnx | %pip -q instal
+[cell 2 DONE  +    2.0s]
+[cell 3 START +    2.0s] import requests | from pathlib import Path |  | if not Path("gradio_helper.p
+[cell 3 DONE  +    2.0s]
+[cell 4 START +    2.0s] ## Convert model to OpenVINO Intermediate Representation | [back to top 
+[cell 5 START +    2.0s] from pathlib import Path |  | model_id = "microsoft/phi-4-multimodal-instr
+[cell 5 DONE  +    2.0s]
+[cell 6 START +    2.0s] import ipywidgets as widgets |  | to_compress = widgets.Checkbox(value=Tru
+[cell 6 DONE  +    2.0s]
+[cell 7 START +    2.0s] from cmd_helper import optimum_cli |  | additional_args = {"trust-remote-c
+[cell 7 DONE  +    2.2s]
+NBEXEC_RESULT={"ok": false, "n_cells": 12, "n_skipped": 1, "n_substituted": 6, "stopped_after": null, "error_cell": null, "error_type": "CellExecutionError", "error_head": "\u001b[31mFileNotFoundError\u001b[39m: [Errno 2] No such file or directory: 'optimum-cli'", "duration_s": 2.41, "patch_notes": ["substituted 3 occurrence(s) in cell 2", "substituted 3 occurrence(s) in cell 3", "substituted 1 occurrence(s) in cell 5", "substituted 1 occurrence(s) in cell 15", "substituted 1 occurrence(s) in cell 17", "substituted 1 occurrence(s) in cell 19", "skipped cell 21: matched skip pattern"]}

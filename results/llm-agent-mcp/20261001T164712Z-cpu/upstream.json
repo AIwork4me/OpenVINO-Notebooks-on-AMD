@@ -1,0 +1,8 @@
+{
+  "repository": "openvinotoolkit/openvino_notebooks",
+  "branch": "latest",
+  "commit": "a8809170cc4fc6aa633fbb9c22214be67ac20b47",
+  "path": "notebooks/llm-agent-mcp/llm-agent-mcp.ipynb",
+  "url": "https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/llm-agent-mcp/llm-agent-mcp.ipynb",
+  "notebook_sha256": "86acac665488075c7d4ba7543705433949ff91b162b0e3c1a001d00255d0e17d"
+}

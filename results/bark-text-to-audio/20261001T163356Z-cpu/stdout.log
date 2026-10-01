@@ -1,0 +1,10 @@
+[cell 0 START +    0.4s] # Text-to-speech generation using Bark and OpenVINO |  | 🐶 Bark is a trans
+[cell 1 START +    0.4s] ## Prerequisites | [back to top ⬆️](#Table-of-contents:) | 
+[cell 2 START +    0.4s] %pip install -qU "torch==2.10" "torchvision" "torchaudio==2.10" --extr
+[cell 2 DONE  +    1.6s]
+[cell 3 START +    1.6s] import requests | from pathlib import Path |  | if not Path("notebook_utils.
+[cell 3 DONE  +    1.6s]
+[cell 4 START +    1.6s] ## Download and Convert models | [back to top ⬆️](#Table-of-contents:) | 
+[cell 5 START +    1.6s] from pathlib import Path | from bark.generation import load_model, codec
+[cell 5 DONE  +    1.7s]
+NBEXEC_RESULT={"ok": false, "n_cells": 23, "n_skipped": 1, "n_substituted": 2, "stopped_after": null, "error_cell": null, "error_type": "CellExecutionError", "error_head": "\u001b[31mModuleNotFoundError\u001b[39m: No module named 'bark'", "duration_s": 1.81, "patch_notes": ["substituted 3 occurrence(s) in cell 2", "substituted 2 occurrence(s) in cell 3", "skipped cell 33: matched skip pattern"]}

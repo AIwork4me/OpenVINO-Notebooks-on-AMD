@@ -1,0 +1,7 @@
+[cell 0 START +    0.5s] # Document Parsing using PaddleOCR-VL/PaddleOCR-VL-1.5/PaddleOCR-VL-1.
+[cell 1 START +    0.5s] ## Prerequisites |  | [back to top ⬆️](#Table-of-content:)
+[cell 2 START +    0.5s] import requests | from pathlib import Path |  | utility_files = ["cmd_helper
+[cell 2 DONE  +    0.5s]
+[cell 3 START +    0.5s] from pip_helper import pip_install |  | # Upgrade pip | pip_install("-q", "-
+[cell 3 DONE  +    1.2s]
+NBEXEC_RESULT={"ok": false, "n_cells": 11, "n_skipped": 1, "n_substituted": 2, "stopped_after": null, "error_cell": null, "error_type": "CellExecutionError", "error_head": "\u001b[31mCalledProcessError\u001b[39m: Command '['/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/bin/python', '-m', 'pip', 'install', '-q', '-U', '--index-url', '//huggingface\\\\.co', ':https://hf-mirror.com://download.pytorch.org/whl/cpu', 'torch==2.8.0', 'torchvision==0.23.0', 'torchaudio==2.8.0']' returned non-zero exit status 1.", "duration_s": 1.45, "patch_notes": ["substituted 1 occurrence(s) in cell 2", "substituted 2 occurrence(s) in cell 3", "skipped cell 15: matched skip pattern"]}

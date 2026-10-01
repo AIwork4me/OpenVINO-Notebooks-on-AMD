@@ -1,0 +1,78 @@
+hello-npu: FAILED OPENVINO_ERROR runs=0
+openvino-api: FAILED TIMEOUT runs=0
+001-whisper-evaluation: FAILED DEPENDENCY runs=0
+ace-step-music-generation: FAILED UNKNOWN runs=0
+aloha-act: FAILED UNKNOWN runs=0
+animate-anyone: VERIFIED_WITH_LIMITATIONS  runs=1
+[env-repair] drift detected: ['transformers-old'] -> reinstalling golden set
+AMD-PATCH: preseeded sibling helper module gradio_helper.py (kernel cwd differs from notebook dir)
+bark-text-to-audio: FAILED MODEL_ACCESS runs=0
+[env-repair] drift detected: ['transformers-old'] -> reinstalling golden set
+AMD-PATCH: preseeded sibling helper module blip_model.py (kernel cwd differs from notebook dir)
+AMD-PATCH: preseeded sibling helper module gradio_helper.py (kernel cwd differs from notebook dir)
+blip-visual-language-processing: FAILED OPENVINO_ERROR runs=0
+[env-repair] drift detected: ['transformers-old'] -> reinstalling golden set
+AMD-PATCH: preseeded sibling helper module catvton_quantization_helper.py (kernel cwd differs from notebook dir)
+AMD-PATCH: preseeded sibling helper module gradio_helper.py (kernel cwd differs from notebook dir)
+AMD-PATCH: preseeded sibling helper module ov_catvton_helper.py (kernel cwd differs from notebook dir)
+catvton: FAILED DEPENDENCY runs=0
+[env-repair] drift detected: ['transformers-old'] -> reinstalling golden set
+AMD-PATCH: preseeded sibling helper module gradio_helper.py (kernel cwd differs from notebook dir)
+AMD-PATCH: preseeded sibling helper module ov_cosyvoice_helper.py (kernel cwd differs from notebook dir)
+cosyvoice3-tts: FAILED UNKNOWN runs=0
+[env-repair] drift detected: ['transformers-old'] -> reinstalling golden set
+darkir-image-restoration: VERIFIED_WITH_LIMITATIONS  runs=1
+[env-repair] drift detected: ['transformers-old'] -> reinstalling golden set
+deepseek-ocr: FAILED UNKNOWN runs=0
+[env-repair] drift detected: ['transformers-old'] -> reinstalling golden set
+deepseek-r1: VERIFIED_WITH_LIMITATIONS  runs=3
+[env-repair] drift detected: ['transformers-old'] -> reinstalling golden set
+deepseek-vl2: FAILED UNKNOWN runs=0
+[env-repair] drift detected: ['transformers-old'] -> reinstalling golden set
+ernie-image: FAILED DEPENDENCY runs=0
+fastdraft_deepseek: FAILED OPENVINO_ERROR runs=0
+fireredtts2: FAILED UNKNOWN runs=0
+stable-diffusion-text-to-image: FAILED UNKNOWN runs=0
+flex.2-image-generation: FAILED UNKNOWN runs=0
+florence2: FAILED UNKNOWN runs=0
+freevc-voice-conversion: FAILED NETWORK runs=0
+funasr-nano: FAILED UNKNOWN runs=0
+kokoro: VERIFIED_WITH_LIMITATIONS  runs=3
+glm-ocr: FAILED DEPENDENCY runs=0
+grounded-segment-anything: FAILED UNKNOWN runs=0
+inpainting-genai: FAILED UNKNOWN runs=0
+latent-consistency-models-image-generation: FAILED UNKNOWN runs=0
+stable-diffusion-xl: FAILED UNKNOWN runs=0
+llm-agent-mcp: FAILED UNKNOWN runs=0
+llm-chatbot-generate-api: FAILED UNKNOWN runs=0
+llm-rag-langchain-eval: FAILED UNKNOWN runs=0
+medasr-medical-asr: FAILED DEPENDENCY runs=0
+minicpm-v-multimodal-chatbot: FAILED UNKNOWN runs=0
+music-generation: FAILED DEPENDENCY runs=0
+omniparser: FAILED UNKNOWN runs=0
+omnivoice: FAILED UNKNOWN runs=0
+paddle-to-openvino-classification: FAILED NETWORK runs=0
+paddleocr_vl: FAILED UNKNOWN runs=0
+parler-tts-text-to-speech: FAILED DEPENDENCY runs=0
+phi-3-vision: FAILED UNKNOWN runs=0
+phi-4-multimodal: FAILED UNKNOWN runs=0
+phi3_chatbot_demo: FAILED DEPENDENCY runs=0
+[env-repair] drift detected: ['protobuf-old'] -> reinstalling golden set
+phi3_rag_on_client: FAILED DEPENDENCY runs=0
+[env-repair] drift detected: ['protobuf-old'] -> reinstalling golden set
+qwen-image: FAILED DEPENDENCY runs=0
+qwen-image-2.1: FAILED UNKNOWN runs=0
+rmbg-background-removal: FAILED DEPENDENCY runs=0
+smoldocling: FAILED UNKNOWN runs=0
+speculative-sampling: VERIFIED  runs=3
+text-to-image-genai: FAILED DEPENDENCY runs=0
+text-to-speech-genai: FAILED UNKNOWN runs=0
+unlimited-ocr: FAILED UNKNOWN runs=0
+vision-background-removal: FAILED DEPENDENCY runs=0
+voxcpm2-tts: FAILED UNKNOWN runs=0
+mineru2.5: FAILED UNKNOWN runs=0
+mms-massively-multilingual-speech: FAILED DEPENDENCY runs=0
+qwen3-asr: FAILED UNKNOWN runs=0
+qwen3-tts: FAILED DEPENDENCY runs=0
+controlnet-stable-diffusion: FAILED UNKNOWN runs=0
+flux-fill: FAILED UNKNOWN runs=0

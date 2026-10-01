@@ -1,0 +1,7 @@
+[cell 0 START +    0.4s] # Multi-speaker dialogue generation with FireRedTTS‑2 and OpenVINO |  | Fi
+[cell 1 START +    0.4s] ## Prerequisites | [back to top ⬆️](#Table-of-contents:)
+[cell 2 START +    0.4s] # Fetch `notebook_utils` module | import requests | from pathlib import Pa
+[cell 2 DONE  +    0.5s]
+[cell 3 START +    0.5s] from cmd_helper import clone_repo | from pip_helper import pip_install |  | 
+[cell 3 DONE  +    1.1s]
+NBEXEC_RESULT={"ok": false, "n_cells": 8, "n_skipped": 1, "n_substituted": 2, "stopped_after": null, "error_cell": null, "error_type": "CellExecutionError", "error_head": "\u001b[31mCalledProcessError\u001b[39m: Command '['/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/bin/python', '-m', 'pip', 'install', '-q', '--extra-index-url', '//huggingface\\\\.co', ':https://hf-mirror.com://download.pytorch.org/whl/cpu', 'torch==2.7.1', 'torchvision==0.22.1', 'torchaudio==2.7.1', 'torchao==0.11.0', 'nncf', 'openvino>=2025.3.0', 'transformers==4.55', 'gradio', 'huggingface_hub']' returned non-zero exit status 1.", "duration_s": 1.24, "patch_notes": ["substituted 4 occurrence(s) in cell 2", "substituted 2 occurrence(s) in cell 3", "skipped cell 14: matched skip pattern"]}

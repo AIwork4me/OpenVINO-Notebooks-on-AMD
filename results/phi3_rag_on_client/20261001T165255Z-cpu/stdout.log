@@ -1,0 +1,6 @@
+[cell 0 START +    0.5s] # Chat with your documents on Intel Meteor Lake iGPU | In this notebook 
+[cell 1 START +    0.5s] # Uncomment to install dependencies | # ! pip install langchain datasets
+[cell 1 DONE  +    0.5s]
+[cell 2 START +    0.5s] from datasets import load_dataset | from nltk.tokenize import sent_token
+[cell 2 DONE  +    3.9s]
+NBEXEC_RESULT={"ok": false, "n_cells": 19, "n_skipped": 1, "n_substituted": 3, "stopped_after": null, "error_cell": null, "error_type": "CellExecutionError", "error_head": "\u001b[31mImportError\u001b[39m: Could not import sentence_transformers python package. Please install it with `pip install sentence-transformers`.", "duration_s": 5.0, "patch_notes": ["substituted 1 occurrence(s) in cell 9", "substituted 1 occurrence(s) in cell 13", "substituted 2 occurrence(s) in cell 23", "skipped cell 29: matched skip pattern"]}

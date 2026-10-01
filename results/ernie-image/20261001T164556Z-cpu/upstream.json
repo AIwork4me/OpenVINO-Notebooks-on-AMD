@@ -1,0 +1,8 @@
+{
+  "repository": "openvinotoolkit/openvino_notebooks",
+  "branch": "latest",
+  "commit": "a8809170cc4fc6aa633fbb9c22214be67ac20b47",
+  "path": "notebooks/ernie-image/ernie-image.ipynb",
+  "url": "https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/ernie-image/ernie-image.ipynb",
+  "notebook_sha256": "3ec74f6e72b1dcb007ec61f5f47cad36fe1ebbc911f396f82d16cd76a389b8f5"
+}

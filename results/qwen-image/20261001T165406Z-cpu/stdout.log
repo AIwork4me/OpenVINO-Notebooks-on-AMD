@@ -1,0 +1,5 @@
+[cell 0 START +    0.5s] # Text-to-image generation with Qwen-Image and OpenVINO |  | Qwen-Image, a
+[cell 1 START +    0.5s] ## Prerequisites | [back to top ⬆️](#Table-of-contents:)
+[cell 2 START +    0.5s] import requests | from pathlib import Path |  | if not Path("cmd_helper.py")
+[cell 2 DONE  +    1.1s]
+NBEXEC_RESULT={"ok": false, "n_cells": 11, "n_skipped": 1, "n_substituted": 1, "stopped_after": null, "error_cell": null, "error_type": "CellExecutionError", "error_head": "\u001b[31mCalledProcessError\u001b[39m: Command '['/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/bin/python', '-m', 'pip', 'install', '-q', 'gradio>=4.19,<6', 'torch>=2.1,<2.9', 'transformers>=4.45,<4.58', 'nncf>=2.15.0', 'opencv-python', 'pillow', 'soxr==1.0.0', 'peft>=0.15.0,<0.19', '--extra-index-url', '//huggingface\\\\.co', ':https://hf-mirror.com://download.pytorch.org/whl/cpu']' returned non-zero exit status 1.", "duration_s": 1.35, "patch_notes": ["substituted 7 occurrence(s) in cell 2", "skipped cell 19: matched skip pattern"]}

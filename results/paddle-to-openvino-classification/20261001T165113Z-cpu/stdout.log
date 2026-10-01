@@ -1,0 +1,10 @@
+[cell 0 START +    0.5s] # Convert a PaddlePaddle Model to OpenVINO™ IR |  | This notebook shows ho
+[cell 1 START +    0.5s] ## Preparation | [back to top ⬆️](#Table-of-contents:) |  | ### Imports | [bac
+[cell 2 START +    0.5s] %pip install -q "setuptools" "wheel" | %pip install -q "paddlepaddle>=2.
+[cell 2 DONE  +    3.4s]
+[cell 3 START +    3.4s] import time | import tarfile | from pathlib import Path |  | import matplotlib
+[cell 3 DONE  +    5.1s]
+[cell 4 START +    5.1s] ### Settings | [back to top ⬆️](#Table-of-contents:) |  | Set `IMAGE_FILENAM
+[cell 5 START +    5.1s] # Download the image from the openvino_notebooks storage | img = Path("d
+[cell 5 DONE  +    5.4s]
+NBEXEC_RESULT={"ok": false, "n_cells": 18, "n_skipped": 0, "n_substituted": 2, "stopped_after": null, "error_cell": null, "error_type": "CellExecutionError", "error_head": "\u001b[31mException\u001b[39m: File downloading failed with error: No connection adapters were found for '//huggingface\\\\.co :https://hf-mirror.com://storage.openvinotoolkit.org/repositories/openvino_notebooks/data/data/image/coco_close.png'", "duration_s": 6.43, "patch_notes": ["substituted 2 occurrence(s) in cell 3", "substituted 2 occurrence(s) in cell 5"]}

@@ -1,0 +1,9 @@
+{
+  "start": "2026-10-01T16:11:54+00:00",
+  "end": "2026-10-01T16:11:55+00:00",
+  "duration_s": 1.57,
+  "exit_code": 1,
+  "retry_count": 0,
+  "status": "ERROR",
+  "failure_category": "OPENVINO_ERROR"
+}

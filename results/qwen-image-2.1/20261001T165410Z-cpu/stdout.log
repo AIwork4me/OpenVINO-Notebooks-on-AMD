@@ -1,0 +1,5 @@
+[cell 0 START +    0.5s] # Qwen-Image 2.1 image generation with OpenVINO |  | Qwen-Image 2.1 is a u
+[cell 1 START +    0.5s] ## Prerequisites | [back to top ⬆️](#Table-of-contents:) |  | This notebook 
+[cell 2 START +    0.5s] import os | import requests | from pathlib import Path |  | import ipywidgets 
+[cell 2 DONE  +    0.8s]
+NBEXEC_RESULT={"ok": false, "n_cells": 15, "n_skipped": 1, "n_substituted": 4, "stopped_after": null, "error_cell": null, "error_type": "CellExecutionError", "error_head": "\u001b[31mCalledProcessError\u001b[39m: Command '['/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/bin/python', '-m', 'pip', 'install', '-qU', 'gradio', 'torch', 'accelerate', 'nncf', 'numpy', 'pillow', 'ipywidgets', 'tqdm', '--extra-index-url', '//huggingface\\\\.co', ':https://hf-mirror.com://download.pytorch.org/whl/cpu']' returned non-zero exit status 1.", "duration_s": 1.06, "patch_notes": ["substituted 3 occurrence(s) in cell 2", "substituted 4 occurrence(s) in cell 4", "substituted 1 occurrence(s) in cell 6", "substituted 1 occurrence(s) in cell 18", "skipped cell 26: matched skip pattern"]}

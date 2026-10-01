@@ -1,0 +1,7 @@
+[cell 0 START +    0.4s] # Image generation with universal control using Flex.2 and OpenVINO |  | <
+[cell 1 START +    0.4s] ## Prerequisites | [back to top ⬆️](#Table-of-contents:)
+[cell 2 START +    0.4s] %pip install -q "transformers==4.57.6" "diffusers>=0.33.0,<0.38.0" "gr
+[cell 2 DONE  +    1.3s]
+[cell 3 START +    1.3s] from pathlib import Path | import requests |  | if not Path("notebook_utils.
+[cell 3 DONE  +    1.4s]
+NBEXEC_RESULT={"ok": false, "n_cells": 9, "n_skipped": 1, "n_substituted": 4, "stopped_after": null, "error_cell": null, "error_type": "CellExecutionError", "error_head": "\u001b[31mInvalidSchema\u001b[39m: No connection adapters were found for '//huggingface\\\\.co :https://hf-mirror.com://huggingface.co/spaces/VIDraft/Flex-preview/resolve/main/pipeline.py'", "duration_s": 1.57, "patch_notes": ["substituted 4 occurrence(s) in cell 2", "substituted 5 occurrence(s) in cell 3", "substituted 1 occurrence(s) in cell 6", "substituted 3 occurrence(s) in cell 11", "skipped cell 14: matched skip pattern"]}

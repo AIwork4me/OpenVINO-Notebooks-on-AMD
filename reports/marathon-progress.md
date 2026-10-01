@@ -1,23 +1,22 @@
 # Marathon Progress (generated)
 
-Updated: 2026-10-01T14:27:00+00:00
+Updated: 2026-10-01T17:17:54+00:00
 
 - Catalog discovered: 171
 - CPU attempted: 171
-- CPU verified: 6
-- CPU verified with limitations: 0
-- CPU failed: 59
+- CPU verified: 7
+- CPU verified with limitations: 4
+- CPU failed: 54
 - CPU blocked/skipped: 0
-- GPU verified: 7 (+0 limited)
+- GPU verified: 8 (+0 limited)
 - Terminal attempt records: 73
 - Current workload: flux.1-image-generation
 
 ## Top recurring CPU failure categories
 
-- UNKNOWN: 28
-- DEPENDENCY: 11
-- TIMEOUT: 10
-- NETWORK: 4
+- UNKNOWN: 32
+- DEPENDENCY: 15
 - OPENVINO_ERROR: 3
-- CONVERSION_ERROR: 2
-- PACKAGE_CONFLICT: 1
+- NETWORK: 2
+- TIMEOUT: 1
+- MODEL_ACCESS: 1

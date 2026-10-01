@@ -1,0 +1,14 @@
+[cell 0 START +    0.4s] # Fast LLM reasoning with DeepSeek-R1-Distill-Llama-8B and FastDraft |  | 
+[cell 1 START +    0.4s] ## Prerequisites |  | > Note: we recommend running this notebook in a virt
+[cell 2 START +    0.4s] import os | import platform |  | os.environ["GIT_CLONE_PROTECTION_ACTIVE"] =
+[cell 2 DONE  +    1.0s]
+[cell 3 START +    1.0s] ## Generation with OpenVINO GenAI | We will first need to convert the mo
+[cell 4 START +    1.0s] from pathlib import Path |  | model_name = "DeepSeek-R1-Distill-Llama-8B" | 
+[cell 4 DONE  +    1.0s]
+[cell 5 START +    1.0s] ### Convert model using Optimum-CLI tool |  |  |  | 🤗 [Optimum Intel](https://
+[cell 6 START +    1.0s] if not model_dir.exists(): |     ! optimum-cli export openvino --model $
+[cell 6 DONE  +    5.8s]
+[cell 7 START +    5.8s] ### Instantiate pipeline with OpenVINO Generate API |  | We will use [Open
+[cell 8 START +    5.8s] import openvino_genai as ov_genai |  | from llm_pipeline_with_hf_tokenizer
+[cell 8 DONE  +    8.6s]
+NBEXEC_RESULT={"ok": false, "n_cells": 17, "n_skipped": 1, "n_substituted": 2, "stopped_after": null, "error_cell": null, "error_type": "CellExecutionError", "error_head": "Could not find a model in the directory '\"DeepSeek-R1-Distill-Llama-8B-int4-ov\"'", "duration_s": 10.04, "patch_notes": ["substituted 2 occurrence(s) in cell 2", "substituted 1 occurrence(s) in cell 29", "skipped cell 30: matched skip pattern"]}

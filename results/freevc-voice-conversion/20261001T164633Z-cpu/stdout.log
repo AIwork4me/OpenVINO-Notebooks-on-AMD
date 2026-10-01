@@ -1,0 +1,15 @@
+[cell 0 START +    0.4s] # High-Quality Text-Free One-Shot Voice Conversion with FreeVC and Ope
+[cell 1 START +    0.4s]  | #### Table of contents: |  | - [Pre-requisites](#Pre-requisites) | - [Impor
+[cell 2 START +    0.4s] ## Pre-requisites | [back to top ⬆️](#Table-of-contents:) |  | This steps ca
+[cell 3 START +    0.4s] Install extra requirements
+[cell 4 START +    0.4s] %pip install -q "setuptools<82" "openvino>=2023.3.0" "librosa>=0.8.1" 
+[cell 4 DONE  +    0.7s]
+[cell 5 START +    0.7s] # Fetch `notebook_utils` module | import requests | from pathlib import Pa
+[cell 5 DONE  +    0.8s]
+[cell 6 START +    0.8s] from pathlib import Path |  | from huggingface_hub import hf_hub_download | 
+[cell 6 DONE  +    0.8s]
+[cell 7 START +    0.8s] freevc_chpt_dir = Path("checkpoints") | freevc_chpt_name = "freevc.pth" | 
+[cell 7 DONE  +    0.8s]
+[cell 8 START +    0.8s] audio1_name = "p225_001.wav" | audio1_url = f"//huggingface\.co :https:/
+[cell 8 DONE  +    0.9s]
+NBEXEC_RESULT={"ok": false, "n_cells": 28, "n_skipped": 1, "n_substituted": 5, "stopped_after": null, "error_cell": null, "error_type": "CellExecutionError", "error_head": "\u001b[31mException\u001b[39m: File downloading failed with error: No connection adapters were found for '//huggingface\\\\.co :https://hf-mirror.com://huggingface.co/spaces/OlaWod/FreeVC/resolve/main/p225_001.wav'", "duration_s": 1.02, "patch_notes": ["substituted 1 occurrence(s) in cell 4", "substituted 3 occurrence(s) in cell 5", "substituted 1 occurrence(s) in cell 6", "substituted 1 occurrence(s) in cell 7", "substituted 2 occurrence(s) in cell 8", "skipped cell 53: matched skip pattern"]}

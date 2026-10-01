@@ -1,0 +1,8 @@
+[cell 0 START +    0.4s] # Image Background Removal with U^2-Net and OpenVINO™ |  | This notebook d
+[cell 1 START +    0.4s] ## Preparation | [back to top ⬆️](#Table-of-contents:) |  | ### Install requ
+[cell 2 START +    0.4s] %pip install -q "openvino>=2023.1.0" | %pip install -q --extra-index-url
+[cell 2 DONE  +    2.3s]
+[cell 3 START +    2.3s] ### Import the PyTorch Library and U$^2$-Net | [back to top ⬆️](#Table-o
+[cell 4 START +    2.3s] import os | import time | from collections import namedtuple | from pathlib 
+[cell 4 DONE  +    3.0s]
+NBEXEC_RESULT={"ok": false, "n_cells": 13, "n_skipped": 0, "n_substituted": 5, "stopped_after": null, "error_cell": null, "error_type": "CellExecutionError", "error_head": "\u001b[31mImportError\u001b[39m: /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/torch/lib/libtorch_cuda.so: undefined symbol: ncclCommResume", "duration_s": 3.34, "patch_notes": ["substituted 1 occurrence(s) in cell 2", "substituted 3 occurrence(s) in cell 5", "substituted 3 occurrence(s) in cell 7", "substituted 1 occurrence(s) in cell 16", "substituted 1 occurrence(s) in cell 24"]}

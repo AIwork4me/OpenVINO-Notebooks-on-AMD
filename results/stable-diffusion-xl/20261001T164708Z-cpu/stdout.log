@@ -1,0 +1,17 @@
+[cell 0 START +    0.4s] # Image generation with Stable Diffusion XL and OpenVINO |  | Stable Diffu
+[cell 1 START +    0.4s]  | #### Table of contents: |  | - [Install prerequisites](#Install-prerequis
+[cell 2 START +    0.4s] ## Install prerequisites | [back to top ⬆️](#Table-of-contents:) | 
+[cell 3 START +    0.4s] %pip uninstall -q -y optimum optimum-intel optimum-onnx | %pip install -
+[cell 3 DONE  +    1.9s]
+[cell 4 START +    1.9s] ## SDXL Base model | [back to top ⬆️](#Table-of-contents:) |  | We will star
+[cell 5 START +    1.9s] from pathlib import Path | import openvino_genai as ov_genai | import gc |  | 
+[cell 5 DONE  +    2.0s]
+[cell 6 START +    2.0s] ### Select inference device SDXL Base model | [back to top ⬆️](#Table-of
+[cell 7 START +    2.0s] from notebook_utils import device_widget |  | device = device_widget(exclu
+[cell 7 DONE  +    2.3s]
+[cell 8 START +    2.3s] Please select below whether you would like to use weight compression t
+[cell 9 START +    2.3s] import ipywidgets as widgets |  | compress_weights = widgets.Checkbox( |    
+[cell 9 DONE  +    2.3s]
+[cell 10 START +    2.3s] from cmd_helper import optimum_cli |  | additional_args = {} |  | if compress_
+[cell 10 DONE  +    2.4s]
+NBEXEC_RESULT={"ok": false, "n_cells": 12, "n_skipped": 2, "n_substituted": 2, "stopped_after": null, "error_cell": null, "error_type": "CellExecutionError", "error_head": "\u001b[31mFileNotFoundError\u001b[39m: [Errno 2] No such file or directory: 'optimum-cli'", "duration_s": 2.66, "patch_notes": ["substituted 3 occurrence(s) in cell 3", "substituted 3 occurrence(s) in cell 5", "skipped cell 14: matched skip pattern", "skipped cell 22: matched skip pattern"]}

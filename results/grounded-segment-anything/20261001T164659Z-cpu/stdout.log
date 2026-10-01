@@ -1,0 +1,14 @@
+[cell 0 START +    0.4s] # Object detection and masking from prompts with GroundedSAM (Groundin
+[cell 1 START +    0.4s] ### Clone repositories and install requirements | [back to top ⬆️](#Tabl
+[cell 2 START +    0.4s] %pip install -q "openvino>=2026.0" "torch==2.8" opencv-python "Pillow>
+[cell 2 DONE  +    0.7s]
+[cell 3 START +    0.7s] For faster computation and to limit RAM by default we use `EfficientSA
+[cell 4 START +    0.7s] import ipywidgets as widgets |  | sam_type_widget = widgets.Dropdown( |     
+[cell 4 DONE  +    0.8s]
+[cell 5 START +    0.8s] use_efficient_sam = sam_type_widget.value == "EfficientSAM"
+[cell 5 DONE  +    0.8s]
+[cell 6 START +    0.8s] import requests | from pathlib import Path |  | if not Path("notebook_utils.
+[cell 6 DONE  +    0.8s]
+[cell 7 START +    0.8s] from pathlib import Path | import sys | import os |  | from cmd_helper import 
+[cell 7 DONE  +    0.9s]
+NBEXEC_RESULT={"ok": false, "n_cells": 32, "n_skipped": 1, "n_substituted": 4, "stopped_after": null, "error_cell": null, "error_type": "CellExecutionError", "error_head": "\u001b[31mCalledProcessError\u001b[39m: Command '['git', 'clone', '//huggingface\\\\.co :https://hf-mirror.com://github.com/wenyi5608/GroundingDINO.git']' returned non-zero exit status 128.", "duration_s": 1.13, "patch_notes": ["substituted 1 occurrence(s) in cell 2", "substituted 3 occurrence(s) in cell 6", "substituted 3 occurrence(s) in cell 7", "substituted 2 occurrence(s) in cell 11", "skipped cell 53: matched skip pattern"]}

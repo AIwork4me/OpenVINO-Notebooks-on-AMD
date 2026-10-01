@@ -1,0 +1,8 @@
+{
+  "repository": "openvinotoolkit/openvino_notebooks",
+  "branch": "latest",
+  "commit": "a8809170cc4fc6aa633fbb9c22214be67ac20b47",
+  "path": "supplementary_materials/notebooks/fastdraft-deepseek/fastdraft_deepseek.ipynb",
+  "url": "https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/supplementary_materials/notebooks/fastdraft-deepseek/fastdraft_deepseek.ipynb",
+  "notebook_sha256": "70880ae48027934e2ca565a53e1d284336ab1fed47c002d27d52a54ec87b885f"
+}

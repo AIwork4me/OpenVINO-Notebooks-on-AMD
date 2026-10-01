@@ -1,0 +1,8 @@
+{
+  "repository": "openvinotoolkit/openvino_notebooks",
+  "branch": "latest",
+  "commit": "a8809170cc4fc6aa633fbb9c22214be67ac20b47",
+  "path": "notebooks/omnivoice/omnivoice.ipynb",
+  "url": "https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/omnivoice/omnivoice.ipynb",
+  "notebook_sha256": "3c92276e28f71635db84c632fc4ac8ffe43bd525e2075af9d03934620e86ab1a"
+}

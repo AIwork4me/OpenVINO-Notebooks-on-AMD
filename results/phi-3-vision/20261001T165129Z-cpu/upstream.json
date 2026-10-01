@@ -1,0 +1,8 @@
+{
+  "repository": "openvinotoolkit/openvino_notebooks",
+  "branch": "latest",
+  "commit": "a8809170cc4fc6aa633fbb9c22214be67ac20b47",
+  "path": "notebooks/phi-3-vision/phi-3-vision.ipynb",
+  "url": "https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/phi-3-vision/phi-3-vision.ipynb",
+  "notebook_sha256": "83f91be8c3b2ef7b7b14d0c6289802a55db366674a0513e641521d96964fbb52"
+}

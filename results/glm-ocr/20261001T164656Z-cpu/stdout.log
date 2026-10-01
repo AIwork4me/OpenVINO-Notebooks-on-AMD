@@ -1,0 +1,7 @@
+[cell 0 START +    0.4s] # Document parsing with GLM-OCR and OpenVINO |  | [GLM-OCR](https://huggin
+[cell 1 START +    0.4s] ## Prerequisites | [back to top ⬆️](#Table-of-contents:) |  | GLM-OCR lives 
+[cell 2 START +    0.4s] import requests | from pathlib import Path |  | if not Path("cmd_helper.py")
+[cell 2 DONE  +    0.4s]
+[cell 3 START +    0.4s] %pip uninstall -q -y optimum optimum-intel optimum-onnx |  | from notebook
+[cell 3 DONE  +    1.1s]
+NBEXEC_RESULT={"ok": false, "n_cells": 14, "n_skipped": 1, "n_substituted": 2, "stopped_after": null, "error_cell": null, "error_type": "CellExecutionError", "error_head": "\u001b[31mCalledProcessError\u001b[39m: Command '['/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/bin/python', '-m', 'pip', 'install', '-q', 'torch>=2.8', 'torchvision', '--extra-index-url', '//huggingface\\\\.co', ':https://hf-mirror.com://download.pytorch.org/whl/cpu']' returned non-zero exit status 1.", "duration_s": 1.31, "patch_notes": ["substituted 3 occurrence(s) in cell 2", "substituted 2 occurrence(s) in cell 3", "skipped cell 20: matched skip pattern"]}

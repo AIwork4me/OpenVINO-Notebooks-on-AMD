@@ -1,0 +1,11 @@
+[cell 0 START +    0.4s] # Background removal with RMBG v1.4 and OpenVINO |  | Background matting i
+[cell 1 START +    0.4s] ## Prerequisites | [back to top ⬆️](#Table-of-contents:) |  | install requir
+[cell 2 START +    0.4s] %pip install -q torch torchvision pillow huggingface_hub "openvino>=20
+[cell 2 DONE  +    0.8s]
+[cell 3 START +    0.8s] Download model code from HuggingFace hub
+[cell 4 START +    0.8s] from huggingface_hub import hf_hub_download | from pathlib import Path | i
+[cell 4 DONE  +    0.9s]
+[cell 5 START +    0.9s] ## Load PyTorch model | [back to top ⬆️](#Table-of-contents:) |  | For loadi
+[cell 6 START +    0.9s] from transformers import AutoModelForImageSegmentation |  | net = AutoMode
+[cell 6 DONE  +    3.0s]
+NBEXEC_RESULT={"ok": false, "n_cells": 9, "n_skipped": 1, "n_substituted": 2, "stopped_after": null, "error_cell": null, "error_type": "CellExecutionError", "error_head": "\u001b[31mImportError\u001b[39m: /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/torch/lib/libtorch_cuda.so: undefined symbol: ncclCommResume", "duration_s": 3.65, "patch_notes": ["substituted 1 occurrence(s) in cell 2", "substituted 2 occurrence(s) in cell 4", "skipped cell 17: matched skip pattern"]}

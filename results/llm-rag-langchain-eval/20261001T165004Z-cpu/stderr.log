@@ -1,0 +1,119 @@
+[IPKernelApp] WARNING | Kernel is running over TCP without encryption. All communication (including code and outputs) is sent in plain text and is susceptible to eavesdropping. Use IPC transport or launch with kernel manager-provisioned CurveZMQ keys to enable transport encryption.
+ple_en)
+    content = io.BytesIO(r.content)
+    with open("text_example_en.pdf", "wb") as f:
+        f.write(content.read())
+
+from pip_helper import pip_install
+
+os.environ["GIT_CLONE_PROTECTION_ACTIVE"] = "false"
+
+pip_install("-q", "-U", "openvino>=2025.4.0", "openvino-tokenizers>=2025.4.0.0")
+pip_install(
+    "-q",
+    "--extra-index-url",
+    "//huggingface\.co :https://hf-mirror.com://download.pytorch.org/whl/cpu",
+    "--upgrade-strategy",
+    "eager",
+    "optimum[openvino,nncf,onnxruntime]",
+    "optimum-intel==1.27.0",
+    "sacrebleu==2.5.1",
+    "rouge-score==0.1.2",
+    "nncf==2.19.0",
+    "bert-score==0.3.13",
+    "transformers==4.57.6",
+    "onnx",
+    "nltk==3.9.2",
+    "numpy==2.2.6",
+    "langchain==0.3.27",
+    "langchain_community==0.3.31",
+    "chromadb==1.3.5",
+    "langchain-chroma==0.2.6",
+    "langchain-huggingface==0.3.1",
+    "sentence-transformers==5.1.2",
+    "Flashrank==0.2.10",
+    "python-docx==1.2.0",
+    "huggingface-hub==0.36.0",
+    "faiss-cpu==1.13.1",
+    "pypdf==6.4.1",
+    "torch==2.8.0",
+    "tokenizers==0.22.2",
+)
+# Read more about telemetry collection at //huggingface\.co :https://hf-mirror.com://github.com/openvinotoolkit/openvino_notebooks?tab=readme-ov-file#-telemetry
+from notebook_utils import collect_telemetry
+
+collect_telemetry("llm-rag-langchain-eval.ipynb")
+------------------
+
+----- stderr -----
+<>:8: SyntaxWarning: invalid escape sequence '\.'
+<>:15: SyntaxWarning: invalid escape sequence '\.'
+<>:20: SyntaxWarning: invalid escape sequence '\.'
+<>:34: SyntaxWarning: invalid escape sequence '\.'
+<>:8: SyntaxWarning: invalid escape sequence '\.'
+<>:15: SyntaxWarning: invalid escape sequence '\.'
+<>:20: SyntaxWarning: invalid escape sequence '\.'
+<>:34: SyntaxWarning: invalid escape sequence '\.'
+/tmp/ipykernel_92607/1552580557.py:8: SyntaxWarning: invalid escape sequence '\.'
+  url="//huggingface\.co :https://hf-mirror.com://raw.githubusercontent.com/openvinotoolkit/openvino_notebooks/latest/utils/notebook_utils.py",
+/tmp/ipykernel_92607/1552580557.py:15: SyntaxWarning: invalid escape sequence '\.'
+  url="//huggingface\.co :https://hf-mirror.com://raw.githubusercontent.com/openvinotoolkit/openvino_notebooks/latest/utils/pip_helper.py",
+/tmp/ipykernel_92607/1552580557.py:20: SyntaxWarning: invalid escape sequence '\.'
+  text_example_en = "//huggingface\.co :https://hf-mirror.com://github.com/openvinotoolkit/openvino_notebooks/files/15039728/Platform.Brief_Intel.vPro.with.Intel.Core.Ultra_Final.pdf"
+/tmp/ipykernel_92607/1552580557.py:34: SyntaxWarning: invalid escape sequence '\.'
+  "//huggingface\.co :https://hf-mirror.com://download.pytorch.org/whl/cpu",
+------------------
+
+[31m---------------------------------------------------------------------------[39m
+[31mInvalidSchema[39m                             Traceback (most recent call last)
+[36mCell[39m[36m [39m[32mIn[1][39m[32m, line 21[39m
+[32m     17[39m     open([33m"pip_helper.py"[39m, [33m"w"[39m).write(r.text)
+[32m     18[39m 
+[32m     19[39m [38;5;28;01mif[39;00m [38;5;28;01mnot[39;00m Path([33m"text_example_en.pdf"[39m).exists():
+[32m     20[39m     text_example_en = [33m"//huggingface\.co :https://hf-mirror.com://github.com/openvinotoolkit/openvino_notebooks/files/15039728/Platform.Brief_Intel.vPro.with.Intel.Core.Ultra_Final.pdf"[39m
+[32m---> [39m[32m21[39m     r = requests.get(url=text_example_en)
+[32m     22[39m     content = io.BytesIO(r.content)
+[32m     23[39m     [38;5;28;01mwith[39;00m open([33m"text_example_en.pdf"[39m, [33m"wb"[39m) [38;5;28;01mas[39;00m f:
+[32m     24[39m         f.write(content.read())
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/requests/api.py:87[39m, in [36mget[39m[34m(url, params, **kwargs)[39m
+[32m     74[39m [38;5;28;01mdef[39;00m[38;5;250m [39m[34mget[39m(
+[32m     75[39m     url: _t.UriType, params: _t.ParamsType = [38;5;28;01mNone[39;00m, **kwargs: Unpack[_t.GetKwargs]
+[32m     76[39m ) -> Response:
+[32m     77[39m [38;5;250m    [39m[33mr[39m[33;03m"""Sends a GET request.[39;00m
+[32m     78[39m 
+[32m     79[39m [33;03m    :param url: URL for the new :class:`Request` object.[39;00m
+[32m   (...)[39m[32m     84[39m [33;03m    :rtype: requests.Response[39;00m
+[32m     85[39m [33;03m    """[39;00m
+[32m---> [39m[32m87[39m     [38;5;28;01mreturn[39;00m [30;43mrequest[39;49m[30;43m([39;49m[30;43m"[39;49m[30;43mget[39;49m[30;43m"[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43murl[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mparams[39;49m[30;43m=[39;49m[30;43mparams[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43m*[39;49m[30;43m*[39;49m[30;43mkwargs[39;49m[30;43m)[39;49m
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/requests/api.py:71[39m, in [36mrequest[39m[34m(method, url, **kwargs)[39m
+[32m     67[39m [38;5;66;03m# By using the 'with' statement we are sure the session is closed, thus we[39;00m
+[32m     68[39m [38;5;66;03m# avoid leaving sockets open which can trigger a ResourceWarning in some[39;00m
+[32m     69[39m [38;5;66;03m# cases, and look like a memory leak in others.[39;00m
+[32m     70[39m [38;5;28;01mwith[39;00m sessions.Session() [38;5;28;01mas[39;00m session:
+[32m---> [39m[32m71[39m     [38;5;28;01mreturn[39;00m [30;43msession[39;49m[30;43m.[39;49m[30;43mrequest[39;49m[30;43m([39;49m[30;43mmethod[39;49m[30;43m=[39;49m[30;43mmethod[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43murl[39;49m[30;43m=[39;49m[30;43murl[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43m*[39;49m[30;43m*[39;49m[30;43mkwargs[39;49m[30;43m)[39;49m
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/requests/sessions.py:651[39m, in [36mSession.request[39m[34m(self, method, url, params, data, headers, cookies, files, auth, timeout, allow_redirects, proxies, hooks, stream, verify, cert, json)[39m
+[32m    646[39m send_kwargs = {
+[32m    647[39m     [33m"[39m[33mtimeout[39m[33m"[39m: timeout,
+[32m    648[39m     [33m"[39m[33mallow_redirects[39m[33m"[39m: allow_redirects,
+[32m    649[39m }
+[32m    650[39m send_kwargs.update(settings)
+[32m--> [39m[32m651[39m resp = [30;43mself[39;49m[30;43m.[39;49m[30;43msend[39;49m[30;43m([39;49m[30;43mprep[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43m*[39;49m[30;43m*[39;49m[30;43msend_kwargs[39;49m[30;43m)[39;49m
+[32m    653[39m [38;5;28;01mreturn[39;00m resp
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/requests/sessions.py:778[39m, in [36mSession.send[39m[34m(self, request, **kwargs)[39m
+[32m    775[39m hooks = request.hooks
+[32m    777[39m [38;5;66;03m# Get the appropriate adapter to use[39;00m
+[32m--> [39m[32m778[39m adapter = [30;43mself[39;49m[30;43m.[39;49m[30;43mget_adapter[39;49m[30;43m([39;49m[30;43murl[39;49m[30;43m=[39;49m[30;43mrequest[39;49m[30;43m.[39;49m[30;43murl[39;49m[30;43m)[39;49m
+[32m    780[39m [38;5;66;03m# Start time (approximately) of the request[39;00m
+[32m    781[39m start = preferred_clock()
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/requests/sessions.py:881[39m, in [36mSession.get_adapter[39m[34m(self, url)[39m
+[32m    878[39m         [38;5;28;01mreturn[39;00m adapter
+[32m    880[39m [38;5;66;03m# Nothing matches :-/[39;00m
+[32m--> [39m[32m881[39m [38;5;28;01mraise[39;00m InvalidSchema([33mf[39m[33m"[39m[33mNo connection adapters were found for [39m[38;5;132;01m{[39;00murl[38;5;132;01m!r}[39;00m[33m"[39m)
+
+[31mInvalidSchema[39m: No connection adapters were found for '//huggingface\\.co :https://hf-mirror.com://github.com/openvinotoolkit/openvino_notebooks/files/15039728/Platform.Brief_Intel.vPro.with.Intel.Core.Ultra_Final.pdf'
+

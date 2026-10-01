@@ -1,0 +1,62 @@
+[IPKernelApp] WARNING | Kernel is running over TCP without encryption. All communication (including code and outputs) is sent in plain text and is susceptible to eavesdropping. Use IPC transport or launch with kernel manager-provisioned CurveZMQ keys to enable transport encryption.
+Traceback (most recent call last):
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/ov_amd/_nbexec.py", line 122, in main
+    client.execute()
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/jupyter_core/utils/__init__.py", line 165, in wrapped
+    return loop.run_until_complete(inner)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/base_events.py", line 687, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/nbclient/client.py", line 709, in async_execute
+    await self.async_execute_cell(
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/nbclient/client.py", line 1062, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/nbclient/client.py", line 918, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+from collections import namedtuple
+from functools import partial
+import gc
+from pathlib import Path
+from typing import Optional
+import warnings
+
+from IPython.display import Audio
+import openvino as ov
+import numpy as np
+import torch
+from torch.jit import TracerWarning
+from transformers import AutoProcessor, MusicgenForConditionalGeneration
+from transformers.modeling_outputs import (
+    BaseModelOutputWithPastAndCrossAttentions,
+    CausalLMOutputWithCrossAttentions,
+)
+
+# Ignore tracing warnings
+warnings.filterwarnings("ignore", category=TracerWarning)
+------------------
+
+
+[31m---------------------------------------------------------------------------[39m
+[31mImportError[39m                               Traceback (most recent call last)
+[36mCell[39m[36m [39m[32mIn[2][39m[32m, line 11[39m
+[32m      7[39m 
+[32m      8[39m [38;5;28;01mfrom[39;00m IPython.display [38;5;28;01mimport[39;00m Audio
+[32m      9[39m [38;5;28;01mimport[39;00m openvino [38;5;28;01mas[39;00m ov
+[32m     10[39m [38;5;28;01mimport[39;00m numpy [38;5;28;01mas[39;00m np
+[32m---> [39m[32m11[39m [38;5;28;01mimport[39;00m torch
+[32m     12[39m [38;5;28;01mfrom[39;00m torch.jit [38;5;28;01mimport[39;00m TracerWarning
+[32m     13[39m [38;5;28;01mfrom[39;00m transformers [38;5;28;01mimport[39;00m AutoProcessor, MusicgenForConditionalGeneration
+[32m     14[39m from transformers.modeling_outputs import (
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/torch/__init__.py:496[39m
+[32m    494[39m     [38;5;28;01mif[39;00m USE_GLOBAL_DEPS:
+[32m    495[39m         _load_global_deps()
+[32m--> [39m[32m496[39m     [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01mtorch[39;00m[34;01m.[39;00m[34;01m_C[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m *  [38;5;66;03m# noqa: F403[39;00m
+[32m    499[39m _PrimType = _TypeVar([33m"[39m[33m_PrimType[39m[33m"[39m)
+[32m    500[39m _SymType = _TypeVar([33m"[39m[33m_SymType[39m[33m"[39m)
+
+[31mImportError[39m: /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/torch/lib/libtorch_cuda.so: undefined symbol: ncclCommResume
+

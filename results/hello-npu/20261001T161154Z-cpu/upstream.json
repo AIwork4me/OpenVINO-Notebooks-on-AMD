@@ -1,0 +1,8 @@
+{
+  "repository": "openvinotoolkit/openvino_notebooks",
+  "branch": "latest",
+  "commit": "a8809170cc4fc6aa633fbb9c22214be67ac20b47",
+  "path": "notebooks/hello-npu/hello-npu.ipynb",
+  "url": "https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/hello-npu/hello-npu.ipynb",
+  "notebook_sha256": "81a2653398a7f6be34c6acdbbaf626fdd2821cf34e0d4fd519a205b57f0583fc"
+}

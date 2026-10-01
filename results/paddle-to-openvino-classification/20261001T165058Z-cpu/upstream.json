@@ -1,0 +1,8 @@
+{
+  "repository": "openvinotoolkit/openvino_notebooks",
+  "branch": "latest",
+  "commit": "a8809170cc4fc6aa633fbb9c22214be67ac20b47",
+  "path": "notebooks/paddle-to-openvino/paddle-to-openvino-classification.ipynb",
+  "url": "https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/paddle-to-openvino/paddle-to-openvino-classification.ipynb",
+  "notebook_sha256": "3e82858af57d7f4fcefe6ad5ecd4016845bfbca62debbe57d92c480ba4433f6f"
+}

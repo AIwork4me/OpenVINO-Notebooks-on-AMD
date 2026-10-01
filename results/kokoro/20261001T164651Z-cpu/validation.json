@@ -1,0 +1,10 @@
+{
+  "passed": true,
+  "checks": {
+    "no_cell_error": true,
+    "skipped_cells": 1
+  },
+  "notes": [
+    "1 cell(s) skipped via documented patch (interactive/UI-only code)"
+  ]
+}

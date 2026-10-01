@@ -1,0 +1,88 @@
+[IPKernelApp] WARNING | Kernel is running over TCP without encryption. All communication (including code and outputs) is sent in plain text and is susceptible to eavesdropping. Use IPC transport or launch with kernel manager-provisioned CurveZMQ keys to enable transport encryption.
+8;01mimport[39;00m main_export
+[32m     18[39m [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01m.[39;00m[34;01mconvert[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m export, export_from_model, export_models
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/optimum/exporters/openvino/model_configs.py:404[39m
+[32m    400[39m         TasksManager._DIFFUSERS_TASKS_TO_MODEL_MAPPINGS[[33m"[39m[33mimage-to-video[39m[33m"[39m][[33m"[39m[33mltx-video[39m[33m"[39m] = [33m"[39m[33mLTXImageToVideoPipeline[39m[33m"[39m
+[32m    401[39m         TasksManager._DIFFUSERS_TASKS_TO_MODEL_MAPPINGS[[33m"[39m[33mimage-to-video[39m[33m"[39m][[33m"[39m[33mltx2[39m[33m"[39m] = [33m"[39m[33mLTX2ImageToVideoPipeline[39m[33m"[39m
+[32m--> [39m[32m404[39m [30;43minit_model_configs[39;49m[30;43m([39;49m[30;43m)[39;49m
+[32m    407[39m register_in_tasks_manager = TasksManager.create_register([33m"[39m[33mopenvino[39m[33m"[39m, overwrite_existing=[38;5;28;01mTrue[39;00m)
+[32m    410[39m [38;5;129m@register_in_tasks_manager[39m([33m"[39m[33mbaichuan[39m[33m"[39m, *[[33m"[39m[33mtext-generation[39m[33m"[39m, [33m"[39m[33mtext-generation-with-past[39m[33m"[39m], library_name=[33m"[39m[33mtransformers[39m[33m"[39m)
+[32m    411[39m [38;5;28;01mclass[39;00m[38;5;250m [39m[34;01mBaichaunOpenVINOConfig[39;00m(TextDecoderWithPositionIdsOpenVINOConfig):
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/optimum/exporters/openvino/model_configs.py:302[39m, in [36minit_model_configs[39m[34m()[39m
+[32m    300[39m     TasksManager._LIBRARY_TO_SUPPORTED_MODEL_TYPES[[33m"[39m[33mkokoro[39m[33m"[39m] = {}
+[32m    301[39m [38;5;28;01mif[39;00m [33m"[39m[33mkokoro[39m[33m"[39m [38;5;129;01mnot[39;00m [38;5;129;01min[39;00m TasksManager._LIBRARY_TO_TASKS_TO_MODEL_LOADER_MAP:
+[32m--> [39m[32m302[39m     [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01moptimum[39;00m[34;01m.[39;00m[34;01mintel[39;00m[34;01m.[39;00m[34;01mutils[39;00m[34;01m.[39;00m[34;01mmodeling_utils[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m _KokoroForTextToSpeech
+[32m    304[39m     [38;5;28;01mtry[39;00m:
+[32m    305[39m         [38;5;28;01mimport[39;00m[38;5;250m [39m[34;01mkokoro[39;00m[38;5;250m [39m[38;5;28;01mas[39;00m[38;5;250m [39m[34;01m_kokoro_module[39;00m
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/optimum/intel/utils/modeling_utils.py:37[39m
+[32m     30[39m [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01moptimum[39;00m[34;01m.[39;00m[34;01mintel[39;00m[34;01m.[39;00m[34;01mutils[39;00m[34;01m.[39;00m[34;01mimport_utils[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m (
+[32m     31[39m     is_diffusers_available,
+[32m     32[39m     is_open_clip_available,
+[32m     33[39m )
+[32m     36[39m [38;5;28;01mif[39;00m is_diffusers_available():
+[32m---> [39m[32m37[39m     [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01mdiffusers[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m DiffusionPipeline, ModelMixin
+[32m     40[39m MULTI_QUERY_ATTN_MODELS = {[33m"[39m[33mgpt_bigcode[39m[33m"[39m}
+[32m     42[39m logger = logging.getLogger([34m__name__[39m)
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/diffusers/__init__.py:5[39m
+[32m      1[39m __version__ = [33m"[39m[33m0.24.0[39m[33m"[39m
+[32m      3[39m [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01mtyping[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m TYPE_CHECKING
+[32m----> [39m[32m5[39m [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01m.[39;00m[34;01mutils[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m (
+[32m      6[39m     DIFFUSERS_SLOW_IMPORT,
+[32m      7[39m     OptionalDependencyNotAvailable,
+[32m      8[39m     _LazyModule,
+[32m      9[39m     is_flax_available,
+[32m     10[39m     is_k_diffusion_available,
+[32m     11[39m     is_librosa_available,
+[32m     12[39m     is_note_seq_available,
+[32m     13[39m     is_onnx_available,
+[32m     14[39m     is_scipy_available,
+[32m     15[39m     is_torch_available,
+[32m     16[39m     is_torchsde_available,
+[32m     17[39m     is_transformers_available,
+[32m     18[39m )
+[32m     21[39m [38;5;66;03m# Lazy Import based on[39;00m
+[32m     22[39m [38;5;66;03m# https://github.com/huggingface/transformers/blob/main/src/transformers/__init__.py[39;00m
+[32m     23[39m 
+[32m     24[39m [38;5;66;03m# When adding a new object to this init, please add it to `_import_structure`. The `_import_structure` is a dictionary submodule to list of object names,[39;00m
+[32m     25[39m [38;5;66;03m# and is used to defer the actual importing for when the objects are requested.[39;00m
+[32m     26[39m [38;5;66;03m# This way `import diffusers` provides the names in the namespace without actually importing anything (and especially none of the backends).[39;00m
+[32m     28[39m _import_structure = {
+[32m     29[39m     [33m"[39m[33mconfiguration_utils[39m[33m"[39m: [[33m"[39m[33mConfigMixin[39m[33m"[39m],
+[32m     30[39m     [33m"[39m[33mmodels[39m[33m"[39m: [],
+[32m   (...)[39m[32m     50[39m     ],
+[32m     51[39m }
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/diffusers/utils/__init__.py:21[39m
+[32m     18[39m [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01mpackaging[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m version
+[32m     20[39m [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01m.[39;00m[34;01m.[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m __version__
+[32m---> [39m[32m21[39m [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01m.[39;00m[34;01mconstants[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m (
+[32m     22[39m     CONFIG_NAME,
+[32m     23[39m     DEPRECATED_REVISION_ARGS,
+[32m     24[39m     DIFFUSERS_CACHE,
+[32m     25[39m     DIFFUSERS_DYNAMIC_MODULE_NAME,
+[32m     26[39m     FLAX_WEIGHTS_NAME,
+[32m     27[39m     HF_MODULES_CACHE,
+[32m     28[39m     HUGGINGFACE_CO_RESOLVE_ENDPOINT,
+[32m     29[39m     MIN_PEFT_VERSION,
+[32m     30[39m     ONNX_EXTERNAL_WEIGHTS_NAME,
+[32m     31[39m     ONNX_WEIGHTS_NAME,
+[32m     32[39m     SAFETENSORS_WEIGHTS_NAME,
+[32m     33[39m     USE_PEFT_BACKEND,
+[32m     34[39m     WEIGHTS_NAME,
+[32m     35[39m )
+[32m     36[39m [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01m.[39;00m[34;01mdeprecation_utils[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m deprecate
+[32m     37[39m [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01m.[39;00m[34;01mdoc_utils[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m replace_example_docstring
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/diffusers/utils/constants.py:17[39m
+[32m     14[39m [38;5;28;01mimport[39;00m[38;5;250m [39m[34;01mimportlib[39;00m
+[32m     15[39m [38;5;28;01mimport[39;00m[38;5;250m [39m[34;01mos[39;00m
+[32m---> [39m[32m17[39m [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01mhuggingface_hub[39;00m[34;01m.[39;00m[34;01mconstants[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m HUGGINGFACE_HUB_CACHE, hf_cache_home
+[32m     18[39m [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01mpackaging[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m version
+[32m     20[39m [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01m.[39;00m[34;01m.[39;00m[34;01mdependency_versions_check[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m dep_version_check
+
+[31mImportError[39m: cannot import name 'hf_cache_home' from 'huggingface_hub.constants' (/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/huggingface_hub/constants.py)
+

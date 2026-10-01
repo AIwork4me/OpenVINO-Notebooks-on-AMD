@@ -1,0 +1,1750 @@
+[cell 0 START +    0.5s] # Text Generation via Speculative Decoding using FastDraft and OpenVIN
+[cell 1 START +    0.5s] ## Prerequisites | [back to top ⬆️](#Table-of-contents:) |  |  | First, we sho
+[cell 2 START +    0.5s] %pip install --pre -U openvino-genai --extra-index-url //huggingface\.
+[cell 2 DONE  +    0.8s]
+[cell 3 START +    0.8s] ## Prepare models | [back to top ⬆️](#Table-of-contents:) |  | As example, w
+[cell 4 START +    0.8s] ### Select model | [back to top ⬆️](#Table-of-contents:)
+[cell 5 START +    0.8s] import ipywidgets as widgets |  | model = widgets.Dropdown( |     options=["
+[cell 5 DONE  +    0.8s]
+[cell 6 START +    0.8s] ### Download target and draft models
+[cell 7 START +    0.8s] from pathlib import Path | import huggingface_hub as hf_hub |  | if model.va
+[cell 7 DONE  +    0.8s]
+[cell 8 START +    0.8s] ### Select inference device | [back to top ⬆️](#Table-of-contents:) |  |  | Se
+[cell 9 START +    0.8s] import requests |  | if not Path("notebook_utils.py").exists(): |     r = re
+[cell 9 DONE  +    1.1s]
+[cell 10 START +    1.1s] ## Run target model without speculative decoding | [back to top ⬆️](#Tab
+[cell 11 START +    1.1s] import openvino_genai as ov_genai | import time |  | print("Initializing Aut
+Model: OV Tokenizer
+  NETWORK_NAME: tokenizer
+  OPTIMAL_NUMBER_OF_INFER_REQUESTS: 1
+  NUM_STREAMS: 1
+  INFERENCE_NUM_THREADS: 16
+  PERF_COUNT: NO
+  INFERENCE_PRECISION_HINT: bf16
+  PERFORMANCE_HINT: LATENCY
+  EXECUTION_MODE_HINT: PERFORMANCE
+  PERFORMANCE_HINT_NUM_REQUESTS: 0
+  ENABLE_CPU_PINNING: YES
+  ENABLE_CPU_RESERVATION: NO
+  SCHEDULING_CORE_TYPE: ANY_CORE
+  MODEL_DISTRIBUTION_POLICY: 
+  ENABLE_HYPER_THREADING: NO
+  EXECUTION_DEVICES: CPU
+  CPU_DENORMALS_OPTIMIZATION: NO
+  LOG_LEVEL: LOG_NONE
+  CPU_SPARSE_WEIGHTS_DECOMPRESSION_RATE: 1
+  ENABLE_TENSOR_PARALLEL: NO
+  TBB_PARTITIONER: STATIC
+  DYNAMIC_QUANTIZATION_GROUP_SIZE: 32
+  KV_CACHE_PRECISION: u8
+  KEY_CACHE_PRECISION: u8
+  VALUE_CACHE_PRECISION: u8
+  KEY_CACHE_GROUP_SIZE: 0
+  VALUE_CACHE_GROUP_SIZE: 0
+  RUNTIME_REQUIREMENTS: meta=1.0;ov=2026.4.1;isa=Intel AVX-512 with Intel DL Boost and bfloat16 support
+EXECUTION_DEVICES:
+ CPU: AMD RYZEN AI MAX+ PRO 395 w/ Radeon 8060S      
+Model: OV Detokenizer
+  NETWORK_NAME: detokenizer
+  OPTIMAL_NUMBER_OF_INFER_REQUESTS: 1
+  NUM_STREAMS: 1
+  INFERENCE_NUM_THREADS: 16
+  PERF_COUNT: NO
+  INFERENCE_PRECISION_HINT: bf16
+  PERFORMANCE_HINT: LATENCY
+  EXECUTION_MODE_HINT: PERFORMANCE
+  PERFORMANCE_HINT_NUM_REQUESTS: 0
+  ENABLE_CPU_PINNING: YES
+  ENABLE_CPU_RESERVATION: NO
+  SCHEDULING_CORE_TYPE: ANY_CORE
+  MODEL_DISTRIBUTION_POLICY: 
+  ENABLE_HYPER_THREADING: NO
+  EXECUTION_DEVICES: CPU
+  CPU_DENORMALS_OPTIMIZATION: NO
+  LOG_LEVEL: LOG_NONE
+  CPU_SPARSE_WEIGHTS_DECOMPRESSION_RATE: 1
+  ENABLE_TENSOR_PARALLEL: NO
+  TBB_PARTITIONER: STATIC
+  DYNAMIC_QUANTIZATION_GROUP_SIZE: 32
+  KV_CACHE_PRECISION: u8
+  KEY_CACHE_PRECISION: u8
+  VALUE_CACHE_PRECISION: u8
+  KEY_CACHE_GROUP_SIZE: 0
+  VALUE_CACHE_GROUP_SIZE: 0
+  RUNTIME_REQUIREMENTS: meta=1.0;ov=2026.4.1;isa=Intel AVX-512 with Intel DL Boost and bfloat16 support
+EXECUTION_DEVICES:
+ CPU: AMD RYZEN AI MAX+ PRO 395 w/ Radeon 8060S      
+SchedulerConfig { 
+  max_num_batched_tokens: 18446744073709551615
+  num_kv_blocks: 0
+  cache_size: 0
+  num_linear_attention_blocks: 0
+  cache_interval_multiplier: unset
+  dynamic_split_fuse: true
+  use_cache_eviction: false
+  max_num_seqs: 256
+  enable_prefix_caching: true
+  use_sparse_attention: false
+ }
+Model: LLM with Paged Attention
+  NETWORK_NAME: Model0
+  OPTIMAL_NUMBER_OF_INFER_REQUESTS: 1
+  NUM_STREAMS: 1
+  INFERENCE_NUM_THREADS: 16
+  PERF_COUNT: NO
+  INFERENCE_PRECISION_HINT: bf16
+  PERFORMANCE_HINT: LATENCY
+  EXECUTION_MODE_HINT: PERFORMANCE
+  PERFORMANCE_HINT_NUM_REQUESTS: 0
+  ENABLE_CPU_PINNING: YES
+  ENABLE_CPU_RESERVATION: NO
+  SCHEDULING_CORE_TYPE: ANY_CORE
+  MODEL_DISTRIBUTION_POLICY: 
+  ENABLE_HYPER_THREADING: NO
+  EXECUTION_DEVICES: CPU
+  CPU_DENORMALS_OPTIMIZATION: NO
+  LOG_LEVEL: LOG_NONE
+  CPU_SPARSE_WEIGHTS_DECOMPRESSION_RATE: 1
+  ENABLE_TENSOR_PARALLEL: NO
+  TBB_PARTITIONER: STATIC
+  DYNAMIC_QUANTIZATION_GROUP_SIZE: 32
+  KV_CACHE_PRECISION: u8
+  KEY_CACHE_PRECISION: u8
+  VALUE_CACHE_PRECISION: u8
+  KEY_CACHE_GROUP_SIZE: 0
+  VALUE_CACHE_GROUP_SIZE: 0
+  RUNTIME_REQUIREMENTS: meta=1.0;ov=2026.4.1;isa=Intel AVX-512 with Intel DL Boost and bfloat16 support
+EXECUTION_DEVICES:
+ CPU: AMD RYZEN AI MAX+ PRO 395 w/ Radeon 8060S      
+[cell 11 DONE  +   10.5s]
+[cell 12 START +   10.5s] import gc |  | print(f"Generation time: {end_time - start_time:.2f}s") | del
+[cell 12 DONE  +   10.7s]
+[cell 13 START +   10.7s] ## Run Speculative decoding pipeline | [back to top ⬆️](#Table-of-conten
+[cell 14 START +   10.7s] draft_model = ov_genai.draft_model(draft_model_path, device.value) | con
+Model: OV Tokenizer
+  NETWORK_NAME: tokenizer
+  OPTIMAL_NUMBER_OF_INFER_REQUESTS: 1
+  NUM_STREAMS: 1
+  INFERENCE_NUM_THREADS: 16
+  PERF_COUNT: NO
+  INFERENCE_PRECISION_HINT: bf16
+  PERFORMANCE_HINT: LATENCY
+  EXECUTION_MODE_HINT: PERFORMANCE
+  PERFORMANCE_HINT_NUM_REQUESTS: 0
+  ENABLE_CPU_PINNING: YES
+  ENABLE_CPU_RESERVATION: NO
+  SCHEDULING_CORE_TYPE: ANY_CORE
+  MODEL_DISTRIBUTION_POLICY: 
+  ENABLE_HYPER_THREADING: NO
+  EXECUTION_DEVICES: CPU
+  CPU_DENORMALS_OPTIMIZATION: NO
+  LOG_LEVEL: LOG_NONE
+  CPU_SPARSE_WEIGHTS_DECOMPRESSION_RATE: 1
+  ENABLE_TENSOR_PARALLEL: NO
+  TBB_PARTITIONER: STATIC
+  DYNAMIC_QUANTIZATION_GROUP_SIZE: 32
+  KV_CACHE_PRECISION: u8
+  KEY_CACHE_PRECISION: u8
+  VALUE_CACHE_PRECISION: u8
+  KEY_CACHE_GROUP_SIZE: 0
+  VALUE_CACHE_GROUP_SIZE: 0
+  RUNTIME_REQUIREMENTS: meta=1.0;ov=2026.4.1;isa=Intel AVX-512 with Intel DL Boost and bfloat16 support
+EXECUTION_DEVICES:
+ CPU: AMD RYZEN AI MAX+ PRO 395 w/ Radeon 8060S      
+Model: OV Detokenizer
+  NETWORK_NAME: detokenizer
+  OPTIMAL_NUMBER_OF_INFER_REQUESTS: 1
+  NUM_STREAMS: 1
+  INFERENCE_NUM_THREADS: 16
+  PERF_COUNT: NO
+  INFERENCE_PRECISION_HINT: bf16
+  PERFORMANCE_HINT: LATENCY
+  EXECUTION_MODE_HINT: PERFORMANCE
+  PERFORMANCE_HINT_NUM_REQUESTS: 0
+  ENABLE_CPU_PINNING: YES
+  ENABLE_CPU_RESERVATION: NO
+  SCHEDULING_CORE_TYPE: ANY_CORE
+  MODEL_DISTRIBUTION_POLICY: 
+  ENABLE_HYPER_THREADING: NO
+  EXECUTION_DEVICES: CPU
+  CPU_DENORMALS_OPTIMIZATION: NO
+  LOG_LEVEL: LOG_NONE
+  CPU_SPARSE_WEIGHTS_DECOMPRESSION_RATE: 1
+  ENABLE_TENSOR_PARALLEL: NO
+  TBB_PARTITIONER: STATIC
+  DYNAMIC_QUANTIZATION_GROUP_SIZE: 32
+  KV_CACHE_PRECISION: u8
+  KEY_CACHE_PRECISION: u8
+  VALUE_CACHE_PRECISION: u8
+  KEY_CACHE_GROUP_SIZE: 0
+  VALUE_CACHE_GROUP_SIZE: 0
+  RUNTIME_REQUIREMENTS: meta=1.0;ov=2026.4.1;isa=Intel AVX-512 with Intel DL Boost and bfloat16 support
+EXECUTION_DEVICES:
+ CPU: AMD RYZEN AI MAX+ PRO 395 w/ Radeon 8060S      
+Model: OV Tokenizer
+  NETWORK_NAME: tokenizer
+  OPTIMAL_NUMBER_OF_INFER_REQUESTS: 1
+  NUM_STREAMS: 1
+  INFERENCE_NUM_THREADS: 16
+  PERF_COUNT: NO
+  INFERENCE_PRECISION_HINT: bf16
+  PERFORMANCE_HINT: LATENCY
+  EXECUTION_MODE_HINT: PERFORMANCE
+  PERFORMANCE_HINT_NUM_REQUESTS: 0
+  ENABLE_CPU_PINNING: YES
+  ENABLE_CPU_RESERVATION: NO
+  SCHEDULING_CORE_TYPE: ANY_CORE
+  MODEL_DISTRIBUTION_POLICY: 
+  ENABLE_HYPER_THREADING: NO
+  EXECUTION_DEVICES: CPU
+  CPU_DENORMALS_OPTIMIZATION: NO
+  LOG_LEVEL: LOG_NONE
+  CPU_SPARSE_WEIGHTS_DECOMPRESSION_RATE: 1
+  ENABLE_TENSOR_PARALLEL: NO
+  TBB_PARTITIONER: STATIC
+  DYNAMIC_QUANTIZATION_GROUP_SIZE: 32
+  KV_CACHE_PRECISION: u8
+  KEY_CACHE_PRECISION: u8
+  VALUE_CACHE_PRECISION: u8
+  KEY_CACHE_GROUP_SIZE: 0
+  VALUE_CACHE_GROUP_SIZE: 0
+  RUNTIME_REQUIREMENTS: meta=1.0;ov=2026.4.1;isa=Intel AVX-512 with Intel DL Boost and bfloat16 support
+EXECUTION_DEVICES:
+ CPU: AMD RYZEN AI MAX+ PRO 395 w/ Radeon 8060S      
+Model: OV Detokenizer
+  NETWORK_NAME: detokenizer
+  OPTIMAL_NUMBER_OF_INFER_REQUESTS: 1
+  NUM_STREAMS: 1
+  INFERENCE_NUM_THREADS: 16
+  PERF_COUNT: NO
+  INFERENCE_PRECISION_HINT: bf16
+  PERFORMANCE_HINT: LATENCY
+  EXECUTION_MODE_HINT: PERFORMANCE
+  PERFORMANCE_HINT_NUM_REQUESTS: 0
+  ENABLE_CPU_PINNING: YES
+  ENABLE_CPU_RESERVATION: NO
+  SCHEDULING_CORE_TYPE: ANY_CORE
+  MODEL_DISTRIBUTION_POLICY: 
+  ENABLE_HYPER_THREADING: NO
+  EXECUTION_DEVICES: CPU
+  CPU_DENORMALS_OPTIMIZATION: NO
+  LOG_LEVEL: LOG_NONE
+  CPU_SPARSE_WEIGHTS_DECOMPRESSION_RATE: 1
+  ENABLE_TENSOR_PARALLEL: NO
+  TBB_PARTITIONER: STATIC
+  DYNAMIC_QUANTIZATION_GROUP_SIZE: 32
+  KV_CACHE_PRECISION: u8
+  KEY_CACHE_PRECISION: u8
+  VALUE_CACHE_PRECISION: u8
+  KEY_CACHE_GROUP_SIZE: 0
+  VALUE_CACHE_GROUP_SIZE: 0
+  RUNTIME_REQUIREMENTS: meta=1.0;ov=2026.4.1;isa=Intel AVX-512 with Intel DL Boost and bfloat16 support
+EXECUTION_DEVICES:
+ CPU: AMD RYZEN AI MAX+ PRO 395 w/ Radeon 8060S      
+SchedulerConfig { 
+  max_num_batched_tokens: 18446744073709551615
+  num_kv_blocks: 0
+  cache_size: 0
+  num_linear_attention_blocks: 0
+  cache_interval_multiplier: unset
+  dynamic_split_fuse: true
+  use_cache_eviction: false
+  max_num_seqs: 256
+  enable_prefix_caching: true
+  use_sparse_attention: false
+ }
+Model: LLM with Paged Attention
+  NETWORK_NAME: Model0
+  OPTIMAL_NUMBER_OF_INFER_REQUESTS: 1
+  NUM_STREAMS: 1
+  INFERENCE_NUM_THREADS: 16
+  PERF_COUNT: NO
+  INFERENCE_PRECISION_HINT: bf16
+  PERFORMANCE_HINT: LATENCY
+  EXECUTION_MODE_HINT: PERFORMANCE
+  PERFORMANCE_HINT_NUM_REQUESTS: 0
+  ENABLE_CPU_PINNING: YES
+  ENABLE_CPU_RESERVATION: NO
+  SCHEDULING_CORE_TYPE: ANY_CORE
+  MODEL_DISTRIBUTION_POLICY: 
+  ENABLE_HYPER_THREADING: NO
+  EXECUTION_DEVICES: CPU
+  CPU_DENORMALS_OPTIMIZATION: NO
+  LOG_LEVEL: LOG_NONE
+  CPU_SPARSE_WEIGHTS_DECOMPRESSION_RATE: 1
+  ENABLE_TENSOR_PARALLEL: NO
+  TBB_PARTITIONER: STATIC
+  DYNAMIC_QUANTIZATION_GROUP_SIZE: 32
+  KV_CACHE_PRECISION: u8
+  KEY_CACHE_PRECISION: u8
+  VALUE_CACHE_PRECISION: u8
+  KEY_CACHE_GROUP_SIZE: 0
+  VALUE_CACHE_GROUP_SIZE: 0
+  RUNTIME_REQUIREMENTS: meta=1.0;ov=2026.4.1;isa=Intel AVX-512 with Intel DL Boost and bfloat16 support
+EXECUTION_DEVICES:
+ CPU: AMD RYZEN AI MAX+ PRO 395 w/ Radeon 8060S      
+Model: LLM with Paged Attention
+  NETWORK_NAME: Model0
+  OPTIMAL_NUMBER_OF_INFER_REQUESTS: 1
+  NUM_STREAMS: 1
+  INFERENCE_NUM_THREADS: 16
+  PERF_COUNT: NO
+  INFERENCE_PRECISION_HINT: bf16
+  PERFORMANCE_HINT: LATENCY
+  EXECUTION_MODE_HINT: PERFORMANCE
+  PERFORMANCE_HINT_NUM_REQUESTS: 0
+  ENABLE_CPU_PINNING: YES
+  ENABLE_CPU_RESERVATION: NO
+  SCHEDULING_CORE_TYPE: ANY_CORE
+  MODEL_DISTRIBUTION_POLICY: 
+  ENABLE_HYPER_THREADING: NO
+  EXECUTION_DEVICES: CPU
+  CPU_DENORMALS_OPTIMIZATION: NO
+  LOG_LEVEL: LOG_NONE
+  CPU_SPARSE_WEIGHTS_DECOMPRESSION_RATE: 1
+  ENABLE_TENSOR_PARALLEL: NO
+  TBB_PARTITIONER: STATIC
+  DYNAMIC_QUANTIZATION_GROUP_SIZE: 32
+  KV_CACHE_PRECISION: u8
+  KEY_CACHE_PRECISION: u8
+  VALUE_CACHE_PRECISION: u8
+  KEY_CACHE_GROUP_SIZE: 0
+  VALUE_CACHE_GROUP_SIZE: 0
+  RUNTIME_REQUIREMENTS: meta=1.0;ov=2026.4.1;isa=Intel AVX-512 with Intel DL Boost and bfloat16 support
+EXECUTION_DEVICES:
+ CPU: AMD RYZEN AI MAX+ PRO 395 w/ Radeon 8060S      
+
+=============================== 
+Generated tokens: 200
+Total duration, sec: 4.24209
+Draft model duration, sec: 0.469445
+Main model duration, sec: 3.77265
+Draft model duration, %: 11.0664
+Main model duration, %: 88.9336
+Token per sec: 47.1465
+AVG acceptance rate, %: 50.5714
+=============================== 
+REQUEST_ID: 0
+Main model iterations: 56
+AVG acceptance rate, %: 50.5714
+Generated tokens by draft model: 278
+Accepted token rate, %: 50.7194
+=============================== 
+Request_id: 0 ||| 20 80 60 60 100 20 100 100 20 100 100 100 60 40 0 60 80 100 80 80 100 100 0 80 100 100 100 20 100 0 20 60 100 0 0 60 80 100 100 0 20 40 80 0 40 0 0 0 0 20 20 0 0 0 0 33.3333 
+[cell 14 DONE  +   16.4s]
+[cell 15 START +   16.4s] print(f"Generation time: {end_time - start_time:.2f}s")
+[cell 15 DONE  +   16.4s]
+[cell 16 START +   16.4s] Alternative approach, Dynamic Speculative Decoding, described in the [
+[cell 17 START +   16.4s] config.num_assistant_tokens = 0 | config.assistant_confidence_threshold 
+
+=============================== 
+Generated tokens: 200
+Total duration, sec: 4.01852
+Draft model duration, sec: 0.321846
+Main model duration, sec: 3.69667
+Draft model duration, %: 8.00908
+Main model duration, %: 91.9909
+Token per sec: 49.7696
+AVG acceptance rate, %: 86.7924
+=============================== 
+REQUEST_ID: 0
+Main model iterations: 106
+AVG acceptance rate, %: 86.7924
+Generated tokens by draft model: 106
+Accepted token rate, %: 86.7924
+=============================== 
+Request_id: 0 ||| 100 100 100 0 100 100 100 100 100 100 100 100 100 100 100 100 100 100 100 100 100 100 100 100 100 100 100 100 100 100 100 0 0 100 100 100 100 0 100 100 100 100 100 0 100 100 0 100 100 100 100 100 100 0 100 100 0 100 100 100 100 100 100 100 100 100 100 100 100 100 0 100 100 100 100 100 100 0 0 100 100 0 100 100 100 100 100 100 100 100 0 100 100 0 100 100 100 100 100 100 100 100 100 100 100 100 
+[cell 17 DONE  +   20.4s]
+[cell 18 START +   20.4s] print(f"Generation time: {end_time - start_time:.2f}s")
+[cell 18 DONE  +   20.4s]
+[cell 19 START +   20.4s] ## Evaluate Speculative Decoding on multiple examples
+[cell 20 START +   20.4s] Configure the data type and the number of examples to run:
+[cell 21 START +   20.4s] num_samples_to_select = 50 |  | import ipywidgets as widgets |  | data_options
+[cell 21 DONE  +   20.4s]
+[cell 22 START +   20.4s] Load the dataset and prepare the prompts:
+[cell 23 START +   20.4s] from datasets import load_dataset |  | print("loading dataset...") |  | if dat
+[cell 23 DONE  +   29.0s]
+[cell 24 START +   29.0s] Run auto-regressive generation and get total runtime per example:
+[cell 25 START +   29.0s] import openvino_genai as ov_genai | import time | from tqdm import tqdm |  | p
+Model: OV Tokenizer
+  NETWORK_NAME: tokenizer
+  OPTIMAL_NUMBER_OF_INFER_REQUESTS: 1
+  NUM_STREAMS: 1
+  INFERENCE_NUM_THREADS: 16
+  PERF_COUNT: NO
+  INFERENCE_PRECISION_HINT: bf16
+  PERFORMANCE_HINT: LATENCY
+  EXECUTION_MODE_HINT: PERFORMANCE
+  PERFORMANCE_HINT_NUM_REQUESTS: 0
+  ENABLE_CPU_PINNING: YES
+  ENABLE_CPU_RESERVATION: NO
+  SCHEDULING_CORE_TYPE: ANY_CORE
+  MODEL_DISTRIBUTION_POLICY: 
+  ENABLE_HYPER_THREADING: NO
+  EXECUTION_DEVICES: CPU
+  CPU_DENORMALS_OPTIMIZATION: NO
+  LOG_LEVEL: LOG_NONE
+  CPU_SPARSE_WEIGHTS_DECOMPRESSION_RATE: 1
+  ENABLE_TENSOR_PARALLEL: NO
+  TBB_PARTITIONER: STATIC
+  DYNAMIC_QUANTIZATION_GROUP_SIZE: 32
+  KV_CACHE_PRECISION: u8
+  KEY_CACHE_PRECISION: u8
+  VALUE_CACHE_PRECISION: u8
+  KEY_CACHE_GROUP_SIZE: 0
+  VALUE_CACHE_GROUP_SIZE: 0
+  RUNTIME_REQUIREMENTS: meta=1.0;ov=2026.4.1;isa=Intel AVX-512 with Intel DL Boost and bfloat16 support
+EXECUTION_DEVICES:
+ CPU: AMD RYZEN AI MAX+ PRO 395 w/ Radeon 8060S      
+Model: OV Detokenizer
+  NETWORK_NAME: detokenizer
+  OPTIMAL_NUMBER_OF_INFER_REQUESTS: 1
+  NUM_STREAMS: 1
+  INFERENCE_NUM_THREADS: 16
+  PERF_COUNT: NO
+  INFERENCE_PRECISION_HINT: bf16
+  PERFORMANCE_HINT: LATENCY
+  EXECUTION_MODE_HINT: PERFORMANCE
+  PERFORMANCE_HINT_NUM_REQUESTS: 0
+  ENABLE_CPU_PINNING: YES
+  ENABLE_CPU_RESERVATION: NO
+  SCHEDULING_CORE_TYPE: ANY_CORE
+  MODEL_DISTRIBUTION_POLICY: 
+  ENABLE_HYPER_THREADING: NO
+  EXECUTION_DEVICES: CPU
+  CPU_DENORMALS_OPTIMIZATION: NO
+  LOG_LEVEL: LOG_NONE
+  CPU_SPARSE_WEIGHTS_DECOMPRESSION_RATE: 1
+  ENABLE_TENSOR_PARALLEL: NO
+  TBB_PARTITIONER: STATIC
+  DYNAMIC_QUANTIZATION_GROUP_SIZE: 32
+  KV_CACHE_PRECISION: u8
+  KEY_CACHE_PRECISION: u8
+  VALUE_CACHE_PRECISION: u8
+  KEY_CACHE_GROUP_SIZE: 0
+  VALUE_CACHE_GROUP_SIZE: 0
+  RUNTIME_REQUIREMENTS: meta=1.0;ov=2026.4.1;isa=Intel AVX-512 with Intel DL Boost and bfloat16 support
+EXECUTION_DEVICES:
+ CPU: AMD RYZEN AI MAX+ PRO 395 w/ Radeon 8060S      
+SchedulerConfig { 
+  max_num_batched_tokens: 18446744073709551615
+  num_kv_blocks: 0
+  cache_size: 0
+  num_linear_attention_blocks: 0
+  cache_interval_multiplier: unset
+  dynamic_split_fuse: true
+  use_cache_eviction: false
+  max_num_seqs: 256
+  enable_prefix_caching: true
+  use_sparse_attention: false
+ }
+Model: LLM with Paged Attention
+  NETWORK_NAME: Model0
+  OPTIMAL_NUMBER_OF_INFER_REQUESTS: 1
+  NUM_STREAMS: 1
+  INFERENCE_NUM_THREADS: 16
+  PERF_COUNT: NO
+  INFERENCE_PRECISION_HINT: bf16
+  PERFORMANCE_HINT: LATENCY
+  EXECUTION_MODE_HINT: PERFORMANCE
+  PERFORMANCE_HINT_NUM_REQUESTS: 0
+  ENABLE_CPU_PINNING: YES
+  ENABLE_CPU_RESERVATION: NO
+  SCHEDULING_CORE_TYPE: ANY_CORE
+  MODEL_DISTRIBUTION_POLICY: 
+  ENABLE_HYPER_THREADING: NO
+  EXECUTION_DEVICES: CPU
+  CPU_DENORMALS_OPTIMIZATION: NO
+  LOG_LEVEL: LOG_NONE
+  CPU_SPARSE_WEIGHTS_DECOMPRESSION_RATE: 1
+  ENABLE_TENSOR_PARALLEL: NO
+  TBB_PARTITIONER: STATIC
+  DYNAMIC_QUANTIZATION_GROUP_SIZE: 32
+  KV_CACHE_PRECISION: u8
+  KEY_CACHE_PRECISION: u8
+  VALUE_CACHE_PRECISION: u8
+  KEY_CACHE_GROUP_SIZE: 0
+  VALUE_CACHE_GROUP_SIZE: 0
+  RUNTIME_REQUIREMENTS: meta=1.0;ov=2026.4.1;isa=Intel AVX-512 with Intel DL Boost and bfloat16 support
+EXECUTION_DEVICES:
+ CPU: AMD RYZEN AI MAX+ PRO 395 w/ Radeon 8060S      
+[cell 25 DONE  +  225.2s]
+[cell 26 START +  225.2s] Now run generation with speculative-decoding:
+[cell 27 START +  225.2s] config.num_assistant_tokens = 5 | draft_model = ov_genai.draft_model(dra
+Model: OV Tokenizer
+  NETWORK_NAME: tokenizer
+  OPTIMAL_NUMBER_OF_INFER_REQUESTS: 1
+  NUM_STREAMS: 1
+  INFERENCE_NUM_THREADS: 16
+  PERF_COUNT: NO
+  INFERENCE_PRECISION_HINT: bf16
+  PERFORMANCE_HINT: LATENCY
+  EXECUTION_MODE_HINT: PERFORMANCE
+  PERFORMANCE_HINT_NUM_REQUESTS: 0
+  ENABLE_CPU_PINNING: YES
+  ENABLE_CPU_RESERVATION: NO
+  SCHEDULING_CORE_TYPE: ANY_CORE
+  MODEL_DISTRIBUTION_POLICY: 
+  ENABLE_HYPER_THREADING: NO
+  EXECUTION_DEVICES: CPU
+  CPU_DENORMALS_OPTIMIZATION: NO
+  LOG_LEVEL: LOG_NONE
+  CPU_SPARSE_WEIGHTS_DECOMPRESSION_RATE: 1
+  ENABLE_TENSOR_PARALLEL: NO
+  TBB_PARTITIONER: STATIC
+  DYNAMIC_QUANTIZATION_GROUP_SIZE: 32
+  KV_CACHE_PRECISION: u8
+  KEY_CACHE_PRECISION: u8
+  VALUE_CACHE_PRECISION: u8
+  KEY_CACHE_GROUP_SIZE: 0
+  VALUE_CACHE_GROUP_SIZE: 0
+  RUNTIME_REQUIREMENTS: meta=1.0;ov=2026.4.1;isa=Intel AVX-512 with Intel DL Boost and bfloat16 support
+EXECUTION_DEVICES:
+ CPU: AMD RYZEN AI MAX+ PRO 395 w/ Radeon 8060S      
+Model: OV Detokenizer
+  NETWORK_NAME: detokenizer
+  OPTIMAL_NUMBER_OF_INFER_REQUESTS: 1
+  NUM_STREAMS: 1
+  INFERENCE_NUM_THREADS: 16
+  PERF_COUNT: NO
+  INFERENCE_PRECISION_HINT: bf16
+  PERFORMANCE_HINT: LATENCY
+  EXECUTION_MODE_HINT: PERFORMANCE
+  PERFORMANCE_HINT_NUM_REQUESTS: 0
+  ENABLE_CPU_PINNING: YES
+  ENABLE_CPU_RESERVATION: NO
+  SCHEDULING_CORE_TYPE: ANY_CORE
+  MODEL_DISTRIBUTION_POLICY: 
+  ENABLE_HYPER_THREADING: NO
+  EXECUTION_DEVICES: CPU
+  CPU_DENORMALS_OPTIMIZATION: NO
+  LOG_LEVEL: LOG_NONE
+  CPU_SPARSE_WEIGHTS_DECOMPRESSION_RATE: 1
+  ENABLE_TENSOR_PARALLEL: NO
+  TBB_PARTITIONER: STATIC
+  DYNAMIC_QUANTIZATION_GROUP_SIZE: 32
+  KV_CACHE_PRECISION: u8
+  KEY_CACHE_PRECISION: u8
+  VALUE_CACHE_PRECISION: u8
+  KEY_CACHE_GROUP_SIZE: 0
+  VALUE_CACHE_GROUP_SIZE: 0
+  RUNTIME_REQUIREMENTS: meta=1.0;ov=2026.4.1;isa=Intel AVX-512 with Intel DL Boost and bfloat16 support
+EXECUTION_DEVICES:
+ CPU: AMD RYZEN AI MAX+ PRO 395 w/ Radeon 8060S      
+Model: OV Tokenizer
+  NETWORK_NAME: tokenizer
+  OPTIMAL_NUMBER_OF_INFER_REQUESTS: 1
+  NUM_STREAMS: 1
+  INFERENCE_NUM_THREADS: 16
+  PERF_COUNT: NO
+  INFERENCE_PRECISION_HINT: bf16
+  PERFORMANCE_HINT: LATENCY
+  EXECUTION_MODE_HINT: PERFORMANCE
+  PERFORMANCE_HINT_NUM_REQUESTS: 0
+  ENABLE_CPU_PINNING: YES
+  ENABLE_CPU_RESERVATION: NO
+  SCHEDULING_CORE_TYPE: ANY_CORE
+  MODEL_DISTRIBUTION_POLICY: 
+  ENABLE_HYPER_THREADING: NO
+  EXECUTION_DEVICES: CPU
+  CPU_DENORMALS_OPTIMIZATION: NO
+  LOG_LEVEL: LOG_NONE
+  CPU_SPARSE_WEIGHTS_DECOMPRESSION_RATE: 1
+  ENABLE_TENSOR_PARALLEL: NO
+  TBB_PARTITIONER: STATIC
+  DYNAMIC_QUANTIZATION_GROUP_SIZE: 32
+  KV_CACHE_PRECISION: u8
+  KEY_CACHE_PRECISION: u8
+  VALUE_CACHE_PRECISION: u8
+  KEY_CACHE_GROUP_SIZE: 0
+  VALUE_CACHE_GROUP_SIZE: 0
+  RUNTIME_REQUIREMENTS: meta=1.0;ov=2026.4.1;isa=Intel AVX-512 with Intel DL Boost and bfloat16 support
+EXECUTION_DEVICES:
+ CPU: AMD RYZEN AI MAX+ PRO 395 w/ Radeon 8060S      
+Model: OV Detokenizer
+  NETWORK_NAME: detokenizer
+  OPTIMAL_NUMBER_OF_INFER_REQUESTS: 1
+  NUM_STREAMS: 1
+  INFERENCE_NUM_THREADS: 16
+  PERF_COUNT: NO
+  INFERENCE_PRECISION_HINT: bf16
+  PERFORMANCE_HINT: LATENCY
+  EXECUTION_MODE_HINT: PERFORMANCE
+  PERFORMANCE_HINT_NUM_REQUESTS: 0
+  ENABLE_CPU_PINNING: YES
+  ENABLE_CPU_RESERVATION: NO
+  SCHEDULING_CORE_TYPE: ANY_CORE
+  MODEL_DISTRIBUTION_POLICY: 
+  ENABLE_HYPER_THREADING: NO
+  EXECUTION_DEVICES: CPU
+  CPU_DENORMALS_OPTIMIZATION: NO
+  LOG_LEVEL: LOG_NONE
+  CPU_SPARSE_WEIGHTS_DECOMPRESSION_RATE: 1
+  ENABLE_TENSOR_PARALLEL: NO
+  TBB_PARTITIONER: STATIC
+  DYNAMIC_QUANTIZATION_GROUP_SIZE: 32
+  KV_CACHE_PRECISION: u8
+  KEY_CACHE_PRECISION: u8
+  VALUE_CACHE_PRECISION: u8
+  KEY_CACHE_GROUP_SIZE: 0
+  VALUE_CACHE_GROUP_SIZE: 0
+  RUNTIME_REQUIREMENTS: meta=1.0;ov=2026.4.1;isa=Intel AVX-512 with Intel DL Boost and bfloat16 support
+EXECUTION_DEVICES:
+ CPU: AMD RYZEN AI MAX+ PRO 395 w/ Radeon 8060S      
+SchedulerConfig { 
+  max_num_batched_tokens: 18446744073709551615
+  num_kv_blocks: 0
+  cache_size: 0
+  num_linear_attention_blocks: 0
+  cache_interval_multiplier: unset
+  dynamic_split_fuse: true
+  use_cache_eviction: false
+  max_num_seqs: 256
+  enable_prefix_caching: true
+  use_sparse_attention: false
+ }
+Model: LLM with Paged Attention
+  NETWORK_NAME: Model0
+  OPTIMAL_NUMBER_OF_INFER_REQUESTS: 1
+  NUM_STREAMS: 1
+  INFERENCE_NUM_THREADS: 16
+  PERF_COUNT: NO
+  INFERENCE_PRECISION_HINT: bf16
+  PERFORMANCE_HINT: LATENCY
+  EXECUTION_MODE_HINT: PERFORMANCE
+  PERFORMANCE_HINT_NUM_REQUESTS: 0
+  ENABLE_CPU_PINNING: YES
+  ENABLE_CPU_RESERVATION: NO
+  SCHEDULING_CORE_TYPE: ANY_CORE
+  MODEL_DISTRIBUTION_POLICY: 
+  ENABLE_HYPER_THREADING: NO
+  EXECUTION_DEVICES: CPU
+  CPU_DENORMALS_OPTIMIZATION: NO
+  LOG_LEVEL: LOG_NONE
+  CPU_SPARSE_WEIGHTS_DECOMPRESSION_RATE: 1
+  ENABLE_TENSOR_PARALLEL: NO
+  TBB_PARTITIONER: STATIC
+  DYNAMIC_QUANTIZATION_GROUP_SIZE: 32
+  KV_CACHE_PRECISION: u8
+  KEY_CACHE_PRECISION: u8
+  VALUE_CACHE_PRECISION: u8
+  KEY_CACHE_GROUP_SIZE: 0
+  VALUE_CACHE_GROUP_SIZE: 0
+  RUNTIME_REQUIREMENTS: meta=1.0;ov=2026.4.1;isa=Intel AVX-512 with Intel DL Boost and bfloat16 support
+EXECUTION_DEVICES:
+ CPU: AMD RYZEN AI MAX+ PRO 395 w/ Radeon 8060S      
+Model: LLM with Paged Attention
+  NETWORK_NAME: Model0
+  OPTIMAL_NUMBER_OF_INFER_REQUESTS: 1
+  NUM_STREAMS: 1
+  INFERENCE_NUM_THREADS: 16
+  PERF_COUNT: NO
+  INFERENCE_PRECISION_HINT: bf16
+  PERFORMANCE_HINT: LATENCY
+  EXECUTION_MODE_HINT: PERFORMANCE
+  PERFORMANCE_HINT_NUM_REQUESTS: 0
+  ENABLE_CPU_PINNING: YES
+  ENABLE_CPU_RESERVATION: NO
+  SCHEDULING_CORE_TYPE: ANY_CORE
+  MODEL_DISTRIBUTION_POLICY: 
+  ENABLE_HYPER_THREADING: NO
+  EXECUTION_DEVICES: CPU
+  CPU_DENORMALS_OPTIMIZATION: NO
+  LOG_LEVEL: LOG_NONE
+  CPU_SPARSE_WEIGHTS_DECOMPRESSION_RATE: 1
+  ENABLE_TENSOR_PARALLEL: NO
+  TBB_PARTITIONER: STATIC
+  DYNAMIC_QUANTIZATION_GROUP_SIZE: 32
+  KV_CACHE_PRECISION: u8
+  KEY_CACHE_PRECISION: u8
+  VALUE_CACHE_PRECISION: u8
+  KEY_CACHE_GROUP_SIZE: 0
+  VALUE_CACHE_GROUP_SIZE: 0
+  RUNTIME_REQUIREMENTS: meta=1.0;ov=2026.4.1;isa=Intel AVX-512 with Intel DL Boost and bfloat16 support
+EXECUTION_DEVICES:
+ CPU: AMD RYZEN AI MAX+ PRO 395 w/ Radeon 8060S      
+
+=============================== 
+Generated tokens: 128
+Total duration, sec: 4.95522
+Draft model duration, sec: 0.505813
+Main model duration, sec: 4.44941
+Draft model duration, %: 10.2077
+Main model duration, %: 89.7923
+Token per sec: 25.8314
+AVG acceptance rate, %: 9.75
+=============================== 
+REQUEST_ID: 0
+Main model iterations: 84
+AVG acceptance rate, %: 9.75
+Generated tokens by draft model: 415
+Accepted token rate, %: 9.87952
+=============================== 
+Request_id: 0 ||| 0 20 0 0 0 0 0 20 0 0 0 0 20 0 20 20 20 0 20 0 20 20 0 0 0 20 0 0 20 0 20 0 0 0 0 0 0 0 0 0 0 20 40 0 0 60 0 40 0 20 0 0 0 40 0 40 0 20 20 0 0 0 20 20 0 0 20 0 0 0 40 0 0 60 60 20 0 40 0 0 0 0 0 0 
+
+=============================== 
+Generated tokens: 128
+Total duration, sec: 3.65567
+Draft model duration, sec: 0.470354
+Main model duration, sec: 3.18531
+Draft model duration, %: 12.8664
+Main model duration, %: 87.1336
+Token per sec: 35.0141
+AVG acceptance rate, %: 9.75
+=============================== 
+REQUEST_ID: 0
+Main model iterations: 84
+AVG acceptance rate, %: 9.75
+Generated tokens by draft model: 415
+Accepted token rate, %: 9.87952
+=============================== 
+Request_id: 0 ||| 0 20 0 0 0 0 0 20 0 0 0 0 20 0 20 20 20 0 20 0 20 20 0 0 0 20 0 0 20 0 20 0 0 0 0 0 0 0 0 0 0 20 40 0 0 60 0 40 0 20 0 0 0 40 0 40 0 20 20 0 0 0 20 20 0 0 20 0 0 0 40 0 0 60 60 20 0 40 0 0 0 0 0 0 
+
+=============================== 
+Generated tokens: 128
+Total duration, sec: 3.71359
+Draft model duration, sec: 0.484786
+Main model duration, sec: 3.2288
+Draft model duration, %: 13.0544
+Main model duration, %: 86.9456
+Token per sec: 34.468
+AVG acceptance rate, %: 9.75
+=============================== 
+REQUEST_ID: 0
+Main model iterations: 84
+AVG acceptance rate, %: 9.75
+Generated tokens by draft model: 415
+Accepted token rate, %: 9.87952
+=============================== 
+Request_id: 0 ||| 0 20 0 0 0 0 0 20 0 0 0 0 20 0 20 20 20 0 20 0 20 20 0 0 0 20 0 0 20 0 20 0 0 0 0 0 0 0 0 0 0 20 40 0 0 60 0 40 0 20 0 0 0 40 0 40 0 20 20 0 0 0 20 20 0 0 20 0 0 0 40 0 0 60 60 20 0 40 0 0 0 0 0 0 
+
+=============================== 
+Generated tokens: 128
+Total duration, sec: 3.64483
+Draft model duration, sec: 0.470348
+Main model duration, sec: 3.17449
+Draft model duration, %: 12.9045
+Main model duration, %: 87.0955
+Token per sec: 35.1182
+AVG acceptance rate, %: 9.75
+=============================== 
+REQUEST_ID: 0
+Main model iterations: 84
+AVG acceptance rate, %: 9.75
+Generated tokens by draft model: 415
+Accepted token rate, %: 9.87952
+=============================== 
+Request_id: 0 ||| 0 20 0 0 0 0 0 20 0 0 0 0 20 0 20 20 20 0 20 0 20 20 0 0 0 20 0 0 20 0 20 0 0 0 0 0 0 0 0 0 0 20 40 0 0 60 0 40 0 20 0 0 0 40 0 40 0 20 20 0 0 0 20 20 0 0 20 0 0 0 40 0 0 60 60 20 0 40 0 0 0 0 0 0 
+
+=============================== 
+Generated tokens: 128
+Total duration, sec: 3.64148
+Draft model duration, sec: 0.461981
+Main model duration, sec: 3.1795
+Draft model duration, %: 12.6866
+Main model duration, %: 87.3134
+Token per sec: 35.1506
+AVG acceptance rate, %: 9.75
+=============================== 
+REQUEST_ID: 0
+Main model iterations: 84
+AVG acceptance rate, %: 9.75
+Generated tokens by draft model: 415
+Accepted token rate, %: 9.87952
+=============================== 
+Request_id: 0 ||| 0 20 0 0 0 0 0 20 0 0 0 0 20 0 20 20 20 0 20 0 20 20 0 0 0 20 0 0 20 0 20 0 0 0 0 0 0 0 0 0 0 20 40 0 0 60 0 40 0 20 0 0 0 40 0 40 0 20 20 0 0 0 20 20 0 0 20 0 0 0 40 0 0 60 60 20 0 40 0 0 0 0 0 0 
+
+=============================== 
+Generated tokens: 128
+Total duration, sec: 3.63698
+Draft model duration, sec: 0.455531
+Main model duration, sec: 3.18145
+Draft model duration, %: 12.525
+Main model duration, %: 87.475
+Token per sec: 35.1941
+AVG acceptance rate, %: 9.75
+=============================== 
+REQUEST_ID: 0
+Main model iterations: 84
+AVG acceptance rate, %: 9.75
+Generated tokens by draft model: 415
+Accepted token rate, %: 9.87952
+=============================== 
+Request_id: 0 ||| 0 20 0 0 0 0 0 20 0 0 0 0 20 0 20 20 20 0 20 0 20 20 0 0 0 20 0 0 20 0 20 0 0 0 0 0 0 0 0 0 0 20 40 0 0 60 0 40 0 20 0 0 0 40 0 40 0 20 20 0 0 0 20 20 0 0 20 0 0 0 40 0 0 60 60 20 0 40 0 0 0 0 0 0 
+
+=============================== 
+Generated tokens: 128
+Total duration, sec: 3.67332
+Draft model duration, sec: 0.481237
+Main model duration, sec: 3.19209
+Draft model duration, %: 13.1009
+Main model duration, %: 86.8991
+Token per sec: 34.8458
+AVG acceptance rate, %: 9.75
+=============================== 
+REQUEST_ID: 0
+Main model iterations: 84
+AVG acceptance rate, %: 9.75
+Generated tokens by draft model: 415
+Accepted token rate, %: 9.87952
+=============================== 
+Request_id: 0 ||| 0 20 0 0 0 0 0 20 0 0 0 0 20 0 20 20 20 0 20 0 20 20 0 0 0 20 0 0 20 0 20 0 0 0 0 0 0 0 0 0 0 20 40 0 0 60 0 40 0 20 0 0 0 40 0 40 0 20 20 0 0 0 20 20 0 0 20 0 0 0 40 0 0 60 60 20 0 40 0 0 0 0 0 0 
+
+=============================== 
+Generated tokens: 128
+Total duration, sec: 3.66019
+Draft model duration, sec: 0.464475
+Main model duration, sec: 3.19571
+Draft model duration, %: 12.6899
+Main model duration, %: 87.3101
+Token per sec: 34.9709
+AVG acceptance rate, %: 9.75
+=============================== 
+REQUEST_ID: 0
+Main model iterations: 84
+AVG acceptance rate, %: 9.75
+Generated tokens by draft model: 415
+Accepted token rate, %: 9.87952
+=============================== 
+Request_id: 0 ||| 0 20 0 0 0 0 0 20 0 0 0 0 20 0 20 20 20 0 20 0 20 20 0 0 0 20 0 0 20 0 20 0 0 0 0 0 0 0 0 0 0 20 40 0 0 60 0 40 0 20 0 0 0 40 0 40 0 20 20 0 0 0 20 20 0 0 20 0 0 0 40 0 0 60 60 20 0 40 0 0 0 0 0 0 
+
+=============================== 
+Generated tokens: 128
+Total duration, sec: 3.66173
+Draft model duration, sec: 0.461309
+Main model duration, sec: 3.20042
+Draft model duration, %: 12.5981
+Main model duration, %: 87.4019
+Token per sec: 34.9562
+AVG acceptance rate, %: 9.75
+=============================== 
+REQUEST_ID: 0
+Main model iterations: 84
+AVG acceptance rate, %: 9.75
+Generated tokens by draft model: 415
+Accepted token rate, %: 9.87952
+=============================== 
+Request_id: 0 ||| 0 20 0 0 0 0 0 20 0 0 0 0 20 0 20 20 20 0 20 0 20 20 0 0 0 20 0 0 20 0 20 0 0 0 0 0 0 0 0 0 0 20 40 0 0 60 0 40 0 20 0 0 0 40 0 40 0 20 20 0 0 0 20 20 0 0 20 0 0 0 40 0 0 60 60 20 0 40 0 0 0 0 0 0 
+
+=============================== 
+Generated tokens: 128
+Total duration, sec: 3.64627
+Draft model duration, sec: 0.460854
+Main model duration, sec: 3.18542
+Draft model duration, %: 12.6391
+Main model duration, %: 87.3609
+Token per sec: 35.1044
+AVG acceptance rate, %: 9.75
+=============================== 
+REQUEST_ID: 0
+Main model iterations: 84
+AVG acceptance rate, %: 9.75
+Generated tokens by draft model: 415
+Accepted token rate, %: 9.87952
+=============================== 
+Request_id: 0 ||| 0 20 0 0 0 0 0 20 0 0 0 0 20 0 20 20 20 0 20 0 20 20 0 0 0 20 0 0 20 0 20 0 0 0 0 0 0 0 0 0 0 20 40 0 0 60 0 40 0 20 0 0 0 40 0 40 0 20 20 0 0 0 20 20 0 0 20 0 0 0 40 0 0 60 60 20 0 40 0 0 0 0 0 0 
+
+=============================== 
+Generated tokens: 82
+Total duration, sec: 1.23702
+Draft model duration, sec: 0.144037
+Main model duration, sec: 1.09298
+Draft model duration, %: 11.6439
+Main model duration, %: 88.3561
+Token per sec: 66.2886
+AVG acceptance rate, %: 58
+=============================== 
+REQUEST_ID: 0
+Main model iterations: 20
+AVG acceptance rate, %: 58
+Generated tokens by draft model: 105
+Accepted token rate, %: 55.2381
+=============================== 
+Request_id: 0 ||| 0 100 80 100 100 80 80 100 100 100 0 0 0 100 80 0 60 20 60 0 
+
+=============================== 
+Generated tokens: 128
+Total duration, sec: 1.96011
+Draft model duration, sec: 0.229395
+Main model duration, sec: 1.73071
+Draft model duration, %: 11.7032
+Main model duration, %: 88.2968
+Token per sec: 65.3026
+AVG acceptance rate, %: 50
+=============================== 
+REQUEST_ID: 0
+Main model iterations: 36
+AVG acceptance rate, %: 50
+Generated tokens by draft model: 180
+Accepted token rate, %: 50
+=============================== 
+Request_id: 0 ||| 0 80 60 40 40 100 100 80 100 100 60 0 40 0 40 40 60 0 60 100 20 40 0 100 0 0 100 40 60 80 20 40 100 20 0 80 
+
+=============================== 
+Generated tokens: 39
+Total duration, sec: 0.778438
+Draft model duration, sec: 0.088379
+Main model duration, sec: 0.690059
+Draft model duration, %: 11.3534
+Main model duration, %: 88.6466
+Token per sec: 50.1003
+AVG acceptance rate, %: 33.7692
+=============================== 
+REQUEST_ID: 0
+Main model iterations: 13
+AVG acceptance rate, %: 33.7692
+Generated tokens by draft model: 70
+Accepted token rate, %: 31.4286
+=============================== 
+Request_id: 0 ||| 20 0 0 100 0 100 100 0 20 20 20 60 0 
+
+=============================== 
+Generated tokens: 63
+Total duration, sec: 1.15641
+Draft model duration, sec: 0.134184
+Main model duration, sec: 1.02223
+Draft model duration, %: 11.6035
+Main model duration, %: 88.3965
+Token per sec: 54.4788
+AVG acceptance rate, %: 39
+=============================== 
+REQUEST_ID: 0
+Main model iterations: 20
+AVG acceptance rate, %: 39
+Generated tokens by draft model: 105
+Accepted token rate, %: 37.1429
+=============================== 
+Request_id: 0 ||| 0 100 0 100 60 20 0 100 0 100 0 0 0 60 100 0 0 100 40 0 
+
+=============================== 
+Generated tokens: 64
+Total duration, sec: 1.44393
+Draft model duration, sec: 0.195102
+Main model duration, sec: 1.24883
+Draft model duration, %: 13.5119
+Main model duration, %: 86.4881
+Token per sec: 44.3235
+AVG acceptance rate, %: 26.1154
+=============================== 
+REQUEST_ID: 0
+Main model iterations: 26
+AVG acceptance rate, %: 26.1154
+Generated tokens by draft model: 135
+Accepted token rate, %: 25.1852
+=============================== 
+Request_id: 0 ||| 0 0 0 20 100 40 0 20 20 0 0 0 0 80 100 0 0 100 100 0 20 20 20 40 0 0 
+
+=============================== 
+Generated tokens: 85
+Total duration, sec: 1.43815
+Draft model duration, sec: 0.172
+Main model duration, sec: 1.26615
+Draft model duration, %: 11.9598
+Main model duration, %: 88.0402
+Token per sec: 59.1038
+AVG acceptance rate, %: 37.8571
+=============================== 
+REQUEST_ID: 0
+Main model iterations: 28
+AVG acceptance rate, %: 37.8571
+Generated tokens by draft model: 145
+Accepted token rate, %: 36.5517
+=============================== 
+Request_id: 0 ||| 0 0 100 20 0 20 0 40 100 20 100 20 60 20 20 80 100 60 0 100 100 0 20 20 20 40 0 0 
+
+=============================== 
+Generated tokens: 128
+Total duration, sec: 1.77851
+Draft model duration, sec: 0.209988
+Main model duration, sec: 1.56853
+Draft model duration, %: 11.8069
+Main model duration, %: 88.1931
+Token per sec: 71.9702
+AVG acceptance rate, %: 53.0588
+=============================== 
+REQUEST_ID: 0
+Main model iterations: 34
+AVG acceptance rate, %: 53.0588
+Generated tokens by draft model: 171
+Accepted token rate, %: 52.6316
+=============================== 
+Request_id: 0 ||| 0 40 0 100 20 0 80 0 20 40 60 0 100 0 100 80 0 100 100 20 40 0 100 20 80 80 100 100 40 60 100 100 100 25 
+
+=============================== 
+Generated tokens: 43
+Total duration, sec: 0.855386
+Draft model duration, sec: 0.091346
+Main model duration, sec: 0.76404
+Draft model duration, %: 10.6789
+Main model duration, %: 89.3211
+Token per sec: 50.2697
+AVG acceptance rate, %: 35.6429
+=============================== 
+REQUEST_ID: 0
+Main model iterations: 14
+AVG acceptance rate, %: 35.6429
+Generated tokens by draft model: 75
+Accepted token rate, %: 33.3333
+=============================== 
+Request_id: 0 ||| 0 20 100 0 100 80 100 0 0 20 20 0 60 0 
+
+=============================== 
+Generated tokens: 89
+Total duration, sec: 1.58677
+Draft model duration, sec: 0.181006
+Main model duration, sec: 1.40577
+Draft model duration, %: 11.4072
+Main model duration, %: 88.5928
+Token per sec: 56.0886
+AVG acceptance rate, %: 36.6667
+=============================== 
+REQUEST_ID: 0
+Main model iterations: 30
+AVG acceptance rate, %: 36.6667
+Generated tokens by draft model: 155
+Accepted token rate, %: 35.4839
+=============================== 
+Request_id: 0 ||| 0 100 0 100 20 80 80 20 20 0 100 60 20 20 0 60 40 100 20 0 80 100 0 0 20 20 0 40 0 0 
+
+=============================== 
+Generated tokens: 128
+Total duration, sec: 1.75418
+Draft model duration, sec: 0.223713
+Main model duration, sec: 1.53047
+Draft model duration, %: 12.7531
+Main model duration, %: 87.2469
+Token per sec: 72.9684
+AVG acceptance rate, %: 49.1143
+=============================== 
+REQUEST_ID: 0
+Main model iterations: 35
+AVG acceptance rate, %: 49.1143
+Generated tokens by draft model: 180
+Accepted token rate, %: 47.7778
+=============================== 
+Request_id: 0 ||| 0 40 20 40 20 0 0 20 20 100 100 100 20 40 0 0 0 100 0 100 0 100 100 40 0 0 20 100 100 60 100 100 100 100 80 
+
+=============================== 
+Generated tokens: 128
+Total duration, sec: 2.17559
+Draft model duration, sec: 0.240244
+Main model duration, sec: 1.93534
+Draft model duration, %: 11.0427
+Main model duration, %: 88.9573
+Token per sec: 58.8347
+AVG acceptance rate, %: 43.725
+=============================== 
+REQUEST_ID: 0
+Main model iterations: 40
+AVG acceptance rate, %: 43.725
+Generated tokens by draft model: 197
+Accepted token rate, %: 43.6548
+=============================== 
+Request_id: 0 ||| 0 40 0 20 20 40 20 60 60 60 0 100 40 40 60 80 0 80 20 80 20 0 0 20 60 60 0 100 20 20 100 100 100 20 20 40 100 60 40 50 
+
+=============================== 
+Generated tokens: 128
+Total duration, sec: 1.77248
+Draft model duration, sec: 0.207538
+Main model duration, sec: 1.56494
+Draft model duration, %: 11.7089
+Main model duration, %: 88.2911
+Token per sec: 72.2153
+AVG acceptance rate, %: 52
+=============================== 
+REQUEST_ID: 0
+Main model iterations: 35
+AVG acceptance rate, %: 52
+Generated tokens by draft model: 175
+Accepted token rate, %: 52
+=============================== 
+Request_id: 0 ||| 100 20 60 60 40 80 100 20 40 20 60 40 80 20 0 40 100 20 0 100 40 60 100 100 100 40 20 20 0 80 0 0 100 80 80 
+
+=============================== 
+Generated tokens: 50
+Total duration, sec: 1.0834
+Draft model duration, sec: 0.118983
+Main model duration, sec: 0.964414
+Draft model duration, %: 10.9824
+Main model duration, %: 89.0176
+Token per sec: 46.1511
+AVG acceptance rate, %: 28.4211
+=============================== 
+REQUEST_ID: 0
+Main model iterations: 19
+AVG acceptance rate, %: 28.4211
+Generated tokens by draft model: 100
+Accepted token rate, %: 27
+=============================== 
+Request_id: 0 ||| 0 0 100 20 0 0 40 0 20 0 60 80 100 0 0 20 100 0 0 
+
+=============================== 
+Generated tokens: 50
+Total duration, sec: 0.94106
+Draft model duration, sec: 0.101749
+Main model duration, sec: 0.839311
+Draft model duration, %: 10.8122
+Main model duration, %: 89.1878
+Token per sec: 53.1316
+AVG acceptance rate, %: 37.5
+=============================== 
+REQUEST_ID: 0
+Main model iterations: 16
+AVG acceptance rate, %: 37.5
+Generated tokens by draft model: 85
+Accepted token rate, %: 35.2941
+=============================== 
+Request_id: 0 ||| 0 80 0 100 40 80 0 100 100 0 20 20 20 40 0 0 
+
+=============================== 
+Generated tokens: 128
+Total duration, sec: 1.64464
+Draft model duration, sec: 0.210636
+Main model duration, sec: 1.43401
+Draft model duration, %: 12.8074
+Main model duration, %: 87.1926
+Token per sec: 77.8285
+AVG acceptance rate, %: 52.9118
+=============================== 
+REQUEST_ID: 0
+Main model iterations: 34
+AVG acceptance rate, %: 52.9118
+Generated tokens by draft model: 172
+Accepted token rate, %: 52.3256
+=============================== 
+Request_id: 0 ||| 20 20 0 100 0 100 20 0 60 0 20 80 100 100 100 100 40 100 40 100 40 0 20 100 60 20 100 40 60 0 20 100 100 40 
+
+=============================== 
+Generated tokens: 51
+Total duration, sec: 0.889851
+Draft model duration, sec: 0.103826
+Main model duration, sec: 0.786025
+Draft model duration, %: 11.6678
+Main model duration, %: 88.3322
+Token per sec: 57.313
+AVG acceptance rate, %: 38.6875
+=============================== 
+REQUEST_ID: 0
+Main model iterations: 16
+AVG acceptance rate, %: 38.6875
+Generated tokens by draft model: 85
+Accepted token rate, %: 36.4706
+=============================== 
+Request_id: 0 ||| 40 40 20 100 0 0 100 0 100 100 0 20 20 20 60 0 
+
+=============================== 
+Generated tokens: 40
+Total duration, sec: 0.751828
+Draft model duration, sec: 0.084641
+Main model duration, sec: 0.667187
+Draft model duration, %: 11.258
+Main model duration, %: 88.742
+Token per sec: 53.2037
+AVG acceptance rate, %: 38.4615
+=============================== 
+REQUEST_ID: 0
+Main model iterations: 13
+AVG acceptance rate, %: 38.4615
+Generated tokens by draft model: 70
+Accepted token rate, %: 35.7143
+=============================== 
+Request_id: 0 ||| 60 40 0 60 80 100 0 0 20 40 60 0 40 
+
+=============================== 
+Generated tokens: 103
+Total duration, sec: 1.71648
+Draft model duration, sec: 0.19816
+Main model duration, sec: 1.51832
+Draft model duration, %: 11.5446
+Main model duration, %: 88.4554
+Token per sec: 60.0066
+AVG acceptance rate, %: 45.9667
+=============================== 
+REQUEST_ID: 0
+Main model iterations: 30
+AVG acceptance rate, %: 45.9667
+Generated tokens by draft model: 155
+Accepted token rate, %: 44.5161
+=============================== 
+Request_id: 0 ||| 0 40 60 80 20 40 20 100 80 100 40 0 100 20 100 0 0 100 40 40 100 0 80 100 0 0 20 40 60 0 
+
+=============================== 
+Generated tokens: 78
+Total duration, sec: 1.19654
+Draft model duration, sec: 0.141514
+Main model duration, sec: 1.05503
+Draft model duration, %: 11.8269
+Main model duration, %: 88.1731
+Token per sec: 65.1879
+AVG acceptance rate, %: 49.0909
+=============================== 
+REQUEST_ID: 0
+Main model iterations: 22
+AVG acceptance rate, %: 49.0909
+Generated tokens by draft model: 115
+Accepted token rate, %: 46.9565
+=============================== 
+Request_id: 0 ||| 0 100 20 20 20 0 40 20 100 100 20 80 20 100 60 100 100 0 100 40 0 40 
+
+=============================== 
+Generated tokens: 128
+Total duration, sec: 1.74629
+Draft model duration, sec: 0.217607
+Main model duration, sec: 1.52868
+Draft model duration, %: 12.4611
+Main model duration, %: 87.5389
+Token per sec: 73.2984
+AVG acceptance rate, %: 54.5152
+=============================== 
+REQUEST_ID: 0
+Main model iterations: 33
+AVG acceptance rate, %: 54.5152
+Generated tokens by draft model: 168
+Accepted token rate, %: 53.5714
+=============================== 
+Request_id: 0 ||| 0 20 20 0 100 100 100 60 100 100 100 100 40 100 100 40 20 20 20 60 40 20 100 20 100 0 0 100 40 0 80 0 100 
+
+=============================== 
+Generated tokens: 123
+Total duration, sec: 2.03158
+Draft model duration, sec: 0.232832
+Main model duration, sec: 1.79875
+Draft model duration, %: 11.4606
+Main model duration, %: 88.5394
+Token per sec: 60.544
+AVG acceptance rate, %: 44.3243
+=============================== 
+REQUEST_ID: 0
+Main model iterations: 37
+AVG acceptance rate, %: 44.3243
+Generated tokens by draft model: 190
+Accepted token rate, %: 43.1579
+=============================== 
+Request_id: 0 ||| 0 0 80 20 20 100 20 20 100 20 40 20 20 40 80 60 60 40 80 100 60 80 0 40 100 40 100 0 0 80 100 0 0 20 100 0 0 
+
+=============================== 
+Generated tokens: 100
+Total duration, sec: 1.62041
+Draft model duration, sec: 0.196249
+Main model duration, sec: 1.42416
+Draft model duration, %: 12.1111
+Main model duration, %: 87.8889
+Token per sec: 61.7129
+AVG acceptance rate, %: 44
+=============================== 
+REQUEST_ID: 0
+Main model iterations: 30
+AVG acceptance rate, %: 44
+Generated tokens by draft model: 155
+Accepted token rate, %: 42.5806
+=============================== 
+Request_id: 0 ||| 0 0 100 60 100 80 20 0 20 100 20 100 80 0 0 80 0 100 100 60 0 100 100 0 20 20 20 40 0 0 
+
+=============================== 
+Generated tokens: 47
+Total duration, sec: 0.917055
+Draft model duration, sec: 0.102528
+Main model duration, sec: 0.814527
+Draft model duration, %: 11.1801
+Main model duration, %: 88.8199
+Token per sec: 51.251
+AVG acceptance rate, %: 37.2667
+=============================== 
+REQUEST_ID: 0
+Main model iterations: 15
+AVG acceptance rate, %: 37.2667
+Generated tokens by draft model: 80
+Accepted token rate, %: 35
+=============================== 
+Request_id: 0 ||| 40 80 0 100 60 80 60 0 40 0 20 20 0 60 0 
+
+=============================== 
+Generated tokens: 37
+Total duration, sec: 0.612167
+Draft model duration, sec: 0.073491
+Main model duration, sec: 0.538676
+Draft model duration, %: 12.0051
+Main model duration, %: 87.9949
+Token per sec: 60.441
+AVG acceptance rate, %: 39.9091
+=============================== 
+REQUEST_ID: 0
+Main model iterations: 11
+AVG acceptance rate, %: 39.9091
+Generated tokens by draft model: 60
+Accepted token rate, %: 36.6667
+=============================== 
+Request_id: 0 ||| 20 20 80 100 100 0 20 20 20 60 0 
+
+=============================== 
+Generated tokens: 128
+Total duration, sec: 2.36502
+Draft model duration, sec: 0.293467
+Main model duration, sec: 2.07156
+Draft model duration, %: 12.4086
+Main model duration, %: 87.5914
+Token per sec: 54.1221
+AVG acceptance rate, %: 29.4118
+=============================== 
+REQUEST_ID: 0
+Main model iterations: 51
+AVG acceptance rate, %: 29.4118
+Generated tokens by draft model: 248
+Accepted token rate, %: 30.2419
+=============================== 
+Request_id: 0 ||| 0 80 0 20 0 0 100 100 80 40 0 0 60 100 0 0 80 40 0 0 40 0 20 0 0 20 0 0 40 0 0 0 20 100 40 0 0 60 0 0 0 0 20 100 20 40 100 100 80 0 0 
+
+=============================== 
+Generated tokens: 116
+Total duration, sec: 2.14566
+Draft model duration, sec: 0.254148
+Main model duration, sec: 1.89151
+Draft model duration, %: 11.8448
+Main model duration, %: 88.1552
+Token per sec: 54.0627
+AVG acceptance rate, %: 34.5854
+=============================== 
+REQUEST_ID: 0
+Main model iterations: 41
+AVG acceptance rate, %: 34.5854
+Generated tokens by draft model: 210
+Accepted token rate, %: 33.8095
+=============================== 
+Request_id: 0 ||| 0 20 40 40 100 100 0 0 100 0 0 60 40 0 40 100 0 0 20 20 100 0 0 0 20 60 100 0 60 0 100 0 100 100 0 20 20 20 40 0 0 
+
+=============================== 
+Generated tokens: 82
+Total duration, sec: 1.30435
+Draft model duration, sec: 0.155969
+Main model duration, sec: 1.14838
+Draft model duration, %: 11.9576
+Main model duration, %: 88.0424
+Token per sec: 62.8665
+AVG acceptance rate, %: 42.36
+=============================== 
+REQUEST_ID: 0
+Main model iterations: 25
+AVG acceptance rate, %: 42.36
+Generated tokens by draft model: 130
+Accepted token rate, %: 40.7692
+=============================== 
+Request_id: 0 ||| 0 20 60 100 20 100 80 0 0 60 0 100 20 60 40 80 0 100 100 0 20 20 20 60 0 
+
+=============================== 
+Generated tokens: 37
+Total duration, sec: 0.677636
+Draft model duration, sec: 0.077249
+Main model duration, sec: 0.600387
+Draft model duration, %: 11.3998
+Main model duration, %: 88.6002
+Token per sec: 54.6016
+AVG acceptance rate, %: 38.3333
+=============================== 
+REQUEST_ID: 0
+Main model iterations: 12
+AVG acceptance rate, %: 38.3333
+Generated tokens by draft model: 65
+Accepted token rate, %: 35.3846
+=============================== 
+Request_id: 0 ||| 60 20 40 80 100 0 0 20 40 60 0 40 
+
+=============================== 
+Generated tokens: 38
+Total duration, sec: 0.737194
+Draft model duration, sec: 0.078845
+Main model duration, sec: 0.658349
+Draft model duration, %: 10.6953
+Main model duration, %: 89.3047
+Token per sec: 51.5468
+AVG acceptance rate, %: 36.5833
+=============================== 
+REQUEST_ID: 0
+Main model iterations: 12
+AVG acceptance rate, %: 36.5833
+Generated tokens by draft model: 65
+Accepted token rate, %: 33.8462
+=============================== 
+Request_id: 0 ||| 20 0 100 20 80 100 0 0 20 40 60 0 
+
+=============================== 
+Generated tokens: 46
+Total duration, sec: 0.794889
+Draft model duration, sec: 0.087539
+Main model duration, sec: 0.70735
+Draft model duration, %: 11.0127
+Main model duration, %: 88.9873
+Token per sec: 57.8697
+AVG acceptance rate, %: 44.5385
+=============================== 
+REQUEST_ID: 0
+Main model iterations: 13
+AVG acceptance rate, %: 44.5385
+Generated tokens by draft model: 70
+Accepted token rate, %: 41.4286
+=============================== 
+Request_id: 0 ||| 40 100 0 40 100 80 100 0 0 20 40 60 0 
+
+=============================== 
+Generated tokens: 45
+Total duration, sec: 0.989994
+Draft model duration, sec: 0.1006
+Main model duration, sec: 0.889394
+Draft model duration, %: 10.1617
+Main model duration, %: 89.8383
+Token per sec: 45.4548
+AVG acceptance rate, %: 34.6
+=============================== 
+REQUEST_ID: 0
+Main model iterations: 15
+AVG acceptance rate, %: 34.6
+Generated tokens by draft model: 80
+Accepted token rate, %: 32.5
+=============================== 
+Request_id: 0 ||| 0 20 60 40 100 0 100 100 0 20 20 20 40 0 0 
+
+=============================== 
+Generated tokens: 105
+Total duration, sec: 1.59843
+Draft model duration, sec: 0.192668
+Main model duration, sec: 1.40577
+Draft model duration, %: 12.0535
+Main model duration, %: 87.9465
+Token per sec: 65.6893
+AVG acceptance rate, %: 47.3
+=============================== 
+REQUEST_ID: 0
+Main model iterations: 30
+AVG acceptance rate, %: 47.3
+Generated tokens by draft model: 155
+Accepted token rate, %: 45.8065
+=============================== 
+Request_id: 0 ||| 40 20 80 80 40 20 100 100 0 80 20 40 20 100 0 20 100 100 100 60 0 100 100 0 20 20 20 40 0 0 
+
+=============================== 
+Generated tokens: 128
+Total duration, sec: 2.63199
+Draft model duration, sec: 0.304193
+Main model duration, sec: 2.3278
+Draft model duration, %: 11.5575
+Main model duration, %: 88.4425
+Token per sec: 48.6324
+AVG acceptance rate, %: 36.3636
+=============================== 
+REQUEST_ID: 0
+Main model iterations: 44
+AVG acceptance rate, %: 36.3636
+Generated tokens by draft model: 222
+Accepted token rate, %: 36.036
+=============================== 
+Request_id: 0 ||| 0 0 60 100 20 60 20 0 40 0 0 40 80 0 0 20 80 0 0 20 40 20 0 0 60 40 20 80 40 100 20 0 0 100 40 20 100 100 20 20 0 100 40 100 
+
+=============================== 
+Generated tokens: 79
+Total duration, sec: 1.67129
+Draft model duration, sec: 0.18608
+Main model duration, sec: 1.48521
+Draft model duration, %: 11.1339
+Main model duration, %: 88.8661
+Token per sec: 47.269
+AVG acceptance rate, %: 29.9667
+=============================== 
+REQUEST_ID: 0
+Main model iterations: 30
+AVG acceptance rate, %: 29.9667
+Generated tokens by draft model: 155
+Accepted token rate, %: 29.0323
+=============================== 
+Request_id: 0 ||| 0 0 0 20 0 0 100 20 80 20 60 100 0 0 20 20 0 0 100 60 0 100 100 0 20 20 20 40 0 0 
+
+=============================== 
+Generated tokens: 128
+Total duration, sec: 1.58968
+Draft model duration, sec: 0.19917
+Main model duration, sec: 1.39051
+Draft model duration, %: 12.5289
+Main model duration, %: 87.4711
+Token per sec: 80.5191
+AVG acceptance rate, %: 58.125
+=============================== 
+REQUEST_ID: 0
+Main model iterations: 32
+AVG acceptance rate, %: 58.125
+Generated tokens by draft model: 161
+Accepted token rate, %: 57.764
+=============================== 
+Request_id: 0 ||| 60 20 60 0 0 20 20 100 60 80 0 20 0 20 20 100 100 100 100 100 100 100 40 100 100 40 20 60 20 100 100 100 
+
+=============================== 
+Generated tokens: 69
+Total duration, sec: 1.17931
+Draft model duration, sec: 0.141865
+Main model duration, sec: 1.03745
+Draft model duration, %: 12.0294
+Main model duration, %: 87.9706
+Token per sec: 58.5085
+AVG acceptance rate, %: 39.0455
+=============================== 
+REQUEST_ID: 0
+Main model iterations: 22
+AVG acceptance rate, %: 39.0455
+Generated tokens by draft model: 115
+Accepted token rate, %: 37.3913
+=============================== 
+Request_id: 0 ||| 0 20 20 0 80 0 40 80 100 100 100 20 0 100 100 0 20 20 20 40 0 0 
+
+=============================== 
+Generated tokens: 83
+Total duration, sec: 1.43013
+Draft model duration, sec: 0.181287
+Main model duration, sec: 1.24884
+Draft model duration, %: 12.6762
+Main model duration, %: 87.3238
+Token per sec: 58.0366
+AVG acceptance rate, %: 42.3077
+=============================== 
+REQUEST_ID: 0
+Main model iterations: 26
+AVG acceptance rate, %: 42.3077
+Generated tokens by draft model: 135
+Accepted token rate, %: 40.7407
+=============================== 
+Request_id: 0 ||| 0 100 80 40 100 0 80 100 100 20 40 0 0 0 40 80 80 100 0 0 20 40 40 0 0 40 
+
+=============================== 
+Generated tokens: 128
+Total duration, sec: 2.3502
+Draft model duration, sec: 0.305261
+Main model duration, sec: 2.04494
+Draft model duration, %: 12.9887
+Main model duration, %: 87.0113
+Token per sec: 54.4633
+AVG acceptance rate, %: 36.3409
+=============================== 
+REQUEST_ID: 0
+Main model iterations: 44
+AVG acceptance rate, %: 36.3409
+Generated tokens by draft model: 220
+Accepted token rate, %: 36.3636
+=============================== 
+Request_id: 0 ||| 0 0 0 40 0 0 100 60 20 100 60 40 40 80 40 80 0 0 0 20 20 20 0 0 60 100 0 20 40 60 40 0 40 100 100 0 100 100 0 20 20 20 60 0 
+
+=============================== 
+Generated tokens: 128
+Total duration, sec: 1.82653
+Draft model duration, sec: 0.232088
+Main model duration, sec: 1.59445
+Draft model duration, %: 12.7065
+Main model duration, %: 87.2935
+Token per sec: 70.0781
+AVG acceptance rate, %: 64
+=============================== 
+REQUEST_ID: 0
+Main model iterations: 30
+AVG acceptance rate, %: 64
+Generated tokens by draft model: 146
+Accepted token rate, %: 65.7534
+=============================== 
+Request_id: 0 ||| 0 0 100 100 100 100 100 100 40 100 100 40 100 0 100 80 20 20 80 0 0 20 100 100 100 100 100 60 60 0 
+
+=============================== 
+Generated tokens: 128
+Total duration, sec: 1.49175
+Draft model duration, sec: 0.185536
+Main model duration, sec: 1.30622
+Draft model duration, %: 12.4374
+Main model duration, %: 87.5625
+Token per sec: 85.8051
+AVG acceptance rate, %: 69.75
+=============================== 
+REQUEST_ID: 0
+Main model iterations: 28
+AVG acceptance rate, %: 69.75
+Generated tokens by draft model: 139
+Accepted token rate, %: 69.7842
+=============================== 
+Request_id: 0 ||| 0 80 60 20 20 100 100 100 60 100 100 100 100 0 0 100 40 100 80 80 100 100 0 80 100 100 100 33.3333 
+
+=============================== 
+Generated tokens: 128
+Total duration, sec: 2.32095
+Draft model duration, sec: 0.256353
+Main model duration, sec: 2.0646
+Draft model duration, %: 11.0452
+Main model duration, %: 88.9549
+Token per sec: 55.1497
+AVG acceptance rate, %: 40.7143
+=============================== 
+REQUEST_ID: 0
+Main model iterations: 42
+AVG acceptance rate, %: 40.7143
+Generated tokens by draft model: 207
+Accepted token rate, %: 40.5797
+=============================== 
+Request_id: 0 ||| 0 0 0 60 100 0 0 0 80 0 100 0 0 100 40 40 0 20 100 40 0 40 100 0 80 40 100 0 0 80 0 40 100 20 100 0 0 80 0 100 100 50 
+
+=============================== 
+Generated tokens: 84
+Total duration, sec: 1.63211
+Draft model duration, sec: 0.179857
+Main model duration, sec: 1.45226
+Draft model duration, %: 11.0199
+Main model duration, %: 88.9801
+Token per sec: 51.467
+AVG acceptance rate, %: 35.8276
+=============================== 
+REQUEST_ID: 0
+Main model iterations: 29
+AVG acceptance rate, %: 35.8276
+Generated tokens by draft model: 150
+Accepted token rate, %: 34.6667
+=============================== 
+Request_id: 0 ||| 20 80 100 0 80 0 40 0 20 40 0 60 60 80 0 100 100 100 20 0 20 0 40 0 0 0 40 40 0 
+
+=============================== 
+Generated tokens: 43
+Total duration, sec: 0.982562
+Draft model duration, sec: 0.108394
+Main model duration, sec: 0.874168
+Draft model duration, %: 11.0318
+Main model duration, %: 88.9682
+Token per sec: 43.7631
+AVG acceptance rate, %: 28.6875
+=============================== 
+REQUEST_ID: 0
+Main model iterations: 16
+AVG acceptance rate, %: 28.6875
+Generated tokens by draft model: 85
+Accepted token rate, %: 27.0588
+=============================== 
+Request_id: 0 ||| 0 20 0 100 0 40 0 100 100 0 20 20 20 40 0 0 
+
+=============================== 
+Generated tokens: 128
+Total duration, sec: 1.94518
+Draft model duration, sec: 0.223773
+Main model duration, sec: 1.7214
+Draft model duration, %: 11.504
+Main model duration, %: 88.496
+Token per sec: 65.8038
+AVG acceptance rate, %: 53.5294
+=============================== 
+REQUEST_ID: 0
+Main model iterations: 34
+AVG acceptance rate, %: 53.5294
+Generated tokens by draft model: 171
+Accepted token rate, %: 53.2164
+=============================== 
+Request_id: 0 ||| 0 80 100 80 0 100 100 40 80 0 100 100 0 0 80 100 0 0 20 40 40 0 0 40 0 0 100 20 100 100 100 100 100 100 
+
+=============================== 
+Generated tokens: 79
+Total duration, sec: 1.57568
+Draft model duration, sec: 0.182969
+Main model duration, sec: 1.39271
+Draft model duration, %: 11.6121
+Main model duration, %: 88.3879
+Token per sec: 50.1371
+AVG acceptance rate, %: 30
+=============================== 
+REQUEST_ID: 0
+Main model iterations: 30
+AVG acceptance rate, %: 30
+Generated tokens by draft model: 155
+Accepted token rate, %: 29.0323
+=============================== 
+Request_id: 0 ||| 0 0 100 40 60 20 40 20 100 0 0 20 0 0 20 0 80 0 0 100 0 0 80 100 0 0 20 40 60 0 
+
+=============================== 
+Generated tokens: 128
+Total duration, sec: 2.23624
+Draft model duration, sec: 0.286986
+Main model duration, sec: 1.94925
+Draft model duration, %: 12.8334
+Main model duration, %: 87.1666
+Token per sec: 57.239
+AVG acceptance rate, %: 31.2292
+=============================== 
+REQUEST_ID: 0
+Main model iterations: 48
+AVG acceptance rate, %: 31.2292
+Generated tokens by draft model: 243
+Accepted token rate, %: 30.8642
+=============================== 
+Request_id: 0 ||| 20 20 0 20 0 60 0 0 60 0 20 100 100 100 20 20 100 80 0 100 100 40 0 20 0 0 20 0 0 40 0 0 0 20 60 20 40 0 0 0 20 0 0 20 60 20 100 100 
+
+=============================== 
+Generated tokens: 128
+Total duration, sec: 2.31178
+Draft model duration, sec: 0.270047
+Main model duration, sec: 2.04174
+Draft model duration, %: 11.6813
+Main model duration, %: 88.3187
+Token per sec: 55.3685
+AVG acceptance rate, %: 36.2558
+=============================== 
+REQUEST_ID: 0
+Main model iterations: 43
+AVG acceptance rate, %: 36.2558
+Generated tokens by draft model: 220
+Accepted token rate, %: 35.4545
+=============================== 
+Request_id: 0 ||| 0 0 0 20 20 0 20 40 60 80 0 20 100 80 20 100 40 100 0 100 0 80 0 0 40 100 100 0 20 20 20 40 0 0 40 0 0 0 0 0 100 100 100 
+
+=============================== 
+Generated tokens: 128
+Total duration, sec: 1.82673
+Draft model duration, sec: 0.232253
+Main model duration, sec: 1.59448
+Draft model duration, %: 12.7141
+Main model duration, %: 87.2859
+Token per sec: 70.0704
+AVG acceptance rate, %: 46.4865
+=============================== 
+REQUEST_ID: 0
+Main model iterations: 37
+AVG acceptance rate, %: 46.4865
+Generated tokens by draft model: 188
+Accepted token rate, %: 45.7447
+=============================== 
+Request_id: 0 ||| 0 0 0 60 100 20 20 100 60 20 20 20 40 100 0 100 80 80 40 100 100 0 20 100 0 0 40 0 0 0 0 0 100 100 100 100 100 
+
+=============================== 
+Generated tokens: 41
+Total duration, sec: 0.736986
+Draft model duration, sec: 0.080439
+Main model duration, sec: 0.656547
+Draft model duration, %: 10.9146
+Main model duration, %: 89.0854
+Token per sec: 55.632
+AVG acceptance rate, %: 41.5833
+=============================== 
+REQUEST_ID: 0
+Main model iterations: 12
+AVG acceptance rate, %: 41.5833
+Generated tokens by draft model: 65
+Accepted token rate, %: 38.4615
+=============================== 
+Request_id: 0 ||| 40 20 100 20 100 100 0 20 20 20 60 0 
+
+=============================== 
+Generated tokens: 128
+Total duration, sec: 2.16871
+Draft model duration, sec: 0.256384
+Main model duration, sec: 1.91232
+Draft model duration, %: 11.822
+Main model duration, %: 88.178
+Token per sec: 59.0214
+AVG acceptance rate, %: 37.7674
+=============================== 
+REQUEST_ID: 0
+Main model iterations: 43
+AVG acceptance rate, %: 37.7674
+Generated tokens by draft model: 216
+Accepted token rate, %: 37.5
+=============================== 
+Request_id: 0 ||| 0 0 20 20 0 80 0 60 20 0 40 100 40 20 0 100 100 60 40 60 100 100 100 60 0 20 0 40 100 80 0 100 40 20 0 40 20 20 0 0 0 0 25 
+[cell 27 DONE  +  340.5s]
+[cell 28 START +  340.5s] Now let's calculate the speedup:
+[cell 29 START +  340.5s] avg_speedup = sum([x / y for x, y in zip(times_auto_regressive, times_
+[cell 29 DONE  +  340.5s]
+NBEXEC_RESULT={"ok": true, "n_cells": 15, "n_skipped": 0, "n_substituted": 2, "stopped_after": null, "error_cell": null, "error_type": null, "error_head": null, "duration_s": 341.25, "patch_notes": ["substituted 1 occurrence(s) in cell 2", "substituted 2 occurrence(s) in cell 9"]}

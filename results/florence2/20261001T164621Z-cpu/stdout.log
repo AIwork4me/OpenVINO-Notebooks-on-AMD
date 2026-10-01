@@ -1,0 +1,26 @@
+[cell 0 START +    0.4s] # Florence-2: Open Source Vision Foundation Model |  | Florence-2 is a lig
+[cell 1 START +    0.4s] ## Prerequisites | [back to top ⬆️](#Table-of-contents:)
+[cell 2 START +    0.4s] %pip install -q "einops" "torch==2.8" "torchvision==0.23.0" "matplotli
+[cell 2 DONE  +    1.2s]
+[cell 3 START +    1.2s] import requests | from pathlib import Path |  | if not Path("ov_florence2_he
+[cell 3 DONE  +    1.3s]
+[cell 4 START +    1.3s] ## Select model | [back to top ⬆️](#Table-of-contents:) |  | The Florence-2 
+[cell 5 START +    1.3s] from ov_florence2_helper import convert_florence2, get_model_selector | 
+[cell 5 DONE  +    4.5s]
+[cell 6 START +    4.5s] ## Convert model | [back to top ⬆️](#Table-of-contents:) |  | Florence2 is P
+[cell 7 START +    4.5s] model_id = model_selector.value | model_path = Path(model_id.split("/")[
+[cell 7 DONE  +    4.5s]
+[cell 8 START +    4.5s] convert_florence2(model_id, model_path)
+[cell 8 DONE  +    4.5s]
+[cell 9 START +    4.5s] ## Select inference device | [back to top ⬆️](#Table-of-contents:)
+[cell 10 START +    4.5s] from notebook_utils import device_widget |  | device = device_widget(exclu
+[cell 10 DONE  +    4.5s]
+[cell 11 START +    4.5s] ## Run model inference | [back to top ⬆️](#Table-of-contents:) |  | `OvFlore
+[cell 12 START +    4.5s] from ov_florence2_helper import OVFlorence2Model |  | # Uncomment the line
+[cell 12 DONE  +    4.5s]
+[cell 13 START +    4.5s] model = OVFlorence2Model(model_path, device.value)
+[cell 13 DONE  +    5.2s]
+[cell 14 START +    5.2s] Additionally, for model usage we also need `Processor` class, that dis
+[cell 15 START +    5.2s] import requests | from PIL import Image |  | from transformers import AutoPr
+[cell 15 DONE  +    5.5s]
+NBEXEC_RESULT={"ok": false, "n_cells": 12, "n_skipped": 1, "n_substituted": 3, "stopped_after": null, "error_cell": null, "error_type": "CellExecutionError", "error_head": "\u001b[31mInvalidSchema\u001b[39m: No connection adapters were found for '//huggingface\\\\.co :https://hf-mirror.com://huggingface.co/datasets/huggingface/documentation-images/resolve/main/transformers/tasks/car.jpg?download=true'", "duration_s": 8.13, "patch_notes": ["substituted 1 occurrence(s) in cell 2", "substituted 4 occurrence(s) in cell 3", "substituted 1 occurrence(s) in cell 15", "skipped cell 21: matched skip pattern"]}

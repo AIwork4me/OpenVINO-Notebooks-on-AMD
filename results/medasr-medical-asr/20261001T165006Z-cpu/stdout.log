@@ -1,0 +1,11 @@
+[cell 0 START +    0.4s] # MedASR Medical Speech Recognition with OpenVINO |  | [MedASR](https://hu
+[cell 1 START +    0.4s] ## 1. Installation <a id="installation"></a> | [back to top ⬆️](#Table-o
+[cell 2 START +    0.4s] %pip install -q "openvino>=2026.1.0" "nncf>=3.0.0" "torch>=2.10" "tran
+[cell 2 DONE  +   29.9s]
+[cell 3 START +   29.9s] ## 2. Login to HuggingFace <a id="login-huggingface"></a> | [back to top
+[cell 4 START +   29.9s] # Login to HuggingFace Hub to get access to the pretrained model | # Unc
+[cell 4 DONE  +   30.0s]
+[cell 5 START +   30.0s] ## 3. Load Model <a id="load-model"></a> | [back to top ⬆️](#Table-of-co
+[cell 6 START +   30.0s] from transformers import pipeline | import huggingface_hub | import libros
+[cell 6 DONE  +   32.0s]
+NBEXEC_RESULT={"ok": false, "n_cells": 11, "n_skipped": 0, "n_substituted": 1, "stopped_after": null, "error_cell": null, "error_type": "CellExecutionError", "error_head": "\u001b[31mImportError\u001b[39m: /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/torch/lib/libtorch_cuda.so: undefined symbol: ncclCommResume", "duration_s": 32.61, "patch_notes": ["substituted 2 occurrence(s) in cell 2"]}

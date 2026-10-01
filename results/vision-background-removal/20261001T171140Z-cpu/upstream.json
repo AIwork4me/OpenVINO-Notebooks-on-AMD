@@ -1,0 +1,8 @@
+{
+  "repository": "openvinotoolkit/openvino_notebooks",
+  "branch": "latest",
+  "commit": "a8809170cc4fc6aa633fbb9c22214be67ac20b47",
+  "path": "notebooks/vision-background-removal/vision-background-removal.ipynb",
+  "url": "https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/vision-background-removal/vision-background-removal.ipynb",
+  "notebook_sha256": "e077aca7006133cf8f9459504b279299dca684ad29fada4cedf329010b51c383"
+}

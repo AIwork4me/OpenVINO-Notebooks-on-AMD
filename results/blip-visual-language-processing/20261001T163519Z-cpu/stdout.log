@@ -1,0 +1,50 @@
+[cell 0 START +    0.4s] # Visual Question Answering and Image Captioning using BLIP and OpenVI
+[cell 1 START +    0.4s]  | #### Table of contents: |  | - [Background](#Background) |     - [Image Cap
+[cell 2 START +    0.4s] ## Background | [back to top ⬆️](#Table-of-contents:) |  | Visual language p
+[cell 3 START +    0.4s] ## Instantiate Model | [back to top ⬆️](#Table-of-contents:) |  | The BLIP m
+[cell 4 START +    0.4s] %pip install -q --extra-index-url //huggingface\.co :https://hf-mirror
+[cell 4 DONE  +    1.2s]
+[cell 5 START +    1.2s] import time | from PIL import Image | from transformers import BlipProcess
+[cell 5 DONE  +    9.1s]
+[cell 6 START +    9.1s] print(f"Processing time: {end:.4f} s")
+[cell 6 DONE  +    9.2s]
+[cell 7 START +    9.2s] from pathlib import Path |  | if not Path("./utils.py").exists(): |     down
+[cell 7 DONE  +    9.8s]
+[cell 8 START +    9.8s] ## Convert Models to OpenVINO IR | [back to top ⬆️](#Table-of-contents:)
+[cell 9 START +    9.8s] ### Vision Model | [back to top ⬆️](#Table-of-contents:) |  | The vision mod
+[cell 10 START +    9.8s] import torch | from pathlib import Path | import openvino as ov |  | VISION_MO
+[cell 10 DONE  +   10.0s]
+[cell 11 START +   10.0s] ### Text Encoder | [back to top ⬆️](#Table-of-contents:) |  | The text encod
+[cell 12 START +   10.0s] TEXT_ENCODER_OV = Path("blip_text_encoder.xml") |  |  | text_encoder = model
+[cell 12 DONE  +   10.0s]
+[cell 13 START +   10.0s] ### Text Decoder | [back to top ⬆️](#Table-of-contents:) |  | The text decod
+[cell 14 START +   10.0s] text_decoder = model.text_decoder | text_decoder.eval() |  | TEXT_DECODER_OV
+[cell 14 DONE  +   12.6s]
+[cell 15 START +   12.6s] ## Run OpenVINO Model | [back to top ⬆️](#Table-of-contents:) |  | ### Prepa
+[cell 16 START +   12.6s] # create OpenVINO Core object instance | core = ov.Core()
+[cell 16 DONE  +   12.6s]
+[cell 17 START +   12.6s] ### Select inference device | [back to top ⬆️](#Table-of-contents:) |  | sel
+[cell 18 START +   12.6s] device = device_widget(exclude=["NPU"]) |  | device
+[cell 18 DONE  +   12.8s]
+[cell 19 START +   12.8s] # load models on device | ov_vision_model = core.compile_model(VISION_MO
+[cell 19 DONE  +   13.6s]
+[cell 20 START +   13.6s] from functools import partial | from blip_model import text_decoder_forw
+[cell 20 DONE  +   13.6s]
+[cell 21 START +   13.6s] The model helper class has two methods for generation: **generate_answ
+[cell 22 START +   13.6s] if not Path("./blip_model.py").exists(): |     download_file(url="//hugg
+[cell 22 DONE  +   13.9s]
+[cell 23 START +   13.9s] Now, the model is ready for generation.
+[cell 24 START +   13.9s] ### Image Captioning | [back to top ⬆️](#Table-of-contents:) | 
+[cell 25 START +   13.9s] out = ov_model.generate_caption(inputs["pixel_values"], max_length=20)
+[cell 25 DONE  +   14.3s]
+[cell 26 START +   14.3s] ### Question Answering | [back to top ⬆️](#Table-of-contents:) | 
+[cell 27 START +   14.3s] start = time.perf_counter() | out = ov_model.generate_answer(**inputs, m
+[cell 27 DONE  +   14.6s]
+[cell 28 START +   14.6s] print(f"Processing time: {end:.4f}")
+[cell 28 DONE  +   14.6s]
+[cell 29 START +   14.6s] ## Optimize model using NNCF |  | [back to top ⬆️](#Table-of-contents:) |  | [
+[cell 30 START +   14.6s] to_quantize = quantization_widget() |  | to_quantize
+[cell 30 DONE  +   14.6s]
+[cell 31 START +   14.6s] VISION_MODEL_OV_INT8 = Path(str(VISION_MODEL_OV).replace(".xml", "_int
+[cell 31 DONE  +   14.7s]
+NBEXEC_RESULT={"ok": false, "n_cells": 36, "n_skipped": 1, "n_substituted": 5, "stopped_after": null, "error_cell": null, "error_type": "CellExecutionError", "error_head": "\u001b[31mInvalidSchema\u001b[39m: No connection adapters were found for '//huggingface\\\\.co :https://hf-mirror.com://raw.githubusercontent.com/openvinotoolkit/openvino_notebooks/latest/utils/skip_kernel_extension.py'", "duration_s": 16.66, "patch_notes": ["substituted 1 occurrence(s) in cell 4", "substituted 3 occurrence(s) in cell 5", "substituted 1 occurrence(s) in cell 7", "substituted 1 occurrence(s) in cell 22", "substituted 1 occurrence(s) in cell 31", "skipped cell 61: matched skip pattern"]}
