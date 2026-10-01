@@ -1,0 +1,73 @@
+[cell 0 START +    0.6s] # Image-to-Video synthesis with AnimateAnyone and OpenVINO | ![](./anima
+[cell 1 START +    0.6s] ## Prerequisites | [back to top ⬆️](#Table-of-contents:)
+[cell 2 START +    0.6s] from pathlib import Path | import requests |  | %pip install -q "torch==2.8"
+[cell 2 DONE  +    1.7s]
+[cell 3 START +    1.7s] Note that we clone a fork of original repo with tweaked forward method
+[cell 4 START +    1.7s] MODEL_DIR = Path("models") | VAE_ENCODER_PATH = MODEL_DIR / "vae_encoder
+[cell 4 DONE  +    1.7s]
+[cell 5 START +    1.7s] from datetime import datetime | from typing import Optional, Union, Call
+[cell 5 DONE  +    4.2s]
+[cell 6 START +    4.2s] %%skip not $SHOULD_CONVERT | from pathlib import PurePosixPath | import gc
+[cell 6 DONE  +    4.6s]
+[cell 7 START +    4.6s] ## Prepare base model | [back to top ⬆️](#Table-of-contents:)
+[cell 8 START +    4.6s] %%skip not $SHOULD_CONVERT | local_dir = Path("./pretrained_weights/stab
+[cell 8 DONE  +    4.6s]
+[cell 9 START +    4.6s] ## Prepare image encoder | [back to top ⬆️](#Table-of-contents:)
+[cell 10 START +    4.6s] %%skip not $SHOULD_CONVERT | local_dir = Path("./pretrained_weights") | lo
+[cell 10 DONE  +    4.6s]
+[cell 11 START +    4.6s] ## Download weights | [back to top ⬆️](#Table-of-contents:)
+[cell 12 START +    4.6s] %%skip not $SHOULD_CONVERT | snapshot_download( |     repo_id="stabilityai
+[cell 12 DONE  +  369.1s]
+[cell 13 START +  369.1s] config = OmegaConf.load("Moore-AnimateAnyone/configs/prompts/animation
+[cell 13 DONE  +  369.1s]
+[cell 14 START +  369.1s] ## Initialize models | [back to top ⬆️](#Table-of-contents:)
+[cell 15 START +  369.1s] %%skip not $SHOULD_CONVERT | vae = AutoencoderKL.from_pretrained(config.
+[cell 15 DONE  +  374.5s]
+[cell 16 START +  374.5s] ## Load pretrained weights | [back to top ⬆️](#Table-of-contents:)
+[cell 17 START +  374.5s] %%skip not $SHOULD_CONVERT | denoising_unet.load_state_dict( |     torch.l
+[cell 17 DONE  +  375.4s]
+[cell 18 START +  375.4s] ## Convert model to OpenVINO IR | [back to top ⬆️](#Table-of-contents:) | 
+[cell 19 START +  375.4s] %%skip not $SHOULD_CONVERT | def cleanup_torchscript_cache(): |     """ |   
+[cell 19 DONE  +  375.4s]
+[cell 20 START +  375.4s] %%skip not $SHOULD_CONVERT | warnings.simplefilter("ignore", torch.jit.T
+[cell 20 DONE  +  375.4s]
+[cell 21 START +  375.4s] ### VAE | [back to top ⬆️](#Table-of-contents:) |  | The VAE model has two p
+[cell 22 START +  375.4s] %%skip not $SHOULD_CONVERT | if not VAE_ENCODER_PATH.exists(): |     class
+[cell 22 DONE  +  383.7s]
+[cell 23 START +  383.7s] %%skip not $SHOULD_CONVERT | if not VAE_DECODER_PATH.exists(): |     class
+[cell 23 DONE  +  395.7s]
+[cell 24 START +  395.7s] ### Reference UNet | [back to top ⬆️](#Table-of-contents:) |  | Pipeline ext
+[cell 25 START +  395.7s] %%skip not $SHOULD_CONVERT | if not REFERENCE_UNET_PATH.exists(): |     cl
+[cell 25 DONE  +  419.1s]
+[cell 26 START +  419.1s] ### Denoising UNet | [back to top ⬆️](#Table-of-contents:) |  | Denoising UN
+[cell 27 START +  419.1s] %%skip not $SHOULD_CONVERT | if not DENOISING_UNET_PATH.exists(): |     cl
+[cell 27 DONE  +  751.7s]
+[cell 28 START +  751.7s] ### Pose Guider | [back to top ⬆️](#Table-of-contents:) |  | To ensure pose 
+[cell 29 START +  751.7s] %%skip not $SHOULD_CONVERT | if not POSE_GUIDER_PATH.exists(): |     pose_
+[cell 29 DONE  +  757.1s]
+[cell 30 START +  757.1s] ### Image Encoder | [back to top ⬆️](#Table-of-contents:) |  | Pipeline uses
+[cell 31 START +  757.1s] %%skip not $SHOULD_CONVERT | if not IMAGE_ENCODER_PATH.exists(): |     ima
+[cell 31 DONE  +  764.6s]
+[cell 32 START +  764.6s] ## Inference | [back to top ⬆️](#Table-of-contents:) |  | We inherit from th
+[cell 33 START +  764.6s] core = ov.Core()
+[cell 33 DONE  +  764.6s]
+[cell 34 START +  764.6s] ### Select inference device | [back to top ⬆️](#Table-of-contents:) |  | For
+[cell 35 START +  764.6s] from notebook_utils import device_widget |  | device = device_widget(exclu
+[cell 35 DONE  +  764.8s]
+[cell 36 START +  764.8s] class OVPose2VideoPipeline(Pose2VideoPipeline): |     def __init__( |     
+[cell 36 DONE  +  764.9s]
+[cell 37 START +  764.9s] pipe = OVPose2VideoPipeline()
+[cell 37 DONE  +  775.2s]
+[cell 38 START +  775.2s] pose_images = read_frames("Moore-AnimateAnyone/configs/inference/pose_
+[cell 38 DONE  +  775.3s]
+[cell 39 START +  775.3s] video = pipe( |     ref_image, |     pose_list, |     width=WIDTH, |     heigh
+[cell 39 DONE  + 1339.1s]
+[cell 40 START + 1339.1s] ## Video post-processing | [back to top ⬆️](#Table-of-contents:)
+[cell 41 START + 1339.1s] new_h, new_w = video.shape[-2:] | pose_transform = transforms.Compose([t
+[cell 41 DONE  + 1339.4s]
+[cell 42 START + 1339.4s] from IPython.display import Video |  | Video(out_path, embed=True)
+[cell 42 DONE  + 1339.4s]
+[cell 43 START + 1339.4s] ## Interactive inference | [back to top ⬆️](#Table-of-contents:)
+[cell 44 START + 1339.4s] import gradio as gr |  |  | def generate( |     img, |     pose_vid, |     seed, |  
+[cell 44 DONE  + 1340.0s]
+[cell 45 START + 1340.0s] if not Path("gradio_helper.py").exists(): |     r = requests.get(url="//

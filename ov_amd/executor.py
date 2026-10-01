@@ -181,6 +181,11 @@ def env_health_check(state: dict[str, Any]) -> bool:
     return False
 
 
+# UI-only tail cells block forever headless; skipping them is the documented
+# §22 policy (CORE_INFERENCE_VERIFIED; INTERACTIVE_UI_NOT_TESTED)
+DEFAULT_SKIP_RES = [r"demo\.launch|iface\.launch|app\.launch|\.launch\(\)"]
+
+
 class AttemptOutcome:
     def __init__(self) -> None:
         self.status = Status.FAILED
@@ -259,7 +264,7 @@ def run_workload_cpu(entry: NotebookEntry, state: dict[str, Any], dry_run: bool 
             backend="cpu",
             wall_timeout_s=wall,
             per_cell_timeout_s=min(wall, 900),
-            skip_res=patches.get("skip_cells_matching"),
+            skip_res=list(patches.get("skip_cells_matching") or DEFAULT_SKIP_RES),
             stop_after_re=patches.get("stop_after_cell_matching"),
             subs=subs,
             cwd=workdir,

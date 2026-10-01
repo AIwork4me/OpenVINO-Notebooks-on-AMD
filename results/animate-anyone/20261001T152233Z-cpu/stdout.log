@@ -17,3 +17,4 @@
 [cell 10 DONE  +    4.6s]
 [cell 11 START +    4.6s] ## Download weights | [back to top ⬆️](#Table-of-contents:)
 [cell 12 START +    4.6s] %%skip not $SHOULD_CONVERT | snapshot_download( |     repo_id="stabilityai
+NBEXEC_RESULT={"ok": false, "n_cells": 28, "n_skipped": 0, "n_substituted": 2, "stopped_after": null, "error_cell": null, "error_type": "CellTimeoutError", "error_head": "-------------------", "duration_s": 907.22, "patch_notes": ["substituted 4 occurrence(s) in cell 2", "substituted 2 occurrence(s) in cell 45"]}
