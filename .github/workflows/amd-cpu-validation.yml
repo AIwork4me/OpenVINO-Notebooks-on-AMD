@@ -1,0 +1,31 @@
+name: amd-cpu-validation
+
+# Self-hosted workflow: runs the OpenVINO-on-Ryzen validation on the AMD
+# machine. Requires a self-hosted runner with the CPU validation venv and the
+# pinned upstream clone present. Status badges must only cite real runs.
+
+on:
+  workflow_dispatch:
+    inputs:
+      priority_max:
+        description: "max priority tier to run (0..4)"
+        default: "1"
+  schedule:
+    - cron: "0 3 * * 1" # weekly revalidation smoke
+
+jobs:
+  cpu:
+    runs-on: [self-hosted, amd64, amd-cpu]
+    steps:
+      - uses: actions/checkout@v4
+      - name: Doctor
+        run: python -m ov_amd doctor
+      - name: Marathon (CPU, bounded)
+        run: python scripts/run_marathon.py --cpu-only --priority ${{ github.event.inputs.priority_max || '1' }} --max-runtime 7200
+      - name: Report
+        run: python -m ov_amd report
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: marathon-state
+          path: results/marathon-state.json

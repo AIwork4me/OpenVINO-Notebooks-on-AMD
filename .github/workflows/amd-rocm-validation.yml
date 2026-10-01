@@ -1,0 +1,25 @@
+name: amd-rocm-validation
+
+# Self-hosted workflow: runs ROCm twins on the Radeon GPU. Requires a
+# self-hosted runner with ROCm + the GPU venv (.venv-gpu). Status claims must
+# come only from real executions of this workflow.
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 4 * * 1"
+
+jobs:
+  gpu:
+    runs-on: [self-hosted, amd64, amd-gpu, rocm]
+    steps:
+      - uses: actions/checkout@v4
+      - name: Doctor
+        run: python -m ov_amd doctor
+      - name: GPU twins
+        run: python scripts/run_marathon.py --gpu-only --max-runtime 7200
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: gpu-results
+          path: results/

@@ -1,0 +1,29 @@
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -e ".[dev]"
+      - run: python -m pytest -q
+      - run: ruff check .
+      - name: Catalog consistency
+        run: |
+          python - <<'EOF'
+          import json, yaml, pathlib
+          cat = yaml.safe_load(pathlib.Path("catalog/notebooks.yaml").read_text())
+          compat = json.loads(pathlib.Path("catalog/compatibility.json").read_text())
+          ids = {n["id"] for n in cat["notebooks"]}
+          rows = {r["id"] for r in compat["rows"]}
+          assert ids == rows, f"catalog/compatibility out of sync: {ids ^ rows}"
+          print(f"consistent: {len(ids)} entries")
+          EOF

@@ -1,0 +1,32 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+.venv*/
+venv*/
+
+# Upstream clone + local caches (never mirror upstream in this repo)
+.cache/
+models/
+outputs/
+*.safetensors
+*.bin
+*.pt
+*.pth
+*.onnx
+*.xml
+*.zip
+*.tar.gz
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Local only
+.env
+*.local
+
+# Keep small intentional fixtures (tests/data/**) via negation
+!tests/data/**
+!tests/data/**
