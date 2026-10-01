@@ -1,0 +1,115 @@
+[IPKernelApp] WARNING | Kernel is running over TCP without encryption. All communication (including code and outputs) is sent in plain text and is susceptible to eavesdropping. Use IPC transport or launch with kernel manager-provisioned CurveZMQ keys to enable transport encryption.
+[31mERROR: Invalid requirement: 'git+//huggingface\\.co': Expected semicolon (after name with no version specifier) or end
+    git+//huggingface\.co
+       ^
+Hint: It looks like a path. File 'git+//huggingface\.co' does not exist.[0m[31m
+[0mTraceback (most recent call last):
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/ov_amd/_nbexec.py", line 122, in main
+    client.execute()
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/jupyter_core/utils/__init__.py", line 165, in wrapped
+    return loop.run_until_complete(inner)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/base_events.py", line 687, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/nbclient/client.py", line 709, in async_execute
+    await self.async_execute_cell(
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/nbclient/client.py", line 1062, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/nbclient/client.py", line 918, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+import requests
+from pathlib import Path
+
+for fname in ("notebook_utils.py", "cmd_helper.py", "pip_helper.py"):
+    if not Path(fname).exists():
+        r = requests.get(
+            url=f"//huggingface\.co :https://hf-mirror.com://raw.githubusercontent.com/openvinotoolkit/openvino_notebooks/latest/utils/{fname}",
+        )
+        open(fname, "w").write(r.text)
+
+from pip_helper import pip_install
+
+pip_install(
+    "-q",
+    "git+//huggingface\.co :https://hf-mirror.com://github.com/huggingface/optimum-intel.git",
+    "gradio>=4.19,<6",
+    "torch>=2.4",
+    "nncf>=2.15.0",
+    "transformers>=4.54.0,<5.0.0",
+    "diffusers==0.38.0",
+    "accelerate",
+    "--extra-index-url",
+    "//huggingface\.co :https://hf-mirror.com://download.pytorch.org/whl/cpu",
+)
+
+
+pip_install(
+    "-qU",
+    "--pre",
+    "openvino",
+    "openvino-tokenizers",
+    "openvino-genai",
+    "--extra-index-url",
+    "//huggingface\.co :https://hf-mirror.com://storage.openvinotoolkit.org/simple/wheels/nightly",
+)
+
+# Read more about telemetry collection at //huggingface\.co :https://hf-mirror.com://github.com/openvinotoolkit/openvino_notebooks?tab=readme-ov-file#-telemetry
+from notebook_utils import collect_telemetry
+
+collect_telemetry("flux.2-klein.ipynb")
+------------------
+
+----- stderr -----
+<>:7: SyntaxWarning: invalid escape sequence '\.'
+<>:15: SyntaxWarning: invalid escape sequence '\.'
+<>:23: SyntaxWarning: invalid escape sequence '\.'
+<>:34: SyntaxWarning: invalid escape sequence '\.'
+<>:7: SyntaxWarning: invalid escape sequence '\.'
+<>:15: SyntaxWarning: invalid escape sequence '\.'
+<>:23: SyntaxWarning: invalid escape sequence '\.'
+<>:34: SyntaxWarning: invalid escape sequence '\.'
+/tmp/ipykernel_97657/2761371512.py:7: SyntaxWarning: invalid escape sequence '\.'
+  url=f"//huggingface\.co :https://hf-mirror.com://raw.githubusercontent.com/openvinotoolkit/openvino_notebooks/latest/utils/{fname}",
+/tmp/ipykernel_97657/2761371512.py:15: SyntaxWarning: invalid escape sequence '\.'
+  "git+//huggingface\.co :https://hf-mirror.com://github.com/huggingface/optimum-intel.git",
+/tmp/ipykernel_97657/2761371512.py:23: SyntaxWarning: invalid escape sequence '\.'
+  "//huggingface\.co :https://hf-mirror.com://download.pytorch.org/whl/cpu",
+/tmp/ipykernel_97657/2761371512.py:34: SyntaxWarning: invalid escape sequence '\.'
+  "//huggingface\.co :https://hf-mirror.com://storage.openvinotoolkit.org/simple/wheels/nightly",
+----- stderr -----
+[31mERROR: Invalid requirement: 'git+//huggingface\\.co': Expected semicolon (after name with no version specifier) or end
+    git+//huggingface\.co
+       ^
+Hint: It looks like a path. File 'git+//huggingface\.co' does not exist.[0m[31m
+[0m
+------------------
+
+[31m---------------------------------------------------------------------------[39m
+[31mCalledProcessError[39m                        Traceback (most recent call last)
+[36mCell[39m[36m [39m[32mIn[1][39m[32m, line 13[39m
+[32m      9[39m         open(fname, [33m"w"[39m).write(r.text)
+[32m     10[39m 
+[32m     11[39m [38;5;28;01mfrom[39;00m pip_helper [38;5;28;01mimport[39;00m pip_install
+[32m     12[39m 
+[32m---> [39m[32m13[39m pip_install(
+[32m     14[39m     [33m"-q"[39m,
+[32m     15[39m     [33m"git+//huggingface\.co :https://hf-mirror.com://github.com/huggingface/optimum-intel.git"[39m,
+[32m     16[39m     [33m"gradio>=4.19,<6"[39m,
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/results/flux.2-klein/workdir-cpu/pip_helper.py:10[39m, in [36mpip_install[39m[34m(*args)[39m
+[32m      8[39m [38;5;28;01mfor[39;00m arg [38;5;129;01min[39;00m args:
+[32m      9[39m     cli_args.extend([38;5;28mstr[39m(arg).split([33m"[39m[33m [39m[33m"[39m))
+[32m---> [39m[32m10[39m [30;43msubprocess[39;49m[30;43m.[39;49m[30;43mrun[39;49m[30;43m([39;49m[30;43m[[39;49m[30;43msys[39;49m[30;43m.[39;49m[30;43mexecutable[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43m"[39;49m[30;43m-m[39;49m[30;43m"[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43m"[39;49m[30;43mpip[39;49m[30;43m"[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43m"[39;49m[30;43minstall[39;49m[30;43m"[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43m*[39;49m[30;43mcli_args[39;49m[30;43m][39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mcheck[39;49m[30;43m=[39;49m[30;43;01mTrue[39;49;00m[30;43m)[39;49m
+
+[36mFile [39m[32m/usr/lib/python3.12/subprocess.py:571[39m, in [36mrun[39m[34m(input, capture_output, timeout, check, *popenargs, **kwargs)[39m
+[32m    569[39m     retcode = process.poll()
+[32m    570[39m     [38;5;28;01mif[39;00m check [38;5;129;01mand[39;00m retcode:
+[32m--> [39m[32m571[39m         [38;5;28;01mraise[39;00m CalledProcessError(retcode, process.args,
+[32m    572[39m                                  output=stdout, stderr=stderr)
+[32m    573[39m [38;5;28;01mreturn[39;00m CompletedProcess(process.args, retcode, stdout, stderr)
+
+[31mCalledProcessError[39m: Command '['/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/bin/python', '-m', 'pip', 'install', '-q', 'git+//huggingface\\.co', ':https://hf-mirror.com://github.com/huggingface/optimum-intel.git', 'gradio>=4.19,<6', 'torch>=2.4', 'nncf>=2.15.0', 'transformers>=4.54.0,<5.0.0', 'diffusers==0.38.0', 'accelerate', '--extra-index-url', '//huggingface\\.co', ':https://hf-mirror.com://download.pytorch.org/whl/cpu']' returned non-zero exit status 1.
+

@@ -1,0 +1,127 @@
+[IPKernelApp] WARNING | Kernel is running over TCP without encryption. All communication (including code and outputs) is sent in plain text and is susceptible to eavesdropping. Use IPC transport or launch with kernel manager-provisioned CurveZMQ keys to enable transport encryption.
+[31mERROR: Invalid requirement: ':https://hf-mirror.com://storage.openvinotoolkit.org/simple/wheels/nightly': Expected package name at the start of dependency specifier
+    :https://hf-mirror.com://storage.openvinotoolkit.org/simple/wheels/nightly
+    ^
+Hint: It looks like a path. File ':https://hf-mirror.com://storage.openvinotoolkit.org/simple/wheels/nightly' does not exist.[0m[31m
+[0m.12/asyncio/base_events.py", line 687, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/nbclient/client.py", line 709, in async_execute
+    await self.async_execute_cell(
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/nbclient/client.py", line 1062, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/nbclient/client.py", line 918, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+from pathlib import Path
+import requests
+
+if not Path("notebook_utils.py").exists():
+    r = requests.get(url="//huggingface\.co :https://hf-mirror.com://raw.githubusercontent.com/openvinotoolkit/openvino_notebooks/latest/utils/notebook_utils.py")
+    open("notebook_utils.py", "w").write(r.text)
+
+if not Path("cmd_helper.py").exists():
+    r = requests.get(url="//huggingface\.co :https://hf-mirror.com://raw.githubusercontent.com/openvinotoolkit/openvino_notebooks/latest/utils/cmd_helper.py")
+    open("cmd_helper.py", "w").write(r.text)
+
+if not Path("pip_helper.py").exists():
+    r = requests.get(url="//huggingface\.co :https://hf-mirror.com://raw.githubusercontent.com/openvinotoolkit/openvino_notebooks/latest/utils/pip_helper.py")
+    open("pip_helper.py", "w").write(r.text)
+
+
+from pip_helper import pip_install
+
+pip_install(
+    "-qU",
+    "--pre",
+    "openvino>=2025.0.0",
+    "openvino-tokenizers>=2025.0.0",
+    "openvino-genai>=2025.0.0",
+    "nncf>=2.15.0",
+    "--extra-index-url",
+    "//huggingface\.co :https://hf-mirror.com://storage.openvinotoolkit.org/simple/wheels/nightly",
+)
+pip_install("-q", "git+//huggingface\.co :https://hf-mirror.com://github.com/huggingface/optimum-intel.git", "--extra-index-url", "//huggingface\.co :https://hf-mirror.com://download.pytorch.org/whl/cpu")
+pip_install(
+    "-q",
+    "gradio>=4.36,<6",
+    "transformers==4.57.6",
+    "torch>=2.1",
+    "torchvision",
+    "huggingface-hub",
+    "ftfy",
+    "pypdfium2",
+    "pypdf>=5.2.0",
+    "lingua-language-detector",
+    "--extra-index-url",
+    "//huggingface\.co :https://hf-mirror.com://download.pytorch.org/whl/cpu",
+)
+pip_install(
+    "-q", "--no-deps", "olmocr"
+)  # it's to avoid some problems on some platforms, you can remove --no-deps if you haven't any problems with installation
+------------------
+
+----- stderr -----
+<>:5: SyntaxWarning: invalid escape sequence '\.'
+<>:9: SyntaxWarning: invalid escape sequence '\.'
+<>:13: SyntaxWarning: invalid escape sequence '\.'
+<>:27: SyntaxWarning: invalid escape sequence '\.'
+<>:29: SyntaxWarning: invalid escape sequence '\.'
+<>:29: SyntaxWarning: invalid escape sequence '\.'
+<>:42: SyntaxWarning: invalid escape sequence '\.'
+<>:5: SyntaxWarning: invalid escape sequence '\.'
+<>:9: SyntaxWarning: invalid escape sequence '\.'
+<>:13: SyntaxWarning: invalid escape sequence '\.'
+<>:27: SyntaxWarning: invalid escape sequence '\.'
+<>:29: SyntaxWarning: invalid escape sequence '\.'
+<>:29: SyntaxWarning: invalid escape sequence '\.'
+<>:42: SyntaxWarning: invalid escape sequence '\.'
+/tmp/ipykernel_100485/2986262118.py:5: SyntaxWarning: invalid escape sequence '\.'
+  r = requests.get(url="//huggingface\.co :https://hf-mirror.com://raw.githubusercontent.com/openvinotoolkit/openvino_notebooks/latest/utils/notebook_utils.py")
+/tmp/ipykernel_100485/2986262118.py:9: SyntaxWarning: invalid escape sequence '\.'
+  r = requests.get(url="//huggingface\.co :https://hf-mirror.com://raw.githubusercontent.com/openvinotoolkit/openvino_notebooks/latest/utils/cmd_helper.py")
+/tmp/ipykernel_100485/2986262118.py:13: SyntaxWarning: invalid escape sequence '\.'
+  r = requests.get(url="//huggingface\.co :https://hf-mirror.com://raw.githubusercontent.com/openvinotoolkit/openvino_notebooks/latest/utils/pip_helper.py")
+/tmp/ipykernel_100485/2986262118.py:27: SyntaxWarning: invalid escape sequence '\.'
+  "//huggingface\.co :https://hf-mirror.com://storage.openvinotoolkit.org/simple/wheels/nightly",
+/tmp/ipykernel_100485/2986262118.py:29: SyntaxWarning: invalid escape sequence '\.'
+  pip_install("-q", "git+//huggingface\.co :https://hf-mirror.com://github.com/huggingface/optimum-intel.git", "--extra-index-url", "//huggingface\.co :https://hf-mirror.com://download.pytorch.org/whl/cpu")
+/tmp/ipykernel_100485/2986262118.py:29: SyntaxWarning: invalid escape sequence '\.'
+  pip_install("-q", "git+//huggingface\.co :https://hf-mirror.com://github.com/huggingface/optimum-intel.git", "--extra-index-url", "//huggingface\.co :https://hf-mirror.com://download.pytorch.org/whl/cpu")
+/tmp/ipykernel_100485/2986262118.py:42: SyntaxWarning: invalid escape sequence '\.'
+  "//huggingface\.co :https://hf-mirror.com://download.pytorch.org/whl/cpu",
+----- stderr -----
+[31mERROR: Invalid requirement: ':https://hf-mirror.com://storage.openvinotoolkit.org/simple/wheels/nightly': Expected package name at the start of dependency specifier
+    :https://hf-mirror.com://storage.openvinotoolkit.org/simple/wheels/nightly
+    ^
+Hint: It looks like a path. File ':https://hf-mirror.com://storage.openvinotoolkit.org/simple/wheels/nightly' does not exist.[0m[31m
+[0m
+------------------
+
+[31m---------------------------------------------------------------------------[39m
+[31mCalledProcessError[39m                        Traceback (most recent call last)
+[36mCell[39m[36m [39m[32mIn[1][39m[32m, line 19[39m
+[32m     15[39m 
+[32m     16[39m 
+[32m     17[39m [38;5;28;01mfrom[39;00m pip_helper [38;5;28;01mimport[39;00m pip_install
+[32m     18[39m 
+[32m---> [39m[32m19[39m pip_install(
+[32m     20[39m     [33m"-qU"[39m,
+[32m     21[39m     [33m"--pre"[39m,
+[32m     22[39m     [33m"openvino>=2025.0.0"[39m,
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/results/olmocr-pdf-vlm/workdir-cpu/pip_helper.py:10[39m, in [36mpip_install[39m[34m(*args)[39m
+[32m      8[39m [38;5;28;01mfor[39;00m arg [38;5;129;01min[39;00m args:
+[32m      9[39m     cli_args.extend([38;5;28mstr[39m(arg).split([33m"[39m[33m [39m[33m"[39m))
+[32m---> [39m[32m10[39m [30;43msubprocess[39;49m[30;43m.[39;49m[30;43mrun[39;49m[30;43m([39;49m[30;43m[[39;49m[30;43msys[39;49m[30;43m.[39;49m[30;43mexecutable[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43m"[39;49m[30;43m-m[39;49m[30;43m"[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43m"[39;49m[30;43mpip[39;49m[30;43m"[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43m"[39;49m[30;43minstall[39;49m[30;43m"[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43m*[39;49m[30;43mcli_args[39;49m[30;43m][39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mcheck[39;49m[30;43m=[39;49m[30;43;01mTrue[39;49;00m[30;43m)[39;49m
+
+[36mFile [39m[32m/usr/lib/python3.12/subprocess.py:571[39m, in [36mrun[39m[34m(input, capture_output, timeout, check, *popenargs, **kwargs)[39m
+[32m    569[39m     retcode = process.poll()
+[32m    570[39m     [38;5;28;01mif[39;00m check [38;5;129;01mand[39;00m retcode:
+[32m--> [39m[32m571[39m         [38;5;28;01mraise[39;00m CalledProcessError(retcode, process.args,
+[32m    572[39m                                  output=stdout, stderr=stderr)
+[32m    573[39m [38;5;28;01mreturn[39;00m CompletedProcess(process.args, retcode, stdout, stderr)
+
+[31mCalledProcessError[39m: Command '['/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/bin/python', '-m', 'pip', 'install', '-qU', '--pre', 'openvino>=2025.0.0', 'openvino-tokenizers>=2025.0.0', 'openvino-genai>=2025.0.0', 'nncf>=2.15.0', '--extra-index-url', '//huggingface\\.co', ':https://hf-mirror.com://storage.openvinotoolkit.org/simple/wheels/nightly']' returned non-zero exit status 1.
+

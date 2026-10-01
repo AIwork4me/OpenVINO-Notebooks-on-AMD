@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-01T17:17:54+00:00",
+  "generated": "2026-10-01T18:06:25+00:00",
   "upstream": {
     "repository": "openvinotoolkit/openvino_notebooks",
     "branch": "latest",
@@ -16,8 +16,8 @@
   "counts": {
     "total": 171,
     "cpu": {
-      "NOT_TESTED": 106,
-      "FAILED": 54,
+      "NOT_TESTED": 81,
+      "FAILED": 79,
       "VERIFIED_WITH_LIMITATIONS": 4,
       "VERIFIED": 7
     },
@@ -583,15 +583,17 @@
       "upstream_path": "notebooks/flux.1-image-generation/flux.1-image-generation.ipynb",
       "upstream_url": "https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/flux.1-image-generation/flux.1-image-generation.ipynb",
       "priority": 1,
-      "cpu_status": "NOT_TESTED",
-      "cpu_failure_category": "",
+      "cpu_status": "FAILED",
+      "cpu_failure_category": "UNKNOWN",
       "gpu_status": "NOT_TESTED",
       "gpu_failure_category": "",
       "twin_level": "WORKLOAD_TWIN",
       "device_used": "",
-      "last_tested": "",
-      "evidence": null,
-      "notes": []
+      "last_tested": "2026-10-01T17:46:25+00:00",
+      "evidence": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/flux.1-image-generation/20261001T174617Z-cpu",
+      "notes": [
+        "ok_runs=0/1: Empty weights data in bin file or bin file cannot be found!"
+      ]
     },
     {
       "id": "flux.1-kontext",
@@ -600,15 +602,17 @@
       "upstream_path": "notebooks/flux.1-kontext/flux.1-kontext.ipynb",
       "upstream_url": "https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/flux.1-kontext/flux.1-kontext.ipynb",
       "priority": 1,
-      "cpu_status": "NOT_TESTED",
-      "cpu_failure_category": "",
+      "cpu_status": "FAILED",
+      "cpu_failure_category": "DEPENDENCY",
       "gpu_status": "NOT_TESTED",
       "gpu_failure_category": "",
       "twin_level": "NOT_CLASSIFIED",
       "device_used": "",
-      "last_tested": "",
-      "evidence": null,
-      "notes": []
+      "last_tested": "2026-10-01T17:46:27+00:00",
+      "evidence": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/flux.1-kontext/20261001T174625Z-cpu",
+      "notes": [
+        "ok_runs=0/1: \u001b[31mCalledProcessError\u001b[39m: Command '['/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/bin/python', '-m', 'pip', 'install', '-q', 'gradio>=4.19,<6', 'torch==2.8', 'transformers==4.55.4', 'nncf==3.2.0', 'opencv-python', 'pillow', 'peft>=0.17.0', '--extra-index-url', '//huggingface\\\\.co', ':ht"
+      ]
     },
     {
       "id": "flux.2-klein",
@@ -617,15 +621,17 @@
       "upstream_path": "notebooks/flux.2-klein/flux.2-klein.ipynb",
       "upstream_url": "https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/flux.2-klein/flux.2-klein.ipynb",
       "priority": 1,
-      "cpu_status": "NOT_TESTED",
-      "cpu_failure_category": "",
+      "cpu_status": "FAILED",
+      "cpu_failure_category": "UNKNOWN",
       "gpu_status": "NOT_TESTED",
       "gpu_failure_category": "",
       "twin_level": "NOT_CLASSIFIED",
       "device_used": "",
-      "last_tested": "",
-      "evidence": null,
-      "notes": []
+      "last_tested": "2026-10-01T17:46:29+00:00",
+      "evidence": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/flux.2-klein/20261001T174627Z-cpu",
+      "notes": [
+        "ok_runs=0/1: \u001b[31mCalledProcessError\u001b[39m: Command '['/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/bin/python', '-m', 'pip', 'install', '-q', 'git+//huggingface\\\\.co', ':https://hf-mirror.com://github.com/huggingface/optimum-intel.git', 'gradio>=4.19,<6', 'torch>=2.4', 'nncf>=2.15.0', 'transformers>=4.5"
+      ]
     },
     {
       "id": "freevc-voice-conversion",
@@ -708,15 +714,17 @@
       "upstream_path": "notebooks/glm4.1-v-thinking/glm4.1-v-thinking.ipynb",
       "upstream_url": "https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/glm4.1-v-thinking/glm4.1-v-thinking.ipynb",
       "priority": 1,
-      "cpu_status": "NOT_TESTED",
-      "cpu_failure_category": "",
+      "cpu_status": "FAILED",
+      "cpu_failure_category": "UNKNOWN",
       "gpu_status": "NOT_TESTED",
       "gpu_failure_category": "",
       "twin_level": "NOT_CLASSIFIED",
       "device_used": "",
-      "last_tested": "",
-      "evidence": null,
-      "notes": []
+      "last_tested": "2026-10-01T18:01:47+00:00",
+      "evidence": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/glm4.1-v-thinking/20261001T180143Z-cpu",
+      "notes": [
+        "ok_runs=0/1: \u001b[31mFileNotFoundError\u001b[39m: [Errno 2] No such file or directory: 'optimum-cli'"
+      ]
     },
     {
       "id": "gpu-device",
@@ -865,15 +873,17 @@
       "upstream_path": "notebooks/hunyuan-ocr/hunyuan-ocr.ipynb",
       "upstream_url": "https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/hunyuan-ocr/hunyuan-ocr.ipynb",
       "priority": 1,
-      "cpu_status": "NOT_TESTED",
-      "cpu_failure_category": "",
+      "cpu_status": "FAILED",
+      "cpu_failure_category": "DEPENDENCY",
       "gpu_status": "NOT_TESTED",
       "gpu_failure_category": "",
       "twin_level": "WORKLOAD_TWIN",
       "device_used": "",
-      "last_tested": "",
-      "evidence": null,
-      "notes": []
+      "last_tested": "2026-10-01T18:01:50+00:00",
+      "evidence": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/hunyuan-ocr/20261001T180147Z-cpu",
+      "notes": [
+        "ok_runs=0/1: \u001b[31mCalledProcessError\u001b[39m: Command '['/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/bin/python', '-m', 'pip', 'install', '-q', 'torch>=2.8', 'torchvision', '--extra-index-url', '//huggingface\\\\.co', ':https://hf-mirror.com://download.pytorch.org/whl/cpu']' returned non-zero exit status 1."
+      ]
     },
     {
       "id": "hunyuan-translation",
@@ -882,15 +892,17 @@
       "upstream_path": "notebooks/hunyuan-translation/hunyuan-translation.ipynb",
       "upstream_url": "https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/hunyuan-translation/hunyuan-translation.ipynb",
       "priority": 1,
-      "cpu_status": "NOT_TESTED",
-      "cpu_failure_category": "",
+      "cpu_status": "FAILED",
+      "cpu_failure_category": "UNKNOWN",
       "gpu_status": "NOT_TESTED",
       "gpu_failure_category": "",
       "twin_level": "NOT_CLASSIFIED",
       "device_used": "",
-      "last_tested": "",
-      "evidence": null,
-      "notes": []
+      "last_tested": "2026-10-01T18:01:54+00:00",
+      "evidence": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/hunyuan-translation/20261001T180150Z-cpu",
+      "notes": [
+        "ok_runs=0/1: \u001b[31mFileNotFoundError\u001b[39m: [Errno 2] No such file or directory: 'optimum-cli'"
+      ]
     },
     {
       "id": "image-classification-quantization",
@@ -916,15 +928,17 @@
       "upstream_path": "notebooks/image-to-image-genai/image-to-image-genai.ipynb",
       "upstream_url": "https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/image-to-image-genai/image-to-image-genai.ipynb",
       "priority": 1,
-      "cpu_status": "NOT_TESTED",
-      "cpu_failure_category": "",
+      "cpu_status": "FAILED",
+      "cpu_failure_category": "UNKNOWN",
       "gpu_status": "NOT_TESTED",
       "gpu_failure_category": "",
       "twin_level": "NOT_CLASSIFIED",
       "device_used": "",
-      "last_tested": "",
-      "evidence": null,
-      "notes": []
+      "last_tested": "2026-10-01T18:04:44+00:00",
+      "evidence": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/image-to-image-genai/20261001T180434Z-cpu",
+      "notes": [
+        "ok_runs=0/1: \u001b[31mValueError\u001b[39m: Incorrect path or URL. URLs must start with `http://` or `https://`, and //huggingface\\.co :https://hf-mirror.com://huggingface.co/datasets/huggingface/documentation-images/resolve/main/diffusers/img2img-init.png is not a valid path."
+      ]
     },
     {
       "id": "inpainting-genai",
@@ -952,15 +966,17 @@
       "upstream_path": "notebooks/instant-id/instant-id.ipynb",
       "upstream_url": "https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/instant-id/instant-id.ipynb",
       "priority": 1,
-      "cpu_status": "NOT_TESTED",
-      "cpu_failure_category": "",
+      "cpu_status": "FAILED",
+      "cpu_failure_category": "UNKNOWN",
       "gpu_status": "NOT_TESTED",
       "gpu_failure_category": "",
       "twin_level": "NOT_CLASSIFIED",
       "device_used": "",
-      "last_tested": "",
-      "evidence": null,
-      "notes": []
+      "last_tested": "2026-10-01T18:04:46+00:00",
+      "evidence": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/instant-id/20261001T180444Z-cpu",
+      "notes": [
+        "ok_runs=0/1: \u001b[31mCalledProcessError\u001b[39m: Command '['git', 'clone', '//huggingface\\\\.co :https://hf-mirror.com://github.com/InstantID/InstantID.git']' returned non-zero exit status 128."
+      ]
     },
     {
       "id": "jina-clip",
@@ -1041,15 +1057,17 @@
       "upstream_path": "notebooks/llm-agent-functioncall/llm-agent-functioncall-qwen.ipynb",
       "upstream_url": "https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/llm-agent-functioncall/llm-agent-functioncall-qwen.ipynb",
       "priority": 1,
-      "cpu_status": "NOT_TESTED",
-      "cpu_failure_category": "",
+      "cpu_status": "FAILED",
+      "cpu_failure_category": "UNKNOWN",
       "gpu_status": "NOT_TESTED",
       "gpu_failure_category": "",
       "twin_level": "WORKLOAD_TWIN",
       "device_used": "",
-      "last_tested": "",
-      "evidence": null,
-      "notes": []
+      "last_tested": "2026-10-01T18:04:51+00:00",
+      "evidence": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/llm-agent-functioncall-qwen/20261001T180447Z-cpu",
+      "notes": [
+        "ok_runs=0/1: \u001b[31mCalledProcessError\u001b[39m: Command '['git', 'clone', '//huggingface\\\\.co :https://hf-mirror.com://github.com/QwenLM/Qwen-Agent.git']' returned non-zero exit status 128."
+      ]
     },
     {
       "id": "llm-agent-mcp",
@@ -1077,15 +1095,17 @@
       "upstream_path": "notebooks/llm-agent-rag-llamaindex/llm-agent-rag-llamaindex.ipynb",
       "upstream_url": "https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/llm-agent-rag-llamaindex/llm-agent-rag-llamaindex.ipynb",
       "priority": 1,
-      "cpu_status": "NOT_TESTED",
-      "cpu_failure_category": "",
+      "cpu_status": "FAILED",
+      "cpu_failure_category": "UNKNOWN",
       "gpu_status": "NOT_TESTED",
       "gpu_failure_category": "",
       "twin_level": "WORKLOAD_TWIN",
       "device_used": "",
-      "last_tested": "",
-      "evidence": null,
-      "notes": []
+      "last_tested": "2026-10-01T18:04:53+00:00",
+      "evidence": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/llm-agent-rag-llamaindex/20261001T180451Z-cpu",
+      "notes": [
+        "ok_runs=0/1: \u001b[31mCalledProcessError\u001b[39m: Command '['/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/bin/python', '-m', 'pip', 'install', '-q', '--extra-index-url', '//huggingface\\\\.co', ':https://hf-mirror.com://download.pytorch.org/whl/cpu', 'git+//huggingface\\\\.co', ':https://hf-mirror.com://github.com"
+      ]
     },
     {
       "id": "llm-agent-react-langchain",
@@ -1130,15 +1150,17 @@
       "upstream_path": "notebooks/llm-chatbot/llm-chatbot.ipynb",
       "upstream_url": "https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/llm-chatbot/llm-chatbot.ipynb",
       "priority": 1,
-      "cpu_status": "NOT_TESTED",
-      "cpu_failure_category": "",
+      "cpu_status": "FAILED",
+      "cpu_failure_category": "UNKNOWN",
       "gpu_status": "NOT_TESTED",
       "gpu_failure_category": "",
       "twin_level": "WORKLOAD_TWIN",
       "device_used": "",
-      "last_tested": "",
-      "evidence": null,
-      "notes": []
+      "last_tested": "2026-10-01T18:04:57+00:00",
+      "evidence": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/llm-chatbot/20261001T180454Z-cpu",
+      "notes": [
+        "ok_runs=0/1: \u001b[31mInvalidSchema\u001b[39m: No connection adapters were found for '//huggingface\\\\.co :https://hf-mirror.com://raw.githubusercontent.com/openvinotoolkit/openvino_notebooks/latest/utils/llm_config.py'"
+      ]
     },
     {
       "id": "llm-code-assistant",
@@ -1181,15 +1203,17 @@
       "upstream_path": "notebooks/llm-question-answering/llm-question-answering.ipynb",
       "upstream_url": "https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/llm-question-answering/llm-question-answering.ipynb",
       "priority": 1,
-      "cpu_status": "NOT_TESTED",
-      "cpu_failure_category": "",
+      "cpu_status": "FAILED",
+      "cpu_failure_category": "UNKNOWN",
       "gpu_status": "NOT_TESTED",
       "gpu_failure_category": "",
       "twin_level": "WORKLOAD_TWIN",
       "device_used": "",
-      "last_tested": "",
-      "evidence": null,
-      "notes": []
+      "last_tested": "2026-10-01T18:05:01+00:00",
+      "evidence": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/llm-question-answering/20261001T180458Z-cpu",
+      "notes": [
+        "ok_runs=0/1: \u001b[31mCalledProcessError\u001b[39m: Command '['/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/bin/python', '-m', 'pip', 'install', '-q', 'torch==2.8', 'nncf>=2.18.0', 'transformers==4.57.6', 'torchvision==0.23.0', 'huggingface-hub>=0.26.5', 'onnx<1.16.2', 'optimum>=1.16.1', 'accelerate', 'datasets>"
+      ]
     },
     {
       "id": "llm-rag-langchain-eval",
@@ -1304,15 +1328,17 @@
       "upstream_path": "notebooks/meter-reader/meter-reader.ipynb",
       "upstream_url": "https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/meter-reader/meter-reader.ipynb",
       "priority": 1,
-      "cpu_status": "NOT_TESTED",
-      "cpu_failure_category": "",
+      "cpu_status": "FAILED",
+      "cpu_failure_category": "NETWORK",
       "gpu_status": "NOT_TESTED",
       "gpu_failure_category": "",
       "twin_level": "NOT_CLASSIFIED",
       "device_used": "",
-      "last_tested": "",
-      "evidence": null,
-      "notes": []
+      "last_tested": "2026-10-01T18:05:10+00:00",
+      "evidence": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/meter-reader/20261001T180507Z-cpu",
+      "notes": [
+        "ok_runs=0/1: \u001b[31mException\u001b[39m: File downloading failed with error: No connection adapters were found for '//huggingface\\\\.co :https://hf-mirror.com://storage.openvinotoolkit.org/repositories/openvino_notebooks/models/meter-reader/meter_det_model.tar.gz'"
+      ]
     },
     {
       "id": "mineru2.5",
@@ -1340,15 +1366,17 @@
       "upstream_path": "notebooks/minicpm-o-4.5/minicpm-o-4.5.ipynb",
       "upstream_url": "https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/minicpm-o-4.5/minicpm-o-4.5.ipynb",
       "priority": 1,
-      "cpu_status": "NOT_TESTED",
-      "cpu_failure_category": "",
+      "cpu_status": "FAILED",
+      "cpu_failure_category": "UNKNOWN",
       "gpu_status": "NOT_TESTED",
       "gpu_failure_category": "",
       "twin_level": "NOT_CLASSIFIED",
       "device_used": "",
-      "last_tested": "",
-      "evidence": null,
-      "notes": []
+      "last_tested": "2026-10-01T18:05:13+00:00",
+      "evidence": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/minicpm-o-4.5/20261001T180511Z-cpu",
+      "notes": [
+        "ok_runs=0/1: \u001b[31mCalledProcessError\u001b[39m: Command '['/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/bin/python', '-m', 'pip', 'install', '-q', 'torch==2.8.0', 'torchvision==0.23.0', 'torchaudio==2.8.0', '--extra-index-url', '//huggingface\\\\.co', ':https://hf-mirror.com://download.pytorch.org/whl/cpu']' r"
+      ]
     },
     {
       "id": "minicpm-o-omnimodal-chatbot",
@@ -1357,15 +1385,17 @@
       "upstream_path": "notebooks/minicpm-o-omnimodal-chatbot/minicpm-o-omnimodal-chatbot.ipynb",
       "upstream_url": "https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/minicpm-o-omnimodal-chatbot/minicpm-o-omnimodal-chatbot.ipynb",
       "priority": 1,
-      "cpu_status": "NOT_TESTED",
-      "cpu_failure_category": "",
+      "cpu_status": "FAILED",
+      "cpu_failure_category": "DEPENDENCY",
       "gpu_status": "NOT_TESTED",
       "gpu_failure_category": "",
       "twin_level": "WORKLOAD_TWIN",
       "device_used": "",
-      "last_tested": "",
-      "evidence": null,
-      "notes": []
+      "last_tested": "2026-10-01T18:05:28+00:00",
+      "evidence": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/minicpm-o-omnimodal-chatbot/20261001T180524Z-cpu",
+      "notes": [
+        "ok_runs=0/1: \u001b[31mImportError\u001b[39m: /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/torch/lib/libtorch_cuda.so: undefined symbol: ncclCommResume"
+      ]
     },
     {
       "id": "minicpm-v-4.6",
@@ -1374,15 +1404,17 @@
       "upstream_path": "notebooks/minicpm-v-4.6/minicpm-v-4.6.ipynb",
       "upstream_url": "https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/minicpm-v-4.6/minicpm-v-4.6.ipynb",
       "priority": 1,
-      "cpu_status": "NOT_TESTED",
-      "cpu_failure_category": "",
+      "cpu_status": "FAILED",
+      "cpu_failure_category": "UNKNOWN",
       "gpu_status": "NOT_TESTED",
       "gpu_failure_category": "",
       "twin_level": "NOT_CLASSIFIED",
       "device_used": "",
-      "last_tested": "",
-      "evidence": null,
-      "notes": []
+      "last_tested": "2026-10-01T18:05:33+00:00",
+      "evidence": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/minicpm-v-4.6/20261001T180529Z-cpu",
+      "notes": [
+        "ok_runs=0/1: \u001b[31mFileNotFoundError\u001b[39m: [Errno 2] No such file or directory: 'optimum-cli'"
+      ]
     },
     {
       "id": "minicpm-v-multimodal-chatbot",
@@ -1410,15 +1442,17 @@
       "upstream_path": "notebooks/ministral-3/ministral-3.ipynb",
       "upstream_url": "https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/ministral-3/ministral-3.ipynb",
       "priority": 1,
-      "cpu_status": "NOT_TESTED",
-      "cpu_failure_category": "",
+      "cpu_status": "FAILED",
+      "cpu_failure_category": "UNKNOWN",
       "gpu_status": "NOT_TESTED",
       "gpu_failure_category": "",
       "twin_level": "NOT_CLASSIFIED",
       "device_used": "",
-      "last_tested": "",
-      "evidence": null,
-      "notes": []
+      "last_tested": "2026-10-01T18:05:36+00:00",
+      "evidence": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/ministral-3/20261001T180533Z-cpu",
+      "notes": [
+        "ok_runs=0/1: \u001b[31mFileNotFoundError\u001b[39m: [Errno 2] No such file or directory: 'optimum-cli'"
+      ]
     },
     {
       "id": "mllama-3.2",
@@ -1427,15 +1461,17 @@
       "upstream_path": "notebooks/mllama-3.2/mllama-3.2.ipynb",
       "upstream_url": "https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/mllama-3.2/mllama-3.2.ipynb",
       "priority": 1,
-      "cpu_status": "NOT_TESTED",
-      "cpu_failure_category": "",
+      "cpu_status": "FAILED",
+      "cpu_failure_category": "DEPENDENCY",
       "gpu_status": "NOT_TESTED",
       "gpu_failure_category": "",
       "twin_level": "WORKLOAD_TWIN",
       "device_used": "",
-      "last_tested": "",
-      "evidence": null,
-      "notes": []
+      "last_tested": "2026-10-01T18:05:49+00:00",
+      "evidence": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/mllama-3.2/20261001T180544Z-cpu",
+      "notes": [
+        "ok_runs=0/1: \u001b[31mImportError\u001b[39m: /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/torch/lib/libtorch_cuda.so: undefined symbol: ncclCommResume"
+      ]
     },
     {
       "id": "mms-massively-multilingual-speech",
@@ -1497,15 +1533,17 @@
       "upstream_path": "notebooks/multilora-image-generation/multilora-image-generation.ipynb",
       "upstream_url": "https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/multilora-image-generation/multilora-image-generation.ipynb",
       "priority": 1,
-      "cpu_status": "NOT_TESTED",
-      "cpu_failure_category": "",
+      "cpu_status": "FAILED",
+      "cpu_failure_category": "DEPENDENCY",
       "gpu_status": "NOT_TESTED",
       "gpu_failure_category": "",
       "twin_level": "WORKLOAD_TWIN",
       "device_used": "",
-      "last_tested": "",
-      "evidence": null,
-      "notes": []
+      "last_tested": "2026-10-01T18:05:54+00:00",
+      "evidence": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/multilora-image-generation/20261001T180550Z-cpu",
+      "notes": [
+        "ok_runs=0/1: \u001b[31mImportError\u001b[39m: /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/torch/lib/libtorch_cuda.so: undefined symbol: ncclCommResume"
+      ]
     },
     {
       "id": "multimodal-rag-llamaindex",
@@ -1601,15 +1639,17 @@
       "upstream_path": "notebooks/olmocr-pdf-vlm/olmocr-pdf-vlm.ipynb",
       "upstream_url": "https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/olmocr-pdf-vlm/olmocr-pdf-vlm.ipynb",
       "priority": 1,
-      "cpu_status": "NOT_TESTED",
-      "cpu_failure_category": "",
+      "cpu_status": "FAILED",
+      "cpu_failure_category": "UNKNOWN",
       "gpu_status": "NOT_TESTED",
       "gpu_failure_category": "",
       "twin_level": "WORKLOAD_TWIN",
       "device_used": "",
-      "last_tested": "",
-      "evidence": null,
-      "notes": []
+      "last_tested": "2026-10-01T18:05:57+00:00",
+      "evidence": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/olmocr-pdf-vlm/20261001T180555Z-cpu",
+      "notes": [
+        "ok_runs=0/1: \u001b[31mCalledProcessError\u001b[39m: Command '['/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/bin/python', '-m', 'pip', 'install', '-qU', '--pre', 'openvino>=2025.0.0', 'openvino-tokenizers>=2025.0.0', 'openvino-genai>=2025.0.0', 'nncf>=2.15.0', '--extra-index-url', '//huggingface\\\\.co', ':https://"
+      ]
     },
     {
       "id": "omniparser",
@@ -1709,15 +1749,17 @@
       "upstream_path": "notebooks/openvoice/openvoice.ipynb",
       "upstream_url": "https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/openvoice/openvoice.ipynb",
       "priority": 1,
-      "cpu_status": "NOT_TESTED",
-      "cpu_failure_category": "",
+      "cpu_status": "FAILED",
+      "cpu_failure_category": "UNKNOWN",
       "gpu_status": "NOT_TESTED",
       "gpu_failure_category": "",
       "twin_level": "NOT_CLASSIFIED",
       "device_used": "",
-      "last_tested": "",
-      "evidence": null,
-      "notes": []
+      "last_tested": "2026-10-01T18:06:01+00:00",
+      "evidence": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/openvoice/20261001T180559Z-cpu",
+      "notes": [
+        "ok_runs=0/1: \u001b[31mCalledProcessError\u001b[39m: Command '['git', 'clone', '//huggingface\\\\.co :https://hf-mirror.com://github.com/myshell-ai/OpenVoice']' returned non-zero exit status 128."
+      ]
     },
     {
       "id": "openvoice2-and-melotts",
@@ -1726,15 +1768,17 @@
       "upstream_path": "notebooks/openvoice2-and-melotts/openvoice2-and-melotts.ipynb",
       "upstream_url": "https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/openvoice2-and-melotts/openvoice2-and-melotts.ipynb",
       "priority": 1,
-      "cpu_status": "NOT_TESTED",
-      "cpu_failure_category": "",
+      "cpu_status": "FAILED",
+      "cpu_failure_category": "UNKNOWN",
       "gpu_status": "NOT_TESTED",
       "gpu_failure_category": "",
       "twin_level": "WORKLOAD_TWIN",
       "device_used": "",
-      "last_tested": "",
-      "evidence": null,
-      "notes": []
+      "last_tested": "2026-10-01T18:06:04+00:00",
+      "evidence": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/openvoice2-and-melotts/20261001T180602Z-cpu",
+      "notes": [
+        "ok_runs=0/1: \u001b[31mCalledProcessError\u001b[39m: Command '['git', 'clone', '//huggingface\\\\.co :https://hf-mirror.com://github.com/myshell-ai/OpenVoice']' returned non-zero exit status 128."
+      ]
     },
     {
       "id": "optical-character-recognition",
@@ -1777,15 +1821,17 @@
       "upstream_path": "notebooks/paddle-ocr-webcam/paddle-ocr-webcam.ipynb",
       "upstream_url": "https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/paddle-ocr-webcam/paddle-ocr-webcam.ipynb",
       "priority": 1,
-      "cpu_status": "NOT_TESTED",
-      "cpu_failure_category": "",
+      "cpu_status": "FAILED",
+      "cpu_failure_category": "NETWORK",
       "gpu_status": "NOT_TESTED",
       "gpu_failure_category": "",
       "twin_level": "WORKLOAD_TWIN",
       "device_used": "",
-      "last_tested": "",
-      "evidence": null,
-      "notes": []
+      "last_tested": "2026-10-01T18:06:16+00:00",
+      "evidence": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/paddle-ocr-webcam/20261001T180613Z-cpu",
+      "notes": [
+        "ok_runs=0/1: \u001b[31mException\u001b[39m: File downloading failed with error: No connection adapters were found for '//huggingface\\\\.co :https://hf-mirror.com://huggingface.co/PaddlePaddle/PP-OCRv6_tiny_det_onnx/resolve/main/inference.onnx'"
+      ]
     },
     {
       "id": "paddle-to-openvino-classification",
@@ -2029,15 +2075,17 @@
       "upstream_path": "notebooks/qwen2-audio/qwen2-audio.ipynb",
       "upstream_url": "https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/qwen2-audio/qwen2-audio.ipynb",
       "priority": 1,
-      "cpu_status": "NOT_TESTED",
-      "cpu_failure_category": "",
+      "cpu_status": "FAILED",
+      "cpu_failure_category": "DEPENDENCY",
       "gpu_status": "NOT_TESTED",
       "gpu_failure_category": "",
       "twin_level": "WORKLOAD_TWIN",
       "device_used": "",
-      "last_tested": "",
-      "evidence": null,
-      "notes": []
+      "last_tested": "2026-10-01T18:06:22+00:00",
+      "evidence": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/qwen2-audio/20261001T180617Z-cpu",
+      "notes": [
+        "ok_runs=0/1: \u001b[31mImportError\u001b[39m: /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/torch/lib/libtorch_cuda.so: undefined symbol: ncclCommResume"
+      ]
     },
     {
       "id": "qwen2.5-omni-chatbot",
@@ -2046,15 +2094,17 @@
       "upstream_path": "notebooks/qwen2.5-omni-chatbot/qwen2.5-omni-chatbot.ipynb",
       "upstream_url": "https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/qwen2.5-omni-chatbot/qwen2.5-omni-chatbot.ipynb",
       "priority": 1,
-      "cpu_status": "NOT_TESTED",
-      "cpu_failure_category": "",
+      "cpu_status": "FAILED",
+      "cpu_failure_category": "UNKNOWN",
       "gpu_status": "NOT_TESTED",
       "gpu_failure_category": "",
       "twin_level": "WORKLOAD_TWIN",
       "device_used": "",
-      "last_tested": "",
-      "evidence": null,
-      "notes": []
+      "last_tested": "2026-10-01T18:06:25+00:00",
+      "evidence": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/qwen2.5-omni-chatbot/20261001T180623Z-cpu",
+      "notes": [
+        "ok_runs=0/1: \u001b[31mCalledProcessError\u001b[39m: Command '['/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/bin/python', '-m', 'pip', 'install', 'transformers==4.52.3', 'torch==2.8', 'torchvision==0.23.0', 'accelerate', 'qwen-omni-utils[decord]', 'audioread', 'gradio>=4.19', '--no-cache-dir', '--extra-index-url'"
+      ]
     },
     {
       "id": "qwen3-asr",

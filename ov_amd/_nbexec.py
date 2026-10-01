@@ -7,7 +7,8 @@ Usage:
 Cell patching (all recorded in the result JSON):
   --skip-re RE       cells whose source matches RE are skipped (kept as raw, tagged)
   --stop-after RE    execution stops after the first cell matching RE
-  --sub PAT:REP      regex substitution PAT -> REP applied to every cell source
+  --sub PAT||REP     regex substitution PAT -> REP applied to every cell source
+                     (|| delimiter: PAT/REP may themselves contain ':')
 """
 
 from __future__ import annotations
@@ -62,7 +63,9 @@ def main() -> int:
     stop_re = re.compile(args.stop_after_re) if args.stop_after_re else None
     subs = []
     for s in args.sub:
-        pat, _, rep = s.partition(":")
+        pat, sep, rep = s.partition("||")
+        if not sep:  # legacy ':' format kept for compat, discouraged
+            pat, _, rep = s.partition(":")
         subs.append((re.compile(pat), rep, s))
 
     exec_idx = []

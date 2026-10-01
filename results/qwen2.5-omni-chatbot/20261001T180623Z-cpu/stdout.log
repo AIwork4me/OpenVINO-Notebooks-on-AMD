@@ -1,0 +1,5 @@
+[cell 0 START +    0.4s] # Omnimodal assistant with Qwen2.5-Omni and OpenVINO |  | Qwen2.5-Omni is 
+[cell 1 START +    0.4s] ## Prerequisites | [back to top ⬆️](#Table-of-contents:)
+[cell 2 START +    0.4s] import requests | from pathlib import Path | import sys |  | if not Path("qwen
+[cell 2 DONE  +    1.1s]
+NBEXEC_RESULT={"ok": false, "n_cells": 14, "n_skipped": 1, "n_substituted": 4, "stopped_after": null, "error_cell": null, "error_type": "CellExecutionError", "error_head": "\u001b[31mCalledProcessError\u001b[39m: Command '['/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/bin/python', '-m', 'pip', 'install', 'transformers==4.52.3', 'torch==2.8', 'torchvision==0.23.0', 'accelerate', 'qwen-omni-utils[decord]', 'audioread', 'gradio>=4.19', '--no-cache-dir', '--extra-index-url', '//huggingface\\\\.co', ':https://hf-mirror.com://download.pytorch.org/whl/cpu']' returned non-zero exit status 1.", "duration_s": 1.38, "patch_notes": ["substituted 7 occurrence(s) in cell 2", "substituted 1 occurrence(s) in cell 20", "substituted 1 occurrence(s) in cell 22", "substituted 1 occurrence(s) in cell 24", "skipped cell 26: matched skip pattern"]}

@@ -1,0 +1,7 @@
+[cell 0 START +    0.4s] # Create an LLM-powered Chatbot using OpenVINO |  | In the rapidly evolvin
+[cell 1 START +    0.4s] ## Prerequisites | [back to top ⬆️](#Table-of-contents:) |  | Install requir
+[cell 2 START +    0.4s] import os |  | os.environ["GIT_CLONE_PROTECTION_ACTIVE"] = "false" |  | %pip i
+[cell 2 DONE  +    1.9s]
+[cell 3 START +    1.9s] import os | from pathlib import Path | import requests | import shutil |  | # fe
+[cell 3 DONE  +    2.0s]
+NBEXEC_RESULT={"ok": false, "n_cells": 16, "n_skipped": 1, "n_substituted": 3, "stopped_after": null, "error_cell": null, "error_type": "CellExecutionError", "error_head": "\u001b[31mInvalidSchema\u001b[39m: No connection adapters were found for '//huggingface\\\\.co :https://hf-mirror.com://raw.githubusercontent.com/openvinotoolkit/openvino_notebooks/latest/utils/llm_config.py'", "duration_s": 2.16, "patch_notes": ["substituted 3 occurrence(s) in cell 2", "substituted 2 occurrence(s) in cell 3", "substituted 2 occurrence(s) in cell 19", "skipped cell 28: matched skip pattern"]}

@@ -1,0 +1,86 @@
+[IPKernelApp] WARNING | Kernel is running over TCP without encryption. All communication (including code and outputs) is sent in plain text and is susceptible to eavesdropping. Use IPC transport or launch with kernel manager-provisioned CurveZMQ keys to enable transport encryption.
+p/OpenVINO-Notebooks-on-AMD/ov_amd/_nbexec.py", line 122, in main
+    client.execute()
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/jupyter_core/utils/__init__.py", line 165, in wrapped
+    return loop.run_until_complete(inner)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/base_events.py", line 687, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/nbclient/client.py", line 709, in async_execute
+    await self.async_execute_cell(
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/nbclient/client.py", line 1062, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/nbclient/client.py", line 918, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+from pathlib import Path
+from ov_mllama_helper import convert_mllama
+
+model_id = "meta-llama/Llama-3.2-11B-Vision-Instruct"
+model_dir = Path(model_id.split("/")[-1]) / "OV"
+
+# uncomment the line to see model conversion code
+# convert_mllama??
+------------------
+
+
+[31m---------------------------------------------------------------------------[39m
+[31mImportError[39m                               Traceback (most recent call last)
+[36mCell[39m[36m [39m[32mIn[4][39m[32m, line 2[39m
+[32m      1[39m [38;5;28;01mfrom[39;00m pathlib [38;5;28;01mimport[39;00m Path
+[32m----> [39m[32m2[39m [38;5;28;01mfrom[39;00m ov_mllama_helper [38;5;28;01mimport[39;00m convert_mllama
+[32m      3[39m 
+[32m      4[39m model_id = [33m"meta-llama/Llama-3.2-11B-Vision-Instruct"[39m
+[32m      5[39m model_dir = Path(model_id.split([33m"/"[39m)[-[32m1[39m]) / [33m"OV"[39m
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/results/mllama-3.2/workdir-cpu/ov_mllama_helper.py:2[39m
+[32m      1[39m [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01mpathlib[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m Path
+[32m----> [39m[32m2[39m [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01mtransformers[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m MllamaForConditionalGeneration, AutoProcessor, AutoConfig, GenerationConfig, TextStreamer
+[32m      3[39m [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01mtransformers[39;00m[34;01m.[39;00m[34;01mcache_utils[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m DynamicCache, Cache
+[32m      4[39m [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01mtransformers[39;00m[34;01m.[39;00m[34;01mmodels[39;00m[34;01m.[39;00m[34;01mllama[39;00m[34;01m.[39;00m[34;01mmodeling_llama[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m repeat_kv
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/transformers/utils/import_utils.py:2584[39m, in [36m_LazyModule.__getattr__[39m[34m(self, name)[39m
+[32m   2582[39m [38;5;28;01melif[39;00m name [38;5;129;01min[39;00m [38;5;28mself[39m._class_to_module:
+[32m   2583[39m     [38;5;28;01mtry[39;00m:
+[32m-> [39m[32m2584[39m         module = [30;43mself[39;49m[30;43m.[39;49m[30;43m_get_module[39;49m[30;43m([39;49m[30;43mself[39;49m[30;43m.[39;49m[30;43m_class_to_module[39;49m[30;43m[[39;49m[30;43mname[39;49m[30;43m][39;49m[30;43m)[39;49m
+[32m   2585[39m         value = [38;5;28mgetattr[39m(module, name)
+[32m   2586[39m     [38;5;28;01mexcept[39;00m ([38;5;167;01mModuleNotFoundError[39;00m, [38;5;167;01mRuntimeError[39;00m, [38;5;167;01mAttributeError[39;00m) [38;5;28;01mas[39;00m e:
+[32m   2587[39m         [38;5;66;03m# V5: If trying to import a *TokenizerFast symbol, transparently fall back to the[39;00m
+[32m   2588[39m         [38;5;66;03m# non-Fast symbol from the same module when available. This lets us keep only one[39;00m
+[32m   2589[39m         [38;5;66;03m# backend tokenizer class while preserving legacy public names.[39;00m
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/transformers/utils/import_utils.py:2815[39m, in [36m_LazyModule._get_module[39m[34m(self, module_name)[39m
+[32m   2813[39m     [38;5;28;01mreturn[39;00m importlib.import_module([33m"[39m[33m.[39m[33m"[39m + module_name, [38;5;28mself[39m.[34m__name__[39m)
+[32m   2814[39m [38;5;28;01mexcept[39;00m [38;5;167;01mException[39;00m [38;5;28;01mas[39;00m e:
+[32m-> [39m[32m2815[39m     [38;5;28;01mraise[39;00m e
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/transformers/utils/import_utils.py:2813[39m, in [36m_LazyModule._get_module[39m[34m(self, module_name)[39m
+[32m   2811[39m [38;5;28;01mdef[39;00m[38;5;250m [39m[34m_get_module[39m([38;5;28mself[39m, module_name: [38;5;28mstr[39m):
+[32m   2812[39m     [38;5;28;01mtry[39;00m:
+[32m-> [39m[32m2813[39m         [38;5;28;01mreturn[39;00m [30;43mimportlib[39;49m[30;43m.[39;49m[30;43mimport_module[39;49m[30;43m([39;49m[30;43m"[39;49m[30;43m.[39;49m[30;43m"[39;49m[30;43m [39;49m[30;43m+[39;49m[30;43m [39;49m[30;43mmodule_name[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mself[39;49m[30;43m.[39;49m[30;43m__name__[39;49m[30;43m)[39;49m
+[32m   2814[39m     [38;5;28;01mexcept[39;00m [38;5;167;01mException[39;00m [38;5;28;01mas[39;00m e:
+[32m   2815[39m         [38;5;28;01mraise[39;00m e
+
+[36mFile [39m[32m/usr/lib/python3.12/importlib/__init__.py:90[39m, in [36mimport_module[39m[34m(name, package)[39m
+[32m     88[39m             [38;5;28;01mbreak[39;00m
+[32m     89[39m         level += [32m1[39m
+[32m---> [39m[32m90[39m [38;5;28;01mreturn[39;00m [30;43m_bootstrap[39;49m[30;43m.[39;49m[30;43m_gcd_import[39;49m[30;43m([39;49m[30;43mname[39;49m[30;43m[[39;49m[30;43mlevel[39;49m[30;43m:[39;49m[30;43m][39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mpackage[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mlevel[39;49m[30;43m)[39;49m
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/transformers/models/mllama/modeling_mllama.py:19[39m
+[32m     16[39m [38;5;28;01mimport[39;00m[38;5;250m [39m[34;01mmath[39;00m
+[32m     17[39m [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01mcollections[39;00m[34;01m.[39;00m[34;01mabc[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m Callable
+[32m---> [39m[32m19[39m [38;5;28;01mimport[39;00m[38;5;250m [39m[34;01mtorch[39;00m
+[32m     20[39m [38;5;28;01mimport[39;00m[38;5;250m [39m[34;01mtorch[39;00m[34;01m.[39;00m[34;01mnn[39;00m[34;01m.[39;00m[34;01mfunctional[39;00m[38;5;250m [39m[38;5;28;01mas[39;00m[38;5;250m [39m[34;01mF[39;00m
+[32m     21[39m [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01mtorch[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m nn
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/torch/__init__.py:496[39m
+[32m    494[39m     [38;5;28;01mif[39;00m USE_GLOBAL_DEPS:
+[32m    495[39m         _load_global_deps()
+[32m--> [39m[32m496[39m     [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01mtorch[39;00m[34;01m.[39;00m[34;01m_C[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m *  [38;5;66;03m# noqa: F403[39;00m
+[32m    499[39m _PrimType = _TypeVar([33m"[39m[33m_PrimType[39m[33m"[39m)
+[32m    500[39m _SymType = _TypeVar([33m"[39m[33m_SymType[39m[33m"[39m)
+
+[31mImportError[39m: /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/torch/lib/libtorch_cuda.so: undefined symbol: ncclCommResume
+

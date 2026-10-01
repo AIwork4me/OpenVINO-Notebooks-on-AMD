@@ -1,0 +1,108 @@
+[IPKernelApp] WARNING | Kernel is running over TCP without encryption. All communication (including code and outputs) is sent in plain text and is susceptible to eavesdropping. Use IPC transport or launch with kernel manager-provisioned CurveZMQ keys to enable transport encryption.
+[31mERROR: Invalid requirement: ':https://hf-mirror.com://download.pytorch.org/whl/cpu': Expected package name at the start of dependency specifier
+    :https://hf-mirror.com://download.pytorch.org/whl/cpu
+    ^
+Hint: It looks like a path. File ':https://hf-mirror.com://download.pytorch.org/whl/cpu' does not exist.[0m[31m
+[0mTraceback (most recent call last):
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/ov_amd/_nbexec.py", line 122, in main
+    client.execute()
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/jupyter_core/utils/__init__.py", line 165, in wrapped
+    return loop.run_until_complete(inner)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/base_events.py", line 687, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/nbclient/client.py", line 709, in async_execute
+    await self.async_execute_cell(
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/nbclient/client.py", line 1062, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/nbclient/client.py", line 918, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+from pip_helper import pip_install
+
+# Install in batches to avoid pip resolver conflicts
+# Batch 1: PyTorch (with CPU index URL)
+print("Installing PyTorch...")
+pip_install(
+    "-q",
+    "torch==2.8.0",
+    "torchvision==0.23.0",
+    "torchaudio==2.8.0",
+    "--extra-index-url",
+    "//huggingface\.co :https://hf-mirror.com://download.pytorch.org/whl/cpu",
+)
+
+# Batch 2: OpenVINO stack
+print("Installing OpenVINO and transformers...")
+pip_install(
+    "-q",
+    "transformers==4.51.0",
+    "openvino>=2026.0.0",
+    "openvino-tokenizers>=2026.0",
+    "nncf>=2.16",
+)
+
+# Batch 3: Audio, UI, and utility packages
+print("Installing audio, UI, and utility packages...")
+pip_install(
+    "-q",
+    "Pillow",
+    "librosa",
+    "soundfile",
+    "gradio==6.0.0",
+    "accelerate",
+    "einops",
+    "onnxruntime",
+    "hyperpyyaml",
+    "librosa",
+    "minicpmo-utils>=1.0.5",
+    "setuptools<82",
+    "onnx",
+)
+
+print("✅ All dependencies installed successfully!")
+------------------
+
+----- stderr -----
+<>:12: SyntaxWarning: invalid escape sequence '\.'
+<>:12: SyntaxWarning: invalid escape sequence '\.'
+/tmp/ipykernel_99631/3723045294.py:12: SyntaxWarning: invalid escape sequence '\.'
+  "//huggingface\.co :https://hf-mirror.com://download.pytorch.org/whl/cpu",
+----- stderr -----
+[31mERROR: Invalid requirement: ':https://hf-mirror.com://download.pytorch.org/whl/cpu': Expected package name at the start of dependency specifier
+    :https://hf-mirror.com://download.pytorch.org/whl/cpu
+    ^
+Hint: It looks like a path. File ':https://hf-mirror.com://download.pytorch.org/whl/cpu' does not exist.[0m[31m
+[0m
+----- stdout -----
+Installing PyTorch...
+------------------
+
+[31m---------------------------------------------------------------------------[39m
+[31mCalledProcessError[39m                        Traceback (most recent call last)
+[36mCell[39m[36m [39m[32mIn[2][39m[32m, line 6[39m
+[32m      2[39m 
+[32m      3[39m [38;5;66;03m# Install in batches to avoid pip resolver conflicts[39;00m
+[32m      4[39m [38;5;66;03m# Batch 1: PyTorch (with CPU index URL)[39;00m
+[32m      5[39m print([33m"Installing PyTorch..."[39m)
+[32m----> [39m[32m6[39m pip_install(
+[32m      7[39m     [33m"-q"[39m,
+[32m      8[39m     [33m"torch==2.8.0"[39m,
+[32m      9[39m     [33m"torchvision==0.23.0"[39m,
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/results/minicpm-o-4.5/workdir-cpu/pip_helper.py:10[39m, in [36mpip_install[39m[34m(*args)[39m
+[32m      8[39m [38;5;28;01mfor[39;00m arg [38;5;129;01min[39;00m args:
+[32m      9[39m     cli_args.extend([38;5;28mstr[39m(arg).split([33m"[39m[33m [39m[33m"[39m))
+[32m---> [39m[32m10[39m [30;43msubprocess[39;49m[30;43m.[39;49m[30;43mrun[39;49m[30;43m([39;49m[30;43m[[39;49m[30;43msys[39;49m[30;43m.[39;49m[30;43mexecutable[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43m"[39;49m[30;43m-m[39;49m[30;43m"[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43m"[39;49m[30;43mpip[39;49m[30;43m"[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43m"[39;49m[30;43minstall[39;49m[30;43m"[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43m*[39;49m[30;43mcli_args[39;49m[30;43m][39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mcheck[39;49m[30;43m=[39;49m[30;43;01mTrue[39;49;00m[30;43m)[39;49m
+
+[36mFile [39m[32m/usr/lib/python3.12/subprocess.py:571[39m, in [36mrun[39m[34m(input, capture_output, timeout, check, *popenargs, **kwargs)[39m
+[32m    569[39m     retcode = process.poll()
+[32m    570[39m     [38;5;28;01mif[39;00m check [38;5;129;01mand[39;00m retcode:
+[32m--> [39m[32m571[39m         [38;5;28;01mraise[39;00m CalledProcessError(retcode, process.args,
+[32m    572[39m                                  output=stdout, stderr=stderr)
+[32m    573[39m [38;5;28;01mreturn[39;00m CompletedProcess(process.args, retcode, stdout, stderr)
+
+[31mCalledProcessError[39m: Command '['/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/bin/python', '-m', 'pip', 'install', '-q', 'torch==2.8.0', 'torchvision==0.23.0', 'torchaudio==2.8.0', '--extra-index-url', '//huggingface\\.co', ':https://hf-mirror.com://download.pytorch.org/whl/cpu']' returned non-zero exit status 1.
+

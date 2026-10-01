@@ -239,8 +239,9 @@ def run_workload_cpu(entry: NotebookEntry, state: dict[str, Any], dry_run: bool 
     wall = int(cpu_cfg.get("wall_timeout_s", wall))
     repeats = _repeats_for(entry, cfg)
     # transport mirror rewrite (decision D2): direct huggingface.co URLs inside
-    # notebook code stall on this network; the mirror serves identical weights
-    subs = list(patches.get("cell_subs", [])) + [r"https://huggingface\.co :https://hf-mirror.com"]
+    # notebook code stall on this network; the mirror serves identical weights.
+    # '||' delimiter — the pattern itself contains ':' (https://)
+    subs = list(patches.get("cell_subs", [])) + [r"https://huggingface\.co||https://hf-mirror.com"]
     remediations = 0
     network_retries = 0
     total_failures = 0

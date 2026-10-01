@@ -1,0 +1,8 @@
+{
+  "repository": "openvinotoolkit/openvino_notebooks",
+  "branch": "latest",
+  "commit": "a8809170cc4fc6aa633fbb9c22214be67ac20b47",
+  "path": "notebooks/openvoice2-and-melotts/openvoice2-and-melotts.ipynb",
+  "url": "https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/openvoice2-and-melotts/openvoice2-and-melotts.ipynb",
+  "notebook_sha256": "0d5dc070b1ea09a36434826feac7d84f53a003448a466e83773d2f74ac0f0a74"
+}

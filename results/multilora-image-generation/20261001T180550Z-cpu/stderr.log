@@ -1,0 +1,112 @@
+[IPKernelApp] WARNING | Kernel is running over TCP without encryption. All communication (including code and outputs) is sent in plain text and is susceptible to eavesdropping. Use IPC transport or launch with kernel manager-provisioned CurveZMQ keys to enable transport encryption.
+= "latent-consistency/lcm-lora-sdxl"
+    vae_id = "madebyollin/sdxl-vae-fp16-fix"
+    vae = AutoencoderKL.from_pretrained("madebyollin/sdxl-vae-fp16-fix")
+    pipe = DiffusionPipeline.from_pretrained(model_id, vae=vae, variant="fp16", use_safetensors=True)
+    pipe.scheduler = LCMScheduler.from_config(pipe.scheduler.config)
+    pipe.load_lora_weights(adapter_id)
+    pipe.fuse_lora()
+    export_from_model(pipe, model_dir, task="text-to-image", stateful=False, ov_config=OVConfig(dtype="fp16"))
+    for tokenizer in ["tokenizer", "tokenizer_2"]:
+        tokenizer_model = getattr(pipe, tokenizer, None)
+        if tokenizer_model is not None:
+            export_tokenizer(tokenizer_model, model_dir / tokenizer, task="text-to-image")
+    del vae
+    del pipe
+    gc.collect()
+------------------
+
+
+[31m---------------------------------------------------------------------------[39m
+[31mImportError[39m                               Traceback (most recent call last)
+[36mCell[39m[36m [39m[32mIn[3][39m[32m, line 2[39m
+[32m      1[39m [38;5;28;01mfrom[39;00m pathlib [38;5;28;01mimport[39;00m Path
+[32m----> [39m[32m2[39m [38;5;28;01mfrom[39;00m diffusers [38;5;28;01mimport[39;00m DiffusionPipeline, AutoencoderKL, LCMScheduler
+[32m      3[39m [38;5;28;01mfrom[39;00m optimum.exporters.openvino [38;5;28;01mimport[39;00m export_from_model
+[32m      4[39m [38;5;28;01mfrom[39;00m optimum.intel.openvino [38;5;28;01mimport[39;00m OVConfig
+[32m      5[39m [38;5;28;01mfrom[39;00m optimum.exporters.openvino.convert [38;5;28;01mimport[39;00m export_tokenizer
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/diffusers/__init__.py:5[39m
+[32m      1[39m __version__ = [33m"[39m[33m0.40.0[39m[33m"[39m
+[32m      3[39m [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01mtyping[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m TYPE_CHECKING
+[32m----> [39m[32m5[39m [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01m.[39;00m[34;01mutils[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m (
+[32m      6[39m     DIFFUSERS_SLOW_IMPORT,
+[32m      7[39m     OptionalDependencyNotAvailable,
+[32m      8[39m     _LazyModule,
+[32m      9[39m     is_accelerate_available,
+[32m     10[39m     is_auto_round_available,
+[32m     11[39m     is_bitsandbytes_available,
+[32m     12[39m     is_gguf_available,
+[32m     13[39m     is_librosa_available,
+[32m     14[39m     is_note_seq_available,
+[32m     15[39m     is_nvidia_modelopt_available,
+[32m     16[39m     is_onnx_available,
+[32m     17[39m     is_opencv_available,
+[32m     18[39m     is_optimum_quanto_available,
+[32m     19[39m     is_scipy_available,
+[32m     20[39m     is_sdnq_available,
+[32m     21[39m     is_sentencepiece_available,
+[32m     22[39m     is_torch_available,
+[32m     23[39m     is_torchao_available,
+[32m     24[39m     is_torchsde_available,
+[32m     25[39m     is_transformers_available,
+[32m     26[39m     is_transformers_version,
+[32m     27[39m )
+[32m     30[39m [38;5;66;03m# Lazy Import based on[39;00m
+[32m     31[39m [38;5;66;03m# https://github.com/huggingface/transformers/blob/main/src/transformers/__init__.py[39;00m
+[32m     32[39m 
+[32m     33[39m [38;5;66;03m# When adding a new object to this init, please add it to `_import_structure`. The `_import_structure` is a dictionary submodule to list of object names,[39;00m
+[32m     34[39m [38;5;66;03m# and is used to defer the actual importing for when the objects are requested.[39;00m
+[32m     35[39m [38;5;66;03m# This way `import diffusers` provides the names in the namespace without actually importing anything (and especially none of the backends).[39;00m
+[32m     37[39m _import_structure = {
+[32m     38[39m     [33m"[39m[33mconfiguration_utils[39m[33m"[39m: [[33m"[39m[33mConfigMixin[39m[33m"[39m],
+[32m     39[39m     [33m"[39m[33mguiders[39m[33m"[39m: [],
+[32m   (...)[39m[32m     62[39m     ],
+[32m     63[39m }
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/diffusers/utils/__init__.py:135[39m
+[32m    133[39m [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01m.[39;00m[34;01mlogging[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m get_logger
+[32m    134[39m [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01m.[39;00m[34;01moutputs[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m BaseOutput
+[32m--> [39m[32m135[39m [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01m.[39;00m[34;01mpeft_utils[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m (
+[32m    136[39m     apply_lora_scale,
+[32m    137[39m     check_peft_version,
+[32m    138[39m     delete_adapter_layers,
+[32m    139[39m     get_adapter_name,
+[32m    140[39m     get_peft_kwargs,
+[32m    141[39m     recurse_remove_peft_layers,
+[32m    142[39m     require_peft_backend,
+[32m    143[39m     scale_lora_layers,
+[32m    144[39m     set_adapter_layers,
+[32m    145[39m     set_weights_and_activate_adapters,
+[32m    146[39m     unscale_lora_layers,
+[32m    147[39m )
+[32m    148[39m [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01m.[39;00m[34;01mpil_utils[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m PIL_INTERPOLATION, make_image_grid, numpy_to_pil, pt_to_pil
+[32m    149[39m [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01m.[39;00m[34;01mremote_utils[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m remote_decode
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/diffusers/utils/peft_utils.py:26[39m
+[32m     24[39m [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01m.[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m logging
+[32m     25[39m [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01m.[39;00m[34;01mimport_utils[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m is_peft_available, is_torch_available
+[32m---> [39m[32m26[39m [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01m.[39;00m[34;01mtorch_utils[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m empty_device_cache
+[32m     29[39m logger = logging.get_logger([34m__name__[39m)
+[32m     31[39m [38;5;28;01mif[39;00m is_torch_available():
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/diffusers/utils/torch_utils.py:39[39m
+[32m     35[39m P = ParamSpec([33m"[39m[33mP[39m[33m"[39m)
+[32m     38[39m [38;5;28;01mif[39;00m is_torch_available():
+[32m---> [39m[32m39[39m     [38;5;28;01mimport[39;00m[38;5;250m [39m[34;01mtorch[39;00m
+[32m     40[39m     [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01mtorch[39;00m[34;01m.[39;00m[34;01mfft[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m fftn, fftshift, ifftn, ifftshift
+[32m     42[39m     BACKEND_SUPPORTS_TRAINING = {
+[32m     43[39m         [33m"[39m[33mcuda[39m[33m"[39m: [38;5;28;01mTrue[39;00m,
+[32m     44[39m         [33m"[39m[33mxpu[39m[33m"[39m: [38;5;28;01mTrue[39;00m,
+[32m   (...)[39m[32m     48[39m         [33m"[39m[33mdefault[39m[33m"[39m: [38;5;28;01mTrue[39;00m,
+[32m     49[39m     }
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/torch/__init__.py:496[39m
+[32m    494[39m     [38;5;28;01mif[39;00m USE_GLOBAL_DEPS:
+[32m    495[39m         _load_global_deps()
+[32m--> [39m[32m496[39m     [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01mtorch[39;00m[34;01m.[39;00m[34;01m_C[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m *  [38;5;66;03m# noqa: F403[39;00m
+[32m    499[39m _PrimType = _TypeVar([33m"[39m[33m_PrimType[39m[33m"[39m)
+[32m    500[39m _SymType = _TypeVar([33m"[39m[33m_SymType[39m[33m"[39m)
+
+[31mImportError[39m: /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/torch/lib/libtorch_cuda.so: undefined symbol: ncclCommResume
+

@@ -1,0 +1,7 @@
+[cell 0 START +    0.4s] # Create an Agentic RAG using OpenVINO and LlamaIndex |  | An **agent** is
+[cell 1 START +    0.4s] ## Prerequisites |  | [back to top ⬆️](#Table-of-contents:) |  | Install requi
+[cell 2 START +    0.4s] # to avoid conflicts between versions | %pip uninstall -q -y optimum opt
+[cell 2 DONE  +    0.8s]
+[cell 3 START +    0.8s] import os | import requests | from pathlib import Path |  | utility_files = ["
+[cell 3 DONE  +    1.1s]
+NBEXEC_RESULT={"ok": false, "n_cells": 15, "n_skipped": 0, "n_substituted": 2, "stopped_after": null, "error_cell": null, "error_type": "CellExecutionError", "error_head": "\u001b[31mCalledProcessError\u001b[39m: Command '['/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/bin/python', '-m', 'pip', 'install', '-q', '--extra-index-url', '//huggingface\\\\.co', ':https://hf-mirror.com://download.pytorch.org/whl/cpu', 'git+//huggingface\\\\.co', ':https://hf-mirror.com://github.com/huggingface/optimum-intel.git', 'datasets<4.0.0', 'accelerate', 'nncf>=3', 'llama-index', 'llama-index-readers-file', 'llama-index-core', 'torch', 'torchvision', 'llama-index-llms-huggingface>=0.4.0,", "duration_s": 1.23, "patch_notes": ["substituted 4 occurrence(s) in cell 3", "substituted 1 occurrence(s) in cell 4"]}

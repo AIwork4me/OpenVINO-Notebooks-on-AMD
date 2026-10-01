@@ -1,0 +1,18 @@
+[cell 0 START +    0.5s] # Visual-language assistant with GLM-4.1V-9B-Thinking and OpenVINO |  | [G
+[cell 1 START +    0.5s] ## Prerequisites | [back to top ⬆️](#Table-of-contents:)
+[cell 2 START +    0.5s] %pip uninstall -q -y optimum optimum-intel optimum-onnx |  | %pip install 
+[cell 2 DONE  +    2.0s]
+[cell 3 START +    2.0s] import requests | from pathlib import Path |  | if not Path("cmd_helper.py")
+[cell 3 DONE  +    2.1s]
+[cell 4 START +    2.1s] ## Convert and Optimize model | [back to top ⬆️](#Table-of-contents:) |  | #
+[cell 5 START +    2.1s] import ipywidgets as widgets |  | model_id = "zai-org/GLM-4.1V-9B-Thinking
+[cell 5 DONE  +    2.1s]
+[cell 6 START +    2.1s] to_compress = widgets.Checkbox( |     value=True, |     description="Weigh
+[cell 6 DONE  +    2.1s]
+[cell 7 START +    2.1s] from pathlib import Path |  | model_base_dir = Path(model_id.split("/")[-1
+[cell 7 DONE  +    2.1s]
+[cell 8 START +    2.1s] from huggingface_hub import snapshot_download |  | if not model_base_dir.e
+[cell 8 DONE  +    2.1s]
+[cell 9 START +    2.1s] from cmd_helper import optimum_cli |  | if not model_dir.exists(): |     opt
+[cell 9 DONE  +    2.3s]
+NBEXEC_RESULT={"ok": false, "n_cells": 12, "n_skipped": 1, "n_substituted": 4, "stopped_after": null, "error_cell": null, "error_type": "CellExecutionError", "error_head": "\u001b[31mFileNotFoundError\u001b[39m: [Errno 2] No such file or directory: 'optimum-cli'", "duration_s": 2.53, "patch_notes": ["substituted 2 occurrence(s) in cell 2", "substituted 4 occurrence(s) in cell 3", "substituted 1 occurrence(s) in cell 14", "substituted 1 occurrence(s) in cell 15", "skipped cell 17: matched skip pattern"]}

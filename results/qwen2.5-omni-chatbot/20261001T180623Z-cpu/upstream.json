@@ -1,0 +1,8 @@
+{
+  "repository": "openvinotoolkit/openvino_notebooks",
+  "branch": "latest",
+  "commit": "a8809170cc4fc6aa633fbb9c22214be67ac20b47",
+  "path": "notebooks/qwen2.5-omni-chatbot/qwen2.5-omni-chatbot.ipynb",
+  "url": "https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/qwen2.5-omni-chatbot/qwen2.5-omni-chatbot.ipynb",
+  "notebook_sha256": "b5bbfa62a2dcdb3cfe0bcc8e0f44543aebacdf965599bb803eb395701e1bfac2"
+}

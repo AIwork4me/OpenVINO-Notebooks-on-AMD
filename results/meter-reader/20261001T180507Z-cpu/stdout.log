@@ -1,0 +1,10 @@
+[cell 0 START +    0.4s] # Industrial Meter Reader | This notebook shows how to create a industri
+[cell 1 START +    0.4s] # Install openvino package | %pip install -q "openvino>=2023.1.0" opencv
+[cell 1 DONE  +    1.0s]
+[cell 2 START +    1.0s] ## Import | [back to top ⬆️](#Table-of-contents:) | 
+[cell 3 START +    1.0s] import os | from pathlib import Path | import numpy as np | import math | impo
+[cell 3 DONE  +    1.4s]
+[cell 4 START +    1.4s] ## Prepare the Model and Test Image | [back to top ⬆️](#Table-of-content
+[cell 5 START +    1.4s] MODEL_DIR = "model" | DATA_DIR = "data" | DET_MODEL_LINK = "//huggingface\
+[cell 5 DONE  +    1.5s]
+NBEXEC_RESULT={"ok": false, "n_cells": 12, "n_skipped": 0, "n_substituted": 2, "stopped_after": null, "error_cell": null, "error_type": "CellExecutionError", "error_head": "\u001b[31mException\u001b[39m: File downloading failed with error: No connection adapters were found for '//huggingface\\\\.co :https://hf-mirror.com://storage.openvinotoolkit.org/repositories/openvino_notebooks/models/meter-reader/meter_det_model.tar.gz'", "duration_s": 1.82, "patch_notes": ["substituted 2 occurrence(s) in cell 3", "substituted 3 occurrence(s) in cell 5"]}

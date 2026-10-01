@@ -1,0 +1,52 @@
+[IPKernelApp] WARNING | Kernel is running over TCP without encryption. All communication (including code and outputs) is sent in plain text and is susceptible to eavesdropping. Use IPC transport or launch with kernel manager-provisioned CurveZMQ keys to enable transport encryption.
+Traceback (most recent call last):
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/ov_amd/_nbexec.py", line 122, in main
+    client.execute()
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/jupyter_core/utils/__init__.py", line 165, in wrapped
+    return loop.run_until_complete(inner)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/base_events.py", line 687, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/nbclient/client.py", line 709, in async_execute
+    await self.async_execute_cell(
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/nbclient/client.py", line 1062, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/nbclient/client.py", line 918, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+from PIL import Image
+from diffusers.utils import load_image
+
+init_image_url = "//huggingface\.co :https://hf-mirror.com://huggingface.co/datasets/huggingface/documentation-images/resolve/main/diffusers/img2img-init.png"
+init_image_path = Path("astronauts.png")
+
+if not init_image_path.exists():
+    image = load_image(init_image_url)
+    image.save(init_image_path)
+
+init_image = Image.open(init_image_path)
+init_image_tensor = image_to_tensor(init_image)
+
+init_image
+------------------
+
+----- stderr -----
+<>:4: SyntaxWarning: invalid escape sequence '\.'
+<>:4: SyntaxWarning: invalid escape sequence '\.'
+/tmp/ipykernel_98218/3530693235.py:4: SyntaxWarning: invalid escape sequence '\.'
+  init_image_url = "//huggingface\.co :https://hf-mirror.com://huggingface.co/datasets/huggingface/documentation-images/resolve/main/diffusers/img2img-init.png"
+------------------
+
+[31m---------------------------------------------------------------------------[39m
+[31mModuleNotFoundError[39m                       Traceback (most recent call last)
+[36mCell[39m[36m [39m[32mIn[7][39m[32m, line 2[39m
+[32m      1[39m [38;5;28;01mfrom[39;00m PIL [38;5;28;01mimport[39;00m Image
+[32m----> [39m[32m2[39m [38;5;28;01mfrom[39;00m diffusers.utils [38;5;28;01mimport[39;00m load_image
+[32m      3[39m 
+[32m      4[39m init_image_url = [33m"//huggingface\.co :https://hf-mirror.com://huggingface.co/datasets/huggingface/documentation-images/resolve/main/diffusers/img2img-init.png"[39m
+[32m      5[39m init_image_path = Path([33m"astronauts.png"[39m)
+
+[31mModuleNotFoundError[39m: No module named 'diffusers'
+

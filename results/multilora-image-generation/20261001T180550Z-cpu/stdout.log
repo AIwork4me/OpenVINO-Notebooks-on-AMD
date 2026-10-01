@@ -1,0 +1,9 @@
+[cell 0 START +    0.5s] # Multi LoRA Image Generation |  | LoRA, or [Low-Rank Adaptation](https://
+[cell 1 START +    0.5s] %pip install -q --extra-index-url //huggingface\.co :https://hf-mirror
+[cell 1 DONE  +    1.6s]
+[cell 2 START +    1.6s] import requests | from pathlib import Path |  | notebook_utils_path = Path("
+[cell 2 DONE  +    1.7s]
+[cell 3 START +    1.7s] ## Convert Diffusion Model using Optimum Intel | [back to top ⬆️](#Table
+[cell 4 START +    1.7s] from pathlib import Path | from diffusers import DiffusionPipeline, Auto
+[cell 4 DONE  +    2.9s]
+NBEXEC_RESULT={"ok": false, "n_cells": 16, "n_skipped": 1, "n_substituted": 3, "stopped_after": null, "error_cell": null, "error_type": "CellExecutionError", "error_head": "\u001b[31mImportError\u001b[39m: /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/torch/lib/libtorch_cuda.so: undefined symbol: ncclCommResume", "duration_s": 3.27, "patch_notes": ["substituted 2 occurrence(s) in cell 1", "substituted 3 occurrence(s) in cell 2", "substituted 1 occurrence(s) in cell 23", "skipped cell 24: matched skip pattern"]}

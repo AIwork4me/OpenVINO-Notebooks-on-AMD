@@ -1,0 +1,160 @@
+[IPKernelApp] WARNING | Kernel is running over TCP without encryption. All communication (including code and outputs) is sent in plain text and is susceptible to eavesdropping. Use IPC transport or launch with kernel manager-provisioned CurveZMQ keys to enable transport encryption.
+t call last):
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/ov_amd/_nbexec.py", line 122, in main
+    client.execute()
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/jupyter_core/utils/__init__.py", line 165, in wrapped
+    return loop.run_until_complete(inner)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/base_events.py", line 687, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/nbclient/client.py", line 709, in async_execute
+    await self.async_execute_cell(
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/nbclient/client.py", line 1062, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/nbclient/client.py", line 918, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+from pathlib import Path
+
+from cmd_helper import clone_repo
+from pip_helper import pip_install
+
+repo_dir = Path("OpenVoice")
+
+clone_repo("//huggingface\.co :https://hf-mirror.com://github.com/myshell-ai/OpenVoice")
+orig_english_path = Path("OpenVoice/openvoice/text/_orig_english.py")
+english_path = Path("OpenVoice/openvoice/text/english.py")
+
+if not orig_english_path.exists():
+    orig_english_path = Path("OpenVoice/openvoice/text/_orig_english.py")
+    english_path = Path("OpenVoice/openvoice/text/english.py")
+
+    english_path.rename(orig_english_path)
+
+    with orig_english_path.open("r") as f:
+        data = f.read()
+        data = data.replace("unidecode", "anyascii")
+        with english_path.open("w") as out_f:
+            out_f.write(data)
+
+
+# fix a problem with silero downloading and installing
+with Path("OpenVoice/openvoice/se_extractor.py").open("r") as orig_file:
+    data = orig_file.read()
+    data = data.replace('method="silero"', 'method="silero:3.0"')
+    with Path("OpenVoice/openvoice/se_extractor.py").open("w") as out_f:
+        out_f.write(data)
+
+# clone melotts
+clone_repo("//huggingface\.co :https://hf-mirror.com://github.com/myshell-ai/MeloTTS")
+
+pip_install("-q", "setuptools<82")
+pip_install(
+    "-q",
+    "--no-deps",
+    "librosa==0.9.1",
+    "pydub==0.25.1",
+    "tqdm",
+    "inflect==7.0.0",
+    "pypinyin==0.50.0",
+    "openvino>=2026.0",
+)
+# Since we don't convert Japanese models, we have removed many heavy Japanese-related pip install dependencies. If you want to try, we recommend using a Python 3.10 environment on Ubuntu and uncommenting the relevant lines.
+pip_install(
+    "-q",
+    "--extra-index-url",
+    "//huggingface\.co :https://hf-mirror.com://download.pytorch.org/whl/cpu",
+    # "mecab-python3==1.0.9",
+    "nncf",
+    "wavmark>=0.0.3",
+    "faster-whisper>=0.9.0",
+    "eng_to_ipa==0.0.2",
+    "cn2an==0.5.22",
+    "jieba==0.42.1",
+    "langid==1.1.6",
+    "ipywebrtc",
+    "anyascii==0.3.2",
+    "torch==2.10",
+    "torchvision",
+    "torchaudio==2.10",
+    "cached_path",
+    "transformers==4.53.3",
+    "num2words==0.5.12",
+    # "unidic_lite==1.0.8",
+    # "unidic==1.1.0",
+    "pykakasi==2.2.1",
+    # "fugashi==1.3.0",
+    "g2p_en==2.1.0",
+    "jamo==0.4.1",
+    "gruut[de,es,fr]==2.2.3",
+    "g2pkk>=0.1.1",
+    "dtw-python",
+    "more-itertools",
+    "tiktoken",
+    "tensorboard==2.16.2",
+    "loguru==0.7.2",
+    "nltk",
+    "gradio",
+)
+pip_install("-q", "--no-deps", "whisper-timestamped>=1.14.2", "openai-whisper")
+pip_install("-q", "--upgrade", "botocore")
+
+# donwload nltk data
+import nltk
+
+nltk.download("averaged_perceptron_tagger_eng")
+
+# install unidic
+# !python -m unidic download
+------------------
+
+----- stdout -----
+Failed to clone the repository: Cloning into 'OpenVoice'...
+fatal: protocol '//huggingface\.co :https' is not supported
+----- stderr -----
+<>:8: SyntaxWarning: invalid escape sequence '\.'
+<>:33: SyntaxWarning: invalid escape sequence '\.'
+<>:50: SyntaxWarning: invalid escape sequence '\.'
+<>:8: SyntaxWarning: invalid escape sequence '\.'
+<>:33: SyntaxWarning: invalid escape sequence '\.'
+<>:50: SyntaxWarning: invalid escape sequence '\.'
+/tmp/ipykernel_100625/3326245317.py:8: SyntaxWarning: invalid escape sequence '\.'
+  clone_repo("//huggingface\.co :https://hf-mirror.com://github.com/myshell-ai/OpenVoice")
+/tmp/ipykernel_100625/3326245317.py:33: SyntaxWarning: invalid escape sequence '\.'
+  clone_repo("//huggingface\.co :https://hf-mirror.com://github.com/myshell-ai/MeloTTS")
+/tmp/ipykernel_100625/3326245317.py:50: SyntaxWarning: invalid escape sequence '\.'
+  "//huggingface\.co :https://hf-mirror.com://download.pytorch.org/whl/cpu",
+------------------
+
+[31m---------------------------------------------------------------------------[39m
+[31mCalledProcessError[39m                        Traceback (most recent call last)
+[36mCell[39m[36m [39m[32mIn[2][39m[32m, line 8[39m
+[32m      4[39m [38;5;28;01mfrom[39;00m pip_helper [38;5;28;01mimport[39;00m pip_install
+[32m      5[39m 
+[32m      6[39m repo_dir = Path([33m"OpenVoice"[39m)
+[32m      7[39m 
+[32m----> [39m[32m8[39m clone_repo([33m"//huggingface\.co :https://hf-mirror.com://github.com/myshell-ai/OpenVoice"[39m)
+[32m      9[39m orig_english_path = Path([33m"OpenVoice/openvoice/text/_orig_english.py"[39m)
+[32m     10[39m english_path = Path([33m"OpenVoice/openvoice/text/english.py"[39m)
+[32m     11[39m 
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/results/openvoice2-and-melotts/workdir-cpu/cmd_helper.py:14[39m, in [36mclone_repo[39m[34m(repo_url, revision, add_to_sys_path)[39m
+[32m     12[39m [38;5;28;01mif[39;00m [38;5;129;01mnot[39;00m repo_path.exists():
+[32m     13[39m     [38;5;28;01mtry[39;00m:
+[32m---> [39m[32m14[39m         [30;43msubprocess[39;49m[30;43m.[39;49m[30;43mrun[39;49m[30;43m([39;49m
+[32m     15[39m [30;43m            [39;49m[30;43m[[39;49m[30;43m"[39;49m[30;43mgit[39;49m[30;43m"[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43m"[39;49m[30;43mclone[39;49m[30;43m"[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mrepo_url[39;49m[30;43m][39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mcheck[39;49m[30;43m=[39;49m[30;43;01mTrue[39;49;00m[30;43m,[39;49m[30;43m [39;49m[30;43mstdout[39;49m[30;43m=[39;49m[30;43msubprocess[39;49m[30;43m.[39;49m[30;43mPIPE[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mstderr[39;49m[30;43m=[39;49m[30;43msubprocess[39;49m[30;43m.[39;49m[30;43mPIPE[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mtext[39;49m[30;43m=[39;49m[30;43;01mTrue[39;49;00m
+[32m     16[39m [30;43m        [39;49m[30;43m)[39;49m  [38;5;66;03m# nosec B603 B607 - hardcoded git command[39;00m
+[32m     17[39m     [38;5;28;01mexcept[39;00m [38;5;167;01mException[39;00m [38;5;28;01mas[39;00m exc:
+[32m     18[39m         [38;5;28mprint[39m([33mf[39m[33m"[39m[33mFailed to clone the repository: [39m[38;5;132;01m{[39;00mexc.stderr[38;5;132;01m}[39;00m[33m"[39m)
+
+[36mFile [39m[32m/usr/lib/python3.12/subprocess.py:571[39m, in [36mrun[39m[34m(input, capture_output, timeout, check, *popenargs, **kwargs)[39m
+[32m    569[39m     retcode = process.poll()
+[32m    570[39m     [38;5;28;01mif[39;00m check [38;5;129;01mand[39;00m retcode:
+[32m--> [39m[32m571[39m         [38;5;28;01mraise[39;00m CalledProcessError(retcode, process.args,
+[32m    572[39m                                  output=stdout, stderr=stderr)
+[32m    573[39m [38;5;28;01mreturn[39;00m CompletedProcess(process.args, retcode, stdout, stderr)
+
+[31mCalledProcessError[39m: Command '['git', 'clone', '//huggingface\\.co :https://hf-mirror.com://github.com/myshell-ai/OpenVoice']' returned non-zero exit status 128.
+

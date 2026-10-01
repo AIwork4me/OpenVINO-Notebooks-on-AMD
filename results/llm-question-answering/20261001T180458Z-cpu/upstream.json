@@ -1,0 +1,8 @@
+{
+  "repository": "openvinotoolkit/openvino_notebooks",
+  "branch": "latest",
+  "commit": "a8809170cc4fc6aa633fbb9c22214be67ac20b47",
+  "path": "notebooks/llm-question-answering/llm-question-answering.ipynb",
+  "url": "https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/llm-question-answering/llm-question-answering.ipynb",
+  "notebook_sha256": "53705246dffd7d63530724867f67162fb3c5495174d4448e9e60ae92cc895c88"
+}

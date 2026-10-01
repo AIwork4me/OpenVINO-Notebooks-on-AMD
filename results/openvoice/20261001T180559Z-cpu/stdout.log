@@ -1,0 +1,8 @@
+[cell 0 START +    0.4s] # Voice tone cloning with OpenVoice and OpenVINO |  | <img referrerpolicy=
+[cell 1 START +    0.4s] OpenVoice is a versatile instant voice tone transferring and generatin
+[cell 2 START +    0.4s] ## Clone repository and install requirements | [back to top ⬆️](#Table-o
+[cell 3 START +    0.4s] # Fetch `notebook_utils` module | import requests | from pathlib import Pa
+[cell 3 DONE  +    0.5s]
+[cell 4 START +    0.5s] from pathlib import Path |  | from cmd_helper import clone_repo | from pip_h
+[cell 4 DONE  +    0.6s]
+NBEXEC_RESULT={"ok": false, "n_cells": 31, "n_skipped": 1, "n_substituted": 3, "stopped_after": null, "error_cell": null, "error_type": "CellExecutionError", "error_head": "\u001b[31mCalledProcessError\u001b[39m: Command '['git', 'clone', '//huggingface\\\\.co :https://hf-mirror.com://github.com/myshell-ai/OpenVoice']' returned non-zero exit status 128.", "duration_s": 0.76, "patch_notes": ["substituted 4 occurrence(s) in cell 3", "substituted 2 occurrence(s) in cell 4", "substituted 1 occurrence(s) in cell 30", "skipped cell 47: matched skip pattern"]}

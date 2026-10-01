@@ -1,0 +1,15 @@
+[cell 0 START +    0.4s] # Visual-language assistant with GLM-4.1V-9B-Thinking and OpenVINO |  | [G
+[cell 1 START +    0.4s] ## Prerequisites | [back to top ⬆️](#Table-of-contents:)
+[cell 2 START +    0.4s] %pip uninstall -q -y optimum optimum-intel optimum-onnx |  | %pip install 
+[cell 2 DONE  +    9.7s]
+[cell 3 START +    9.7s] import requests | from pathlib import Path |  | if not Path("cmd_helper.py")
+[cell 3 DONE  +    9.8s]
+[cell 4 START +    9.8s] ## Convert and Optimize model | [back to top ⬆️](#Table-of-contents:) |  | #
+[cell 5 START +    9.8s] import ipywidgets as widgets |  | model_id = "zai-org/GLM-4.1V-9B-Thinking
+[cell 5 DONE  +    9.8s]
+[cell 6 START +    9.8s] to_compress = widgets.Checkbox( |     value=True, |     description="Weigh
+[cell 6 DONE  +    9.8s]
+[cell 7 START +    9.8s] from pathlib import Path |  | model_base_dir = Path(model_id.split("/")[-1
+[cell 7 DONE  +    9.8s]
+[cell 8 START +    9.8s] from huggingface_hub import snapshot_download |  | if not model_base_dir.e
+NBEXEC_RESULT={"ok": false, "n_cells": 12, "n_skipped": 1, "n_substituted": 4, "stopped_after": null, "error_cell": null, "error_type": "CellTimeoutError", "error_head": "-------------------", "duration_s": 912.44, "patch_notes": ["substituted 2 occurrence(s) in cell 2", "substituted 4 occurrence(s) in cell 3", "substituted 1 occurrence(s) in cell 14", "substituted 1 occurrence(s) in cell 15", "skipped cell 17: matched skip pattern"]}

@@ -1,0 +1,8 @@
+{
+  "repository": "openvinotoolkit/openvino_notebooks",
+  "branch": "latest",
+  "commit": "a8809170cc4fc6aa633fbb9c22214be67ac20b47",
+  "path": "notebooks/olmocr-pdf-vlm/olmocr-pdf-vlm.ipynb",
+  "url": "https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/olmocr-pdf-vlm/olmocr-pdf-vlm.ipynb",
+  "notebook_sha256": "74bc8fef3a75146c7062bbda0719957600984f08ed6b5899c738537fd458bb30"
+}

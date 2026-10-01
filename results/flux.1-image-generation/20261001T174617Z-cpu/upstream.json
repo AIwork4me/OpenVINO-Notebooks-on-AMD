@@ -1,0 +1,8 @@
+{
+  "repository": "openvinotoolkit/openvino_notebooks",
+  "branch": "latest",
+  "commit": "a8809170cc4fc6aa633fbb9c22214be67ac20b47",
+  "path": "notebooks/flux.1-image-generation/flux.1-image-generation.ipynb",
+  "url": "https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/flux.1-image-generation/flux.1-image-generation.ipynb",
+  "notebook_sha256": "07485d6a8ecedcb3a075fc9e108a27b55bc3afa84042aa9e706e2ad02b75c85d"
+}

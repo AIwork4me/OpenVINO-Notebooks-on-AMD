@@ -1,0 +1,15 @@
+[cell 0 START +    0.4s] # Hunyuan Machine Translation with OpenVINO |  | This notebook supports tw
+[cell 1 START +    0.4s] ## Prerequisites | [back to top ⬆️](#Table-of-contents:) |  | Install requir
+[cell 2 START +    0.4s] import os |  | os.environ["GIT_CLONE_PROTECTION_ACTIVE"] = "false" |  | %pip i
+[cell 2 DONE  +    1.5s]
+[cell 3 START +    1.5s] from pathlib import Path | import requests |  | if not Path("cmd_helper.py")
+[cell 3 DONE  +    1.6s]
+[cell 4 START +    1.6s] ## Select model | [back to top ⬆️](#Table-of-contents:) |  | Select the Huny
+[cell 5 START +    1.6s] import ipywidgets as widgets |  | model_options = { |     "Hy-MT2-1.8B": "te
+[cell 5 DONE  +    1.6s]
+[cell 6 START +    1.6s] model_id = model_selector.value | model_name = model_selector.label | comp
+[cell 6 DONE  +    1.6s]
+[cell 7 START +    1.6s] ## Convert and compress model | [back to top ⬆️](#Table-of-contents:) |  | C
+[cell 8 START +    1.6s] from pathlib import Path | from cmd_helper import optimum_cli |  | model_dir
+[cell 8 DONE  +    1.7s]
+NBEXEC_RESULT={"ok": false, "n_cells": 11, "n_skipped": 1, "n_substituted": 2, "stopped_after": null, "error_cell": null, "error_type": "CellExecutionError", "error_head": "\u001b[31mFileNotFoundError\u001b[39m: [Errno 2] No such file or directory: 'optimum-cli'", "duration_s": 1.97, "patch_notes": ["substituted 2 occurrence(s) in cell 2", "substituted 3 occurrence(s) in cell 3", "skipped cell 17: matched skip pattern"]}
