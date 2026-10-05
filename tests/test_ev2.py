@@ -179,3 +179,14 @@ def test_genai_gpu_device_arg_is_not_proven_cpu(tmp_path):
     ])
     proof = ev2.summarize_device_proof(p, "cpu", "")
     assert ev2.proof_state(proof) is ev2.DeviceProof.PROVEN_GPU
+
+
+def test_mixed_compile_cpu_with_genai_gpu_degrades(tmp_path):
+    """Gate finding: all-CPU compile devices plus a GPU genai pipeline arg in
+    the same process must NOT yield PROVEN_CPU."""
+    p = _write_probe(tmp_path, [
+        {"kind": "compile_model", "device_arg": "CPU", "execution_devices": ["CPU"]},
+        {"kind": "genai_pipeline", "pipeline": "VLMPipeline", "device_arg": "GPU"},
+    ])
+    proof = ev2.summarize_device_proof(p, "cpu", "")
+    assert ev2.proof_state(proof) is ev2.DeviceProof.AUTO_UNRESOLVED

@@ -168,7 +168,12 @@ def summarize_device_proof(
         if exec_devices:
             # every resolved compile must agree; mixed evidence degrades honestly
             if seen_upper <= {"CPU"}:
-                state = DeviceProof.PROVEN_CPU
+                # mixed-evidence guard: a GPU device arg on any genai pipeline
+                # in the same process contradicts all-CPU compile devices
+                if any(a and a.upper() == "GPU" for a in genai_args):
+                    state = DeviceProof.AUTO_UNRESOLVED
+                else:
+                    state = DeviceProof.PROVEN_CPU
             elif "GPU" in seen_upper:
                 state = DeviceProof.PROVEN_GPU
             elif "NPU" in seen_upper:

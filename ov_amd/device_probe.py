@@ -124,7 +124,8 @@ class _GenaiWatchFinder:
     Python Core.compile_model hook never sees their device argument)."""
 
     def find_spec(self, fullname, path=None, target=None):  # noqa: ANN001
-        if fullname != "openvino_genai":
+        # notebooks import either the top-level package or the submodule alias
+        if fullname not in ("openvino_genai", "openvino.genai"):
             return None
         try:
             sys.meta_path.remove(self)
