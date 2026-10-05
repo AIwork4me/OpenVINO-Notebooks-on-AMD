@@ -1,0 +1,14 @@
+{
+  "python": "3.12.3",
+  "python_bin": ".venv-gpu/bin/python",
+  "openvino": {
+    "version": null,
+    "devices": []
+  },
+  "torch_rocm": {
+    "torch": "2.14.1+rocm7.14",
+    "cuda_available": true,
+    "device": "AMD Radeon 8060S Graphics"
+  },
+  "rocm_dir": "/opt/rocm"
+}

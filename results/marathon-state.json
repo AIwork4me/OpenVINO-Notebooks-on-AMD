@@ -65,19 +65,13 @@
         ]
       },
       "gpu": {
-        "status": "REVALIDATION_REQUIRED",
+        "status": "VERIFIED",
         "failure_category": "",
         "notes": [],
-        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/hello-detection/20261001T123904Z-gpu",
-        "updated": "2026-10-05T16:57:30+00:00",
-        "historical_status": "VERIFIED",
-        "historical_evidence": "results/hello-detection/20261001T123904Z-gpu",
-        "revalidation_reasons": [
-          "validation_schema_v2",
-          "environment_isolation",
-          "positive_device_proof",
-          "correctness_contract"
-        ]
+        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/hello-detection/20261005T170351Z-gpu",
+        "device_proof": "PROVEN_GPU",
+        "validation_level": "DEVICE_VERIFIED",
+        "updated": "2026-10-05T17:08:59+00:00"
       }
     },
     "hello-npu": {
@@ -1772,7 +1766,7 @@
       "log_tail": "Requirement already satisfied: huggingface_hub in ./.venv-cpu/lib/python3.12/site-packages (0.36.2)\nRequirement already satisfied: filelock in ./.venv-cpu/lib/python3.12/site-packages (from huggingface_hub) (4.0.8)\nRequirement already satisfied: fsspec>=2023.5.0 in ./.venv-cpu/lib/python3.12/site-packages (from huggingface_hub) (2025.3.0)\nRequirement already satisfied: hf-xet<2.0.0,>=1.1.3 in ./.venv-cpu/lib/python3.12/site-packages (from huggingface_hub) (1.6.0)\nRequirement already satisfied: packaging>=20.9 in ./.venv-cpu/lib/python3.12/site-packages (from huggingface_hub) (26.3)\nRequirement already satisfied: pyyaml>=5.1 in ./.venv-cpu/lib/python3.12/site-packages (from huggingface_hub) (6.0.3)\nRequirement already satisfied: requests in ./.venv-cpu/lib/python3.12/site-packages (from huggingface_hub) (2.34.2)\nRequirement already satisfied: tqdm>=4.42.1 in ./.venv-cpu/lib/python3.12/site-packages (from huggingface_hub) (4.70.1)\nRequirement already satisfied: typing-extensions>=3.7.4.3 in ./.venv-cpu/lib/python3.12/site-packages (from huggingface_hub) (4.16.0)\nRequirement already satisfied: charset_normalizer<4,>=2 in ./.venv-cpu/lib/python3.12/site-packages (from requests->huggingface_hub) (3.5.2)\nRequirement already satisfied: idna<4,>=2.5 in ./.venv-cpu/lib/python3.12/site-packages (from requests->huggingface_hub) (3.20)\nRequirement already satisfied: urllib3<3,>=1.26 in ./.venv-cpu/lib/python3.12/site-packages (from requests->huggingface_hub) (2.8.0)\nRequirement already satisfied: certifi>=2023.5.7 in ./.venv-cpu/lib/python3.12/site-packages (from requests->huggingface_hub) (2026.7.22)\n"
     }
   ],
-  "last_checkpoint": "2026-10-05T17:01:48+00:00",
+  "last_checkpoint": "2026-10-05T17:08:59+00:00",
   "current_workload": "qwen3-vl-reranker",
   "env_repairs": [
     {

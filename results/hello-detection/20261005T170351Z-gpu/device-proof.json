@@ -1,0 +1,8 @@
+{
+  "schema_version": 2,
+  "state": "PROVEN_GPU",
+  "requested_backend": "gpu",
+  "hip": "7.14.60850",
+  "device": "AMD Radeon 8060S Graphics",
+  "gcn_arch": "gfx115"
+}
