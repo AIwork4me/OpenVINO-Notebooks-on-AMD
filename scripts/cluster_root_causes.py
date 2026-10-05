@@ -11,7 +11,6 @@ AMD/OpenVINO compatibility failure; clusters marked UPSTREAM/COMPAT are.
 
 from __future__ import annotations
 
-import json
 import re
 import sys
 from collections import Counter, defaultdict
@@ -21,7 +20,7 @@ from pathlib import Path
 REPO = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(REPO))
 
-from ov_amd.scheduler import load_catalog, load_state  # noqa: E402
+from ov_amd.scheduler import load_state  # noqa: E402
 
 # category -> whether a failure here is plausibly an AMD/OpenVINO compatibility
 # issue (True) or an environment/network/harness/upstream-infrastructure issue
@@ -62,7 +61,6 @@ def _norm_sig(text: str) -> str:
 
 def main() -> int:
     state = load_state()
-    catalog = {e.id: e for e in load_catalog()}
     clusters: dict[str, dict] = defaultdict(lambda: {"workloads": [], "category": Counter(), "compat": Counter()})
 
     for wid, rec in state.get("attempts", {}).items():
@@ -76,7 +74,6 @@ def main() -> int:
             c = clusters.setdefault(f"{backend}:{cat}:{sig}", {"workloads": [], "category": Counter(), "compat": Counter()})
             c["workloads"].append(f"{wid}({backend})")
             c["category"][f"{backend}:{cat}"] += 1
-            entry = catalog.get(wid)
             compat = "NON_COMPAT" if cat in NON_COMPAT_CATEGORIES else "COMPAT"
             c["compat"][compat] += 1
 
