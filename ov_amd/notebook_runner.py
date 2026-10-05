@@ -18,6 +18,7 @@ from pathlib import Path
 
 from ov_amd.environment import ensure_ipv4_first, kernel_env, upstream_root, venv_exists, venv_python
 from ov_amd.schemas import ExecutionInfo, FailureCategory
+from ov_amd.substitution import Substitution, subs_to_json
 
 NBEXEC = Path(__file__).resolve().parent / "_nbexec.py"
 
@@ -45,8 +46,10 @@ def classify_failure(stderr: str, stdout: str, timeout: bool) -> FailureCategory
         # after the install completes succeeds (remediation path handles it)
         (r"may need to restart|restart your (kernel|runtime)", FailureCategory.DEPENDENCY),
         (r"ResolutionImpossible|conflict with the dependencies|dependency resolver", FailureCategory.PACKAGE_CONFLICT),
-        (r"HfHubHTTPError|ConnectionError|SSLError|URLError|timed out|getaddrinfo failed|RemoteDisconnected",
-         FailureCategory.NETWORK),
+        (
+            r"HfHubHTTPError|ConnectionError|SSLError|URLError|timed out|getaddrinfo failed|RemoteDisconnected",
+            FailureCategory.NETWORK,
+        ),
         (r"403|401|Access to model|gated repo", FailureCategory.MODEL_ACCESS),
         (r"agpl|license|License", FailureCategory.LICENSE_RESTRICTION),
         (r"CellTimeoutError", FailureCategory.TIMEOUT),
@@ -67,23 +70,46 @@ def run_notebook(
     per_cell_timeout_s: int = 900,
     skip_res: list[str] | None = None,
     stop_after_re: str | None = None,
-    subs: list[str] | None = None,
+    subs: list[Substitution] | None = None,
     cwd: Path | None = None,
+    python_bin: Path | None = None,
+    venv_bin: Path | None = None,
 ) -> tuple[ExecutionInfo, dict]:
     """Execute one notebook. Returns (ExecutionInfo, nbexec_result_dict).
 
     `cwd` is the kernel working directory; pointing it at a per-workload
     persistent dir lets repeats/retries reuse downloaded artifacts.
+    `python_bin`/`venv_bin` select an isolated per-workload environment
+    (ov_amd.env_manager); when omitted the legacy shared backend venv runs.
+    The device probe (OV_AMD_DEVICE_PROBE_FILE) is bound to this run's
+    evidence directory.
     """
 
-    if not venv_exists(backend):
+    if not venv_exists(backend) and python_bin is None:
         info = ExecutionInfo(
-            start=_utcnow(), end=_utcnow(), exit_code=None, status="FAILED",
+            start=_utcnow(),
+            end=_utcnow(),
+            exit_code=None,
+            status="FAILED",
             failure_category=FailureCategory.DEPENDENCY.value,
         )
         info.duration_s = 0.0
         return info, {"ok": False, "error_head": f"validation venv for backend {backend} missing"}
-    ensure_ipv4_first(backend)
+    py = python_bin if python_bin is not None else venv_python(backend)
+    if not Path(py).exists():
+        info = ExecutionInfo(
+            start=_utcnow(),
+            end=_utcnow(),
+            exit_code=None,
+            status="FAILED",
+            failure_category=FailureCategory.DEPENDENCY.value,
+        )
+        info.duration_s = 0.0
+        return info, {"ok": False, "error_head": f"workload python missing: {py}"}
+    if venv_bin is not None:
+        ensure_ipv4_first(backend, venv=venv_bin.parent)
+    else:
+        ensure_ipv4_first(backend)
 
     kernel_cwd = cwd if cwd is not None else evidence_dir
     kernel_cwd.mkdir(parents=True, exist_ok=True)
@@ -95,19 +121,20 @@ def run_notebook(
     stdout_path = evidence_dir / "stdout.log"
     stderr_path = evidence_dir / "stderr.log"
 
-    cmd = [str(venv_python(backend)), str(NBEXEC), str(notebook), str(out_nb), str(per_cell_timeout_s)]
+    cmd = [str(py), str(NBEXEC), str(notebook), str(out_nb), str(per_cell_timeout_s)]
     for r_ in skip_res or []:
         cmd += ["--skip-re", r_]
     if stop_after_re:
         cmd += ["--stop-after-re", stop_after_re]
-    for s in subs or []:
-        cmd += ["--sub", s]
+    if subs:
+        cmd += ["--subs-json", subs_to_json(subs)]
 
     start = _utcnow()
     t0 = time.time()
     timed_out = False
-    env = kernel_env(backend)
+    env = kernel_env(backend, venv_bin=venv_bin)
     env["OMP_NUM_THREADS"] = env.get("OMP_NUM_THREADS", "32")
+    env["OV_AMD_DEVICE_PROBE_FILE"] = str(evidence_dir / "device-proof.jsonl")
 
     with open(stdout_path, "w") as so, open(stderr_path, "w") as se:
         proc = subprocess.Popen(cmd, stdout=so, stderr=se, env=env, start_new_session=True, cwd=str(kernel_cwd))
@@ -133,7 +160,7 @@ def run_notebook(
     for line in reversed(stdout.splitlines()):
         if line.startswith("NBEXEC_RESULT="):
             try:
-                nbresult = json.loads(line[len("NBEXEC_RESULT="):])
+                nbresult = json.loads(line[len("NBEXEC_RESULT=") :])
             except json.JSONDecodeError:
                 pass
             break

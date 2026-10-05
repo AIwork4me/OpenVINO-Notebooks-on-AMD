@@ -21,6 +21,10 @@ gpu:
   wall_timeout_s: 3600
 twin:
   level: WORKLOAD_TWIN
-validation: {}
+validation:
+  output_contains:
+  - value='CPU'
+  output_finite_numbers: true
+  min_output_chars: 100
 patches: {}
 last_verified: '2026-10-01T10:21:58+00:00'

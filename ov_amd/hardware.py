@@ -118,13 +118,41 @@ def collect_hardware() -> dict:
     }
 
 
+def python_version(python_bin: str | None = None) -> str:
+    """Exact interpreter version of the python that will execute the workload
+    (Defect D: platform.python_version() reports the *caller*, not the target
+    venv, when evidence is collected from a different process)."""
+
+    py = python_bin or shutil.which("python3")
+    try:
+        r = subprocess.run(
+            [py, "-c", "import platform;print(platform.python_version())"], capture_output=True, text=True, timeout=30
+        )
+        v = (r.stdout or "").strip()
+        if v:
+            return v
+    except (OSError, subprocess.TimeoutExpired):
+        pass
+    return "unknown"
+
+
 def collect_software(python_bin: str | None = None) -> dict:
     return {
-        "python": platform.python_version(),
+        "python": python_version(python_bin),
+        "python_bin": _sanitize_path(python_bin) if python_bin else None,
         "openvino": openvino_info(python_bin),
         "torch_rocm": torch_rocm(python_bin),
         "rocm_dir": str(Path("/opt/rocm")) if Path("/opt/rocm").exists() else None,
     }
+
+
+def _sanitize_path(p: str) -> str:
+    """Repo-absolute interpreter paths stay useful locally but must not leak
+    the local layout into published evidence."""
+
+    from ov_amd.environment import REPO_ROOT
+
+    return p.replace(f"{REPO_ROOT}/", "")
 
 
 def platform_id() -> str:
@@ -138,12 +166,18 @@ def platform_id() -> str:
     return pid
 
 
-def snapshot(out_dir: Path, python_bin: str | None = None) -> dict:
-    """Write hardware.json/software.json into an evidence dir and return them."""
+def snapshot(
+    out_dir: Path, python_bin: str | None = None, names: tuple[str, str] = ("hardware.json", "software.json")
+) -> dict:
+    """Write hardware/software evidence into an evidence dir and return them.
+
+    `names` selects the software filename so v2 evidence can record
+    software-before.json / software-after.json from the same collector.
+    """
 
     hw = _sanitize(collect_hardware())
     sw = _sanitize(collect_software(python_bin))
     out_dir.mkdir(parents=True, exist_ok=True)
-    (out_dir / "hardware.json").write_text(json.dumps(hw, indent=2))
-    (out_dir / "software.json").write_text(json.dumps(sw, indent=2))
+    (out_dir / names[0]).write_text(json.dumps(hw, indent=2))
+    (out_dir / names[1]).write_text(json.dumps(sw, indent=2))
     return {"hardware": hw, "software": sw}

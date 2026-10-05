@@ -19,20 +19,31 @@
         "status": "VERIFIED",
         "failure_category": "",
         "ok_runs": 3,
+        "required_runs": 3,
         "durations_s": [
-          10.88,
-          12.34,
-          12.08
+          20.21,
+          2.12,
+          1.97
         ],
         "device_used": "CPU",
-        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/hello-world/20261001T101946Z-cpu",
+        "device_proof": "PROVEN_CPU",
+        "validation_level": "WORKLOAD_CORRECTNESS",
+        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/hello-world/20261005T170119Z-cpu",
+        "env": {
+          "backend": "cpu",
+          "env_key": "244e780d61b49309",
+          "python": ".venvs/cpu/244e780d61b49309/bin/python",
+          "fingerprint": "e316a2770355739071cbd0b2b6ecff836b6d8bbf7a1b9a91ad341932feb17664",
+          "reused": false,
+          "created": true
+        },
         "notes": [],
-        "updated": "2026-10-01T10:19:59+00:00"
+        "updated": "2026-10-05T17:01:48+00:00"
       }
     },
     "hello-detection": {
       "cpu": {
-        "status": "VERIFIED",
+        "status": "REVALIDATION_REQUIRED",
         "failure_category": "",
         "ok_runs": 3,
         "durations_s": [
@@ -43,14 +54,30 @@
         "device_used": "CPU",
         "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/hello-detection/20261001T102156Z-cpu",
         "notes": [],
-        "updated": "2026-10-01T10:21:58+00:00"
+        "updated": "2026-10-05T16:57:30+00:00",
+        "historical_status": "VERIFIED",
+        "historical_evidence": "results/hello-detection/20261001T102156Z-cpu",
+        "revalidation_reasons": [
+          "validation_schema_v2",
+          "environment_isolation",
+          "positive_device_proof",
+          "correctness_contract"
+        ]
       },
       "gpu": {
-        "status": "VERIFIED",
+        "status": "REVALIDATION_REQUIRED",
         "failure_category": "",
         "notes": [],
         "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/hello-detection/20261001T123904Z-gpu",
-        "updated": "2026-10-01T12:47:31+00:00"
+        "updated": "2026-10-05T16:57:30+00:00",
+        "historical_status": "VERIFIED",
+        "historical_evidence": "results/hello-detection/20261001T123904Z-gpu",
+        "revalidation_reasons": [
+          "validation_schema_v2",
+          "environment_isolation",
+          "positive_device_proof",
+          "correctness_contract"
+        ]
       }
     },
     "hello-npu": {
@@ -69,7 +96,7 @@
     },
     "hello-segmentation": {
       "cpu": {
-        "status": "VERIFIED",
+        "status": "REVALIDATION_REQUIRED",
         "failure_category": "",
         "ok_runs": 3,
         "durations_s": [
@@ -80,7 +107,15 @@
         "device_used": "CPU",
         "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/hello-segmentation/20261001T102213Z-cpu",
         "notes": [],
-        "updated": "2026-10-01T10:22:15+00:00"
+        "updated": "2026-10-05T16:57:30+00:00",
+        "historical_status": "VERIFIED",
+        "historical_evidence": "results/hello-segmentation/20261001T102213Z-cpu",
+        "revalidation_reasons": [
+          "validation_schema_v2",
+          "environment_isolation",
+          "positive_device_proof",
+          "correctness_contract"
+        ]
       }
     },
     "openvino-api": {
@@ -141,7 +176,7 @@
     },
     "animate-anyone": {
       "cpu": {
-        "status": "VERIFIED_WITH_LIMITATIONS",
+        "status": "REVALIDATION_REQUIRED",
         "failure_category": "",
         "ok_runs": 1,
         "durations_s": [
@@ -152,7 +187,15 @@
         "notes": [
           "repeatability: single successful run (resource-bounded); 3-run policy not met"
         ],
-        "updated": "2026-10-01T16:32:50+00:00"
+        "updated": "2026-10-05T16:57:30+00:00",
+        "historical_status": "VERIFIED_WITH_LIMITATIONS",
+        "historical_evidence": "results/animate-anyone/20261001T162311Z-cpu",
+        "revalidation_reasons": [
+          "validation_schema_v2",
+          "environment_isolation",
+          "positive_device_proof",
+          "correctness_contract"
+        ]
       }
     },
     "bark-text-to-audio": {
@@ -213,7 +256,7 @@
     },
     "darkir-image-restoration": {
       "cpu": {
-        "status": "VERIFIED_WITH_LIMITATIONS",
+        "status": "REVALIDATION_REQUIRED",
         "failure_category": "",
         "ok_runs": 1,
         "durations_s": [
@@ -224,7 +267,15 @@
         "notes": [
           "repeatability: single successful run (resource-bounded); 3-run policy not met"
         ],
-        "updated": "2026-10-01T16:41:04+00:00"
+        "updated": "2026-10-05T16:57:30+00:00",
+        "historical_status": "VERIFIED_WITH_LIMITATIONS",
+        "historical_evidence": "results/darkir-image-restoration/20261001T163904Z-cpu",
+        "revalidation_reasons": [
+          "validation_schema_v2",
+          "environment_isolation",
+          "positive_device_proof",
+          "correctness_contract"
+        ]
       }
     },
     "deepseek-ocr": {
@@ -243,7 +294,7 @@
     },
     "deepseek-r1": {
       "cpu": {
-        "status": "VERIFIED_WITH_LIMITATIONS",
+        "status": "REVALIDATION_REQUIRED",
         "failure_category": "",
         "ok_runs": 3,
         "durations_s": [
@@ -256,14 +307,30 @@
         "notes": [
           "CORE_INFERENCE_VERIFIED; INTERACTIVE_UI_NOT_TESTED (cells skipped via documented patch)"
         ],
-        "updated": "2026-10-01T16:43:45+00:00"
+        "updated": "2026-10-05T16:57:30+00:00",
+        "historical_status": "VERIFIED_WITH_LIMITATIONS",
+        "historical_evidence": "results/deepseek-r1/20261001T164340Z-cpu",
+        "revalidation_reasons": [
+          "validation_schema_v2",
+          "environment_isolation",
+          "positive_device_proof",
+          "correctness_contract"
+        ]
       },
       "gpu": {
-        "status": "VERIFIED",
+        "status": "REVALIDATION_REQUIRED",
         "failure_category": "",
         "notes": [],
         "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/deepseek-r1/20261001T132824Z-gpu",
-        "updated": "2026-10-01T13:46:46+00:00"
+        "updated": "2026-10-05T16:57:30+00:00",
+        "historical_status": "VERIFIED",
+        "historical_evidence": "results/deepseek-r1/20261001T132824Z-gpu",
+        "revalidation_reasons": [
+          "validation_schema_v2",
+          "environment_isolation",
+          "positive_device_proof",
+          "correctness_contract"
+        ]
       }
     },
     "deepseek-vl2": {
@@ -324,11 +391,19 @@
     },
     "stable-diffusion-text-to-image": {
       "gpu": {
-        "status": "VERIFIED",
+        "status": "REVALIDATION_REQUIRED",
         "failure_category": "",
         "notes": [],
         "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/stable-diffusion-text-to-image/20261001T121520Z-gpu",
-        "updated": "2026-10-01T12:15:48+00:00"
+        "updated": "2026-10-05T16:57:30+00:00",
+        "historical_status": "VERIFIED",
+        "historical_evidence": "results/stable-diffusion-text-to-image/20261001T121520Z-gpu",
+        "revalidation_reasons": [
+          "validation_schema_v2",
+          "environment_isolation",
+          "positive_device_proof",
+          "correctness_contract"
+        ]
       },
       "cpu": {
         "status": "FAILED",
@@ -345,11 +420,19 @@
     },
     "smolvlm2": {
       "gpu": {
-        "status": "VERIFIED",
+        "status": "REVALIDATION_REQUIRED",
         "failure_category": "",
         "notes": [],
         "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/smolvlm2/20261001T120053Z-gpu",
-        "updated": "2026-10-01T12:01:10+00:00"
+        "updated": "2026-10-05T16:57:30+00:00",
+        "historical_status": "VERIFIED",
+        "historical_evidence": "results/smolvlm2/20261001T120053Z-gpu",
+        "revalidation_reasons": [
+          "validation_schema_v2",
+          "environment_isolation",
+          "positive_device_proof",
+          "correctness_contract"
+        ]
       }
     },
     "flex.2-image-generation": {
@@ -368,11 +451,19 @@
     },
     "qwen3": {
       "gpu": {
-        "status": "VERIFIED",
+        "status": "REVALIDATION_REQUIRED",
         "failure_category": "",
         "notes": [],
         "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/qwen3/20261001T120459Z-gpu",
-        "updated": "2026-10-01T12:05:11+00:00"
+        "updated": "2026-10-05T16:57:30+00:00",
+        "historical_status": "VERIFIED",
+        "historical_evidence": "results/qwen3/20261001T120459Z-gpu",
+        "revalidation_reasons": [
+          "validation_schema_v2",
+          "environment_isolation",
+          "positive_device_proof",
+          "correctness_contract"
+        ]
       },
       "cpu": {
         "status": "FAILED",
@@ -389,11 +480,19 @@
     },
     "whisper-asr-genai": {
       "gpu": {
-        "status": "VERIFIED",
+        "status": "REVALIDATION_REQUIRED",
         "failure_category": "",
         "notes": [],
         "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/whisper-asr-genai/20261001T120511Z-gpu",
-        "updated": "2026-10-01T12:05:27+00:00"
+        "updated": "2026-10-05T16:57:30+00:00",
+        "historical_status": "VERIFIED",
+        "historical_evidence": "results/whisper-asr-genai/20261001T120511Z-gpu",
+        "revalidation_reasons": [
+          "validation_schema_v2",
+          "environment_isolation",
+          "positive_device_proof",
+          "correctness_contract"
+        ]
       }
     },
     "florence2": {
@@ -440,14 +539,22 @@
     },
     "kokoro": {
       "gpu": {
-        "status": "VERIFIED",
+        "status": "REVALIDATION_REQUIRED",
         "failure_category": "",
         "notes": [],
         "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/kokoro/20261001T132808Z-gpu",
-        "updated": "2026-10-01T13:28:24+00:00"
+        "updated": "2026-10-05T16:57:30+00:00",
+        "historical_status": "VERIFIED",
+        "historical_evidence": "results/kokoro/20261001T132808Z-gpu",
+        "revalidation_reasons": [
+          "validation_schema_v2",
+          "environment_isolation",
+          "positive_device_proof",
+          "correctness_contract"
+        ]
       },
       "cpu": {
-        "status": "VERIFIED_WITH_LIMITATIONS",
+        "status": "REVALIDATION_REQUIRED",
         "failure_category": "",
         "ok_runs": 3,
         "durations_s": [
@@ -460,7 +567,15 @@
         "notes": [
           "CORE_INFERENCE_VERIFIED; INTERACTIVE_UI_NOT_TESTED (cells skipped via documented patch)"
         ],
-        "updated": "2026-10-01T16:46:56+00:00"
+        "updated": "2026-10-05T16:57:30+00:00",
+        "historical_status": "VERIFIED_WITH_LIMITATIONS",
+        "historical_evidence": "results/kokoro/20261001T164651Z-cpu",
+        "revalidation_reasons": [
+          "validation_schema_v2",
+          "environment_isolation",
+          "positive_device_proof",
+          "correctness_contract"
+        ]
       }
     },
     "glm-ocr": {
@@ -493,7 +608,7 @@
     },
     "handwritten-ocr": {
       "cpu": {
-        "status": "VERIFIED",
+        "status": "REVALIDATION_REQUIRED",
         "failure_category": "",
         "ok_runs": 3,
         "durations_s": [
@@ -504,7 +619,15 @@
         "device_used": "CPU",
         "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/handwritten-ocr/20261001T130442Z-cpu",
         "notes": [],
-        "updated": "2026-10-01T13:04:44+00:00"
+        "updated": "2026-10-05T16:57:30+00:00",
+        "historical_status": "VERIFIED",
+        "historical_evidence": "results/handwritten-ocr/20261001T130442Z-cpu",
+        "revalidation_reasons": [
+          "validation_schema_v2",
+          "environment_isolation",
+          "positive_device_proof",
+          "correctness_contract"
+        ]
       }
     },
     "inpainting-genai": {
@@ -537,11 +660,19 @@
     },
     "stable-diffusion-xl": {
       "gpu": {
-        "status": "VERIFIED",
+        "status": "REVALIDATION_REQUIRED",
         "failure_category": "",
         "notes": [],
         "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/stable-diffusion-xl/20261001T145247Z-gpu",
-        "updated": "2026-10-01T14:53:52+00:00"
+        "updated": "2026-10-05T16:57:30+00:00",
+        "historical_status": "VERIFIED",
+        "historical_evidence": "results/stable-diffusion-xl/20261001T145247Z-gpu",
+        "revalidation_reasons": [
+          "validation_schema_v2",
+          "environment_isolation",
+          "positive_device_proof",
+          "correctness_contract"
+        ]
       },
       "cpu": {
         "status": "FAILED",
@@ -842,7 +973,7 @@
     },
     "speculative-sampling": {
       "cpu": {
-        "status": "VERIFIED",
+        "status": "REVALIDATION_REQUIRED",
         "failure_category": "",
         "ok_runs": 3,
         "durations_s": [
@@ -853,7 +984,15 @@
         "device_used": "CPU",
         "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/speculative-sampling/20261001T170548Z-cpu",
         "notes": [],
-        "updated": "2026-10-01T17:11:30+00:00"
+        "updated": "2026-10-05T16:57:30+00:00",
+        "historical_status": "VERIFIED",
+        "historical_evidence": "results/speculative-sampling/20261001T170548Z-cpu",
+        "revalidation_reasons": [
+          "validation_schema_v2",
+          "environment_isolation",
+          "positive_device_proof",
+          "correctness_contract"
+        ]
       }
     },
     "text-to-image-genai": {
@@ -928,7 +1067,7 @@
     },
     "llm-lora": {
       "cpu": {
-        "status": "VERIFIED",
+        "status": "REVALIDATION_REQUIRED",
         "failure_category": "",
         "ok_runs": 3,
         "durations_s": [
@@ -939,7 +1078,15 @@
         "device_used": "CPU",
         "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/llm-lora/20261001T140838Z-cpu",
         "notes": [],
-        "updated": "2026-10-01T14:08:50+00:00"
+        "updated": "2026-10-05T16:57:30+00:00",
+        "historical_status": "VERIFIED",
+        "historical_evidence": "results/llm-lora/20261001T140838Z-cpu",
+        "revalidation_reasons": [
+          "validation_schema_v2",
+          "environment_isolation",
+          "positive_device_proof",
+          "correctness_contract"
+        ]
       }
     },
     "mineru2.5": {
@@ -1098,7 +1245,7 @@
     },
     "hunyuan-translation": {
       "cpu": {
-        "status": "VERIFIED_WITH_LIMITATIONS",
+        "status": "REVALIDATION_REQUIRED",
         "failure_category": "",
         "ok_runs": 1,
         "durations_s": [
@@ -1109,12 +1256,20 @@
         "notes": [
           "repeatability: single successful run (resource-bounded); 3-run policy not met"
         ],
-        "updated": "2026-10-01T19:17:09+00:00"
+        "updated": "2026-10-05T16:57:30+00:00",
+        "historical_status": "VERIFIED_WITH_LIMITATIONS",
+        "historical_evidence": "results/hunyuan-translation/20261001T191559Z-cpu",
+        "revalidation_reasons": [
+          "validation_schema_v2",
+          "environment_isolation",
+          "positive_device_proof",
+          "correctness_contract"
+        ]
       }
     },
     "image-to-image-genai": {
       "cpu": {
-        "status": "VERIFIED_WITH_LIMITATIONS",
+        "status": "REVALIDATION_REQUIRED",
         "failure_category": "",
         "ok_runs": 1,
         "durations_s": [
@@ -1125,7 +1280,15 @@
         "notes": [
           "repeatability: single successful run (resource-bounded); 3-run policy not met"
         ],
-        "updated": "2026-10-01T19:17:58+00:00"
+        "updated": "2026-10-05T16:57:30+00:00",
+        "historical_status": "VERIFIED_WITH_LIMITATIONS",
+        "historical_evidence": "results/image-to-image-genai/20261001T191710Z-cpu",
+        "revalidation_reasons": [
+          "validation_schema_v2",
+          "environment_isolation",
+          "positive_device_proof",
+          "correctness_contract"
+        ]
       }
     },
     "instant-id": {
@@ -1144,7 +1307,7 @@
     },
     "llm-agent-functioncall-qwen": {
       "cpu": {
-        "status": "VERIFIED_WITH_LIMITATIONS",
+        "status": "REVALIDATION_REQUIRED",
         "failure_category": "",
         "ok_runs": 1,
         "durations_s": [
@@ -1155,12 +1318,20 @@
         "notes": [
           "repeatability: single successful run (resource-bounded); 3-run policy not met"
         ],
-        "updated": "2026-10-01T19:40:52+00:00"
+        "updated": "2026-10-05T16:57:30+00:00",
+        "historical_status": "VERIFIED_WITH_LIMITATIONS",
+        "historical_evidence": "results/llm-agent-functioncall-qwen/20261001T193351Z-cpu",
+        "revalidation_reasons": [
+          "validation_schema_v2",
+          "environment_isolation",
+          "positive_device_proof",
+          "correctness_contract"
+        ]
       }
     },
     "llm-agent-rag-llamaindex": {
       "cpu": {
-        "status": "VERIFIED_WITH_LIMITATIONS",
+        "status": "REVALIDATION_REQUIRED",
         "failure_category": "",
         "ok_runs": 1,
         "durations_s": [
@@ -1171,7 +1342,15 @@
         "notes": [
           "repeatability: single successful run (resource-bounded); 3-run policy not met"
         ],
-        "updated": "2026-10-01T19:50:37+00:00"
+        "updated": "2026-10-05T16:57:30+00:00",
+        "historical_status": "VERIFIED_WITH_LIMITATIONS",
+        "historical_evidence": "results/llm-agent-rag-llamaindex/20261001T194156Z-cpu",
+        "revalidation_reasons": [
+          "validation_schema_v2",
+          "environment_isolation",
+          "positive_device_proof",
+          "correctness_contract"
+        ]
       }
     },
     "llm-chatbot": {
@@ -1190,7 +1369,7 @@
     },
     "llm-question-answering": {
       "cpu": {
-        "status": "VERIFIED_WITH_LIMITATIONS",
+        "status": "REVALIDATION_REQUIRED",
         "failure_category": "",
         "ok_runs": 1,
         "durations_s": [
@@ -1201,12 +1380,20 @@
         "notes": [
           "repeatability: single successful run (resource-bounded); 3-run policy not met"
         ],
-        "updated": "2026-10-01T20:00:54+00:00"
+        "updated": "2026-10-05T16:57:30+00:00",
+        "historical_status": "VERIFIED_WITH_LIMITATIONS",
+        "historical_evidence": "results/llm-question-answering/20261001T195822Z-cpu",
+        "revalidation_reasons": [
+          "validation_schema_v2",
+          "environment_isolation",
+          "positive_device_proof",
+          "correctness_contract"
+        ]
       }
     },
     "meter-reader": {
       "cpu": {
-        "status": "VERIFIED_WITH_LIMITATIONS",
+        "status": "REVALIDATION_REQUIRED",
         "failure_category": "",
         "ok_runs": 1,
         "durations_s": [
@@ -1217,7 +1404,15 @@
         "notes": [
           "repeatability: single successful run (resource-bounded); 3-run policy not met"
         ],
-        "updated": "2026-10-01T20:02:04+00:00"
+        "updated": "2026-10-05T16:57:30+00:00",
+        "historical_status": "VERIFIED_WITH_LIMITATIONS",
+        "historical_evidence": "results/meter-reader/20261001T200158Z-cpu",
+        "revalidation_reasons": [
+          "validation_schema_v2",
+          "environment_isolation",
+          "positive_device_proof",
+          "correctness_contract"
+        ]
       }
     },
     "minicpm-o-4.5": {
@@ -1577,7 +1772,7 @@
       "log_tail": "Requirement already satisfied: huggingface_hub in ./.venv-cpu/lib/python3.12/site-packages (0.36.2)\nRequirement already satisfied: filelock in ./.venv-cpu/lib/python3.12/site-packages (from huggingface_hub) (4.0.8)\nRequirement already satisfied: fsspec>=2023.5.0 in ./.venv-cpu/lib/python3.12/site-packages (from huggingface_hub) (2025.3.0)\nRequirement already satisfied: hf-xet<2.0.0,>=1.1.3 in ./.venv-cpu/lib/python3.12/site-packages (from huggingface_hub) (1.6.0)\nRequirement already satisfied: packaging>=20.9 in ./.venv-cpu/lib/python3.12/site-packages (from huggingface_hub) (26.3)\nRequirement already satisfied: pyyaml>=5.1 in ./.venv-cpu/lib/python3.12/site-packages (from huggingface_hub) (6.0.3)\nRequirement already satisfied: requests in ./.venv-cpu/lib/python3.12/site-packages (from huggingface_hub) (2.34.2)\nRequirement already satisfied: tqdm>=4.42.1 in ./.venv-cpu/lib/python3.12/site-packages (from huggingface_hub) (4.70.1)\nRequirement already satisfied: typing-extensions>=3.7.4.3 in ./.venv-cpu/lib/python3.12/site-packages (from huggingface_hub) (4.16.0)\nRequirement already satisfied: charset_normalizer<4,>=2 in ./.venv-cpu/lib/python3.12/site-packages (from requests->huggingface_hub) (3.5.2)\nRequirement already satisfied: idna<4,>=2.5 in ./.venv-cpu/lib/python3.12/site-packages (from requests->huggingface_hub) (3.20)\nRequirement already satisfied: urllib3<3,>=1.26 in ./.venv-cpu/lib/python3.12/site-packages (from requests->huggingface_hub) (2.8.0)\nRequirement already satisfied: certifi>=2023.5.7 in ./.venv-cpu/lib/python3.12/site-packages (from requests->huggingface_hub) (2026.7.22)\n"
     }
   ],
-  "last_checkpoint": "2026-10-01T20:33:49+00:00",
+  "last_checkpoint": "2026-10-05T17:01:48+00:00",
   "current_workload": "qwen3-vl-reranker",
   "env_repairs": [
     {

@@ -20,6 +20,10 @@ gpu:
   status: NOT_TESTED
 twin:
   level: NOT_CLASSIFIED
-validation: {}
+validation:
+  output_contains:
+  - flat-coated retriever
+  output_finite_numbers: true
+  min_output_chars: 100
 patches: {}
-last_verified: '2026-10-01T10:19:59+00:00'
+last_verified: '2026-10-05T17:01:48+00:00'

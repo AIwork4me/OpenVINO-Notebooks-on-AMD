@@ -20,6 +20,9 @@ gpu:
   status: NOT_TESTED
 twin:
   level: WORKLOAD_TWIN
-validation: {}
+validation:
+  min_output_chars: 200
+  output_not_contains:
+  - Traceback \(most recent call last\)
 patches: {}
 last_verified: '2026-10-01T19:40:52+00:00'

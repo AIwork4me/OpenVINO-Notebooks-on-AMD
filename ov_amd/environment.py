@@ -41,16 +41,18 @@ def venv_python(backend: str = "cpu") -> Path:
     return v / "bin" / "python"
 
 
-def ensure_ipv4_first(backend: str = "cpu") -> None:
+def ensure_ipv4_first(backend: str = "cpu", venv: Path | None = None) -> None:
     """Install/refresh the network-safety hook in a venv.
 
     A plain sitecustomize.py gets shadowed by /usr/lib/python3.12/sitecustomize.py
     (stdlib dir precedes site-packages on sys.path), so the hook is wired via a
     .pth file, which site.py executes unconditionally at startup. The module
     file is refreshed from source on every call so hook updates propagate.
+    Pass `venv` to target a per-workload environment; default is the legacy
+    shared backend venv.
     """
 
-    v = CPU_VENV if backend == "cpu" else GPU_VENV
+    v = venv if venv is not None else (CPU_VENV if backend == "cpu" else GPU_VENV)
     if not v.exists():
         return
     src = Path(__file__).resolve().parent / "ipv4_first.py"
@@ -67,19 +69,30 @@ def venv_exists(backend: str = "cpu") -> bool:
     return venv_python(backend).exists()
 
 
-def kernel_env(backend: str = "cpu") -> dict[str, str]:
+def kernel_env(backend: str = "cpu", venv_bin: Path | None = None, python_bin: Path | None = None) -> dict[str, str]:
+    """Kernel environment for one execution.
+
+    `venv_bin`/`python_bin` point at a per-workload isolated environment
+    (ov_amd.env_manager); when omitted, the legacy shared venv for the backend
+    is used. OV_AMD_DEVICE_PROBE_FILE is intentionally NOT set here — the
+    executor binds it per run to the run's evidence directory.
+    """
+
     env = dict(os.environ)
     env.update(BASE_KERNEL_ENV)
     # notebooks shell out to console scripts (optimum-cli, ovc, ...); the venv
     # bin dir must be on PATH or those cells fail with FileNotFoundError
-    venv_bin = (CPU_VENV if backend == "cpu" else GPU_VENV) / "bin"
+    if venv_bin is None:
+        venv_bin = (CPU_VENV if backend == "cpu" else GPU_VENV) / "bin"
     if venv_bin.exists():
         env["PATH"] = f"{venv_bin}:{env.get('PATH', '')}"
+        env.pop("PYTHONPATH", None)  # never leak the harness python into the workload env
     if backend == "gpu":
         env.update(GPU_KERNEL_ENV_EXTRA)
         rocm_bin = Path("/opt/rocm/bin")
         if rocm_bin.exists():
             env["PATH"] = f"{rocm_bin}:{env['PATH']}"
+    _ = python_bin
     return env
 
 
@@ -104,7 +117,9 @@ def pip_install(packages: list[str], backend: str = "cpu", retries: int = 3) -> 
 
 def pip_freeze(backend: str = "cpu") -> str:
     try:
-        r = subprocess.run([str(venv_python(backend)), "-m", "pip", "freeze"], capture_output=True, text=True, timeout=180)
+        r = subprocess.run(
+            [str(venv_python(backend)), "-m", "pip", "freeze"], capture_output=True, text=True, timeout=180
+        )
         return r.stdout or ""
     except (OSError, subprocess.TimeoutExpired):
         return ""

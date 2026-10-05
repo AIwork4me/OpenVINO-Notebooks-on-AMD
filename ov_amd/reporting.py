@@ -54,7 +54,9 @@ def _sanitize_note(text: str) -> str:
     return text.replace(f"{REPO_ROOT}/", "").replace(str(REPO_ROOT), ".")
 
 
-def build_compatibility(catalog: list[NotebookEntry] | None = None, state: dict[str, Any] | None = None) -> dict[str, Any]:
+def build_compatibility(
+    catalog: list[NotebookEntry] | None = None, state: dict[str, Any] | None = None
+) -> dict[str, Any]:
     catalog = catalog if catalog is not None else load_catalog()
     state = state if state is not None else load_state()
     attempts = state.get("attempts", {})
@@ -80,9 +82,13 @@ def build_compatibility(catalog: list[NotebookEntry] | None = None, state: dict[
                 "cpu_status": cpu.get("status", Status.NOT_TESTED.value),
                 "cpu_failure_category": cpu.get("failure_category", ""),
                 "cpu_evidence": _rel(cpu.get("evidence_dir")),
+                "cpu_validation_level": cpu.get("validation_level", ""),
+                "cpu_device_proof": cpu.get("device_proof", ""),
                 "gpu_status": gpu.get("status", Status.NOT_TESTED.value),
                 "gpu_failure_category": gpu.get("failure_category", ""),
                 "gpu_evidence": _rel(gpu.get("evidence_dir")),
+                "gpu_validation_level": gpu.get("validation_level", ""),
+                "gpu_device_proof": gpu.get("device_proof", ""),
                 "twin_level": e.twin_level,
                 "device_used": cpu.get("device_used", ""),
                 "last_tested": cpu.get("updated", "") or gpu.get("updated", ""),
@@ -106,7 +112,18 @@ def _counts(rows: list[dict[str, Any]]) -> dict[str, Any]:
         "gpu": Counter(r["gpu_status"] for r in rows),
         "twin_levels": Counter(r["twin_level"] for r in rows),
     }
-    return {k: (dict(v) if isinstance(v, Counter) else v) for k, v in c.items()}
+    out = {k: (dict(v) if isinstance(v, Counter) else v) for k, v in c.items()}
+    # Defect I closure: "attempted" counts only real attempt records, never the
+    # default catalog NOT_TESTED rows.
+    for backend in ("cpu", "gpu"):
+        statuses = [r[f"{backend}_status"] for r in rows]
+        attempted = sum(1 for s in statuses if s != Status.NOT_TESTED.value)
+        out[f"{backend}_attempted"] = attempted
+        out[f"{backend}_attempt_coverage_pct"] = round(100 * attempted / len(rows), 1) if rows else 0.0
+    classified = sum(1 for r in rows if r["twin_level"] != "NOT_CLASSIFIED")
+    out["twin_classified"] = classified
+    out["twin_classification_coverage_pct"] = round(100 * classified / len(rows), 1) if rows else 0.0
+    return out
 
 
 def write_compatibility() -> dict[str, Any]:
@@ -159,8 +176,12 @@ def write_progress(state: dict[str, Any] | None = None, current: str | None = No
     compat = build_compatibility(state=state)
     c = compat["counts"]
     attempts = state.get("attempts", {})
-    done = sum(1 for w in attempts.values() for b in ("cpu", "gpu") if b in w and w[b].get("status")
-               in (s.value for s in Status if s.value not in ("QUEUED", "RUNNING")))
+    done = sum(
+        1
+        for w in attempts.values()
+        for b in ("cpu", "gpu")
+        if b in w and w[b].get("status") in (s.value for s in Status if s.value not in ("QUEUED", "RUNNING"))
+    )
     fail_cats = Counter(
         (w.get("cpu") or {}).get("failure_category")
         for w in attempts.values()
@@ -172,12 +193,15 @@ def write_progress(state: dict[str, Any] | None = None, current: str | None = No
         f"Updated: {datetime.now(timezone.utc).isoformat(timespec='seconds')}",
         "",
         f"- Catalog discovered: {c['total']}",
-        f"- CPU attempted: {sum(c['cpu'].values())}",
+        f"- CPU attempted: {c['cpu_attempted']} ({c['cpu_attempt_coverage_pct']}% of catalog; attempt records only, NOT_TESTED excluded)",
         f"- CPU verified: {c['cpu'].get('VERIFIED', 0)}",
         f"- CPU verified with limitations: {c['cpu'].get('VERIFIED_WITH_LIMITATIONS', 0)}",
         f"- CPU failed: {c['cpu'].get('FAILED', 0)}",
         f"- CPU blocked/skipped: {c['cpu'].get('BLOCKED', 0) + c['cpu'].get('SKIPPED_RESOURCE', 0)}",
+        f"- CPU not tested: {c['cpu'].get('NOT_TESTED', 0)}",
+        f"- GPU attempted: {c['gpu_attempted']} ({c['gpu_attempt_coverage_pct']}%)",
         f"- GPU verified: {c['gpu'].get('VERIFIED', 0)} (+{c['gpu'].get('VERIFIED_WITH_LIMITATIONS', 0)} limited)",
+        f"- Twin classification: {c['twin_classified']}/{c['total']} ({c['twin_classification_coverage_pct']}%)",
         f"- Terminal attempt records: {done}",
         f"- Current workload: {current or state.get('current_workload', '-')}",
         "",

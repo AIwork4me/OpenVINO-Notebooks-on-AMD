@@ -28,7 +28,7 @@ This is **an AMD validation and ROCm companion project for [OpenVINO Notebooks](
 - **Pillar C — compatibility evidence database:** every notebook carries a status, an evidence directory, and a failure category.
 
 <!-- generated:compatibility begin -->
-**171 notebooks catalogued** — CPU: ✅ 6 verified, 🟡 10 limited, 🔴 77 failed, ⚫ 0 blocked/skipped | GPU: ✅ 8, 🟡 0
+**171 notebooks catalogued** — CPU: ✅ 0 verified, 🟡 0 limited, 🔴 77 failed, ⚫ 0 blocked/skipped | GPU: ✅ 0, 🟡 0
 
 Full matrix: [catalog/compatibility.md](catalog/compatibility.md)
 <!-- generated:compatibility end -->

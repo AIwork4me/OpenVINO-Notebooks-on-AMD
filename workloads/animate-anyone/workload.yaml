@@ -20,6 +20,9 @@ gpu:
   status: NOT_TESTED
 twin:
   level: NOT_CLASSIFIED
-validation: {}
+validation:
+  min_output_chars: 50
+  output_not_contains:
+  - Traceback \(most recent call last\)
 patches: {}
 last_verified: '2026-10-01T16:32:50+00:00'
