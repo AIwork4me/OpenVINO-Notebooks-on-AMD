@@ -159,3 +159,23 @@ def test_v1_file_is_not_v2(tmp_path):
     p = tmp_path / "metrics.json"
     p.write_text(json.dumps({"runs_ok": 0}))
     assert ev2.evidence_schema_version(p) is None
+
+
+def test_genai_pipeline_device_arg_is_method_b_evidence(tmp_path):
+    """openvino_genai pipelines compile internally; the explicit device
+    argument is still positive proof (documented Method B extension)."""
+    p = _write_probe(tmp_path, [
+        {"kind": "probe_installed"},
+        {"kind": "genai_pipeline", "pipeline": "LLMPipeline", "device_arg": "CPU"},
+    ])
+    proof = ev2.summarize_device_proof(p, "cpu", "")
+    assert ev2.proof_state(proof) is ev2.DeviceProof.PROVEN_CPU
+    assert proof["genai_pipeline_events"] == 1
+
+
+def test_genai_gpu_device_arg_is_not_proven_cpu(tmp_path):
+    p = _write_probe(tmp_path, [
+        {"kind": "genai_pipeline", "pipeline": "LLMPipeline", "device_arg": "GPU"},
+    ])
+    proof = ev2.summarize_device_proof(p, "cpu", "")
+    assert ev2.proof_state(proof) is ev2.DeviceProof.PROVEN_GPU

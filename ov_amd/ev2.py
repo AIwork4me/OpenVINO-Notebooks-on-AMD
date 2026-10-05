@@ -140,14 +140,23 @@ def summarize_device_proof(
     probe_installed = any(e.get("kind") == "probe_installed" for e in events)
 
     compiles = [e for e in events if e.get("kind") == "compile_model"]
+    genai_events = [e for e in events if e.get("kind") == "genai_pipeline"]
     exec_devices: list[list[str]] = []
     device_args: list[str | None] = []
+    genai_args: list[str | None] = []
     for e in compiles:
         ed = e.get("execution_devices")
         if isinstance(ed, list) and ed:
             exec_devices.append([str(d) for d in ed])
         if e.get("device_arg") is not None:
             device_args.append(str(e["device_arg"]))
+    for e in genai_events:
+        # openvino_genai pipelines compile internally (C++ Core); the explicit
+        # device argument the notebook passes is Method B evidence
+        if e.get("device_arg") is not None:
+            genai_args.append(str(e["device_arg"]))
+
+    all_args = device_args + genai_args
 
     state = DeviceProof.UNKNOWN
     if not probe_present:
@@ -166,17 +175,17 @@ def summarize_device_proof(
                 state = DeviceProof.PROVEN_NPU
             else:
                 state = DeviceProof.AUTO_UNRESOLVED
-        elif device_args:
+        elif all_args:
             # property unavailable; explicit non-AUTO device argument is Method B
-            if all(a.upper() == "CPU" for a in device_args):
+            if all(a.upper() == "CPU" for a in all_args):
                 state = DeviceProof.PROVEN_CPU
-            elif any(a.upper() == "GPU" for a in device_args):
+            elif any(a.upper() == "GPU" for a in all_args):
                 state = DeviceProof.PROVEN_GPU
-            elif any(a.upper() == "NPU" for a in device_args):
+            elif any(a.upper() == "NPU" for a in all_args):
                 state = DeviceProof.PROVEN_NPU
             else:
                 state = DeviceProof.AUTO_UNRESOLVED
-        elif not compiles:
+        elif not compiles and not genai_events:
             state = DeviceProof.NOT_INFERENCE
         else:
             state = DeviceProof.AUTO_UNRESOLVED
@@ -185,8 +194,10 @@ def summarize_device_proof(
         "state": state.value,
         "requested_backend": requested_backend,
         "compile_events": len(compiles),
+        "genai_pipeline_events": len(genai_events),
         "execution_devices": exec_devices,
         "device_args": device_args,
+        "genai_device_args": genai_args,
         "supporting_device_used": supporting_device_used,
         "probe_events": len(events),
         "probe_present": probe_present,

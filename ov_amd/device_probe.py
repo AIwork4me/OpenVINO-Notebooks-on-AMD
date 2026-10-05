@@ -118,9 +118,86 @@ class _OpenvinoWatchFinder:
         return spec
 
 
+class _GenaiWatchFinder:
+    """Meta-path finder: patch openvino_genai pipeline constructors right
+    after its first import (they compile models internally in C++, so the
+    Python Core.compile_model hook never sees their device argument)."""
+
+    def find_spec(self, fullname, path=None, target=None):  # noqa: ANN001
+        if fullname != "openvino_genai":
+            return None
+        try:
+            sys.meta_path.remove(self)
+        except ValueError:
+            pass
+        import importlib.util
+
+        spec = importlib.util.find_spec(fullname)
+        if spec is None or spec.loader is None:
+            return None
+        orig_loader = spec.loader
+
+        class _Wrapper:
+            def create_module(self, spec):  # noqa: ANN001
+                return orig_loader.create_module(spec)
+
+            def exec_module(self, module):  # noqa: ANN001
+                orig_loader.exec_module(module)
+                try:
+                    _patch_genai(module)
+                except Exception as e:
+                    _record({"kind": "probe_install_error", "error": repr(e)})
+
+        spec.loader = _Wrapper()  # type: ignore[assignment]
+        return spec
+
+
+def _extract_device(args, kwargs):  # noqa: ANN001
+    if isinstance(kwargs.get("device"), str):
+        return kwargs["device"]
+    if isinstance(kwargs.get("device_name"), str):
+        return kwargs["device_name"]
+    # pipelines: (models_path, device, ...) | (model_string, device, ...)
+    if len(args) >= 2 and isinstance(args[1], str):
+        return args[1]
+    return None
+
+
+def _patch_genai(genai_module) -> None:
+    for name in dir(genai_module):
+        if not name.endswith("Pipeline"):
+            continue
+        cls = getattr(genai_module, name)
+        if not isinstance(cls, type) or getattr(cls, "_amd_probe_patched", False):
+            continue
+        orig_init = cls.__init__
+
+        def make_patched(orig, pipeline_name):  # noqa: ANN001
+            def __init__(self, *args, **kwargs):  # noqa: ANN002, ANN003
+                try:
+                    _record({
+                        "kind": "genai_pipeline",
+                        "pipeline": pipeline_name,
+                        "device_arg": _extract_device(args, kwargs),
+                    })
+                except Exception:
+                    pass
+                return orig(self, *args, **kwargs)
+
+            return __init__
+
+        try:
+            cls.__init__ = make_patched(orig_init, name)  # type: ignore[method-assign]
+            cls._amd_probe_patched = True  # type: ignore[attr-defined]
+        except (TypeError, AttributeError):
+            continue
+
+
 def install() -> None:
     if not any(isinstance(f, _OpenvinoWatchFinder) for f in sys.meta_path):
         sys.meta_path.insert(0, _OpenvinoWatchFinder())
+    if not any(isinstance(f, _GenaiWatchFinder) for f in sys.meta_path):
+        sys.meta_path.append(_GenaiWatchFinder())
 
 
 install()
