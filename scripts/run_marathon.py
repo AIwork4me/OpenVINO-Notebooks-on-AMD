@@ -14,8 +14,12 @@ def main() -> int:
     from ov_amd.marathon import run_marathon
 
     ap = argparse.ArgumentParser()
-    for opt, dest in (("--resume", "resume"), ("--cpu-only", "cpu_only"), ("--gpu-only", "gpu_only"),
-                      ("--retry-failed", "retry_failed")):
+    for opt, dest in (
+        ("--resume", "resume"),
+        ("--cpu-only", "cpu_only"),
+        ("--gpu-only", "gpu_only"),
+        ("--retry-failed", "retry_failed"),
+    ):
         ap.add_argument(opt, dest=dest, action="store_true")
     ap.add_argument("--max-runtime", type=float, default=None, help="seconds")
     ap.add_argument("--priority", type=int, default=None)

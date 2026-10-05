@@ -88,7 +88,13 @@ class PeakMemory:
 def emit(ok: bool, evidence_dir: Path, metrics: dict, extra: dict | None = None) -> int:
 
     info = gpu_ready()
-    result = {"ok": bool(ok), "hip": info["hip"], "device": info["device"], "gcn_arch": info["gcn_arch"], "metrics": metrics}
+    result = {
+        "ok": bool(ok),
+        "hip": info["hip"],
+        "device": info["device"],
+        "gcn_arch": info["gcn_arch"],
+        "metrics": metrics,
+    }
     if extra:
         result.update(extra)
     if not ok or not info["hip"] or not info["cuda_available"]:

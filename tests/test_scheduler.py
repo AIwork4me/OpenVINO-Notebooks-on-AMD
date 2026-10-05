@@ -1,6 +1,5 @@
 """Scheduler: ordering, resumability, next_runnable."""
 
-
 import yaml
 
 from ov_amd.scheduler import counts, load_catalog, next_runnable, order_workloads, resources_ok, save_state
@@ -8,8 +7,15 @@ from ov_amd.schemas import NotebookEntry, Status
 
 
 def make(id_: str, prio=2, weight="medium") -> NotebookEntry:
-    return NotebookEntry(id=id_, title=id_, category="LLM", upstream_path=f"n/{id_}.ipynb",
-                         upstream_url="u", priority=prio, est_weight=weight)
+    return NotebookEntry(
+        id=id_,
+        title=id_,
+        category="LLM",
+        upstream_path=f"n/{id_}.ipynb",
+        upstream_url="u",
+        priority=prio,
+        est_weight=weight,
+    )
 
 
 def test_order_by_priority_then_weight():
@@ -63,9 +69,11 @@ def test_load_catalog_yaml(tmp_path, monkeypatch):
 
     catdir = tmp_path / "catalog"
     catdir.mkdir()
-    (catdir / "notebooks.yaml").write_text(yaml.safe_dump({
-        "notebooks": [{"id": "x", "title": "X", "category": "API", "upstream_path": "p", "upstream_url": "u"}]
-    }))
+    (catdir / "notebooks.yaml").write_text(
+        yaml.safe_dump(
+            {"notebooks": [{"id": "x", "title": "X", "category": "API", "upstream_path": "p", "upstream_url": "u"}]}
+        )
+    )
     monkeypatch.setattr(sch, "REPO_ROOT", tmp_path)
     entries = load_catalog()
     assert len(entries) == 1 and entries[0].id == "x"

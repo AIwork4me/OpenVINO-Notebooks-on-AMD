@@ -9,7 +9,9 @@ def test_dependency():
 
 
 def test_network():
-    assert classify_failure("requests.exceptions.ConnectionError: hf-mirror refused", "", False) == FailureCategory.NETWORK
+    assert (
+        classify_failure("requests.exceptions.ConnectionError: hf-mirror refused", "", False) == FailureCategory.NETWORK
+    )
     assert classify_failure("urllib.error.URLError: timed out", "", False) == FailureCategory.NETWORK
 
 

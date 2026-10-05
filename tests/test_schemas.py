@@ -57,7 +57,11 @@ def test_failure_categories_have_values():
 
 def test_twin_levels():
     assert {t.value for t in TwinLevel} == {
-        "EXACT_TWIN", "WORKLOAD_TWIN", "CONCEPT_MAPPING", "OPENVINO_SPECIFIC", "NOT_CLASSIFIED",
+        "EXACT_TWIN",
+        "WORKLOAD_TWIN",
+        "CONCEPT_MAPPING",
+        "OPENVINO_SPECIFIC",
+        "NOT_CLASSIFIED",
     }
 
 

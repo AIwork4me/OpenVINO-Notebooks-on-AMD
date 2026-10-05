@@ -28,16 +28,31 @@ CATALOG = REPO_ROOT / "catalog" / "notebooks.yaml"
 # category detection rules, evaluated in order on the upstream-relative path
 CATEGORY_RULES: list[tuple[str, str]] = [
     (r"hello-world|hellogenerateimage", "API"),
-    (r"openvino-api|openvino-2024|pot-quantization|model-server|model_api|async-api|auto-device|gpu-device|hello-npu|hugging-face-hub|openvino-tokenizers|optimize-preprocessing", "API"),
+    (
+        r"openvino-api|openvino-2024|pot-quantization|model-server|model_api|async-api|auto-device|gpu-device|hello-npu|hugging-face-hub|openvino-tokenizers|optimize-preprocessing",
+        "API",
+    ),
     (r"tensorflow|onnx|pytorch|detectron2|modelscope|tflite|convert|export|migration", "Conversion"),
     (r"neural-compression|quantization|weight-compression|compression|language-quantize", "Optimization"),
     (r"whisper|asr|speech-recognition|wav2vec|speech-to-text|mms-massively|omnivoice", "ASR"),
-    (r"tts|text-to-speech|speech-synthesis|sunset|kokoro|fish-speech|bark-text-to-audio|openvoice|freevc|voice-conversion|music-generation|ace-step", "TTS"),
-    (r"wav2lip|animate-anyone|catvton|instant-id|ernie-image|muse-glimmer|image-to-image-genai|text-to-image-genai|rmbg|background-removal|darkir|photo-restoration|inpainting|image-editing", "Image Generation"),
+    (
+        r"tts|text-to-speech|speech-synthesis|sunset|kokoro|fish-speech|bark-text-to-audio|openvoice|freevc|voice-conversion|music-generation|ace-step",
+        "TTS",
+    ),
+    (
+        r"wav2lip|animate-anyone|catvton|instant-id|ernie-image|muse-glimmer|image-to-image-genai|text-to-image-genai|rmbg|background-removal|darkir|photo-restoration|inpainting|image-editing",
+        "Image Generation",
+    ),
     (r"stable-diffusion|latent-consistency|flux|animatediff|kandinsky|image-generation|unet|style", "Image Generation"),
-    (r"florence2|glm4|glm4\.1|minicpm|internvl|vlm|visual-language|llava|git-base|grounding-dino|grounded-segment|molmo|smolvlm|video-llm|multimodal|visual-chat|omnimodal", "VLM"),
+    (
+        r"florence2|glm4|glm4\.1|minicpm|internvl|vlm|visual-language|llava|git-base|grounding-dino|grounded-segment|molmo|smolvlm|video-llm|multimodal|visual-chat|omnimodal",
+        "VLM",
+    ),
     (r"ocr|paddle|docling|mineru|smoldocling|omniparser|meter-reader", "OCR"),
-    (r"llm|qwen|llama|chatbot|question-answering|rag|agent|phi-|gemma|mistral|ministral|deepseek|opt-|gpt2|text-generation|instruction|translation|nuextract|speculative|simplifying|hunyuan|physical-ai|aloha", "LLM"),
+    (
+        r"llm|qwen|llama|chatbot|question-answering|rag|agent|phi-|gemma|mistral|ministral|deepseek|opt-|gpt2|text-generation|instruction|translation|nuextract|speculative|simplifying|hunyuan|physical-ai|aloha",
+        "LLM",
+    ),
     (r"yolo|detection|object-detection|ssd|retinaface|owl-vit|dino|rtdetr|pointpillars|person-counting", "Vision"),
     (r"pose-estimation|segmentation|maskrcnn|monodepth|depth|segformer|segment-anything|sam2|sam3", "Vision"),
     (r"classification|mobilenet|resnet|vit|clip|image-classification|similarity", "Vision"),
@@ -58,7 +73,10 @@ HEAVY_DEPS = {
 WEIGHT_BY_SOURCE = [(400_000, "huge"), (100_000, "large"), (30_000, "medium"), (0, "small")]
 
 TWIN_RULES: list[tuple[str, str]] = [
-    (r"openvino-api|pot-quantization|model-server|async-api|neural-compression|weight-compression|nncf|optimization|convert|export|migration|tensorflow-to-openvino|pytorch-to-openvino|onnx", TwinLevel.OPENVINO_SPECIFIC.value),
+    (
+        r"openvino-api|pot-quantization|model-server|async-api|neural-compression|weight-compression|nncf|optimization|convert|export|migration|tensorflow-to-openvino|pytorch-to-openvino|onnx",
+        TwinLevel.OPENVINO_SPECIFIC.value,
+    ),
     (r"whisper|asr|speech", TwinLevel.WORKLOAD_TWIN.value),
     (r"stable-diffusion|image-generation|animatediff|inpainting", TwinLevel.WORKLOAD_TWIN.value),
     (r"llm|qwen|llama|chatbot|rag|agent|question-answering|text-generation", TwinLevel.WORKLOAD_TWIN.value),
@@ -216,8 +234,11 @@ def priority_for(entry_id: str, category: str, weight: str, path_rel: str) -> in
 
 def main() -> int:
     if not UPSTREAM_DIR.exists():
-        print("upstream clone missing — run: git clone --depth 1 "
-              "https://github.com/openvinotoolkit/openvino_notebooks.git .cache/upstream", file=sys.stderr)
+        print(
+            "upstream clone missing — run: git clone --depth 1 "
+            "https://github.com/openvinotoolkit/openvino_notebooks.git .cache/upstream",
+            file=sys.stderr,
+        )
         return 1
     meta = git_info(UPSTREAM_DIR)
     UPSTREAM_META.parent.mkdir(parents=True, exist_ok=True)

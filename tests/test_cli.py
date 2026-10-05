@@ -23,10 +23,22 @@ def test_cli_list_with_catalog(tmp_path, monkeypatch, capsys):
     monkeypatch.setattr(env, "REPO_ROOT", tmp_path)
     catdir = tmp_path / "catalog"
     catdir.mkdir()
-    (catdir / "notebooks.yaml").write_text(yaml.safe_dump({
-        "notebooks": [{"id": "hello-world", "title": "Hello", "category": "API",
-                       "upstream_path": "p", "upstream_url": "u", "priority": 0}]
-    }))
+    (catdir / "notebooks.yaml").write_text(
+        yaml.safe_dump(
+            {
+                "notebooks": [
+                    {
+                        "id": "hello-world",
+                        "title": "Hello",
+                        "category": "API",
+                        "upstream_path": "p",
+                        "upstream_url": "u",
+                        "priority": 0,
+                    }
+                ]
+            }
+        )
+    )
     st = tmp_path / "results"
     st.mkdir()
     (st / "marathon-state.json").write_text('{"attempts": {}}')

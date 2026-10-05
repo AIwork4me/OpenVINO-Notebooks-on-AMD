@@ -51,10 +51,19 @@ TOKEN = os.environ.get("GH_TOKEN") or gh_token()
 def api_get(url: str, tries: int = 4, timeout: int = 300) -> bytes:
     for i in range(tries):
         r = subprocess.run(
-            [CURL, "-sSfL", "--max-time", str(timeout),
-             "-H", f"Authorization: Bearer {TOKEN}",
-             "-H", "Accept: application/vnd.github+json", url],
-            capture_output=True, timeout=timeout + 30,
+            [
+                CURL,
+                "-sSfL",
+                "--max-time",
+                str(timeout),
+                "-H",
+                f"Authorization: Bearer {TOKEN}",
+                "-H",
+                "Accept: application/vnd.github+json",
+                url,
+            ],
+            capture_output=True,
+            timeout=timeout + 30,
         )
         if r.returncode == 0:
             return r.stdout
@@ -104,9 +113,11 @@ def main() -> int:
     tree = api_json(f"https://api.github.com/repos/{REPO}/git/trees/{commit}?recursive=1")
     if tree.get("truncated"):
         print("WARNING: tree truncated by API", file=sys.stderr)
-    blobs = [t for t in tree["tree"]
-             if t["type"] == "blob" and t["path"].endswith(KEEP_EXT)
-             and not t["path"].startswith(SKIP_PREFIX)]
+    blobs = [
+        t
+        for t in tree["tree"]
+        if t["type"] == "blob" and t["path"].endswith(KEEP_EXT) and not t["path"].startswith(SKIP_PREFIX)
+    ]
     total = sum(t.get("size", 0) for t in blobs)
     print(f"{len(blobs)} files, {total / 1e6:.1f} MB", flush=True)
 
@@ -126,21 +137,30 @@ def main() -> int:
                 fails.append(f"{path} {status}")
             if (i + 1) % 25 == 0:
                 mb = sum(f.stat().st_size for f in DEST.rglob("*") if f.is_file()) / 1e6
-                print(f"  {i + 1}/{len(blobs)} ok={ok} cached={cached} fail={fail} "
-                      f"({mb:.0f}MB, {time.time() - t0:.0f}s)", flush=True)
+                print(
+                    f"  {i + 1}/{len(blobs)} ok={ok} cached={cached} fail={fail} ({mb:.0f}MB, {time.time() - t0:.0f}s)",
+                    flush=True,
+                )
 
     META_PATH.parent.mkdir(parents=True, exist_ok=True)
-    META_PATH.write_text(json.dumps({
-        "repository": REPO,
-        "branch": BRANCH,
-        "commit": commit,
-        "commit_date": commit_date,
-        "commit_subject": commit_subject,
-        "discovered_at": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
-        "local_path": str(DEST),
-        "fetch_method": "github git-blobs API (sha1-verified); git protocol throttled ~47KB/s, raw CDN stalls on this network",
-        "files_ok": ok, "files_cached": cached, "files_failed": fail,
-    }, indent=2))
+    META_PATH.write_text(
+        json.dumps(
+            {
+                "repository": REPO,
+                "branch": BRANCH,
+                "commit": commit,
+                "commit_date": commit_date,
+                "commit_subject": commit_subject,
+                "discovered_at": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
+                "local_path": str(DEST),
+                "fetch_method": "github git-blobs API (sha1-verified); git protocol throttled ~47KB/s, raw CDN stalls on this network",
+                "files_ok": ok,
+                "files_cached": cached,
+                "files_failed": fail,
+            },
+            indent=2,
+        )
+    )
 
     if fails:
         print("FAILED downloads:", file=sys.stderr)
