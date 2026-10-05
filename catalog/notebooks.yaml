@@ -249,9 +249,10 @@ notebooks:
   workload_type: vision
   est_weight: small
   cpu_meaningful: true
-  gpu_meaningful: false
-  twin_level: OPENVINO_SPECIFIC
-  notes: ''
+  gpu_meaningful: true
+  twin_level: WORKLOAD_TWIN
+  notes: 'twin correction: notebook runs real PyTorch task inference (baseline) before OpenVINO conversion
+    -> task notebook (WORKLOAD_TWIN)'
 - id: darkir-image-restoration
   title: Darkir Image Restoration
   category: Image Generation
@@ -641,11 +642,12 @@ notebooks:
   workload_type: api
   est_weight: small
   cpu_meaningful: true
-  gpu_meaningful: false
-  twin_level: OPENVINO_SPECIFIC
+  gpu_meaningful: true
+  twin_level: WORKLOAD_TWIN
   notes: 'twin: The lesson is OpenVINO conversion tooling itself - ov.convert_model/ov.save_model of an
     HF model, optimum-intel OVModel auto-export and optimum-cli export - so on ROCm where you would simply
-    run the HF model in PyTorch, the notebook''s content has no twin.'
+    run the HF model in PyTorch, the notebook''s content has no twin.; twin correction: notebook runs
+    real PyTorch task inference (baseline) before OpenVINO conversion -> task notebook (WORKLOAD_TWIN)'
 - id: hunyuan-ocr
   title: Hunyuan Ocr
   category: OCR
@@ -1520,9 +1522,10 @@ notebooks:
   workload_type: conversion
   est_weight: small
   cpu_meaningful: true
-  gpu_meaningful: false
-  twin_level: OPENVINO_SPECIFIC
-  notes: ''
+  gpu_meaningful: true
+  twin_level: WORKLOAD_TWIN
+  notes: 'twin correction: notebook runs real PyTorch task inference (baseline) before OpenVINO conversion
+    -> task notebook (WORKLOAD_TWIN)'
 - id: pytorch-to-openvino
   title: Pytorch To Openvino
   category: Conversion
@@ -1533,9 +1536,10 @@ notebooks:
   workload_type: conversion
   est_weight: small
   cpu_meaningful: true
-  gpu_meaningful: false
-  twin_level: OPENVINO_SPECIFIC
-  notes: ''
+  gpu_meaningful: true
+  twin_level: WORKLOAD_TWIN
+  notes: 'twin correction: notebook runs real PyTorch task inference (baseline) before OpenVINO conversion
+    -> task notebook (WORKLOAD_TWIN)'
 - id: qwen-image
   title: Qwen Image
   category: LLM

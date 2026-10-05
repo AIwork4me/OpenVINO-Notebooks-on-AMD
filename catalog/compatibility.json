@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-05T19:54:45+00:00",
+  "generated": "2026-10-05T20:04:30+00:00",
   "upstream": {
     "repository": "openvinotoolkit/openvino_notebooks",
     "branch": "latest",
@@ -28,8 +28,8 @@
       "VERIFIED": 1
     },
     "twin_levels": {
-      "WORKLOAD_TWIN": 156,
-      "OPENVINO_SPECIFIC": 14,
+      "WORKLOAD_TWIN": 160,
+      "OPENVINO_SPECIFIC": 10,
       "CONCEPT_MAPPING": 1
     },
     "cpu_attempted": 94,
@@ -464,7 +464,7 @@
       "gpu_evidence": null,
       "gpu_validation_level": "",
       "gpu_device_proof": "",
-      "twin_level": "OPENVINO_SPECIFIC",
+      "twin_level": "WORKLOAD_TWIN",
       "device_used": "",
       "last_tested": "",
       "evidence": null,
@@ -1145,7 +1145,7 @@
       "gpu_evidence": null,
       "gpu_validation_level": "",
       "gpu_device_proof": "",
-      "twin_level": "OPENVINO_SPECIFIC",
+      "twin_level": "WORKLOAD_TWIN",
       "device_used": "",
       "last_tested": "",
       "evidence": null,
@@ -2673,7 +2673,7 @@
       "gpu_evidence": null,
       "gpu_validation_level": "",
       "gpu_device_proof": "",
-      "twin_level": "OPENVINO_SPECIFIC",
+      "twin_level": "WORKLOAD_TWIN",
       "device_used": "",
       "last_tested": "",
       "evidence": null,
@@ -2696,7 +2696,7 @@
       "gpu_evidence": null,
       "gpu_validation_level": "",
       "gpu_device_proof": "",
-      "twin_level": "OPENVINO_SPECIFIC",
+      "twin_level": "WORKLOAD_TWIN",
       "device_used": "",
       "last_tested": "",
       "evidence": null,
