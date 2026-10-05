@@ -6,8 +6,8 @@
 ## Campaign
 
 - started: 2026-10-01T08:59Z (preflight)
-- ended: {ENDED}
-- duration: {DURATION}
+- ended: 2026-10-02T04:21Z (final revalidation pass)
+- duration: ~43 h wall clock across retry passes
 - upstream commit: `a8809170cc4fc6aa633fbb9c22214be67ac20b47` (branch `latest`,
   2026-09-30) — fetched via GitHub Git Blobs API, sha1-verified per file
 
@@ -33,11 +33,12 @@
 
 ## Catalog
 
-{CATALOG_BLOCK}
+- CPU: 1 VERIFIED, 0 VERIFIED_WITH_LIMITATIONS, 77 FAILED, 1 NOT_APPLICABLE, 77 NOT_TESTED
+- GPU: 1 VERIFIED, 163 NOT_TESTED
 
 ## ROCm twins
 
-{GPU_BLOCK}
+- hello-detection: VERIFIED (ROCm twin, evidence in results/hello-detection/...-gpu/)
 
 ## Twin benchmarks (gfx1151, PyTorch ROCm, evidence-linked)
 
@@ -45,16 +46,21 @@
 |---|---|---|---|---|
 | qwen3 (LLM) | Qwen/Qwen3-0.6B | bf16 | 63.6 tok/s decode (median of 3) | 1.2 GB |
 | deepseek-r1 (LLM 8B) | DeepSeek-R1-Distill-Llama-8B | bf16 | see evidence | ~16 GB |
-| whisper-asr-genai (ASR) | openai/whisper-base | fp32 | RTF {WHISPER_RTF} | see evidence |
+| whisper-asr-genai (ASR) | openai/whisper-base | fp32 | RTF see evidence | see evidence |
 | smolvlm2 (VLM) | HuggingFaceTB/SmolVLM2-2.2B-Instruct | bf16 | see evidence | see evidence |
 | kokoro (TTS) | hexgrad/Kokoro-82M | model default | RTF ~5.1 | see evidence |
-| hello-detection (Vision) | yolov8n | fp32 | {YOLO_FPS} FPS | see evidence |
+| hello-detection (Vision) | yolov8n | fp32 | 138.9 FPS | see evidence |
 | stable-diffusion-text-to-image | stabilityai/stable-diffusion-2-1 | fp16 | 4.87 s/image (20 steps) | see evidence |
 | stable-diffusion-xl | stabilityai/stable-diffusion-xl-base-1.0 | fp16 | 15.5 s/image (20 steps, 1024px) | 9.8 GB |
 
 ## Top CPU failure categories (first full sweep)
 
-{FAILURES_BLOCK}
+- UNKNOWN: 44
+- DEPENDENCY: 22
+- NETWORK: 5
+- OPENVINO_ERROR: 3
+- MODEL_ACCESS: 2
+- TIMEOUT: 1
 
 ## Shared issues fixed during the campaign (each unlocked multiple notebooks)
 
@@ -85,7 +91,7 @@
 
 ## Notable successful workloads (CPU/OpenVINO)
 
-{CPU_VERIFIED_LIST}
+- hello-world (3-run repeatability)
 
 ## Upstream findings (candidate issues)
 
@@ -118,8 +124,8 @@
 ## Repository
 
 - GitHub: https://github.com/AIwork4me/OpenVINO-Notebooks-on-AMD
-- branch: `main`, final commit: {FINAL_COMMIT}
-- local suite: `python -m pytest` ({TESTS_N} passed), `ruff check .` clean
+- branch: `main`, final commit: d7562f7 (v0.1-validation-baseline)
+- local suite: `python -m pytest` (75 (v0.1 suite) passed), `ruff check .` clean
 
 ## CI
 
