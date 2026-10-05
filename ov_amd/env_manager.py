@@ -196,6 +196,29 @@ def _uv_install(python: Path, packages: list[str], timeout: int = 1800) -> tuple
     return False, last[-4000:]
 
 
+
+def _missing_seed_pkgs(python: Path, packages: list[str]) -> list[str]:
+    """Packages among `packages` (bare names, no version specifiers) that are
+    not installed in the target venv. Version specs are stripped: the check is
+    presence, not resolution."""
+    names = [p.split(">=")[0].split("==")[0].split("<")[0].strip() for p in packages]
+    code = (
+        "import importlib.metadata as md, json, sys\n"
+        "missing = []\n"
+        "for name in json.load(sys.stdin):\n"
+        "    try:\n"
+        "        md.version(name)\n"
+        "    except Exception:\n"
+        "        missing.append(name)\n"
+        "print(json.dumps(missing))\n"
+    )
+    try:
+        r = subprocess.run([str(python), "-c", code], input=json.dumps(names),
+                           capture_output=True, text=True, timeout=120)
+        return json.loads((r.stdout or "[]").strip() or "[]")
+    except (OSError, subprocess.TimeoutExpired, json.JSONDecodeError):
+        return names  # be conservative: treat as unverifiable -> missing
+
 def _python_version_of(system_python: str) -> str:
     try:
         r = subprocess.run(
@@ -241,11 +264,22 @@ def build_env(
     )
     if r.returncode != 0 or not python.exists():
         raise RuntimeError(f"uv venv failed for {target}: {r.stderr[-2000:]}")
-    ok, log = _uv_install(python, [*seed, *(extra_deps or [])])
+    wanted = [*seed, *(extra_deps or [])]
+    ok, log = _uv_install(python, wanted)
     if not ok:
         # leave the broken env in place for inspection but mark it unusable
         (target / "BUILD-FAILED.txt").write_text(log)
         raise RuntimeError(f"seed install failed for {target}: {log[-2000:]}")
+    # verify the seed actually landed: uv has been observed to exit 0 on a
+    # warm-cache build with a package missing (partial install), which would
+    # silently poison every workload sharing this fingerprint
+    missing = _missing_seed_pkgs(python, wanted)
+    if missing:
+        _uv_install(python, missing)
+        missing = _missing_seed_pkgs(python, missing)
+        if missing:
+            (target / "BUILD-FAILED.txt").write_text(f"still missing after retry: {missing}")
+            raise RuntimeError(f"seed install incomplete for {target}: missing {missing}")
     _write_probe_hooks(target)
     (target / "env-meta.json").write_text(
         json.dumps(
