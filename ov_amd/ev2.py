@@ -17,7 +17,7 @@ Device proof states (positive proof required for CPU VERIFIED):
 - PROVEN_CPU / PROVEN_GPU / PROVEN_NPU: runtime evidence of execution on that
   device (EXECUTION_DEVICES property, or the explicit compile_model device
   argument when the property is unavailable).
-- NOT_INFERENCE: the notebook never compiles a model (conversion/API-only).
+- NOT_INFERENCE: the probe captured no OpenVINO compile_model call — either the notebook truly does not run inference (conversion/API-only), or it compiles internally via openvino_genai pipelines which bypass the Python Core API.
 - AUTO_UNRESOLVED: compile happened, device argument AUTO and the runtime
   property was not queryable.
 - UNKNOWN: no usable device evidence.
@@ -262,7 +262,11 @@ def decide_status(
     if level is ValidationLevel.EXECUTION_ONLY:
         notes.append("EXECUTION_ONLY: no workload correctness contract (validation: {})")
     if proof is DeviceProof.NOT_INFERENCE:
-        notes.append("DEVICE_PROOF_NOT_APPLICABLE: notebook performs no OpenVINO model compile")
+        notes.append(
+            "DEVICE_PROOF_NOT_OBSERVED: no OpenVINO compile_model call was captured by the "
+            "probe (notebooks driving openvino_genai pipelines or conversion-only code "
+            "bypass the Python Core API; positive device execution therefore unproven)"
+        )
     elif proof not in PROVEN_STATES:
         notes.append(f"DEVICE_PROOF_INCOMPLETE: device proof state {proof.value}")
     if proof is DeviceProof.PROVEN_GPU:
