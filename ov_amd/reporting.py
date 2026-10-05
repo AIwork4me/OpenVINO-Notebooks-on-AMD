@@ -11,6 +11,7 @@ Generated artifacts (never hand-maintained):
 from __future__ import annotations
 
 import json
+import re
 from collections import Counter
 from datetime import datetime, timezone
 from typing import Any
@@ -33,6 +34,26 @@ def _icon(status: str) -> str:
     return STATUS_ICONS.get(status, "⏳")
 
 
+def _rel(p: str | None) -> str | None:
+    """Repo-relative evidence path for public artifacts (no /home/... leaks)."""
+
+    if not p:
+        return None
+    return p.replace(f"{REPO_ROOT}/", "")
+
+
+_ANSI_RE = re.compile(r"\x1b\[[0-9;]*m")
+
+
+def _sanitize_note(text: str) -> str:
+    """Public matrices must not leak local filesystem layout: strip ANSI codes
+    and reduce absolute repo paths to repo-relative ones (notes embed raw
+    stderr excerpts, which contain e.g. .venv-cpu/bin/python command lines)."""
+
+    text = _ANSI_RE.sub("", text)
+    return text.replace(f"{REPO_ROOT}/", "").replace(str(REPO_ROOT), ".")
+
+
 def build_compatibility(catalog: list[NotebookEntry] | None = None, state: dict[str, Any] | None = None) -> dict[str, Any]:
     catalog = catalog if catalog is not None else load_catalog()
     state = state if state is not None else load_state()
@@ -42,6 +63,12 @@ def build_compatibility(catalog: list[NotebookEntry] | None = None, state: dict[
         rec = attempts.get(e.id, {})
         cpu = rec.get("cpu", {})
         gpu = rec.get("gpu", {})
+        # the public Evidence link must point at the evidence of the claim it
+        # sits next to: GPU evidence when the GPU path is the verified one
+        if str(gpu.get("status", "")).startswith("VERIFIED") and gpu.get("evidence_dir"):
+            evidence = gpu["evidence_dir"]
+        else:
+            evidence = cpu.get("evidence_dir") or gpu.get("evidence_dir")
         rows.append(
             {
                 "id": e.id,
@@ -52,18 +79,21 @@ def build_compatibility(catalog: list[NotebookEntry] | None = None, state: dict[
                 "priority": e.priority,
                 "cpu_status": cpu.get("status", Status.NOT_TESTED.value),
                 "cpu_failure_category": cpu.get("failure_category", ""),
+                "cpu_evidence": _rel(cpu.get("evidence_dir")),
                 "gpu_status": gpu.get("status", Status.NOT_TESTED.value),
                 "gpu_failure_category": gpu.get("failure_category", ""),
+                "gpu_evidence": _rel(gpu.get("evidence_dir")),
                 "twin_level": e.twin_level,
                 "device_used": cpu.get("device_used", ""),
                 "last_tested": cpu.get("updated", "") or gpu.get("updated", ""),
-                "evidence": cpu.get("evidence_dir") or gpu.get("evidence_dir"),
-                "notes": (cpu.get("notes") or []) + (gpu.get("notes") or []),
+                "evidence": _rel(evidence),
+                "notes": [_sanitize_note(n) for n in ((cpu.get("notes") or []) + (gpu.get("notes") or []))],
             }
         )
+    upstream_public = {k: v for k, v in (state.get("upstream", {}) or {}).items() if k != "local_path"}
     return {
         "generated": datetime.now(timezone.utc).isoformat(timespec="seconds"),
-        "upstream": state.get("upstream", {}),
+        "upstream": upstream_public,
         "counts": _counts(rows),
         "rows": rows,
     }
@@ -175,7 +205,7 @@ def write_failures(state: dict[str, Any] | None = None) -> None:
         lines.append(f"## {key} — {len(groups[key])} workload(s)")
         lines.append("")
         for it in groups[key][:50]:
-            lines.append(f"- **{it['id']}** — {it['note']}")
+            lines.append(f"- **{it['id']}** — {_sanitize_note(it['note'])}")
         lines.append("")
     FAILURES_MD.parent.mkdir(parents=True, exist_ok=True)
     FAILURES_MD.write_text("\n".join(lines) + "\n")

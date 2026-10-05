@@ -1,0 +1,39 @@
+[cell 0 START +    0.4s] # Industrial Meter Reader | This notebook shows how to create a industri
+[cell 1 START +    0.4s] # Install openvino package | %pip install -q "openvino>=2023.1.0" opencv
+[cell 1 DONE  +    1.0s]
+[cell 2 START +    1.0s] ## Import | [back to top ⬆️](#Table-of-contents:) | 
+[cell 3 START +    1.0s] import os | from pathlib import Path | import numpy as np | import math | impo
+[cell 3 DONE  +    1.4s]
+[cell 4 START +    1.4s] ## Prepare the Model and Test Image | [back to top ⬆️](#Table-of-content
+[cell 5 START +    1.4s] MODEL_DIR = "model" | DATA_DIR = "data" | DET_MODEL_LINK = "https://storag
+[cell 5 DONE  +    2.5s]
+[cell 6 START +    2.5s] ## Configuration | [back to top ⬆️](#Table-of-contents:) | Add parameter c
+[cell 7 START +    2.5s] METER_SHAPE = [512, 512] | CIRCLE_CENTER = [256, 256] | CIRCLE_RADIUS = 25
+[cell 7 DONE  +    2.5s]
+[cell 8 START +    2.5s] ## Load the Models | [back to top ⬆️](#Table-of-contents:) | Define a comm
+[cell 9 START +    2.5s] # Initialize OpenVINO Runtime | core = ov.Core() |  |  | class Model: |     """ | 
+[cell 9 DONE  +    2.5s]
+[cell 10 START +    2.5s] ## Data Process | [back to top ⬆️](#Table-of-contents:) | Including the pr
+[cell 11 START +    2.5s] def det_preprocess(input_image, target_size): |     """ |     Preprocessin
+[cell 11 DONE  +    2.5s]
+[cell 12 START +    2.5s] ## Main Function | [back to top ⬆️](#Table-of-contents:) | 
+[cell 13 START +    2.5s] ### Initialize the model and parameters. | [back to top ⬆️](#Table-of-co
+[cell 14 START +    2.5s] device = device_widget(exclude=["NPU"]) |  | device
+[cell 14 DONE  +    2.6s]
+[cell 15 START +    2.6s] The number of detected meter from detection network can be arbitrary i
+[cell 16 START +    2.6s] img_file = f"{DATA_DIR}/{IMG_FILE_NAME}" | det_model_path = f"{MODEL_DIR
+[cell 16 DONE  +    3.6s]
+[cell 17 START +    3.6s] ### Run meter detection model | [back to top ⬆️](#Table-of-contents:) | De
+[cell 18 START +    3.6s] # Prepare the input data for meter detection model | im_shape = np.array
+[cell 18 DONE  +    3.7s]
+[cell 19 START +    3.7s] ### Run meter segmentation model | [back to top ⬆️](#Table-of-contents:)
+[cell 20 START +    3.7s] seg_results = list() | mask_list = list() | num_imgs = len(roi_imgs) |  | # Ru
+[cell 20 DONE  +    3.9s]
+[cell 21 START +    3.9s] ### Postprocess the models result and calculate the final readings | [ba
+[cell 22 START +    3.9s] # Find the pointer location in scale map and calculate the meters read
+[cell 22 DONE  +    4.1s]
+[cell 23 START +    4.1s] ### Get the reading result on the meter picture | [back to top ⬆️](#Tabl
+[cell 24 START +    4.1s] # Create a final result photo with reading | for i in range(len(meter_re
+[cell 24 DONE  +    4.3s]
+[cell 25 START +    4.3s] ## Try it with your meter photos! | [back to top ⬆️](#Table-of-contents:
+NBEXEC_RESULT={"ok": true, "n_cells": 12, "n_skipped": 0, "n_substituted": 0, "stopped_after": null, "error_cell": null, "error_type": null, "error_head": null, "duration_s": 4.77, "patch_notes": []}

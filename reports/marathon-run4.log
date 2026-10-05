@@ -1,0 +1,10 @@
+[marathon/cpu 1/81] qwen3 (p1/large)
+[marathon/cpu 2/81] qwen3-embedding (p1/large)
+AMD-PATCH: notebook_utils.device_widget default pinned AUTO->CPU (CPU validation premise; explicit device args unaffected)
+[marathon/cpu 3/81] qwen3-reranker (p1/large)
+AMD-PATCH: notebook_utils.device_widget default pinned AUTO->CPU (CPU validation premise; explicit device args unaffected)
+[marathon/cpu 4/81] qwen3-vl-embedding (p1/large)
+[env-repair] drift detected: ['transformers-old', 'protobuf-old'] -> reinstalling golden set
+AMD-PATCH: notebook_utils.device_widget default pinned AUTO->CPU (CPU validation premise; explicit device args unaffected)
+[marathon/cpu 5/81] qwen3-vl-reranker (p1/large)
+[env-repair] drift detected: ['transformers-old', 'protobuf-old'] -> reinstalling golden set

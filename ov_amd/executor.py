@@ -330,6 +330,9 @@ def run_workload_cpu(entry: NotebookEntry, state: dict[str, Any], dry_run: bool 
         if out.status == Status.VERIFIED and runs_needed < 3:
             out.status = Status.VERIFIED_WITH_LIMITATIONS
             out.notes.append("repeatability: single successful run (resource-bounded); 3-run policy not met")
+        if out.status == Status.VERIFIED and int(last_info.get("nbexec", {}).get("n_cells", 1) or 1) == 0:
+            out.status = Status.NOT_APPLICABLE
+            out.notes.append("notebook contains no executable code cells (markdown/landing page); nothing to validate")
         if out.status == Status.VERIFIED and out.device_used not in ("CPU", ""):
             out.status = Status.VERIFIED_WITH_LIMITATIONS
             out.notes.append(

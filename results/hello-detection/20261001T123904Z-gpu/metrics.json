@@ -1,37 +1,44 @@
 {
-  "model": "yolov8n.pt",
-  "task": "object detection (WORKLOAD_TWIN of hello-detection)",
-  "precision": "fp32 default",
-  "load_s": 499.1,
-  "runs": [
-    {
-      "latency_s": 0.0076
-    },
-    {
-      "latency_s": 0.0064
-    },
-    {
-      "latency_s": 0.0072
-    },
-    {
-      "latency_s": 0.0071
-    },
-    {
-      "latency_s": 0.0077
-    }
-  ],
-  "median_latency_s": 0.0072,
-  "fps": 138.9,
-  "detections": 5,
-  "class_ids": [
-    2,
-    16
-  ],
-  "conf_range": [
-    0.31,
-    0.936
-  ],
-  "device": "gfx1151 via torch.cuda",
-  "peak_vram_gb": 0.05,
-  "peak_rss_gb": 2.6
+  "ok": true,
+  "hip": "7.14.60850",
+  "device": "AMD Radeon 8060S Graphics",
+  "gcn_arch": "gfx115",
+  "metrics": {
+    "model": "yolov8n.pt",
+    "task": "object detection (WORKLOAD_TWIN of hello-detection)",
+    "precision": "fp32 default",
+    "load_s": 499.1,
+    "runs": [
+      {
+        "latency_s": 0.0076
+      },
+      {
+        "latency_s": 0.0064
+      },
+      {
+        "latency_s": 0.0072
+      },
+      {
+        "latency_s": 0.0071
+      },
+      {
+        "latency_s": 0.0077
+      }
+    ],
+    "median_latency_s": 0.0072,
+    "fps": 138.9,
+    "detections": 5,
+    "class_ids": [
+      2,
+      16
+    ],
+    "conf_range": [
+      0.31,
+      0.936
+    ],
+    "device": "gfx1151 via torch.cuda",
+    "peak_vram_gb": 0.05,
+    "peak_rss_gb": 2.6
+  },
+  "_provenance": "reconstructed from the executed run's TWIN_RESULT stdout line (release-audit fix: structured hip/device fields)"
 }

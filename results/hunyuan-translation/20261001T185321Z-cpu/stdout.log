@@ -1,0 +1,15 @@
+[cell 0 START +    0.4s] # Hunyuan Machine Translation with OpenVINO |  | This notebook supports tw
+[cell 1 START +    0.4s] ## Prerequisites | [back to top ⬆️](#Table-of-contents:) |  | Install requir
+[cell 2 START +    0.4s] import os |  | os.environ["GIT_CLONE_PROTECTION_ACTIVE"] = "false" |  | %pip i
+[cell 2 DONE  +   20.6s]
+[cell 3 START +   20.6s] from pathlib import Path | import requests |  | if not Path("cmd_helper.py")
+[cell 3 DONE  +   20.7s]
+[cell 4 START +   20.7s] ## Select model | [back to top ⬆️](#Table-of-contents:) |  | Select the Huny
+[cell 5 START +   20.7s] import ipywidgets as widgets |  | model_options = { |     "Hy-MT2-1.8B": "te
+[cell 5 DONE  +   20.7s]
+[cell 6 START +   20.7s] model_id = model_selector.value | model_name = model_selector.label | comp
+[cell 6 DONE  +   20.7s]
+[cell 7 START +   20.7s] ## Convert and compress model | [back to top ⬆️](#Table-of-contents:) |  | C
+[cell 8 START +   20.7s] from pathlib import Path | from cmd_helper import optimum_cli |  | model_dir
+[cell 8 DONE  +  345.9s]
+NBEXEC_RESULT={"ok": false, "n_cells": 11, "n_skipped": 1, "n_substituted": 0, "stopped_after": null, "error_cell": null, "error_type": "CellExecutionError", "error_head": "\u001b[31mCalledProcessError\u001b[39m: Command '['optimum-cli', 'export', 'openvino', '--model', 'tencent/Hy-MT2-1.8B', 'Hy-MT2-1.8B/INT4', '--task', 'text-generation-with-past', '--weight-format', 'int4', '--ratio', '0.8', '--group-size', '128']' returned non-zero exit status 1.", "duration_s": 346.13, "patch_notes": ["skipped cell 17: matched skip pattern"]}

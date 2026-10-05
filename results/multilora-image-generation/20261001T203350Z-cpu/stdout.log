@@ -1,0 +1,2 @@
+[cell 0 START +    0.5s] # Multi LoRA Image Generation |  | LoRA, or [Low-Rank Adaptation](https://
+[cell 1 START +    0.5s] %pip install -q --extra-index-url https://download.pytorch.org/whl/cpu

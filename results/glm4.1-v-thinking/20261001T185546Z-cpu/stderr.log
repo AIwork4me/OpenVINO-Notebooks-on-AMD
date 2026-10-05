@@ -1,0 +1,96 @@
+[IPKernelApp] WARNING | Kernel is running over TCP without encryption. All communication (including code and outputs) is sent in plain text and is susceptible to eavesdropping. Use IPC transport or launch with kernel manager-provisioned CurveZMQ keys to enable transport encryption.
+cell, cell_index, exec_reply)
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/nbclient/client.py", line 918, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+from cmd_helper import optimum_cli
+
+if not model_dir.exists():
+    optimum_cli(model_base_dir, model_dir, additional_args=additional_args)
+------------------
+
+----- stderr -----
+Command failed with exit code 1
+----- stderr -----
+STDERR:
+Multiple distributions found for package optimum. Picked distribution: optimum
+Traceback (most recent call last):
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/diffusers/utils/import_utils.py", line 1015, in _get_module
+    return importlib.import_module("." + module_name, self.__name__)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/importlib/__init__.py", line 90, in import_module
+    return _bootstrap._gcd_import(name[level:], package, level)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import
+  File "<frozen importlib._bootstrap>", line 1360, in _find_and_load
+  File "<frozen importlib._bootstrap>", line 1331, in _find_and_load_unlocked
+  File "<frozen importlib._bootstrap>", line 935, in _load_unlocked
+  File "<frozen importlib._bootstrap_external>", line 995, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/diffusers/pipelines/pipeline_utils.py", line 32, in <module>
+    from huggingface_hub import (
+ImportError: cannot import name 'get_cached_repo_tree' from 'huggingface_hub' (/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/huggingface_hub/__init__.py)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/bin/optimum-cli", line 3, in <module>
+    from optimum.commands.optimum_cli import main
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/optimum/commands/__init__.py", line 18, in <module>
+    from .export import ExportCommand, ONNXExportCommand, TFLiteExportCommand
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/optimum/commands/export/__init__.py", line 16, in <module>
+    from .base import ExportCommand
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/optimum/commands/export/base.py", line 18, in <module>
+    from .onnx import ONNXExportCommand
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/optimum/commands/export/onnx.py", line 23, in <module>
+    from ...exporters import TasksManager
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/optimum/exporters/__init__.py", line 17, in <module>
+    from .tasks import TasksManager  # noqa
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/optimum/exporters/tasks.py", line 54, in <module>
+    from diffusers import DiffusionPipeline
+  File "<frozen importlib._bootstrap>", line 1412, in _handle_fromlist
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/diffusers/utils/import_utils.py", line 1006, in __getattr__
+    value = getattr(module, name)
+            ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/diffusers/utils/import_utils.py", line 1005, in __getattr__
+    module = self._get_module(self._class_to_module[name])
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/diffusers/utils/import_utils.py", line 1017, in _get_module
+    raise RuntimeError(
+RuntimeError: Failed to import diffusers.pipelines.pipeline_utils because of the following error (look up to see its traceback):
+cannot import name 'get_cached_repo_tree' from 'huggingface_hub' (/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/huggingface_hub/__init__.py)
+------------------
+
+[31m---------------------------------------------------------------------------[39m
+[31mCalledProcessError[39m                        Traceback (most recent call last)
+[36mCell[39m[36m [39m[32mIn[7][39m[32m, line 4[39m
+[32m      1[39m [38;5;28;01mfrom[39;00m cmd_helper [38;5;28;01mimport[39;00m optimum_cli
+[32m      2[39m 
+[32m      3[39m [38;5;28;01mif[39;00m [38;5;28;01mnot[39;00m model_dir.exists():
+[32m----> [39m[32m4[39m     optimum_cli(model_base_dir, model_dir, additional_args=additional_args)
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/results/glm4.1-v-thinking/workdir-cpu/cmd_helper.py:62[39m, in [36moptimum_cli[39m[34m(model_id, output_dir, show_command, additional_args, debug_logs)[39m
+[32m     60[39m     [38;5;28;01mif[39;00m transofrmers_loglevel [38;5;129;01mis[39;00m [38;5;129;01mnot[39;00m [38;5;28;01mNone[39;00m:
+[32m     61[39m         os.environ[[33m"[39m[33mTRANSFORMERS_VERBOSITY[39m[33m"[39m] = transofrmers_loglevel
+[32m---> [39m[32m62[39m     [38;5;28;01mraise[39;00m exc
+[32m     63[39m [38;5;28;01mfinally[39;00m:
+[32m     64[39m     [38;5;28;01mif[39;00m transofrmers_loglevel [38;5;129;01mis[39;00m [38;5;129;01mnot[39;00m [38;5;28;01mNone[39;00m:
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/results/glm4.1-v-thinking/workdir-cpu/cmd_helper.py:49[39m, in [36moptimum_cli[39m[34m(model_id, output_dir, show_command, additional_args, debug_logs)[39m
+[32m     46[39m     os.environ[[33m"[39m[33mTRANSFORMERS_VERBOSITY[39m[33m"[39m] = [33m"[39m[33mdebug[39m[33m"[39m
+[32m     48[39m [38;5;28;01mtry[39;00m:
+[32m---> [39m[32m49[39m     [30;43msubprocess[39;49m[30;43m.[39;49m[30;43mrun[39;49m[30;43m([39;49m[30;43mexport_command[39;49m[30;43m.[39;49m[30;43msplit[39;49m[30;43m([39;49m[30;43m"[39;49m[30;43m [39;49m[30;43m"[39;49m[30;43m)[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mshell[39;49m[30;43m=[39;49m[30;43m([39;49m[30;43mplatform[39;49m[30;43m.[39;49m[30;43msystem[39;49m[30;43m([39;49m[30;43m)[39;49m[30;43m [39;49m[30;43m==[39;49m[30;43m [39;49m[30;43m"[39;49m[30;43mWindows[39;49m[30;43m"[39;49m[30;43m)[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mcheck[39;49m[30;43m=[39;49m[30;43;01mTrue[39;49;00m[30;43m,[39;49m[30;43m [39;49m[30;43mcapture_output[39;49m[30;43m=[39;49m[30;43;01mTrue[39;49;00m[30;43m)[39;49m
+[32m     50[39m [38;5;28;01mexcept[39;00m subprocess.CalledProcessError [38;5;28;01mas[39;00m exc:
+[32m     51[39m     logger = logging.getLogger()
+
+[36mFile [39m[32m/usr/lib/python3.12/subprocess.py:571[39m, in [36mrun[39m[34m(input, capture_output, timeout, check, *popenargs, **kwargs)[39m
+[32m    569[39m     retcode = process.poll()
+[32m    570[39m     [38;5;28;01mif[39;00m check [38;5;129;01mand[39;00m retcode:
+[32m--> [39m[32m571[39m         [38;5;28;01mraise[39;00m CalledProcessError(retcode, process.args,
+[32m    572[39m                                  output=stdout, stderr=stderr)
+[32m    573[39m [38;5;28;01mreturn[39;00m CompletedProcess(process.args, retcode, stdout, stderr)
+
+[31mCalledProcessError[39m: Command '['optimum-cli', 'export', 'openvino', '--model', 'GLM-4.1V-9B-Thinking', 'GLM-4.1V-9B-Thinking/INT4', '--task', 'image-text-to-text', '--weight-format', 'int4', '--group-size', '128', '--ratio', '0.8']' returned non-zero exit status 1.
+

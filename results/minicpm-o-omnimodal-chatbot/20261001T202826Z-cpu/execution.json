@@ -1,0 +1,9 @@
+{
+  "start": "2026-10-01T20:28:26+00:00",
+  "end": "2026-10-01T20:28:43+00:00",
+  "duration_s": 17.04,
+  "exit_code": 1,
+  "retry_count": 1,
+  "status": "ERROR",
+  "failure_category": "UNKNOWN"
+}

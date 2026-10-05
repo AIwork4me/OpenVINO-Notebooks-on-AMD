@@ -1,0 +1,41 @@
+[cell 0 START +    0.4s] # Create Function-calling Agent using OpenVINO and Qwen-Agent |  | LLM are
+[cell 1 START +    0.4s] ## Prerequisites |  | [back to top ⬆️](#Table-of-contents:) | 
+[cell 2 START +    0.4s] import os | from pathlib import Path | import requests |  | os.environ["GIT_CL
+[cell 2 DONE  +  138.6s]
+[cell 3 START +  138.6s] from cmd_helper import clone_repo |  | clone_repo("https://github.com/Qwen
+[cell 3 DONE  +  141.5s]
+[cell 4 START +  141.5s] ## Create a Function calling agent |  | [back to top ⬆️](#Table-of-content
+[cell 5 START +  141.5s] ### Create a function |  | [back to top ⬆️](#Table-of-contents:) |  | First, w
+[cell 6 START +  141.5s] import json |  |  | def get_current_weather(location, unit="fahrenheit"): |   
+[cell 6 DONE  +  141.5s]
+[cell 7 START +  141.5s] Wrap the function's name and description into a json list, and it will
+[cell 8 START +  141.5s] functions = [ |     { |         "name": "get_current_weather", |         "de
+[cell 8 DONE  +  141.5s]
+[cell 9 START +  141.5s] ### Download model |  | [back to top ⬆️](#Table-of-contents:) |  | Large Langu
+[cell 10 START +  141.5s] from pathlib import Path | from cmd_helper import optimum_cli |  | model_id 
+[cell 10 DONE  +  390.6s]
+[cell 11 START +  390.6s] ### Select inference device for LLM |  | [back to top ⬆️](#Table-of-conten
+[cell 12 START +  390.6s] from notebook_utils import device_widget |  | device = device_widget("CPU"
+[cell 12 DONE  +  391.0s]
+[cell 13 START +  391.0s] ### Create LLM for Qwen-Agent |  | [back to top ⬆️](#Table-of-contents:) |  | 
+[cell 14 START +  391.0s] from qwen_agent.llm import get_chat_model |  | import openvino.properties 
+[cell 14 DONE  +  402.0s]
+[cell 15 START +  402.0s] You can get additional inference speed improvement with [Dynamic Quant
+[cell 16 START +  402.0s] ov_config = { |     "KV_CACHE_PRECISION": "u8", |     "DYNAMIC_QUANTIZATIO
+[cell 16 DONE  +  402.0s]
+[cell 17 START +  402.0s] ## Create Function-calling pipeline |  | [back to top ⬆️](#Table-of-conten
+[cell 18 START +  402.0s] print("# User question:") | messages = [{"role": "user", "content": "Wha
+[cell 18 DONE  +  415.4s]
+[cell 19 START +  415.4s] ## Interactive Demo |  | [back to top ⬆️](#Table-of-contents:) |  | Let's crea
+[cell 20 START +  415.4s] ### Create tools |  | [back to top ⬆️](#Table-of-contents:) |  | Qwen-Agent pr
+[cell 21 START +  415.4s] import urllib.parse | import json5 | import requests | from qwen_agent.tools
+[cell 21 DONE  +  415.4s]
+[cell 22 START +  415.4s] tools = ["image_generation", "get_current_weather", "wikipedia"]
+[cell 22 DONE  +  415.4s]
+[cell 23 START +  415.4s] ### Create AI agent demo with Qwen-Agent and Gradio UI |  | [back to top ⬆
+[cell 24 START +  415.4s] from qwen_agent.agents import Assistant |  | bot = Assistant(llm=llm_cfg, 
+[cell 24 DONE  +  416.8s]
+[cell 25 START +  416.8s] if not Path("gradio_helper.py").exists(): |     r = requests.get(url="ht
+[cell 26 START +  416.8s] # Cleanup | # %pip uninstall -y -q modelscope_studio cryptography qwen_a
+[cell 26 DONE  +  416.8s]
+NBEXEC_RESULT={"ok": true, "n_cells": 14, "n_skipped": 1, "n_substituted": 0, "stopped_after": null, "error_cell": null, "error_type": null, "error_head": null, "duration_s": 420.26, "patch_notes": ["skipped cell 25: matched skip pattern"]}

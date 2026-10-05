@@ -1,0 +1,14 @@
+[cell 0 START +    0.5s] # Visual-language assistant with Llama-3.2-11B-Vision and OpenVINO |  | Ll
+[cell 1 START +    0.5s] ## Prerequisites | [back to top ⬆️](#Table-of-contents:)
+[cell 2 START +    0.5s] %pip install -q "torch>=2.1,<2.9" "torchvision" "Pillow" "tqdm" "datas
+[cell 2 DONE  +    7.5s]
+[cell 3 START +    7.5s] import requests | from pathlib import Path |  | if not Path("ov_mllama_helpe
+[cell 3 DONE  +    7.6s]
+[cell 4 START +    7.6s] ## Convert model | [back to top ⬆️](#Table-of-contents:) |  |  | OpenVINO supp
+[cell 5 START +    7.6s] # uncomment these lines to login to huggingfacehub to get access to pr
+[cell 5 DONE  +    7.6s]
+[cell 6 START +    7.6s] from pathlib import Path | from ov_mllama_helper import convert_mllama |  | 
+[cell 6 DONE  +   10.8s]
+[cell 7 START +   10.8s] convert_mllama(model_id, model_dir)
+[cell 7 DONE  +   12.6s]
+NBEXEC_RESULT={"ok": false, "n_cells": 14, "n_skipped": 1, "n_substituted": 0, "stopped_after": null, "error_cell": null, "error_type": "CellExecutionError", "error_head": "Access to model meta-llama/Llama-3.2-11B-Vision-Instruct is restricted and you are not in the authorized list. Visit https://huggingface.co/meta-llama/Llama-3.2-11B-Vision-Instruct to ask for access.", "duration_s": 15.15, "patch_notes": ["skipped cell 21: matched skip pattern"]}

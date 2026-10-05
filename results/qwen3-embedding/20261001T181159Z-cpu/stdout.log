@@ -1,0 +1,18 @@
+[cell 0 START +    0.5s] # Text Embedding with Qwen3 and OpenVINO |  | The Qwen3 Embedding model se
+[cell 1 START +    0.5s] ## Prerequisites | [back to top ⬆️](#Table-of-contents:)
+[cell 2 START +    0.5s] %pip uninstall -q -y optimum optimum-intel optimum-onnx | %pip install "
+[cell 2 DONE  +  647.8s]
+[cell 3 START +  647.8s] import requests | from pathlib import Path |  | if not Path("cmd_helper.py")
+[cell 3 DONE  +  647.8s]
+[cell 4 START +  647.8s] ## Select model | [back to top ⬆️](#Table-of-contents:) |  | Qwen3 Embedding
+[cell 5 START +  647.8s] import ipywidgets as widgets |  | model_ids = ["Qwen/Qwen3-Embedding-0.6B"
+[cell 5 DONE  +  647.9s]
+[cell 6 START +  647.9s] ## Convert model using Optimum Intel | [back to top ⬆️](#Table-of-conten
+[cell 7 START +  647.9s] to_compress = widgets.Checkbox( |     value=False, |     description="Weig
+[cell 7 DONE  +  647.9s]
+[cell 8 START +  647.9s] The Qwen3-embedding model can be exported by `feature-extraction` task
+[cell 9 START +  647.9s] from pathlib import Path |  | model_id = model_selector.value |  | model_base_
+[cell 9 DONE  +  647.9s]
+[cell 10 START +  647.9s] from cmd_helper import optimum_cli |  | if not model_dir.exists(): |     opt
+[cell 10 DONE  +  648.0s]
+NBEXEC_RESULT={"ok": false, "n_cells": 9, "n_skipped": 0, "n_substituted": 0, "stopped_after": null, "error_cell": null, "error_type": "CellExecutionError", "error_head": "\u001b[31mFileNotFoundError\u001b[39m: [Errno 2] No such file or directory: 'optimum-cli'", "duration_s": 648.24, "patch_notes": []}

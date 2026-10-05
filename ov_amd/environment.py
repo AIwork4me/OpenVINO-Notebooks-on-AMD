@@ -126,13 +126,18 @@ def ram_available_mb() -> int:
 
 
 def upstream_root() -> Path | None:
-    """Local pinned upstream snapshot dir (see scripts/fetch_upstream.py)."""
+    """Local pinned upstream snapshot dir (see scripts/fetch_upstream.py).
+
+    Accepts absolute or repo-relative local_path so published metadata carries
+    no absolute paths.
+    """
 
     meta_path = REPO_ROOT / "upstream" / "openvino-notebooks.json"
     if not meta_path.exists():
         return None
     try:
-        root = Path(json.loads(meta_path.read_text()).get("local_path", ""))
+        raw = json.loads(meta_path.read_text()).get("local_path", "")
     except (OSError, ValueError):
         return None
-    return root if root and root.exists() else None
+    root = Path(raw) if raw.startswith("/") else REPO_ROOT / raw
+    return root if raw and root.exists() else None

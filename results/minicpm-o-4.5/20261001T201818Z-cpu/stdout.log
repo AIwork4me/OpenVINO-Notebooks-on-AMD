@@ -1,0 +1,27 @@
+[cell 0 START +    0.4s] # MiniCPM-o 4.5 Multimodal Model with OpenVINO |  | [MiniCPM-o 4.5](https:
+[cell 1 START +    0.4s] ## Prerequisites | [back to top ⬆️](#Table-of-contents:)
+[cell 2 START +    0.4s] import requests | from pathlib import Path |  | if not Path("notebook_utils.
+[cell 2 DONE  +    0.5s]
+[cell 3 START +    0.5s] from pip_helper import pip_install |  | # Install in batches to avoid pip 
+[cell 3 DONE  +    5.8s]
+[cell 4 START +    5.8s] ## Convert and Quantize Model | [back to top ⬆️](#Table-of-contents:) |  | M
+[cell 5 START +    5.8s] from pathlib import Path |  | # Path to the original model (downloaded fro
+[cell 5 DONE  +    5.8s]
+[cell 6 START +    5.8s] from minicpm_o_4_5_helper import convert_minicpmo_model |  | if not (ov_mo
+[cell 6 DONE  +    8.0s]
+[cell 7 START +    8.0s] from pathlib import Path | from huggingface_hub import snapshot_download
+[cell 7 DONE  +   50.2s]
+[cell 8 START +   50.2s] ## Select Inference Device | [back to top ⬆️](#Table-of-contents:) |  | Sele
+[cell 9 START +   50.2s] from notebook_utils import device_widget |  | # Main device for LLM, Visio
+[cell 9 DONE  +   50.4s]
+[cell 10 START +   50.4s] # TTS device (can be different from main device) | tts_device = device_w
+[cell 10 DONE  +   50.4s]
+[cell 11 START +   50.4s] ## Initialize Model | [back to top ⬆️](#Table-of-contents:) |  | Load all 15
+[cell 12 START +   50.4s] from minicpm_o_4_5_helper import OVMiniCPMO |  | ov_model = OVMiniCPMO( |   
+[cell 12 DONE  +   55.7s]
+[cell 13 START +   55.7s] ## Visual Understanding | [back to top ⬆️](#Table-of-contents:) |  | MiniCPM
+[cell 14 START +   55.7s] from PIL import Image | import requests | from io import BytesIO |  | # Downlo
+[cell 14 DONE  +   63.3s]
+[cell 15 START +   63.3s] # Chat with single image (aligned with original model README) | question
+[cell 15 DONE  +   64.1s]
+NBEXEC_RESULT={"ok": false, "n_cells": 18, "n_skipped": 1, "n_substituted": 0, "stopped_after": null, "error_cell": null, "error_type": "CellExecutionError", "error_head": "\u001b[31mAttributeError\u001b[39m: MiniCPMOTokenizerFast has no attribute tokenizer", "duration_s": 67.14, "patch_notes": ["skipped cell 31: matched skip pattern"]}

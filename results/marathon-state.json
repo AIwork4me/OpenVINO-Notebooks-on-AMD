@@ -373,6 +373,18 @@
         "notes": [],
         "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/qwen3/20261001T120459Z-gpu",
         "updated": "2026-10-01T12:05:11+00:00"
+      },
+      "cpu": {
+        "status": "FAILED",
+        "failure_category": "UNKNOWN",
+        "ok_runs": 0,
+        "durations_s": [],
+        "device_used": "",
+        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/qwen3/20261001T184438Z-cpu",
+        "notes": [
+          "ok_runs=0/1: [GPU] clEnqueueMapBuffer, error code: -30 CL_INVALID_VALUE"
+        ],
+        "updated": "2026-10-01T18:44:42+00:00"
       }
     },
     "whisper-asr-genai": {
@@ -756,7 +768,7 @@
     },
     "physical-ai-robotics": {
       "cpu": {
-        "status": "VERIFIED",
+        "status": "NOT_APPLICABLE",
         "failure_category": "",
         "ok_runs": 3,
         "durations_s": [
@@ -766,7 +778,9 @@
         ],
         "device_used": "",
         "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/physical-ai-robotics/20261001T135247Z-cpu",
-        "notes": [],
+        "notes": [
+          "release-audit correction: notebook has zero executable code cells (markdown landing page); previous VERIFIED was invalid"
+        ],
         "updated": "2026-10-01T13:52:48+00:00"
       }
     },
@@ -1057,141 +1071,153 @@
     "glm4.1-v-thinking": {
       "cpu": {
         "status": "FAILED",
-        "failure_category": "UNKNOWN",
-        "ok_runs": 0,
-        "durations_s": [],
-        "device_used": "",
-        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/glm4.1-v-thinking/20261001T180143Z-cpu",
-        "notes": [
-          "ok_runs=0/1: \u001b[31mFileNotFoundError\u001b[39m: [Errno 2] No such file or directory: 'optimum-cli'"
-        ],
-        "updated": "2026-10-01T18:01:47+00:00"
-      }
-    },
-    "hunyuan-ocr": {
-      "cpu": {
-        "status": "FAILED",
         "failure_category": "DEPENDENCY",
         "ok_runs": 0,
         "durations_s": [],
         "device_used": "",
-        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/hunyuan-ocr/20261001T180147Z-cpu",
+        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/glm4.1-v-thinking/20261001T185724Z-cpu",
         "notes": [
-          "ok_runs=0/1: \u001b[31mCalledProcessError\u001b[39m: Command '['/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/bin/python', '-m', 'pip', 'install', '-q', 'torch>=2.8', 'torchvision', '--extra-index-url', '//huggingface\\\\.co', ':https://hf-mirror.com://download.pytorch.org/whl/cpu']' returned non-zero exit status 1."
+          "ok_runs=0/1: \u001b[31mCalledProcessError\u001b[39m: Command '['optimum-cli', 'export', 'openvino', '--model', 'GLM-4.1V-9B-Thinking', 'GLM-4.1V-9B-Thinking/INT4', '--task', 'image-text-to-text', '--weight-format', 'int4', '--group-size', '128', '--ratio', '0.8']' returned non-zero exit status 1."
         ],
-        "updated": "2026-10-01T18:01:50+00:00"
+        "updated": "2026-10-01T19:08:17+00:00"
       }
     },
-    "hunyuan-translation": {
-      "cpu": {
-        "status": "FAILED",
-        "failure_category": "UNKNOWN",
-        "ok_runs": 0,
-        "durations_s": [],
-        "device_used": "",
-        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/hunyuan-translation/20261001T180150Z-cpu",
-        "notes": [
-          "ok_runs=0/1: \u001b[31mFileNotFoundError\u001b[39m: [Errno 2] No such file or directory: 'optimum-cli'"
-        ],
-        "updated": "2026-10-01T18:01:54+00:00"
-      }
-    },
-    "image-to-image-genai": {
-      "cpu": {
-        "status": "FAILED",
-        "failure_category": "UNKNOWN",
-        "ok_runs": 0,
-        "durations_s": [],
-        "device_used": "",
-        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/image-to-image-genai/20261001T180434Z-cpu",
-        "notes": [
-          "ok_runs=0/1: \u001b[31mValueError\u001b[39m: Incorrect path or URL. URLs must start with `http://` or `https://`, and //huggingface\\.co :https://hf-mirror.com://huggingface.co/datasets/huggingface/documentation-images/resolve/main/diffusers/img2img-init.png is not a valid path."
-        ],
-        "updated": "2026-10-01T18:04:44+00:00"
-      }
-    },
-    "instant-id": {
-      "cpu": {
-        "status": "FAILED",
-        "failure_category": "UNKNOWN",
-        "ok_runs": 0,
-        "durations_s": [],
-        "device_used": "",
-        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/instant-id/20261001T180444Z-cpu",
-        "notes": [
-          "ok_runs=0/1: \u001b[31mCalledProcessError\u001b[39m: Command '['git', 'clone', '//huggingface\\\\.co :https://hf-mirror.com://github.com/InstantID/InstantID.git']' returned non-zero exit status 128."
-        ],
-        "updated": "2026-10-01T18:04:46+00:00"
-      }
-    },
-    "llm-agent-functioncall-qwen": {
-      "cpu": {
-        "status": "FAILED",
-        "failure_category": "UNKNOWN",
-        "ok_runs": 0,
-        "durations_s": [],
-        "device_used": "",
-        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/llm-agent-functioncall-qwen/20261001T180447Z-cpu",
-        "notes": [
-          "ok_runs=0/1: \u001b[31mCalledProcessError\u001b[39m: Command '['git', 'clone', '//huggingface\\\\.co :https://hf-mirror.com://github.com/QwenLM/Qwen-Agent.git']' returned non-zero exit status 128."
-        ],
-        "updated": "2026-10-01T18:04:51+00:00"
-      }
-    },
-    "llm-agent-rag-llamaindex": {
-      "cpu": {
-        "status": "FAILED",
-        "failure_category": "UNKNOWN",
-        "ok_runs": 0,
-        "durations_s": [],
-        "device_used": "",
-        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/llm-agent-rag-llamaindex/20261001T180451Z-cpu",
-        "notes": [
-          "ok_runs=0/1: \u001b[31mCalledProcessError\u001b[39m: Command '['/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/bin/python', '-m', 'pip', 'install', '-q', '--extra-index-url', '//huggingface\\\\.co', ':https://hf-mirror.com://download.pytorch.org/whl/cpu', 'git+//huggingface\\\\.co', ':https://hf-mirror.com://github.com"
-        ],
-        "updated": "2026-10-01T18:04:53+00:00"
-      }
-    },
-    "llm-chatbot": {
-      "cpu": {
-        "status": "FAILED",
-        "failure_category": "UNKNOWN",
-        "ok_runs": 0,
-        "durations_s": [],
-        "device_used": "",
-        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/llm-chatbot/20261001T180454Z-cpu",
-        "notes": [
-          "ok_runs=0/1: \u001b[31mInvalidSchema\u001b[39m: No connection adapters were found for '//huggingface\\\\.co :https://hf-mirror.com://raw.githubusercontent.com/openvinotoolkit/openvino_notebooks/latest/utils/llm_config.py'"
-        ],
-        "updated": "2026-10-01T18:04:57+00:00"
-      }
-    },
-    "llm-question-answering": {
-      "cpu": {
-        "status": "FAILED",
-        "failure_category": "UNKNOWN",
-        "ok_runs": 0,
-        "durations_s": [],
-        "device_used": "",
-        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/llm-question-answering/20261001T180458Z-cpu",
-        "notes": [
-          "ok_runs=0/1: \u001b[31mCalledProcessError\u001b[39m: Command '['/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/bin/python', '-m', 'pip', 'install', '-q', 'torch==2.8', 'nncf>=2.18.0', 'transformers==4.57.6', 'torchvision==0.23.0', 'huggingface-hub>=0.26.5', 'onnx<1.16.2', 'optimum>=1.16.1', 'accelerate', 'datasets>"
-        ],
-        "updated": "2026-10-01T18:05:01+00:00"
-      }
-    },
-    "meter-reader": {
+    "hunyuan-ocr": {
       "cpu": {
         "status": "FAILED",
         "failure_category": "NETWORK",
         "ok_runs": 0,
         "durations_s": [],
         "device_used": "",
-        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/meter-reader/20261001T180507Z-cpu",
+        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/hunyuan-ocr/20261001T191339Z-cpu",
         "notes": [
-          "ok_runs=0/1: \u001b[31mException\u001b[39m: File downloading failed with error: No connection adapters were found for '//huggingface\\\\.co :https://hf-mirror.com://storage.openvinotoolkit.org/repositories/openvino_notebooks/models/meter-reader/meter_det_model.tar.gz'"
+          "ok_runs=0/1: \u001b[31mCalledProcessError\u001b[39m: Command '['/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/bin/python', '-m', 'pip', 'install', '-q', 'git+https://github.com/openvino-dev-samples/optimum-intel.git@hunyuan-ocr-support']' returned non-zero exit status 1."
         ],
-        "updated": "2026-10-01T18:05:10+00:00"
+        "updated": "2026-10-01T19:15:58+00:00"
+      }
+    },
+    "hunyuan-translation": {
+      "cpu": {
+        "status": "VERIFIED_WITH_LIMITATIONS",
+        "failure_category": "",
+        "ok_runs": 1,
+        "durations_s": [
+          69.89
+        ],
+        "device_used": "CPU",
+        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/hunyuan-translation/20261001T191559Z-cpu",
+        "notes": [
+          "repeatability: single successful run (resource-bounded); 3-run policy not met"
+        ],
+        "updated": "2026-10-01T19:17:09+00:00"
+      }
+    },
+    "image-to-image-genai": {
+      "cpu": {
+        "status": "VERIFIED_WITH_LIMITATIONS",
+        "failure_category": "",
+        "ok_runs": 1,
+        "durations_s": [
+          47.31
+        ],
+        "device_used": "CPU",
+        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/image-to-image-genai/20261001T191710Z-cpu",
+        "notes": [
+          "repeatability: single successful run (resource-bounded); 3-run policy not met"
+        ],
+        "updated": "2026-10-01T19:17:58+00:00"
+      }
+    },
+    "instant-id": {
+      "cpu": {
+        "status": "FAILED",
+        "failure_category": "NETWORK",
+        "ok_runs": 0,
+        "durations_s": [],
+        "device_used": "",
+        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/instant-id/20261001T192807Z-cpu",
+        "notes": [
+          "ok_runs=0/1: \u001b[31mConnectTimeout\u001b[39m: HTTPSConnectionPool(host='drive.google.com', port=443): Max retries exceeded with url: /uc?id=18wEUfMNohBJ4K3Ly5wpTejPfDzp-8fI8 (Caused by ConnectTimeoutError(<HTTPSConnection(host='drive.google.com', port=443) at 0x7d0bdec5e120>, 'Connection to drive.google.com timed out. "
+        ],
+        "updated": "2026-10-01T19:32:46+00:00"
+      }
+    },
+    "llm-agent-functioncall-qwen": {
+      "cpu": {
+        "status": "VERIFIED_WITH_LIMITATIONS",
+        "failure_category": "",
+        "ok_runs": 1,
+        "durations_s": [
+          421.11
+        ],
+        "device_used": "CPU",
+        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/llm-agent-functioncall-qwen/20261001T193351Z-cpu",
+        "notes": [
+          "repeatability: single successful run (resource-bounded); 3-run policy not met"
+        ],
+        "updated": "2026-10-01T19:40:52+00:00"
+      }
+    },
+    "llm-agent-rag-llamaindex": {
+      "cpu": {
+        "status": "VERIFIED_WITH_LIMITATIONS",
+        "failure_category": "",
+        "ok_runs": 1,
+        "durations_s": [
+          521.18
+        ],
+        "device_used": "CPU",
+        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/llm-agent-rag-llamaindex/20261001T194156Z-cpu",
+        "notes": [
+          "repeatability: single successful run (resource-bounded); 3-run policy not met"
+        ],
+        "updated": "2026-10-01T19:50:37+00:00"
+      }
+    },
+    "llm-chatbot": {
+      "cpu": {
+        "status": "FAILED",
+        "failure_category": "DEPENDENCY",
+        "ok_runs": 0,
+        "durations_s": [],
+        "device_used": "",
+        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/llm-chatbot/20261001T195141Z-cpu",
+        "notes": [
+          "ok_runs=0/1: No module named 'transformers.masking_utils'"
+        ],
+        "updated": "2026-10-01T19:57:19+00:00"
+      }
+    },
+    "llm-question-answering": {
+      "cpu": {
+        "status": "VERIFIED_WITH_LIMITATIONS",
+        "failure_category": "",
+        "ok_runs": 1,
+        "durations_s": [
+          151.94
+        ],
+        "device_used": "CPU",
+        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/llm-question-answering/20261001T195822Z-cpu",
+        "notes": [
+          "repeatability: single successful run (resource-bounded); 3-run policy not met"
+        ],
+        "updated": "2026-10-01T20:00:54+00:00"
+      }
+    },
+    "meter-reader": {
+      "cpu": {
+        "status": "VERIFIED_WITH_LIMITATIONS",
+        "failure_category": "",
+        "ok_runs": 1,
+        "durations_s": [
+          5.53
+        ],
+        "device_used": "CPU",
+        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/meter-reader/20261001T200158Z-cpu",
+        "notes": [
+          "repeatability: single successful run (resource-bounded); 3-run policy not met"
+        ],
+        "updated": "2026-10-01T20:02:04+00:00"
       }
     },
     "minicpm-o-4.5": {
@@ -1201,25 +1227,25 @@
         "ok_runs": 0,
         "durations_s": [],
         "device_used": "",
-        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/minicpm-o-4.5/20261001T180511Z-cpu",
+        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/minicpm-o-4.5/20261001T201818Z-cpu",
         "notes": [
-          "ok_runs=0/1: \u001b[31mCalledProcessError\u001b[39m: Command '['/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/bin/python', '-m', 'pip', 'install', '-q', 'torch==2.8.0', 'torchvision==0.23.0', 'torchaudio==2.8.0', '--extra-index-url', '//huggingface\\\\.co', ':https://hf-mirror.com://download.pytorch.org/whl/cpu']' r"
+          "ok_runs=0/1: \u001b[31mAttributeError\u001b[39m: MiniCPMOTokenizerFast has no attribute tokenizer"
         ],
-        "updated": "2026-10-01T18:05:13+00:00"
+        "updated": "2026-10-01T20:19:27+00:00"
       }
     },
     "minicpm-o-omnimodal-chatbot": {
       "cpu": {
         "status": "FAILED",
-        "failure_category": "DEPENDENCY",
+        "failure_category": "UNKNOWN",
         "ok_runs": 0,
         "durations_s": [],
         "device_used": "",
-        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/minicpm-o-omnimodal-chatbot/20261001T180524Z-cpu",
+        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/minicpm-o-omnimodal-chatbot/20261001T202826Z-cpu",
         "notes": [
-          "ok_runs=0/1: \u001b[31mImportError\u001b[39m: /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/torch/lib/libtorch_cuda.so: undefined symbol: ncclCommResume"
+          "ok_runs=0/1: \u001b[31mFileNotFoundError\u001b[39m: No such file or directory: MiniCPM-o-2_6/ckpt/model-00001-of-00004.safetensors"
         ],
-        "updated": "2026-10-01T18:05:28+00:00"
+        "updated": "2026-10-01T20:28:44+00:00"
       }
     },
     "minicpm-v-4.6": {
@@ -1229,11 +1255,11 @@
         "ok_runs": 0,
         "durations_s": [],
         "device_used": "",
-        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/minicpm-v-4.6/20261001T180529Z-cpu",
+        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/minicpm-v-4.6/20261001T202845Z-cpu",
         "notes": [
           "ok_runs=0/1: \u001b[31mFileNotFoundError\u001b[39m: [Errno 2] No such file or directory: 'optimum-cli'"
         ],
-        "updated": "2026-10-01T18:05:33+00:00"
+        "updated": "2026-10-01T20:30:42+00:00"
       }
     },
     "ministral-3": {
@@ -1243,25 +1269,25 @@
         "ok_runs": 0,
         "durations_s": [],
         "device_used": "",
-        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/ministral-3/20261001T180533Z-cpu",
+        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/ministral-3/20261001T203043Z-cpu",
         "notes": [
           "ok_runs=0/1: \u001b[31mFileNotFoundError\u001b[39m: [Errno 2] No such file or directory: 'optimum-cli'"
         ],
-        "updated": "2026-10-01T18:05:36+00:00"
+        "updated": "2026-10-01T20:33:07+00:00"
       }
     },
     "mllama-3.2": {
       "cpu": {
         "status": "FAILED",
-        "failure_category": "DEPENDENCY",
+        "failure_category": "MODEL_ACCESS",
         "ok_runs": 0,
         "durations_s": [],
         "device_used": "",
-        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/mllama-3.2/20261001T180544Z-cpu",
+        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/mllama-3.2/20261001T203337Z-cpu",
         "notes": [
-          "ok_runs=0/1: \u001b[31mImportError\u001b[39m: /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/torch/lib/libtorch_cuda.so: undefined symbol: ncclCommResume"
+          "ok_runs=0/1: Access to model meta-llama/Llama-3.2-11B-Vision-Instruct is restricted and you are not in the authorized list. Visit https://huggingface.co/meta-llama/Llama-3.2-11B-Vision-Instruct to ask for access."
         ],
-        "updated": "2026-10-01T18:05:49+00:00"
+        "updated": "2026-10-01T20:33:49+00:00"
       }
     },
     "multilora-image-generation": {
@@ -1360,6 +1386,48 @@
           "ok_runs=0/1: \u001b[31mCalledProcessError\u001b[39m: Command '['/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/bin/python', '-m', 'pip', 'install', 'transformers==4.52.3', 'torch==2.8', 'torchvision==0.23.0', 'accelerate', 'qwen-omni-utils[decord]', 'audioread', 'gradio>=4.19', '--no-cache-dir', '--extra-index-url'"
         ],
         "updated": "2026-10-01T18:06:25+00:00"
+      }
+    },
+    "qwen3-embedding": {
+      "cpu": {
+        "status": "FAILED",
+        "failure_category": "UNKNOWN",
+        "ok_runs": 0,
+        "durations_s": [],
+        "device_used": "",
+        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/qwen3-embedding/20261001T181159Z-cpu",
+        "notes": [
+          "ok_runs=0/1: \u001b[31mFileNotFoundError\u001b[39m: [Errno 2] No such file or directory: 'optimum-cli'"
+        ],
+        "updated": "2026-10-01T18:22:48+00:00"
+      }
+    },
+    "qwen3-reranker": {
+      "cpu": {
+        "status": "FAILED",
+        "failure_category": "DEPENDENCY",
+        "ok_runs": 0,
+        "durations_s": [],
+        "device_used": "",
+        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/qwen3-reranker/20261001T182422Z-cpu",
+        "notes": [
+          "ok_runs=0/1: \u001b[31mCalledProcessError\u001b[39m: Command '['optimum-cli', 'export', 'openvino', '--model', 'Qwen/Qwen3-Reranker-0.6B', 'Qwen3-Reranker-0.6B/FP16', '--task', 'text-generation', '--weight-format', 'fp16']' returned non-zero exit status 1."
+        ],
+        "updated": "2026-10-01T18:24:40+00:00"
+      }
+    },
+    "qwen3-vl-embedding": {
+      "cpu": {
+        "status": "FAILED",
+        "failure_category": "DEPENDENCY",
+        "ok_runs": 0,
+        "durations_s": [],
+        "device_used": "",
+        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/qwen3-vl-embedding/20261001T182650Z-cpu",
+        "notes": [
+          "ok_runs=0/1: \u001b[31mCalledProcessError\u001b[39m: Command '['optimum-cli', 'export', 'openvino', '--model', 'Qwen/Qwen3-VL-Embedding-2B', 'Qwen3-VL-Embedding-2B/FP16', '--task', 'feature-extraction', '--weight-format', 'fp16']' returned non-zero exit status 1."
+        ],
+        "updated": "2026-10-01T18:27:05+00:00"
       }
     }
   },
@@ -1471,10 +1539,46 @@
       "source": "transformers",
       "ok": true,
       "log_tail": "0->huggingface-hub<3.0,>=1.31.0->transformers) (4.15.1)\nRequirement already satisfied: certifi in ./.venv-cpu/lib/python3.12/site-packages (from httpx<1,>=0.23.0->huggingface-hub<3.0,>=1.31.0->transformers) (2026.7.22)\nRequirement already satisfied: httpcore==1.* in ./.venv-cpu/lib/python3.12/site-packages (from httpx<1,>=0.23.0->huggingface-hub<3.0,>=1.31.0->transformers) (1.0.9)\nRequirement already satisfied: idna in ./.venv-cpu/lib/python3.12/site-packages (from httpx<1,>=0.23.0->huggingface-hub<3.0,>=1.31.0->transformers) (3.20)\nRequirement already satisfied: h11>=0.16 in ./.venv-cpu/lib/python3.12/site-packages (from httpcore==1.*->httpx<1,>=0.23.0->huggingface-hub<3.0,>=1.31.0->transformers) (0.16.0)\nRequirement already satisfied: shellingham>=1.3.0 in ./.venv-cpu/lib/python3.12/site-packages (from typer->transformers) (1.5.4)\nRequirement already satisfied: rich>=13.8.0 in ./.venv-cpu/lib/python3.12/site-packages (from typer->transformers) (15.0.0)\nRequirement already satisfied: annotated-doc>=0.0.2 in ./.venv-cpu/lib/python3.12/site-packages (from typer->transformers) (0.0.5)\nRequirement already satisfied: markdown-it-py>=2.2.0 in ./.venv-cpu/lib/python3.12/site-packages (from rich>=13.8.0->typer->transformers) (4.2.0)\nRequirement already satisfied: pygments<3.0.0,>=2.13.0 in ./.venv-cpu/lib/python3.12/site-packages (from rich>=13.8.0->typer->transformers) (2.21.0)\nRequirement already satisfied: mdurl~=0.1 in ./.venv-cpu/lib/python3.12/site-packages (from markdown-it-py>=2.2.0->rich>=13.8.0->typer->transformers) (0.1.2)\nUsing cached transformers-5.18.0-py3-none-any.whl (12.6 MB)\nUsing cached tokenizers-0.23.2-cp310-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (3.4 MB)\nInstalling collected packages: tokenizers, transformers\n  Attempting uninstall: tokenizers\n    Found existing installation: tokenizers 0.21.4\n    Uninstalling tokenizers-0.21.4:\n      Successfully uninstalled tokenizers-0.21.4\n\nSuccessfully installed tokenizers-0.23.2 transformers-5.18.0\n"
+    },
+    {
+      "workload": "qwen3-reranker",
+      "source": "huggingface_hub",
+      "ok": true,
+      "log_tail": "Requirement already satisfied: huggingface_hub in ./.venv-cpu/lib/python3.12/site-packages (0.36.2)\nRequirement already satisfied: filelock in ./.venv-cpu/lib/python3.12/site-packages (from huggingface_hub) (4.0.8)\nRequirement already satisfied: fsspec>=2023.5.0 in ./.venv-cpu/lib/python3.12/site-packages (from huggingface_hub) (2025.3.0)\nRequirement already satisfied: hf-xet<2.0.0,>=1.1.3 in ./.venv-cpu/lib/python3.12/site-packages (from huggingface_hub) (1.6.0)\nRequirement already satisfied: packaging>=20.9 in ./.venv-cpu/lib/python3.12/site-packages (from huggingface_hub) (26.3)\nRequirement already satisfied: pyyaml>=5.1 in ./.venv-cpu/lib/python3.12/site-packages (from huggingface_hub) (6.0.3)\nRequirement already satisfied: requests in ./.venv-cpu/lib/python3.12/site-packages (from huggingface_hub) (2.34.2)\nRequirement already satisfied: tqdm>=4.42.1 in ./.venv-cpu/lib/python3.12/site-packages (from huggingface_hub) (4.70.1)\nRequirement already satisfied: typing-extensions>=3.7.4.3 in ./.venv-cpu/lib/python3.12/site-packages (from huggingface_hub) (4.16.0)\nRequirement already satisfied: charset_normalizer<4,>=2 in ./.venv-cpu/lib/python3.12/site-packages (from requests->huggingface_hub) (3.5.2)\nRequirement already satisfied: idna<4,>=2.5 in ./.venv-cpu/lib/python3.12/site-packages (from requests->huggingface_hub) (3.20)\nRequirement already satisfied: urllib3<3,>=1.26 in ./.venv-cpu/lib/python3.12/site-packages (from requests->huggingface_hub) (2.8.0)\nRequirement already satisfied: certifi>=2023.5.7 in ./.venv-cpu/lib/python3.12/site-packages (from requests->huggingface_hub) (2026.7.22)\n"
+    },
+    {
+      "workload": "qwen3-reranker",
+      "source": "huggingface_hub",
+      "ok": true,
+      "log_tail": "Requirement already satisfied: huggingface_hub in ./.venv-cpu/lib/python3.12/site-packages (0.36.2)\nRequirement already satisfied: filelock in ./.venv-cpu/lib/python3.12/site-packages (from huggingface_hub) (4.0.8)\nRequirement already satisfied: fsspec>=2023.5.0 in ./.venv-cpu/lib/python3.12/site-packages (from huggingface_hub) (2025.3.0)\nRequirement already satisfied: hf-xet<2.0.0,>=1.1.3 in ./.venv-cpu/lib/python3.12/site-packages (from huggingface_hub) (1.6.0)\nRequirement already satisfied: packaging>=20.9 in ./.venv-cpu/lib/python3.12/site-packages (from huggingface_hub) (26.3)\nRequirement already satisfied: pyyaml>=5.1 in ./.venv-cpu/lib/python3.12/site-packages (from huggingface_hub) (6.0.3)\nRequirement already satisfied: requests in ./.venv-cpu/lib/python3.12/site-packages (from huggingface_hub) (2.34.2)\nRequirement already satisfied: tqdm>=4.42.1 in ./.venv-cpu/lib/python3.12/site-packages (from huggingface_hub) (4.70.1)\nRequirement already satisfied: typing-extensions>=3.7.4.3 in ./.venv-cpu/lib/python3.12/site-packages (from huggingface_hub) (4.16.0)\nRequirement already satisfied: charset_normalizer<4,>=2 in ./.venv-cpu/lib/python3.12/site-packages (from requests->huggingface_hub) (3.5.2)\nRequirement already satisfied: idna<4,>=2.5 in ./.venv-cpu/lib/python3.12/site-packages (from requests->huggingface_hub) (3.20)\nRequirement already satisfied: urllib3<3,>=1.26 in ./.venv-cpu/lib/python3.12/site-packages (from requests->huggingface_hub) (2.8.0)\nRequirement already satisfied: certifi>=2023.5.7 in ./.venv-cpu/lib/python3.12/site-packages (from requests->huggingface_hub) (2026.7.22)\n"
+    },
+    {
+      "workload": "qwen3-vl-embedding",
+      "source": "huggingface_hub",
+      "ok": true,
+      "log_tail": "Requirement already satisfied: huggingface_hub in ./.venv-cpu/lib/python3.12/site-packages (0.36.2)\nRequirement already satisfied: filelock in ./.venv-cpu/lib/python3.12/site-packages (from huggingface_hub) (4.0.8)\nRequirement already satisfied: fsspec>=2023.5.0 in ./.venv-cpu/lib/python3.12/site-packages (from huggingface_hub) (2025.3.0)\nRequirement already satisfied: hf-xet<2.0.0,>=1.1.3 in ./.venv-cpu/lib/python3.12/site-packages (from huggingface_hub) (1.6.0)\nRequirement already satisfied: packaging>=20.9 in ./.venv-cpu/lib/python3.12/site-packages (from huggingface_hub) (26.3)\nRequirement already satisfied: pyyaml>=5.1 in ./.venv-cpu/lib/python3.12/site-packages (from huggingface_hub) (6.0.3)\nRequirement already satisfied: requests in ./.venv-cpu/lib/python3.12/site-packages (from huggingface_hub) (2.34.2)\nRequirement already satisfied: tqdm>=4.42.1 in ./.venv-cpu/lib/python3.12/site-packages (from huggingface_hub) (4.70.1)\nRequirement already satisfied: typing-extensions>=3.7.4.3 in ./.venv-cpu/lib/python3.12/site-packages (from huggingface_hub) (4.16.0)\nRequirement already satisfied: charset_normalizer<4,>=2 in ./.venv-cpu/lib/python3.12/site-packages (from requests->huggingface_hub) (3.5.2)\nRequirement already satisfied: idna<4,>=2.5 in ./.venv-cpu/lib/python3.12/site-packages (from requests->huggingface_hub) (3.20)\nRequirement already satisfied: urllib3<3,>=1.26 in ./.venv-cpu/lib/python3.12/site-packages (from requests->huggingface_hub) (2.8.0)\nRequirement already satisfied: certifi>=2023.5.7 in ./.venv-cpu/lib/python3.12/site-packages (from requests->huggingface_hub) (2026.7.22)\n"
+    },
+    {
+      "workload": "qwen3-vl-embedding",
+      "source": "huggingface_hub",
+      "ok": true,
+      "log_tail": "Requirement already satisfied: huggingface_hub in ./.venv-cpu/lib/python3.12/site-packages (0.36.2)\nRequirement already satisfied: filelock in ./.venv-cpu/lib/python3.12/site-packages (from huggingface_hub) (4.0.8)\nRequirement already satisfied: fsspec>=2023.5.0 in ./.venv-cpu/lib/python3.12/site-packages (from huggingface_hub) (2025.3.0)\nRequirement already satisfied: hf-xet<2.0.0,>=1.1.3 in ./.venv-cpu/lib/python3.12/site-packages (from huggingface_hub) (1.6.0)\nRequirement already satisfied: packaging>=20.9 in ./.venv-cpu/lib/python3.12/site-packages (from huggingface_hub) (26.3)\nRequirement already satisfied: pyyaml>=5.1 in ./.venv-cpu/lib/python3.12/site-packages (from huggingface_hub) (6.0.3)\nRequirement already satisfied: requests in ./.venv-cpu/lib/python3.12/site-packages (from huggingface_hub) (2.34.2)\nRequirement already satisfied: tqdm>=4.42.1 in ./.venv-cpu/lib/python3.12/site-packages (from huggingface_hub) (4.70.1)\nRequirement already satisfied: typing-extensions>=3.7.4.3 in ./.venv-cpu/lib/python3.12/site-packages (from huggingface_hub) (4.16.0)\nRequirement already satisfied: charset_normalizer<4,>=2 in ./.venv-cpu/lib/python3.12/site-packages (from requests->huggingface_hub) (3.5.2)\nRequirement already satisfied: idna<4,>=2.5 in ./.venv-cpu/lib/python3.12/site-packages (from requests->huggingface_hub) (3.20)\nRequirement already satisfied: urllib3<3,>=1.26 in ./.venv-cpu/lib/python3.12/site-packages (from requests->huggingface_hub) (2.8.0)\nRequirement already satisfied: certifi>=2023.5.7 in ./.venv-cpu/lib/python3.12/site-packages (from requests->huggingface_hub) (2026.7.22)\n"
+    },
+    {
+      "workload": "glm4.1-v-thinking",
+      "source": "huggingface_hub",
+      "ok": true,
+      "log_tail": "Requirement already satisfied: huggingface_hub in ./.venv-cpu/lib/python3.12/site-packages (0.36.2)\nRequirement already satisfied: filelock in ./.venv-cpu/lib/python3.12/site-packages (from huggingface_hub) (4.0.8)\nRequirement already satisfied: fsspec>=2023.5.0 in ./.venv-cpu/lib/python3.12/site-packages (from huggingface_hub) (2025.3.0)\nRequirement already satisfied: hf-xet<2.0.0,>=1.1.3 in ./.venv-cpu/lib/python3.12/site-packages (from huggingface_hub) (1.6.0)\nRequirement already satisfied: packaging>=20.9 in ./.venv-cpu/lib/python3.12/site-packages (from huggingface_hub) (26.3)\nRequirement already satisfied: pyyaml>=5.1 in ./.venv-cpu/lib/python3.12/site-packages (from huggingface_hub) (6.0.3)\nRequirement already satisfied: requests in ./.venv-cpu/lib/python3.12/site-packages (from huggingface_hub) (2.34.2)\nRequirement already satisfied: tqdm>=4.42.1 in ./.venv-cpu/lib/python3.12/site-packages (from huggingface_hub) (4.70.1)\nRequirement already satisfied: typing-extensions>=3.7.4.3 in ./.venv-cpu/lib/python3.12/site-packages (from huggingface_hub) (4.16.0)\nRequirement already satisfied: charset_normalizer<4,>=2 in ./.venv-cpu/lib/python3.12/site-packages (from requests->huggingface_hub) (3.5.2)\nRequirement already satisfied: idna<4,>=2.5 in ./.venv-cpu/lib/python3.12/site-packages (from requests->huggingface_hub) (3.20)\nRequirement already satisfied: urllib3<3,>=1.26 in ./.venv-cpu/lib/python3.12/site-packages (from requests->huggingface_hub) (2.8.0)\nRequirement already satisfied: certifi>=2023.5.7 in ./.venv-cpu/lib/python3.12/site-packages (from requests->huggingface_hub) (2026.7.22)\n"
+    },
+    {
+      "workload": "glm4.1-v-thinking",
+      "source": "huggingface_hub",
+      "ok": true,
+      "log_tail": "Requirement already satisfied: huggingface_hub in ./.venv-cpu/lib/python3.12/site-packages (0.36.2)\nRequirement already satisfied: filelock in ./.venv-cpu/lib/python3.12/site-packages (from huggingface_hub) (4.0.8)\nRequirement already satisfied: fsspec>=2023.5.0 in ./.venv-cpu/lib/python3.12/site-packages (from huggingface_hub) (2025.3.0)\nRequirement already satisfied: hf-xet<2.0.0,>=1.1.3 in ./.venv-cpu/lib/python3.12/site-packages (from huggingface_hub) (1.6.0)\nRequirement already satisfied: packaging>=20.9 in ./.venv-cpu/lib/python3.12/site-packages (from huggingface_hub) (26.3)\nRequirement already satisfied: pyyaml>=5.1 in ./.venv-cpu/lib/python3.12/site-packages (from huggingface_hub) (6.0.3)\nRequirement already satisfied: requests in ./.venv-cpu/lib/python3.12/site-packages (from huggingface_hub) (2.34.2)\nRequirement already satisfied: tqdm>=4.42.1 in ./.venv-cpu/lib/python3.12/site-packages (from huggingface_hub) (4.70.1)\nRequirement already satisfied: typing-extensions>=3.7.4.3 in ./.venv-cpu/lib/python3.12/site-packages (from huggingface_hub) (4.16.0)\nRequirement already satisfied: charset_normalizer<4,>=2 in ./.venv-cpu/lib/python3.12/site-packages (from requests->huggingface_hub) (3.5.2)\nRequirement already satisfied: idna<4,>=2.5 in ./.venv-cpu/lib/python3.12/site-packages (from requests->huggingface_hub) (3.20)\nRequirement already satisfied: urllib3<3,>=1.26 in ./.venv-cpu/lib/python3.12/site-packages (from requests->huggingface_hub) (2.8.0)\nRequirement already satisfied: certifi>=2023.5.7 in ./.venv-cpu/lib/python3.12/site-packages (from requests->huggingface_hub) (2026.7.22)\n"
     }
   ],
-  "last_checkpoint": "2026-10-01T18:06:25+00:00",
-  "current_workload": "qwen3",
+  "last_checkpoint": "2026-10-01T20:33:49+00:00",
+  "current_workload": "qwen3-vl-reranker",
   "env_repairs": [
     {
       "problems": [
@@ -1541,6 +1645,68 @@
         "protobuf-old"
       ],
       "at": "2026-10-01T16:53:03+00:00"
+    },
+    {
+      "problems": [
+        "transformers-old",
+        "protobuf-old"
+      ],
+      "at": "2026-10-01T18:24:42+00:00"
+    },
+    {
+      "problems": [
+        "transformers-old",
+        "optimum-cli-broken"
+      ],
+      "at": "2026-10-01T19:08:23+00:00"
+    },
+    {
+      "problems": [
+        "transformers-old"
+      ],
+      "at": "2026-10-01T19:17:59+00:00"
+    },
+    {
+      "problems": [
+        "transformers-old"
+      ],
+      "at": "2026-10-01T19:32:47+00:00"
+    },
+    {
+      "problems": [
+        "transformers-old"
+      ],
+      "at": "2026-10-01T19:40:54+00:00"
+    },
+    {
+      "problems": [
+        "transformers-old"
+      ],
+      "at": "2026-10-01T19:42:49+00:00"
+    },
+    {
+      "problems": [
+        "transformers-old"
+      ],
+      "at": "2026-10-01T19:45:04+00:00"
+    },
+    {
+      "problems": [
+        "transformers-old"
+      ],
+      "at": "2026-10-01T19:52:54+00:00"
+    },
+    {
+      "problems": [
+        "transformers-old"
+      ],
+      "at": "2026-10-01T19:54:27+00:00"
+    },
+    {
+      "problems": [
+        "transformers-old"
+      ],
+      "at": "2026-10-01T20:11:00+00:00"
     }
   ]
 }

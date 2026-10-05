@@ -1,0 +1,8 @@
+{
+  "repository": "openvinotoolkit/openvino_notebooks",
+  "branch": "latest",
+  "commit": "a8809170cc4fc6aa633fbb9c22214be67ac20b47",
+  "path": "notebooks/instant-id/instant-id.ipynb",
+  "url": "https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/instant-id/instant-id.ipynb",
+  "notebook_sha256": "bccb3adcad784850dd4c2e37893e57c06f24a0aaf1ebdc6e62bba95d8e99ae09"
+}

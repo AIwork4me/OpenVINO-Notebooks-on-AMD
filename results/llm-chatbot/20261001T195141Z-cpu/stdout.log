@@ -1,0 +1,38 @@
+[cell 0 START +    0.4s] # Create an LLM-powered Chatbot using OpenVINO |  | In the rapidly evolvin
+[cell 1 START +    0.4s] ## Prerequisites | [back to top ⬆️](#Table-of-contents:) |  | Install requir
+[cell 2 START +    0.4s] import os |  | os.environ["GIT_CLONE_PROTECTION_ACTIVE"] = "false" |  | %pip i
+[cell 2 DONE  +   57.5s]
+[cell 3 START +   57.5s] import os | from pathlib import Path | import requests | import shutil |  | # fe
+[cell 3 DONE  +   58.0s]
+[cell 4 START +   58.0s] ## Select model for inference | [back to top ⬆️](#Table-of-contents:) |  | T
+[cell 5 START +   58.0s] from llm_config import SUPPORTED_LLM_MODELS | import ipywidgets as widge
+[cell 5 DONE  +   58.0s]
+[cell 6 START +   58.0s] model_languages = list(SUPPORTED_LLM_MODELS) |  | model_language = widgets
+[cell 6 DONE  +   58.0s]
+[cell 7 START +   58.0s] model_ids = list(SUPPORTED_LLM_MODELS[model_language.value]) |  | model_id
+[cell 7 DONE  +   58.0s]
+[cell 8 START +   58.0s] model_configuration = SUPPORTED_LLM_MODELS[model_language.value][model
+[cell 8 DONE  +   58.0s]
+[cell 9 START +   58.0s] ## Convert model using Optimum-CLI tool | [back to top ⬆️](#Table-of-con
+[cell 10 START +   58.0s] ## Compress model weights |  |  | The [Weights Compression](https://docs.ope
+[cell 11 START +   58.0s] from IPython.display import Markdown, display |  | prepare_int4_model = wi
+[cell 11 DONE  +   58.0s]
+[cell 12 START +   58.0s] ### Weight compression with AWQ | [back to top ⬆️](#Table-of-contents:) | 
+[cell 13 START +   58.0s] enable_awq = widgets.Checkbox( |     value=False, |     description="Enabl
+[cell 13 DONE  +   58.0s]
+[cell 14 START +   58.0s] We can now save floating point and compressed model variants
+[cell 15 START +   58.0s] from pathlib import Path |  | from llm_config import compression_configs |  | 
+[cell 15 DONE  +   58.1s]
+[cell 16 START +   58.1s] Let's compare model size for different compression types
+[cell 17 START +   58.1s] fp16_weights = fp16_model_dir / "openvino_model.bin" | int8_weights = in
+[cell 17 DONE  +   58.1s]
+[cell 18 START +   58.1s] ## Select device for inference and model variant | [back to top ⬆️](#Tab
+[cell 19 START +   58.1s] import requests |  | r = requests.get( |     url="https://raw.githubusercont
+[cell 19 DONE  +  325.0s]
+[cell 20 START +  325.0s] The cell below demonstrates how to instantiate model based on selected
+[cell 21 START +  325.0s] available_models = [] | if int4_model_dir.exists(): |     available_models
+[cell 21 DONE  +  325.1s]
+[cell 22 START +  325.1s] ## Instantiate Model using Optimum Intel | [back to top ⬆️](#Table-of-co
+[cell 23 START +  325.1s] from transformers import AutoConfig, AutoTokenizer | from optimum.intel.
+[cell 23 DONE  +  332.9s]
+NBEXEC_RESULT={"ok": false, "n_cells": 16, "n_skipped": 1, "n_substituted": 0, "stopped_after": null, "error_cell": null, "error_type": "CellExecutionError", "error_head": "No module named 'transformers.masking_utils'", "duration_s": 336.23, "patch_notes": ["skipped cell 28: matched skip pattern"]}

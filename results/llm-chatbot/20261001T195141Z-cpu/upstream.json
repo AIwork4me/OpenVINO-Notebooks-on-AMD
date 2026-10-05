@@ -1,0 +1,8 @@
+{
+  "repository": "openvinotoolkit/openvino_notebooks",
+  "branch": "latest",
+  "commit": "a8809170cc4fc6aa633fbb9c22214be67ac20b47",
+  "path": "notebooks/llm-chatbot/llm-chatbot.ipynb",
+  "url": "https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/llm-chatbot/llm-chatbot.ipynb",
+  "notebook_sha256": "7352393f743040ef406b0e6a5e91ebbd0124e05d2c1209327c484dc1b3c01de7"
+}

@@ -1,0 +1,27 @@
+[cell 0 START +    0.4s] # LLM Instruction-following pipeline with OpenVINO  |  | LLM stands for “L
+[cell 1 START +    0.4s] ## Prerequisites | [back to top ⬆️](#Table-of-contents:) | 
+[cell 2 START +    0.4s] import requests | from pathlib import Path |  | if not Path("notebook_utils.
+[cell 2 DONE  +   14.6s]
+[cell 3 START +   14.6s] ## Select model for inference | [back to top ⬆️](#Table-of-contents:) |  | T
+[cell 4 START +   14.6s] from pathlib import Path |  | from notebook_utils import download_file, de
+[cell 4 DONE  +   14.6s]
+[cell 5 START +   14.6s] model_ids = list(SUPPORTED_LLM_MODELS) |  | model_id = widgets.Dropdown( |  
+[cell 5 DONE  +   14.6s]
+[cell 6 START +   14.6s] model_configuration = SUPPORTED_LLM_MODELS[model_id.value] | print(f"Sel
+[cell 6 DONE  +   14.7s]
+[cell 7 START +   14.7s] ## Select device for inference and model variant | [back to top ⬆️](#Tab
+[cell 8 START +   14.7s] device = device_widget("CPU") |  | device
+[cell 8 DONE  +   15.0s]
+[cell 9 START +   15.0s] ## Download and convert models | [back to top ⬆️](#Table-of-contents:)
+[cell 10 START +   15.0s] ### Convert model to OpenVINO IR via Optimum Intel CLI | [back to top ⬆️
+[cell 11 START +   15.0s] ### Download models | [back to top ⬆️](#Table-of-contents:) |  | Some models
+[cell 12 START +   15.0s] from IPython.display import display, Markdown |  | quatization_levels = {}
+[cell 12 DONE  +   15.0s]
+[cell 13 START +   15.0s] from pathlib import Path | import logging | import openvino as ov | import n
+[cell 13 DONE  +  404.2s]
+[cell 14 START +  404.2s] Let's compare model size for different compression types
+[cell 15 START +  404.2s] if gguf_file_path.exists(): |     for model_file in gguf_file_path.glob(
+[cell 15 DONE  +  404.2s]
+[cell 16 START +  404.2s] available_models = [] | if int4_model_dir.exists() and device.value != "
+[cell 16 DONE  +  404.2s]
+NBEXEC_RESULT={"ok": false, "n_cells": 16, "n_skipped": 1, "n_substituted": 0, "stopped_after": null, "error_cell": null, "error_type": "CellExecutionError", "error_head": "\u001b[31mIndexError\u001b[39m: list index out of range", "duration_s": 405.06, "patch_notes": ["skipped cell 30: matched skip pattern"]}

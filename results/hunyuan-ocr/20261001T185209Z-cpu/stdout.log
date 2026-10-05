@@ -1,0 +1,7 @@
+[cell 0 START +    0.4s] # Document parsing with HunyuanOCR and OpenVINO |  | [HunyuanOCR](https://
+[cell 1 START +    0.4s] ## Prerequisites | [back to top ⬆️](#Table-of-contents:) |  | HunyuanOCR shi
+[cell 2 START +    0.4s] import requests | from pathlib import Path |  | if not Path("cmd_helper.py")
+[cell 2 DONE  +    0.5s]
+[cell 3 START +    0.5s] %pip uninstall -q -y optimum optimum-intel optimum-onnx |  | from notebook
+[cell 3 DONE  +   68.7s]
+NBEXEC_RESULT={"ok": false, "n_cells": 11, "n_skipped": 1, "n_substituted": 0, "stopped_after": null, "error_cell": null, "error_type": "CellExecutionError", "error_head": "\u001b[31mCalledProcessError\u001b[39m: Command '['/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/bin/python', '-m', 'pip', 'install', '-q', 'git+https://github.com/openvino-dev-samples/optimum-intel.git@hunyuan-ocr-support']' returned non-zero exit status 1.", "duration_s": 68.85, "patch_notes": ["skipped cell 16: matched skip pattern"]}

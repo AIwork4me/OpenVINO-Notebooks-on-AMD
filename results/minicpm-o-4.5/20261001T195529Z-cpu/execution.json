@@ -1,0 +1,9 @@
+{
+  "start": "2026-10-01T19:55:29+00:00",
+  "end": "2026-10-01T20:10:58+00:00",
+  "duration_s": 929.24,
+  "exit_code": 1,
+  "retry_count": 0,
+  "status": "ERROR",
+  "failure_category": "PACKAGE_CONFLICT"
+}

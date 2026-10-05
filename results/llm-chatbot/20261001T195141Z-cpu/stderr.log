@@ -1,0 +1,88 @@
+[IPKernelApp] WARNING | Kernel is running over TCP without encryption. All communication (including code and outputs) is sent in plain text and is susceptible to eavesdropping. Use IPC transport or launch with kernel manager-provisioned CurveZMQ keys to enable transport encryption.
+m4 because of the following error (look up to see its traceback):
+No module named 'transformers.masking_utils'
+
+The above exception was the direct cause of the following exception:
+
+[31mRuntimeError[39m                              Traceback (most recent call last)
+[36mCell[39m[36m [39m[32mIn[13][39m[32m, line 2[39m
+[32m      1[39m [38;5;28;01mfrom[39;00m transformers [38;5;28;01mimport[39;00m AutoConfig, AutoTokenizer
+[32m----> [39m[32m2[39m [38;5;28;01mfrom[39;00m optimum.intel.openvino [38;5;28;01mimport[39;00m OVModelForCausalLM
+[32m      3[39m 
+[32m      4[39m [38;5;28;01mimport[39;00m openvino [38;5;28;01mas[39;00m ov
+[32m      5[39m [38;5;28;01mimport[39;00m openvino.properties [38;5;28;01mas[39;00m props
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/optimum/intel/openvino/__init__.py:66[39m
+[32m     61[39m     [38;5;28;01mif[39;00m is_nncf_version([33m"[39m[33m<[39m[33m"[39m, [33m"[39m[33m2.19[39m[33m"[39m):
+[32m     62[39m         logger.warning(
+[32m     63[39m             [33m"[39m[33mNNCF version 2.19 or higher is required to use NNCF-based quantization. [39m[33m"[39m
+[32m     64[39m             [33mf[39m[33m"[39m[33mPlease upgrade your NNCF installation. The current version of NNCF is [39m[38;5;132;01m{[39;00mnncf.__version__[38;5;132;01m}[39;00m[33m.[39m[33m"[39m
+[32m     65[39m         )
+[32m---> [39m[32m66[39m     [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01m.[39;00m[34;01mquantization[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m OVCalibrationDataset, OVQuantizer
+[32m     69[39m [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01m.[39;00m[34;01mmodeling[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m (
+[32m     70[39m     OVModelForAudioClassification,
+[32m     71[39m     OVModelForAudioFrameClassification,
+[32m   (...)[39m[32m     81[39m     OVModelForZeroShotImageClassification,
+[32m     82[39m )
+[32m     83[39m [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01m.[39;00m[34;01mmodeling_decoder[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m OVModelForCausalLM
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/optimum/intel/openvino/quantization.py:79[39m
+[32m     67[39m [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01m.[39;00m[34;01mutils[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m (
+[32m     68[39m     PREDEFINED_LANGUAGE_DATASETS,
+[32m     69[39m     PREDEFINED_SAM_DATASETS,
+[32m   (...)[39m[32m     74[39m     TemporaryDirectory,
+[32m     75[39m )
+[32m     78[39m [38;5;28;01mif[39;00m is_diffusers_available():
+[32m---> [39m[32m79[39m     [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01moptimum[39;00m[34;01m.[39;00m[34;01mintel[39;00m[34;01m.[39;00m[34;01mopenvino[39;00m[34;01m.[39;00m[34;01mmodeling_diffusion[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m OVDiffusionPipeline
+[32m     81[39m [38;5;28;01mif[39;00m is_datasets_available():
+[32m     82[39m     [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01mdatasets[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m Dataset
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/optimum/intel/openvino/modeling_diffusion.py:30[39m
+[32m     28[39m [38;5;28;01mimport[39;00m[38;5;250m [39m[34;01mopenvino[39;00m
+[32m     29[39m [38;5;28;01mimport[39;00m[38;5;250m [39m[34;01mtorch[39;00m
+[32m---> [39m[32m30[39m [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01mdiffusers[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m (
+[32m     31[39m     AutoPipelineForImage2Image,
+[32m     32[39m     AutoPipelineForInpainting,
+[32m     33[39m     AutoPipelineForText2Image,
+[32m     34[39m     DiffusionPipeline,
+[32m     35[39m     LatentConsistencyModelImg2ImgPipeline,
+[32m     36[39m     LatentConsistencyModelPipeline,
+[32m     37[39m     StableDiffusionImg2ImgPipeline,
+[32m     38[39m     StableDiffusionInpaintPipeline,
+[32m     39[39m     StableDiffusionPipeline,
+[32m     40[39m     StableDiffusionXLImg2ImgPipeline,
+[32m     41[39m     StableDiffusionXLInpaintPipeline,
+[32m     42[39m     StableDiffusionXLPipeline,
+[32m     43[39m     pipelines,
+[32m     44[39m )
+[32m     45[39m [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01mdiffusers[39;00m[34;01m.[39;00m[34;01mconfiguration_utils[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m ConfigMixin
+[32m     46[39m [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01mdiffusers[39;00m[34;01m.[39;00m[34;01mschedulers[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m SchedulerMixin
+
+[36mFile [39m[32m<frozen importlib._bootstrap>:1412[39m, in [36m_handle_fromlist[39m[34m(module, fromlist, import_, recursive)[39m
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/diffusers/utils/import_utils.py:1043[39m, in [36m_LazyModule.__getattr__[39m[34m(self, name)[39m
+[32m   1041[39m [38;5;28;01melif[39;00m name [38;5;129;01min[39;00m [38;5;28mself[39m._class_to_module.keys():
+[32m   1042[39m     module = [38;5;28mself[39m._get_module([38;5;28mself[39m._class_to_module[name])
+[32m-> [39m[32m1043[39m     value = [30;43mgetattr[39;49m[30;43m([39;49m[30;43mmodule[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mname[39;49m[30;43m)[39;49m
+[32m   1044[39m [38;5;28;01melse[39;00m:
+[32m   1045[39m     [38;5;28;01mraise[39;00m [38;5;167;01mAttributeError[39;00m([33mf[39m[33m"[39m[33mmodule [39m[38;5;132;01m{[39;00m[38;5;28mself[39m.[34m__name__[39m[38;5;132;01m}[39;00m[33m has no attribute [39m[38;5;132;01m{[39;00mname[38;5;132;01m}[39;00m[33m"[39m)
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/diffusers/utils/import_utils.py:1042[39m, in [36m_LazyModule.__getattr__[39m[34m(self, name)[39m
+[32m   1040[39m     value = [38;5;28mself[39m._get_module(name)
+[32m   1041[39m [38;5;28;01melif[39;00m name [38;5;129;01min[39;00m [38;5;28mself[39m._class_to_module.keys():
+[32m-> [39m[32m1042[39m     module = [30;43mself[39;49m[30;43m.[39;49m[30;43m_get_module[39;49m[30;43m([39;49m[30;43mself[39;49m[30;43m.[39;49m[30;43m_class_to_module[39;49m[30;43m[[39;49m[30;43mname[39;49m[30;43m][39;49m[30;43m)[39;49m
+[32m   1043[39m     value = [38;5;28mgetattr[39m(module, name)
+[32m   1044[39m [38;5;28;01melse[39;00m:
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/diffusers/utils/import_utils.py:1054[39m, in [36m_LazyModule._get_module[39m[34m(self, module_name)[39m
+[32m   1052[39m     [38;5;28;01mreturn[39;00m importlib.import_module([33m"[39m[33m.[39m[33m"[39m + module_name, [38;5;28mself[39m.[34m__name__[39m)
+[32m   1053[39m [38;5;28;01mexcept[39;00m [38;5;167;01mException[39;00m [38;5;28;01mas[39;00m e:
+[32m-> [39m[32m1054[39m     [38;5;28;01mraise[39;00m [38;5;167;01mRuntimeError[39;00m(
+[32m   1055[39m         [33mf[39m[33m"[39m[33mFailed to import [39m[38;5;132;01m{[39;00m[38;5;28mself[39m.[34m__name__[39m[38;5;132;01m}[39;00m[33m.[39m[38;5;132;01m{[39;00mmodule_name[38;5;132;01m}[39;00m[33m because of the following error (look up to see its[39m[33m"[39m
+[32m   1056[39m         [33mf[39m[33m"[39m[33m traceback):[39m[38;5;130;01m\n[39;00m[38;5;132;01m{[39;00me[38;5;132;01m}[39;00m[33m"[39m
+[32m   1057[39m     ) [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01me[39;00m
+
+[31mRuntimeError[39m: Failed to import diffusers.pipelines.auto_pipeline because of the following error (look up to see its traceback):
+Failed to import diffusers.pipelines.ideogram4.pipeline_ideogram4 because of the following error (look up to see its traceback):
+No module named 'transformers.masking_utils'
+

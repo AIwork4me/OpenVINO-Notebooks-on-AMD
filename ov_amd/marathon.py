@@ -13,6 +13,7 @@ from ov_amd.executor import load_upstream_meta, prune_cache_if_needed, run_workl
 from ov_amd.notebook_runner import classify_failure
 from ov_amd.reporting import write_compatibility, write_failures, write_progress
 from ov_amd.scheduler import (
+    STATE_PATH,
     checkpoint,
     load_catalog,
     load_state,
@@ -99,9 +100,23 @@ def run_gpu_twin(entry, state: dict[str, Any]) -> None:
             break
 
     hip_ok = "hip" in stderr.lower() or twin_result.get("hip") or "torch.version.hip" in stdout
+    # structured GPU evidence: full twin result (ok/hip/device/gcn_arch/metrics)
+    # plus hardware/software snapshots and an execution record
+    from ov_amd import hardware as _hw
+
+    _hw.snapshot(ev, str(venv_python("gpu")))
+    (ev / "metrics.json").write_text(json.dumps(twin_result, indent=2, default=str))
+    (ev / "execution.json").write_text(json.dumps({
+        "start": datetime.now(timezone.utc).isoformat(timespec="seconds"),
+        "end": datetime.now(timezone.utc).isoformat(timespec="seconds"),
+        "duration_s": round(duration, 2),
+        "exit_code": ret,
+        "retry_count": 0,
+        "status": "OK" if (twin_result.get("ok") and twin_result.get("hip")) else "ERROR",
+        "failure_category": "" if twin_result.get("ok") else "CORRECTNESS_ERROR",
+    }, indent=2))
     if twin_result.get("ok") and twin_result.get("hip"):
         _record_gpu(state, entry, Status.VERIFIED, evidence=str(ev))
-        (ev / "metrics.json").write_text(json.dumps(twin_result.get("metrics", {}), indent=2))
     elif twin_result:
         # script ran to completion and self-reported failure of its own checks;
         # log-grep classification would misread earlier fallback logs (e.g. a
@@ -109,7 +124,6 @@ def run_gpu_twin(entry, state: dict[str, Any]) -> None:
         _record_gpu(state, entry, Status.FAILED, FailureCategory.CORRECTNESS_ERROR.value,
                     notes=[f"twin self-check failed; metrics={json.dumps(twin_result.get('metrics', {}))[:400]}"],
                     evidence=str(ev))
-        (ev / "metrics.json").write_text(json.dumps(twin_result.get("metrics", {}), indent=2))
     else:
         cat = classify_failure(stderr, stdout, timed_out)
         notes = [f"exit={ret} duration={duration:.0f}s", stderr.strip().splitlines()[-1][:300] if stderr.strip() else ""]
@@ -118,6 +132,7 @@ def run_gpu_twin(entry, state: dict[str, Any]) -> None:
 
 
 def run_marathon(
+    resume: bool = True,
     cpu_only: bool = False,
     gpu_only: bool = False,
     max_runtime_s: float | None = None,
@@ -129,6 +144,13 @@ def run_marathon(
     """The autonomous campaign loop. Resumable via results/marathon-state.json."""
 
     state = load_state()
+    if not resume:
+        # explicit fresh start: archive the old checkpoint, begin from zero
+        archive = STATE_PATH.with_name(f"marathon-state-{int(time.time())}.json.bak")
+        if STATE_PATH.exists():
+            archive.write_text(STATE_PATH.read_text())
+        state = {"started": _utcnow(), "upstream": load_upstream_meta() or {}, "attempts": {}, "installed_extras": []}
+        save_state(state)
     meta = load_upstream_meta()
     if meta and not state.get("upstream"):
         state["upstream"] = meta

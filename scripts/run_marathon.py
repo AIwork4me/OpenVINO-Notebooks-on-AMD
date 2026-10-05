@@ -23,6 +23,7 @@ def main() -> int:
     args = ap.parse_args()
 
     summary = run_marathon(
+        resume=args.resume,
         cpu_only=args.cpu_only,
         gpu_only=args.gpu_only,
         max_runtime_s=args.max_runtime,

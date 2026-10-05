@@ -1,0 +1,24 @@
+qwen3: FAILED UNKNOWN runs=0
+glm4.1-v-thinking: FAILED DEPENDENCY runs=0
+[env-repair] drift detected: ['transformers-old', 'optimum-cli-broken'] -> reinstalling golden set
+hunyuan-ocr: FAILED DEPENDENCY runs=0
+hunyuan-translation: FAILED UNKNOWN runs=0
+[env-repair] drift detected: ['transformers-old', 'optimum-cli-broken'] -> reinstalling golden set
+image-to-image-genai: VERIFIED_WITH_LIMITATIONS  runs=1
+[env-repair] drift detected: ['transformers-missing', 'optimum-cli-broken'] -> reinstalling golden set
+instant-id: FAILED NETWORK runs=0
+[env-repair] drift detected: ['transformers-old'] -> reinstalling golden set
+llm-agent-functioncall-qwen: VERIFIED_WITH_LIMITATIONS  runs=1
+[env-repair] drift detected: ['transformers-old'] -> reinstalling golden set
+llm-agent-rag-llamaindex: VERIFIED_WITH_LIMITATIONS  runs=1
+[env-repair] drift detected: ['transformers-old'] -> reinstalling golden set
+llm-chatbot: FAILED DEPENDENCY runs=0
+[env-repair] drift detected: ['transformers-old'] -> reinstalling golden set
+llm-question-answering: VERIFIED_WITH_LIMITATIONS  runs=1
+[env-repair] drift detected: ['transformers-old'] -> reinstalling golden set
+meter-reader: VERIFIED_WITH_LIMITATIONS  runs=1
+[env-repair] drift detected: ['transformers-old'] -> reinstalling golden set
+minicpm-o-4.5: FAILED UNKNOWN runs=0
+[env-repair] drift detected: ['transformers-old'] -> reinstalling golden set
+minicpm-o-omnimodal-chatbot: FAILED UNKNOWN runs=0
+[env-repair] drift detected: ['transformers-old'] -> reinstalling golden set

@@ -1,0 +1,5 @@
+[IPKernelApp] WARNING | Kernel is running over TCP without encryption. All communication (including code and outputs) is sent in plain text and is susceptible to eavesdropping. Use IPC transport or launch with kernel manager-provisioned CurveZMQ keys to enable transport encryption.
+[31mERROR: pip's dependency resolver does not currently take into account all the packages that are installed. This behaviour is the source of the following dependency conflicts.
+llama-index-embeddings-openvino 0.8.0 requires llama-index-core<0.15,>=0.13.0, but you have llama-index-core 0.12.52.post1 which is incompatible.
+llama-index-embeddings-openvino 0.8.0 requires llama-index-embeddings-huggingface<0.7,>=0.6.0, but you have llama-index-embeddings-huggingface 0.4.0 which is incompatible.[0m[31m
+[0m

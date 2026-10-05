@@ -1,0 +1,8 @@
+{
+  "repository": "openvinotoolkit/openvino_notebooks",
+  "branch": "latest",
+  "commit": "a8809170cc4fc6aa633fbb9c22214be67ac20b47",
+  "path": "notebooks/llm-agent-functioncall/llm-agent-functioncall-qwen.ipynb",
+  "url": "https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/llm-agent-functioncall/llm-agent-functioncall-qwen.ipynb",
+  "notebook_sha256": "e1726cebc25757f7ded52d96a6c77f16e1e753ce5e19553bccf1f4b75e49337c"
+}

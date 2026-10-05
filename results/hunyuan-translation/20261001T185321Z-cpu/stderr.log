@@ -1,0 +1,90 @@
+[IPKernelApp] WARNING | Kernel is running over TCP without encryption. All communication (including code and outputs) is sent in plain text and is susceptible to eavesdropping. Use IPC transport or launch with kernel manager-provisioned CurveZMQ keys to enable transport encryption.
+-on-AMD/.venv-cpu/lib/python3.12/site-packages/transformers/models/hunyuan_v1_dense/modeling_hunyuan_v1_dense.py", line 468, in __init__
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/transformers/modeling_utils.py", line 1359, in __init__
+    elif isinstance(torch_dtype, torch.dtype):
+                                              
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/transformers/modeling_utils.py", line 1998, in _check_and_adjust_experts_implementation
+    #
+      
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/transformers/modeling_utils.py", line 2055, in get_correct_experts_implementation
+    self._keep_in_fp32_modules = copy.copy(self.__class__._keep_in_fp32_modules)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/transformers/modeling_utils.py", line 1845, in _grouped_mm_can_dispatch
+    num_bytes = param.quant_storage.itemsize
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/transformers/modeling_utils.py", line 2092, in _can_set_experts_implementation
+    )
+^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/transformers/models/hunyuan_v1_dense/modeling_hunyuan_v1_dense.py'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/bin/optimum-cli", line 6, in <module>
+    sys.exit(main())
+             ^^^^^^
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/optimum/commands/optimum_cli.py", line 219, in main
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/optimum/commands/export/openvino.py", line 469, in run
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/optimum/exporters/openvino/__main__.py", line 661, in main_export
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/optimum/exporters/tasks.py", line 1225, in get_model_from_task
+    }
+      
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/transformers/models/auto/auto_factory.py", line 404, in from_pretrained
+    return name_to_model[f"TF{arch}"]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/transformers/modeling_utils.py", line 4264, in from_pretrained
+    are:
+        ^
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/transformers/models/hunyuan_v1_dense/modeling_hunyuan_v1_dense.py", line 468, in __init__
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/transformers/modeling_utils.py", line 1359, in __init__
+    elif isinstance(torch_dtype, torch.dtype):
+                                              
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/transformers/modeling_utils.py", line 1998, in _check_and_adjust_experts_implementation
+    #
+      
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/transformers/modeling_utils.py", line 2055, in get_correct_experts_implementation
+    self._keep_in_fp32_modules = copy.copy(self.__class__._keep_in_fp32_modules)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/transformers/modeling_utils.py", line 1845, in _grouped_mm_can_dispatch
+    num_bytes = param.quant_storage.itemsize
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/transformers/modeling_utils.py", line 2092, in _can_set_experts_implementation
+    )
+^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/transformers/models/hunyuan_v1_dense/modeling_hunyuan_v1_dense.py'
+------------------
+
+[31m---------------------------------------------------------------------------[39m
+[31mCalledProcessError[39m                        Traceback (most recent call last)
+[36mCell[39m[36m [39m[32mIn[5][39m[32m, line 18[39m
+[32m     14[39m     [38;5;28;01mif[39;00m weight_format == [33m"int4"[39m:
+[32m     15[39m         additional_args[[33m"ratio"[39m] = [33m"0.8"[39m
+[32m     16[39m         additional_args[[33m"group-size"[39m] = [33m"128"[39m
+[32m     17[39m 
+[32m---> [39m[32m18[39m     optimum_cli(model_id, model_dir, additional_args=additional_args)
+[32m     19[39m [38;5;28;01melse[39;00m:
+[32m     20[39m     print(f"Model already exists at {model_dir}, skipping conversion.")
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/results/hunyuan-translation/workdir-cpu/cmd_helper.py:62[39m, in [36moptimum_cli[39m[34m(model_id, output_dir, show_command, additional_args, debug_logs)[39m
+[32m     60[39m     [38;5;28;01mif[39;00m transofrmers_loglevel [38;5;129;01mis[39;00m [38;5;129;01mnot[39;00m [38;5;28;01mNone[39;00m:
+[32m     61[39m         os.environ[[33m"[39m[33mTRANSFORMERS_VERBOSITY[39m[33m"[39m] = transofrmers_loglevel
+[32m---> [39m[32m62[39m     [38;5;28;01mraise[39;00m exc
+[32m     63[39m [38;5;28;01mfinally[39;00m:
+[32m     64[39m     [38;5;28;01mif[39;00m transofrmers_loglevel [38;5;129;01mis[39;00m [38;5;129;01mnot[39;00m [38;5;28;01mNone[39;00m:
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/results/hunyuan-translation/workdir-cpu/cmd_helper.py:49[39m, in [36moptimum_cli[39m[34m(model_id, output_dir, show_command, additional_args, debug_logs)[39m
+[32m     46[39m     os.environ[[33m"[39m[33mTRANSFORMERS_VERBOSITY[39m[33m"[39m] = [33m"[39m[33mdebug[39m[33m"[39m
+[32m     48[39m [38;5;28;01mtry[39;00m:
+[32m---> [39m[32m49[39m     [30;43msubprocess[39;49m[30;43m.[39;49m[30;43mrun[39;49m[30;43m([39;49m[30;43mexport_command[39;49m[30;43m.[39;49m[30;43msplit[39;49m[30;43m([39;49m[30;43m"[39;49m[30;43m [39;49m[30;43m"[39;49m[30;43m)[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mshell[39;49m[30;43m=[39;49m[30;43m([39;49m[30;43mplatform[39;49m[30;43m.[39;49m[30;43msystem[39;49m[30;43m([39;49m[30;43m)[39;49m[30;43m [39;49m[30;43m==[39;49m[30;43m [39;49m[30;43m"[39;49m[30;43mWindows[39;49m[30;43m"[39;49m[30;43m)[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mcheck[39;49m[30;43m=[39;49m[30;43;01mTrue[39;49;00m[30;43m,[39;49m[30;43m [39;49m[30;43mcapture_output[39;49m[30;43m=[39;49m[30;43;01mTrue[39;49;00m[30;43m)[39;49m
+[32m     50[39m [38;5;28;01mexcept[39;00m subprocess.CalledProcessError [38;5;28;01mas[39;00m exc:
+[32m     51[39m     logger = logging.getLogger()
+
+[36mFile [39m[32m/usr/lib/python3.12/subprocess.py:571[39m, in [36mrun[39m[34m(input, capture_output, timeout, check, *popenargs, **kwargs)[39m
+[32m    569[39m     retcode = process.poll()
+[32m    570[39m     [38;5;28;01mif[39;00m check [38;5;129;01mand[39;00m retcode:
+[32m--> [39m[32m571[39m         [38;5;28;01mraise[39;00m CalledProcessError(retcode, process.args,
+[32m    572[39m                                  output=stdout, stderr=stderr)
+[32m    573[39m [38;5;28;01mreturn[39;00m CompletedProcess(process.args, retcode, stdout, stderr)
+
+[31mCalledProcessError[39m: Command '['optimum-cli', 'export', 'openvino', '--model', 'tencent/Hy-MT2-1.8B', 'Hy-MT2-1.8B/INT4', '--task', 'text-generation-with-past', '--weight-format', 'int4', '--ratio', '0.8', '--group-size', '128']' returned non-zero exit status 1.
+

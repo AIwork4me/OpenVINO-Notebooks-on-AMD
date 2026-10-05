@@ -1,0 +1,8 @@
+{
+  "repository": "openvinotoolkit/openvino_notebooks",
+  "branch": "latest",
+  "commit": "a8809170cc4fc6aa633fbb9c22214be67ac20b47",
+  "path": "notebooks/glm4.1-v-thinking/glm4.1-v-thinking.ipynb",
+  "url": "https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/glm4.1-v-thinking/glm4.1-v-thinking.ipynb",
+  "notebook_sha256": "e920182d93afddff78483f9a14edea452d6cea7f3142ad2b7ca806ab1283931d"
+}

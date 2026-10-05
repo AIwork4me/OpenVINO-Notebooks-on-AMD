@@ -1,0 +1,18 @@
+[cell 0 START +    0.4s] # Visual-language assistant with GLM-4.1V-9B-Thinking and OpenVINO |  | [G
+[cell 1 START +    0.4s] ## Prerequisites | [back to top ⬆️](#Table-of-contents:)
+[cell 2 START +    0.4s] %pip uninstall -q -y optimum optimum-intel optimum-onnx |  | %pip install 
+[cell 2 DONE  +  646.5s]
+[cell 3 START +  646.5s] import requests | from pathlib import Path |  | if not Path("cmd_helper.py")
+[cell 3 DONE  +  646.5s]
+[cell 4 START +  646.5s] ## Convert and Optimize model | [back to top ⬆️](#Table-of-contents:) |  | #
+[cell 5 START +  646.5s] import ipywidgets as widgets |  | model_id = "zai-org/GLM-4.1V-9B-Thinking
+[cell 5 DONE  +  646.5s]
+[cell 6 START +  646.5s] to_compress = widgets.Checkbox( |     value=True, |     description="Weigh
+[cell 6 DONE  +  646.6s]
+[cell 7 START +  646.6s] from pathlib import Path |  | model_base_dir = Path(model_id.split("/")[-1
+[cell 7 DONE  +  646.6s]
+[cell 8 START +  646.6s] from huggingface_hub import snapshot_download |  | if not model_base_dir.e
+[cell 8 DONE  +  646.6s]
+[cell 9 START +  646.6s] from cmd_helper import optimum_cli |  | if not model_dir.exists(): |     opt
+[cell 9 DONE  +  651.3s]
+NBEXEC_RESULT={"ok": false, "n_cells": 12, "n_skipped": 1, "n_substituted": 0, "stopped_after": null, "error_cell": null, "error_type": "CellExecutionError", "error_head": "\u001b[31mCalledProcessError\u001b[39m: Command '['optimum-cli', 'export', 'openvino', '--model', 'GLM-4.1V-9B-Thinking', 'GLM-4.1V-9B-Thinking/INT4', '--task', 'image-text-to-text', '--weight-format', 'int4', '--group-size', '128', '--ratio', '0.8']' returned non-zero exit status 1.", "duration_s": 651.57, "patch_notes": ["skipped cell 17: matched skip pattern"]}

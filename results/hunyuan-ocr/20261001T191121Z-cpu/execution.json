@@ -1,0 +1,9 @@
+{
+  "start": "2026-10-01T19:11:21+00:00",
+  "end": "2026-10-01T19:13:38+00:00",
+  "duration_s": 136.74,
+  "exit_code": 1,
+  "retry_count": 1,
+  "status": "ERROR",
+  "failure_category": "NETWORK"
+}

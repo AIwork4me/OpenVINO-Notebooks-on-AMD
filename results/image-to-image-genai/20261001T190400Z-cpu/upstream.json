@@ -1,0 +1,8 @@
+{
+  "repository": "openvinotoolkit/openvino_notebooks",
+  "branch": "latest",
+  "commit": "a8809170cc4fc6aa633fbb9c22214be67ac20b47",
+  "path": "notebooks/image-to-image-genai/image-to-image-genai.ipynb",
+  "url": "https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/image-to-image-genai/image-to-image-genai.ipynb",
+  "notebook_sha256": "04aebe258f42237483bd8928313f797e038d1dda0efc6fdc991698fc61153324"
+}

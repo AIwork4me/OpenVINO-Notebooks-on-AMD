@@ -1,0 +1,11 @@
+[cell 0 START +    0.5s] # MiniCPM-o 4.5 Multimodal Model with OpenVINO |  | [MiniCPM-o 4.5](https:
+[cell 1 START +    0.5s] ## Prerequisites | [back to top ⬆️](#Table-of-contents:)
+[cell 2 START +    0.5s] import requests | from pathlib import Path |  | if not Path("notebook_utils.
+[cell 2 DONE  +    0.5s]
+[cell 3 START +    0.5s] from pip_helper import pip_install |  | # Install in batches to avoid pip 
+[cell 3 DONE  +    5.2s]
+[cell 4 START +    5.2s] ## Convert and Quantize Model | [back to top ⬆️](#Table-of-contents:) |  | M
+[cell 5 START +    5.2s] from pathlib import Path |  | # Path to the original model (downloaded fro
+[cell 5 DONE  +    5.2s]
+[cell 6 START +    5.2s] from minicpm_o_4_5_helper import convert_minicpmo_model |  | if not (ov_mo
+NBEXEC_RESULT={"ok": false, "n_cells": 18, "n_skipped": 1, "n_substituted": 0, "stopped_after": null, "error_cell": null, "error_type": "CellTimeoutError", "error_head": "-------------------", "duration_s": 908.71, "patch_notes": ["skipped cell 31: matched skip pattern"]}

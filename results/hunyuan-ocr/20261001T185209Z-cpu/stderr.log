@@ -1,0 +1,73 @@
+[IPKernelApp] WARNING | Kernel is running over TCP without encryption. All communication (including code and outputs) is sent in plain text and is susceptible to eavesdropping. Use IPC transport or launch with kernel manager-provisioned CurveZMQ keys to enable transport encryption.
+[31mERROR: Cannot install optimum-intel and optimum-intel==2.1.0.dev0+4085f5e because these package versions have conflicting dependencies.[0m[31m
+[0m[31mERROR: ResolutionImpossible: for help visit https://pip.pypa.io/en/latest/topics/dependency-resolution/#dealing-with-dependency-conflicts[0m[31m
+[0mTraceback (most recent call last):
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/ov_amd/_nbexec.py", line 125, in main
+    client.execute()
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/jupyter_core/utils/__init__.py", line 165, in wrapped
+    return loop.run_until_complete(inner)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/base_events.py", line 687, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/nbclient/client.py", line 709, in async_execute
+    await self.async_execute_cell(
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/nbclient/client.py", line 1062, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/nbclient/client.py", line 918, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+%pip uninstall -q -y optimum optimum-intel optimum-onnx
+
+from notebook_utils import pip_install
+
+pip_install("-q", "torch>=2.8", "torchvision", "--extra-index-url", "https://download.pytorch.org/whl/cpu")
+pip_install("-q", "git+https://github.com/openvino-dev-samples/optimum-intel.git@hunyuan-ocr-support")
+pip_install("-q", "openvino>=2026.2.0", "nncf>=2.17.0")
+pip_install("-q", "gradio>=5.25.0", "Pillow>=10")
+# HunyuanOCR needs the transformers release that introduces the "hunyuan_vl" architecture.
+# Use an exact pin (no ">" character) so it is installed reliably on Windows CI: with the
+# pip_install helper's shell=True on Windows, ">=" is interpreted by cmd.exe as an output
+# redirection and the version constraint gets silently dropped, which lets pip resolve to an
+# older transformers (capped by optimum-intel's transformers<5.14) that lacks "hunyuan_vl".
+pip_install("-q", "git+https://github.com/huggingface/transformers.git@b98026a3e058497cb16dbc5f1ff108eda9f54ddb")
+------------------
+
+----- stdout -----
+[33mWARNING: Skipping optimum-onnx as it is not installed.[0m[33m
+[0m
+----- stdout -----
+Note: you may need to restart the kernel to use updated packages.
+----- stderr -----
+[31mERROR: Cannot install optimum-intel and optimum-intel==2.1.0.dev0+4085f5e because these package versions have conflicting dependencies.[0m[31m
+[0m[31mERROR: ResolutionImpossible: for help visit https://pip.pypa.io/en/latest/topics/dependency-resolution/#dealing-with-dependency-conflicts[0m[31m
+[0m
+------------------
+
+[31m---------------------------------------------------------------------------[39m
+[31mCalledProcessError[39m                        Traceback (most recent call last)
+[36mCell[39m[36m [39m[32mIn[2][39m[32m, line 6[39m
+[32m      2[39m 
+[32m      3[39m [38;5;28;01mfrom[39;00m notebook_utils [38;5;28;01mimport[39;00m pip_install
+[32m      4[39m 
+[32m      5[39m pip_install([33m"-q"[39m, [33m"torch>=2.8"[39m, [33m"torchvision"[39m, [33m"--extra-index-url"[39m, [33m"https://download.pytorch.org/whl/cpu"[39m)
+[32m----> [39m[32m6[39m pip_install([33m"-q"[39m, [33m"git+https://github.com/openvino-dev-samples/optimum-intel.git@hunyuan-ocr-support"[39m)
+[32m      7[39m pip_install([33m"-q"[39m, [33m"openvino>=2026.2.0"[39m, [33m"nncf>=2.17.0"[39m)
+[32m      8[39m pip_install([33m"-q"[39m, [33m"gradio>=5.25.0"[39m, [33m"Pillow>=10"[39m)
+[32m      9[39m [38;5;66;03m# HunyuanOCR needs the transformers release that introduces the "hunyuan_vl" architecture.[39;00m
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/results/hunyuan-ocr/workdir-cpu/notebook_utils.py:68[39m, in [36mpip_install[39m[34m(*args)[39m
+[32m     66[39m [38;5;28;01mfor[39;00m arg [38;5;129;01min[39;00m args:
+[32m     67[39m     cli_args.extend([38;5;28mstr[39m(arg).split([33m"[39m[33m [39m[33m"[39m))
+[32m---> [39m[32m68[39m [30;43msubprocess[39;49m[30;43m.[39;49m[30;43mrun[39;49m[30;43m([39;49m[30;43m[[39;49m[30;43msys[39;49m[30;43m.[39;49m[30;43mexecutable[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43m"[39;49m[30;43m-m[39;49m[30;43m"[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43m"[39;49m[30;43mpip[39;49m[30;43m"[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43m"[39;49m[30;43minstall[39;49m[30;43m"[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43m*[39;49m[30;43mcli_args[39;49m[30;43m][39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mshell[39;49m[30;43m=[39;49m[30;43m([39;49m[30;43mplatform[39;49m[30;43m.[39;49m[30;43msystem[39;49m[30;43m([39;49m[30;43m)[39;49m[30;43m [39;49m[30;43m==[39;49m[30;43m [39;49m[30;43m"[39;49m[30;43mWindows[39;49m[30;43m"[39;49m[30;43m)[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mcheck[39;49m[30;43m=[39;49m[30;43;01mTrue[39;49;00m[30;43m)[39;49m
+
+[36mFile [39m[32m/usr/lib/python3.12/subprocess.py:571[39m, in [36mrun[39m[34m(input, capture_output, timeout, check, *popenargs, **kwargs)[39m
+[32m    569[39m     retcode = process.poll()
+[32m    570[39m     [38;5;28;01mif[39;00m check [38;5;129;01mand[39;00m retcode:
+[32m--> [39m[32m571[39m         [38;5;28;01mraise[39;00m CalledProcessError(retcode, process.args,
+[32m    572[39m                                  output=stdout, stderr=stderr)
+[32m    573[39m [38;5;28;01mreturn[39;00m CompletedProcess(process.args, retcode, stdout, stderr)
+
+[31mCalledProcessError[39m: Command '['/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/bin/python', '-m', 'pip', 'install', '-q', 'git+https://github.com/openvino-dev-samples/optimum-intel.git@hunyuan-ocr-support']' returned non-zero exit status 1.
+

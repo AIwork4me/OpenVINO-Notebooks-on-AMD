@@ -1,28 +1,35 @@
 {
-  "model": "Qwen/Qwen3-0.6B",
-  "precision": "bf16",
-  "load_s": 3.24,
-  "runs": [
-    {
-      "total_s": 1.018,
-      "new_tokens": 64,
-      "tokens_per_s": 62.85
-    },
-    {
-      "total_s": 0.982,
-      "new_tokens": 64,
-      "tokens_per_s": 65.15
-    },
-    {
-      "total_s": 0.997,
-      "new_tokens": 64,
-      "tokens_per_s": 64.19
-    }
-  ],
-  "ttft_note": "single-shot generate; TTFT approximated by tokens_per_s on first chunk",
-  "peak_vram_gb": 1.2,
-  "peak_rss_gb": 2.61,
-  "output_sha256": "7eb3b038dd2f0afb",
-  "output_preview": "A large language model (LLM) is a type of artificial intelligence that can understand and generate human language. These models are trained on vast amounts of text data to understa",
-  "deterministic": true
+  "ok": true,
+  "hip": "7.14.60850",
+  "device": "AMD Radeon 8060S Graphics",
+  "gcn_arch": "gfx115",
+  "metrics": {
+    "model": "Qwen/Qwen3-0.6B",
+    "precision": "bf16",
+    "load_s": 3.24,
+    "runs": [
+      {
+        "total_s": 1.018,
+        "new_tokens": 64,
+        "tokens_per_s": 62.85
+      },
+      {
+        "total_s": 0.982,
+        "new_tokens": 64,
+        "tokens_per_s": 65.15
+      },
+      {
+        "total_s": 0.997,
+        "new_tokens": 64,
+        "tokens_per_s": 64.19
+      }
+    ],
+    "ttft_note": "single-shot generate; TTFT approximated by tokens_per_s on first chunk",
+    "peak_vram_gb": 1.2,
+    "peak_rss_gb": 2.61,
+    "output_sha256": "7eb3b038dd2f0afb",
+    "output_preview": "A large language model (LLM) is a type of artificial intelligence that can understand and generate human language. These models are trained on vast amounts of text data to understa",
+    "deterministic": true
+  },
+  "_provenance": "reconstructed from the executed run's TWIN_RESULT stdout line (release-audit fix: structured hip/device fields)"
 }

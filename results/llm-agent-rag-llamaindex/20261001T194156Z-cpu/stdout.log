@@ -1,0 +1,68 @@
+[cell 0 START +    0.5s] # Create an Agentic RAG using OpenVINO and LlamaIndex |  | An **agent** is
+[cell 1 START +    0.5s] ## Prerequisites |  | [back to top ⬆️](#Table-of-contents:) |  | Install requi
+[cell 2 START +    0.5s] # to avoid conflicts between versions | %pip uninstall -q -y optimum opt
+[cell 2 DONE  +    0.8s]
+[cell 3 START +    0.8s] import os | import requests | from pathlib import Path |  | utility_files = ["
+Requirement already satisfied: openvino>=2025.3.0 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages (2026.5.0.dev20261001)
+Requirement already satisfied: openvino-tokenizers[transformers] in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages (2026.5.0.0.dev20261001)
+Requirement already satisfied: numpy<2.6.0,>=1.16.6 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages (from openvino>=2025.3.0) (2.2.6)
+Requirement already satisfied: openvino-telemetry>=2023.2.1 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages (from openvino>=2025.3.0) (2025.2.0)
+Requirement already satisfied: transformers>=4.36.0 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages (from transformers[sentencepiece]>=4.36.0; extra == "transformers"->openvino-tokenizers[transformers]) (4.57.6)
+Requirement already satisfied: tiktoken>=0.3.0 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages (from openvino-tokenizers[transformers]) (0.14.0)
+Requirement already satisfied: regex in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages (from tiktoken>=0.3.0->openvino-tokenizers[transformers]) (2026.9.29)
+Requirement already satisfied: requests in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages (from tiktoken>=0.3.0->openvino-tokenizers[transformers]) (2.34.2)
+Requirement already satisfied: filelock in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages (from transformers>=4.36.0->transformers[sentencepiece]>=4.36.0; extra == "transformers"->openvino-tokenizers[transformers]) (4.0.8)
+Requirement already satisfied: huggingface-hub<1.0,>=0.34.0 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages (from transformers>=4.36.0->transformers[sentencepiece]>=4.36.0; extra == "transformers"->openvino-tokenizers[transformers]) (0.36.2)
+Requirement already satisfied: packaging>=20.0 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages (from transformers>=4.36.0->transformers[sentencepiece]>=4.36.0; extra == "transformers"->openvino-tokenizers[transformers]) (26.3)
+Requirement already satisfied: pyyaml>=5.1 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages (from transformers>=4.36.0->transformers[sentencepiece]>=4.36.0; extra == "transformers"->openvino-tokenizers[transformers]) (6.0.3)
+Requirement already satisfied: tokenizers<=0.23.0,>=0.22.0 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages (from transformers>=4.36.0->transformers[sentencepiece]>=4.36.0; extra == "transformers"->openvino-tokenizers[transformers]) (0.22.2)
+Requirement already satisfied: safetensors>=0.4.3 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages (from transformers>=4.36.0->transformers[sentencepiece]>=4.36.0; extra == "transformers"->openvino-tokenizers[transformers]) (0.8.0)
+Requirement already satisfied: tqdm>=4.27 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages (from transformers>=4.36.0->transformers[sentencepiece]>=4.36.0; extra == "transformers"->openvino-tokenizers[transformers]) (4.70.1)
+Requirement already satisfied: fsspec>=2023.5.0 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages (from huggingface-hub<1.0,>=0.34.0->transformers>=4.36.0->transformers[sentencepiece]>=4.36.0; extra == "transformers"->openvino-tokenizers[transformers]) (2025.3.0)
+Requirement already satisfied: hf-xet<2.0.0,>=1.1.3 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages (from huggingface-hub<1.0,>=0.34.0->transformers>=4.36.0->transformers[sentencepiece]>=4.36.0; extra == "transformers"->openvino-tokenizers[transformers]) (1.6.0)
+Requirement already satisfied: typing-extensions>=3.7.4.3 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages (from huggingface-hub<1.0,>=0.34.0->transformers>=4.36.0->transformers[sentencepiece]>=4.36.0; extra == "transformers"->openvino-tokenizers[transformers]) (4.16.0)
+Requirement already satisfied: sentencepiece!=0.1.92,>=0.1.91 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages (from transformers[sentencepiece]>=4.36.0; extra == "transformers"->openvino-tokenizers[transformers]) (0.2.2)
+Requirement already satisfied: protobuf in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages (from transformers[sentencepiece]>=4.36.0; extra == "transformers"->openvino-tokenizers[transformers]) (7.36.2)
+Requirement already satisfied: charset_normalizer<4,>=2 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages (from requests->tiktoken>=0.3.0->openvino-tokenizers[transformers]) (3.5.2)
+Requirement already satisfied: idna<4,>=2.5 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages (from requests->tiktoken>=0.3.0->openvino-tokenizers[transformers]) (3.20)
+Requirement already satisfied: urllib3<3,>=1.26 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages (from requests->tiktoken>=0.3.0->openvino-tokenizers[transformers]) (2.8.0)
+Requirement already satisfied: certifi>=2023.5.7 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages (from requests->tiktoken>=0.3.0->openvino-tokenizers[transformers]) (2026.7.22)
+[cell 3 DONE  +   53.4s]
+[cell 4 START +   53.4s] from notebook_utils import download_file |  | text_example_en_path = Path(
+[cell 4 DONE  +   59.5s]
+[cell 5 START +   59.5s] ## Download models |  | [back to top ⬆️](#Table-of-contents:) |  | ### Downloa
+[cell 6 START +   59.5s] import ipywidgets as widgets |  | llm_model_ids = ["OpenVINO/Phi-4-mini-in
+[cell 6 DONE  +   59.5s]
+[cell 7 START +   59.5s] from pathlib import Path | import huggingface_hub as hf_hub | from cmd_hel
+[cell 7 DONE  +  360.0s]
+[cell 8 START +  360.0s] ### Download Embedding model |  | [back to top ⬆️](#Table-of-contents:) |  | E
+[cell 9 START +  360.0s] embedding_model_id = "BAAI/bge-small-en-v1.5" | embedding_model_path = "
+[cell 9 DONE  +  480.9s]
+[cell 10 START +  480.9s] ## Create models |  | [back to top ⬆️](#Table-of-contents:) |  | ### Create Op
+[cell 11 START +  480.9s] from notebook_utils import device_widget |  | llm_device = device_widget("
+[cell 11 DONE  +  481.1s]
+[cell 12 START +  481.1s] OpenVINO models can be run locally through the `OpenVINOLLM` class in 
+[cell 13 START +  481.1s] from llama_index.llms.openvino import OpenVINOLLM | from transformers im
+[cell 13 DONE  +  490.8s]
+[cell 14 START +  490.8s] ### Create OpenVINO Embedding |  | [back to top ⬆️](#Table-of-contents:) |  | 
+[cell 15 START +  490.8s] embedding_device = device_widget() |  | embedding_device
+[cell 15 DONE  +  490.8s]
+[cell 16 START +  490.8s] A Hugging Face embedding model can be supported by OpenVINO through [`
+[cell 17 START +  490.8s] from llama_index.embeddings.huggingface_openvino import OpenVINOEmbedd
+[cell 17 DONE  +  491.0s]
+[cell 18 START +  491.0s] ## Create tools |  | [back to top ⬆️](#Table-of-contents:) |  | In this exampl
+[cell 19 START +  491.0s] from llama_index.core.agent.workflow import ReActAgent | from llama_inde
+[cell 19 DONE  +  491.1s]
+[cell 20 START +  491.1s] To demonstrate using RAG engines as a tool in an agent, we're going to
+[cell 21 START +  491.1s] from llama_index.core import SimpleDirectoryReader | from llama_index.co
+[cell 21 DONE  +  491.6s]
+[cell 22 START +  491.6s] Now we turn our query engine into a tool by supplying the appropriate 
+[cell 23 START +  491.6s] from llama_index.core.tools import QueryEngineTool, ToolMetadata |  | vect
+[cell 23 DONE  +  491.6s]
+[cell 24 START +  491.6s] ## Run Agentic RAG |  | [back to top ⬆️](#Table-of-contents:) |  | We modify o
+[cell 25 START +  491.6s] agent = ReActAgent(tools=[multiply_tool, divide_tool, vector_tool], ll
+[cell 25 DONE  +  491.6s]
+[cell 26 START +  491.6s] Ask a question using multiple tools.
+[cell 27 START +  491.6s] from llama_index.core.agent.workflow import AgentStream, ToolCallResul
+[cell 27 DONE  +  517.4s]
+NBEXEC_RESULT={"ok": true, "n_cells": 15, "n_skipped": 0, "n_substituted": 0, "stopped_after": null, "error_cell": null, "error_type": null, "error_head": null, "duration_s": 520.32, "patch_notes": []}

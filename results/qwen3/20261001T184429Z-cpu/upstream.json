@@ -1,0 +1,8 @@
+{
+  "repository": "openvinotoolkit/openvino_notebooks",
+  "branch": "latest",
+  "commit": "a8809170cc4fc6aa633fbb9c22214be67ac20b47",
+  "path": "supplementary_materials/notebooks/qwen-3/qwen3.ipynb",
+  "url": "https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/supplementary_materials/notebooks/qwen-3/qwen3.ipynb",
+  "notebook_sha256": "8d812a2a9105359112c80b49da6bd036658265363119bd71c7200a745ef68e2d"
+}

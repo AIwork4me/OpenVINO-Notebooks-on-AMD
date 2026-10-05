@@ -1,0 +1,46 @@
+[cell 0 START +    0.5s] # Create an LLM-powered Chatbot using OpenVINO |  | In the rapidly evolvin
+[cell 1 START +    0.5s] ## Prerequisites | [back to top ⬆️](#Table-of-contents:) |  | Install requir
+[cell 2 START +    0.5s] import os |  | os.environ["GIT_CLONE_PROTECTION_ACTIVE"] = "false" |  | %pip i
+[cell 2 DONE  +   20.6s]
+[cell 3 START +   20.6s] import os | from pathlib import Path | import requests | import shutil |  | # fe
+[cell 3 DONE  +   21.1s]
+[cell 4 START +   21.1s] ## Select model for inference | [back to top ⬆️](#Table-of-contents:) |  | T
+[cell 5 START +   21.1s] from llm_config import SUPPORTED_LLM_MODELS | import ipywidgets as widge
+[cell 5 DONE  +   21.1s]
+[cell 6 START +   21.1s] model_languages = list(SUPPORTED_LLM_MODELS) |  | model_language = widgets
+[cell 6 DONE  +   21.1s]
+[cell 7 START +   21.1s] model_ids = list(SUPPORTED_LLM_MODELS[model_language.value]) |  | model_id
+[cell 7 DONE  +   21.1s]
+[cell 8 START +   21.1s] model_configuration = SUPPORTED_LLM_MODELS[model_language.value][model
+[cell 8 DONE  +   21.1s]
+[cell 9 START +   21.1s] ## Convert model using Optimum-CLI tool | [back to top ⬆️](#Table-of-con
+[cell 10 START +   21.1s] ## Compress model weights |  |  | The [Weights Compression](https://docs.ope
+[cell 11 START +   21.1s] from IPython.display import Markdown, display |  | prepare_int4_model = wi
+[cell 11 DONE  +   21.1s]
+[cell 12 START +   21.1s] ### Weight compression with AWQ | [back to top ⬆️](#Table-of-contents:) | 
+[cell 13 START +   21.1s] enable_awq = widgets.Checkbox( |     value=False, |     description="Enabl
+[cell 13 DONE  +   21.1s]
+[cell 14 START +   21.1s] We can now save floating point and compressed model variants
+[cell 15 START +   21.1s] from pathlib import Path |  | from llm_config import compression_configs |  | 
+[cell 15 DONE  +   56.8s]
+[cell 16 START +   56.8s] Let's compare model size for different compression types
+[cell 17 START +   56.8s] fp16_weights = fp16_model_dir / "openvino_model.bin" | int8_weights = in
+[cell 17 DONE  +   56.8s]
+[cell 18 START +   56.8s] ## Select device for inference and model variant | [back to top ⬆️](#Tab
+[cell 19 START +   56.8s] import requests |  | r = requests.get( |     url="https://raw.githubusercont
+[cell 19 DONE  +   58.8s]
+[cell 20 START +   58.8s] The cell below demonstrates how to instantiate model based on selected
+[cell 21 START +   58.8s] available_models = [] | if int4_model_dir.exists(): |     available_models
+[cell 21 DONE  +   58.8s]
+[cell 22 START +   58.8s] ## Instantiate Model using Optimum Intel | [back to top ⬆️](#Table-of-co
+[cell 23 START +   58.8s] from transformers import AutoConfig, AutoTokenizer | from optimum.intel.
+[cell 23 DONE  +   67.1s]
+[cell 24 START +   67.1s] tokenizer_kwargs = model_configuration.get("tokenizer_kwargs", {}) | tes
+[cell 24 DONE  +   67.4s]
+[cell 25 START +   67.4s] ## Run Chatbot | [back to top ⬆️](#Table-of-contents:) |  | Now, when model 
+[cell 26 START +   67.4s] There are several parameters that can control text generation quality:
+[cell 27 START +   67.4s] import torch | from threading import Event, Thread |  | from transformers im
+[cell 27 DONE  +   67.4s]
+[cell 28 START +   67.4s] if not Path("gradio_helper.py").exists(): |     r = requests.get(url="ht
+[cell 29 START +   67.4s] ### Next Step |  | Besides chatbot, we can use LangChain to augmenting LLM
+NBEXEC_RESULT={"ok": true, "n_cells": 16, "n_skipped": 1, "n_substituted": 0, "stopped_after": null, "error_cell": null, "error_type": null, "error_head": null, "duration_s": 70.16, "patch_notes": ["skipped cell 28: matched skip pattern"]}

@@ -1,0 +1,14 @@
+[cell 0 START +    0.5s] # Visual-language assistant with MiniCPM-V 4.6 and OpenVINO |  | [MiniCPM-
+[cell 1 START +    0.5s] ## Prerequisites | [back to top ⬆️](#Table-of-contents:)
+[cell 2 START +    0.5s] %pip uninstall -q -y transformers optimum optimum-intel optimum-onnx |  | 
+[cell 2 DONE  +  176.5s]
+[cell 3 START +  176.5s] from pathlib import Path | import requests |  | if not Path("cmd_helper.py")
+[cell 3 DONE  +  176.6s]
+[cell 4 START +  176.6s] ## Convert and Optimize model | [back to top ⬆️](#Table-of-contents:) |  | M
+[cell 5 START +  176.6s] import ipywidgets as widgets |  | pt_model_id = "openbmb/MiniCPM-V-4.6" |  | t
+[cell 5 DONE  +  176.6s]
+[cell 6 START +  176.6s] from pathlib import Path |  | additional_args = {"trust-remote-code": "", 
+[cell 6 DONE  +  176.6s]
+[cell 7 START +  176.6s] from cmd_helper import optimum_cli |  | if not model_dir.exists(): |     opt
+[cell 7 DONE  +  176.7s]
+NBEXEC_RESULT={"ok": false, "n_cells": 11, "n_skipped": 1, "n_substituted": 2, "stopped_after": null, "error_cell": null, "error_type": "CellExecutionError", "error_head": "\u001b[31mFileNotFoundError\u001b[39m: [Errno 2] No such file or directory: 'optimum-cli'", "duration_s": 176.96, "patch_notes": ["substituted 1 occurrence(s) in cell 13", "substituted 1 occurrence(s) in cell 16", "skipped cell 18: matched skip pattern"]}

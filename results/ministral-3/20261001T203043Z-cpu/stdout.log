@@ -1,0 +1,17 @@
+[cell 0 START +    0.5s] # Visual-language assistant with Ministral-3 and OpenVINO |  | Ministral-3
+[cell 1 START +    0.5s] ## Prerequisites | [back to top ⬆️](#Table-of-contents:) |  | Install requir
+[cell 2 START +    0.5s] %pip install -q "transformers==5.0.0" "huggingface_hub==1.14.0" "nncf=
+[cell 2 DONE  +  142.2s]
+[cell 3 START +  142.2s] from pathlib import Path | import requests |  | if not Path("cmd_helper.py")
+[cell 3 DONE  +  142.3s]
+[cell 4 START +  142.3s] ## Select model | [back to top ⬆️](#Table-of-contents:) |  | Select the 3B R
+[cell 5 START +  142.3s] import ipywidgets as widgets |  | model_options = [ |     ("Ministral-3 3B R
+[cell 5 DONE  +  142.3s]
+[cell 6 START +  142.3s] print(f"Selected: {model_id.value}") | pt_model_id = model_id.value | mode
+[cell 6 DONE  +  142.3s]
+[cell 7 START +  142.3s] ## Convert and Optimize model | [back to top ⬆️](#Table-of-contents:) |  | M
+[cell 8 START +  142.3s] import ipywidgets as widgets |  | to_compress = widgets.Checkbox( |     valu
+[cell 8 DONE  +  142.3s]
+[cell 9 START +  142.3s] additional_args = {"task": "image-text-to-text"} |  | if to_compress.value
+[cell 9 DONE  +  142.5s]
+NBEXEC_RESULT={"ok": false, "n_cells": 13, "n_skipped": 1, "n_substituted": 0, "stopped_after": null, "error_cell": null, "error_type": "CellExecutionError", "error_head": "\u001b[31mFileNotFoundError\u001b[39m: [Errno 2] No such file or directory: 'optimum-cli'", "duration_s": 142.69, "patch_notes": ["skipped cell 21: matched skip pattern"]}

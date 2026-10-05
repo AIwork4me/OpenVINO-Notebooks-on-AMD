@@ -1,0 +1,10 @@
+[cell 0 START +    0.4s] # Omnimodal assistant with MiniCPM-o 2.6 and OpenVINO |  | MiniCPM-o 2.6 i
+[cell 1 START +    0.4s] ## Prerequisites | [back to top ⬆️](#Table-of-contents:)
+[cell 2 START +    0.4s] %pip install -q "torch>=2.3.1" "torchvision>=0.18.1" "librosa>=0.9.0" 
+[cell 2 DONE  +   25.6s]
+[cell 3 START +   25.6s] import requests | from pathlib import Path |  | if not Path("minicpm_o_helpe
+[cell 3 DONE  +   25.7s]
+[cell 4 START +   25.7s] ## Convert model to OpenVINO Intermediate Representation | [back to top 
+[cell 5 START +   25.7s] from minicpm_o_helper import convert_minicpmo26 |  | model_id = "openbmb/M
+[cell 5 DONE  +   30.3s]
+NBEXEC_RESULT={"ok": false, "n_cells": 11, "n_skipped": 1, "n_substituted": 0, "stopped_after": null, "error_cell": null, "error_type": "CellExecutionError", "error_head": "\u001b[31mFileNotFoundError\u001b[39m: No such file or directory: MiniCPM-o-2_6/ckpt/model-00001-of-00004.safetensors", "duration_s": 33.12, "patch_notes": ["skipped cell 21: matched skip pattern"]}

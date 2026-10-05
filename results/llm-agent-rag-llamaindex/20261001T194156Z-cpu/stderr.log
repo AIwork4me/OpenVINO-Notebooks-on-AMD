@@ -1,0 +1,113 @@
+[IPKernelApp] WARNING | Kernel is running over TCP without encryption. All communication (including code and outputs) is sent in plain text and is susceptible to eavesdropping. Use IPC transport or launch with kernel manager-provisioned CurveZMQ keys to enable transport encryption.
+[33m    WARNING: Ignoring invalid distribution ~penai (/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages)[0m[33m
+[0m[31mERROR: pip's dependency resolver does not currently take into account all the packages that are installed. This behaviour is the source of the following dependency conflicts.
+mcp-server-fetch 2026.8.18 requires mcp<2,>=1.29.0, but you have mcp 1.12.4 which is incompatible.
+mcp-server-time 2026.8.18 requires mcp<2,>=1.29.0, but you have mcp 1.12.4 which is incompatible.
+mineru-vl-utils 2.0.5 requires pillow>=11.0.0, but you have pillow 10.4.0 which is incompatible.[0m[31m
+[0mges due to an OSError: [Errno 2] No such file or directory: '/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/openai-1.109.1.dist-info/INSTALLER2ssza2qs.tmp'
+[0m[31m
+[0mTraceback (most recent call last):
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/ov_amd/_nbexec.py", line 125, in main
+    client.execute()
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/jupyter_core/utils/__init__.py", line 165, in wrapped
+    return loop.run_until_complete(inner)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/base_events.py", line 687, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/nbclient/client.py", line 709, in async_execute
+    await self.async_execute_cell(
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/nbclient/client.py", line 1062, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/nbclient/client.py", line 918, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+import os
+import requests
+from pathlib import Path
+
+utility_files = ["notebook_utils.py", "cmd_helper.py", "pip_helper.py"]
+
+for utility in utility_files:
+    local_path = Path(utility)
+    if not local_path.exists():
+        r = requests.get(
+            url=f"https://raw.githubusercontent.com/openvinotoolkit/openvino_notebooks/latest/utils/{local_path.name}",
+        )
+        with local_path.open("w") as f:
+            f.write(r.text)
+
+os.environ["GIT_CLONE_PROTECTION_ACTIVE"] = "false"
+
+from pip_helper import pip_install
+
+pip_install(
+    "-q",
+    "--extra-index-url",
+    "https://download.pytorch.org/whl/cpu",
+    "git+https://github.com/huggingface/optimum-intel.git",
+    "datasets<4.0.0",
+    "accelerate",
+    "nncf>=3",
+    "llama-index",
+    "llama-index-readers-file",
+    "llama-index-core",
+    "torch",
+    "torchvision",
+    "llama-index-llms-huggingface>=0.4.0,<0.5.0",
+    "llama-index-embeddings-huggingface>=0.4.0,<0.5.0",
+    "huggingface-hub>=0.26.5,<1.0",
+)
+pip_install("openvino>=2025.3.0", "openvino-tokenizers[transformers]")
+pip_install("-q", "--no-deps", "llama-index-llms-openvino", "llama-index-embeddings-openvino")
+
+# Read more about telemetry collection at https://github.com/openvinotoolkit/openvino_notebooks?tab=readme-ov-file#-telemetry
+from notebook_utils import collect_telemetry
+
+collect_telemetry("llm-agent-rag-llamaindex.ipynb")
+------------------
+
+----- stderr -----
+[33m    WARNING: Ignoring invalid distribution ~ydantic (/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages)[0m[33m
+[0m[33m    WARNING: Skipping pydantic as it is not installed.[0m[33m
+[0m
+----- stderr -----
+[33m    WARNING: Ignoring invalid distribution ~andas (/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages)[0m[33m
+[0m[33m    WARNING: Skipping pandas as it is not installed.[0m[33m
+[0m
+----- stderr -----
+[33m    WARNING: Ignoring invalid distribution ~andas (/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages)[0m[33m
+[0m
+----- stderr -----
+[31mERROR: Could not install packages due to an OSError: [Errno 2] No such file or directory: '/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/openai-1.109.1.dist-info/INSTALLER2ssza2qs.tmp'
+[0m[31m
+[0m
+------------------
+
+[31m---------------------------------------------------------------------------[39m
+[31mCalledProcessError[39m                        Traceback (most recent call last)
+[36mCell[39m[36m [39m[32mIn[2][39m[32m, line 20[39m
+[32m     16[39m os.environ[[33m"GIT_CLONE_PROTECTION_ACTIVE"[39m] = [33m"false"[39m
+[32m     17[39m 
+[32m     18[39m [38;5;28;01mfrom[39;00m pip_helper [38;5;28;01mimport[39;00m pip_install
+[32m     19[39m 
+[32m---> [39m[32m20[39m pip_install(
+[32m     21[39m     [33m"-q"[39m,
+[32m     22[39m     [33m"--extra-index-url"[39m,
+[32m     23[39m     [33m"https://download.pytorch.org/whl/cpu"[39m,
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/results/llm-agent-rag-llamaindex/workdir-cpu/pip_helper.py:10[39m, in [36mpip_install[39m[34m(*args)[39m
+[32m      8[39m [38;5;28;01mfor[39;00m arg [38;5;129;01min[39;00m args:
+[32m      9[39m     cli_args.extend([38;5;28mstr[39m(arg).split([33m"[39m[33m [39m[33m"[39m))
+[32m---> [39m[32m10[39m [30;43msubprocess[39;49m[30;43m.[39;49m[30;43mrun[39;49m[30;43m([39;49m[30;43m[[39;49m[30;43msys[39;49m[30;43m.[39;49m[30;43mexecutable[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43m"[39;49m[30;43m-m[39;49m[30;43m"[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43m"[39;49m[30;43mpip[39;49m[30;43m"[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43m"[39;49m[30;43minstall[39;49m[30;43m"[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43m*[39;49m[30;43mcli_args[39;49m[30;43m][39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mcheck[39;49m[30;43m=[39;49m[30;43;01mTrue[39;49;00m[30;43m)[39;49m
+
+[36mFile [39m[32m/usr/lib/python3.12/subprocess.py:571[39m, in [36mrun[39m[34m(input, capture_output, timeout, check, *popenargs, **kwargs)[39m
+[32m    569[39m     retcode = process.poll()
+[32m    570[39m     [38;5;28;01mif[39;00m check [38;5;129;01mand[39;00m retcode:
+[32m--> [39m[32m571[39m         [38;5;28;01mraise[39;00m CalledProcessError(retcode, process.args,
+[32m    572[39m                                  output=stdout, stderr=stderr)
+[32m    573[39m [38;5;28;01mreturn[39;00m CompletedProcess(process.args, retcode, stdout, stderr)
+
+[31mCalledProcessError[39m: Command '['/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/bin/python', '-m', 'pip', 'install', '-q', '--extra-index-url', 'https://download.pytorch.org/whl/cpu', 'git+https://github.com/huggingface/optimum-intel.git', 'datasets<4.0.0', 'accelerate', 'nncf>=3', 'llama-index', 'llama-index-readers-file', 'llama-index-core', 'torch', 'torchvision', 'llama-index-llms-huggingface>=0.4.0,<0.5.0', 'llama-index-embeddings-huggingface>=0.4.0,<0.5.0', 'huggingface-hub>=0.26.5,<1.0']' returned non-zero exit status 1.
+

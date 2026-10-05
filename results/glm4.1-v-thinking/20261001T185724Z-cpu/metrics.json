@@ -1,0 +1,10 @@
+{
+  "wall_clock_s": 652.32,
+  "cells_executed": 12,
+  "cells_skipped": 1,
+  "cells_substituted": 0,
+  "runs_ok": 0,
+  "env": {
+    "openvino": null
+  }
+}
