@@ -1,5 +1,10 @@
 # OpenVINO Notebooks on AMD
 
+[![CI](https://github.com/AIwork4me/OpenVINO-Notebooks-on-AMD/actions/workflows/ci.yml/badge.svg)](https://github.com/AIwork4me/OpenVINO-Notebooks-on-AMD/actions/workflows/ci.yml)
+![Python](https://img.shields.io/badge/python-3.12-blue)
+![Validation Schema](https://img.shields.io/badge/evidence_schema-v2-informational)
+[![License](https://img.shields.io/badge/license-Apache%202.0-green)](LICENSE)
+
 > **Validate and run OpenVINO Notebooks on AMD Ryzen CPUs, with matching ROCm-powered references for AMD Radeon GPUs.**
 
 > **One AI workload. Two AMD paths.**
@@ -28,9 +33,15 @@ This is **an AMD validation and ROCm companion project for [OpenVINO Notebooks](
 - **Pillar C — compatibility evidence database:** every notebook carries a status, an evidence directory, and a failure category.
 
 <!-- generated:compatibility begin -->
-**171 notebooks catalogued** — CPU: ✅ 0 verified, 🟡 0 limited, 🔴 77 failed, ⚫ 0 blocked/skipped | GPU: ✅ 0, 🟡 0
+**171 notebooks catalogued** · Evidence Schema **v2** · upstream `a8809170cc4f`
 
-Full matrix: [catalog/compatibility.md](catalog/compatibility.md)
+CPU (OpenVINO, Ryzen): **94/171 attempted** (55.0%) — ✅ 1 L3 verified · 🟡 0 limited · 🔵 15 revalidation required · 🔴 77 failed · ⚫ 0 blocked/skipped · ➖ 1 n/a · ⏳ 77 not tested
+
+GPU (ROCm twins, Radeon): ✅ 1 verified · 🟡 0 limited · 🔵 7 revalidation required
+
+Twin classification: **171/171** (100.0%)
+
+Full matrix: [catalog/compatibility.md](catalog/compatibility.md) · Methodology: [docs/validation-policy.md](docs/validation-policy.md) · [benchmarks/METHODOLOGY.md](benchmarks/METHODOLOGY.md)
 <!-- generated:compatibility end -->
 
 ## Status summary

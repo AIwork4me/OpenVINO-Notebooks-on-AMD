@@ -151,16 +151,35 @@ def write_compatibility() -> dict[str, Any]:
         )
     CATALOG_MD.write_text("\n".join(lines) + "\n")
 
-    # README summary block
+    # README summary block — every number machine-generated (STEP 29: no
+    # manual marketing numbers)
     cpu = compat["counts"]["cpu"]
     gpu = compat["counts"]["gpu"]
+    meta = json.loads((REPO_ROOT / "upstream" / "openvino-notebooks.json").read_text()) \
+        if (REPO_ROOT / "upstream" / "openvino-notebooks.json").exists() else {}
+
     block = [
-        f"**{compat['counts']['total']} notebooks catalogued** — "
-        f"CPU: ✅ {cpu.get('VERIFIED', 0)} verified, 🟡 {cpu.get('VERIFIED_WITH_LIMITATIONS', 0)} limited, "
-        f"🔴 {cpu.get('FAILED', 0)} failed, ⚫ {cpu.get('SKIPPED_RESOURCE', 0) + cpu.get('BLOCKED', 0)} blocked/skipped "
-        f"| GPU: ✅ {gpu.get('VERIFIED', 0)}, 🟡 {gpu.get('VERIFIED_WITH_LIMITATIONS', 0)}",
+        f"**{compat['counts']['total']} notebooks catalogued** · Evidence Schema **v2** · "
+        f"upstream `{str(meta.get('commit', ''))[:12]}`",
         "",
-        "Full matrix: [catalog/compatibility.md](catalog/compatibility.md)",
+        f"CPU (OpenVINO, Ryzen): **{compat['counts']['cpu_attempted']}/{compat['counts']['total']} attempted** "
+        f"({compat['counts']['cpu_attempt_coverage_pct']}%) — "
+        f"✅ {cpu.get('VERIFIED', 0)} L3 verified · 🟡 {cpu.get('VERIFIED_WITH_LIMITATIONS', 0)} limited · "
+        f"🔵 {cpu.get('REVALIDATION_REQUIRED', 0)} revalidation required · "
+        f"🔴 {cpu.get('FAILED', 0)} failed · "
+        f"⚫ {cpu.get('SKIPPED_RESOURCE', 0) + cpu.get('BLOCKED', 0)} blocked/skipped · "
+        f"➖ {cpu.get('NOT_APPLICABLE', 0)} n/a · ⏳ {cpu.get('NOT_TESTED', 0)} not tested",
+        "",
+        f"GPU (ROCm twins, Radeon): ✅ {gpu.get('VERIFIED', 0)} verified · "
+        f"🟡 {gpu.get('VERIFIED_WITH_LIMITATIONS', 0)} limited · "
+        f"🔵 {gpu.get('REVALIDATION_REQUIRED', 0)} revalidation required",
+        "",
+        f"Twin classification: **{compat['counts']['twin_classified']}/{compat['counts']['total']}** "
+        f"({compat['counts']['twin_classification_coverage_pct']}%)",
+        "",
+        "Full matrix: [catalog/compatibility.md](catalog/compatibility.md) · "
+        "Methodology: [docs/validation-policy.md](docs/validation-policy.md) · "
+        "[benchmarks/METHODOLOGY.md](benchmarks/METHODOLOGY.md)",
     ]
     if README.exists():
         text = README.read_text()

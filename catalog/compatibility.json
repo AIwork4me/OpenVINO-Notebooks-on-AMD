@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-05T17:06:08+00:00",
+  "generated": "2026-10-05T17:15:13+00:00",
   "upstream": {
     "repository": "openvinotoolkit/openvino_notebooks",
     "branch": "latest",
@@ -23,7 +23,8 @@
     },
     "gpu": {
       "NOT_TESTED": 163,
-      "REVALIDATION_REQUIRED": 8
+      "REVALIDATION_REQUIRED": 7,
+      "VERIFIED": 1
     },
     "twin_levels": {
       "WORKLOAD_TWIN": 148,
@@ -1043,15 +1044,15 @@
       "cpu_evidence": "results/hello-detection/20261001T102156Z-cpu",
       "cpu_validation_level": "",
       "cpu_device_proof": "",
-      "gpu_status": "REVALIDATION_REQUIRED",
+      "gpu_status": "VERIFIED",
       "gpu_failure_category": "",
-      "gpu_evidence": "results/hello-detection/20261001T123904Z-gpu",
-      "gpu_validation_level": "",
-      "gpu_device_proof": "",
+      "gpu_evidence": "results/hello-detection/20261005T170351Z-gpu",
+      "gpu_validation_level": "DEVICE_VERIFIED",
+      "gpu_device_proof": "PROVEN_GPU",
       "twin_level": "WORKLOAD_TWIN",
       "device_used": "CPU",
       "last_tested": "2026-10-05T16:57:30+00:00",
-      "evidence": "results/hello-detection/20261001T102156Z-cpu",
+      "evidence": "results/hello-detection/20261005T170351Z-gpu",
       "notes": []
     },
     {

@@ -1,6 +1,6 @@
 # Compatibility Matrix (generated)
 
-Generated: 2026-10-05T17:06:08+00:00 — do not edit by hand; run `python -m ov_amd report`.
+Generated: 2026-10-05T17:15:13+00:00 — do not edit by hand; run `python -m ov_amd report`.
 
 Total notebooks: **171**
 
@@ -47,7 +47,7 @@ Total notebooks: **171**
 | [gpu-device](https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/gpu-device/gpu-device.ipynb) | API | ⏳ NOT_TESTED | ⏳ NOT_TESTED | OPENVINO_SPECIFIC |  | - |
 | [grounded-segment-anything](https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/grounded-segment-anything/grounded-segment-anything.ipynb) | VLM | 🔴 FAILED | ⏳ NOT_TESTED | WORKLOAD_TWIN | 2026-10-01 | [link](results/grounded-segment-anything/20261001T164659Z-cpu) |
 | [handwritten-ocr](https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/handwritten-ocr/handwritten-ocr.ipynb) | OCR | 🔵 REVALIDATION_REQUIRED | ⏳ NOT_TESTED | WORKLOAD_TWIN | 2026-10-05 | [link](results/handwritten-ocr/20261001T130442Z-cpu) |
-| [hello-detection](https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/hello-detection/hello-detection.ipynb) | Vision | 🔵 REVALIDATION_REQUIRED | 🔵 REVALIDATION_REQUIRED | WORKLOAD_TWIN | 2026-10-05 | [link](results/hello-detection/20261001T102156Z-cpu) |
+| [hello-detection](https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/hello-detection/hello-detection.ipynb) | Vision | 🔵 REVALIDATION_REQUIRED | ✅ VERIFIED | WORKLOAD_TWIN | 2026-10-05 | [link](results/hello-detection/20261005T170351Z-gpu) |
 | [hello-npu](https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/hello-npu/hello-npu.ipynb) | API | 🔴 FAILED | ⏳ NOT_TESTED | OPENVINO_SPECIFIC | 2026-10-01 | [link](results/hello-npu/20261001T161154Z-cpu) |
 | [hello-segmentation](https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/hello-segmentation/hello-segmentation.ipynb) | Vision | 🔵 REVALIDATION_REQUIRED | ⏳ NOT_TESTED | WORKLOAD_TWIN | 2026-10-05 | [link](results/hello-segmentation/20261001T102213Z-cpu) |
 | [hello-world](https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/hello-world/hello-world.ipynb) | API | ✅ VERIFIED | ⏳ NOT_TESTED | WORKLOAD_TWIN | 2026-10-05 | [link](results/hello-world/20261005T170119Z-cpu) |
