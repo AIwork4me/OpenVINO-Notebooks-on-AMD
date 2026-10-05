@@ -2144,9 +2144,10 @@ notebooks:
   workload_type: vision
   est_weight: large
   cpu_meaningful: true
-  gpu_meaningful: false
-  twin_level: OPENVINO_SPECIFIC
-  notes: ''
+  gpu_meaningful: true
+  twin_level: WORKLOAD_TWIN
+  notes: 'twin correction: notebook runs real Ultralytics PyTorch inference before OpenVINO export ->
+    task notebook (WORKLOAD_TWIN)'
 - id: yolov11-keypoint-detection
   title: Yolov11 Keypoint Detection
   category: Vision
@@ -2157,9 +2158,10 @@ notebooks:
   workload_type: vision
   est_weight: large
   cpu_meaningful: true
-  gpu_meaningful: false
-  twin_level: OPENVINO_SPECIFIC
-  notes: ''
+  gpu_meaningful: true
+  twin_level: WORKLOAD_TWIN
+  notes: 'twin correction: notebook runs real Ultralytics PyTorch inference before OpenVINO export ->
+    task notebook (WORKLOAD_TWIN)'
 - id: yolov11-object-detection
   title: Yolov11 Object Detection
   category: Vision
@@ -2170,9 +2172,10 @@ notebooks:
   workload_type: vision
   est_weight: large
   cpu_meaningful: true
-  gpu_meaningful: false
-  twin_level: OPENVINO_SPECIFIC
-  notes: ''
+  gpu_meaningful: true
+  twin_level: WORKLOAD_TWIN
+  notes: 'twin correction: notebook runs real Ultralytics PyTorch inference before OpenVINO export ->
+    task notebook (WORKLOAD_TWIN)'
 - id: yolov11-quantization-with-accuracy-control
   title: Yolov11 Quantization With Accuracy Control
   category: Optimization
@@ -2196,9 +2199,10 @@ notebooks:
   workload_type: vision
   est_weight: large
   cpu_meaningful: true
-  gpu_meaningful: false
-  twin_level: OPENVINO_SPECIFIC
-  notes: ''
+  gpu_meaningful: true
+  twin_level: WORKLOAD_TWIN
+  notes: 'twin correction: notebook runs real Ultralytics PyTorch inference before OpenVINO export ->
+    task notebook (WORKLOAD_TWIN)'
 - id: yolov26-instance-segmentation
   title: Yolov26 Instance Segmentation
   category: Vision
@@ -2209,9 +2213,10 @@ notebooks:
   workload_type: vision
   est_weight: large
   cpu_meaningful: true
-  gpu_meaningful: false
-  twin_level: OPENVINO_SPECIFIC
-  notes: ''
+  gpu_meaningful: true
+  twin_level: WORKLOAD_TWIN
+  notes: 'twin correction: notebook runs real Ultralytics PyTorch inference before OpenVINO export ->
+    task notebook (WORKLOAD_TWIN)'
 - id: yolov26-keypoint-detection
   title: Yolov26 Keypoint Detection
   category: Vision
@@ -2222,9 +2227,10 @@ notebooks:
   workload_type: vision
   est_weight: large
   cpu_meaningful: true
-  gpu_meaningful: false
-  twin_level: OPENVINO_SPECIFIC
-  notes: ''
+  gpu_meaningful: true
+  twin_level: WORKLOAD_TWIN
+  notes: 'twin correction: notebook runs real Ultralytics PyTorch inference before OpenVINO export ->
+    task notebook (WORKLOAD_TWIN)'
 - id: yolov26-obb
   title: Yolov26 Obb
   category: Vision
@@ -2235,9 +2241,10 @@ notebooks:
   workload_type: vision
   est_weight: small
   cpu_meaningful: true
-  gpu_meaningful: false
-  twin_level: OPENVINO_SPECIFIC
-  notes: ''
+  gpu_meaningful: true
+  twin_level: WORKLOAD_TWIN
+  notes: 'twin correction: notebook runs real Ultralytics PyTorch inference before OpenVINO export ->
+    task notebook (WORKLOAD_TWIN)'
 - id: yolov26-object-detection
   title: Yolov26 Object Detection
   category: Vision
@@ -2248,9 +2255,10 @@ notebooks:
   workload_type: vision
   est_weight: large
   cpu_meaningful: true
-  gpu_meaningful: false
-  twin_level: OPENVINO_SPECIFIC
-  notes: ''
+  gpu_meaningful: true
+  twin_level: WORKLOAD_TWIN
+  notes: 'twin correction: notebook runs real Ultralytics PyTorch inference before OpenVINO export ->
+    task notebook (WORKLOAD_TWIN)'
 - id: z-image-turbo
   title: Z Image Turbo
   category: Other
