@@ -87,6 +87,38 @@ def test_git_clone_outranks_pip_resolver_banner():
     assert classify_failure(stderr, "", False) == FailureCategory.NETWORK
 
 
+def test_resolver_banner_alone_is_not_package_conflict():
+    # the banner shows up in most %pip logs; only ResolutionImpossible (or the
+    # legacy conflict wording) is evidence of a real dependency conflict
+    banner = (
+        "ERROR: pip's dependency resolver does not currently take into account all "
+        "the packages that are installed. This behaviour is the source of the "
+        "following dependency conflicts."
+    )
+    assert classify_failure(banner, "", False) != FailureCategory.PACKAGE_CONFLICT
+
+
+def test_banner_plus_remote_disconnect_is_network():
+    # llm-rag-llamaindex real case: benign banner + the actual network error
+    stderr = (
+        "ERROR: pip's dependency resolver does not currently take into account all "
+        "the packages that are installed. This behaviour is the source of the "
+        "following dependency conflicts.\n"
+        "ConnectionError: ('Connection aborted.', RemoteDisconnected('Remote end "
+        "closed connection without response'))"
+    )
+    assert classify_failure(stderr, "", False) == FailureCategory.NETWORK
+
+
+def test_resolution_impossible_still_package_conflict():
+    stderr = (
+        "ERROR: Cannot install openvino==2025.3.0 and optimum-intel==2.3.0.dev0 "
+        "because these package versions have conflicting dependencies.\n"
+        "ERROR: ResolutionImpossible: for help visit https://pip.pypa.io/"
+    )
+    assert classify_failure(stderr, "", False) == FailureCategory.PACKAGE_CONFLICT
+
+
 def test_extract_outputs(tmp_path):
     nb = tmp_path / "x.ipynb"
     nb.write_text(

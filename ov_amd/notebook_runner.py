@@ -62,7 +62,11 @@ def classify_failure(stderr: str, stdout: str, timeout: bool) -> FailureCategory
         # gated-repo denials must outrank PACKAGE_CONFLICT: pip's benign
         # "dependency resolver" warning banner coexists with the real 401 error
         (r"GatedRepoError|Access to model|gated repo", FailureCategory.MODEL_ACCESS),
-        (r"ResolutionImpossible|conflict with the dependencies|dependency resolver", FailureCategory.PACKAGE_CONFLICT),
+        # pip's benign "dependency resolver does not currently take into
+        # account" banner appears in most %pip outputs and must never classify
+        # a failure by itself (it stole real network errors from four llm-*
+        # runs); genuine conflicts always carry ResolutionImpossible
+        (r"ResolutionImpossible|conflict with the dependencies", FailureCategory.PACKAGE_CONFLICT),
         (
             r"HfHubHTTPError|ConnectionError|SSLError|URLError|timed out|getaddrinfo failed|RemoteDisconnected",
             FailureCategory.NETWORK,
