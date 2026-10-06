@@ -6,6 +6,7 @@ import json
 import subprocess
 import time
 from datetime import datetime, timezone
+from pathlib import Path as _Path
 from typing import Any
 
 from ov_amd.environment import REPO_ROOT, kernel_env, venv_exists, venv_python
@@ -40,14 +41,25 @@ def _record_gpu(
     proof: str = "",
     level: str = "",
 ) -> None:
+    from ov_amd import hardware as _hw
+    from ov_amd.environment import REPO_ROOT as _ROOT
+
     rec = state.setdefault("attempts", {}).setdefault(entry.id, {})
+    evidence_ref = None
+    if evidence:
+        # repo-relative public reference (Defect C) — never machine-local paths
+        try:
+            evidence_ref = str(_Path(evidence).relative_to(_ROOT))
+        except ValueError:
+            evidence_ref = evidence
     rec["gpu"] = {
         "status": status.value,
         "failure_category": category,
         "notes": notes or [],
-        "evidence_dir": evidence,
+        "evidence_dir": evidence_ref,
         "device_proof": proof,
         "validation_level": level,
+        "platform_id": _hw.platform_id(),
         "updated": _utcnow(),
     }
     save_state(state)
@@ -168,14 +180,31 @@ def run_gpu_twin(entry, state: dict[str, Any]) -> None:
             3,
         ),
     )
-    (ev / "metrics.json").write_text(json.dumps(twin_result, indent=2, default=str))
+    _ev2.write_json(
+        ev / "metrics.json",
+        {
+            "twin_result": twin_result,
+            "duration_s": round(duration, 2),
+            "exit_code": ret,
+        },
+    )
     (ev / "summary.md").write_text(
         f"# {entry.id} — ROCm twin (evidence schema v2)\n\n"
         f"- hip: {twin_result.get('hip')}\n- device: {twin_result.get('device')}\n"
         f"- gcn_arch: {twin_result.get('gcn_arch')}\n- duration: {round(duration, 2)}s\n"
     )
     if twin_result.get("ok") and twin_result.get("hip"):
-        _record_gpu(state, entry, Status.VERIFIED, evidence=str(ev), proof="PROVEN_GPU", level="DEVICE_VERIFIED")
+        # the twin's own ok embodies its workload correctness checks (e.g.
+        # >=1 detection with valid bounded confidences), so a green twin is
+        # L3 WORKLOAD_CORRECTNESS with PROVEN_GPU device proof
+        _record_gpu(
+            state,
+            entry,
+            Status.VERIFIED,
+            evidence=str(ev),
+            proof="PROVEN_GPU",
+            level="WORKLOAD_CORRECTNESS",
+        )
     elif twin_result:
         # script ran to completion and self-reported failure of its own checks;
         # log-grep classification would misread earlier fallback logs (e.g. a

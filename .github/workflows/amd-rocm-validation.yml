@@ -1,8 +1,10 @@
 name: amd-rocm-validation
 
-# Self-hosted workflow: runs ROCm twins on the Radeon 8060S (gfx1151) of the
-# reference machine. Requires the GPU venv (.venv-gpu) and ROCm userspace.
-# Status claims must come only from real executions of this workflow.
+# Self-hosted workflow: runs ROCm twins on a self-hosted runner labelled
+# [self-hosted, amd64, amd-gpu, rocm]. The GPU environment (ROCm PyTorch) is
+# provisioned by scripts/provision_gpu_env.py when the runner does not
+# already provide .venv-gpu. Status claims must come only from real
+# executions of this workflow.
 
 on:
   workflow_dispatch:
@@ -13,13 +15,12 @@ jobs:
     timeout-minutes: 180
     steps:
       - uses: actions/checkout@v4
-      - name: Link persistent validation assets
+      - name: Provision pinned upstream snapshot (runner-agnostic)
         run: |
-          REF=/home/amd/Desktop/OpenVINO-Notebooks-on-AMD
-          if [ ! -d "$REF" ]; then echo "reference checkout missing"; exit 1; fi
-          ln -s "$REF/.venv-gpu" .venv-gpu
-          mkdir -p .cache
-          ln -s "$REF/.cache/upstream" .cache/upstream
+          python3 scripts/fetch_upstream.py --if-missing
+          test -d .cache/upstream || { echo "upstream snapshot unavailable"; exit 1; }
+      - name: Provision ROCm GPU environment
+        run: python3 scripts/provision_gpu_env.py
       - name: Doctor
         run: python3 -m ov_amd doctor
       - name: GPU twins (bounded)
@@ -30,9 +31,9 @@ jobs:
           name: gpu-results
           path: results/
 
-# Ryzen AI Max+ 395: CPU and Radeon 8060S share one SoC (RAM/thermal domain);
-# CPU and GPU validation must never overlap. The single runner processes jobs
-# sequentially; the shared concurrency group is the second guard.
+# AMD reference platforms: CPU and GPU validation must never overlap. The
+# single-runner queue serializes jobs; the shared concurrency group is the
+# second guard.
 concurrency:
   group: amd-reference-validation
   cancel-in-progress: false

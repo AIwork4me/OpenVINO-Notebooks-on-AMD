@@ -19,7 +19,12 @@ import time
 from twin_lib import PeakMemory, emit, fetch, setup
 
 MODEL = "yolov8n.pt"
-IMG_URL = "https://storage.openvinotoolkit.org/repositories/openvino_notebooks/data/data/image/coco.jpg"
+# Same input image the upstream notebook analyses (notebooks/hello-detection
+# fetches intel_rnb.jpg from user-images.githubusercontent.com). The canonical
+# storage.openvinotoolkit.org copy is the fallback, not the primary, because
+# that host is blocked on some validation runners.
+IMG_URL = "https://user-images.githubusercontent.com/36741649/128489933-bf215a3f-06fa-4918-8833-cb0bf9fb1cc7.jpg"
+IMG_FALLBACK = "https://storage.openvinotoolkit.org/repositories/openvino_notebooks/data/data/image/intel_rnb.jpg"
 
 
 def main() -> int:
@@ -27,8 +32,10 @@ def main() -> int:
     args = ap.parse_args()
     evidence = _Path(args.evidence_dir)
     evidence.mkdir(parents=True, exist_ok=True)
-    img = evidence / "coco.jpg"
-    fetch(IMG_URL, img)
+    img = evidence / "intel_rnb.jpg"
+    fetch(IMG_URL, img, fallbacks=[IMG_FALLBACK])
+
+    import hashlib
 
     import torch
     from ultralytics import YOLO
@@ -55,18 +62,22 @@ def main() -> int:
     n_boxes = int(len(det.boxes.cls))
     classes = sorted({int(c) for c in det.boxes.cls})
     confs = [float(c) for c in det.boxes.conf]
+    from twin_lib import gpu_ready
+
+    gpu = gpu_ready()
     metrics = {
         "model": MODEL,
         "task": "object detection (WORKLOAD_TWIN of hello-detection)",
         "precision": "fp32 default",
+        "input_image": str(img.name),
+        "input_sha256": hashlib.sha256(img.read_bytes()).hexdigest()[:16],
         "load_s": round(load_s, 2),
         "runs": runs,
-        "median_latency_s": sorted(r["latency_s"] for r in runs)[2],
-        "fps": round(1 / sorted(r["latency_s"] for r in runs)[2], 1),
+        "median_latency_s": sorted(r["latency_s"] for r in runs)[len(runs) // 2],
         "detections": n_boxes,
         "class_ids": classes,
         "conf_range": [round(min(confs), 3), round(max(confs), 3)] if confs else [],
-        "device": "gfx1151 via torch.cuda",
+        "device": f"{gpu['gcn_arch']} via torch.cuda" if gpu["gcn_arch"] else gpu["device"],
         "peak_vram_gb": round(pm.peak_vram_gb, 2),
         "peak_rss_gb": round(pm.peak_rss_gb, 2),
     }

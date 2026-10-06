@@ -1,24 +1,32 @@
 #!/usr/bin/env python3
-"""Fetch the pinned upstream snapshot via the GitHub Git Blobs API.
+"""Fetch the pinned upstream snapshot.
 
-Transport history on this network (see docs/engineering-decisions.md D11):
-- git clone / codeload tarball: throttled to ~47KB/s — unusable
-- raw.githubusercontent.com: stalls after an initial burst — unusable in parallel
-- api.github.com (authenticated via `gh auth token`): fast and stable
+Transport history (see docs/engineering-decisions.md D11):
+- reference network: git clone / codeload throttled to ~47KB/s; the GitHub
+  git-blobs API (authenticated via `gh auth token`) was the only stable route
+- secondary runners: codeload tarball is fast and stable, api.github.com also
+  works; the mirror/firewall situation differs per runner
 
-Every file is fetched as a base64 git blob and verified against the tree's
-git blob SHA-1 before writing, so transport cannot corrupt or tamper content.
+Strategy: tarball-first (single HTTPS object for the whole pinned commit),
+falling back to the sha1-verified git-blobs API. Both transports serve the
+exact pinned commit content; the method actually used is recorded in
+upstream/openvino-notebooks.json.
+
+--if-missing: succeed without refetching when a complete snapshot already
+exists (used by CI provisioning).
 """
 
 from __future__ import annotations
 
 import base64
 import hashlib
+import io
 import json
 import os
 import shutil
 import subprocess
 import sys
+import tarfile
 import time
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
@@ -46,6 +54,19 @@ def gh_token() -> str:
 
 
 TOKEN = os.environ.get("GH_TOKEN") or gh_token()
+
+
+def snapshot_complete() -> bool:
+    """A snapshot counts as complete when its meta records zero failed files
+    and the directory still exists (resume support for the blobs route)."""
+
+    if not DEST.is_dir() or not META_PATH.exists():
+        return False
+    try:
+        meta = json.loads(META_PATH.read_text())
+    except (OSError, ValueError):
+        return False
+    return bool(meta.get("commit")) and meta.get("files_failed", 1) == 0 and any(DEST.iterdir())
 
 
 def api_get(url: str, tries: int = 4, timeout: int = 300) -> bytes:
@@ -82,6 +103,54 @@ def git_blob_sha(data: bytes) -> str:
     return hashlib.sha1(b"blob %d\x00" % len(data) + data).hexdigest()
 
 
+def fetch_tarball(commit: str, meta: dict) -> bool:
+    """Single-object codeload tarball of the pinned commit; keep only notebook
+    workflow files (same filter as the blobs route)."""
+
+    url = f"https://codeload.github.com/{REPO}/tar.gz/{commit}"
+    for attempt in range(2):
+        try:
+            r = subprocess.run(
+                [CURL, "-sSfL", "--max-time", "900", url, "-o", "/tmp/ov_upstream.tar.gz"],
+                capture_output=True,
+                timeout=930,
+            )
+            if r.returncode != 0:
+                raise RuntimeError(f"curl {r.returncode}")
+            data = Path("/tmp/ov_upstream.tar.gz").read_bytes()
+            kept = 0
+            with tarfile.open(fileobj=io.BytesIO(data), mode="r:gz") as tf:
+                for member in tf.getmembers():
+                    name = member.name.split("/", 1)[-1]
+                    if not name or member.isdir():
+                        continue
+                    if not name.endswith(KEEP_EXT):
+                        continue
+                    top = name.split("/", 1)[0]
+                    if top in SKIP_PREFIX or name.startswith(SKIP_PREFIX):
+                        continue
+                    f = tf.extractfile(member)
+                    if f is None:
+                        continue
+                    out = DEST / name
+                    out.parent.mkdir(parents=True, exist_ok=True)
+                    out.write_bytes(f.read())
+                    kept += 1
+            meta.update(
+                {
+                    "fetch_method": f"codeload tarball ({kept} files kept, filter {KEEP_EXT}); blobs API fallback available",
+                    "files_ok": kept,
+                    "files_cached": 0,
+                    "files_failed": 0,
+                }
+            )
+            return True
+        except (OSError, tarfile.TarError, RuntimeError) as e:
+            print(f"tarball attempt {attempt + 1} failed: {e}", file=sys.stderr)
+            time.sleep(10 * (attempt + 1))
+    return False
+
+
 def fetch_one(path: str, blob_sha: str, size: int) -> tuple[str, str]:
     out = DEST / path
     if out.exists() and out.stat().st_size == size:
@@ -104,63 +173,76 @@ def fetch_one(path: str, blob_sha: str, size: int) -> tuple[str, str]:
 
 
 def main() -> int:
+    if "--if-missing" in sys.argv and snapshot_complete():
+        print("upstream snapshot already complete; skipping fetch")
+        return 0
+
     head = api_json(f"https://api.github.com/repos/{REPO}/commits/{BRANCH}")
     commit = head["sha"]
     commit_date = head["commit"]["committer"]["date"]
     commit_subject = head["commit"]["message"].splitlines()[0]
     print(f"pinned {BRANCH} @ {commit[:12]} ({commit_subject[:60]})", flush=True)
 
-    tree = api_json(f"https://api.github.com/repos/{REPO}/git/trees/{commit}?recursive=1")
-    if tree.get("truncated"):
-        print("WARNING: tree truncated by API", file=sys.stderr)
-    blobs = [
-        t
-        for t in tree["tree"]
-        if t["type"] == "blob" and t["path"].endswith(KEEP_EXT) and not t["path"].startswith(SKIP_PREFIX)
-    ]
-    total = sum(t.get("size", 0) for t in blobs)
-    print(f"{len(blobs)} files, {total / 1e6:.1f} MB", flush=True)
+    meta: dict = {}
+    if fetch_tarball(commit, meta):
+        ok = meta["files_ok"]
+        cached = fail = 0
+        fails: list[str] = []
+    else:
+        print("tarball transport unavailable; falling back to git-blobs API", file=sys.stderr)
+        tree = api_json(f"https://api.github.com/repos/{REPO}/git/trees/{commit}?recursive=1")
+        if tree.get("truncated"):
+            print("WARNING: tree truncated by API", file=sys.stderr)
+        blobs = [
+            t
+            for t in tree["tree"]
+            if t["type"] == "blob" and t["path"].endswith(KEEP_EXT) and not t["path"].startswith(SKIP_PREFIX)
+        ]
+        total = sum(t.get("size", 0) for t in blobs)
+        print(f"{len(blobs)} files, {total / 1e6:.1f} MB", flush=True)
 
-    ok = fail = cached = 0
-    fails: list[str] = []
-    t0 = time.time()
-    with ThreadPoolExecutor(max_workers=8) as ex:
-        futs = {ex.submit(fetch_one, t["path"], t["sha"], t.get("size", 0)): t["path"] for t in blobs}
-        for i, fut in enumerate(as_completed(futs)):
-            path, status = fut.result()
-            if status == "ok":
-                ok += 1
-            elif status == "cached":
-                cached += 1
-            else:
-                fail += 1
-                fails.append(f"{path} {status}")
-            if (i + 1) % 25 == 0:
-                mb = sum(f.stat().st_size for f in DEST.rglob("*") if f.is_file()) / 1e6
-                print(
-                    f"  {i + 1}/{len(blobs)} ok={ok} cached={cached} fail={fail} ({mb:.0f}MB, {time.time() - t0:.0f}s)",
-                    flush=True,
-                )
-
-    META_PATH.parent.mkdir(parents=True, exist_ok=True)
-    META_PATH.write_text(
-        json.dumps(
+        ok = fail = cached = 0
+        fails = []
+        t0 = time.time()
+        with ThreadPoolExecutor(max_workers=8) as ex:
+            futs = {ex.submit(fetch_one, t["path"], t["sha"], t.get("size", 0)): t["path"] for t in blobs}
+            for i, fut in enumerate(as_completed(futs)):
+                path, status = fut.result()
+                if status == "ok":
+                    ok += 1
+                elif status == "cached":
+                    cached += 1
+                else:
+                    fail += 1
+                    fails.append(f"{path} {status}")
+                if (i + 1) % 25 == 0:
+                    mb = sum(f.stat().st_size for f in DEST.rglob("*") if f.is_file()) / 1e6
+                    print(
+                        f"  {i + 1}/{len(blobs)} ok={ok} cached={cached} fail={fail} ({mb:.0f}MB, {time.time() - t0:.0f}s)",
+                        flush=True,
+                    )
+        meta.update(
             {
-                "repository": REPO,
-                "branch": BRANCH,
-                "commit": commit,
-                "commit_date": commit_date,
-                "commit_subject": commit_subject,
-                "discovered_at": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
-                "local_path": str(DEST),
-                "fetch_method": "github git-blobs API (sha1-verified); git protocol throttled ~47KB/s, raw CDN stalls on this network",
+                "fetch_method": "github git-blobs API (sha1-verified); tarball transport failed on this network",
                 "files_ok": ok,
                 "files_cached": cached,
                 "files_failed": fail,
-            },
-            indent=2,
+            }
         )
+
+    meta.update(
+        {
+            "repository": REPO,
+            "branch": BRANCH,
+            "commit": commit,
+            "commit_date": commit_date,
+            "commit_subject": commit_subject,
+            "discovered_at": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
+            "local_path": str(DEST),
+        }
     )
+    META_PATH.parent.mkdir(parents=True, exist_ok=True)
+    META_PATH.write_text(json.dumps(meta, indent=2))
 
     if fails:
         print("FAILED downloads:", file=sys.stderr)

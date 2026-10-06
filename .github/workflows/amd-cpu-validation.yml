@@ -1,10 +1,11 @@
 name: amd-cpu-validation
 
-# Self-hosted workflow: runs the OpenVINO-on-Ryzen validation on the AMD
-# reference machine (Ryzen AI Max+ PRO 395). The runner workspace is a fresh
-# checkout; the persistent machine assets (validation venv, pinned upstream
-# snapshot, warm uv cache) are linked in. Evidence stays workspace-local and
-# is uploaded as artifacts. Status badges must only cite real runs.
+# Self-hosted workflow: runs the OpenVINO-on-AMD CPU validation on a
+# self-hosted runner labelled [self-hosted, amd64, amd-cpu]. The runner
+# workspace is a fresh checkout; the pinned upstream snapshot is provisioned
+# by scripts/fetch_upstream.py when no warm copy is linked in. Evidence stays
+# workspace-local and is uploaded as artifacts. Status badges must only cite
+# real runs of this workflow.
 
 on:
   workflow_dispatch:
@@ -19,13 +20,13 @@ jobs:
     timeout-minutes: 180
     steps:
       - uses: actions/checkout@v4
-      - name: Link persistent validation assets
+      - name: Provision pinned upstream snapshot (runner-agnostic)
         run: |
-          REF=/home/amd/Desktop/OpenVINO-Notebooks-on-AMD
-          if [ ! -d "$REF" ]; then echo "reference checkout missing"; exit 1; fi
-          ln -s "$REF/.venv-cpu" .venv-cpu
-          mkdir -p .cache
-          ln -s "$REF/.cache/upstream" .cache/upstream
+          # reuse a warm snapshot when this runner maintains one; otherwise
+          # fetch the pinned commit (tarball transport, content comes from the
+          # pinned sha — no floating refs)
+          python3 scripts/fetch_upstream.py --if-missing
+          test -d .cache/upstream || { echo "upstream snapshot unavailable"; exit 1; }
       - name: Doctor
         run: python3 -m ov_amd doctor
       - name: Marathon (CPU, bounded)
@@ -38,8 +39,9 @@ jobs:
           name: marathon-state
           path: results/marathon-state.json
 
-# Ryzen AI Max+ 395: CPU and Radeon 8060S share one SoC (RAM/thermal domain);
-# CPU and GPU validation must never overlap.
+# AMD reference platforms: CPU and GPU validation must never overlap (shared
+# memory/thermal domain on SoC platforms; serialized resource domain on
+# multi-GPU servers). The shared concurrency group enforces this.
 concurrency:
   group: amd-reference-validation
   cancel-in-progress: false

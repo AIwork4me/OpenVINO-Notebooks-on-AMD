@@ -35,11 +35,23 @@ def _icon(status: str) -> str:
 
 
 def _rel(p: str | None) -> str | None:
-    """Repo-relative evidence path for public artifacts (no /home/... leaks)."""
+    """Repo-relative evidence path for public artifacts (no /home/... leaks).
+
+    Handles both current repo-relative refs and stale absolute refs written by
+    runners on other machines (state migration keeps those records historical).
+    """
 
     if not p:
         return None
-    return p.replace(f"{REPO_ROOT}/", "")
+    # strip any known runner-local repo prefix, then any absolute path that
+    # still points inside a checkout of this repository
+    for prefix in (f"{REPO_ROOT}/", "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/"):
+        if p.startswith(prefix):
+            return p[len(prefix):]
+    m = re.search(r"(?:^|/)(results/[\w./-]+)$", p)
+    if m:  # absolute evidence path from any checkout of this repo
+        return m.group(1)
+    return p
 
 
 _ANSI_RE = re.compile(r"\x1b\[[0-9;]*m")

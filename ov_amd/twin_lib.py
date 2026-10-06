@@ -26,9 +26,13 @@ def setup() -> argparse.ArgumentParser:
     from ov_amd.environment import ensure_ipv4_first
 
     ensure_ipv4_first("gpu")
-    # xet-backed HF files route to cas-server.xethub.hf.co, which 401s on this
-    # network; plain HTTP download via the mirror works
+    # xet-backed HF files route to cas-server.xethub.hf.co, which 401s on some
+    # networks; plain HTTP download via the endpoint works
     os.environ.setdefault("HF_HUB_DISABLE_XET", "1")
+    # twins download models too: use the same probed, recorded HF transport
+    from ov_amd.environment import resolve_hf_endpoint
+
+    os.environ["HF_ENDPOINT"] = str(resolve_hf_endpoint()["endpoint"])
     ap = argparse.ArgumentParser()
     ap.add_argument("--evidence-dir", default=".")
     return ap
@@ -42,11 +46,31 @@ def gpu_ready() -> dict:
         "cuda_available": torch.cuda.is_available(),
         "device": None,
         "gcn_arch": None,
+        "gcn_arch_source": None,
     }
     if torch.cuda.is_available():
         info["device"] = torch.cuda.get_device_name(0)
-        cap = torch.cuda.get_device_capability(0)
-        info["gcn_arch"] = f"gfx{cap[0]}{cap[1]}"
+        # Authoritative arch only (Step 10 contract): never construct gfxXXX
+        # from CUDA capability numbers — cap (11,0) is gfx1100, not gfx110,
+        # and cap (11,5) is gfx1151, not gfx115. If neither the ROCm device
+        # property nor rocminfo yields the arch, it stays null (unknown).
+        props = torch.cuda.get_device_properties(0)
+        arch_name = getattr(props, "gcnArchName", None)
+        if arch_name:
+            info["gcn_arch"] = str(arch_name)
+            info["gcn_arch_source"] = "torch.cuda.get_device_properties().gcnArchName"
+        else:
+            import re as _re
+            import subprocess as _sp
+
+            try:
+                out = _sp.run(["rocminfo"], capture_output=True, text=True, timeout=90).stdout or ""
+                m = _re.search(r"^\s*Name:\s*(gfx\S+)", out, _re.M)
+                if m:
+                    info["gcn_arch"] = m.group(1)
+                    info["gcn_arch_source"] = "rocminfo"
+            except (OSError, _sp.TimeoutExpired):
+                pass
     return info
 
 
@@ -105,8 +129,14 @@ def emit(ok: bool, evidence_dir: Path, metrics: dict, extra: dict | None = None)
     return 0 if result["ok"] else 1
 
 
-def fetch(url: str, dest: Path, tries: int = 3) -> Path:
-    """curl-based fetch (python http stack is IPv6-fragile on this network)."""
+def fetch(url: str, dest: Path, tries: int = 3, fallbacks: list[str] | None = None) -> Path:
+    """curl-based fetch (python http stack is IPv6-fragile on some networks).
+
+    `fallbacks` are alternative URLs for the same official asset (e.g. the
+    user-images.githubusercontent.com copy of an image whose canonical host is
+    storage.openvinotoolkit.org); the URL that actually served the file is
+    recorded by the caller in its metrics for input provenance.
+    """
 
     import shutil
     import subprocess
@@ -114,9 +144,13 @@ def fetch(url: str, dest: Path, tries: int = 3) -> Path:
     if dest.exists() and dest.stat().st_size > 0:
         return dest
     curl = shutil.which("curl") or "/usr/bin/curl"
-    for i in range(tries):
-        r = subprocess.run([curl, "-sSfL", "--max-time", "300", url, "-o", str(dest)], capture_output=True)
-        if r.returncode == 0 and dest.exists() and dest.stat().st_size > 0:
-            return dest
-        time.sleep(5 * (i + 1))
-    raise RuntimeError(f"download failed: {url}")
+    candidates = [url] + list(fallbacks or [])
+    last_err = ""
+    for cand in candidates:
+        for i in range(tries):
+            r = subprocess.run([curl, "-sSfL", "--max-time", "300", cand, "-o", str(dest)], capture_output=True)
+            if r.returncode == 0 and dest.exists() and dest.stat().st_size > 0:
+                return dest
+            last_err = f"{cand}: curl {r.returncode}"
+            time.sleep(5 * (i + 1))
+    raise RuntimeError(f"download failed (last: {last_err})")
