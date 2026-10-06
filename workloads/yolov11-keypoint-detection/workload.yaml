@@ -1,0 +1,29 @@
+id: yolov11-keypoint-detection
+title: Yolov11 Keypoint Detection
+category: Vision
+upstream:
+  repository: openvinotoolkit/openvino_notebooks
+  branch: latest
+  commit: a8809170cc4fc6aa633fbb9c22214be67ac20b47
+  path: notebooks/yolov11-optimization/yolov11-keypoint-detection.ipynb
+  url: https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/yolov11-optimization/yolov11-keypoint-detection.ipynb
+model:
+  name: ''
+  source: ''
+  revision: ''
+  license: ''
+cpu:
+  runtime: openvino
+  status: VERIFIED_WITH_LIMITATIONS
+gpu:
+  runtime: ''
+  status: NOT_TESTED
+twin:
+  level: OPENVINO_SPECIFIC
+validation:
+  output_contains:
+  - Throughput:\s+\d+\.\d+ FPS
+  - Source ended
+  output_finite_numbers: true
+patches: {}
+last_verified: '2026-10-06T04:15:35+00:00'
