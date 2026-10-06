@@ -50,6 +50,8 @@ def _load_pipeline(evidence: Path):
                 "*/special_tokens_map.json", "*/tokenizer_config.json", "*/vocab.json",
                 "*/merges.txt", "*/tokenizer.json", "*/scheduler_config.json",
                 "*/diffusion_pytorch_model.safetensors", "*/diffusion_pytorch_model.fp16.safetensors",
+                # ModelScope mirrors keep encoder weights under model.safetensors
+                "*/model.safetensors",
             ],
         )
         source = "AI-ModelScope/stable-diffusion-2-1 (ModelScope mirror; HF mirror 401 for stabilityai/stable-diffusion-2-1)"
