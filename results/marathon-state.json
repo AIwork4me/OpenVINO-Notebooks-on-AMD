@@ -71,10 +71,11 @@
         "status": "VERIFIED",
         "failure_category": "",
         "notes": [],
-        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/hello-detection/20261005T170351Z-gpu",
+        "evidence_dir": "results/hello-detection/20261006T040236Z-gpu",
         "device_proof": "PROVEN_GPU",
-        "validation_level": "DEVICE_VERIFIED",
-        "updated": "2026-10-05T17:08:59+00:00"
+        "validation_level": "WORKLOAD_CORRECTNESS",
+        "platform_id": "amd-epyc-9334-32-core-processor-gfx1100",
+        "updated": "2026-10-06T04:04:30+00:00"
       }
     },
     "hello-npu": {
@@ -2745,19 +2746,19 @@
         "device_proof": "PROVEN_CPU",
         "validation_level": "",
         "platform_id": "amd-epyc-9334-32-core-processor",
-        "evidence_dir": "results/openvino-tokenizers/20261006T033616Z-cpu",
+        "evidence_dir": "results/openvino-tokenizers/20261006T034749Z-cpu",
         "env": {
           "backend": "cpu",
           "env_key": "2be7d33bf5454379",
           "python": ".venvs/cpu/2be7d33bf5454379/bin/python",
           "fingerprint": "abc3dceee99e5a50697e0b5cc589b46baba18ce9735f21abad3dc59441023927",
-          "reused": false,
-          "created": true
+          "reused": true,
+          "created": false
         },
         "notes": [
           "ok_runs=0/3: \u001b[31mFileNotFoundError\u001b[39m: [Errno 2] No such file or directory: 'optimum-cli'"
         ],
-        "updated": "2026-10-06T03:42:50+00:00"
+        "updated": "2026-10-06T03:49:24+00:00"
       }
     }
   },
@@ -2937,7 +2938,7 @@
       "log_tail": "Collecting soxr\n  Using cached soxr-1.1.0-cp312-abi3-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata (5.8 kB)\nRequirement already satisfied: numpy in ./.venvs/cpu/14c79f40de9d556c/lib/python3.12/site-packages (from soxr) (2.1.3)\nUsing cached soxr-1.1.0-cp312-abi3-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl (240 kB)\nInstalling collected packages: soxr\nSuccessfully installed soxr-1.1.0\n"
     }
   ],
-  "last_checkpoint": "2026-10-06T03:42:50+00:00",
+  "last_checkpoint": "2026-10-06T04:04:30+00:00",
   "current_workload": "bernini-r-image-video",
   "env_repairs": [
     {
