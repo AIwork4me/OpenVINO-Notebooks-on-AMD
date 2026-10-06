@@ -1,0 +1,20 @@
+{
+  "schema_version": 2,
+  "runs_ok": 1,
+  "runs_required": 1,
+  "wall_clock_s": [
+    69.0
+  ],
+  "cells_executed": 12,
+  "cells_skipped": 0,
+  "cells_substituted": 0,
+  "aggregate": "aggregate.json",
+  "env": {
+    "backend": "cpu",
+    "env_key": "a9a318856f13d490",
+    "python": ".venvs/cpu/a9a318856f13d490/bin/python",
+    "fingerprint": "7f6fdb7e01687b5e7b05395725a0fb7a76af88db61d967e90ab7104ef4e3a99d",
+    "reused": false,
+    "created": true
+  }
+}

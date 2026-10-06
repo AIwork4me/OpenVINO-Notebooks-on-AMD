@@ -1,0 +1,6 @@
+[IPKernelApp] WARNING | Kernel is running over TCP without encryption. All communication (including code and outputs) is sent in plain text and is susceptible to eavesdropping. Use IPC transport or launch with kernel manager-provisioned CurveZMQ keys to enable transport encryption.
+[ WARN:0@12.607] global cap.cpp:172 open VIDEOIO(CV_IMAGES): raised OpenCV exception:
+
+OpenCV(5.0.0) /io/opencv/modules/videoio/src/cap_images.cpp:232: error: (-5:Bad argument) CAP_IMAGES: error, expected '0?[1-9][du]' pattern, got: ISS%20Video%20Resource_LifeOnStation_720p.mp4 in function 'icvExtractPattern'
+
+

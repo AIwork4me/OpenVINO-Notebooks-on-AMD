@@ -1,0 +1,20 @@
+[cell 0 START +    0.4s] # Unified image & video generation with Bernini-R-1.3B and OpenVINO |  | [
+[cell 1 START +    0.4s] ## Prerequisites | [back to top](#Table-of-contents:) |  | Bernini's referen
+[cell 2 START +    0.4s] %pip install -q "torch>=2.4.0" "torchvision" "diffusers==0.35.2" "tran
+[cell 2 DONE  +  274.6s]
+[cell 3 START +  274.6s] import requests | from pathlib import Path |  | if not Path("notebook_utils.
+[cell 3 DONE  +  274.6s]
+[cell 4 START +  274.6s] ## Download the model | [back to top](#Table-of-contents:) |  | Download the
+[cell 5 START +  274.6s] MS_MODEL_ID = "bytedance-community/Bernini-R-1.3B-Diffusers" | HF_MODEL_
+[cell 5 DONE  +  274.6s]
+[cell 6 START +  274.6s] from pathlib import Path |  | MODEL_DIR = Path("Bernini-R-1.3B-Diffusers")
+[cell 6 DONE  +  274.6s]
+[cell 7 START +  274.6s] ## Convert and optimize the model | [back to top](#Table-of-contents:) |  | 
+[cell 8 START +  274.6s] import ipywidgets as widgets |  | model_format = widgets.Dropdown( |     opt
+[cell 8 DONE  +  274.6s]
+[cell 9 START +  274.6s] import nncf |  | if model_format.value == "INT4": |     compression_config =
+[cell 9 DONE  +  275.9s]
+[cell 10 START +  275.9s] The conversion writes one graph for the text encoder, one for the tran
+[cell 11 START +  275.9s] from ov_bernini_helper import convert_pipeline, num_frames_to_latent |  | 
+[cell 11 DONE  +  276.0s]
+NBEXEC_RESULT={"ok": false, "n_cells": 15, "n_skipped": 1, "n_substituted": 0, "stopped_after": null, "error_cell": null, "error_type": "CellExecutionError", "error_head": "\u001b[31mModuleNotFoundError\u001b[39m: No module named 'bernini'", "duration_s": 276.95, "patch_notes": ["skipped cell 28: matched skip pattern"]}

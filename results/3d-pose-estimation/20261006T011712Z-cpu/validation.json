@@ -1,0 +1,12 @@
+{
+  "schema_version": 2,
+  "passed": true,
+  "checks": {
+    "no_cell_error": true,
+    "skipped_cells": 0
+  },
+  "notes": [],
+  "level": "EXECUTION_ONLY",
+  "contract_present": false,
+  "aggregate_ref": "aggregate.json"
+}
