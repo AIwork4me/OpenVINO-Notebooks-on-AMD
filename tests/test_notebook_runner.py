@@ -39,6 +39,31 @@ def test_gated_model_outranks_pip_resolver_banner():
     assert classify_failure(stderr, "", False) == FailureCategory.MODEL_ACCESS
 
 
+def test_missing_console_script_is_dependency():
+    # subprocess spawn failure for a console script (optimum-cli et al):
+    # the notebook's %pip git-install failed silently, the executable never
+    # landed in the venv — a dependency failure with a remediation path
+    stderr = (
+        "-> 1955     raise child_exception_type(errno_num, err_msg, err_filename)\n"
+        "   1956 else:\n"
+        "   1957     raise child_exception_type(errno_num, err_msg)\n"
+        "\n"
+        "FileNotFoundError: [Errno 2] No such file or directory: 'optimum-cli'"
+    )
+    assert classify_failure(stderr, "", False) == FailureCategory.DEPENDENCY
+
+
+def test_missing_data_file_is_not_dependency():
+    # builtins.open/PIL FileNotFoundError (missing image on disk) must not
+    # route into the pip-remediation path
+    stderr = (
+        "   3639     fp = builtins.open(filename, \"rb\")\n"
+        "\n"
+        "FileNotFoundError: [Errno 2] No such file or directory: 'nyc.jpg'"
+    )
+    assert classify_failure(stderr, "", False) != FailureCategory.DEPENDENCY
+
+
 def test_extract_outputs(tmp_path):
     nb = tmp_path / "x.ipynb"
     nb.write_text(

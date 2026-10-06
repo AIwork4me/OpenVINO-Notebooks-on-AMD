@@ -45,6 +45,15 @@ def classify_failure(stderr: str, stdout: str, timeout: bool) -> FailureCategory
         # notebooks that %pip install and import in the same session; a rerun
         # after the install completes succeeds (remediation path handles it)
         (r"may need to restart|restart your (kernel|runtime)", FailureCategory.DEPENDENCY),
+        # notebook shells out to a console script (optimum-cli, ovc, ...) that a
+        # failed %pip git-install was supposed to provide; %pip failures do not
+        # raise in-kernel, so the missing executable surfaces cells later. The
+        # child_exception_type context separates subprocess spawns from
+        # data-file opens (builtins.open/PIL), which are not dependency issues.
+        (
+            r"child_exception_type\([^)]*\)\s*\n(?:[^\n]*\n){0,4}?FileNotFoundError: \[Errno 2\] No such file or directory: '",
+            FailureCategory.DEPENDENCY,
+        ),
         # gated-repo denials must outrank PACKAGE_CONFLICT: pip's benign
         # "dependency resolver" warning banner coexists with the real 401 error
         (r"GatedRepoError|Access to model|gated repo", FailureCategory.MODEL_ACCESS),

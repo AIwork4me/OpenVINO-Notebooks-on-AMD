@@ -129,6 +129,18 @@ def _missing_pkg(stderr: str) -> str | None:
     if not m:
         m = re.search(r"ImportError: cannot import name .+ from '([\w\.]+)'", clean)
     if not m:
+        # notebook shelled out to a console script that a failed %pip
+        # git-install was supposed to provide (e.g. optimum-cli after a
+        # GnuTLS-broken git+https clone); vetted script->pip mappings only —
+        # the PyPI release provides the same entry point, unmapped scripts
+        # fall through to the requirements-based remediation
+        m = re.search(
+            r"child_exception_type\([^)]*\)\s*\n(?:[^\n]*\n){0,4}?"
+            r"FileNotFoundError: \[Errno 2\] No such file or directory: '([\w.-]+)'",
+            clean,
+        )
+        if m:
+            return {"optimum-cli": "optimum-intel"}.get(m.group(1))
         return None
     module = m.group(1)
     # namespace packages whose pip name differs from the import path
