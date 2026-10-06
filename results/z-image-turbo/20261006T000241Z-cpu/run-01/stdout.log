@@ -1,0 +1,13 @@
+[cell 0 START +    0.4s] # Text-to-image generation with Z-Image-Turbo and OpenVINO |  | Z-Image-Tu
+[cell 1 START +    0.4s] ## Prerequisites | [back to top ⬆️](#Table-of-contents:)
+[cell 2 START +    0.4s] import requests | from pathlib import Path |  | if not Path("cmd_helper.py")
+[cell 2 DONE  +   43.2s]
+[cell 3 START +   43.2s] ## Select model | [back to top ⬆️](#Table-of-contents:)
+[cell 4 START +   43.2s] import ipywidgets as widgets |  | model_id = "Tongyi-MAI/Z-Image-Turbo"
+[cell 4 DONE  +   43.2s]
+[cell 5 START +   43.2s] ## Convert model with OpenVINO | [back to top ⬆️](#Table-of-contents:) |  | 
+[cell 6 START +   43.2s] to_compress = widgets.Checkbox( |     value=True, |     description="Weigh
+[cell 6 DONE  +   43.2s]
+[cell 7 START +   43.2s] from pathlib import Path |  | model_base_dir = Path(model_id.split("/")[-1
+[cell 7 DONE  +   43.2s]
+[cell 8 START +   43.2s] from cmd_helper import optimum_cli |  | if not model_dir.exists(): |     opt

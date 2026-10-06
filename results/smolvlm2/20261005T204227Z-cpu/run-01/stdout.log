@@ -1,0 +1,17 @@
+[cell 0 START +    0.6s] # Visual-Language Assistant with SmolVLM2 and OpenVINO |  | SmolVLM2 repre
+[cell 1 START +    0.6s] ## Prerequisites | [back to top ⬆️](#Table-of-contents:)
+[cell 2 START +    0.6s] %pip uninstall -q -y optimum optimum-intel optimum-onnx | %pip install -
+[cell 2 DONE  +  138.5s]
+[cell 3 START +  138.5s] from pathlib import Path | import requests |  | if not Path("cmd_helper.py")
+[cell 3 DONE  +  138.6s]
+[cell 4 START +  138.6s] ## Select model | [back to top ⬆️](#Table-of-contents:) |  | There are three
+[cell 5 START +  138.6s] import ipywidgets as widgets |  | # Read more about telemetry collection a
+[cell 5 DONE  +  138.7s]
+[cell 6 START +  138.7s] print(f"Selected {model_id.value}") | pt_model_id = model_id.value | model
+[cell 6 DONE  +  138.7s]
+[cell 7 START +  138.7s] ## Convert and Optimize model | [back to top ⬆️](#Table-of-contents:) |  | S
+[cell 8 START +  138.7s] to_compress = widgets.Checkbox(value=True, description="Compress model
+[cell 8 DONE  +  138.7s]
+[cell 9 START +  138.7s] from cmd_helper import optimum_cli |  | if to_compress.value: |     model_ex
+[cell 9 DONE  +  138.8s]
+NBEXEC_RESULT={"ok": false, "n_cells": 14, "n_skipped": 1, "n_substituted": 0, "stopped_after": null, "error_cell": null, "error_type": "CellExecutionError", "error_head": "\u001b[31mFileNotFoundError\u001b[39m: [Errno 2] No such file or directory: 'optimum-cli'", "duration_s": 139.08, "patch_notes": ["skipped cell 22: matched skip pattern"]}

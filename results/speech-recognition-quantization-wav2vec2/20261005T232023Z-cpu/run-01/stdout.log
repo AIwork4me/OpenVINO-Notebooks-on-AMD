@@ -1,0 +1,45 @@
+[cell 0 START +    0.7s] # Quantize Speech Recognition Models with accuracy control using NNCF 
+[cell 1 START +    0.7s]  | #### Table of contents: |  | - [Imports](#Imports) | - [Prepare the Model](
+[cell 2 START +    0.7s] # install requirements | %pip install -q "openvino>=2023.1.0" | %pip insta
+[cell 2 DONE  +   34.1s]
+[cell 3 START +   34.1s] ## Imports | [back to top ⬆️](#Table-of-contents:) | 
+[cell 4 START +   34.1s] import numpy as np | import torch |  | from transformers import Wav2Vec2ForC
+[cell 4 DONE  +   38.4s]
+[cell 5 START +   38.4s] import requests | from pathlib import Path |  | if not Path("notebook_utils.
+[cell 5 DONE  +   38.4s]
+[cell 6 START +   38.4s] ## Prepare the Model | [back to top ⬆️](#Table-of-contents:) |  | For instan
+[cell 7 START +   38.4s] BATCH_SIZE = 1 | MAX_SEQ_LENGTH = 30480 |  |  | torch_model = Wav2Vec2ForCTC.f
+[cell 7 DONE  +   66.9s]
+[cell 8 START +   66.9s] Convert it to the OpenVINO Intermediate Representation (OpenVINO IR)
+[cell 9 START +   66.9s] import openvino as ov |  | default_input = torch.zeros([1, MAX_SEQ_LENGTH]
+[cell 9 DONE  +   68.6s]
+[cell 10 START +   68.6s] ## Prepare LibriSpeech Dataset | [back to top ⬆️](#Table-of-contents:) |  | 
+[cell 11 START +   68.6s] from datasets import load_dataset |  | dataset = load_dataset("patrickvonp
+[cell 11 DONE  +   76.2s]
+[cell 12 START +   76.2s] ## Prepare calibration dataset | [back to top ⬆️](#Table-of-contents:) | 
+[cell 13 START +   76.2s] import nncf |  |  | def transform_fn(data_item): |     """ |     Extract the mod
+[cell 13 DONE  +   76.3s]
+[cell 14 START +   76.3s] ## Prepare validation function | [back to top ⬆️](#Table-of-contents:) |  | 
+[cell 15 START +   76.3s] from torchmetrics import WordErrorRate | from tqdm.notebook import tqdm | 
+[cell 15 DONE  +   76.5s]
+[cell 16 START +   76.5s] ## Run quantization with accuracy control | [back to top ⬆️](#Table-of-c
+[cell 17 START +   76.5s] from nncf.quantization.advanced_parameters import AdvancedAccuracyRest
+[cell 17 DONE  +  290.8s]
+[cell 18 START +  290.8s] ## Model Usage Example | [back to top ⬆️](#Table-of-contents:) | 
+[cell 19 START +  290.8s] import IPython.display as ipd |  | ipd.Audio(test_sample["array"], rate=16
+[cell 19 DONE  +  291.0s]
+[cell 20 START +  291.0s] Select device for inference
+[cell 21 START +  291.0s] from notebook_utils import device_widget |  | core = ov.Core() |  | device = d
+[cell 21 DONE  +  291.1s]
+[cell 22 START +  291.1s] compiled_quantized_model = core.compile_model(model=quantized_model, d
+[cell 22 DONE  +  291.4s]
+[cell 23 START +  291.4s] Next, make a prediction.
+[cell 24 START +  291.4s] predictions = compiled_quantized_model([input_data])[0] | predicted_ids 
+[cell 24 DONE  +  291.6s]
+[cell 25 START +  291.6s] ## Compare Accuracy of the Original and Quantized Models | [back to top 
+[cell 26 START +  291.6s] # inference function for pytorch | def torch_infer(model, sample): |     l
+[cell 26 DONE  +  291.6s]
+[cell 27 START +  291.6s] Now, compute WER for the original PyTorch model and quantized model.
+[cell 28 START +  291.6s] pt_result = compute_wer(dataset, torch_model, torch_infer) | quantized_r
+[cell 28 DONE  +  310.3s]
+NBEXEC_RESULT={"ok": true, "n_cells": 15, "n_skipped": 0, "n_substituted": 0, "stopped_after": null, "error_cell": null, "error_type": null, "error_head": null, "duration_s": 313.27, "patch_notes": []}

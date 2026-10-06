@@ -1,0 +1,233 @@
+[cell 0 START +    0.7s] # Quantize a Segmentation Model and Show Live Inference |  | ## Kidney Seg
+[cell 1 START +    0.7s] # install requirements | %pip install -q "openvino>=2023.3.0" "monai>=0.
+[cell 1 DONE  +   26.1s]
+[cell 2 START +   26.1s] ## Imports | [back to top ⬆️](#Table-of-contents:) | 
+[cell 3 START +   26.1s] import logging | import os | import time | import warnings | import zipfile | fr
+[cell 3 DONE  +   32.3s]
+[cell 4 START +   32.3s] ## Settings | [back to top ⬆️](#Table-of-contents:) |  | By default, this no
+[cell 5 START +   32.3s] BASEDIR = Path("kits19_frames_1") | # Uncomment the line below to use th
+[cell 5 DONE  +   32.3s]
+[cell 6 START +   32.3s] ## Load PyTorch Model | [back to top ⬆️](#Table-of-contents:) |  | Download 
+[cell 7 START +   32.3s] state_dict_file = Path("pretrained_model/unet_kits19_state_dict.pth") | 
+[cell 7 DONE  +   35.4s]
+[cell 8 START +   35.4s] ## Download CT-scan Data | [back to top ⬆️](#Table-of-contents:) | 
+[cell 9 START +   35.4s] # The CT scan case number. For example: 2 for data from the case_00002
+[cell 9 DONE  +   38.3s]
+[cell 10 START +   38.3s] ## Configuration | [back to top ⬆️](#Table-of-contents:) | 
+[cell 11 START +   38.3s] ### Dataset | [back to top ⬆️](#Table-of-contents:) |  | The `KitsDataset` c
+[cell 12 START +   38.3s] def rotate_and_flip(image): |     """Rotate `image` by 90 degrees and fl
+[cell 12 DONE  +   38.3s]
+[cell 13 START +   38.3s] To test whether the data loader returns the expected output, we show a
+[cell 14 START +   38.3s] dataset = KitsDataset(BASEDIR) | # Find a slice that contains kidney ann
+[cell 14 DONE  +   38.6s]
+[cell 15 START +   38.6s] ### Metric | [back to top ⬆️](#Table-of-contents:) |  | Define a metric to d
+[cell 16 START +   38.6s] def compute_f1(model: Union[torch.nn.Module, ov.CompiledModel], datase
+[cell 16 DONE  +   38.6s]
+[cell 17 START +   38.6s] ## Quantization | [back to top ⬆️](#Table-of-contents:) |  | Before quantizi
+[cell 18 START +   38.6s] fp32_f1 = compute_f1(model, dataset) | print(f"FP32 F1: {fp32_f1:.3f}")
+[cell 18 DONE  +   45.6s]
+[cell 19 START +   45.6s] We convert the PyTorch model to OpenVINO IR and serialize it for compa
+[cell 20 START +   45.6s] fp32_ir_path = MODEL_DIR / Path("unet_kits19_fp32.xml") | dummy_input = 
+[cell 20 DONE  +   47.3s]
+[cell 21 START +   47.3s] [NNCF](https://github.com/openvinotoolkit/nncf) provides a suite of ad
+[cell 22 START +   47.3s] def transform_fn(data_item): |     """ |     Extract the model's input fro
+[cell 22 DONE  +   68.0s]
+[cell 23 START +   68.0s] Convert quantized model to OpenVINO IR model and save it.
+[cell 24 START +   68.0s] dummy_input = torch.randn(1, 1, 512, 512) | int8_ir_path = MODEL_DIR / "
+[cell 24 DONE  +   70.3s]
+[cell 25 START +   70.3s] This notebook demonstrates post-training quantization with NNCF. |  | NNCF
+[cell 26 START +   70.3s] ## Compare FP32 and INT8 Model | [back to top ⬆️](#Table-of-contents:) |  | 
+[cell 27 START +   70.3s] fp32_ir_model_size = fp32_ir_path.with_suffix(".bin").stat().st_size /
+[cell 27 DONE  +   70.3s]
+[cell 28 START +   70.3s] ### Select Inference Device | [back to top ⬆️](#Table-of-contents:)
+[cell 29 START +   70.3s] core = ov.Core() | # By default, benchmark on MULTI:CPU,GPU if a GPU is 
+[cell 29 DONE  +   70.6s]
+[cell 30 START +   70.6s] ### Compare Metrics for the original model and the quantized model to 
+[cell 31 START +   70.6s] int8_compiled_model = core.compile_model(int8_ir_model, device.value) | 
+[05:59:04.9454]D[plugin.cpp:289][MULTI] deviceNameWithID:CPU, defaultDeviceID:, uniqueName:CPU_
+[05:59:04.9455]D[plugin.cpp:289][MULTI] deviceNameWithID:GPU.0, defaultDeviceID:, uniqueName:gfx1151 (iGPU)_0
+[05:59:04.9456]I[plugin.cpp:479][MULTI] device:CPU, config:LOG_LEVEL=LOG_NONE
+[05:59:04.9456]I[plugin.cpp:479][MULTI] device:CPU, config:PERFORMANCE_HINT=THROUGHPUT
+[05:59:04.9456]I[plugin.cpp:479][MULTI] device:CPU, config:PERFORMANCE_HINT_NUM_REQUESTS=0
+[05:59:04.9456]I[plugin.cpp:479][MULTI] device:CPU, config:PERF_COUNT=NO
+[05:59:04.9456]I[plugin.cpp:484][MULTI] device:CPU, priority:0
+[05:59:04.9456]I[plugin.cpp:479][MULTI] device:GPU.0, config:DEVICE_ID=0
+[05:59:04.9456]I[plugin.cpp:479][MULTI] device:GPU.0, config:MODEL_PRIORITY=MEDIUM
+[05:59:04.9456]I[plugin.cpp:479][MULTI] device:GPU.0, config:PERFORMANCE_HINT=THROUGHPUT
+[05:59:04.9456]I[plugin.cpp:479][MULTI] device:GPU.0, config:PERFORMANCE_HINT_NUM_REQUESTS=0
+[05:59:04.9456]I[plugin.cpp:479][MULTI] device:GPU.0, config:PERF_COUNT=NO
+[05:59:04.9457]I[plugin.cpp:484][MULTI] device:GPU.0, priority:1
+[05:59:04.9457]I[plugin.cpp:510][MULTI] Original device list(CPU,GPU) size to load the model: 2
+[05:59:04.9457]I[schedule.cpp:17][MULTI] scheduler starting
+[05:59:04.9467]D[cumulative_schedule.cpp:186][MULTI] gpu streams number for compiling: 16
+[05:59:13.1688]I[cumulative_schedule.cpp:100][MULTI] device:GPU.0 compiling model finished
+[05:59:13.1688]D[cumulative_schedule.cpp:106][MULTI] device:GPU.0, GetConfig:SUPPORTED_PROPERTIES=SUPPORTED_PROPERTIES OPTIMAL_NUMBER_OF_INFER_REQUESTS NETWORK_NAME EXECUTION_DEVICES AUTO_BATCH_TIMEOUT
+[05:59:13.1688]D[cumulative_schedule.cpp:106][MULTI] device:GPU.0, GetConfig:OPTIMAL_NUMBER_OF_INFER_REQUESTS=4
+[05:59:13.1688]D[cumulative_schedule.cpp:106][MULTI] device:GPU.0, GetConfig:NETWORK_NAME=Model49
+[05:59:13.1688]D[cumulative_schedule.cpp:106][MULTI] device:GPU.0, GetConfig:EXECUTION_DEVICES=GPU.0
+[05:59:13.1688]D[cumulative_schedule.cpp:106][MULTI] device:GPU.0, GetConfig:AUTO_BATCH_TIMEOUT=1000
+[05:59:13.3024]I[cumulative_schedule.cpp:100][MULTI] device:CPU compiling model finished
+[05:59:13.3025]D[cumulative_schedule.cpp:106][MULTI] device:CPU, GetConfig:SUPPORTED_PROPERTIES=SUPPORTED_PROPERTIES NETWORK_NAME OPTIMAL_NUMBER_OF_INFER_REQUESTS NUM_STREAMS INFERENCE_NUM_THREADS PERF_COUNT INFERENCE_PRECISION_HINT PERFORMANCE_HINT EXECUTION_MODE_HINT PERFORMANCE_HINT_NUM_REQUESTS ENABLE_
+[05:59:13.3026]D[cumulative_schedule.cpp:106][MULTI] device:CPU, GetConfig:NETWORK_NAME=Model49
+[05:59:13.3026]D[cumulative_schedule.cpp:106][MULTI] device:CPU, GetConfig:OPTIMAL_NUMBER_OF_INFER_REQUESTS=8
+[05:59:13.3026]D[cumulative_schedule.cpp:106][MULTI] device:CPU, GetConfig:NUM_STREAMS=8
+[05:59:13.3026]D[cumulative_schedule.cpp:106][MULTI] device:CPU, GetConfig:INFERENCE_NUM_THREADS=32
+[05:59:13.3026]D[cumulative_schedule.cpp:106][MULTI] device:CPU, GetConfig:PERF_COUNT=NO
+[05:59:13.3026]D[cumulative_schedule.cpp:106][MULTI] device:CPU, GetConfig:INFERENCE_PRECISION_HINT=bf16
+[05:59:13.3026]D[cumulative_schedule.cpp:106][MULTI] device:CPU, GetConfig:PERFORMANCE_HINT=THROUGHPUT
+[05:59:13.3026]D[cumulative_schedule.cpp:106][MULTI] device:CPU, GetConfig:EXECUTION_MODE_HINT=PERFORMANCE
+[05:59:13.3026]D[cumulative_schedule.cpp:106][MULTI] device:CPU, GetConfig:PERFORMANCE_HINT_NUM_REQUESTS=0
+[05:59:13.3026]D[cumulative_schedule.cpp:106][MULTI] device:CPU, GetConfig:ENABLE_CPU_PINNING=YES
+[05:59:13.3026]D[cumulative_schedule.cpp:106][MULTI] device:CPU, GetConfig:ENABLE_CPU_RESERVATION=NO
+[05:59:13.3026]D[cumulative_schedule.cpp:106][MULTI] device:CPU, GetConfig:SCHEDULING_CORE_TYPE=ANY_CORE
+[05:59:13.3026]D[cumulative_schedule.cpp:106][MULTI] device:CPU, GetConfig:MODEL_DISTRIBUTION_POLICY=
+[05:59:13.3027]D[cumulative_schedule.cpp:106][MULTI] device:CPU, GetConfig:ENABLE_HYPER_THREADING=YES
+[05:59:13.3027]D[cumulative_schedule.cpp:106][MULTI] device:CPU, GetConfig:EXECUTION_DEVICES=CPU
+[05:59:13.3027]D[cumulative_schedule.cpp:106][MULTI] device:CPU, GetConfig:CPU_DENORMALS_OPTIMIZATION=NO
+[05:59:13.3027]D[cumulative_schedule.cpp:106][MULTI] device:CPU, GetConfig:LOG_LEVEL=LOG_NONE
+[05:59:13.3027]D[cumulative_schedule.cpp:106][MULTI] device:CPU, GetConfig:CPU_SPARSE_WEIGHTS_DECOMPRESSION_RATE=1
+[05:59:13.3027]D[cumulative_schedule.cpp:106][MULTI] device:CPU, GetConfig:ENABLE_TENSOR_PARALLEL=NO
+[05:59:13.3027]D[cumulative_schedule.cpp:106][MULTI] device:CPU, GetConfig:TBB_PARTITIONER=STATIC
+[05:59:13.3027]D[cumulative_schedule.cpp:106][MULTI] device:CPU, GetConfig:DYNAMIC_QUANTIZATION_GROUP_SIZE=32
+[05:59:13.3027]D[cumulative_schedule.cpp:106][MULTI] device:CPU, GetConfig:KV_CACHE_PRECISION=u8
+[05:59:13.3027]D[cumulative_schedule.cpp:106][MULTI] device:CPU, GetConfig:KEY_CACHE_PRECISION=u8
+[05:59:13.3027]D[cumulative_schedule.cpp:106][MULTI] device:CPU, GetConfig:VALUE_CACHE_PRECISION=u8
+[05:59:13.3027]D[cumulative_schedule.cpp:106][MULTI] device:CPU, GetConfig:KEY_CACHE_GROUP_SIZE=0
+[05:59:13.3027]D[cumulative_schedule.cpp:106][MULTI] device:CPU, GetConfig:VALUE_CACHE_GROUP_SIZE=0
+[05:59:13.3028]D[cumulative_schedule.cpp:106][MULTI] device:CPU, GetConfig:RUNTIME_REQUIREMENTS=meta=1.0;ov=2026.4.1;isa=Intel AVX-512 with Intel DL Boost and bfloat16 support
+[cell 31 DONE  +   80.7s]
+[cell 32 START +   80.7s] ### Compare Performance of the FP32 IR Model and Quantized Models | [bac
+[cell 33 START +   80.7s] # ! benchmark_app --help
+[cell 33 DONE  +   80.7s]
+[cell 34 START +   80.7s] # Benchmark FP32 model | ! benchmark_app -m $fp32_ir_path -d $device.val
+[cell 34 DONE  +  102.5s]
+[cell 35 START +  102.5s] # Benchmark INT8 model | ! benchmark_app -m $int8_ir_path -d $device.val
+[cell 35 DONE  +  126.2s]
+[cell 36 START +  126.2s] ### Visually Compare Inference Results | [back to top ⬆️](#Table-of-cont
+[cell 37 START +  126.2s] # The sigmoid function is used to transform the result of the network | 
+[06:00:00.5587]D[plugin.cpp:289][MULTI] deviceNameWithID:CPU, defaultDeviceID:, uniqueName:CPU_
+[06:00:00.5587]D[plugin.cpp:289][MULTI] deviceNameWithID:GPU.0, defaultDeviceID:, uniqueName:gfx1151 (iGPU)_0
+[06:00:00.5588]I[plugin.cpp:479][MULTI] device:CPU, config:LOG_LEVEL=LOG_NONE
+[06:00:00.5588]I[plugin.cpp:479][MULTI] device:CPU, config:PERFORMANCE_HINT=THROUGHPUT
+[06:00:00.5588]I[plugin.cpp:479][MULTI] device:CPU, config:PERFORMANCE_HINT_NUM_REQUESTS=0
+[06:00:00.5588]I[plugin.cpp:479][MULTI] device:CPU, config:PERF_COUNT=NO
+[06:00:00.5588]I[plugin.cpp:484][MULTI] device:CPU, priority:0
+[06:00:00.5588]I[plugin.cpp:479][MULTI] device:GPU.0, config:DEVICE_ID=0
+[06:00:00.5588]I[plugin.cpp:479][MULTI] device:GPU.0, config:MODEL_PRIORITY=MEDIUM
+[06:00:00.5588]I[plugin.cpp:479][MULTI] device:GPU.0, config:PERFORMANCE_HINT=THROUGHPUT
+[06:00:00.5588]I[plugin.cpp:479][MULTI] device:GPU.0, config:PERFORMANCE_HINT_NUM_REQUESTS=0
+[06:00:00.5588]I[plugin.cpp:479][MULTI] device:GPU.0, config:PERF_COUNT=NO
+[06:00:00.5588]I[plugin.cpp:484][MULTI] device:GPU.0, priority:1
+[06:00:00.5588]I[plugin.cpp:510][MULTI] Original device list(CPU,GPU) size to load the model: 2
+[06:00:00.5588]I[schedule.cpp:17][MULTI] scheduler starting
+[06:00:00.5598]D[cumulative_schedule.cpp:186][MULTI] gpu streams number for compiling: 16
+[06:00:06.7642]I[cumulative_schedule.cpp:100][MULTI] device:GPU.0 compiling model finished
+[06:00:06.7643]D[cumulative_schedule.cpp:106][MULTI] device:GPU.0, GetConfig:SUPPORTED_PROPERTIES=SUPPORTED_PROPERTIES OPTIMAL_NUMBER_OF_INFER_REQUESTS NETWORK_NAME EXECUTION_DEVICES AUTO_BATCH_TIMEOUT
+[06:00:06.7643]D[cumulative_schedule.cpp:106][MULTI] device:GPU.0, GetConfig:OPTIMAL_NUMBER_OF_INFER_REQUESTS=4
+[06:00:06.7643]D[cumulative_schedule.cpp:106][MULTI] device:GPU.0, GetConfig:NETWORK_NAME=Model0
+[06:00:06.7643]D[cumulative_schedule.cpp:106][MULTI] device:GPU.0, GetConfig:EXECUTION_DEVICES=GPU.0
+[06:00:06.7643]D[cumulative_schedule.cpp:106][MULTI] device:GPU.0, GetConfig:AUTO_BATCH_TIMEOUT=1000
+[06:00:06.8326]I[cumulative_schedule.cpp:100][MULTI] device:CPU compiling model finished
+[06:00:06.8326]D[cumulative_schedule.cpp:106][MULTI] device:CPU, GetConfig:SUPPORTED_PROPERTIES=SUPPORTED_PROPERTIES NETWORK_NAME OPTIMAL_NUMBER_OF_INFER_REQUESTS NUM_STREAMS INFERENCE_NUM_THREADS PERF_COUNT INFERENCE_PRECISION_HINT PERFORMANCE_HINT EXECUTION_MODE_HINT PERFORMANCE_HINT_NUM_REQUESTS ENABLE_
+[06:00:06.8326]D[cumulative_schedule.cpp:106][MULTI] device:CPU, GetConfig:NETWORK_NAME=Model0
+[06:00:06.8326]D[cumulative_schedule.cpp:106][MULTI] device:CPU, GetConfig:OPTIMAL_NUMBER_OF_INFER_REQUESTS=8
+[06:00:06.8327]D[cumulative_schedule.cpp:106][MULTI] device:CPU, GetConfig:NUM_STREAMS=8
+[06:00:06.8327]D[cumulative_schedule.cpp:106][MULTI] device:CPU, GetConfig:INFERENCE_NUM_THREADS=32
+[06:00:06.8327]D[cumulative_schedule.cpp:106][MULTI] device:CPU, GetConfig:PERF_COUNT=NO
+[06:00:06.8327]D[cumulative_schedule.cpp:106][MULTI] device:CPU, GetConfig:INFERENCE_PRECISION_HINT=bf16
+[06:00:06.8327]D[cumulative_schedule.cpp:106][MULTI] device:CPU, GetConfig:PERFORMANCE_HINT=THROUGHPUT
+[06:00:06.8327]D[cumulative_schedule.cpp:106][MULTI] device:CPU, GetConfig:EXECUTION_MODE_HINT=PERFORMANCE
+[06:00:06.8327]D[cumulative_schedule.cpp:106][MULTI] device:CPU, GetConfig:PERFORMANCE_HINT_NUM_REQUESTS=0
+[06:00:06.8327]D[cumulative_schedule.cpp:106][MULTI] device:CPU, GetConfig:ENABLE_CPU_PINNING=YES
+[06:00:06.8327]D[cumulative_schedule.cpp:106][MULTI] device:CPU, GetConfig:ENABLE_CPU_RESERVATION=NO
+[06:00:06.8327]D[cumulative_schedule.cpp:106][MULTI] device:CPU, GetConfig:SCHEDULING_CORE_TYPE=ANY_CORE
+[06:00:06.8327]D[cumulative_schedule.cpp:106][MULTI] device:CPU, GetConfig:MODEL_DISTRIBUTION_POLICY=
+[06:00:06.8327]D[cumulative_schedule.cpp:106][MULTI] device:CPU, GetConfig:ENABLE_HYPER_THREADING=YES
+[06:00:06.8327]D[cumulative_schedule.cpp:106][MULTI] device:CPU, GetConfig:EXECUTION_DEVICES=CPU
+[06:00:06.8327]D[cumulative_schedule.cpp:106][MULTI] device:CPU, GetConfig:CPU_DENORMALS_OPTIMIZATION=NO
+[06:00:06.8327]D[cumulative_schedule.cpp:106][MULTI] device:CPU, GetConfig:LOG_LEVEL=LOG_NONE
+[06:00:06.8327]D[cumulative_schedule.cpp:106][MULTI] device:CPU, GetConfig:CPU_SPARSE_WEIGHTS_DECOMPRESSION_RATE=1
+[06:00:06.8327]D[cumulative_schedule.cpp:106][MULTI] device:CPU, GetConfig:ENABLE_TENSOR_PARALLEL=NO
+[06:00:06.8327]D[cumulative_schedule.cpp:106][MULTI] device:CPU, GetConfig:TBB_PARTITIONER=STATIC
+[06:00:06.8327]D[cumulative_schedule.cpp:106][MULTI] device:CPU, GetConfig:DYNAMIC_QUANTIZATION_GROUP_SIZE=32
+[06:00:06.8327]D[cumulative_schedule.cpp:106][MULTI] device:CPU, GetConfig:KV_CACHE_PRECISION=u8
+[06:00:06.8327]D[cumulative_schedule.cpp:106][MULTI] device:CPU, GetConfig:KEY_CACHE_PRECISION=u8
+[06:00:06.8327]D[cumulative_schedule.cpp:106][MULTI] device:CPU, GetConfig:VALUE_CACHE_PRECISION=u8
+[06:00:06.8327]D[cumulative_schedule.cpp:106][MULTI] device:CPU, GetConfig:KEY_CACHE_GROUP_SIZE=0
+[06:00:06.8327]D[cumulative_schedule.cpp:106][MULTI] device:CPU, GetConfig:VALUE_CACHE_GROUP_SIZE=0
+[06:00:06.8327]D[cumulative_schedule.cpp:106][MULTI] device:CPU, GetConfig:RUNTIME_REQUIREMENTS=meta=1.0;ov=2026.4.1;isa=Intel AVX-512 with Intel DL Boost and bfloat16 support
+[06:00:06.8336]D[plugin.cpp:289][MULTI] deviceNameWithID:CPU, defaultDeviceID:, uniqueName:CPU_
+[06:00:06.8337]D[plugin.cpp:289][MULTI] deviceNameWithID:GPU.0, defaultDeviceID:, uniqueName:gfx1151 (iGPU)_0
+[06:00:06.8339]I[plugin.cpp:479][MULTI] device:CPU, config:LOG_LEVEL=LOG_NONE
+[06:00:06.8339]I[plugin.cpp:479][MULTI] device:CPU, config:PERFORMANCE_HINT=THROUGHPUT
+[06:00:06.8339]I[plugin.cpp:479][MULTI] device:CPU, config:PERFORMANCE_HINT_NUM_REQUESTS=0
+[06:00:06.8339]I[plugin.cpp:479][MULTI] device:CPU, config:PERF_COUNT=NO
+[06:00:06.8339]I[plugin.cpp:484][MULTI] device:CPU, priority:0
+[06:00:06.8339]I[plugin.cpp:479][MULTI] device:GPU.0, config:DEVICE_ID=0
+[06:00:06.8339]I[plugin.cpp:479][MULTI] device:GPU.0, config:MODEL_PRIORITY=MEDIUM
+[06:00:06.8339]I[plugin.cpp:479][MULTI] device:GPU.0, config:PERFORMANCE_HINT=THROUGHPUT
+[06:00:06.8339]I[plugin.cpp:479][MULTI] device:GPU.0, config:PERFORMANCE_HINT_NUM_REQUESTS=0
+[06:00:06.8339]I[plugin.cpp:479][MULTI] device:GPU.0, config:PERF_COUNT=NO
+[06:00:06.8339]I[plugin.cpp:484][MULTI] device:GPU.0, priority:1
+[06:00:06.8339]I[plugin.cpp:510][MULTI] Original device list(CPU,GPU) size to load the model: 2
+[06:00:06.8339]I[schedule.cpp:17][MULTI] scheduler starting
+[06:00:06.8347]D[cumulative_schedule.cpp:186][MULTI] gpu streams number for compiling: 16
+[06:00:07.8547]I[cumulative_schedule.cpp:100][MULTI] device:GPU.0 compiling model finished
+[06:00:07.8547]D[cumulative_schedule.cpp:106][MULTI] device:GPU.0, GetConfig:SUPPORTED_PROPERTIES=SUPPORTED_PROPERTIES OPTIMAL_NUMBER_OF_INFER_REQUESTS NETWORK_NAME EXECUTION_DEVICES AUTO_BATCH_TIMEOUT
+[06:00:07.8547]D[cumulative_schedule.cpp:106][MULTI] device:GPU.0, GetConfig:OPTIMAL_NUMBER_OF_INFER_REQUESTS=4
+[06:00:07.8547]D[cumulative_schedule.cpp:106][MULTI] device:GPU.0, GetConfig:NETWORK_NAME=Model49
+[06:00:07.8547]D[cumulative_schedule.cpp:106][MULTI] device:GPU.0, GetConfig:EXECUTION_DEVICES=GPU.0
+[06:00:07.8547]D[cumulative_schedule.cpp:106][MULTI] device:GPU.0, GetConfig:AUTO_BATCH_TIMEOUT=1000
+[06:00:07.9645]I[cumulative_schedule.cpp:100][MULTI] device:CPU compiling model finished
+[06:00:07.9645]D[cumulative_schedule.cpp:106][MULTI] device:CPU, GetConfig:SUPPORTED_PROPERTIES=SUPPORTED_PROPERTIES NETWORK_NAME OPTIMAL_NUMBER_OF_INFER_REQUESTS NUM_STREAMS INFERENCE_NUM_THREADS PERF_COUNT INFERENCE_PRECISION_HINT PERFORMANCE_HINT EXECUTION_MODE_HINT PERFORMANCE_HINT_NUM_REQUESTS ENABLE_
+[06:00:07.9645]D[cumulative_schedule.cpp:106][MULTI] device:CPU, GetConfig:NETWORK_NAME=Model49
+[06:00:07.9645]D[cumulative_schedule.cpp:106][MULTI] device:CPU, GetConfig:OPTIMAL_NUMBER_OF_INFER_REQUESTS=8
+[06:00:07.9645]D[cumulative_schedule.cpp:106][MULTI] device:CPU, GetConfig:NUM_STREAMS=8
+[06:00:07.9646]D[cumulative_schedule.cpp:106][MULTI] device:CPU, GetConfig:INFERENCE_NUM_THREADS=32
+[06:00:07.9646]D[cumulative_schedule.cpp:106][MULTI] device:CPU, GetConfig:PERF_COUNT=NO
+[06:00:07.9646]D[cumulative_schedule.cpp:106][MULTI] device:CPU, GetConfig:INFERENCE_PRECISION_HINT=bf16
+[06:00:07.9646]D[cumulative_schedule.cpp:106][MULTI] device:CPU, GetConfig:PERFORMANCE_HINT=THROUGHPUT
+[06:00:07.9646]D[cumulative_schedule.cpp:106][MULTI] device:CPU, GetConfig:EXECUTION_MODE_HINT=PERFORMANCE
+[06:00:07.9646]D[cumulative_schedule.cpp:106][MULTI] device:CPU, GetConfig:PERFORMANCE_HINT_NUM_REQUESTS=0
+[06:00:07.9646]D[cumulative_schedule.cpp:106][MULTI] device:CPU, GetConfig:ENABLE_CPU_PINNING=YES
+[06:00:07.9646]D[cumulative_schedule.cpp:106][MULTI] device:CPU, GetConfig:ENABLE_CPU_RESERVATION=NO
+[06:00:07.9646]D[cumulative_schedule.cpp:106][MULTI] device:CPU, GetConfig:SCHEDULING_CORE_TYPE=ANY_CORE
+[06:00:07.9646]D[cumulative_schedule.cpp:106][MULTI] device:CPU, GetConfig:MODEL_DISTRIBUTION_POLICY=
+[06:00:07.9646]D[cumulative_schedule.cpp:106][MULTI] device:CPU, GetConfig:ENABLE_HYPER_THREADING=YES
+[06:00:07.9646]D[cumulative_schedule.cpp:106][MULTI] device:CPU, GetConfig:EXECUTION_DEVICES=CPU
+[06:00:07.9646]D[cumulative_schedule.cpp:106][MULTI] device:CPU, GetConfig:CPU_DENORMALS_OPTIMIZATION=NO
+[06:00:07.9646]D[cumulative_schedule.cpp:106][MULTI] device:CPU, GetConfig:LOG_LEVEL=LOG_NONE
+[06:00:07.9646]D[cumulative_schedule.cpp:106][MULTI] device:CPU, GetConfig:CPU_SPARSE_WEIGHTS_DECOMPRESSION_RATE=1
+[06:00:07.9646]D[cumulative_schedule.cpp:106][MULTI] device:CPU, GetConfig:ENABLE_TENSOR_PARALLEL=NO
+[06:00:07.9646]D[cumulative_schedule.cpp:106][MULTI] device:CPU, GetConfig:TBB_PARTITIONER=STATIC
+[06:00:07.9646]D[cumulative_schedule.cpp:106][MULTI] device:CPU, GetConfig:DYNAMIC_QUANTIZATION_GROUP_SIZE=32
+[06:00:07.9646]D[cumulative_schedule.cpp:106][MULTI] device:CPU, GetConfig:KV_CACHE_PRECISION=u8
+[06:00:07.9646]D[cumulative_schedule.cpp:106][MULTI] device:CPU, GetConfig:KEY_CACHE_PRECISION=u8
+[06:00:07.9646]D[cumulative_schedule.cpp:106][MULTI] device:CPU, GetConfig:VALUE_CACHE_PRECISION=u8
+[06:00:07.9646]D[cumulative_schedule.cpp:106][MULTI] device:CPU, GetConfig:KEY_CACHE_GROUP_SIZE=0
+[06:00:07.9646]D[cumulative_schedule.cpp:106][MULTI] device:CPU, GetConfig:VALUE_CACHE_GROUP_SIZE=0
+[06:00:07.9646]D[cumulative_schedule.cpp:106][MULTI] device:CPU, GetConfig:RUNTIME_REQUIREMENTS=meta=1.0;ov=2026.4.1;isa=Intel AVX-512 with Intel DL Boost and bfloat16 support
+[cell 37 DONE  +  135.4s]
+[cell 38 START +  135.4s] ## Show Live Inference | [back to top ⬆️](#Table-of-contents:) |  | To show 
+[cell 39 START +  135.4s] ### Load Model and List of Image Files | [back to top ⬆️](#Table-of-cont
+[cell 40 START +  135.4s] CASE = 117 |  | segmentation_model = SegmentationModel(ie=core, model_path
+[cell 40 DONE  +  135.4s]
+[cell 41 START +  135.4s] ### Show Inference | [back to top ⬆️](#Table-of-contents:) |  | In the next 
+[cell 42 START +  135.4s] reader = LoadImage(image_only=True, dtype=np.uint8) | show_live_inferenc
+[06:00:09.7040]D[plugin.cpp:289][MULTI] deviceNameWithID:CPU, defaultDeviceID:, uniqueName:CPU_
+[06:00:09.7041]D[plugin.cpp:289][MULTI] deviceNameWithID:GPU.0, defaultDeviceID:, uniqueName:gfx1151 (iGPU)_0
+[06:00:09.7042]I[plugin.cpp:479][MULTI] device:CPU, config:LOG_LEVEL=LOG_NONE
+[06:00:09.7042]I[plugin.cpp:479][MULTI] device:CPU, config:PERFORMANCE_HINT=THROUGHPUT
+[06:00:09.7042]I[plugin.cpp:479][MULTI] device:CPU, config:PERFORMANCE_HINT_NUM_REQUESTS=0
+[06:00:09.7042]I[plugin.cpp:479][MULTI] device:CPU, config:PERF_COUNT=NO
+[06:00:09.7042]I[plugin.cpp:484][MULTI] device:CPU, priority:0
+[06:00:09.7042]I[plugin.cpp:479][MULTI] device:GPU.0, config:DEVICE_ID=0
+[06:00:09.7042]I[plugin.cpp:479][MULTI] device:GPU.0, config:MODEL_PRIORITY=MEDIUM
+[06:00:09.7042]I[plugin.cpp:479][MULTI] device:GPU.0, config:PERFORMANCE_HINT=THROUGHPUT
+[06:00:09.7042]I[plugin.cpp:479][MULTI] device:GPU.0, config:PERFORMANCE_HINT_NUM_REQUESTS=0
+[06:00:09.7042]I[plugin.cpp:479][MULTI] device:GPU.0, config:PERF_COUNT=NO
+[06:00:09.7042]I[plugin.cpp:484][MULTI] device:GPU.0, priority:1
+[06:00:09.7042]I[plugin.cpp:510][MULTI] Original device list(CPU,GPU) size to load the model: 2
+[06:00:09.7042]I[schedule.cpp:17][MULTI] scheduler starting
+[06:00:09.7049]D[cumulative_schedule.cpp:186][MULTI] gpu streams number for compiling: 16
+NBEXEC_RESULT={"ok": false, "n_cells": 21, "n_skipped": 0, "n_substituted": 0, "stopped_after": null, "error_cell": null, "error_type": "DeadKernelError", "error_head": "nbclient.exceptions.DeadKernelError: Kernel died", "duration_s": 188.24, "patch_notes": []}

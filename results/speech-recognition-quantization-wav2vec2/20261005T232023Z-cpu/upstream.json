@@ -1,0 +1,9 @@
+{
+  "schema_version": 2,
+  "repository": "openvinotoolkit/openvino_notebooks",
+  "branch": "latest",
+  "commit": "a8809170cc4fc6aa633fbb9c22214be67ac20b47",
+  "path": "notebooks/speech-recognition-quantization/speech-recognition-quantization-wav2vec2.ipynb",
+  "url": "https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/speech-recognition-quantization/speech-recognition-quantization-wav2vec2.ipynb",
+  "notebook_sha256": "8e229f157d106b297c286bc772363ca23f9a96008199afe4f4159e7d54cc6b1b"
+}

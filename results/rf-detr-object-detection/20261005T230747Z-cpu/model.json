@@ -1,0 +1,6 @@
+{
+  "schema_version": 2,
+  "declared": {},
+  "detected_hf_refs": [],
+  "notebook": "rf-detr-object-detection.ipynb"
+}

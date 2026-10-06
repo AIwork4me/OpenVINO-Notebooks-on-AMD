@@ -14,7 +14,7 @@ model:
   license: ''
 cpu:
   runtime: openvino
-  status: VERIFIED
+  status: VERIFIED_WITH_LIMITATIONS
 gpu:
   runtime: ''
   status: NOT_TESTED
@@ -25,4 +25,4 @@ validation:
   - 'average speedup: \d+\.\d+'
   output_finite_numbers: true
 patches: {}
-last_verified: '2026-10-01T17:11:30+00:00'
+last_verified: '2026-10-05T20:06:46+00:00'

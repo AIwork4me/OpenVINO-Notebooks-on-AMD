@@ -1,0 +1,6 @@
+{
+  "schema_version": 2,
+  "declared": {},
+  "detected_hf_refs": [],
+  "notebook": "stable-diffusion-v3-torch-fx.ipynb"
+}

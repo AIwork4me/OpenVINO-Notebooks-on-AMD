@@ -1,0 +1,6 @@
+{
+  "schema_version": 2,
+  "declared": {},
+  "detected_hf_refs": [],
+  "notebook": "speech-recognition-quantization-wav2vec2.ipynb"
+}

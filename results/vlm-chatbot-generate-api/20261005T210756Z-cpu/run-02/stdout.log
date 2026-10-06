@@ -1,0 +1,260 @@
+[cell 0 START +    0.4s] # Create VLM-powered Chatbot using OpenVINO Generate API |  | In the rapid
+[cell 1 START +    0.4s] ## Prerequisites | [back to top ⬆️](#Table-of-contents:) |  | Install requir
+[cell 2 START +    0.4s] import os |  | os.environ["GIT_CLONE_PROTECTION_ACTIVE"] = "false" |  | %pip i
+[cell 2 DONE  +   96.2s]
+[cell 3 START +   96.2s] import os | from pathlib import Path | import requests | import shutil |  | # fe
+[cell 3 DONE  +   96.7s]
+[cell 4 START +   96.7s] import ipywidgets as widgets | from IPython.display import display |  | tran
+[cell 4 DONE  +   96.7s]
+[cell 5 START +   96.7s] from notebook_utils import pip_install |  | if transformers_variant.value 
+[cell 5 DONE  +   96.7s]
+[cell 6 START +   96.7s] ## Select device for inference | [back to top ⬆️](#Table-of-contents:)
+[cell 7 START +   96.7s] from notebook_utils import device_widget |  | device = device_widget(defau
+[cell 7 DONE  +   97.0s]
+[cell 8 START +   97.0s] ## Select model for inference | [back to top ⬆️](#Table-of-contents:) |  | T
+[cell 9 START +   97.0s] import importlib | import llm_config |  | importlib.reload(llm_config) | from 
+[cell 9 DONE  +   97.0s]
+[cell 10 START +   97.0s] model_configuration = model_widget.value | model_id = model_widget.label
+[cell 10 DONE  +   97.0s]
+[cell 11 START +   97.0s] ## Convert model using Optimum-CLI tool | [back to top ⬆️](#Table-of-con
+[cell 12 START +   97.0s] from llm_config import convert_and_compress_vlm |  | model_dir = convert_a
+INFO:nncf:Statistics of the bitwidth distribution:
+┍━━━━━━━━━━━━━━━━━━━━━━━━━━━┯━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┯━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┑
+│ Weight compression mode   │ % all parameters (layers)   │ % ratio-defining parameters (layers)   │
+┝━━━━━━━━━━━━━━━━━━━━━━━━━━━┿━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┿━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┥
+│ int8_asym, per-channel    │ 18% (1 / 197)               │ 0% (0 / 196)                           │
+├───────────────────────────┼─────────────────────────────┼────────────────────────────────────────┤
+│ int4_asym, group size 128 │ 82% (196 / 197)             │ 100% (196 / 196)                       │
+┕━━━━━━━━━━━━━━━━━━━━━━━━━━━┷━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┷━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┙
+[?25lApplying data-free AWQ ━━━          ━━━━━━━━━━          ━━━━━━━━━   • 0:00:00  [2KApplying data-free AWQ                                     0% 0/28 • 0:00:00 • [2KApplying data-free AWQ ╸                             4% 1/28 • 0:00:00 • -:--:--[2KApplying data-free AWQ ━━╸                          11% 3/28 • 0:00:00 • 0:00:02[2KApplying data-free AWQ ━━━━╸                        18% 5/28 • 0:00:00 • 0:00:02[2KApplying data-free AWQ ━━━━━━╸                      25% 7/28 • 0:00:00 • 0:00:02[2KApplying data-free AWQ ━━━━━━━━╸                    32% 9/28 • 0:00:00 • 0:00:01[2KApplying data-free AWQ ━━━━━━━━━━                  39% 11/28 • 0:00:00 • 0:00:01[2KApplying data-free AWQ ━━━━━━━━━━━━                46% 13/28 • 0:00:00 • 0:00:01[2KApplying data-free AWQ ━━━━━━━━━━━━━━╸             57% 16/28 • 0:00:00 • 0:00:01[2KApplying data-free AWQ ━━━━━━━━━━━━━━━━━╸          68% 19/28 • 0:00:01 • 0:00:01[2KApplying data-free AWQ ━━━━━━━━━━━━━━━━━━━━        79% 22/28 • 0:00:01 • 0:00:01[2KApplying data-free AWQ ━━━━━━━━━━━━━━━━━━━━━━━     89% 25/28 • 0:00:01 • 0:00:01[2KApplying data-free AWQ ━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 28/28 • 0:00:01 • 0:00:00[2KApplying data-free AWQ ━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% 28/28 • 0:00:01 • 0:00:00
+[?25h[?25lApplying Weight Compression                               0% • 0:00:00 • -:--:--[2KApplying Weight Compression                               0% • 0:00:00 • -:--:--[2KApplying Weight Compression                               0% • 0:00:00 • -:--:--[2KApplying Weight Compression                               0% • 0:00:00 • -:--:--[2KApplying Weight Compression ━━━━━                        20% • 0:00:00 • -:--:--[2KApplying Weight Compression ━━━━━╸                       22% • 0:00:00 • 0:00:04[2KApplying Weight Compression ━━━━━━                       24% • 0:00:00 • 0:00:04[2KApplying Weight Compression ━━━━━━━                      28% • 0:00:00 • 0:00:04[2KApplying Weight Compression ━━━━━━━╸                     29% • 0:00:00 • 0:00:04[2KApplying Weight Compression ━━━━━━━━                     31% • 0:00:00 • 0:00:04[2KApplying Weight Compression ━━━━━━━━╸                    33% • 0:00:01 • 0:00:04[2KApplying Weight Compression ━━━━━━━━━                    34% • 0:00:01 • 0:00:04[2KApplying Weight Compression ━━━━━━━━━╸                   36% • 0:00:01 • 0:00:04[2KApplying Weight Compression ━━━━━━━━━━                   38% • 0:00:01 • 0:00:04[2KApplying Weight Compression ━━━━━━━━━━╸                  40% • 0:00:01 • 0:00:04[2KApplying Weight Compression ━━━━━━━━━━━                  41% • 0:00:01 • 0:00:04[2KApplying Weight Compression ━━━━━━━━━━━╸                 44% • 0:00:01 • 0:00:04[2KApplying Weight Compression ━━━━━━━━━━━━                 45% • 0:00:01 • 0:00:04[2KApplying Weight Compression ━━━━━━━━━━━━╸                47% • 0:00:01 • 0:00:03[2KApplying Weight Compression ━━━━━━━━━━━━━                49% • 0:00:01 • 0:00:03[2KApplying Weight Compression ━━━━━━━━━━━━━╸               50% • 0:00:02 • 0:00:03[2KApplying Weight Compression ━━━━━━━━━━━━━━               52% • 0:00:02 • 0:00:03[2KApplying Weight Compression ━━━━━━━━━━━━━━╸              54% • 0:00:02 • 0:00:03[2KApplying Weight Compression ━━━━━━━━━━━━━━━              56% • 0:00:02 • 0:00:03[2KApplying Weight Compression ━━━━━━━━━━━━━━━╸             58% • 0:00:02 • 0:00:03[2KApplying Weight Compression ━━━━━━━━━━━━━━━━             60% • 0:00:02 • 0:00:03[2KApplying Weight Compression ━━━━━━━━━━━━━━━━╸            61% • 0:00:02 • 0:00:03[2KApplying Weight Compression ━━━━━━━━━━━━━━━━━            63% • 0:00:02 • 0:00:03[2KApplying Weight Compression ━━━━━━━━━━━━━━━━━╸           65% • 0:00:02 • 0:00:02[2KApplying Weight Compression ━━━━━━━━━━━━━━━━━━           67% • 0:00:02 • 0:00:02[2KApplying Weight Compression ━━━━━━━━━━━━━━━━━━╸          69% • 0:00:03 • 0:00:02[2KApplying Weight Compression ━━━━━━━━━━━━━━━━━━╸          70% • 0:00:03 • 0:00:02[2KApplying Weight Compression ━━━━━━━━━━━━━━━━━━━          72% • 0:00:03 • 0:00:02[2KApplying Weight Compression ━━━━━━━━━━━━━━━━━━━╸         74% • 0:00:03 • 0:00:02[2KApplying Weight Compression ━━━━━━━━━━━━━━━━━━━━         76% • 0:00:03 • 0:00:02[2KApplying Weight Compression ━━━━━━━━━━━━━━━━━━━━━        78% • 0:00:03 • 0:00:02[2KApplying Weight Compression ━━━━━━━━━━━━━━━━━━━━━╸       80% • 0:00:03 • 0:00:02[2KApplying Weight Compression ━━━━━━━━━━━━━━━━━━━━━╸       81% • 0:00:03 • 0:00:02[2KApplying Weight Compression ━━━━━━━━━━━━━━━━━━━━━━       82% • 0:00:03 • 0:00:02[2KApplying Weight Compression ━━━━━━━━━━━━━━━━━━━━━━       83% • 0:00:04 • 0:00:01[2KApplying Weight Compression ━━━━━━━━━━━━━━━━━━━━━━╸      84% • 0:00:04 • 0:00:01[2KApplying Weight Compression ━━━━━━━━━━━━━━━━━━━━━━╸      85% • 0:00:04 • 0:00:01[2KApplying Weight Compression ━━━━━━━━━━━━━━━━━━━━━━━      86% • 0:00:04 • 0:00:01[2KApplying Weight Compression ━━━━━━━━━━━━━━━━━━━━━━━      87% • 0:00:04 • 0:00:01[2KApplying Weight Compression ━━━━━━━━━━━━━━━━━━━━━━━╸     88% • 0:00:04 • 0:00:01[2KApplying Weight Compression ━━━━━━━━━━━━━━━━━━━━━━━╸     89% • 0:00:04 • 0:00:01[2KApplying Weight Compression ━━━━━━━━━━━━━━━━━━━━━━━━     90% • 0:00:04 • 0:00:01[2KApplying Weight Compression ━━━━━━━━━━━━━━━━━━━━━━━━     90% • 0:00:04 • 0:00:01[2KApplying Weight Compression ━━━━━━━━━━━━━━━━━━━━━━━━╸    91% • 0:00:04 • 0:00:01[2KApplying Weight Compression ━━━━━━━━━━━━━━━━━━━━━━━━╸    92% • 0:00:05 • 0:00:01[2KApplying Weight Compression ━━━━━━━━━━━━━━━━━━━━━━━━━    93% • 0:00:05 • 0:00:01[2KApplying Weight Compression ━━━━━━━━━━━━━━━━━━━━━━━━━    94% • 0:00:05 • 0:00:01[2KApplying Weight Compression ━━━━━━━━━━━━━━━━━━━━━━━━━╸   95% • 0:00:05 • 0:00:01[2KApplying Weight Compression ━━━━━━━━━━━━━━━━━━━━━━━━━╸   95% • 0:00:05 • 0:00:01[2KApplying Weight Compression ━━━━━━━━━━━━━━━━━━━━━━━━━╸   96% • 0:00:05 • 0:00:01[2KApplying Weight Compression ━━━━━━━━━━━━━━━━━━━━━━━━━╸   96% • 0:00:05 • 0:00:01[2KApplying Weight Compression ━━━━━━━━━━━━━━━━━━━━━━━━━━   97% • 0:00:05 • 0:00:01[2KApplying Weight Compression ━━━━━━━━━━━━━━━━━━━━━━━━━━   97% • 0:00:05 • 0:00:01[2KApplying Weight Compression ━━━━━━━━━━━━━━━━━━━━━━━━━━   98% • 0:00:05 • 0:00:01[2KApplying Weight Compression ━━━━━━━━━━━━━━━━━━━━━━━━━━╸  99% • 0:00:06 • 0:00:01[2KApplying Weight Compression ━━━━━━━━━━━━━━━━━━━━━━━━━━╸  99% • 0:00:06 • 0:00:01[2KApplying Weight Compression ━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% • 0:00:06 • 0:00:00[2KApplying Weight Compression ━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% • 0:00:06 • 0:00:00
+[?25hINFO:nncf:Statistics of the bitwidth distribution:
+┍━━━━━━━━━━━━━━━━━━━━━━━━━━━┯━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┯━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┑
+│ Weight compression mode   │ % all parameters (layers)   │ % ratio-defining parameters (layers)   │
+┝━━━━━━━━━━━━━━━━━━━━━━━━━━━┿━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┿━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┥
+│ int8_sym, per-channel     │ 100% (1 / 1)                │ 100% (1 / 1)                           │
+┕━━━━━━━━━━━━━━━━━━━━━━━━━━━┷━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┷━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┙
+[?25lApplying Weight Compression                               0% • 0:00:00 • -:--:--[2KApplying Weight Compression                               0% • 0:00:00 • -:--:--[2KApplying Weight Compression                               0% • 0:00:00 • -:--:--[2KApplying Weight Compression ━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% • 0:00:00 • 0:00:00[2KApplying Weight Compression ━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% • 0:00:00 • 0:00:00
+[?25hINFO:nncf:Statistics of the bitwidth distribution:
+┍━━━━━━━━━━━━━━━━━━━━━━━━━━━┯━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┯━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┑
+│ Weight compression mode   │ % all parameters (layers)   │ % ratio-defining parameters (layers)   │
+┝━━━━━━━━━━━━━━━━━━━━━━━━━━━┿━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┿━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┥
+│ int8_sym, per-channel     │ 100% (1 / 1)                │ 100% (1 / 1)                           │
+┕━━━━━━━━━━━━━━━━━━━━━━━━━━━┷━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┷━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┙
+[?25lApplying Weight Compression                               0% • 0:00:00 • -:--:--[2KApplying Weight Compression ━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% • 0:00:00 • 0:00:00[2KApplying Weight Compression ━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% • 0:00:00 • 0:00:00
+[?25hINFO:nncf:Statistics of the bitwidth distribution:
+┍━━━━━━━━━━━━━━━━━━━━━━━━━━━┯━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┯━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┑
+│ Weight compression mode   │ % all parameters (layers)   │ % ratio-defining parameters (layers)   │
+┝━━━━━━━━━━━━━━━━━━━━━━━━━━━┿━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┿━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┥
+│ int8_sym, per-channel     │ 100% (104 / 104)            │ 100% (104 / 104)                       │
+┕━━━━━━━━━━━━━━━━━━━━━━━━━━━┷━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┷━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┙
+[?25lApplying Weight Compression                               0% • 0:00:00 • -:--:--[2KApplying Weight Compression                               0% • 0:00:00 • -:--:--[2KApplying Weight Compression ━━━                          12% • 0:00:00 • -:--:--[2KApplying Weight Compression ━━━━━━                       23% • 0:00:00 • 0:00:01[2KApplying Weight Compression ━━━━━━━╸                     29% • 0:00:00 • 0:00:01[2KApplying Weight Compression ━━━━━━━━━                    34% • 0:00:00 • 0:00:01[2KApplying Weight Compression ━━━━━━━━━━╸                  40% • 0:00:00 • 0:00:01[2KApplying Weight Compression ━━━━━━━━━━━━━                49% • 0:00:00 • 0:00:01[2KApplying Weight Compression ━━━━━━━━━━━━━━╸              54% • 0:00:00 • 0:00:01[2KApplying Weight Compression ━━━━━━━━━━━━━━━━             59% • 0:00:00 • 0:00:01[2KApplying Weight Compression ━━━━━━━━━━━━━━━━━            65% • 0:00:01 • 0:00:01[2KApplying Weight Compression ━━━━━━━━━━━━━━━━━━╸          70% • 0:00:01 • 0:00:01[2KApplying Weight Compression ━━━━━━━━━━━━━━━━━━━━         75% • 0:00:01 • 0:00:01[2KApplying Weight Compression ━━━━━━━━━━━━━━━━━━━━━        79% • 0:00:01 • 0:00:01[2KApplying Weight Compression ━━━━━━━━━━━━━━━━━━━━━━       83% • 0:00:01 • 0:00:01[2KApplying Weight Compression ━━━━━━━━━━━━━━━━━━━━━━━      86% • 0:00:01 • 0:00:01[2KApplying Weight Compression ━━━━━━━━━━━━━━━━━━━━━━━━     90% • 0:00:01 • 0:00:01[2KApplying Weight Compression ━━━━━━━━━━━━━━━━━━━━━━━━━    93% • 0:00:01 • 0:00:01[2KApplying Weight Compression ━━━━━━━━━━━━━━━━━━━━━━━━━╸   95% • 0:00:01 • 0:00:01[2KApplying Weight Compression ━━━━━━━━━━━━━━━━━━━━━━━━━╸   96% • 0:00:01 • 0:00:01[2KApplying Weight Compression ━━━━━━━━━━━━━━━━━━━━━━━━━━   98% • 0:00:02 • 0:00:01[2KApplying Weight Compression ━━━━━━━━━━━━━━━━━━━━━━━━━━╸  99% • 0:00:02 • 0:00:01[2KApplying Weight Compression ━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% • 0:00:02 • 0:00:00[2KApplying Weight Compression ━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% • 0:00:02 • 0:00:00
+[?25hINFO:nncf:Statistics of the bitwidth distribution:
+┍━━━━━━━━━━━━━━━━━━━━━━━━━━━┯━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┯━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┑
+│ Weight compression mode   │ % all parameters (layers)   │ % ratio-defining parameters (layers)   │
+┝━━━━━━━━━━━━━━━━━━━━━━━━━━━┿━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┿━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┥
+│ int8_sym, per-channel     │ 100% (1 / 1)                │ 100% (1 / 1)                           │
+┕━━━━━━━━━━━━━━━━━━━━━━━━━━━┷━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┷━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┙
+[?25lApplying Weight Compression                               0% • 0:00:00 • -:--:--[2KApplying Weight Compression ━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% • 0:00:00 • 0:00:00[2KApplying Weight Compression ━━━━━━━━━━━━━━━━━━━━━━━━━━━ 100% • 0:00:00 • 0:00:00
+[?25h[cell 12 DONE  +  425.7s]
+[cell 13 START +  425.7s] Let's compare model size for different compression types
+[cell 14 START +  425.7s] from llm_config import compare_model_size |  | compare_model_size(model_di
+[cell 14 DONE  +  425.7s]
+[cell 15 START +  425.7s] ## Instantiate pipeline with OpenVINO Generate API | [back to top ⬆️](#T
+[cell 16 START +  425.7s] import openvino_genai as ov_genai | import openvino as ov | import numpy a
+Model: OV Tokenizer
+  NETWORK_NAME: tokenizer
+  OPTIMAL_NUMBER_OF_INFER_REQUESTS: 1
+  NUM_STREAMS: 1
+  INFERENCE_NUM_THREADS: 16
+  PERF_COUNT: NO
+  INFERENCE_PRECISION_HINT: bf16
+  PERFORMANCE_HINT: LATENCY
+  EXECUTION_MODE_HINT: PERFORMANCE
+  PERFORMANCE_HINT_NUM_REQUESTS: 0
+  ENABLE_CPU_PINNING: YES
+  ENABLE_CPU_RESERVATION: NO
+  SCHEDULING_CORE_TYPE: ANY_CORE
+  MODEL_DISTRIBUTION_POLICY: 
+  ENABLE_HYPER_THREADING: NO
+  EXECUTION_DEVICES: CPU
+  CPU_DENORMALS_OPTIMIZATION: NO
+  LOG_LEVEL: LOG_NONE
+  CPU_SPARSE_WEIGHTS_DECOMPRESSION_RATE: 1
+  ENABLE_TENSOR_PARALLEL: NO
+  TBB_PARTITIONER: STATIC
+  DYNAMIC_QUANTIZATION_GROUP_SIZE: 32
+  KV_CACHE_PRECISION: u8
+  KEY_CACHE_PRECISION: u8
+  VALUE_CACHE_PRECISION: u8
+  KEY_CACHE_GROUP_SIZE: 0
+  VALUE_CACHE_GROUP_SIZE: 0
+  RUNTIME_REQUIREMENTS: meta=1.0;ov=2026.5.0;isa=Intel AVX-512 with Intel DL Boost and bfloat16 support
+EXECUTION_DEVICES:
+ CPU: AMD RYZEN AI MAX+ PRO 395 w/ Radeon 8060S      
+Model: OV Detokenizer
+  NETWORK_NAME: detokenizer
+  OPTIMAL_NUMBER_OF_INFER_REQUESTS: 1
+  NUM_STREAMS: 1
+  INFERENCE_NUM_THREADS: 16
+  PERF_COUNT: NO
+  INFERENCE_PRECISION_HINT: bf16
+  PERFORMANCE_HINT: LATENCY
+  EXECUTION_MODE_HINT: PERFORMANCE
+  PERFORMANCE_HINT_NUM_REQUESTS: 0
+  ENABLE_CPU_PINNING: YES
+  ENABLE_CPU_RESERVATION: NO
+  SCHEDULING_CORE_TYPE: ANY_CORE
+  MODEL_DISTRIBUTION_POLICY: 
+  ENABLE_HYPER_THREADING: NO
+  EXECUTION_DEVICES: CPU
+  CPU_DENORMALS_OPTIMIZATION: NO
+  LOG_LEVEL: LOG_NONE
+  CPU_SPARSE_WEIGHTS_DECOMPRESSION_RATE: 1
+  ENABLE_TENSOR_PARALLEL: NO
+  TBB_PARTITIONER: STATIC
+  DYNAMIC_QUANTIZATION_GROUP_SIZE: 32
+  KV_CACHE_PRECISION: u8
+  KEY_CACHE_PRECISION: u8
+  VALUE_CACHE_PRECISION: u8
+  KEY_CACHE_GROUP_SIZE: 0
+  VALUE_CACHE_GROUP_SIZE: 0
+  RUNTIME_REQUIREMENTS: meta=1.0;ov=2026.5.0;isa=Intel AVX-512 with Intel DL Boost and bfloat16 support
+EXECUTION_DEVICES:
+ CPU: AMD RYZEN AI MAX+ PRO 395 w/ Radeon 8060S      
+[INFO] Combined processor_config.json not found in 'Qwen3-VL-2B-Instruct/INT4_compressed_weights' or missing image and video processor keys. Falling back to preprocessor_config.json and video_preprocessor_config.json.
+Model: VLM vision embeddings model
+  NETWORK_NAME: Model12
+  OPTIMAL_NUMBER_OF_INFER_REQUESTS: 1
+  NUM_STREAMS: 1
+  INFERENCE_NUM_THREADS: 16
+  PERF_COUNT: NO
+  INFERENCE_PRECISION_HINT: bf16
+  PERFORMANCE_HINT: LATENCY
+  EXECUTION_MODE_HINT: PERFORMANCE
+  PERFORMANCE_HINT_NUM_REQUESTS: 0
+  ENABLE_CPU_PINNING: YES
+  ENABLE_CPU_RESERVATION: NO
+  SCHEDULING_CORE_TYPE: ANY_CORE
+  MODEL_DISTRIBUTION_POLICY: 
+  ENABLE_HYPER_THREADING: NO
+  EXECUTION_DEVICES: CPU
+  CPU_DENORMALS_OPTIMIZATION: NO
+  LOG_LEVEL: LOG_NONE
+  CPU_SPARSE_WEIGHTS_DECOMPRESSION_RATE: 1
+  ENABLE_TENSOR_PARALLEL: NO
+  TBB_PARTITIONER: STATIC
+  DYNAMIC_QUANTIZATION_GROUP_SIZE: 32
+  KV_CACHE_PRECISION: u8
+  KEY_CACHE_PRECISION: u8
+  VALUE_CACHE_PRECISION: u8
+  KEY_CACHE_GROUP_SIZE: 0
+  VALUE_CACHE_GROUP_SIZE: 0
+  RUNTIME_REQUIREMENTS: meta=1.0;ov=2026.5.0;isa=Intel AVX-512 with Intel DL Boost and bfloat16 support
+EXECUTION_DEVICES:
+ CPU: AMD RYZEN AI MAX+ PRO 395 w/ Radeon 8060S      
+Model: text embeddings model
+  NETWORK_NAME: Model9
+  OPTIMAL_NUMBER_OF_INFER_REQUESTS: 1
+  NUM_STREAMS: 1
+  INFERENCE_NUM_THREADS: 16
+  PERF_COUNT: NO
+  INFERENCE_PRECISION_HINT: bf16
+  PERFORMANCE_HINT: LATENCY
+  EXECUTION_MODE_HINT: PERFORMANCE
+  PERFORMANCE_HINT_NUM_REQUESTS: 0
+  ENABLE_CPU_PINNING: YES
+  ENABLE_CPU_RESERVATION: NO
+  SCHEDULING_CORE_TYPE: ANY_CORE
+  MODEL_DISTRIBUTION_POLICY: 
+  ENABLE_HYPER_THREADING: NO
+  EXECUTION_DEVICES: CPU
+  CPU_DENORMALS_OPTIMIZATION: NO
+  LOG_LEVEL: LOG_NONE
+  CPU_SPARSE_WEIGHTS_DECOMPRESSION_RATE: 1
+  ENABLE_TENSOR_PARALLEL: NO
+  TBB_PARTITIONER: STATIC
+  DYNAMIC_QUANTIZATION_GROUP_SIZE: 32
+  KV_CACHE_PRECISION: u8
+  KEY_CACHE_PRECISION: u8
+  VALUE_CACHE_PRECISION: u8
+  KEY_CACHE_GROUP_SIZE: 0
+  VALUE_CACHE_GROUP_SIZE: 0
+  RUNTIME_REQUIREMENTS: meta=1.0;ov=2026.5.0;isa=Intel AVX-512 with Intel DL Boost and bfloat16 support
+EXECUTION_DEVICES:
+ CPU: AMD RYZEN AI MAX+ PRO 395 w/ Radeon 8060S      
+Model: VLM vision embeddings merger model with VLSDPA optimization DISABLED
+  NETWORK_NAME: Model6
+  OPTIMAL_NUMBER_OF_INFER_REQUESTS: 1
+  NUM_STREAMS: 1
+  INFERENCE_NUM_THREADS: 16
+  PERF_COUNT: NO
+  INFERENCE_PRECISION_HINT: bf16
+  PERFORMANCE_HINT: LATENCY
+  EXECUTION_MODE_HINT: PERFORMANCE
+  PERFORMANCE_HINT_NUM_REQUESTS: 0
+  ENABLE_CPU_PINNING: YES
+  ENABLE_CPU_RESERVATION: NO
+  SCHEDULING_CORE_TYPE: ANY_CORE
+  MODEL_DISTRIBUTION_POLICY: 
+  ENABLE_HYPER_THREADING: NO
+  EXECUTION_DEVICES: CPU
+  CPU_DENORMALS_OPTIMIZATION: NO
+  LOG_LEVEL: LOG_NONE
+  CPU_SPARSE_WEIGHTS_DECOMPRESSION_RATE: 1
+  ENABLE_TENSOR_PARALLEL: NO
+  TBB_PARTITIONER: STATIC
+  DYNAMIC_QUANTIZATION_GROUP_SIZE: 32
+  KV_CACHE_PRECISION: u8
+  KEY_CACHE_PRECISION: u8
+  VALUE_CACHE_PRECISION: u8
+  KEY_CACHE_GROUP_SIZE: 0
+  VALUE_CACHE_GROUP_SIZE: 0
+  RUNTIME_REQUIREMENTS: meta=1.0;ov=2026.5.0;isa=Intel AVX-512 with Intel DL Boost and bfloat16 support
+EXECUTION_DEVICES:
+ CPU: AMD RYZEN AI MAX+ PRO 395 w/ Radeon 8060S      
+SchedulerConfig { 
+  max_num_batched_tokens: 18446744073709551615
+  num_kv_blocks: 0
+  cache_size: 0
+  num_linear_attention_blocks: 0
+  cache_interval_multiplier: unset (auto defined model-dependent)
+  dynamic_split_fuse: true
+  use_cache_eviction: false
+  max_num_seqs: 256
+  enable_prefix_caching: true
+  use_sparse_attention: false
+ }
+Model: LLM with Paged Attention
+  NETWORK_NAME: Model0
+  OPTIMAL_NUMBER_OF_INFER_REQUESTS: 1
+  NUM_STREAMS: 1
+  INFERENCE_NUM_THREADS: 16
+  PERF_COUNT: NO
+  INFERENCE_PRECISION_HINT: bf16
+  PERFORMANCE_HINT: LATENCY
+  EXECUTION_MODE_HINT: PERFORMANCE
+  PERFORMANCE_HINT_NUM_REQUESTS: 0
+  ENABLE_CPU_PINNING: YES
+  ENABLE_CPU_RESERVATION: NO
+  SCHEDULING_CORE_TYPE: ANY_CORE
+  MODEL_DISTRIBUTION_POLICY: 
+  ENABLE_HYPER_THREADING: NO
+  EXECUTION_DEVICES: CPU
+  CPU_DENORMALS_OPTIMIZATION: NO
+  LOG_LEVEL: LOG_NONE
+  CPU_SPARSE_WEIGHTS_DECOMPRESSION_RATE: 1
+  ENABLE_TENSOR_PARALLEL: NO
+  TBB_PARTITIONER: STATIC
+  DYNAMIC_QUANTIZATION_GROUP_SIZE: 32
+  KV_CACHE_PRECISION: u8
+  KEY_CACHE_PRECISION: u8
+  VALUE_CACHE_PRECISION: u8
+  KEY_CACHE_GROUP_SIZE: 0
+  VALUE_CACHE_GROUP_SIZE: 0
+  RUNTIME_REQUIREMENTS: meta=1.0;ov=2026.5.0;isa=Intel AVX-512 with Intel DL Boost and bfloat16 support
+EXECUTION_DEVICES:
+ CPU: AMD RYZEN AI MAX+ PRO 395 w/ Radeon 8060S      
+[INFO] PA backend is enabled.
+[cell 16 DONE  +  427.6s]
+NBEXEC_RESULT={"ok": false, "n_cells": 12, "n_skipped": 1, "n_substituted": 0, "stopped_after": null, "error_cell": null, "error_type": "CellExecutionError", "error_head": "\u001b[31mFileNotFoundError\u001b[39m: [Errno 2] No such file or directory: 'nyc.jpg'", "duration_s": 428.05, "patch_notes": ["skipped cell 21: matched skip pattern"]}

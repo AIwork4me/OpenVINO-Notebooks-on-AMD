@@ -1,0 +1,56 @@
+[cell 0 START +    0.4s] # Text-to-Speech synthesis using Kokoro and OpenVINO GenAI |  | [Kokoro](h
+[cell 1 START +    0.4s] ## Prerequisites | [back to top ⬆️](#Table-of-contents:)
+[cell 2 START +    0.4s] from pathlib import Path | import requests |  | if not Path("pip_helper.py")
+[cell 2 DONE  +    0.8s]
+[cell 3 START +    0.8s] ## Select model source | [back to top ⬆️](#Table-of-contents:) |  | Select F
+[cell 4 START +    0.8s] # Read more about telemetry collection at https://github.com/openvinot
+[cell 4 DONE  +    0.8s]
+[cell 5 START +    0.8s] ## Download or convert the model | [back to top ⬆️](#Table-of-contents:)
+[cell 6 START +    0.8s] import huggingface_hub as hf_hub |  | model_id = "hexgrad/Kokoro-82M" | sele
+[cell 6 DONE  +    1.1s]
+[cell 7 START +    1.1s] ## Prepare the OpenVINO GenAI pipeline | [back to top ⬆️](#Table-of-cont
+[cell 8 START +    1.1s] import os | import numpy as np | import openvino as ov | import openvino_gen
+[cell 8 DONE  +    1.2s]
+[cell 9 START +    1.2s] ### Select inference device | [back to top ⬆️](#Table-of-contents:) |  | Ope
+[cell 10 START +    1.2s] from notebook_utils import device_widget |  | device = device_widget(defau
+[cell 10 DONE  +    1.3s]
+[cell 11 START +    1.3s] ## Run inference | [back to top ⬆️](#Table-of-contents:) |  | Create the Gen
+[cell 12 START +    1.3s] pipe = ov_genai.Text2SpeechPipeline(model_dir, device.value) |  | voice = 
+Model: kokoro model
+  NETWORK_NAME: Model0
+  OPTIMAL_NUMBER_OF_INFER_REQUESTS: 1
+  NUM_STREAMS: 1
+  INFERENCE_NUM_THREADS: 16
+  PERF_COUNT: NO
+  INFERENCE_PRECISION_HINT: bf16
+  PERFORMANCE_HINT: LATENCY
+  EXECUTION_MODE_HINT: PERFORMANCE
+  PERFORMANCE_HINT_NUM_REQUESTS: 0
+  ENABLE_CPU_PINNING: YES
+  ENABLE_CPU_RESERVATION: NO
+  SCHEDULING_CORE_TYPE: ANY_CORE
+  MODEL_DISTRIBUTION_POLICY: 
+  ENABLE_HYPER_THREADING: NO
+  EXECUTION_DEVICES: CPU
+  CPU_DENORMALS_OPTIMIZATION: NO
+  LOG_LEVEL: LOG_NONE
+  CPU_SPARSE_WEIGHTS_DECOMPRESSION_RATE: 1
+  ENABLE_TENSOR_PARALLEL: NO
+  TBB_PARTITIONER: STATIC
+  DYNAMIC_QUANTIZATION_GROUP_SIZE: 32
+  KV_CACHE_PRECISION: u8
+  KEY_CACHE_PRECISION: u8
+  VALUE_CACHE_PRECISION: u8
+  KEY_CACHE_GROUP_SIZE: 0
+  VALUE_CACHE_GROUP_SIZE: 0
+  RUNTIME_REQUIREMENTS: meta=1.0;ov=2026.4.1;isa=Intel AVX-512 with Intel DL Boost and bfloat16 support
+EXECUTION_DEVICES:
+ CPU: AMD RYZEN AI MAX+ PRO 395 w/ Radeon 8060S      
+[cell 12 DONE  +    2.5s]
+[cell 13 START +    2.5s] from IPython.display import Audio, display |  | input_text = "Kokoro is an
+[cell 13 DONE  +    3.8s]
+[cell 14 START +    3.8s] ## Interactive Demo | [back to top ⬆️](#Table-of-contents:)
+[cell 15 START +    3.8s] if not Path("gradio_helper.py").exists(): |     r = requests.get("https:
+[cell 16 START +    3.8s] # Cleanup (uncomment if these packages are no longer needed in the cur
+[cell 16 DONE  +    3.8s]
+NBEXEC_RESULT={"ok": true, "n_cells": 9, "n_skipped": 1, "n_substituted": 0, "stopped_after": null, "error_cell": null, "error_type": null, "error_head": null, "duration_s": 4.35, "patch_notes": ["skipped cell 15: matched skip pattern"]}

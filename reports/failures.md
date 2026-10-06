@@ -1,8 +1,8 @@
 # Failures (generated)
 
-Total failed attempts: 77
+Total failed attempts: 90
 
-## cpu:UNKNOWN — 44 workload(s)
+## cpu:UNKNOWN — 48 workload(s)
 
 - **ace-step-music-generation** — ok_runs=0/3: CalledProcessError: Command '['.venv-cpu/bin/python', '-m', 'pip', 'install', '-q', 'git+//huggingface\\.co', ':https://hf-mirror.com://github.com/ace-st
 - **aloha-act** — ok_runs=0/3: InvalidSchema: No connection adapters were found for '//huggingface\\.co :https://hf-mirror.com://eci.intel.com/embodied-sdk-docs/_downloads/sim_insertion_scripted.zip'
@@ -11,6 +11,7 @@ Total failed attempts: 77
 - **deepseek-vl2** — ok_runs=0/3: CalledProcessError: Command '['.venv-cpu/bin/python', '-m', 'pip', 'install', '-q', 'torch==2.8', 'torchvision', 'gradio>=4.19', 'einops', 'transformers=
 - **fireredtts2** — ok_runs=0/3: CalledProcessError: Command '['.venv-cpu/bin/python', '-m', 'pip', 'install', '-q', '--extra-index-url', '//huggingface\\.co', ':https://hf-mirror.com://
 - **stable-diffusion-text-to-image** — ok_runs=0/3: FileNotFoundError: [Errno 2] No such file or directory: 'optimum-cli'
+- **smolvlm2** — ok_runs=0/1: FileNotFoundError: [Errno 2] No such file or directory: 'optimum-cli'
 - **flex.2-image-generation** — ok_runs=0/3: InvalidSchema: No connection adapters were found for '//huggingface\\.co :https://hf-mirror.com://huggingface.co/spaces/VIDraft/Flex-preview/resolve/main/pipeline.py'
 - **qwen3** — ok_runs=0/1: [GPU] clEnqueueMapBuffer, error code: -30 CL_INVALID_VALUE
 - **florence2** — ok_runs=0/3: InvalidSchema: No connection adapters were found for '//huggingface\\.co :https://hf-mirror.com://huggingface.co/datasets/huggingface/documentation-images/resolve/main/transformers/tasks/car.jpg?do
@@ -48,8 +49,11 @@ Total failed attempts: 77
 - **openvoice2-and-melotts** — ok_runs=0/1: CalledProcessError: Command '['git', 'clone', '//huggingface\\.co :https://hf-mirror.com://github.com/myshell-ai/OpenVoice']' returned non-zero exit status 128.
 - **qwen2.5-omni-chatbot** — ok_runs=0/1: CalledProcessError: Command '['.venv-cpu/bin/python', '-m', 'pip', 'install', 'transformers==4.52.3', 'torch==2.8', 'torchvision==0.23.0', 'accelerate', 
 - **qwen3-embedding** — ok_runs=0/1: FileNotFoundError: [Errno 2] No such file or directory: 'optimum-cli'
+- **qwen3-vl-reranker** — ok_runs=0/1: FileNotFoundError: [Errno 2] No such file or directory: 'optimum-cli'
+- **vlm-chatbot-generate-api** — ok_runs=0/1: FileNotFoundError: [Errno 2] No such file or directory: 'nyc.jpg'
+- **segment-anything-2-image** — ok_runs=0/3: CalledProcessError: Command '['git', 'clone', 'https://github.com/facebookresearch/sam2.git']' returned non-zero exit status 128.
 
-## cpu:DEPENDENCY — 22 workload(s)
+## cpu:DEPENDENCY — 23 workload(s)
 
 - **001-whisper-evaluation** — ok_runs=0/3: ImportError: cannot import name 'hf_cache_home' from 'huggingface_hub.constants' (.venv-cpu/lib/python3.12/site-packages/huggingface_hub/constants.py)
 - **catvton** — ok_runs=0/3: ImportError: cannot import name 'cached_download' from 'huggingface_hub' (.venv-cpu/lib/python3.12/site-packages/huggingface_hub/__init__.py)
@@ -73,27 +77,39 @@ Total failed attempts: 77
 - **qwen2-audio** — ok_runs=0/1: ImportError: .venv-cpu/lib/python3.12/site-packages/torch/lib/libtorch_cuda.so: undefined symbol: ncclCommResume
 - **qwen3-reranker** — ok_runs=0/1: CalledProcessError: Command '['optimum-cli', 'export', 'openvino', '--model', 'Qwen/Qwen3-Reranker-0.6B', 'Qwen3-Reranker-0.6B/FP16', '--task', 'text-generation', '--weight-format', 'fp16']' return
 - **qwen3-vl-embedding** — ok_runs=0/1: CalledProcessError: Command '['optimum-cli', 'export', 'openvino', '--model', 'Qwen/Qwen3-VL-Embedding-2B', 'Qwen3-VL-Embedding-2B/FP16', '--task', 'feature-extraction', '--weight-format', 'fp16']'
+- **qwen3_agent** — ok_runs=0/1: ModuleNotFoundError: No module named 'smolagents'
 
-## cpu:NETWORK — 5 workload(s)
+## cpu:NETWORK — 6 workload(s)
 
+- **whisper-asr-genai** — ok_runs=0/1: ConnectTimeout: HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /spaces/distil-whisper/whisper-vs-distil-whisper/resolve/main/assets/example_1.wav (Caused by Co
 - **freevc-voice-conversion** — ok_runs=0/3: Exception: File downloading failed with error: No connection adapters were found for '//huggingface\\.co :https://hf-mirror.com://huggingface.co/spaces/OlaWod/FreeVC/resolve/main/p225_001.wav'
 - **paddle-to-openvino-classification** — ok_runs=0/3: Exception: File downloading failed with error: No connection adapters were found for '//huggingface\\.co :https://hf-mirror.com://storage.openvinotoolkit.org/repositories/openvino_notebooks/data/da
 - **hunyuan-ocr** — ok_runs=0/1: CalledProcessError: Command '['.venv-cpu/bin/python', '-m', 'pip', 'install', '-q', 'git+https://github.com/openvino-dev-samples/optimum-intel.git@hunyua
 - **instant-id** — ok_runs=0/1: ConnectTimeout: HTTPSConnectionPool(host='drive.google.com', port=443): Max retries exceeded with url: /uc?id=18wEUfMNohBJ4K3Ly5wpTejPfDzp-8fI8 (Caused by ConnectTimeoutError(<HTTPSConnection(host=
 - **paddle-ocr-webcam** — ok_runs=0/1: Exception: File downloading failed with error: No connection adapters were found for '//huggingface\\.co :https://hf-mirror.com://huggingface.co/PaddlePaddle/PP-OCRv6_tiny_det_onnx/resolve/main/inf
 
-## cpu:OPENVINO_ERROR — 3 workload(s)
+## cpu:OPENVINO_ERROR — 4 workload(s)
 
 - **hello-npu** — ok_runs=0/3: Unsupported configuration key: FULL_DEVICE_NAME
 - **blip-visual-language-processing** — ok_runs=0/3: InvalidSchema: No connection adapters were found for '//huggingface\\.co :https://hf-mirror.com://raw.githubusercontent.com/openvinotoolkit/openvino_notebooks/latest/utils/skip_kernel_extension.py'
 - **fastdraft_deepseek** — ok_runs=0/1: Could not find a model in the directory '"DeepSeek-R1-Distill-Llama-8B-int4-ov"'
+- **ct-segmentation-quantize-nncf** — ok_runs=0/3: nbclient.exceptions.DeadKernelError: Kernel died
 
-## cpu:MODEL_ACCESS — 2 workload(s)
+## cpu:TIMEOUT — 4 workload(s)
+
+- **openvino-api** — ok_runs=0/3: 
+- **jina-clip** — ok_runs=0/3: 
+- **yolov11-quantization-with-accuracy-control** — ok_runs=0/3: 
+- **z-image-turbo** — ok_runs=0/3: 
+
+## cpu:MODEL_ACCESS — 3 workload(s)
 
 - **bark-text-to-audio** — ok_runs=0/3: OSError: libcudart.so.13: cannot open shared object file: No such file or directory
 - **mllama-3.2** — ok_runs=0/1: Access to model meta-llama/Llama-3.2-11B-Vision-Instruct is restricted and you are not in the authorized list. Visit https://huggingface.co/meta-llama/Llama-3.2-11B-Vision-Instruct to ask for access.
+- **siglip-zero-shot-image-classification** — ok_runs=0/3:  You can also provide TorchScript module that you obtained yourself, please refer to PyTorch documentation: https://pytorch.org/tutorials/beginner/Intro_to_TorchScript_tutorial.html.
 
-## cpu:TIMEOUT — 1 workload(s)
+## cpu:PACKAGE_CONFLICT — 2 workload(s)
 
-- **openvino-api** — ok_runs=0/3: 
+- **stable-diffusion-v3-torch-fx** — ok_runs=0/1: Access to model stabilityai/stable-diffusion-3-medium-diffusers is restricted and you are not in the authorized list. Visit https://huggingface.co/stabilityai/stable-diffusion-3-medium-diffusers to ask for a
+- **wav2lip** — ok_runs=0/1: CalledProcessError: Command '['git', 'clone', 'https://github.com/Rudrabha/Wav2Lip.git']' returned non-zero exit status 128.
 

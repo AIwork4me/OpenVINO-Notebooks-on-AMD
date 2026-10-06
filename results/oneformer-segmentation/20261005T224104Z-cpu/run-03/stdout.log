@@ -1,0 +1,68 @@
+[cell 0 START +    0.4s] # Universal Segmentation with OneFormer and OpenVINO |  | <img referrerpol
+[cell 1 START +    0.4s] This tutorial demonstrates how to use the [OneFormer](https://arxiv.or
+[cell 2 START +    0.4s]  | #### Table of contents: |  | - [Install required libraries](#Install-requ
+[cell 3 START +    0.4s] ## Install required libraries | [back to top ⬆️](#Table-of-contents:) | 
+[cell 4 START +    0.4s] %pip install -q --extra-index-url https://download.pytorch.org/whl/cpu
+[cell 4 DONE  +    1.0s]
+[cell 5 START +    1.0s] ## Prepare the environment | [back to top ⬆️](#Table-of-contents:) |  | Impo
+[cell 6 START +    1.0s] import warnings | from collections import defaultdict | from pathlib impor
+[cell 6 DONE  +    4.1s]
+[cell 7 START +    4.1s] IR_PATH = Path("oneformer.xml") | OUTPUT_NAMES = ["class_queries_logits"
+[cell 7 DONE  +    4.1s]
+[cell 8 START +    4.1s] ## Load OneFormer fine-tuned on COCO for universal segmentation | [back 
+[cell 9 START +    4.1s] processor = OneFormerProcessor.from_pretrained("shi-labs/oneformer_coc
+[cell 9 DONE  +    8.7s]
+[cell 10 START +    8.7s] task_seq_length = processor.task_seq_length | shape = (800, 800) | dummy_i
+[cell 10 DONE  +    8.7s]
+[cell 11 START +    8.7s] ## Convert the model to OpenVINO IR format | [back to top ⬆️](#Table-of-
+[cell 12 START +    8.7s] model.config.torchscript = True |  | if not IR_PATH.exists(): |     with war
+[cell 12 DONE  +    8.7s]
+[cell 13 START +    8.7s] ## Select inference device | [back to top ⬆️](#Table-of-contents:) |  | Sele
+[cell 14 START +    8.7s] core = openvino.Core() |  | device = device_widget(exclude=["NPU"]) |  | devic
+[cell 14 DONE  +    8.9s]
+[cell 15 START +    8.9s] We can prepare the image using the HuggingFace processor. OneFormer le
+[cell 16 START +    8.9s] def prepare_inputs(image: Image.Image, task: str): |     """Convert imag
+[cell 16 DONE  +    8.9s]
+[cell 17 START +    8.9s] def process_output(d): |     """Convert OpenVINO model output to Hugging
+[cell 17 DONE  +    8.9s]
+[cell 18 START +    8.9s] # Read the model from files. | model = core.read_model(model=IR_PATH) | # 
+[cell 18 DONE  +   12.6s]
+[cell 19 START +   12.6s] Model predicts `class_queries_logits` of shape `(batch_size, num_queri
+[cell 20 START +   12.6s] Here we define functions for visualization of network outputs to show 
+[cell 21 START +   12.6s] class Visualizer: |     @staticmethod |     def extract_legend(handles): |  
+[cell 21 DONE  +   12.6s]
+[cell 22 START +   12.6s] def segment(model, img: Image.Image, task: str): |     """ |     Apply seg
+[cell 22 DONE  +   12.6s]
+[cell 23 START +   12.6s] if not Path("sample.jpg").exists(): |     download_file("http://images.c
+[cell 23 DONE  +   12.6s]
+[cell 24 START +   12.6s] ## Choose a segmentation task | [back to top ⬆️](#Table-of-contents:) | 
+[cell 25 START +   12.6s] from ipywidgets import Dropdown |  | task = Dropdown(options=["semantic", 
+[cell 25 DONE  +   12.6s]
+[cell 26 START +   12.6s] ## Inference | [back to top ⬆️](#Table-of-contents:) | 
+[cell 27 START +   12.6s] import matplotlib |  | matplotlib.use("Agg")  # disable showing figures |  |  | 
+[cell 27 DONE  +   13.9s]
+[cell 28 START +   13.9s] ## Quantization | [back to top ⬆️](#Table-of-contents:) | 
+[cell 29 START +   13.9s] [NNCF](https://github.com/openvinotoolkit/nncf/) enables post-training
+[cell 30 START +   13.9s] Please select below whether you would like to run quantization to impr
+[cell 31 START +   13.9s] from notebook_utils import quantization_widget |  | compiled_quantized_mod
+[cell 31 DONE  +   13.9s]
+[cell 32 START +   13.9s] Let's load skip magic extension to skip quantization if to_quantize is
+[cell 33 START +   13.9s] # Fetch `skip_kernel_extension` module | if not Path("skip_kernel_extens
+[cell 33 DONE  +   14.0s]
+[cell 34 START +   14.0s] ### Preparing calibration dataset | [back to top ⬆️](#Table-of-contents:
+[cell 35 START +   14.0s] %%skip not $to_quantize.value |  | import nncf | import torch.utils.data as 
+[cell 35 DONE  +   14.0s]
+[cell 36 START +   14.0s] ### Run quantization | [back to top ⬆️](#Table-of-contents:) |  | Below we c
+[cell 37 START +   14.0s] %%skip not $to_quantize.value |  | INT8_IR_PATH = Path(str(IR_PATH).replac
+[cell 37 DONE  +   14.0s]
+[cell 38 START +   14.0s] Let's see quantized model prediction next to original model prediction
+[cell 39 START +   14.0s] %%skip not $to_quantize.value |  | from IPython.display import display |  | im
+[cell 39 DONE  +   14.0s]
+[cell 40 START +   14.0s] ### Compare model size and performance | [back to top ⬆️](#Table-of-cont
+[cell 41 START +   14.0s] %%skip not $to_quantize.value |  | import time | import numpy as np | from tqd
+[cell 41 DONE  +   14.0s]
+[cell 42 START +   14.0s] ## Interactive Demo | [back to top ⬆️](#Table-of-contents:) | 
+[cell 43 START +   14.0s] import time |  | quantized_model_present = compiled_quantized_model is not
+[cell 43 DONE  +   14.0s]
+[cell 44 START +   14.0s] if not Path("gradio_helper.py").exists(): |     r = requests.get(url="ht
+NBEXEC_RESULT={"ok": true, "n_cells": 23, "n_skipped": 1, "n_substituted": 0, "stopped_after": null, "error_cell": null, "error_type": null, "error_head": null, "duration_s": 16.7, "patch_notes": ["skipped cell 44: matched skip pattern"]}

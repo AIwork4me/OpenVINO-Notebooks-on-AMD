@@ -1,0 +1,51 @@
+[cell 0 START +    0.4s] # Object segmentations with FastSAM and OpenVINO | [The Fast Segment Any
+[cell 1 START +    0.4s] ## Prerequisites | [back to top ⬆️](#Table-of-contents:) | 
+[cell 2 START +    0.4s] ### Install requirements | [back to top ⬆️](#Table-of-contents:) | 
+[cell 3 START +    0.4s] %pip install -q "ultralytics==8.3.236" "matplotlib>=3.4" "onnx<1.16.2"
+[cell 3 DONE  +    2.1s]
+[cell 4 START +    2.1s] ### Imports | [back to top ⬆️](#Table-of-contents:) | 
+[cell 5 START +    2.1s] import ipywidgets as widgets | from pathlib import Path |  | import openvino
+[cell 5 DONE  +    3.1s]
+[cell 6 START +    3.1s] ## FastSAM in Ultralytics | [back to top ⬆️](#Table-of-contents:) |  | To wo
+[cell 7 START +    3.1s] model_name = "FastSAM-x" | model = FastSAM(model_name) |  | image_uri = Path
+[cell 7 DONE  +    3.9s]
+[cell 8 START +    3.9s] The model returns segmentation maps for all the objects on the image. 
+[cell 9 START +    3.9s] Image.fromarray(results[0].plot()[..., ::-1])
+[cell 9 DONE  +    4.1s]
+[cell 10 START +    4.1s] ## Convert the model to OpenVINO Intermediate representation (IR) form
+[cell 11 START +    4.1s] # instance segmentation model | ov_model_path = Path(f"{model_name}_open
+[cell 11 DONE  +    4.1s]
+[cell 12 START +    4.1s] ## Embedding the converted models into the original pipeline | [back to 
+[cell 13 START +    4.1s] core = ov.Core()
+[cell 13 DONE  +    4.1s]
+[cell 14 START +    4.1s] #### Select inference device | [back to top ⬆️](#Table-of-contents:) |  | Se
+[cell 15 START +    4.1s] device = device_widget() |  | device
+[cell 15 DONE  +    4.1s]
+[cell 16 START +    4.1s] ### Adapt OpenVINO models to the original pipeline | [back to top ⬆️](#T
+[cell 17 START +    4.1s] class OVWrapper: |     def __init__(self, ov_model, device="CPU", stride
+[cell 17 DONE  +    4.1s]
+[cell 18 START +    4.1s] Now we initialize the wrapper objects and load them to the FastSAM pip
+[cell 19 START +    4.1s] ov_config = {} | if "GPU" in device.value or ("AUTO" in device.value and
+[cell 19 DONE  +    4.6s]
+[cell 20 START +    4.6s] One can observe the converted model outputs in the next cell, they is 
+[cell 21 START +    4.6s] Image.fromarray(ov_results[0].plot()[..., ::-1])
+[cell 21 DONE  +    4.7s]
+[cell 22 START +    4.7s] ## Optimize the model using NNCF Post-training Quantization API | [back 
+[cell 23 START +    4.7s] do_quantize = widgets.Checkbox( |     value=True, |     description="Quant
+[cell 23 DONE  +    4.7s]
+[cell 24 START +    4.7s] The `nncf.quantize` function provides an interface for model quantizat
+[cell 25 START +    4.7s] %%skip not $do_quantize.value |  | import pickle | from contextlib import co
+[cell 25 DONE  +    5.1s]
+[cell 26 START +    5.1s] ### Compare the performance of the Original and Quantized Models | [back
+[cell 27 START +    5.1s] %%skip not $do_quantize.value |  | import datetime |  | coco_dataset = COCOLoa
+[cell 27 DONE  +   30.1s]
+[cell 28 START +   30.1s] %%skip not $do_quantize.value |  | quantized_wrapped_model = OVWrapper(qua
+[cell 28 DONE  +   48.3s]
+[cell 29 START +   48.3s] ## Try out the converted pipeline | [back to top ⬆️](#Table-of-contents:
+[cell 30 START +   48.3s] import cv2 | import numpy as np | import matplotlib.pyplot as plt |  |  | def fa
+[cell 30 DONE  +   48.6s]
+[cell 31 START +   48.6s] This is the main callback function that is called to segment an image 
+[cell 32 START +   48.6s] object_points = [] | background_points = [] | bbox_points = [] |  |  | def segme
+[cell 32 DONE  +   48.6s]
+[cell 33 START +   48.6s] if not Path("gradio_helper.py").exists(): |     r = requests.get(url="ht
+NBEXEC_RESULT={"ok": true, "n_cells": 17, "n_skipped": 1, "n_substituted": 0, "stopped_after": null, "error_cell": null, "error_type": null, "error_head": null, "duration_s": 51.38, "patch_notes": ["skipped cell 33: matched skip pattern"]}

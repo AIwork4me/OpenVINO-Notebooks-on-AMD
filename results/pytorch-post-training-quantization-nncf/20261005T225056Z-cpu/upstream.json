@@ -1,0 +1,9 @@
+{
+  "schema_version": 2,
+  "repository": "openvinotoolkit/openvino_notebooks",
+  "branch": "latest",
+  "commit": "a8809170cc4fc6aa633fbb9c22214be67ac20b47",
+  "path": "notebooks/pytorch-post-training-quantization-nncf/pytorch-post-training-quantization-nncf.ipynb",
+  "url": "https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/pytorch-post-training-quantization-nncf/pytorch-post-training-quantization-nncf.ipynb",
+  "notebook_sha256": "23795ef27d7f69bb2a92730c7e587381f982c1f65fd745af1ddda0c40ab1ceaf"
+}

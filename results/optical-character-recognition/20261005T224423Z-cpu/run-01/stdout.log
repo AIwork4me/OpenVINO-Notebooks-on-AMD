@@ -1,0 +1,43 @@
+[cell 0 START +    0.7s] # Optical Character Recognition (OCR) with OpenVINO™ |  | This tutorial de
+[cell 1 START +    0.7s] # Install openvino package | %pip install -q "openvino>=2024.4.0" pillow
+[cell 1 DONE  +    3.9s]
+[cell 2 START +    3.9s] ## Imports | [back to top ⬆️](#Table-of-contents:) | 
+[cell 3 START +    3.9s] from pathlib import Path |  | import cv2 | import matplotlib.pyplot as plt | i
+[cell 3 DONE  +    4.3s]
+[cell 4 START +    4.3s] ## Settings | [back to top ⬆️](#Table-of-contents:) | 
+[cell 5 START +    4.3s] core = ov.Core() |  | model_dir = Path("model") | precision = "FP16" | detecti
+[cell 5 DONE  +    4.3s]
+[cell 6 START +    4.3s] ## Download Models | [back to top ⬆️](#Table-of-contents:) |  | The next cel
+[cell 7 START +    4.3s] from notebook_utils import download_ir_model |  | detection_model_url = f"
+[cell 7 DONE  +   16.7s]
+[cell 8 START +   16.7s] ## Select inference device | [back to top ⬆️](#Table-of-contents:) |  | sele
+[cell 9 START +   16.7s] device = device_widget() |  | device
+[cell 9 DONE  +   16.9s]
+[cell 10 START +   16.9s] ## Object Detection | [back to top ⬆️](#Table-of-contents:) |  | Load a dete
+[cell 11 START +   16.9s] detection_model = core.read_model(detection_model_path) | detection_comp
+[cell 11 DONE  +   17.2s]
+[cell 12 START +   17.2s] ### Load an Image | [back to top ⬆️](#Table-of-contents:) | 
+[cell 13 START +   17.2s] image_path = Path("intel_rnb.jpg") |  | if not image_path.exists(): |     do
+[cell 13 DONE  +   19.3s]
+[cell 14 START +   19.3s] ### Do Inference | [back to top ⬆️](#Table-of-contents:) |  | Text boxes are
+[cell 15 START +   19.3s] output_key = detection_compiled_model.output("boxes") | boxes = detectio
+[cell 15 DONE  +   19.3s]
+[cell 16 START +   19.3s] ### Get Detection Results | [back to top ⬆️](#Table-of-contents:) | 
+[cell 17 START +   19.3s] def multiply_by_ratio(ratio_x, ratio_y, box): |     return [max(shape * 
+[cell 17 DONE  +   19.3s]
+[cell 18 START +   19.3s] ## Text Recognition | [back to top ⬆️](#Table-of-contents:) |  | Load the te
+[cell 19 START +   19.3s] recognition_model = core.read_model(recognition_model_path) |  | recogniti
+[cell 19 DONE  +   19.5s]
+[cell 20 START +   19.5s] ### Do Inference | [back to top ⬆️](#Table-of-contents:) | 
+[cell 21 START +   19.5s] # Calculate scale for image resizing. | (real_y, real_x), (resized_y, re
+[cell 21 DONE  +   19.5s]
+[cell 22 START +   19.5s] ## Show Results | [back to top ⬆️](#Table-of-contents:) |  | ### Show Detect
+[cell 23 START +   19.5s] plt.figure(figsize=(12, 12)) | plt.imshow(convert_result_to_image(image,
+[cell 23 DONE  +   19.8s]
+[cell 24 START +   19.8s] ### Show the OCR Result per Bounding Box | [back to top ⬆️](#Table-of-co
+[cell 25 START +   19.8s] for cropped_image, annotation in zip(cropped_images, annotations): |    
+[cell 25 DONE  +   19.8s]
+[cell 26 START +   19.8s] ### Print Annotations in Plain Text Format | [back to top ⬆️](#Table-of-
+[cell 27 START +   19.8s] [annotation for _, annotation in sorted(zip(boxes, annotations), key=l
+[cell 27 DONE  +   19.8s]
+NBEXEC_RESULT={"ok": true, "n_cells": 14, "n_skipped": 0, "n_substituted": 0, "stopped_after": null, "error_cell": null, "error_type": null, "error_head": null, "duration_s": 20.24, "patch_notes": []}

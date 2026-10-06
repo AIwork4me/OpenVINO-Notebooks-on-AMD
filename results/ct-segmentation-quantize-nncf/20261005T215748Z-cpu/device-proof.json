@@ -1,0 +1,41 @@
+{
+  "schema_version": 2,
+  "state": "AUTO_UNRESOLVED",
+  "requested_backend": "cpu",
+  "compile_events": 5,
+  "genai_pipeline_events": 0,
+  "execution_devices": [
+    [
+      "CPU",
+      "GPU.0"
+    ],
+    [
+      "CPU",
+      "GPU.0"
+    ],
+    [
+      "CPU",
+      "GPU.0"
+    ],
+    [
+      "CPU",
+      "GPU.0"
+    ],
+    [
+      "CPU",
+      "GPU.0"
+    ]
+  ],
+  "device_args": [
+    "MULTI:CPU,GPU",
+    "MULTI:CPU,GPU",
+    "MULTI:CPU,GPU",
+    "MULTI:CPU,GPU",
+    "MULTI:CPU,GPU"
+  ],
+  "genai_device_args": [],
+  "supporting_device_used": "GPU",
+  "probe_events": 8,
+  "probe_present": true,
+  "probe_installed": true
+}

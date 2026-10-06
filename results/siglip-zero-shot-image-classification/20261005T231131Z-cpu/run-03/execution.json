@@ -1,0 +1,10 @@
+{
+  "schema_version": 2,
+  "start": "2026-10-05T23:18:06+00:00",
+  "end": "2026-10-05T23:20:20+00:00",
+  "duration_s": 134.24,
+  "exit_code": 1,
+  "retry_count": 2,
+  "status": "ERROR",
+  "failure_category": "MODEL_ACCESS"
+}

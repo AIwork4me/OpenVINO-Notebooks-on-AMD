@@ -1,0 +1,9 @@
+{
+  "schema_version": 2,
+  "repository": "openvinotoolkit/openvino_notebooks",
+  "branch": "latest",
+  "commit": "a8809170cc4fc6aa633fbb9c22214be67ac20b47",
+  "path": "notebooks/hello-segmentation/hello-segmentation.ipynb",
+  "url": "https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/hello-segmentation/hello-segmentation.ipynb",
+  "notebook_sha256": "0fbf1e5c483dd126f458322b89986e8a8ed68b986258bd67c4517d791081adb4"
+}

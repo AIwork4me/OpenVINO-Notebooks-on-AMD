@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-05T20:04:30+00:00",
+  "generated": "2026-10-06T00:14:12+00:00",
   "upstream": {
     "repository": "openvinotoolkit/openvino_notebooks",
     "branch": "latest",
@@ -15,10 +15,9 @@
   "counts": {
     "total": 171,
     "cpu": {
-      "NOT_TESTED": 77,
-      "FAILED": 77,
-      "REVALIDATION_REQUIRED": 10,
-      "VERIFIED_WITH_LIMITATIONS": 2,
+      "VERIFIED_WITH_LIMITATIONS": 37,
+      "NOT_TESTED": 39,
+      "FAILED": 90,
       "VERIFIED": 4,
       "NOT_APPLICABLE": 1
     },
@@ -32,8 +31,8 @@
       "OPENVINO_SPECIFIC": 10,
       "CONCEPT_MAPPING": 1
     },
-    "cpu_attempted": 94,
-    "cpu_attempt_coverage_pct": 55.0,
+    "cpu_attempted": 132,
+    "cpu_attempt_coverage_pct": 77.2,
     "gpu_attempted": 8,
     "gpu_attempt_coverage_pct": 4.7,
     "twin_classified": 171,
@@ -47,21 +46,23 @@
       "upstream_path": "notebooks/3D-point-pillars/pointpillars.ipynb",
       "upstream_url": "https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/3D-point-pillars/pointpillars.ipynb",
       "priority": 2,
-      "cpu_status": "NOT_TESTED",
+      "cpu_status": "VERIFIED_WITH_LIMITATIONS",
       "cpu_failure_category": "",
-      "cpu_evidence": null,
-      "cpu_validation_level": "",
-      "cpu_device_proof": "",
+      "cpu_evidence": "results/pointpillars/20261005T224706Z-cpu",
+      "cpu_validation_level": "EXECUTION_ONLY",
+      "cpu_device_proof": "PROVEN_CPU",
       "gpu_status": "NOT_TESTED",
       "gpu_failure_category": "",
       "gpu_evidence": null,
       "gpu_validation_level": "",
       "gpu_device_proof": "",
       "twin_level": "WORKLOAD_TWIN",
-      "device_used": "",
-      "last_tested": "",
-      "evidence": null,
-      "notes": []
+      "device_used": "CPU",
+      "last_tested": "2026-10-05T22:50:55+00:00",
+      "evidence": "results/pointpillars/20261005T224706Z-cpu",
+      "notes": [
+        "EXECUTION_ONLY: no workload correctness contract (validation: {})"
+      ]
     },
     {
       "id": "3d-pose-estimation",
@@ -93,21 +94,25 @@
       "upstream_path": "notebooks/3D-segmentation-point-clouds/3D-segmentation-point-clouds.ipynb",
       "upstream_url": "https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/3D-segmentation-point-clouds/3D-segmentation-point-clouds.ipynb",
       "priority": 2,
-      "cpu_status": "NOT_TESTED",
+      "cpu_status": "VERIFIED_WITH_LIMITATIONS",
       "cpu_failure_category": "",
-      "cpu_evidence": null,
-      "cpu_validation_level": "",
-      "cpu_device_proof": "",
+      "cpu_evidence": "results/3d-segmentation-point-clouds/20261005T214148Z-cpu",
+      "cpu_validation_level": "EXECUTION_ONLY",
+      "cpu_device_proof": "NOT_INFERENCE",
       "gpu_status": "NOT_TESTED",
       "gpu_failure_category": "",
       "gpu_evidence": null,
       "gpu_validation_level": "",
       "gpu_device_proof": "",
       "twin_level": "WORKLOAD_TWIN",
-      "device_used": "",
-      "last_tested": "",
-      "evidence": null,
-      "notes": []
+      "device_used": "AUTO",
+      "last_tested": "2026-10-05T21:42:10+00:00",
+      "evidence": "results/3d-segmentation-point-clouds/20261005T214148Z-cpu",
+      "notes": [
+        "EXECUTION_ONLY: no workload correctness contract (validation: {})",
+        "DEVICE_PROOF_NOT_OBSERVED: no OpenVINO compile_model call was captured by the probe (notebooks driving openvino_genai pipelines or conversion-only code bypass the Python Core API; positive device execution therefore unproven)",
+        "repeatability_not_established: fewer than 3 successful runs (resource-bounded policy)"
+      ]
     },
     {
       "id": "ace-step-music-generation",
@@ -189,11 +194,11 @@
       "upstream_path": "notebooks/animate-anyone/animate-anyone.ipynb",
       "upstream_url": "https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/animate-anyone/animate-anyone.ipynb",
       "priority": 1,
-      "cpu_status": "REVALIDATION_REQUIRED",
+      "cpu_status": "VERIFIED_WITH_LIMITATIONS",
       "cpu_failure_category": "",
-      "cpu_evidence": "results/animate-anyone/20261001T162311Z-cpu",
-      "cpu_validation_level": "",
-      "cpu_device_proof": "",
+      "cpu_evidence": "results/animate-anyone/20261005T200805Z-cpu",
+      "cpu_validation_level": "WORKLOAD_CORRECTNESS",
+      "cpu_device_proof": "PROVEN_CPU",
       "gpu_status": "NOT_TESTED",
       "gpu_failure_category": "",
       "gpu_evidence": null,
@@ -201,10 +206,11 @@
       "gpu_device_proof": "",
       "twin_level": "WORKLOAD_TWIN",
       "device_used": "",
-      "last_tested": "2026-10-05T16:57:30+00:00",
-      "evidence": "results/animate-anyone/20261001T162311Z-cpu",
+      "last_tested": "2026-10-05T20:18:24+00:00",
+      "evidence": "results/animate-anyone/20261005T200805Z-cpu",
       "notes": [
-        "repeatability: single successful run (resource-bounded); 3-run policy not met"
+        "repeatability_not_established: fewer than 3 successful runs (resource-bounded policy)",
+        "CORE_INFERENCE_VERIFIED; INTERACTIVE_UI_NOT_TESTED (documented skip policy)"
       ]
     },
     {
@@ -237,21 +243,24 @@
       "upstream_path": "notebooks/auto-device/auto-device.ipynb",
       "upstream_url": "https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/auto-device/auto-device.ipynb",
       "priority": 2,
-      "cpu_status": "NOT_TESTED",
+      "cpu_status": "VERIFIED_WITH_LIMITATIONS",
       "cpu_failure_category": "",
-      "cpu_evidence": null,
-      "cpu_validation_level": "",
-      "cpu_device_proof": "",
+      "cpu_evidence": "results/auto-device/20261005T214211Z-cpu",
+      "cpu_validation_level": "EXECUTION_ONLY",
+      "cpu_device_proof": "AUTO_UNRESOLVED",
       "gpu_status": "NOT_TESTED",
       "gpu_failure_category": "",
       "gpu_evidence": null,
       "gpu_validation_level": "",
       "gpu_device_proof": "",
       "twin_level": "OPENVINO_SPECIFIC",
-      "device_used": "",
-      "last_tested": "",
-      "evidence": null,
-      "notes": []
+      "device_used": "GPU",
+      "last_tested": "2026-10-05T21:49:13+00:00",
+      "evidence": "results/auto-device/20261005T214211Z-cpu",
+      "notes": [
+        "EXECUTION_ONLY: no workload correctness contract (validation: {})",
+        "DEVICE_PROOF_INCOMPLETE: device proof state AUTO_UNRESOLVED"
+      ]
     },
     {
       "id": "bark-text-to-audio",
@@ -358,21 +367,25 @@
       "upstream_path": "notebooks/clip-zero-shot-image-classification/clip-zero-shot-classification.ipynb",
       "upstream_url": "https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/clip-zero-shot-image-classification/clip-zero-shot-classification.ipynb",
       "priority": 2,
-      "cpu_status": "NOT_TESTED",
+      "cpu_status": "VERIFIED_WITH_LIMITATIONS",
       "cpu_failure_category": "",
-      "cpu_evidence": null,
-      "cpu_validation_level": "",
-      "cpu_device_proof": "",
+      "cpu_evidence": "results/clip-zero-shot-classification/20261005T214914Z-cpu",
+      "cpu_validation_level": "EXECUTION_ONLY",
+      "cpu_device_proof": "UNKNOWN",
       "gpu_status": "NOT_TESTED",
       "gpu_failure_category": "",
       "gpu_evidence": null,
       "gpu_validation_level": "",
       "gpu_device_proof": "",
       "twin_level": "WORKLOAD_TWIN",
-      "device_used": "",
-      "last_tested": "",
-      "evidence": null,
-      "notes": []
+      "device_used": "CPU",
+      "last_tested": "2026-10-05T21:52:23+00:00",
+      "evidence": "results/clip-zero-shot-classification/20261005T214914Z-cpu",
+      "notes": [
+        "EXECUTION_ONLY: no workload correctness contract (validation: {})",
+        "DEVICE_PROOF_INCOMPLETE: device proof state UNKNOWN",
+        "CORE_INFERENCE_VERIFIED; INTERACTIVE_UI_NOT_TESTED (documented skip policy)"
+      ]
     },
     {
       "id": "controlnet-stable-diffusion",
@@ -406,21 +419,24 @@
       "upstream_path": "notebooks/convert-to-openvino/convert-to-openvino.ipynb",
       "upstream_url": "https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/convert-to-openvino/convert-to-openvino.ipynb",
       "priority": 2,
-      "cpu_status": "NOT_TESTED",
+      "cpu_status": "VERIFIED_WITH_LIMITATIONS",
       "cpu_failure_category": "",
-      "cpu_evidence": null,
-      "cpu_validation_level": "",
-      "cpu_device_proof": "",
+      "cpu_evidence": "results/convert-to-openvino/20261005T215223Z-cpu",
+      "cpu_validation_level": "EXECUTION_ONLY",
+      "cpu_device_proof": "NOT_INFERENCE",
       "gpu_status": "NOT_TESTED",
       "gpu_failure_category": "",
       "gpu_evidence": null,
       "gpu_validation_level": "",
       "gpu_device_proof": "",
       "twin_level": "OPENVINO_SPECIFIC",
-      "device_used": "",
-      "last_tested": "",
-      "evidence": null,
-      "notes": []
+      "device_used": "GPU",
+      "last_tested": "2026-10-05T21:57:05+00:00",
+      "evidence": "results/convert-to-openvino/20261005T215223Z-cpu",
+      "notes": [
+        "EXECUTION_ONLY: no workload correctness contract (validation: {})",
+        "DEVICE_PROOF_NOT_OBSERVED: no OpenVINO compile_model call was captured by the probe (notebooks driving openvino_genai pipelines or conversion-only code bypass the Python Core API; positive device execution therefore unproven)"
+      ]
     },
     {
       "id": "cosyvoice3-tts",
@@ -454,21 +470,23 @@
       "upstream_path": "notebooks/ct-segmentation-quantize/ct-segmentation-quantize-nncf.ipynb",
       "upstream_url": "https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/ct-segmentation-quantize/ct-segmentation-quantize-nncf.ipynb",
       "priority": 2,
-      "cpu_status": "NOT_TESTED",
-      "cpu_failure_category": "",
-      "cpu_evidence": null,
+      "cpu_status": "FAILED",
+      "cpu_failure_category": "OPENVINO_ERROR",
+      "cpu_evidence": "results/ct-segmentation-quantize-nncf/20261005T215748Z-cpu",
       "cpu_validation_level": "",
-      "cpu_device_proof": "",
+      "cpu_device_proof": "AUTO_UNRESOLVED",
       "gpu_status": "NOT_TESTED",
       "gpu_failure_category": "",
       "gpu_evidence": null,
       "gpu_validation_level": "",
       "gpu_device_proof": "",
       "twin_level": "WORKLOAD_TWIN",
-      "device_used": "",
-      "last_tested": "",
-      "evidence": null,
-      "notes": []
+      "device_used": "GPU",
+      "last_tested": "2026-10-05T22:01:06+00:00",
+      "evidence": "results/ct-segmentation-quantize-nncf/20261005T215748Z-cpu",
+      "notes": [
+        "ok_runs=0/3: nbclient.exceptions.DeadKernelError: Kernel died"
+      ]
     },
     {
       "id": "darkir-image-restoration",
@@ -477,11 +495,11 @@
       "upstream_path": "notebooks/darkir-image-restoration/darkir-image-restoration.ipynb",
       "upstream_url": "https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/darkir-image-restoration/darkir-image-restoration.ipynb",
       "priority": 1,
-      "cpu_status": "REVALIDATION_REQUIRED",
+      "cpu_status": "VERIFIED_WITH_LIMITATIONS",
       "cpu_failure_category": "",
-      "cpu_evidence": "results/darkir-image-restoration/20261001T163904Z-cpu",
-      "cpu_validation_level": "",
-      "cpu_device_proof": "",
+      "cpu_evidence": "results/darkir-image-restoration/20261005T201826Z-cpu",
+      "cpu_validation_level": "WORKLOAD_CORRECTNESS",
+      "cpu_device_proof": "PROVEN_CPU",
       "gpu_status": "NOT_TESTED",
       "gpu_failure_category": "",
       "gpu_evidence": null,
@@ -489,10 +507,11 @@
       "gpu_device_proof": "",
       "twin_level": "WORKLOAD_TWIN",
       "device_used": "CPU",
-      "last_tested": "2026-10-05T16:57:30+00:00",
-      "evidence": "results/darkir-image-restoration/20261001T163904Z-cpu",
+      "last_tested": "2026-10-05T20:20:48+00:00",
+      "evidence": "results/darkir-image-restoration/20261005T201826Z-cpu",
       "notes": [
-        "repeatability: single successful run (resource-bounded); 3-run policy not met"
+        "repeatability_not_established: fewer than 3 successful runs (resource-bounded policy)",
+        "CORE_INFERENCE_VERIFIED; INTERACTIVE_UI_NOT_TESTED (documented skip policy)"
       ]
     },
     {
@@ -601,21 +620,23 @@
       "upstream_path": "notebooks/detectron2-to-openvino/detectron2-to-openvino.ipynb",
       "upstream_url": "https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/detectron2-to-openvino/detectron2-to-openvino.ipynb",
       "priority": 2,
-      "cpu_status": "NOT_TESTED",
+      "cpu_status": "VERIFIED_WITH_LIMITATIONS",
       "cpu_failure_category": "",
-      "cpu_evidence": null,
-      "cpu_validation_level": "",
-      "cpu_device_proof": "",
+      "cpu_evidence": "results/detectron2-to-openvino/20261005T220106Z-cpu",
+      "cpu_validation_level": "EXECUTION_ONLY",
+      "cpu_device_proof": "PROVEN_CPU",
       "gpu_status": "NOT_TESTED",
       "gpu_failure_category": "",
       "gpu_evidence": null,
       "gpu_validation_level": "",
       "gpu_device_proof": "",
       "twin_level": "WORKLOAD_TWIN",
-      "device_used": "",
-      "last_tested": "",
-      "evidence": null,
-      "notes": []
+      "device_used": "CPU",
+      "last_tested": "2026-10-05T22:08:21+00:00",
+      "evidence": "results/detectron2-to-openvino/20261005T220106Z-cpu",
+      "notes": [
+        "EXECUTION_ONLY: no workload correctness contract (validation: {})"
+      ]
     },
     {
       "id": "ernie-image",
@@ -649,21 +670,24 @@
       "upstream_path": "notebooks/fast-segment-anything/fast-segment-anything.ipynb",
       "upstream_url": "https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/fast-segment-anything/fast-segment-anything.ipynb",
       "priority": 2,
-      "cpu_status": "NOT_TESTED",
+      "cpu_status": "VERIFIED_WITH_LIMITATIONS",
       "cpu_failure_category": "",
-      "cpu_evidence": null,
-      "cpu_validation_level": "",
-      "cpu_device_proof": "",
+      "cpu_evidence": "results/fast-segment-anything/20261005T220823Z-cpu",
+      "cpu_validation_level": "EXECUTION_ONLY",
+      "cpu_device_proof": "PROVEN_CPU",
       "gpu_status": "NOT_TESTED",
       "gpu_failure_category": "",
       "gpu_evidence": null,
       "gpu_validation_level": "",
       "gpu_device_proof": "",
       "twin_level": "WORKLOAD_TWIN",
-      "device_used": "",
-      "last_tested": "",
-      "evidence": null,
-      "notes": []
+      "device_used": "CPU",
+      "last_tested": "2026-10-05T22:13:56+00:00",
+      "evidence": "results/fast-segment-anything/20261005T220823Z-cpu",
+      "notes": [
+        "EXECUTION_ONLY: no workload correctness contract (validation: {})",
+        "CORE_INFERENCE_VERIFIED; INTERACTIVE_UI_NOT_TESTED (documented skip policy)"
+      ]
     },
     {
       "id": "fireredtts2",
@@ -1135,21 +1159,23 @@
       "upstream_path": "notebooks/hugging-face-hub/hugging-face-hub.ipynb",
       "upstream_url": "https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/hugging-face-hub/hugging-face-hub.ipynb",
       "priority": 2,
-      "cpu_status": "NOT_TESTED",
+      "cpu_status": "VERIFIED_WITH_LIMITATIONS",
       "cpu_failure_category": "",
-      "cpu_evidence": null,
-      "cpu_validation_level": "",
-      "cpu_device_proof": "",
+      "cpu_evidence": "results/hugging-face-hub/20261005T221356Z-cpu",
+      "cpu_validation_level": "EXECUTION_ONLY",
+      "cpu_device_proof": "PROVEN_CPU",
       "gpu_status": "NOT_TESTED",
       "gpu_failure_category": "",
       "gpu_evidence": null,
       "gpu_validation_level": "",
       "gpu_device_proof": "",
       "twin_level": "WORKLOAD_TWIN",
-      "device_used": "",
-      "last_tested": "",
-      "evidence": null,
-      "notes": []
+      "device_used": "CPU",
+      "last_tested": "2026-10-05T22:16:52+00:00",
+      "evidence": "results/hugging-face-hub/20261005T221356Z-cpu",
+      "notes": [
+        "EXECUTION_ONLY: no workload correctness contract (validation: {})"
+      ]
     },
     {
       "id": "hunyuan-ocr",
@@ -1183,11 +1209,11 @@
       "upstream_path": "notebooks/hunyuan-translation/hunyuan-translation.ipynb",
       "upstream_url": "https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/hunyuan-translation/hunyuan-translation.ipynb",
       "priority": 1,
-      "cpu_status": "REVALIDATION_REQUIRED",
+      "cpu_status": "VERIFIED_WITH_LIMITATIONS",
       "cpu_failure_category": "",
-      "cpu_evidence": "results/hunyuan-translation/20261001T191559Z-cpu",
-      "cpu_validation_level": "",
-      "cpu_device_proof": "",
+      "cpu_evidence": "results/hunyuan-translation/20261005T202048Z-cpu",
+      "cpu_validation_level": "WORKLOAD_CORRECTNESS",
+      "cpu_device_proof": "NOT_INFERENCE",
       "gpu_status": "NOT_TESTED",
       "gpu_failure_category": "",
       "gpu_evidence": null,
@@ -1195,10 +1221,12 @@
       "gpu_device_proof": "",
       "twin_level": "WORKLOAD_TWIN",
       "device_used": "CPU",
-      "last_tested": "2026-10-05T16:57:30+00:00",
-      "evidence": "results/hunyuan-translation/20261001T191559Z-cpu",
+      "last_tested": "2026-10-05T20:22:31+00:00",
+      "evidence": "results/hunyuan-translation/20261005T202048Z-cpu",
       "notes": [
-        "repeatability: single successful run (resource-bounded); 3-run policy not met"
+        "DEVICE_PROOF_NOT_OBSERVED: no OpenVINO compile_model call was captured by the probe (notebooks driving openvino_genai pipelines or conversion-only code bypass the Python Core API; positive device execution therefore unproven)",
+        "repeatability_not_established: fewer than 3 successful runs (resource-bounded policy)",
+        "CORE_INFERENCE_VERIFIED; INTERACTIVE_UI_NOT_TESTED (documented skip policy)"
       ]
     },
     {
@@ -1208,21 +1236,23 @@
       "upstream_path": "notebooks/image-classification-quantization/image-classification-quantization.ipynb",
       "upstream_url": "https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/image-classification-quantization/image-classification-quantization.ipynb",
       "priority": 2,
-      "cpu_status": "NOT_TESTED",
+      "cpu_status": "VERIFIED_WITH_LIMITATIONS",
       "cpu_failure_category": "",
-      "cpu_evidence": null,
-      "cpu_validation_level": "",
-      "cpu_device_proof": "",
+      "cpu_evidence": "results/image-classification-quantization/20261005T221652Z-cpu",
+      "cpu_validation_level": "EXECUTION_ONLY",
+      "cpu_device_proof": "PROVEN_CPU",
       "gpu_status": "NOT_TESTED",
       "gpu_failure_category": "",
       "gpu_evidence": null,
       "gpu_validation_level": "",
       "gpu_device_proof": "",
       "twin_level": "WORKLOAD_TWIN",
-      "device_used": "",
-      "last_tested": "",
-      "evidence": null,
-      "notes": []
+      "device_used": "CPU",
+      "last_tested": "2026-10-05T22:20:32+00:00",
+      "evidence": "results/image-classification-quantization/20261005T221652Z-cpu",
+      "notes": [
+        "EXECUTION_ONLY: no workload correctness contract (validation: {})"
+      ]
     },
     {
       "id": "image-to-image-genai",
@@ -1231,11 +1261,11 @@
       "upstream_path": "notebooks/image-to-image-genai/image-to-image-genai.ipynb",
       "upstream_url": "https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/image-to-image-genai/image-to-image-genai.ipynb",
       "priority": 1,
-      "cpu_status": "REVALIDATION_REQUIRED",
+      "cpu_status": "VERIFIED_WITH_LIMITATIONS",
       "cpu_failure_category": "",
-      "cpu_evidence": "results/image-to-image-genai/20261001T191710Z-cpu",
-      "cpu_validation_level": "",
-      "cpu_device_proof": "",
+      "cpu_evidence": "results/image-to-image-genai/20261005T202231Z-cpu",
+      "cpu_validation_level": "WORKLOAD_CORRECTNESS",
+      "cpu_device_proof": "NOT_INFERENCE",
       "gpu_status": "NOT_TESTED",
       "gpu_failure_category": "",
       "gpu_evidence": null,
@@ -1243,10 +1273,12 @@
       "gpu_device_proof": "",
       "twin_level": "WORKLOAD_TWIN",
       "device_used": "CPU",
-      "last_tested": "2026-10-05T16:57:30+00:00",
-      "evidence": "results/image-to-image-genai/20261001T191710Z-cpu",
+      "last_tested": "2026-10-05T20:23:54+00:00",
+      "evidence": "results/image-to-image-genai/20261005T202231Z-cpu",
       "notes": [
-        "repeatability: single successful run (resource-bounded); 3-run policy not met"
+        "DEVICE_PROOF_NOT_OBSERVED: no OpenVINO compile_model call was captured by the probe (notebooks driving openvino_genai pipelines or conversion-only code bypass the Python Core API; positive device execution therefore unproven)",
+        "repeatability_not_established: fewer than 3 successful runs (resource-bounded policy)",
+        "CORE_INFERENCE_VERIFIED; INTERACTIVE_UI_NOT_TESTED (documented skip policy)"
       ]
     },
     {
@@ -1306,11 +1338,11 @@
       "upstream_path": "notebooks/jina-clip/jina-clip.ipynb",
       "upstream_url": "https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/jina-clip/jina-clip.ipynb",
       "priority": 2,
-      "cpu_status": "NOT_TESTED",
-      "cpu_failure_category": "",
-      "cpu_evidence": null,
+      "cpu_status": "FAILED",
+      "cpu_failure_category": "TIMEOUT",
+      "cpu_evidence": "results/jina-clip/20261005T222033Z-cpu",
       "cpu_validation_level": "",
-      "cpu_device_proof": "",
+      "cpu_device_proof": "PROVEN_CPU",
       "gpu_status": "NOT_TESTED",
       "gpu_failure_category": "",
       "gpu_evidence": null,
@@ -1318,9 +1350,11 @@
       "gpu_device_proof": "",
       "twin_level": "WORKLOAD_TWIN",
       "device_used": "",
-      "last_tested": "",
-      "evidence": null,
-      "notes": []
+      "last_tested": "2026-10-05T22:30:38+00:00",
+      "evidence": "results/jina-clip/20261005T222033Z-cpu",
+      "notes": [
+        "ok_runs=0/3: "
+      ]
     },
     {
       "id": "kokoro",
@@ -1355,21 +1389,23 @@
       "upstream_path": "notebooks/language-quantize-bert/language-quantize-bert.ipynb",
       "upstream_url": "https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/language-quantize-bert/language-quantize-bert.ipynb",
       "priority": 2,
-      "cpu_status": "NOT_TESTED",
+      "cpu_status": "VERIFIED_WITH_LIMITATIONS",
       "cpu_failure_category": "",
-      "cpu_evidence": null,
-      "cpu_validation_level": "",
-      "cpu_device_proof": "",
+      "cpu_evidence": "results/language-quantize-bert/20261005T223039Z-cpu",
+      "cpu_validation_level": "EXECUTION_ONLY",
+      "cpu_device_proof": "PROVEN_CPU",
       "gpu_status": "NOT_TESTED",
       "gpu_failure_category": "",
       "gpu_evidence": null,
       "gpu_validation_level": "",
       "gpu_device_proof": "",
       "twin_level": "OPENVINO_SPECIFIC",
-      "device_used": "",
-      "last_tested": "",
-      "evidence": null,
-      "notes": []
+      "device_used": "CPU",
+      "last_tested": "2026-10-05T22:41:00+00:00",
+      "evidence": "results/language-quantize-bert/20261005T223039Z-cpu",
+      "notes": [
+        "EXECUTION_ONLY: no workload correctness contract (validation: {})"
+      ]
     },
     {
       "id": "latent-consistency-models-image-generation",
@@ -1403,11 +1439,11 @@
       "upstream_path": "notebooks/llm-agent-functioncall/llm-agent-functioncall-qwen.ipynb",
       "upstream_url": "https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/llm-agent-functioncall/llm-agent-functioncall-qwen.ipynb",
       "priority": 1,
-      "cpu_status": "REVALIDATION_REQUIRED",
+      "cpu_status": "VERIFIED_WITH_LIMITATIONS",
       "cpu_failure_category": "",
-      "cpu_evidence": "results/llm-agent-functioncall-qwen/20261001T193351Z-cpu",
-      "cpu_validation_level": "",
-      "cpu_device_proof": "",
+      "cpu_evidence": "results/llm-agent-functioncall-qwen/20261005T202354Z-cpu",
+      "cpu_validation_level": "WORKLOAD_CORRECTNESS",
+      "cpu_device_proof": "PROVEN_CPU",
       "gpu_status": "NOT_TESTED",
       "gpu_failure_category": "",
       "gpu_evidence": null,
@@ -1415,10 +1451,11 @@
       "gpu_device_proof": "",
       "twin_level": "WORKLOAD_TWIN",
       "device_used": "CPU",
-      "last_tested": "2026-10-05T16:57:30+00:00",
-      "evidence": "results/llm-agent-functioncall-qwen/20261001T193351Z-cpu",
+      "last_tested": "2026-10-05T20:28:52+00:00",
+      "evidence": "results/llm-agent-functioncall-qwen/20261005T202354Z-cpu",
       "notes": [
-        "repeatability: single successful run (resource-bounded); 3-run policy not met"
+        "repeatability_not_established: fewer than 3 successful runs (resource-bounded policy)",
+        "CORE_INFERENCE_VERIFIED; INTERACTIVE_UI_NOT_TESTED (documented skip policy)"
       ]
     },
     {
@@ -1453,11 +1490,11 @@
       "upstream_path": "notebooks/llm-agent-rag-llamaindex/llm-agent-rag-llamaindex.ipynb",
       "upstream_url": "https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/llm-agent-rag-llamaindex/llm-agent-rag-llamaindex.ipynb",
       "priority": 1,
-      "cpu_status": "REVALIDATION_REQUIRED",
+      "cpu_status": "VERIFIED_WITH_LIMITATIONS",
       "cpu_failure_category": "",
-      "cpu_evidence": "results/llm-agent-rag-llamaindex/20261001T194156Z-cpu",
-      "cpu_validation_level": "",
-      "cpu_device_proof": "",
+      "cpu_evidence": "results/llm-agent-rag-llamaindex/20261005T202852Z-cpu",
+      "cpu_validation_level": "WORKLOAD_CORRECTNESS",
+      "cpu_device_proof": "PROVEN_CPU",
       "gpu_status": "NOT_TESTED",
       "gpu_failure_category": "",
       "gpu_evidence": null,
@@ -1465,10 +1502,10 @@
       "gpu_device_proof": "",
       "twin_level": "WORKLOAD_TWIN",
       "device_used": "CPU",
-      "last_tested": "2026-10-05T16:57:30+00:00",
-      "evidence": "results/llm-agent-rag-llamaindex/20261001T194156Z-cpu",
+      "last_tested": "2026-10-05T20:30:56+00:00",
+      "evidence": "results/llm-agent-rag-llamaindex/20261005T202852Z-cpu",
       "notes": [
-        "repeatability: single successful run (resource-bounded); 3-run policy not met"
+        "repeatability_not_established: fewer than 3 successful runs (resource-bounded policy)"
       ]
     },
     {
@@ -1574,11 +1611,11 @@
       "upstream_path": "notebooks/llm-lora/llm-lora.ipynb",
       "upstream_url": "https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/llm-lora/llm-lora.ipynb",
       "priority": 1,
-      "cpu_status": "REVALIDATION_REQUIRED",
+      "cpu_status": "VERIFIED_WITH_LIMITATIONS",
       "cpu_failure_category": "",
-      "cpu_evidence": "results/llm-lora/20261001T140838Z-cpu",
-      "cpu_validation_level": "",
-      "cpu_device_proof": "",
+      "cpu_evidence": "results/llm-lora/20261005T200648Z-cpu",
+      "cpu_validation_level": "WORKLOAD_CORRECTNESS",
+      "cpu_device_proof": "NOT_INFERENCE",
       "gpu_status": "NOT_TESTED",
       "gpu_failure_category": "",
       "gpu_evidence": null,
@@ -1586,9 +1623,11 @@
       "gpu_device_proof": "",
       "twin_level": "WORKLOAD_TWIN",
       "device_used": "CPU",
-      "last_tested": "2026-10-05T16:57:30+00:00",
-      "evidence": "results/llm-lora/20261001T140838Z-cpu",
-      "notes": []
+      "last_tested": "2026-10-05T20:08:05+00:00",
+      "evidence": "results/llm-lora/20261005T200648Z-cpu",
+      "notes": [
+        "DEVICE_PROOF_NOT_OBSERVED: no OpenVINO compile_model call was captured by the probe (notebooks driving openvino_genai pipelines or conversion-only code bypass the Python Core API; positive device execution therefore unproven)"
+      ]
     },
     {
       "id": "llm-question-answering",
@@ -1597,11 +1636,11 @@
       "upstream_path": "notebooks/llm-question-answering/llm-question-answering.ipynb",
       "upstream_url": "https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/llm-question-answering/llm-question-answering.ipynb",
       "priority": 1,
-      "cpu_status": "REVALIDATION_REQUIRED",
+      "cpu_status": "VERIFIED_WITH_LIMITATIONS",
       "cpu_failure_category": "",
-      "cpu_evidence": "results/llm-question-answering/20261001T195822Z-cpu",
-      "cpu_validation_level": "",
-      "cpu_device_proof": "",
+      "cpu_evidence": "results/llm-question-answering/20261005T203056Z-cpu",
+      "cpu_validation_level": "WORKLOAD_CORRECTNESS",
+      "cpu_device_proof": "NOT_INFERENCE",
       "gpu_status": "NOT_TESTED",
       "gpu_failure_category": "",
       "gpu_evidence": null,
@@ -1609,10 +1648,12 @@
       "gpu_device_proof": "",
       "twin_level": "WORKLOAD_TWIN",
       "device_used": "CPU",
-      "last_tested": "2026-10-05T16:57:30+00:00",
-      "evidence": "results/llm-question-answering/20261001T195822Z-cpu",
+      "last_tested": "2026-10-05T20:31:33+00:00",
+      "evidence": "results/llm-question-answering/20261005T203056Z-cpu",
       "notes": [
-        "repeatability: single successful run (resource-bounded); 3-run policy not met"
+        "DEVICE_PROOF_NOT_OBSERVED: no OpenVINO compile_model call was captured by the probe (notebooks driving openvino_genai pipelines or conversion-only code bypass the Python Core API; positive device execution therefore unproven)",
+        "repeatability_not_established: fewer than 3 successful runs (resource-bounded policy)",
+        "CORE_INFERENCE_VERIFIED; INTERACTIVE_UI_NOT_TESTED (documented skip policy)"
       ]
     },
     {
@@ -1764,11 +1805,11 @@
       "upstream_path": "notebooks/meter-reader/meter-reader.ipynb",
       "upstream_url": "https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/meter-reader/meter-reader.ipynb",
       "priority": 1,
-      "cpu_status": "REVALIDATION_REQUIRED",
+      "cpu_status": "VERIFIED_WITH_LIMITATIONS",
       "cpu_failure_category": "",
-      "cpu_evidence": "results/meter-reader/20261001T200158Z-cpu",
-      "cpu_validation_level": "",
-      "cpu_device_proof": "",
+      "cpu_evidence": "results/meter-reader/20261005T203133Z-cpu",
+      "cpu_validation_level": "WORKLOAD_CORRECTNESS",
+      "cpu_device_proof": "PROVEN_CPU",
       "gpu_status": "NOT_TESTED",
       "gpu_failure_category": "",
       "gpu_evidence": null,
@@ -1776,10 +1817,10 @@
       "gpu_device_proof": "",
       "twin_level": "WORKLOAD_TWIN",
       "device_used": "CPU",
-      "last_tested": "2026-10-05T16:57:30+00:00",
-      "evidence": "results/meter-reader/20261001T200158Z-cpu",
+      "last_tested": "2026-10-05T20:31:44+00:00",
+      "evidence": "results/meter-reader/20261005T203133Z-cpu",
       "notes": [
-        "repeatability: single successful run (resource-bounded); 3-run policy not met"
+        "repeatability_not_established: fewer than 3 successful runs (resource-bounded policy)"
       ]
     },
     {
@@ -2252,21 +2293,24 @@
       "upstream_path": "notebooks/oneformer-segmentation/oneformer-segmentation.ipynb",
       "upstream_url": "https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/oneformer-segmentation/oneformer-segmentation.ipynb",
       "priority": 2,
-      "cpu_status": "NOT_TESTED",
+      "cpu_status": "VERIFIED_WITH_LIMITATIONS",
       "cpu_failure_category": "",
-      "cpu_evidence": null,
-      "cpu_validation_level": "",
-      "cpu_device_proof": "",
+      "cpu_evidence": "results/oneformer-segmentation/20261005T224104Z-cpu",
+      "cpu_validation_level": "EXECUTION_ONLY",
+      "cpu_device_proof": "PROVEN_CPU",
       "gpu_status": "NOT_TESTED",
       "gpu_failure_category": "",
       "gpu_evidence": null,
       "gpu_validation_level": "",
       "gpu_device_proof": "",
       "twin_level": "WORKLOAD_TWIN",
-      "device_used": "",
-      "last_tested": "",
-      "evidence": null,
-      "notes": []
+      "device_used": "CPU",
+      "last_tested": "2026-10-05T22:44:23+00:00",
+      "evidence": "results/oneformer-segmentation/20261005T224104Z-cpu",
+      "notes": [
+        "EXECUTION_ONLY: no workload correctness contract (validation: {})",
+        "CORE_INFERENCE_VERIFIED; INTERACTIVE_UI_NOT_TESTED (documented skip policy)"
+      ]
     },
     {
       "id": "openvino-api",
@@ -2373,21 +2417,23 @@
       "upstream_path": "notebooks/optical-character-recognition/optical-character-recognition.ipynb",
       "upstream_url": "https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/optical-character-recognition/optical-character-recognition.ipynb",
       "priority": 2,
-      "cpu_status": "NOT_TESTED",
+      "cpu_status": "VERIFIED_WITH_LIMITATIONS",
       "cpu_failure_category": "",
-      "cpu_evidence": null,
-      "cpu_validation_level": "",
-      "cpu_device_proof": "",
+      "cpu_evidence": "results/optical-character-recognition/20261005T224423Z-cpu",
+      "cpu_validation_level": "EXECUTION_ONLY",
+      "cpu_device_proof": "PROVEN_CPU",
       "gpu_status": "NOT_TESTED",
       "gpu_failure_category": "",
       "gpu_evidence": null,
       "gpu_validation_level": "",
       "gpu_device_proof": "",
       "twin_level": "WORKLOAD_TWIN",
-      "device_used": "",
-      "last_tested": "",
-      "evidence": null,
-      "notes": []
+      "device_used": "CPU",
+      "last_tested": "2026-10-05T22:44:54+00:00",
+      "evidence": "results/optical-character-recognition/20261005T224423Z-cpu",
+      "notes": [
+        "EXECUTION_ONLY: no workload correctness contract (validation: {})"
+      ]
     },
     {
       "id": "optimize-preprocessing",
@@ -2396,21 +2442,23 @@
       "upstream_path": "notebooks/optimize-preprocessing/optimize-preprocessing.ipynb",
       "upstream_url": "https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/optimize-preprocessing/optimize-preprocessing.ipynb",
       "priority": 2,
-      "cpu_status": "NOT_TESTED",
+      "cpu_status": "VERIFIED_WITH_LIMITATIONS",
       "cpu_failure_category": "",
-      "cpu_evidence": null,
-      "cpu_validation_level": "",
-      "cpu_device_proof": "",
+      "cpu_evidence": "results/optimize-preprocessing/20261005T224454Z-cpu",
+      "cpu_validation_level": "EXECUTION_ONLY",
+      "cpu_device_proof": "PROVEN_CPU",
       "gpu_status": "NOT_TESTED",
       "gpu_failure_category": "",
       "gpu_evidence": null,
       "gpu_validation_level": "",
       "gpu_device_proof": "",
       "twin_level": "OPENVINO_SPECIFIC",
-      "device_used": "",
-      "last_tested": "",
-      "evidence": null,
-      "notes": []
+      "device_used": "CPU",
+      "last_tested": "2026-10-05T22:47:05+00:00",
+      "evidence": "results/optimize-preprocessing/20261005T224454Z-cpu",
+      "notes": [
+        "EXECUTION_ONLY: no workload correctness contract (validation: {})"
+      ]
     },
     {
       "id": "paddle-ocr-webcam",
@@ -2663,21 +2711,23 @@
       "upstream_path": "notebooks/pytorch-post-training-quantization-nncf/pytorch-post-training-quantization-nncf.ipynb",
       "upstream_url": "https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/pytorch-post-training-quantization-nncf/pytorch-post-training-quantization-nncf.ipynb",
       "priority": 2,
-      "cpu_status": "NOT_TESTED",
+      "cpu_status": "VERIFIED_WITH_LIMITATIONS",
       "cpu_failure_category": "",
-      "cpu_evidence": null,
-      "cpu_validation_level": "",
-      "cpu_device_proof": "",
+      "cpu_evidence": "results/pytorch-post-training-quantization-nncf/20261005T225056Z-cpu",
+      "cpu_validation_level": "EXECUTION_ONLY",
+      "cpu_device_proof": "PROVEN_CPU",
       "gpu_status": "NOT_TESTED",
       "gpu_failure_category": "",
       "gpu_evidence": null,
       "gpu_validation_level": "",
       "gpu_device_proof": "",
       "twin_level": "WORKLOAD_TWIN",
-      "device_used": "",
-      "last_tested": "",
-      "evidence": null,
-      "notes": []
+      "device_used": "CPU",
+      "last_tested": "2026-10-05T23:02:45+00:00",
+      "evidence": "results/pytorch-post-training-quantization-nncf/20261005T225056Z-cpu",
+      "notes": [
+        "EXECUTION_ONLY: no workload correctness contract (validation: {})"
+      ]
     },
     {
       "id": "pytorch-to-openvino",
@@ -2686,21 +2736,23 @@
       "upstream_path": "notebooks/pytorch-to-openvino/pytorch-to-openvino.ipynb",
       "upstream_url": "https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/pytorch-to-openvino/pytorch-to-openvino.ipynb",
       "priority": 2,
-      "cpu_status": "NOT_TESTED",
+      "cpu_status": "VERIFIED_WITH_LIMITATIONS",
       "cpu_failure_category": "",
-      "cpu_evidence": null,
-      "cpu_validation_level": "",
-      "cpu_device_proof": "",
+      "cpu_evidence": "results/pytorch-to-openvino/20261005T230248Z-cpu",
+      "cpu_validation_level": "EXECUTION_ONLY",
+      "cpu_device_proof": "PROVEN_CPU",
       "gpu_status": "NOT_TESTED",
       "gpu_failure_category": "",
       "gpu_evidence": null,
       "gpu_validation_level": "",
       "gpu_device_proof": "",
       "twin_level": "WORKLOAD_TWIN",
-      "device_used": "",
-      "last_tested": "",
-      "evidence": null,
-      "notes": []
+      "device_used": "CPU",
+      "last_tested": "2026-10-05T23:07:46+00:00",
+      "evidence": "results/pytorch-to-openvino/20261005T230248Z-cpu",
+      "notes": [
+        "EXECUTION_ONLY: no workload correctness contract (validation: {})"
+      ]
     },
     {
       "id": "qwen-image",
@@ -2934,21 +2986,23 @@
       "upstream_path": "notebooks/qwen3-vl-embedding/qwen3-vl-reranker.ipynb",
       "upstream_url": "https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/qwen3-vl-embedding/qwen3-vl-reranker.ipynb",
       "priority": 1,
-      "cpu_status": "NOT_TESTED",
-      "cpu_failure_category": "",
-      "cpu_evidence": null,
+      "cpu_status": "FAILED",
+      "cpu_failure_category": "UNKNOWN",
+      "cpu_evidence": "results/qwen3-vl-reranker/20261005T203147Z-cpu",
       "cpu_validation_level": "",
-      "cpu_device_proof": "",
+      "cpu_device_proof": "UNKNOWN",
       "gpu_status": "NOT_TESTED",
       "gpu_failure_category": "",
       "gpu_evidence": null,
       "gpu_validation_level": "",
       "gpu_device_proof": "",
       "twin_level": "WORKLOAD_TWIN",
-      "device_used": "",
-      "last_tested": "",
-      "evidence": null,
-      "notes": []
+      "device_used": "CPU",
+      "last_tested": "2026-10-05T20:34:15+00:00",
+      "evidence": "results/qwen3-vl-reranker/20261005T203147Z-cpu",
+      "notes": [
+        "ok_runs=0/1: FileNotFoundError: [Errno 2] No such file or directory: 'optimum-cli'"
+      ]
     },
     {
       "id": "qwen3.8-mtp",
@@ -2980,21 +3034,24 @@
       "upstream_path": "notebooks/rf-detr-object-detection/rf-detr-object-detection.ipynb",
       "upstream_url": "https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/rf-detr-object-detection/rf-detr-object-detection.ipynb",
       "priority": 2,
-      "cpu_status": "NOT_TESTED",
+      "cpu_status": "VERIFIED_WITH_LIMITATIONS",
       "cpu_failure_category": "",
-      "cpu_evidence": null,
-      "cpu_validation_level": "",
-      "cpu_device_proof": "",
+      "cpu_evidence": "results/rf-detr-object-detection/20261005T230747Z-cpu",
+      "cpu_validation_level": "EXECUTION_ONLY",
+      "cpu_device_proof": "PROVEN_CPU",
       "gpu_status": "NOT_TESTED",
       "gpu_failure_category": "",
       "gpu_evidence": null,
       "gpu_validation_level": "",
       "gpu_device_proof": "",
       "twin_level": "WORKLOAD_TWIN",
-      "device_used": "",
-      "last_tested": "",
-      "evidence": null,
-      "notes": []
+      "device_used": "CPU",
+      "last_tested": "2026-10-05T23:09:17+00:00",
+      "evidence": "results/rf-detr-object-detection/20261005T230747Z-cpu",
+      "notes": [
+        "EXECUTION_ONLY: no workload correctness contract (validation: {})",
+        "CORE_INFERENCE_VERIFIED; INTERACTIVE_UI_NOT_TESTED (documented skip policy)"
+      ]
     },
     {
       "id": "rmbg-background-removal",
@@ -3028,21 +3085,23 @@
       "upstream_path": "notebooks/sam2-image-segmentation/segment-anything-2-image.ipynb",
       "upstream_url": "https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/sam2-image-segmentation/segment-anything-2-image.ipynb",
       "priority": 2,
-      "cpu_status": "NOT_TESTED",
-      "cpu_failure_category": "",
-      "cpu_evidence": null,
+      "cpu_status": "FAILED",
+      "cpu_failure_category": "UNKNOWN",
+      "cpu_evidence": "results/segment-anything-2-image/20261005T230918Z-cpu",
       "cpu_validation_level": "",
-      "cpu_device_proof": "",
+      "cpu_device_proof": "UNKNOWN",
       "gpu_status": "NOT_TESTED",
       "gpu_failure_category": "",
       "gpu_evidence": null,
       "gpu_validation_level": "",
       "gpu_device_proof": "",
       "twin_level": "WORKLOAD_TWIN",
-      "device_used": "",
-      "last_tested": "",
-      "evidence": null,
-      "notes": []
+      "device_used": "AUTO",
+      "last_tested": "2026-10-05T23:11:30+00:00",
+      "evidence": "results/segment-anything-2-image/20261005T230918Z-cpu",
+      "notes": [
+        "ok_runs=0/3: CalledProcessError: Command '['git', 'clone', 'https://github.com/facebookresearch/sam2.git']' returned non-zero exit status 128."
+      ]
     },
     {
       "id": "segment-anything-2-video",
@@ -3097,21 +3156,23 @@
       "upstream_path": "notebooks/siglip-zero-shot-image-classification/siglip-zero-shot-image-classification.ipynb",
       "upstream_url": "https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/siglip-zero-shot-image-classification/siglip-zero-shot-image-classification.ipynb",
       "priority": 2,
-      "cpu_status": "NOT_TESTED",
-      "cpu_failure_category": "",
-      "cpu_evidence": null,
+      "cpu_status": "FAILED",
+      "cpu_failure_category": "MODEL_ACCESS",
+      "cpu_evidence": "results/siglip-zero-shot-image-classification/20261005T231131Z-cpu",
       "cpu_validation_level": "",
-      "cpu_device_proof": "",
+      "cpu_device_proof": "NOT_INFERENCE",
       "gpu_status": "NOT_TESTED",
       "gpu_failure_category": "",
       "gpu_evidence": null,
       "gpu_validation_level": "",
       "gpu_device_proof": "",
       "twin_level": "WORKLOAD_TWIN",
-      "device_used": "",
-      "last_tested": "",
-      "evidence": null,
-      "notes": []
+      "device_used": "AUTO",
+      "last_tested": "2026-10-05T23:20:22+00:00",
+      "evidence": "results/siglip-zero-shot-image-classification/20261005T231131Z-cpu",
+      "notes": [
+        "ok_runs=0/3:  You can also provide TorchScript module that you obtained yourself, please refer to PyTorch documentation: https://pytorch.org/tutorials/beginner/Intro_to_TorchScript_tutorial.html."
+      ]
     },
     {
       "id": "smoldocling",
@@ -3145,21 +3206,23 @@
       "upstream_path": "notebooks/smolvlm2/smolvlm2.ipynb",
       "upstream_url": "https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/smolvlm2/smolvlm2.ipynb",
       "priority": 1,
-      "cpu_status": "NOT_TESTED",
-      "cpu_failure_category": "",
-      "cpu_evidence": null,
+      "cpu_status": "FAILED",
+      "cpu_failure_category": "UNKNOWN",
+      "cpu_evidence": "results/smolvlm2/20261005T204227Z-cpu",
       "cpu_validation_level": "",
-      "cpu_device_proof": "",
+      "cpu_device_proof": "UNKNOWN",
       "gpu_status": "REVALIDATION_REQUIRED",
       "gpu_failure_category": "",
       "gpu_evidence": "results/smolvlm2/20261001T120053Z-gpu",
       "gpu_validation_level": "",
       "gpu_device_proof": "",
       "twin_level": "WORKLOAD_TWIN",
-      "device_used": "",
-      "last_tested": "2026-10-05T16:57:30+00:00",
-      "evidence": "results/smolvlm2/20261001T120053Z-gpu",
-      "notes": []
+      "device_used": "AUTO",
+      "last_tested": "2026-10-05T20:44:51+00:00",
+      "evidence": "results/smolvlm2/20261005T204227Z-cpu",
+      "notes": [
+        "ok_runs=0/1: FileNotFoundError: [Errno 2] No such file or directory: 'optimum-cli'"
+      ]
     },
     {
       "id": "speculative-sampling",
@@ -3168,11 +3231,11 @@
       "upstream_path": "notebooks/speculative-sampling/speculative-sampling.ipynb",
       "upstream_url": "https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/speculative-sampling/speculative-sampling.ipynb",
       "priority": 1,
-      "cpu_status": "REVALIDATION_REQUIRED",
+      "cpu_status": "VERIFIED_WITH_LIMITATIONS",
       "cpu_failure_category": "",
-      "cpu_evidence": "results/speculative-sampling/20261001T170548Z-cpu",
-      "cpu_validation_level": "",
-      "cpu_device_proof": "",
+      "cpu_evidence": "results/speculative-sampling/20261005T194918Z-cpu",
+      "cpu_validation_level": "WORKLOAD_CORRECTNESS",
+      "cpu_device_proof": "NOT_INFERENCE",
       "gpu_status": "NOT_TESTED",
       "gpu_failure_category": "",
       "gpu_evidence": null,
@@ -3180,9 +3243,11 @@
       "gpu_device_proof": "",
       "twin_level": "WORKLOAD_TWIN",
       "device_used": "CPU",
-      "last_tested": "2026-10-05T16:57:30+00:00",
-      "evidence": "results/speculative-sampling/20261001T170548Z-cpu",
-      "notes": []
+      "last_tested": "2026-10-05T20:06:46+00:00",
+      "evidence": "results/speculative-sampling/20261005T194918Z-cpu",
+      "notes": [
+        "DEVICE_PROOF_NOT_OBSERVED: no OpenVINO compile_model call was captured by the probe (notebooks driving openvino_genai pipelines or conversion-only code bypass the Python Core API; positive device execution therefore unproven)"
+      ]
     },
     {
       "id": "speech-recognition-quantization-wav2vec2",
@@ -3191,21 +3256,23 @@
       "upstream_path": "notebooks/speech-recognition-quantization/speech-recognition-quantization-wav2vec2.ipynb",
       "upstream_url": "https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/speech-recognition-quantization/speech-recognition-quantization-wav2vec2.ipynb",
       "priority": 2,
-      "cpu_status": "NOT_TESTED",
+      "cpu_status": "VERIFIED_WITH_LIMITATIONS",
       "cpu_failure_category": "",
-      "cpu_evidence": null,
-      "cpu_validation_level": "",
-      "cpu_device_proof": "",
+      "cpu_evidence": "results/speech-recognition-quantization-wav2vec2/20261005T232023Z-cpu",
+      "cpu_validation_level": "EXECUTION_ONLY",
+      "cpu_device_proof": "PROVEN_CPU",
       "gpu_status": "NOT_TESTED",
       "gpu_failure_category": "",
       "gpu_evidence": null,
       "gpu_validation_level": "",
       "gpu_device_proof": "",
       "twin_level": "WORKLOAD_TWIN",
-      "device_used": "",
-      "last_tested": "",
-      "evidence": null,
-      "notes": []
+      "device_used": "CPU",
+      "last_tested": "2026-10-05T23:33:52+00:00",
+      "evidence": "results/speech-recognition-quantization-wav2vec2/20261005T232023Z-cpu",
+      "notes": [
+        "EXECUTION_ONLY: no workload correctness contract (validation: {})"
+      ]
     },
     {
       "id": "stable-diffusion-text-to-image",
@@ -3239,21 +3306,26 @@
       "upstream_path": "notebooks/stable-diffusion-v3/stable-diffusion-v3.ipynb",
       "upstream_url": "https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/stable-diffusion-v3/stable-diffusion-v3.ipynb",
       "priority": 1,
-      "cpu_status": "NOT_TESTED",
+      "cpu_status": "VERIFIED_WITH_LIMITATIONS",
       "cpu_failure_category": "",
-      "cpu_evidence": null,
-      "cpu_validation_level": "",
-      "cpu_device_proof": "",
+      "cpu_evidence": "results/stable-diffusion-v3/20261005T204451Z-cpu",
+      "cpu_validation_level": "EXECUTION_ONLY",
+      "cpu_device_proof": "NOT_INFERENCE",
       "gpu_status": "NOT_TESTED",
       "gpu_failure_category": "",
       "gpu_evidence": null,
       "gpu_validation_level": "",
       "gpu_device_proof": "",
       "twin_level": "WORKLOAD_TWIN",
-      "device_used": "",
-      "last_tested": "",
-      "evidence": null,
-      "notes": []
+      "device_used": "CPU",
+      "last_tested": "2026-10-05T21:06:49+00:00",
+      "evidence": "results/stable-diffusion-v3/20261005T204451Z-cpu",
+      "notes": [
+        "EXECUTION_ONLY: no workload correctness contract (validation: {})",
+        "DEVICE_PROOF_NOT_OBSERVED: no OpenVINO compile_model call was captured by the probe (notebooks driving openvino_genai pipelines or conversion-only code bypass the Python Core API; positive device execution therefore unproven)",
+        "repeatability_not_established: fewer than 3 successful runs (resource-bounded policy)",
+        "CORE_INFERENCE_VERIFIED; INTERACTIVE_UI_NOT_TESTED (documented skip policy)"
+      ]
     },
     {
       "id": "stable-diffusion-v3-torch-fx",
@@ -3262,21 +3334,23 @@
       "upstream_path": "notebooks/stable-diffusion-v3-torch-fx/stable-diffusion-v3-torch-fx.ipynb",
       "upstream_url": "https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/stable-diffusion-v3-torch-fx/stable-diffusion-v3-torch-fx.ipynb",
       "priority": 1,
-      "cpu_status": "NOT_TESTED",
-      "cpu_failure_category": "",
-      "cpu_evidence": null,
+      "cpu_status": "FAILED",
+      "cpu_failure_category": "PACKAGE_CONFLICT",
+      "cpu_evidence": "results/stable-diffusion-v3-torch-fx/20261005T210649Z-cpu",
       "cpu_validation_level": "",
-      "cpu_device_proof": "",
+      "cpu_device_proof": "UNKNOWN",
       "gpu_status": "NOT_TESTED",
       "gpu_failure_category": "",
       "gpu_evidence": null,
       "gpu_validation_level": "",
       "gpu_device_proof": "",
       "twin_level": "WORKLOAD_TWIN",
-      "device_used": "",
-      "last_tested": "",
-      "evidence": null,
-      "notes": []
+      "device_used": "AUTO",
+      "last_tested": "2026-10-05T21:07:54+00:00",
+      "evidence": "results/stable-diffusion-v3-torch-fx/20261005T210649Z-cpu",
+      "notes": [
+        "ok_runs=0/1: Access to model stabilityai/stable-diffusion-3-medium-diffusers is restricted and you are not in the authorized list. Visit https://huggingface.co/stabilityai/stable-diffusion-3-medium-diffusers to ask for access."
+      ]
     },
     {
       "id": "stable-diffusion-xl",
@@ -3333,21 +3407,24 @@
       "upstream_path": "notebooks/surya-line-level-text-detection/surya-line-level-text-detection.ipynb",
       "upstream_url": "https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/surya-line-level-text-detection/surya-line-level-text-detection.ipynb",
       "priority": 2,
-      "cpu_status": "NOT_TESTED",
+      "cpu_status": "VERIFIED_WITH_LIMITATIONS",
       "cpu_failure_category": "",
-      "cpu_evidence": null,
-      "cpu_validation_level": "",
-      "cpu_device_proof": "",
+      "cpu_evidence": "results/surya-line-level-text-detection/20261005T233354Z-cpu",
+      "cpu_validation_level": "EXECUTION_ONLY",
+      "cpu_device_proof": "PROVEN_CPU",
       "gpu_status": "NOT_TESTED",
       "gpu_failure_category": "",
       "gpu_evidence": null,
       "gpu_validation_level": "",
       "gpu_device_proof": "",
       "twin_level": "WORKLOAD_TWIN",
-      "device_used": "",
-      "last_tested": "",
-      "evidence": null,
-      "notes": []
+      "device_used": "CPU",
+      "last_tested": "2026-10-05T23:38:29+00:00",
+      "evidence": "results/surya-line-level-text-detection/20261005T233354Z-cpu",
+      "notes": [
+        "EXECUTION_ONLY: no workload correctness contract (validation: {})",
+        "CORE_INFERENCE_VERIFIED; INTERACTIVE_UI_NOT_TESTED (documented skip policy)"
+      ]
     },
     {
       "id": "tensorflow-classification-to-openvino",
@@ -3356,21 +3433,23 @@
       "upstream_path": "notebooks/tensorflow-classification-to-openvino/tensorflow-classification-to-openvino.ipynb",
       "upstream_url": "https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/tensorflow-classification-to-openvino/tensorflow-classification-to-openvino.ipynb",
       "priority": 2,
-      "cpu_status": "NOT_TESTED",
+      "cpu_status": "VERIFIED_WITH_LIMITATIONS",
       "cpu_failure_category": "",
-      "cpu_evidence": null,
-      "cpu_validation_level": "",
-      "cpu_device_proof": "",
+      "cpu_evidence": "results/tensorflow-classification-to-openvino/20261005T233829Z-cpu",
+      "cpu_validation_level": "EXECUTION_ONLY",
+      "cpu_device_proof": "PROVEN_CPU",
       "gpu_status": "NOT_TESTED",
       "gpu_failure_category": "",
       "gpu_evidence": null,
       "gpu_validation_level": "",
       "gpu_device_proof": "",
       "twin_level": "WORKLOAD_TWIN",
-      "device_used": "",
-      "last_tested": "",
-      "evidence": null,
-      "notes": []
+      "device_used": "CPU",
+      "last_tested": "2026-10-05T23:39:45+00:00",
+      "evidence": "results/tensorflow-classification-to-openvino/20261005T233829Z-cpu",
+      "notes": [
+        "EXECUTION_ONLY: no workload correctness contract (validation: {})"
+      ]
     },
     {
       "id": "tensorflow-object-detection-api-with-openvino",
@@ -3379,21 +3458,23 @@
       "upstream_path": "notebooks/tensorflow-object-detection-to-openvino/tensorflow-object-detection-api-with-openvino.ipynb",
       "upstream_url": "https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/tensorflow-object-detection-to-openvino/tensorflow-object-detection-api-with-openvino.ipynb",
       "priority": 2,
-      "cpu_status": "NOT_TESTED",
+      "cpu_status": "VERIFIED_WITH_LIMITATIONS",
       "cpu_failure_category": "",
-      "cpu_evidence": null,
-      "cpu_validation_level": "",
-      "cpu_device_proof": "",
+      "cpu_evidence": "results/tensorflow-object-detection-api-with-openvino/20261005T233946Z-cpu",
+      "cpu_validation_level": "EXECUTION_ONLY",
+      "cpu_device_proof": "PROVEN_CPU",
       "gpu_status": "NOT_TESTED",
       "gpu_failure_category": "",
       "gpu_evidence": null,
       "gpu_validation_level": "",
       "gpu_device_proof": "",
       "twin_level": "WORKLOAD_TWIN",
-      "device_used": "",
-      "last_tested": "",
-      "evidence": null,
-      "notes": []
+      "device_used": "AUTO",
+      "last_tested": "2026-10-05T23:42:20+00:00",
+      "evidence": "results/tensorflow-object-detection-api-with-openvino/20261005T233946Z-cpu",
+      "notes": [
+        "EXECUTION_ONLY: no workload correctness contract (validation: {})"
+      ]
     },
     {
       "id": "text-to-image-genai",
@@ -3475,21 +3556,23 @@
       "upstream_path": "notebooks/tflite-to-openvino/tflite-to-openvino.ipynb",
       "upstream_url": "https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/tflite-to-openvino/tflite-to-openvino.ipynb",
       "priority": 2,
-      "cpu_status": "NOT_TESTED",
+      "cpu_status": "VERIFIED_WITH_LIMITATIONS",
       "cpu_failure_category": "",
-      "cpu_evidence": null,
-      "cpu_validation_level": "",
-      "cpu_device_proof": "",
+      "cpu_evidence": "results/tflite-to-openvino/20261005T234220Z-cpu",
+      "cpu_validation_level": "EXECUTION_ONLY",
+      "cpu_device_proof": "PROVEN_CPU",
       "gpu_status": "NOT_TESTED",
       "gpu_failure_category": "",
       "gpu_evidence": null,
       "gpu_validation_level": "",
       "gpu_device_proof": "",
       "twin_level": "WORKLOAD_TWIN",
-      "device_used": "",
-      "last_tested": "",
-      "evidence": null,
-      "notes": []
+      "device_used": "AUTO",
+      "last_tested": "2026-10-05T23:43:45+00:00",
+      "evidence": "results/tflite-to-openvino/20261005T234220Z-cpu",
+      "notes": [
+        "EXECUTION_ONLY: no workload correctness contract (validation: {})"
+      ]
     },
     {
       "id": "convnext-classification",
@@ -3498,21 +3581,23 @@
       "upstream_path": "notebooks/torchvision-zoo-to-openvino/convnext-classification.ipynb",
       "upstream_url": "https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/torchvision-zoo-to-openvino/convnext-classification.ipynb",
       "priority": 2,
-      "cpu_status": "NOT_TESTED",
+      "cpu_status": "VERIFIED_WITH_LIMITATIONS",
       "cpu_failure_category": "",
-      "cpu_evidence": null,
-      "cpu_validation_level": "",
-      "cpu_device_proof": "",
+      "cpu_evidence": "results/convnext-classification/20261005T215707Z-cpu",
+      "cpu_validation_level": "EXECUTION_ONLY",
+      "cpu_device_proof": "PROVEN_CPU",
       "gpu_status": "NOT_TESTED",
       "gpu_failure_category": "",
       "gpu_evidence": null,
       "gpu_validation_level": "",
       "gpu_device_proof": "",
       "twin_level": "WORKLOAD_TWIN",
-      "device_used": "",
-      "last_tested": "",
-      "evidence": null,
-      "notes": []
+      "device_used": "CPU",
+      "last_tested": "2026-10-05T21:57:48+00:00",
+      "evidence": "results/convnext-classification/20261005T215707Z-cpu",
+      "notes": [
+        "EXECUTION_ONLY: no workload correctness contract (validation: {})"
+      ]
     },
     {
       "id": "unlimited-ocr",
@@ -3546,21 +3631,23 @@
       "upstream_path": "notebooks/vehicle-detection-and-recognition/vehicle-detection-and-recognition.ipynb",
       "upstream_url": "https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/vehicle-detection-and-recognition/vehicle-detection-and-recognition.ipynb",
       "priority": 2,
-      "cpu_status": "NOT_TESTED",
+      "cpu_status": "VERIFIED_WITH_LIMITATIONS",
       "cpu_failure_category": "",
-      "cpu_evidence": null,
-      "cpu_validation_level": "",
-      "cpu_device_proof": "",
+      "cpu_evidence": "results/vehicle-detection-and-recognition/20261005T234345Z-cpu",
+      "cpu_validation_level": "EXECUTION_ONLY",
+      "cpu_device_proof": "PROVEN_CPU",
       "gpu_status": "NOT_TESTED",
       "gpu_failure_category": "",
       "gpu_evidence": null,
       "gpu_validation_level": "",
       "gpu_device_proof": "",
       "twin_level": "WORKLOAD_TWIN",
-      "device_used": "",
-      "last_tested": "",
-      "evidence": null,
-      "notes": []
+      "device_used": "CPU",
+      "last_tested": "2026-10-05T23:44:12+00:00",
+      "evidence": "results/vehicle-detection-and-recognition/20261005T234345Z-cpu",
+      "notes": [
+        "EXECUTION_ONLY: no workload correctness contract (validation: {})"
+      ]
     },
     {
       "id": "vision-background-removal",
@@ -3617,21 +3704,23 @@
       "upstream_path": "notebooks/vlm-chatbot/vlm-chatbot-generate-api.ipynb",
       "upstream_url": "https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/vlm-chatbot/vlm-chatbot-generate-api.ipynb",
       "priority": 1,
-      "cpu_status": "NOT_TESTED",
-      "cpu_failure_category": "",
-      "cpu_evidence": null,
+      "cpu_status": "FAILED",
+      "cpu_failure_category": "UNKNOWN",
+      "cpu_evidence": "results/vlm-chatbot-generate-api/20261005T210756Z-cpu",
       "cpu_validation_level": "",
-      "cpu_device_proof": "",
+      "cpu_device_proof": "NOT_INFERENCE",
       "gpu_status": "NOT_TESTED",
       "gpu_failure_category": "",
       "gpu_evidence": null,
       "gpu_validation_level": "",
       "gpu_device_proof": "",
       "twin_level": "WORKLOAD_TWIN",
-      "device_used": "",
-      "last_tested": "",
-      "evidence": null,
-      "notes": []
+      "device_used": "CPU",
+      "last_tested": "2026-10-05T21:25:36+00:00",
+      "evidence": "results/vlm-chatbot-generate-api/20261005T210756Z-cpu",
+      "notes": [
+        "ok_runs=0/1: FileNotFoundError: [Errno 2] No such file or directory: 'nyc.jpg'"
+      ]
     },
     {
       "id": "voxcpm2-tts",
@@ -3711,21 +3800,23 @@
       "upstream_path": "notebooks/wav2lip/wav2lip.ipynb",
       "upstream_url": "https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/wav2lip/wav2lip.ipynb",
       "priority": 1,
-      "cpu_status": "NOT_TESTED",
-      "cpu_failure_category": "",
-      "cpu_evidence": null,
+      "cpu_status": "FAILED",
+      "cpu_failure_category": "PACKAGE_CONFLICT",
+      "cpu_evidence": "results/wav2lip/20261005T212536Z-cpu",
       "cpu_validation_level": "",
-      "cpu_device_proof": "",
+      "cpu_device_proof": "UNKNOWN",
       "gpu_status": "NOT_TESTED",
       "gpu_failure_category": "",
       "gpu_evidence": null,
       "gpu_validation_level": "",
       "gpu_device_proof": "",
       "twin_level": "WORKLOAD_TWIN",
-      "device_used": "",
-      "last_tested": "",
-      "evidence": null,
-      "notes": []
+      "device_used": "AUTO",
+      "last_tested": "2026-10-05T21:27:56+00:00",
+      "evidence": "results/wav2lip/20261005T212536Z-cpu",
+      "notes": [
+        "ok_runs=0/1: CalledProcessError: Command '['git', 'clone', 'https://github.com/Rudrabha/Wav2Lip.git']' returned non-zero exit status 128."
+      ]
     },
     {
       "id": "whisper-asr-genai",
@@ -3734,21 +3825,23 @@
       "upstream_path": "notebooks/whisper-asr-genai/whisper-asr-genai.ipynb",
       "upstream_url": "https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/whisper-asr-genai/whisper-asr-genai.ipynb",
       "priority": 1,
-      "cpu_status": "NOT_TESTED",
-      "cpu_failure_category": "",
-      "cpu_evidence": null,
+      "cpu_status": "FAILED",
+      "cpu_failure_category": "NETWORK",
+      "cpu_evidence": "results/whisper-asr-genai/20261005T212758Z-cpu",
       "cpu_validation_level": "",
-      "cpu_device_proof": "",
+      "cpu_device_proof": "NOT_INFERENCE",
       "gpu_status": "REVALIDATION_REQUIRED",
       "gpu_failure_category": "",
       "gpu_evidence": "results/whisper-asr-genai/20261001T120511Z-gpu",
       "gpu_validation_level": "",
       "gpu_device_proof": "",
       "twin_level": "WORKLOAD_TWIN",
-      "device_used": "",
-      "last_tested": "2026-10-05T16:57:30+00:00",
-      "evidence": "results/whisper-asr-genai/20261001T120511Z-gpu",
-      "notes": []
+      "device_used": "CPU",
+      "last_tested": "2026-10-05T21:41:45+00:00",
+      "evidence": "results/whisper-asr-genai/20261005T212758Z-cpu",
+      "notes": [
+        "ok_runs=0/1: ConnectTimeout: HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /spaces/distil-whisper/whisper-vs-distil-whisper/resolve/main/assets/example_1.wav (Caused by ConnectTimeoutError(<HTTPSConnection(host='huggingface.co', port=443) at 0x7b9fc5a2da00>, 'Conn"
+      ]
     },
     {
       "id": "yolov11-instance-segmentation",
@@ -3826,11 +3919,11 @@
       "upstream_path": "notebooks/yolov11-quantization-with-accuracy-control/yolov11-quantization-with-accuracy-control.ipynb",
       "upstream_url": "https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/yolov11-quantization-with-accuracy-control/yolov11-quantization-with-accuracy-control.ipynb",
       "priority": 2,
-      "cpu_status": "NOT_TESTED",
-      "cpu_failure_category": "",
-      "cpu_evidence": null,
+      "cpu_status": "FAILED",
+      "cpu_failure_category": "TIMEOUT",
+      "cpu_evidence": "results/yolov11-quantization-with-accuracy-control/20261005T234414Z-cpu",
       "cpu_validation_level": "",
-      "cpu_device_proof": "",
+      "cpu_device_proof": "PROVEN_CPU",
       "gpu_status": "NOT_TESTED",
       "gpu_failure_category": "",
       "gpu_evidence": null,
@@ -3838,9 +3931,11 @@
       "gpu_device_proof": "",
       "twin_level": "WORKLOAD_TWIN",
       "device_used": "",
-      "last_tested": "",
-      "evidence": null,
-      "notes": []
+      "last_tested": "2026-10-05T23:54:19+00:00",
+      "evidence": "results/yolov11-quantization-with-accuracy-control/20261005T234414Z-cpu",
+      "notes": [
+        "ok_runs=0/3: "
+      ]
     },
     {
       "id": "yoloe-26-open-vocabulary",
@@ -3918,21 +4013,23 @@
       "upstream_path": "notebooks/yolov26-optimization/yolov26-obb.ipynb",
       "upstream_url": "https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/yolov26-optimization/yolov26-obb.ipynb",
       "priority": 2,
-      "cpu_status": "NOT_TESTED",
+      "cpu_status": "VERIFIED_WITH_LIMITATIONS",
       "cpu_failure_category": "",
-      "cpu_evidence": null,
-      "cpu_validation_level": "",
-      "cpu_device_proof": "",
+      "cpu_evidence": "results/yolov26-obb/20261005T235420Z-cpu",
+      "cpu_validation_level": "EXECUTION_ONLY",
+      "cpu_device_proof": "PROVEN_CPU",
       "gpu_status": "NOT_TESTED",
       "gpu_failure_category": "",
       "gpu_evidence": null,
       "gpu_validation_level": "",
       "gpu_device_proof": "",
       "twin_level": "WORKLOAD_TWIN",
-      "device_used": "",
-      "last_tested": "",
-      "evidence": null,
-      "notes": []
+      "device_used": "CPU",
+      "last_tested": "2026-10-06T00:02:41+00:00",
+      "evidence": "results/yolov26-obb/20261005T235420Z-cpu",
+      "notes": [
+        "EXECUTION_ONLY: no workload correctness contract (validation: {})"
+      ]
     },
     {
       "id": "yolov26-object-detection",
@@ -3964,11 +4061,11 @@
       "upstream_path": "notebooks/z-image-turbo/z-image-turbo.ipynb",
       "upstream_url": "https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/z-image-turbo/z-image-turbo.ipynb",
       "priority": 2,
-      "cpu_status": "NOT_TESTED",
-      "cpu_failure_category": "",
-      "cpu_evidence": null,
+      "cpu_status": "FAILED",
+      "cpu_failure_category": "TIMEOUT",
+      "cpu_evidence": "results/z-image-turbo/20261006T000241Z-cpu",
       "cpu_validation_level": "",
-      "cpu_device_proof": "",
+      "cpu_device_proof": "UNKNOWN",
       "gpu_status": "NOT_TESTED",
       "gpu_failure_category": "",
       "gpu_evidence": null,
@@ -3976,9 +4073,11 @@
       "gpu_device_proof": "",
       "twin_level": "WORKLOAD_TWIN",
       "device_used": "",
-      "last_tested": "",
-      "evidence": null,
-      "notes": []
+      "last_tested": "2026-10-06T00:12:45+00:00",
+      "evidence": "results/z-image-turbo/20261006T000241Z-cpu",
+      "notes": [
+        "ok_runs=0/3: "
+      ]
     },
     {
       "id": "zeroscope-text2video",
@@ -4135,11 +4234,11 @@
       "upstream_path": "supplementary_materials/notebooks/qwen-3/smolagents/qwen3_agent.ipynb",
       "upstream_url": "https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/supplementary_materials/notebooks/qwen-3/smolagents/qwen3_agent.ipynb",
       "priority": 1,
-      "cpu_status": "NOT_TESTED",
-      "cpu_failure_category": "",
-      "cpu_evidence": null,
+      "cpu_status": "FAILED",
+      "cpu_failure_category": "DEPENDENCY",
+      "cpu_evidence": "results/qwen3_agent/20261005T203416Z-cpu",
       "cpu_validation_level": "",
-      "cpu_device_proof": "",
+      "cpu_device_proof": "NOT_INFERENCE",
       "gpu_status": "NOT_TESTED",
       "gpu_failure_category": "",
       "gpu_evidence": null,
@@ -4147,9 +4246,11 @@
       "gpu_device_proof": "",
       "twin_level": "WORKLOAD_TWIN",
       "device_used": "",
-      "last_tested": "",
-      "evidence": null,
-      "notes": []
+      "last_tested": "2026-10-05T20:42:25+00:00",
+      "evidence": "results/qwen3_agent/20261005T203416Z-cpu",
+      "notes": [
+        "ok_runs=0/1: ModuleNotFoundError: No module named 'smolagents'"
+      ]
     }
   ]
 }

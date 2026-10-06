@@ -1,0 +1,52 @@
+[cell 0 START +    0.4s] # Handwritten Chinese and Japanese OCR with OpenVINO™ |  | In this tutoria
+[cell 1 START +    0.4s] # Install openvino package | %pip install -q "openvino>=2023.1.0" opencv
+[cell 1 DONE  +    0.8s]
+[cell 2 START +    0.8s] ## Imports | [back to top ⬆️](#Table-of-contents:) | 
+[cell 3 START +    0.8s] from collections import namedtuple | from itertools import groupby | from 
+[cell 3 DONE  +    1.2s]
+[cell 4 START +    1.2s] ## Settings | [back to top ⬆️](#Table-of-contents:) |  | Set up all constant
+[cell 5 START +    1.2s] # Directories where data will be placed. | base_models_dir = Path("model
+[cell 5 DONE  +    1.2s]
+[cell 6 START +    1.2s] To group files, you have to define the collection. In this case, use `
+[cell 7 START +    1.2s] Language = namedtuple(typename="Language", field_names=["model_name", 
+[cell 7 DONE  +    1.2s]
+[cell 8 START +    1.2s] ## Select a Language | [back to top ⬆️](#Table-of-contents:) |  | Depending 
+[cell 9 START +    1.2s] # Select the language by using either language="chinese" or language="
+[cell 9 DONE  +    1.2s]
+[cell 10 START +    1.2s] ## Download the Model | [back to top ⬆️](#Table-of-contents:) |  | In additi
+[cell 11 START +    1.2s] path_to_model = base_models_dir / f"{selected_language.model_name}.xml
+[cell 11 DONE  +    1.2s]
+[cell 12 START +    1.2s] ## Load the Model and Execute | [back to top ⬆️](#Table-of-contents:) |  | W
+[cell 13 START +    1.2s] core = ov.Core() | model = core.read_model(model=path_to_model)
+[cell 13 DONE  +    1.2s]
+[cell 14 START +    1.2s] ## Select inference device | [back to top ⬆️](#Table-of-contents:) |  | sele
+[cell 15 START +    1.2s] device = device_widget() | device
+[cell 15 DONE  +    1.3s]
+[cell 16 START +    1.3s] compiled_model = core.compile_model(model=model, device_name=device.va
+[cell 16 DONE  +    1.3s]
+[cell 17 START +    1.3s] ## Fetch Information About Input and Output Layers | [back to top ⬆️](#T
+[cell 18 START +    1.3s] recognition_output_layer = compiled_model.output(0) | recognition_input_
+[cell 18 DONE  +    1.3s]
+[cell 19 START +    1.3s] ## Load an Image | [back to top ⬆️](#Table-of-contents:) |  | Next, load an 
+[cell 20 START +    1.3s] # Download the image from the openvino_notebooks storage based on the 
+[cell 20 DONE  +    1.3s]
+[cell 21 START +    1.3s] ## Visualize Input Image | [back to top ⬆️](#Table-of-contents:) |  | After 
+[cell 22 START +    1.3s] plt.figure(figsize=(20, 1)) | plt.axis("off") | plt.imshow(resized_image, 
+[cell 22 DONE  +    1.4s]
+[cell 23 START +    1.4s] ## Prepare Charlist | [back to top ⬆️](#Table-of-contents:) |  | The model i
+[cell 24 START +    1.4s] # Download the image from the openvino_notebooks storage based on the 
+[cell 24 DONE  +    1.4s]
+[cell 25 START +    1.4s] # Get a dictionary to encode the output, based on model documentation.
+[cell 25 DONE  +    1.4s]
+[cell 26 START +    1.4s] ## Run Inference | [back to top ⬆️](#Table-of-contents:) |  | Now, run infer
+[cell 27 START +    1.4s] # Run inference on the model | predictions = compiled_model([input_image
+[cell 27 DONE  +    1.4s]
+[cell 28 START +    1.4s] ## Process the Output Data | [back to top ⬆️](#Table-of-contents:) |  | The 
+[cell 29 START +    1.4s] # Remove a batch dimension. | predictions = np.squeeze(predictions) |  | # R
+[cell 29 DONE  +    1.4s]
+[cell 30 START +    1.4s] # Use the `groupby` function to remove concurrent letters, as required
+[cell 30 DONE  +    1.4s]
+[cell 31 START +    1.4s] ## Print the Output | [back to top ⬆️](#Table-of-contents:) |  | Now, having
+[cell 32 START +    1.4s] plt.figure(figsize=(20, 1)) | plt.axis("off") | plt.imshow(resized_image, 
+[cell 32 DONE  +    1.4s]
+NBEXEC_RESULT={"ok": true, "n_cells": 18, "n_skipped": 0, "n_substituted": 0, "stopped_after": null, "error_cell": null, "error_type": null, "error_head": null, "duration_s": 1.78, "patch_notes": []}
