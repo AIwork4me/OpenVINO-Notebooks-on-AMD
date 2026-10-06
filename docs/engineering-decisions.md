@@ -132,3 +132,58 @@ The generic cell substitution used a `PAT:REP` string, which is ambiguous for
 patterns containing `:` (e.g. `https://...`): the first-colon split turned the
 huggingface.co mirror rewrite into a catastrophic "https → garbage"
 replacement. Delimiter is now `PAT||REP`; affected attempts were re-run.
+
+## D16 — Per-campaign HF endpoint probing (v0.2)
+
+`HF_ENDPOINT` is no longer hardcoded to hf-mirror.com. Validation runners
+have different egress policies: the reference network cannot reach
+huggingface.co at all (D2), while the gfx1100 secondary runner reaches
+huggingface.co directly and gets 429-rate-limited *by the mirror*. The
+endpoint is therefore probed per campaign run (`environment.resolve_hf_endpoint`):
+explicit `OV_AMD_HF_ENDPOINT` override > live probe of both endpoints >
+recorded ambient `HF_ENDPOINT` hint. The choice and both probe results are
+written into every metrics.json. Mirror source rewriting (D2) activates only
+when the mirror is the selected transport.
+
+## D17 — git+https transport rewrite on proxied runners (v0.2)
+
+Notebooks installing `git+https://github.com/...` dependencies fail on
+runners whose git CONNECT to github.com is blocked (a site git-wrapper forces
+gh-proxy.org there, which 403s). `environment.resolve_git_transport` probes
+with a real shallow clone (exactly what pip does, including the wrapper) and
+records the outcome; when direct clone is unavailable the executor applies
+structured substitutions rewriting `git+https://github.com/O/R.git[@ref]` to
+`https://codeload.github.com/O/R/tar.gz/[ref|HEAD]` — same repo, same ref,
+pure transport change, no delimiter encoding.
+
+## D18 — Slim execution seed (v0.2)
+
+The per-workload seed dropped transformers/sentence-transformers/optimum:
+they drag the full torch stack into every environment while a minority of
+notebooks need it (on throttled runners each env build paid a multi-hour
+torch download for nothing). Notebooks declare extras via their own
+requirements*.txt — installed at build time best-effort with a recorded
+seed-only fallback — or via %pip cells executing inside the isolated venv,
+where mutation is safe by design. Upstream declarations take priority over
+any harness golden set.
+
+## D19 — Weights/input provenance on restricted runners (v0.2)
+
+Some official distribution hosts are unreachable from specific runners
+(storage.openvinotoolkit.org, raw.githubusercontent.com, github release
+assets). Twins and harness fetches carry explicit fallback chains limited to
+official or well-known mirrors of the SAME asset (user-images.githubusercontent.com
+notebook assets, HF community/official mirrors such as spacy/en_core_web_sm
+and kadirnar/yolov8n-v8.0, ModelScope mirrors for gated HF repos). The URL
+that actually served each file, and its sha256 where practical, are recorded
+in evidence; provenance is never silently swapped.
+
+## D20 — Multi-platform evidence identity (v0.2)
+
+The campaign now spans two AMD platforms (Ryzen AI Max+395/gfx1151 reference
+runner; EPYC 9334/gfx1100 secondary runner). Every attempt record carries
+`platform_id` (CPU model + authoritative GPU arch from gcnArchName/rocminfo —
+never derived from CUDA capability numbers, which mislabel gfx1100 as
+"gfx110" and gfx1151 as "gfx115"). Generated reports group results by
+platform; a green claim is always traceable to the exact hardware that
+produced it.
