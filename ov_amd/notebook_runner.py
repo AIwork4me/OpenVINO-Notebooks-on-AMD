@@ -40,7 +40,12 @@ def classify_failure(stderr: str, stdout: str, timeout: bool) -> FailureCategory
         (r"No space left on device", FailureCategory.DISK_LIMIT),
         (r"Cannot allocate memory|out of memory|MemoryError|std::bad_alloc|OOM", FailureCategory.OOM),
         (r"Killed", FailureCategory.RAM_LIMIT),
-        (r"git clone|RPC failed|Operation too slow|Could not resolve host", FailureCategory.NETWORK),
+        # shell form "git clone URL" and subprocess-list form "['git', 'clone', URL]"
+        # (real cases: Wav2Lip / sam2 direct clones on the throttled network)
+        (
+            r"git(?:\s+clone|',\s*'clone)|RPC failed|Operation too slow|Could not resolve host",
+            FailureCategory.NETWORK,
+        ),
         (r"ModuleNotFoundError|ImportError|No module named", FailureCategory.DEPENDENCY),
         # notebooks that %pip install and import in the same session; a rerun
         # after the install completes succeeds (remediation path handles it)

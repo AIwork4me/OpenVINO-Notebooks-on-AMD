@@ -64,6 +64,29 @@ def test_missing_data_file_is_not_dependency():
     assert classify_failure(stderr, "", False) != FailureCategory.DEPENDENCY
 
 
+def test_git_clone_subprocess_list_form_is_network():
+    # ultralytics-style direct clones raise CalledProcessError with the
+    # command as a list: "['git', 'clone', URL]" — no space-form match
+    stderr = (
+        "CalledProcessError: Command '['git', 'clone', "
+        "'https://github.com/Rudrabha/Wav2Lip.git']' returned non-zero exit status 128."
+    )
+    assert classify_failure(stderr, "", False) == FailureCategory.NETWORK
+
+
+def test_git_clone_outranks_pip_resolver_banner():
+    # wav2lip real case: pip's benign resolver banner coexists with the
+    # failed clone; NETWORK must win over PACKAGE_CONFLICT
+    stderr = (
+        "ERROR: pip's dependency resolver does not currently take into account all "
+        "the packages that are installed. This behaviour is the source of the "
+        "following dependency conflicts.\n"
+        "CalledProcessError: Command '['git', 'clone', "
+        "'https://github.com/Rudrabha/Wav2Lip.git']' returned non-zero exit status 128."
+    )
+    assert classify_failure(stderr, "", False) == FailureCategory.NETWORK
+
+
 def test_extract_outputs(tmp_path):
     nb = tmp_path / "x.ipynb"
     nb.write_text(
