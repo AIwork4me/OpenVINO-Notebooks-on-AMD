@@ -75,7 +75,8 @@ def test_build_env_isolation_and_reuse(tmp_path, monkeypatch):
 
     calls = []
 
-    def fake_build(backend, fp, python_version=None, upstream_commit="", extra_deps=None, seed_pkgs=None):
+    def fake_build(backend, fp, python_version=None, upstream_commit="", extra_deps=None, seed_pkgs=None,
+                   requirements=None):
         calls.append(fp)
         # create a marker dir instead of a real venv for speed
         key = env_manager.compute_env_key(backend, python_version or "3.12", upstream_commit, fp)
