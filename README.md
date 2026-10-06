@@ -35,9 +35,9 @@ This is **an AMD validation and ROCm companion project for [OpenVINO Notebooks](
 <!-- generated:compatibility begin -->
 **171 notebooks catalogued** · Evidence Schema **v2** · upstream `a8809170cc4f`
 
-CPU (OpenVINO, Ryzen): **94/171 attempted** (55.0%) — ✅ 1 L3 verified · 🟡 0 limited · 🔵 15 revalidation required · 🔴 77 failed · ⚫ 0 blocked/skipped · ➖ 1 n/a · ⏳ 77 not tested
+CPU (OpenVINO, Ryzen): **133/171 attempted** (77.8%) — ✅ 4 L3 verified · 🟡 37 limited · 🔵 0 revalidation required · 🔴 91 failed · ⚫ 0 blocked/skipped · ➖ 1 n/a · ⏳ 38 not tested
 
-GPU (ROCm twins, Radeon): ✅ 1 verified · 🟡 0 limited · 🔵 7 revalidation required
+GPU (ROCm twins, Radeon): ✅ 8 verified · 🟡 0 limited · 🔵 0 revalidation required
 
 Twin classification: **171/171** (100.0%)
 

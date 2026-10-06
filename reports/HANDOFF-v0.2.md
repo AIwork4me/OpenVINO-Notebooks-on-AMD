@@ -246,3 +246,18 @@ wall cap（eda4f73）、git transport probe+codeload 改写（97e6df4）。
 **本机网络实测（写进证据）**：storage.openvinotoolkit.org 阻断、raw.githubusercontent 阻断、
 github git clone 仅 wrapper 回退可用（间歇）、HF 双端点间歇 429、pypi 慢但稳、
 codeload.github.com 稳定、user-images.githubusercontent.com 稳定。
+
+---
+
+## 11. gfx1100 会话进度更新（2026-10-06 ~07:00Z）
+
+- [x] **§5.6 完成**：8/8 ROCm 孪生在本机以 Evidence Schema v2 重验通过
+  （hello-detection, whisper-asr-genai, kokoro, qwen3, smolvlm2, sd2.1, sdxl,
+  deepseek-r1 → VERIFIED / PROVEN_GPU / WORKLOAD_CORRECTNESS，hip 7.2.53211，
+  权威 gcnArchName gfx1100）。gated HF 仓库经 ModelScope 官方镜像回退（来源+sha 记录在案）。
+- [x] amd-rocm-validation 工作流已 workflow_dispatch 真实执行
+  （run 37426802852，参考 runner 在线空闲时派发，无 CPU/GPU 重叠）。
+- [x] 工程决策 D16–D20 落档（HF 端点探测 / git 传输改写 / 瘦身种子 /
+  来源链回退 / 多平台证据身份）。
+- 参考 CPU 马拉松（Pass 1/2）状态以参考机会话为准；本会话未触碰 CPU 记录
+  与上游 pin。剩余收口（§5.2 起）待参考机最终状态后执行。
