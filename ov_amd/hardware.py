@@ -40,14 +40,17 @@ def cpu_model() -> str:
 
 def gpu_info() -> dict:
     info: dict = {"available": False}
-    out = _run(["rocminfo"])
+    # multi-GPU servers enumerate slowly; 90s avoids a false "no GPU" record
+    out = _run(["rocminfo"], timeout=90)
     m = re.search(r"^\s*Marketing Name:\s*(.+)$", out, re.M)
-    g = re.search(r"^\s*Name:\s*(gfx\S+)$", out, re.M)
+    g = re.findall(r"^\s*Name:\s*(gfx\S+)$", out, re.M)
     if g:
         info["available"] = True
-        info["arch"] = g.group(1)
+        archs = sorted(set(g))
+        info["arch"] = archs[0] if len(archs) == 1 else archs
         info["marketing_name"] = m.group(1).strip() if m else "AMD Radeon"
-    smi = _run(["rocm-smi", "--showmeminfo", "vram", "--csv"])
+        info["gpu_count"] = len(g)
+    smi = _run(["rocm-smi", "--showmeminfo", "vram", "--csv"], timeout=60)
     vm = re.search(r"(\d+)", smi.splitlines()[-1]) if smi else None
     if vm:
         info["vram_total_bytes_reported"] = int(vm.group(1))
@@ -159,10 +162,16 @@ def platform_id() -> str:
     """Stable, sanitized platform identifier used as hardware/<platform-id>/."""
 
     cpu = cpu_model().lower()
+    gpu = gpu_info()
     if "ai max" in cpu or "395" in cpu:
         pid = "ryzen-ai-max-395-radeon-8060s"
     else:
         pid = re.sub(r"[^a-z0-9]+", "-", cpu)[:48].strip("-") or "unknown-cpu"
+    # a machine with a discrete AMD GPU gets it in the identity so evidence
+    # from iGPU and dGPU runners can never be conflated
+    arch = gpu.get("arch") if gpu.get("available") else None
+    if arch and isinstance(arch, str) and arch not in pid:
+        pid = f"{pid}-{arch}"
     return pid
 
 

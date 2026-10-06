@@ -165,10 +165,19 @@ DEFAULT_SKIP_RES = [r"demo\.launch|iface\.launch|app\.launch|\.launch\(\)"]
 
 
 def _hf_mirror_subs() -> list[Substitution]:
-    """Transport rewrite (decision D2): huggingface.co is unreachable on the
-    reference network; the mirror serves identical weights. Structured rule —
-    no delimiter encoding."""
+    """Transport rewrite (decision D2), applied ONLY when the mirror is the
+    chosen transport for this network (see environment.resolve_hf_endpoint).
 
+    When huggingface.co itself is reachable — as on the secondary validation
+    runner — no source rewriting happens at all: HF_ENDPOINT handles transport
+    for the HF libraries and literal URLs already resolve. Rewriting only the
+    Hugging Face host (never github.com / storage.openvinotoolkit.org / other
+    hosts) remains the documented fallback for the reference network."""
+
+    from ov_amd.environment import resolve_hf_endpoint
+
+    if str(resolve_hf_endpoint()["endpoint"]) != "https://hf-mirror.com":
+        return []
     return [
         Substitution(
             pattern=r"https://huggingface\.co",
@@ -294,6 +303,9 @@ def run_workload_cpu(entry: NotebookEntry, state: dict[str, Any], dry_run: bool 
     wall = int(cpu_cfg.get("wall_timeout_s", wall))
     repeats = _repeats_for(entry, cfg)
     out.required_runs = repeats
+    from ov_amd.environment import resolve_hf_endpoint
+
+    hf_transport = resolve_hf_endpoint()
     subs = _hf_mirror_subs() + _cell_subs(patches)
 
     ts = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
@@ -453,6 +465,7 @@ def run_workload_cpu(entry: NotebookEntry, state: dict[str, Any], dry_run: bool 
             "cells_substituted": last_info.get("nbexec", {}).get("n_substituted"),
             "aggregate": "aggregate.json",
             "env": out.env_info,
+            "hf_transport": hf_transport,
         },
     )
     (ev / "summary.md").write_text(_summary_md(entry, out, last_info))
@@ -514,6 +527,14 @@ def _sha256(p: Path | None) -> str | None:
 
 def _record(state: dict[str, Any], entry: NotebookEntry, backend: str, out: AttemptOutcome) -> None:
     rec = state.setdefault("attempts", {}).setdefault(entry.id, {})
+    # Evidence references are stored repo-relative (Defect C): state files must
+    # never carry machine-local absolute paths.
+    evidence_ref = None
+    if out.evidence_dir is not None:
+        try:
+            evidence_ref = str(out.evidence_dir.relative_to(REPO_ROOT))
+        except ValueError:
+            evidence_ref = str(out.evidence_dir)
     rec[backend] = {
         "status": out.status.value,
         "failure_category": out.failure_category,
@@ -523,7 +544,8 @@ def _record(state: dict[str, Any], entry: NotebookEntry, backend: str, out: Atte
         "device_used": out.device_used,
         "device_proof": out.device_proof,
         "validation_level": out.validation_level,
-        "evidence_dir": str(out.evidence_dir) if out.evidence_dir else None,
+        "platform_id": hardware.platform_id(),
+        "evidence_dir": evidence_ref,
         "env": out.env_info,
         "notes": out.notes,
         "updated": _utcnow(),
