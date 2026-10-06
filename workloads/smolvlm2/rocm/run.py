@@ -19,8 +19,11 @@ from twin_lib import PeakMemory, emit, fetch, setup
 
 MODEL = "HuggingFaceTB/SmolVLM2-2.2B-Instruct"
 # input substitution (recorded): the notebook's default image lives on a CDN
-# blocked from this network; coco.jpg is the standard catalog input class
-IMG_URL = "https://storage.openvinotoolkit.org/repositories/openvino_notebooks/data/data/image/coco.jpg"
+# blocked from some validation runners; the user-images.githubusercontent.com
+# copy (official notebook-asset host, reachable there) is the primary, the
+# storage.openvinotoolkit.org canonical copy the fallback
+IMG_URL = "https://user-images.githubusercontent.com/36741649/127172572-1cdab941-df5f-42e2-a367-2b334a3db6d8.jpg"
+IMG_FALLBACK = "https://storage.openvinotoolkit.org/repositories/openvino_notebooks/data/data/image/coco.jpg"
 PROMPT = "Describe this image in one sentence."
 
 
@@ -31,7 +34,7 @@ def main() -> int:
 
     evidence = Path(args.evidence_dir)
     img_path = evidence / "input.png"
-    fetch(IMG_URL, img_path)
+    fetch(IMG_URL, img_path, fallbacks=[IMG_FALLBACK])
 
     import torch
     from transformers import AutoModelForImageTextToText, AutoProcessor

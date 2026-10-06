@@ -22,11 +22,17 @@ jobs:
       - uses: actions/checkout@v4
       - name: Provision pinned upstream snapshot (runner-agnostic)
         run: |
-          # reuse a warm snapshot when this runner maintains one; otherwise
-          # fetch the pinned commit (tarball transport, content comes from the
-          # pinned sha — no floating refs)
-          python3 scripts/fetch_upstream.py --if-missing
-          test -d .cache/upstream || { echo "upstream snapshot unavailable"; exit 1; }
+          # warm link first: runners that maintain a persistent checkout expose
+          # its pinned snapshot (same repo, same commit discipline); otherwise
+          # fetch the pinned commit (tarball transport, content pinned by sha)
+          for REF in "$HOME/Desktop/OpenVINO-Notebooks-on-AMD" "$HOME/OpenVINO-Notebooks-on-AMD"; do
+            if [ -d "$REF/.cache/upstream/notebooks" ]; then
+              mkdir -p .cache && ln -s "$REF/.cache/upstream" .cache/upstream
+              echo "warm snapshot linked from $REF"; break
+            fi
+          done
+          [ -d .cache/upstream ] || python3 scripts/fetch_upstream.py --if-missing
+          test -d .cache/upstream/notebooks || { echo "upstream snapshot unavailable"; exit 1; }
       - name: Doctor
         run: python3 -m ov_amd doctor
       - name: Marathon (CPU, bounded)

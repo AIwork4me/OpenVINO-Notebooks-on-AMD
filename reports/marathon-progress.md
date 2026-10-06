@@ -1,26 +1,26 @@
 # Marathon Progress (generated)
 
-Updated: 2026-10-06T01:56:49+00:00
+Updated: 2026-10-06T06:58:51+00:00
 
 - Catalog discovered: 171
-- CPU attempted: 149 (87.1% of catalog; attempt records only, NOT_TESTED excluded)
+- CPU attempted: 133 (77.8% of catalog; attempt records only, NOT_TESTED excluded)
 - CPU verified: 4
-- CPU verified with limitations: 48
-- CPU failed: 96
+- CPU verified with limitations: 37
+- CPU failed: 91
 - CPU blocked/skipped: 0
-- CPU not tested: 22
+- CPU not tested: 38
 - GPU attempted: 8 (4.7%)
-- GPU verified: 1 (+0 limited)
+- GPU verified: 8 (+0 limited)
 - Twin classification: 171/171 (100.0%)
-- Terminal attempt records: 157
-- Current workload: stable-video-diffusion
+- Terminal attempt records: 141
+- Current workload: bernini-r-image-video
 
 ## Top recurring CPU failure categories
 
-- UNKNOWN: 50
-- DEPENDENCY: 25
-- OPENVINO_ERROR: 6
+- UNKNOWN: 48
+- DEPENDENCY: 24
 - NETWORK: 6
+- OPENVINO_ERROR: 4
 - TIMEOUT: 4
 - MODEL_ACCESS: 3
 - PACKAGE_CONFLICT: 2

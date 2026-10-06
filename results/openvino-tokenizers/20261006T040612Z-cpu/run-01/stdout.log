@@ -1,0 +1,15 @@
+[cell 0 START +    0.5s] # OpenVINO Tokenizers: Incorporate Text Processing Into OpenVINO Pipel
+[cell 1 START +    0.5s] ## Acquiring OpenVINO Tokenizers | [back to top ⬆️](#Table-of-contents:)
+[cell 2 START +    0.5s] %pip uninstall -q -y optimum optimum-intel optimum-onnx | %pip install -
+[cell 2 DONE  +   31.2s]
+[cell 3 START +   31.2s] import requests | from pathlib import Path |  | if not Path("notebook_utils.
+[cell 3 DONE  +   31.3s]
+[cell 4 START +   31.3s] from pathlib import Path |  | tokenizer_dir = Path("tokenizer/") | model_id 
+[cell 4 DONE  +   31.3s]
+[cell 5 START +   31.3s] ### Convert Tokenizer from HuggingFace Hub with CLI Tool | [back to top 
+[cell 6 START +   31.3s] if not tokenizer_dir.exists(): |     !convert_tokenizer $model_id --with
+[cell 6 DONE  +   31.3s]
+[cell 7 START +   31.3s] > ⚠️ If you have any problems with the command above on MacOS, try to 
+[cell 8 START +   31.3s] from transformers import AutoTokenizer | from openvino_tokenizers import
+[cell 8 DONE  +   37.1s]
+NBEXEC_RESULT={"ok": false, "n_cells": 14, "n_skipped": 0, "n_substituted": 0, "stopped_after": null, "error_cell": null, "error_type": "CellExecutionError", "error_head": "\u001b[31mModuleNotFoundError\u001b[39m: Could not import module 'LlamaConfig'. Are this object's requirements defined correctly?", "duration_s": 38.42, "patch_notes": []}
