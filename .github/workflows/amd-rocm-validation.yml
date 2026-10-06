@@ -17,10 +17,23 @@ jobs:
       - uses: actions/checkout@v4
       - name: Provision pinned upstream snapshot (runner-agnostic)
         run: |
-          python3 scripts/fetch_upstream.py --if-missing
-          test -d .cache/upstream || { echo "upstream snapshot unavailable"; exit 1; }
+          for REF in "$HOME/Desktop/OpenVINO-Notebooks-on-AMD" "$HOME/OpenVINO-Notebooks-on-AMD"; do
+            if [ -d "$REF/.cache/upstream/notebooks" ]; then
+              mkdir -p .cache && ln -s "$REF/.cache/upstream" .cache/upstream
+              echo "warm snapshot linked from $REF"; break
+            fi
+          done
+          [ -d .cache/upstream ] || python3 scripts/fetch_upstream.py --if-missing
+          test -d .cache/upstream/notebooks || { echo "upstream snapshot unavailable"; exit 1; }
       - name: Provision ROCm GPU environment
-        run: python3 scripts/provision_gpu_env.py
+        run: |
+          for REF in "$HOME/Desktop/OpenVINO-Notebooks-on-AMD" "$HOME/OpenVINO-Notebooks-on-AMD"; do
+            if [ -x "$REF/.venv-gpu/bin/python" ]; then
+              ln -s "$REF/.venv-gpu" .venv-gpu
+              echo "warm GPU env linked from $REF"; break
+            fi
+          done
+          [ -x .venv-gpu/bin/python ] || python3 scripts/provision_gpu_env.py
       - name: Doctor
         run: python3 -m ov_amd doctor
       - name: GPU twins (bounded)
