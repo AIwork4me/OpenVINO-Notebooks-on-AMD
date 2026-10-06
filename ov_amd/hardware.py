@@ -42,8 +42,8 @@ def gpu_info() -> dict:
     info: dict = {"available": False}
     # multi-GPU servers enumerate slowly; 90s avoids a false "no GPU" record
     out = _run(["rocminfo"], timeout=90)
-    m = re.search(r"^\s*Marketing Name:\s*(.+)$", out, re.M)
-    g = re.findall(r"^\s*Name:\s*(gfx\S+)$", out, re.M)
+    m = re.search(r"^\s*Marketing Name:\s*(.+?)\s*$", out, re.M)
+    g = re.findall(r"^\s*Name:\s*(gfx\S+?)\s*$", out, re.M)
     if g:
         info["available"] = True
         archs = sorted(set(g))
