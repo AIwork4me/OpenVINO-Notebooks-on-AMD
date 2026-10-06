@@ -1,0 +1,28 @@
+id: object-detection
+title: Object Detection
+category: Vision
+upstream:
+  repository: openvinotoolkit/openvino_notebooks
+  branch: latest
+  commit: a8809170cc4fc6aa633fbb9c22214be67ac20b47
+  path: notebooks/object-detection-webcam/object-detection.ipynb
+  url: https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/object-detection-webcam/object-detection.ipynb
+model:
+  name: ''
+  source: ''
+  revision: ''
+  license: ''
+cpu:
+  runtime: openvino
+  status: VERIFIED_WITH_LIMITATIONS
+gpu:
+  runtime: ''
+  status: NOT_TESTED
+twin:
+  level: WORKLOAD_TWIN
+validation:
+  output_contains:
+  - Loading yolov8n_openvino_model for OpenVINO inference
+  - Source ended
+patches: {}
+last_verified: '2026-10-06T01:36:44+00:00'

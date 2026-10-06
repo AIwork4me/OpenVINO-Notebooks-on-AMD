@@ -20,6 +20,9 @@ gpu:
   status: NOT_TESTED
 twin:
   level: OPENVINO_SPECIFIC
-validation: {}
+validation:
+  output_contains:
+  - '\[ SUCCESS \] XML file: model/distilbert\.xml'
+  - '\[ SUCCESS \] BIN file: model/distilbert\.bin'
 patches: {}
 last_verified: '2026-10-05T21:57:05+00:00'

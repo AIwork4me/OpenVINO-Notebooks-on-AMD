@@ -20,6 +20,8 @@ gpu:
   status: NOT_TESTED
 twin:
   level: WORKLOAD_TWIN
-validation: {}
+validation:
+  output_contains:
+  - Figure size 6400x6400
 patches: {}
 last_verified: '2026-10-05T21:52:23+00:00'

@@ -20,6 +20,9 @@ gpu:
   status: NOT_TESTED
 twin:
   level: WORKLOAD_TWIN
-validation: {}
+validation:
+  output_contains:
+  - Detected \d+ objects with confidence
+  output_finite_numbers: true
 patches: {}
 last_verified: '2026-10-05T23:09:17+00:00'

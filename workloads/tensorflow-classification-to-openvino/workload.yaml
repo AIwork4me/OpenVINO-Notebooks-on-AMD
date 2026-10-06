@@ -20,6 +20,9 @@ gpu:
   status: NOT_TESTED
 twin:
   level: WORKLOAD_TWIN
-validation: {}
+validation:
+  output_contains:
+  - flat-coated retriever
+  output_finite_numbers: true
 patches: {}
 last_verified: '2026-10-05T23:39:45+00:00'

@@ -20,6 +20,9 @@ gpu:
   status: NOT_TESTED
 twin:
   level: WORKLOAD_TWIN
-validation: {}
+validation:
+  output_contains:
+  - Verification passed
+  - 'Data matches: \d+ points'
 patches: {}
 last_verified: '2026-10-05T22:50:55+00:00'

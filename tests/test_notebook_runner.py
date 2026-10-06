@@ -28,6 +28,17 @@ def test_unknown():
     assert classify_failure("weird failure", "", False) == FailureCategory.UNKNOWN
 
 
+def test_gated_model_outranks_pip_resolver_banner():
+    stderr = (
+        "ERROR: pip's dependency resolver does not currently take into account all "
+        "the packages that are installed. This behaviour is the source of the "
+        "following dependency conflicts.\n"
+        "huggingface_hub.utils._errors.GatedRepoError: 401 Client Error. "
+        "Access to model openai/stable-diffusion-3 is restricted (Repository access forbidden)."
+    )
+    assert classify_failure(stderr, "", False) == FailureCategory.MODEL_ACCESS
+
+
 def test_extract_outputs(tmp_path):
     nb = tmp_path / "x.ipynb"
     nb.write_text(
