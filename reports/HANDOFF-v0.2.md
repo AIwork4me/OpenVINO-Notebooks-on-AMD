@@ -26,6 +26,24 @@
 
 ---
 
+## 0.5 并行会话协作（重要！）
+
+**用户正在另一台机器（AMD W7900）上并行运行相似的验证工作，并直接推送到同一分支
+`codex/v0.2-validation-reliability`**（提交如 2ddb7f1 "runner-agnostic transport"、
+976bdd6 "slim per-workload seed"、eda4f73 "per-runner wall cap"，以及 W7900 的
+results/ 证据目录）。协作纪律：
+
+1. **永不 force-push**；推送被拒（non-fast-forward）时：`git fetch origin` →
+   `git merge origin/codex/v0.2-validation-reliability` → 解决冲突（状态/证据文件
+   冲突时取**本地活文件**——本机的马拉松进程在实时写它）→ 重跑 pytest → 再推送。
+2. 每次 push 前先 fetch+merge（对方在持续推）。
+3. 对方改动种子/指纹代码会让本机已建 venv 的 key 失配——不要删旧 venv；`ensure_env`
+   按 env-meta.json 的指纹判断复用，失配只会新建。
+4. 对方的 results/（W7900 证据）与本地 results/ 共存；report 生成器按状态文件合并展示。
+5. 双方都遵守 §9 的诚实底线；合并后必须 `python3 -m pytest tests/ -q`（≥123 通过）。
+
+---
+
 ## 1. 项目与任务背景（一段话）
 
 这是"OpenVINO Notebooks on AMD"仓库的 **v0.2 验证可靠性闭环**：外部审查发现 v0.1 的
