@@ -39,6 +39,54 @@ def test_gated_model_outranks_pip_resolver_banner():
     assert classify_failure(stderr, "", False) == FailureCategory.MODEL_ACCESS
 
 
+def test_missing_console_script_is_dependency():
+    # subprocess spawn failure for a console script (optimum-cli et al):
+    # the notebook's %pip git-install failed silently, the executable never
+    # landed in the venv — a dependency failure with a remediation path
+    stderr = (
+        "-> 1955     raise child_exception_type(errno_num, err_msg, err_filename)\n"
+        "   1956 else:\n"
+        "   1957     raise child_exception_type(errno_num, err_msg)\n"
+        "\n"
+        "FileNotFoundError: [Errno 2] No such file or directory: 'optimum-cli'"
+    )
+    assert classify_failure(stderr, "", False) == FailureCategory.DEPENDENCY
+
+
+def test_missing_data_file_is_not_dependency():
+    # builtins.open/PIL FileNotFoundError (missing image on disk) must not
+    # route into the pip-remediation path
+    stderr = (
+        "   3639     fp = builtins.open(filename, \"rb\")\n"
+        "\n"
+        "FileNotFoundError: [Errno 2] No such file or directory: 'nyc.jpg'"
+    )
+    assert classify_failure(stderr, "", False) != FailureCategory.DEPENDENCY
+
+
+def test_git_clone_subprocess_list_form_is_network():
+    # ultralytics-style direct clones raise CalledProcessError with the
+    # command as a list: "['git', 'clone', URL]" — no space-form match
+    stderr = (
+        "CalledProcessError: Command '['git', 'clone', "
+        "'https://github.com/Rudrabha/Wav2Lip.git']' returned non-zero exit status 128."
+    )
+    assert classify_failure(stderr, "", False) == FailureCategory.NETWORK
+
+
+def test_git_clone_outranks_pip_resolver_banner():
+    # wav2lip real case: pip's benign resolver banner coexists with the
+    # failed clone; NETWORK must win over PACKAGE_CONFLICT
+    stderr = (
+        "ERROR: pip's dependency resolver does not currently take into account all "
+        "the packages that are installed. This behaviour is the source of the "
+        "following dependency conflicts.\n"
+        "CalledProcessError: Command '['git', 'clone', "
+        "'https://github.com/Rudrabha/Wav2Lip.git']' returned non-zero exit status 128."
+    )
+    assert classify_failure(stderr, "", False) == FailureCategory.NETWORK
+
+
 def test_extract_outputs(tmp_path):
     nb = tmp_path / "x.ipynb"
     nb.write_text(
