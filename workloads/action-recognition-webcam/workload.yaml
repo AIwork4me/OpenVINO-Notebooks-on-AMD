@@ -1,0 +1,32 @@
+id: action-recognition-webcam
+title: Action Recognition Webcam
+category: Video
+upstream:
+  repository: openvinotoolkit/openvino_notebooks
+  branch: latest
+  commit: a8809170cc4fc6aa633fbb9c22214be67ac20b47
+  path: notebooks/action-recognition-webcam/action-recognition-webcam.ipynb
+  url: https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/action-recognition-webcam/action-recognition-webcam.ipynb
+model:
+  name: ''
+  source: ''
+  revision: ''
+  license: ''
+cpu:
+  runtime: openvino
+  status: VERIFIED_WITH_LIMITATIONS
+gpu:
+  runtime: ''
+  status: NOT_TESTED
+twin:
+  level: WORKLOAD_TWIN
+validation:
+  output_contains:
+  - Source ended
+  output_not_contains:
+  - Cannot open
+patches:
+  cell_subs:
+  - pattern: 'if not USE_WEBCAM and video_file\.exists\(\):'
+    replacement: 'if not USE_WEBCAM and not video_file.exists():'
+last_verified: '2026-10-06T01:19:04+00:00'

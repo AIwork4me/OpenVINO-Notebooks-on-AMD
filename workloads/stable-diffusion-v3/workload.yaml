@@ -20,6 +20,8 @@ gpu:
   status: NOT_TESTED
 twin:
   level: WORKLOAD_TWIN
-validation: {}
+validation:
+  output_contains:
+  - mode=RGB size=512x512
 patches: {}
 last_verified: '2026-10-05T21:06:49+00:00'

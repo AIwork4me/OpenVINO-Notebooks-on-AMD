@@ -20,6 +20,8 @@ gpu:
   status: NOT_TESTED
 twin:
   level: WORKLOAD_TWIN
-validation: {}
+validation:
+  output_contains:
+  - Detecting bboxes
 patches: {}
 last_verified: '2026-10-05T23:38:29+00:00'

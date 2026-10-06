@@ -20,6 +20,9 @@ gpu:
   status: NOT_TESTED
 twin:
   level: WORKLOAD_TWIN
-validation: {}
+validation:
+  output_contains:
+  - Resulting in \d+\.\d+ fps
+  - times faster!
 patches: {}
 last_verified: '2026-10-05T22:13:56+00:00'

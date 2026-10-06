@@ -20,6 +20,9 @@ gpu:
   status: NOT_TESTED
 twin:
   level: OPENVINO_SPECIFIC
-validation: {}
+validation:
+  output_contains:
+  - tiger cat
+  output_finite_numbers: true
 patches: {}
 last_verified: '2026-10-05T23:07:46+00:00'

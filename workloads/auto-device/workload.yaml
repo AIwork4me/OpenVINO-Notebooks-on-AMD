@@ -20,6 +20,9 @@ gpu:
   status: NOT_TESTED
 twin:
   level: OPENVINO_SPECIFIC
-validation: {}
+validation:
+  output_contains:
+  - throughput:\s+\d+\.\d+fps
+  output_finite_numbers: true
 patches: {}
 last_verified: '2026-10-05T21:49:13+00:00'
