@@ -1,0 +1,35 @@
+{
+  "schema_version": 2,
+  "twin_result": {
+    "ok": true,
+    "hip": "7.2.53211-e1a6bc5663",
+    "device": "AMD Radeon Graphics",
+    "gcn_arch": "gfx1100",
+    "metrics": {
+      "model": "openai/whisper-base",
+      "precision": "fp32",
+      "audio_seconds": 14.02,
+      "load_s": 31.66,
+      "runs": [
+        {
+          "latency_s": 0.382,
+          "rtf": 36.7
+        },
+        {
+          "latency_s": 0.361,
+          "rtf": 38.8
+        },
+        {
+          "latency_s": 0.361,
+          "rtf": 38.8
+        }
+      ],
+      "transcription": "Colonel Joseph, did you order the co-gray? You don't have to answer that question. I'll answer the question. You want answers? I think I'm entitled... You want answers? I want the truth! You can't handle the truth!",
+      "transcription_stable": true,
+      "peak_vram_gb": 0.39,
+      "peak_rss_gb": 2.79
+    }
+  },
+  "duration_s": 79.99,
+  "exit_code": 0
+}

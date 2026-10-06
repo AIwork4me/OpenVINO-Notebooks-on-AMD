@@ -1,0 +1,71 @@
+[IPKernelApp] WARNING | Kernel is running over TCP without encryption. All communication (including code and outputs) is sent in plain text and is susceptible to eavesdropping. Use IPC transport or launch with kernel manager-provisioned CurveZMQ keys to enable transport encryption.
+[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mmeta_kernel[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43m"[39;49m[30;43mMeta[39;49m[30;43m"[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mallow_override[39;49m[30;43m=[39;49m[30;43mallow_override[39;49m[30;43m)[39;49m
+[32m     88[39m [38;5;28;01mexcept[39;00m [38;5;167;01mException[39;00m:
+
+[36mFile [39m[32m/workspace/.venvs/cpu/2be7d33bf5454379/lib/python3.12/site-packages/torch/library.py:496[39m, in [36mLibrary.impl[39m[34m(self, op_name, fn, dispatch_key, with_keyset, allow_override)[39m
+[32m    492[39m [38;5;66;03m# Internally, we shouldn't be registering meta kernels for any operators that[39;00m
+[32m    493[39m [38;5;66;03m# have CompositeImplicitAutograd kernels.[39;00m
+[32m    494[39m [38;5;66;03m# Instead, we should be letting those decompositions run, and writing meta kernels[39;00m
+[32m    495[39m [38;5;66;03m# only for the base operators.[39;00m
+[32m--> [39m[32m496[39m [38;5;28;01mif[39;00m [30;43mtorch[39;49m[30;43m.[39;49m[30;43m_C[39;49m[30;43m.[39;49m[30;43m_dispatch_has_kernel_for_dispatch_key[39;49m[30;43m([39;49m
+[32m    497[39m [30;43m    [39;49m[30;43mdispatcher_op_name[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43m"[39;49m[30;43mCompositeImplicitAutograd[39;49m[30;43m"[39;49m
+[32m    498[39m [30;43m[39;49m[30;43m)[39;49m:
+[32m    499[39m     [38;5;28;01mraise[39;00m [38;5;167;01mRuntimeError[39;00m(
+[32m    500[39m         [33mf[39m[33m"[39m[33mWe should not register a meta kernel directly to the operator [39m[33m'[39m[38;5;132;01m{[39;00mname[38;5;132;01m}[39;00m[33m'[39m[33m,[39m[33m"[39m
+[32m    501[39m         [33m"[39m[33m because it has a CompositeImplicitAutograd kernel in core.[39m[33m"[39m
+[32m    502[39m         [33m"[39m[33m Instead we should let the operator decompose, and ensure that we have meta kernels[39m[33m"[39m
+[32m    503[39m         [33m"[39m[33m for the base ops that it decomposes into.[39m[33m"[39m
+[32m    504[39m     )
+
+[31mRuntimeError[39m: operator torchvision::nms does not exist
+
+The above exception was the direct cause of the following exception:
+
+[31mModuleNotFoundError[39m                       Traceback (most recent call last)
+[36mCell[39m[36m [39m[32mIn[5][39m[32m, line 4[39m
+[32m      1[39m [38;5;28;01mfrom[39;00m transformers [38;5;28;01mimport[39;00m AutoTokenizer
+[32m      2[39m [38;5;28;01mfrom[39;00m openvino_tokenizers [38;5;28;01mimport[39;00m convert_tokenizer
+[32m      3[39m 
+[32m----> [39m[32m4[39m hf_tokenizer = AutoTokenizer.from_pretrained(model_id)
+[32m      5[39m ov_tokenizer, ov_detokenizer = convert_tokenizer(hf_tokenizer, with_detokenizer=[38;5;28;01mTrue[39;00m)
+[32m      6[39m ov_tokenizer, ov_detokenizer
+
+[36mFile [39m[32m/workspace/.venvs/cpu/2be7d33bf5454379/lib/python3.12/site-packages/transformers/models/auto/tokenization_auto.py:712[39m, in [36mAutoTokenizer.from_pretrained[39m[34m(cls, pretrained_model_name_or_path, *inputs, **kwargs)[39m
+[32m    710[39m [38;5;28;01melif[39;00m config [38;5;129;01mis[39;00m [38;5;28;01mNone[39;00m:
+[32m    711[39m     [38;5;28;01mtry[39;00m:
+[32m--> [39m[32m712[39m         config = [30;43mAutoConfig[39;49m[30;43m.[39;49m[30;43mfrom_pretrained[39;49m[30;43m([39;49m
+[32m    713[39m [30;43m            [39;49m[30;43mpretrained_model_name_or_path[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mtrust_remote_code[39;49m[30;43m=[39;49m[30;43mtrust_remote_code[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43m*[39;49m[30;43m*[39;49m[30;43mkwargs[39;49m
+[32m    714[39m [30;43m        [39;49m[30;43m)[39;49m
+[32m    715[39m     [38;5;28;01mexcept[39;00m ([38;5;167;01mValueError[39;00m, [38;5;167;01mOSError[39;00m):
+[32m    716[39m         config = PreTrainedConfig.from_pretrained(pretrained_model_name_or_path, **kwargs)
+
+[36mFile [39m[32m/workspace/.venvs/cpu/2be7d33bf5454379/lib/python3.12/site-packages/transformers/models/auto/configuration_auto.py:377[39m, in [36mAutoConfig.from_pretrained[39m[34m(cls, pretrained_model_name_or_path, **kwargs)[39m
+[32m    375[39m has_remote_code = [33m"[39m[33mauto_map[39m[33m"[39m [38;5;129;01min[39;00m config_dict [38;5;129;01mand[39;00m [33m"[39m[33mAutoConfig[39m[33m"[39m [38;5;129;01min[39;00m config_dict[[33m"[39m[33mauto_map[39m[33m"[39m]
+[32m    376[39m has_local_code = [33m"[39m[33mmodel_type[39m[33m"[39m [38;5;129;01min[39;00m config_dict [38;5;129;01mand[39;00m config_dict[[33m"[39m[33mmodel_type[39m[33m"[39m] [38;5;129;01min[39;00m CONFIG_MAPPING
+[32m--> [39m[32m377[39m explicit_local_code = has_local_code [38;5;129;01mand[39;00m [38;5;129;01mnot[39;00m [30;43mCONFIG_MAPPING[39;49m[30;43m[[39;49m[30;43mconfig_dict[39;49m[30;43m[[39;49m[30;43m"[39;49m[30;43mmodel_type[39;49m[30;43m"[39;49m[30;43m][39;49m[30;43m][39;49m.[34m__module__[39m.startswith(
+[32m    378[39m     [33m"[39m[33mtransformers.[39m[33m"[39m
+[32m    379[39m )
+[32m    380[39m [38;5;28;01mif[39;00m has_remote_code:
+[32m    381[39m     class_ref = config_dict[[33m"[39m[33mauto_map[39m[33m"[39m][[33m"[39m[33mAutoConfig[39m[33m"[39m]
+
+[36mFile [39m[32m/workspace/.venvs/cpu/2be7d33bf5454379/lib/python3.12/site-packages/transformers/models/auto/configuration_auto.py:110[39m, in [36m_LazyConfigMapping.__getitem__[39m[34m(self, key)[39m
+[32m    108[39m [38;5;28;01mif[39;00m module_name [38;5;129;01mnot[39;00m [38;5;129;01min[39;00m [38;5;28mself[39m._modules:
+[32m    109[39m     [38;5;28mself[39m._modules[module_name] = importlib.import_module([33mf[39m[33m"[39m[33m.[39m[38;5;132;01m{[39;00mmodule_name[38;5;132;01m}[39;00m[33m"[39m, [33m"[39m[33mtransformers.models[39m[33m"[39m)
+[32m--> [39m[32m110[39m [38;5;28;01mif[39;00m [30;43mhasattr[39;49m[30;43m([39;49m[30;43mself[39;49m[30;43m.[39;49m[30;43m_modules[39;49m[30;43m[[39;49m[30;43mmodule_name[39;49m[30;43m][39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mvalue[39;49m[30;43m)[39;49m:
+[32m    111[39m     [38;5;28;01mreturn[39;00m [38;5;28mgetattr[39m([38;5;28mself[39m._modules[module_name], value)
+[32m    113[39m [38;5;66;03m# Some of the mappings have entries model_type -> config of another model type. In that case we try to grab the[39;00m
+[32m    114[39m [38;5;66;03m# object at the top level.[39;00m
+
+[36mFile [39m[32m/workspace/.venvs/cpu/2be7d33bf5454379/lib/python3.12/site-packages/transformers/utils/import_utils.py:2342[39m, in [36m_LazyModule.__getattr__[39m[34m(self, name)[39m
+[32m   2338[39m                     [38;5;28;01mraise[39;00m [38;5;167;01mModuleNotFoundError[39;00m(
+[32m   2339[39m                         [33mf[39m[33m"[39m[33mCould not import module [39m[33m'[39m[38;5;132;01m{[39;00mname[38;5;132;01m}[39;00m[33m'[39m[33m. Are this object[39m[33m'[39m[33ms requirements defined correctly?[39m[33m"[39m
+[32m   2340[39m                     ) [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01me[39;00m
+[32m   2341[39m         [38;5;28;01melse[39;00m:
+[32m-> [39m[32m2342[39m             [38;5;28;01mraise[39;00m [38;5;167;01mModuleNotFoundError[39;00m(
+[32m   2343[39m                 [33mf[39m[33m"[39m[33mCould not import module [39m[33m'[39m[38;5;132;01m{[39;00mname[38;5;132;01m}[39;00m[33m'[39m[33m. Are this object[39m[33m'[39m[33ms requirements defined correctly?[39m[33m"[39m
+[32m   2344[39m             ) [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01me[39;00m
+[32m   2346[39m [38;5;28;01melif[39;00m name [38;5;129;01min[39;00m [38;5;28mself[39m._modules:
+[32m   2347[39m     [38;5;28;01mtry[39;00m:
+
+[31mModuleNotFoundError[39m: Could not import module 'LlamaConfig'. Are this object's requirements defined correctly?
+

@@ -1,0 +1,16 @@
+{
+  "platform_id": "amd-epyc-9334-32-core-processor-gfx1100",
+  "cpu": {
+    "model": "AMD EPYC 9334 32-Core Processor",
+    "threads": 128
+  },
+  "ram_total_mb": 515648,
+  "gpu": {
+    "available": true,
+    "arch": "gfx1100",
+    "marketing_name": "AMD EPYC 9334 32-Core Processor",
+    "gpu_count": 1
+  },
+  "os": "Ubuntu 24.04.4 LTS",
+  "kernel": "6.8.0-79-generic"
+}
