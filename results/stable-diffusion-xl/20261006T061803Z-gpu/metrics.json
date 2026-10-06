@@ -1,0 +1,43 @@
+{
+  "schema_version": 2,
+  "twin_result": {
+    "ok": true,
+    "hip": "7.2.53211-e1a6bc5663",
+    "device": "AMD Radeon Graphics",
+    "gcn_arch": "gfx1100",
+    "metrics": {
+      "model": "stabilityai/stable-diffusion-xl-base-1.0",
+      "weights_source": "stabilityai/stable-diffusion-xl-base-1.0",
+      "precision": "fp16",
+      "prompt": "a photo of an astronaut riding a horse on mars",
+      "seed": 42,
+      "load_s": 816.93,
+      "runs": [
+        {
+          "total_s": 10.368,
+          "steps": 20,
+          "steps_per_s": 1.93
+        },
+        {
+          "total_s": 7.262,
+          "steps": 20,
+          "steps_per_s": 2.75
+        },
+        {
+          "total_s": 7.236,
+          "steps": 20,
+          "steps_per_s": 2.76
+        }
+      ],
+      "seconds_per_image": 7.236,
+      "dimensions": "1024x1024",
+      "seed_reproducible_exact": true,
+      "max_pixel_diff": 0,
+      "pixel_divergence_note": "identical seeds diverge across runs; structural checks gate this twin",
+      "peak_vram_gb": 9.78,
+      "peak_rss_gb": 15.29
+    }
+  },
+  "duration_s": 1462.89,
+  "exit_code": 0
+}
