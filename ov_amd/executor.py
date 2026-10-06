@@ -27,6 +27,7 @@ v0.1 evidence is historical and is never rewritten into this layout.
 from __future__ import annotations
 
 import json
+import os
 import re
 import shutil
 from datetime import datetime, timezone
@@ -301,6 +302,15 @@ def run_workload_cpu(entry: NotebookEntry, state: dict[str, Any], dry_run: bool 
     patches = cfg.get("patches", {}) or {}
     wall = TIER_TIMEOUTS.get(entry.est_weight, TIER_TIMEOUTS["medium"])
     wall = int(cpu_cfg.get("wall_timeout_s", wall))
+    # per-runner cap (OV_AMD_WALL_CAP, seconds): throttled-network runners use
+    # it to bound wall time for large/huge tiers whose model downloads cannot
+    # complete; recorded transparently because evidence notes the timeout hit
+    try:
+        cap = int(os.environ.get("OV_AMD_WALL_CAP", "0"))
+    except ValueError:
+        cap = 0
+    if cap > 0:
+        wall = min(wall, cap)
     repeats = _repeats_for(entry, cfg)
     out.required_runs = repeats
     from ov_amd.environment import resolve_hf_endpoint
