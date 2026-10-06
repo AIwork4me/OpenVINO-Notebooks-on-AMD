@@ -45,6 +45,9 @@ def classify_failure(stderr: str, stdout: str, timeout: bool) -> FailureCategory
         # notebooks that %pip install and import in the same session; a rerun
         # after the install completes succeeds (remediation path handles it)
         (r"may need to restart|restart your (kernel|runtime)", FailureCategory.DEPENDENCY),
+        # gated-repo denials must outrank PACKAGE_CONFLICT: pip's benign
+        # "dependency resolver" warning banner coexists with the real 401 error
+        (r"GatedRepoError|Access to model|gated repo", FailureCategory.MODEL_ACCESS),
         (r"ResolutionImpossible|conflict with the dependencies|dependency resolver", FailureCategory.PACKAGE_CONFLICT),
         (
             r"HfHubHTTPError|ConnectionError|SSLError|URLError|timed out|getaddrinfo failed|RemoteDisconnected",
