@@ -34,6 +34,59 @@ BASE_KERNEL_ENV = {
 _HF_PROBE_FILE = "https://huggingface.co/bert-base-uncased/resolve/main/config.json"
 _HF_ENDPOINT_CACHE: dict[str, object] = {}
 
+_GIT_TRANSPORT_CACHE: dict[str, object] = {}
+
+
+def resolve_git_transport() -> dict[str, object]:
+    """Decide whether `git+https://github.com/...` pip installs work directly
+    on this runner, or must be rewritten to codeload tarball URLs.
+
+    Some validation runners sit behind egress proxies that block git protocol
+    CONNECTs to github.com (or a site git-wrapper forces them through an
+    unreachable gh-proxy), while plain HTTPS to codeload.github.com works.
+    Rewriting git+https to the codeload tarball of the same repo/ref is a
+    pure transport substitution (same content at install time) and is recorded
+    in evidence metadata exactly like the HF endpoint choice.
+
+    Priority: OV_AMD_GIT_TRANSPORT=direct|codeload override, else a live
+    `git ls-remote` probe against a tiny public repository.
+    """
+
+    if _GIT_TRANSPORT_CACHE:
+        return dict(_GIT_TRANSPORT_CACHE)  # type: ignore[arg-type]
+    import subprocess as _sp
+
+    mode = ""
+    source = ""
+    probe = ""
+    override = os.environ.get("OV_AMD_GIT_TRANSPORT", "")
+    if override in ("direct", "codeload"):
+        mode = override
+        source = "env-override (OV_AMD_GIT_TRANSPORT)"
+        probe = "skipped (override)"
+    else:
+        # probe with what pip actually does: a shallow clone through the
+        # runner's git (including any site git-wrapper that forces proxies)
+        import tempfile
+
+        try:
+            with tempfile.TemporaryDirectory() as td:
+                r = _sp.run(
+                    ["git", "clone", "--quiet", "--depth", "1",
+                     "https://github.com/octocat/Hello-World.git", td + "/probe"],
+                    capture_output=True, text=True, timeout=60,
+                )
+                direct_ok = r.returncode == 0
+                probe = f"clone exit {r.returncode}: {(r.stderr or '').strip().splitlines()[-1][:120] if r.stderr else 'ok'}"
+        except (OSError, _sp.TimeoutExpired) as e:
+            direct_ok = False
+            probe = f"clone failed ({type(e).__name__})"
+        mode = "direct" if direct_ok else "codeload"
+        source = "probe"
+    result = {"mode": mode, "source": source, "probe": probe}
+    _GIT_TRANSPORT_CACHE.update(result)
+    return result
+
 
 def resolve_hf_endpoint() -> dict[str, object]:
     """Pick the Hugging Face transport endpoint for THIS network and record why.

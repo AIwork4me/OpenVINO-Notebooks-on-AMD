@@ -259,3 +259,5 @@ EXECUTION_DEVICES:
 [cell 21 DONE  +  212.9s]
 [cell 22 START +  212.9s] ## Merge Tokenizer into a Model | [back to top ⬆️](#Table-of-contents:) | 
 [cell 23 START +  212.9s] from cmd_helper import optimum_cli |  | model_id = "mrm8488/bert-tiny-fine
+[cell 23 DONE  +  273.4s]
+NBEXEC_RESULT={"ok": false, "n_cells": 14, "n_skipped": 0, "n_substituted": 0, "stopped_after": null, "error_cell": null, "error_type": "CellExecutionError", "error_head": "\u001b[31mFileNotFoundError\u001b[39m: [Errno 2] No such file or directory: 'optimum-cli'", "duration_s": 276.19, "patch_notes": []}

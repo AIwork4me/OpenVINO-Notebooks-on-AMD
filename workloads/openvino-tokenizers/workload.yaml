@@ -14,7 +14,7 @@ model:
   license: ''
 cpu:
   runtime: openvino
-  status: NOT_TESTED
+  status: FAILED
 gpu:
   runtime: ''
   status: NOT_TESTED

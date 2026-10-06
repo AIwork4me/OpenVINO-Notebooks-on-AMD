@@ -187,6 +187,31 @@ def _hf_mirror_subs() -> list[Substitution]:
     ]
 
 
+def _git_transport_subs() -> list[Substitution]:
+    """Transport rewrite for `git+https://github.com/...` pip installs on
+    runners whose git CONNECT to github.com is blocked: rewrite to the
+    codeload tarball of the SAME repo/ref (pure transport change; content
+    identical at install time). Enabled only when the live probe selected the
+    codeload mode (environment.resolve_git_transport)."""
+
+    from ov_amd.environment import resolve_git_transport
+
+    if str(resolve_git_transport()["mode"]) != "codeload":
+        return []
+    return [
+        # pinned ref first: git+https://github.com/O/R.git@ref -> tar.gz/ref
+        Substitution(
+            pattern=r"git\+https://github\.com/([\w.-]+)/([\w.-]+?)\.git@([\w./-]+)",
+            replacement=r"https://codeload.github.com/\g<1>/\g<2>/tar.gz/\g<3>",
+        ),
+        # floating default branch: -> tar.gz/HEAD (what git+https would resolve too)
+        Substitution(
+            pattern=r"git\+https://github\.com/([\w.-]+)/([\w.-]+?)\.git(?![@\w])",
+            replacement=r"https://codeload.github.com/\g<1>/\g<2>/tar.gz/HEAD",
+        ),
+    ]
+
+
 def _cell_subs(patches: dict[str, Any]) -> list[Substitution]:
     """workload.yaml patches.cell_subs entries in structured form:
     either {pattern, replacement} maps or [pattern, replacement] pairs.
@@ -316,7 +341,10 @@ def run_workload_cpu(entry: NotebookEntry, state: dict[str, Any], dry_run: bool 
     from ov_amd.environment import resolve_hf_endpoint
 
     hf_transport = resolve_hf_endpoint()
-    subs = _hf_mirror_subs() + _cell_subs(patches)
+    from ov_amd.environment import resolve_git_transport
+
+    git_transport = resolve_git_transport()
+    subs = _hf_mirror_subs() + _git_transport_subs() + _cell_subs(patches)
 
     ts = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
     ev = RESULTS_DIR / entry.id / f"{ts}-cpu"
@@ -476,6 +504,7 @@ def run_workload_cpu(entry: NotebookEntry, state: dict[str, Any], dry_run: bool 
             "aggregate": "aggregate.json",
             "env": out.env_info,
             "hf_transport": hf_transport,
+            "git_transport": git_transport,
         },
     )
     (ev / "summary.md").write_text(_summary_md(entry, out, last_info))

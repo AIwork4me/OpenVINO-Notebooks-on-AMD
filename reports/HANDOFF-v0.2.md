@@ -224,3 +224,25 @@ gh api repos/AIwork4me/OpenVINO-Notebooks-on-AMD/actions/runners --jq '.runners[
 > TRUSTWORTHINESS, not green-check count. 每个绿勾必须回答：WHAT ran? WHERE? CORRECT? REPRODUCIBLE?
 > 不许伪造任何数字/状态/设备/commit。不允许的状态：FAIL→问用户→等待。失败→诊断→有界重试→记录→继续。
 > 全部收口后，最终报告最后一行必须是：`READY FOR EXTERNAL REVIEW`。
+
+---
+
+## 10. gfx1100 会话认领（2026-10-06 ~04:00Z，本节由 gfx1100/EPYC 会话追加）
+
+**本机身份**：EPYC 9334 + 8×gfx1100（ROCm 7.2 / torch 2.9.1+hip 桥接），即 §0.5 所述
+"W7900 会话"。已推送：runner-agnostic transport（2ddb7f1）、slim seed（976bdd6）、
+wall cap（eda4f73）、git transport probe+codeload 改写（97e6df4）。
+
+**认领的分工（避免与参考机重复）**：
+- [x] 本机 `.venv-gpu` 供给验证（torch bridge + ultralytics/diffusers 实测可用）
+- [ ] §5.6 GPU 孪生 v2 重验（hello-detection → qwen3 → smolvlm2 → whisper-asr-genai →
+      kokoro → deepseek-r1 → sd-t2i → sdxl，量力而行；gfx1100 证据，platform_id 如实记录）
+- [ ] twin_lib gcnArchName 修复后已在 97e6df4 落地；hello-detection 孪生输入图改为与笔记本一致
+- [ ] openvino-tokenizers 本机重试（git transport 修复后）
+
+**不碰的**：上游重钉（§6）、pass-2 触发、状态翻转脚本（§4）——这些归参考机会话，
+其 watcher 在跑。上游 pin 在参考机马拉松结束前不得变更（一次一个变量）。
+
+**本机网络实测（写进证据）**：storage.openvinotoolkit.org 阻断、raw.githubusercontent 阻断、
+github git clone 仅 wrapper 回退可用（间歇）、HF 双端点间歇 429、pypi 慢但稳、
+codeload.github.com 稳定、user-images.githubusercontent.com 稳定。
