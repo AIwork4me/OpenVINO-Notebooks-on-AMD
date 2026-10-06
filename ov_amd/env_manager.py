@@ -43,8 +43,12 @@ from ov_amd.environment import REPO_ROOT
 VENV_ROOT = REPO_ROOT / ".venvs"
 
 # Minimal execution seed: the notebook runtime (kernelspec, nbclient) plus the
-# OpenVINO stack. NOT a "golden package set" forcing latest-everything — it is
-# the shared baseline a notebook may override inside its own venv.
+# OpenVINO stack. NOT a "golden package set" forcing latest-everything — and
+# deliberately free of transformers/sentence-transformers/optimum: those pull
+# the full torch stack (~2 GB) into every environment, while only a minority
+# of notebooks need them. Notebooks that DO need extras declare them in their
+# own requirements*.txt (installed at build time below) or in %pip cells
+# (executed inside this isolated venv, where mutation is safe by design).
 SEED_PKGS = [
     "ipykernel",
     "ipywidgets",
@@ -54,12 +58,10 @@ SEED_PKGS = [
     "numpy",
     "pillow",
     "requests",
+    "pyyaml",
     "openvino",
     "openvino-genai",
     "openvino-tokenizers",
-    "optimum-intel",
-    "transformers",
-    "sentence-transformers",
     "protobuf",
     "huggingface_hub",
 ]
@@ -242,9 +244,15 @@ def build_env(
     upstream_commit: str = "",
     extra_deps: list[str] | None = None,
     seed_pkgs: list[str] | None = None,
+    requirements: Path | None = None,
 ) -> EnvInfo:
     """Create the keyed environment. Caller should first check ensure_env for
-    reuse; this function always (re)builds."""
+    reuse; this function always (re)builds.
+
+    `requirements` is the notebook's own requirements*.txt (upstream
+    declaration priority): installed best-effort on top of the seed; a failure
+    falls back to the seed-only environment and is recorded in env-meta.json
+    (the executor's on-demand remediation covers the gap)."""
 
     from ov_amd.environment import CPU_VENV
 
@@ -280,6 +288,10 @@ def build_env(
         if missing:
             (target / "BUILD-FAILED.txt").write_text(f"still missing after retry: {missing}")
             raise RuntimeError(f"seed install incomplete for {target}: missing {missing}")
+    requirements_status = "none"
+    if requirements is not None and Path(requirements).exists():
+        req_ok, req_log = _uv_install(python, ["-r", str(requirements)], timeout=2400)
+        requirements_status = "installed" if req_ok else f"failed (seed-only fallback): {req_log[-500:]}"
     _write_probe_hooks(target)
     (target / "env-meta.json").write_text(
         json.dumps(
@@ -290,6 +302,8 @@ def build_env(
                 "dependency_fingerprint": dep_fingerprint,
                 "seed_pkgs": seed,
                 "extra_deps": extra_deps or [],
+                "notebook_requirements": str(requirements) if requirements else None,
+                "notebook_requirements_status": requirements_status,
                 "created_at": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
             },
             indent=2,
@@ -350,7 +364,16 @@ def ensure_env(
                 )
         except (OSError, json.JSONDecodeError):
             pass
-    return build_env(backend, fp, python_version=py_version, upstream_commit=meta_commit, extra_deps=deps)
+    requirements = _requirements_next_to(nb_path)
+    return build_env(
+        backend, fp, python_version=py_version, upstream_commit=meta_commit, extra_deps=deps, requirements=requirements
+    )
+
+
+def _requirements_next_to(nb_path: Path) -> Path | None:
+    for cand in sorted(nb_path.parent.glob("requirements*.txt")):
+        return cand
+    return None
 
 
 def inspect_env(entry, backend: str = "cpu") -> dict[str, Any]:
