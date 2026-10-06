@@ -1,27 +1,19 @@
 [IPKernelApp] WARNING | Kernel is running over TCP without encryption. All communication (including code and outputs) is sent in plain text and is susceptible to eavesdropping. Use IPC transport or launch with kernel manager-provisioned CurveZMQ keys to enable transport encryption.
-m-detection"
-model_dir = Path(Path(model_id).name)
-
-if not model_dir.exists():
-    %pip install -qU "git+https://github.com/huggingface/optimum-intel.git" --extra-index-url https://download.pytorch.org/whl/cpu
-    optimum_cli(model_id, model_dir, additional_args={"task": "text-classification"})
-------------------
-
------ stdout -----
-  [1;31merror[0m: [1msubprocess-exited-with-error[0m
-  
-  [31m×[0m [32mgit clone --[0m[32mfilter[0m[32m=[0m[32mblob[0m[32m:none --quiet [0m[4;32mhttps://github.com/huggingface/optimum-intel.git[0m[32m [0m[32m/tmp/[0m[32mpip-req-build-2zax_xkh[0m did not run successfully.
-  [31m│[0m exit code: [1;36m128[0m
-  [31m╰─>[0m [31m[4 lines of output][0m
-  [31m   [0m [git-wrapper] cloning GitHub repo via gh-proxy.org
-  [31m   [0m fatal: unable to access 'https://gh-proxy.org/https://github.com/huggingface/optimum-intel.git/': CONNECT tunnel failed, response 403
-  [31m   [0m [git-wrapper] gh-proxy clone failed, retrying via http://github.com
-  [31m   [0m fatal: unable to access 'http://github.com/huggingface/optimum-intel.git/': CONNECT tunnel failed, response 503
-  [31m   [0m [31m[end of output][0m
-  
-  [1;35mnote[0m: This error originates from a subprocess, and is likely not a problem with pip.
-[31mERROR: Failed to build 'git+https://github.com/huggingface/optimum-intel.git' when git clone --filter=blob:none --quiet https://github.com/huggingface/optimum-intel.git /tmp/pip-req-build-2zax_xkh[0m[31m
+e, status=None)) after connection broken by 'SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self-signed certificate (_ssl.c:1000)')': /whl/cpu/torchvision-0.29.1%2Bcpu-cp312-cp312-manylinux_2_28_x86_64.whl.metadata[0m[33m
 [0m
+----- stdout -----
+[33m  WARNING: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self-signed certificate (_ssl.c:1000)')': /whl/cpu/torchvision-0.29.1%2Bcpu-cp312-cp312-manylinux_2_28_x86_64.whl.metadata[0m[33m
+[0m
+----- stdout -----
+[33m  WARNING: Retrying (Retry(total=0, connect=None, read=None, redirect=None, status=None)) after connection broken by 'SSLCertVerificationError(1, '[SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self-signed certificate (_ssl.c:1000)')': /whl/cpu/torchvision-0.29.1%2Bcpu-cp312-cp312-manylinux_2_28_x86_64.whl.metadata[0m[33m
+[0m
+----- stdout -----
+[1;31merror[0m: [1mssl-verification-failed[0m
+
+[31m×[0m Failed to establish a secure connection to [35mdownload-r2.pytorch.org[0m while fetching [4;94mhttps://download-r2.pytorch.org/whl/cpu/torchvision-0.29.1%2Bcpu-cp312-cp312-manylinux_2_28_x86_64.whl.metadata[0m
+[31m╰─>[0m [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: self-signed certificate (_ssl.c:1000)
+
+[1;36mhint[0m: You may need to use --cert or check your proxy/firewall configuration
 ----- stdout -----
 Note: you may need to restart the kernel to use updated packages.
 ------------------

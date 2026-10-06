@@ -81,3 +81,62 @@ def test_from_dict_rejects_delimiter_strings():
         subs_from_json('"PATTERN:REPLACEMENT"')
     with pytest.raises(ValueError):
         subs_from_json('[{"pattern": "a"}]')  # missing replacement
+
+
+# --- git transport rewrite (codeload mode) -------------------------------
+
+def _git_subs():
+    from ov_amd.executor import _git_transport_subs
+
+    saved = dict(__import__("ov_amd.environment", fromlist=["_GIT_TRANSPORT_CACHE"])._GIT_TRANSPORT_CACHE)
+    try:
+        import ov_amd.environment as env
+
+        env._GIT_TRANSPORT_CACHE.clear()
+        env._GIT_TRANSPORT_CACHE.update({"mode": "codeload", "source": "test", "probe": "test"})
+        subs = _git_transport_subs()
+        assert subs, "codeload mode must produce rewrite rules"
+        return subs
+    finally:
+        import ov_amd.environment as env
+
+        env._GIT_TRANSPORT_CACHE.clear()
+        env._GIT_TRANSPORT_CACHE.update(saved)
+
+
+def test_git_plus_https_pinned_ref_rewritten_to_codeload():
+    subs = _git_subs()
+    src = '%pip install -qU "git+https://github.com/huggingface/optimum-intel.git" --extra-index-url https://download.pytorch.org/whl/cpu'
+    out, n = apply_substitutions(src, subs)
+    assert n >= 1
+    assert "git+https://" not in out
+    assert "https://codeload.github.com/huggingface/optimum-intel/tar.gz/HEAD" in out
+    # the unrelated extra-index-url survives untouched
+    assert "--extra-index-url https://download.pytorch.org/whl/cpu" in out
+
+
+def test_git_plus_https_with_ref():
+    subs = _git_subs()
+    out, _ = apply_substitutions("git+https://github.com/foo/bar.git@v1.2.3", subs)
+    assert out == "https://codeload.github.com/foo/bar/tar.gz/v1.2.3"
+
+
+def test_git_transport_direct_mode_no_rules(monkeypatch):
+    import ov_amd.environment as env
+    from ov_amd.executor import _git_transport_subs
+
+    saved = dict(env._GIT_TRANSPORT_CACHE)
+    try:
+        env._GIT_TRANSPORT_CACHE.clear()
+        env._GIT_TRANSPORT_CACHE.update({"mode": "direct", "source": "test", "probe": "test"})
+        assert _git_transport_subs() == []
+    finally:
+        env._GIT_TRANSPORT_CACHE.clear()
+        env._GIT_TRANSPORT_CACHE.update(saved)
+
+
+def test_non_github_git_urls_untouched():
+    subs = _git_subs()
+    src = "git+https://gitlab.com/foo/bar.git"
+    out, n = apply_substitutions(src, subs)
+    assert n == 0 and out == src
