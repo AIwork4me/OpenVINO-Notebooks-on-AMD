@@ -1,0 +1,11 @@
+[cell 0 START +    0.6s] # Speaker Embedding with pyannote and OpenVINO |  | Speaker embedding turn
+[cell 1 START +    0.6s] ## Prerequisites | [back to top ⬆️](#Table-of-contents:) |  | Install the re
+[cell 2 START +    0.6s] %pip install -q "openvino>=2025.1.0" | %pip install -q "jupyter" "ipyker
+[cell 2 DONE  +    2.6s]
+[cell 3 START +    2.6s] ## Hugging Face access | [back to top ⬆️](#Table-of-contents:) |  | `pyannot
+[cell 4 START +    2.6s] from huggingface_hub import get_token, notebook_login |  | if get_token() 
+[cell 4 DONE  +  305.9s]
+[cell 5 START +  305.9s] ## Load the embedding model | [back to top ⬆️](#Table-of-contents:) |  | `Mo
+[cell 6 START +  305.9s] import torch | from pyannote.audio import Model |  | MODEL_ID = "pyannote/em
+[cell 6 DONE  +  309.8s]
+NBEXEC_RESULT={"ok": false, "n_cells": 13, "n_skipped": 0, "n_substituted": 0, "stopped_after": null, "error_cell": null, "error_type": "CellExecutionError", "error_head": "Access to model pyannote/embedding is restricted and you are not in the authorized list. Visit https://huggingface.co/pyannote/embedding to ask for access.", "duration_s": 310.96, "patch_notes": []}

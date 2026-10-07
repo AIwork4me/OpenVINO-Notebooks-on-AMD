@@ -1,0 +1,10 @@
+[cell 0 START +    0.5s] # YOLOE-26 Open-Vocabulary Detection and Segmentation with OpenVINO™ |  | 
+[cell 1 START +    0.5s] ## Prerequisites | [back to top ⬆️](#Table-of-contents:) |  | Install necess
+[cell 2 START +    0.5s] %pip install -qU "openvino>=2026.0.0" "nncf>=3.0.0" | %pip install -q "t
+[cell 2 DONE  +   31.3s]
+[cell 3 START +   31.3s] Import required utility functions.
+[cell 4 START +   31.3s] from pathlib import Path | import requests |  | if not Path("notebook_utils.
+[cell 4 DONE  +   31.5s]
+[cell 5 START +   31.5s] # Download test images | IMAGE_PATH = Path("./data/coco_bike.jpg") |  | if n
+[cell 5 DONE  +   36.3s]
+NBEXEC_RESULT={"ok": false, "n_cells": 26, "n_skipped": 0, "n_substituted": 0, "stopped_after": null, "error_cell": null, "error_type": "CellExecutionError", "error_head": "\u001b[31mException\u001b[39m: File downloading failed with error: HTTPSConnectionPool(host='storage.openvinotoolkit.org', port=443): Max retries exceeded with url: /repositories/openvino_notebooks/data/data/image/coco_bike.jpg (Caused by ProxyError('Unable to connect to proxy', OSError('Tunnel connection failed: 403 Forbidden')))", "duration_s": 36.45, "patch_notes": []}

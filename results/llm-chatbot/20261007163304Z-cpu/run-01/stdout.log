@@ -1,0 +1,7 @@
+[cell 0 START +    0.5s] # Create an LLM-powered Chatbot using OpenVINO |  | In the rapidly evolvin
+[cell 1 START +    0.5s] ## Prerequisites | [back to top ⬆️](#Table-of-contents:) |  | Install requir
+[cell 2 START +    0.5s] import os |  | os.environ["GIT_CLONE_PROTECTION_ACTIVE"] = "false" |  | %pip i
+[cell 2 DONE  +  209.0s]
+[cell 3 START +  209.0s] import os | from pathlib import Path | import requests | import shutil |  | # fe
+[cell 3 DONE  +  210.4s]
+NBEXEC_RESULT={"ok": false, "n_cells": 16, "n_skipped": 1, "n_substituted": 1, "stopped_after": null, "error_cell": null, "error_type": "CellExecutionError", "error_head": "\u001b[31mSSLError\u001b[39m: HTTPSConnectionPool(host='raw.githubusercontent.com', port=443): Max retries exceeded with url: /openvinotoolkit/openvino_notebooks/latest/utils/llm_config.py (Caused by SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1000)')))", "duration_s": 210.52, "patch_notes": ["substituted 1 occurrence(s) in cell 2", "skipped cell 28: matched skip pattern"]}

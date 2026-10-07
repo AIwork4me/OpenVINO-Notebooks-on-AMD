@@ -4,9 +4,9 @@ category: TTS
 upstream:
   repository: openvinotoolkit/openvino_notebooks
   branch: latest
-  commit: 329562e6031d1a989017d08697b0fabe5a989492
+  commit: 5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b
   path: notebooks/parler-tts-text-to-speech/parler-tts-text-to-speech.ipynb
-  url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/parler-tts-text-to-speech/parler-tts-text-to-speech.ipynb
+  url: https://github.com/openvinotoolkit/openvino_notebooks/blob/5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b/notebooks/parler-tts-text-to-speech/parler-tts-text-to-speech.ipynb
 model:
   name: ''
   source: ''
@@ -14,7 +14,9 @@ model:
   license: ''
 cpu:
   runtime: openvino
-  status: FAILED
+  status: VERIFIED_WITH_LIMITATIONS
+  wall_timeout_s: 5400
+  per_cell_timeout_s: 1800
 gpu:
   runtime: ''
   status: NOT_TESTED
@@ -24,5 +26,15 @@ validation:
   output_contains:
   - IPython\.lib\.display\.Audio
   min_output_chars: 500
-patches: {}
+patches:
+  notes: 'v0.2.2: per-cell/wall overrides for throttled-network installs and large
+    model downloads; default 900s cell cap kills legitimate install cells'
 last_verified: '2026-10-06T12:51:34+00:00'
+env:
+  extra_deps:
+  - torchaudio==2.8.0
+  notes: 'v0.2.2 dependency-drift pin: the notebook pip_helper installs torchaudio
+    unpinned; the fresh current-pin env resolved torchaudio 2.11.0+cpu against torch
+    2.8.0+cpu and died importing _torchaudio.abi3.so (undefined symbol torch_lib)
+    before reaching the model stage. Pinning torchaudio==2.8.0 restores the upstream-intended
+    torch 2.8 pairing so the CPU path (RCA-001 BrgemmCPU repro) is actually exercisable.'

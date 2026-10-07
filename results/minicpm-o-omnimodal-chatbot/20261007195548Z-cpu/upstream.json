@@ -1,0 +1,9 @@
+{
+  "schema_version": 2,
+  "repository": "openvinotoolkit/openvino_notebooks",
+  "branch": "latest",
+  "commit": "5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b",
+  "path": "notebooks/minicpm-o-omnimodal-chatbot/minicpm-o-omnimodal-chatbot.ipynb",
+  "url": "https://github.com/openvinotoolkit/openvino_notebooks/blob/5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b/notebooks/minicpm-o-omnimodal-chatbot/minicpm-o-omnimodal-chatbot.ipynb",
+  "notebook_sha256": "d9c686023a7010e346e24428f24f109858fdb591557805db8bc8a22ef192e60a"
+}

@@ -4,9 +4,9 @@ category: Vision
 upstream:
   repository: openvinotoolkit/openvino_notebooks
   branch: latest
-  commit: 329562e6031d1a989017d08697b0fabe5a989492
+  commit: 5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b
   path: notebooks/ct-segmentation-quantize/ct-segmentation-quantize-nncf.ipynb
-  url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/ct-segmentation-quantize/ct-segmentation-quantize-nncf.ipynb
+  url: https://github.com/openvinotoolkit/openvino_notebooks/blob/5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b/notebooks/ct-segmentation-quantize/ct-segmentation-quantize-nncf.ipynb
 model:
   name: ''
   source: ''
@@ -15,11 +15,25 @@ model:
 cpu:
   runtime: openvino
   status: FAILED
+  wall_timeout_s: 3600
+  per_cell_timeout_s: 1200
 gpu:
   runtime: ''
   status: NOT_TESTED
 twin:
   level: WORKLOAD_TWIN
 validation: {}
-patches: {}
+patches:
+  cell_subs:
+  - pattern: device_list = \["MULTI:CPU,GPU" if "GPU" in core\.available_devices else
+      "AUTO"\]
+    replacement: device_list = ["CPU"]
+  notes: "CPU device attribution fix (v0.2.2): upstream cell 29 passes device_list[0]=\"\
+    MULTI:CPU,GPU\" explicitly to device_widget when a GPU is enumerated, overriding\
+    \ the harness CPU default; the old attempt died in the OpenVINO GPU plugin (Intel\
+    \ ISA inline-asm compile errors in stderr \u2014 kernel death during NNCF quantization),\
+    \ recorded as KERNEL_DEATH_UNDIAGNOSED. This minimal documented pin forces device_list=[\"\
+    CPU\"] so the AMD Ryzen CPU path is genuinely exercised. The GPU-plugin crash\
+    \ on Radeon is recorded separately in reports/openvino-gpu-plugin-radeon-findings.md\
+    \ (Finding OVG-002)."
 last_verified: ''

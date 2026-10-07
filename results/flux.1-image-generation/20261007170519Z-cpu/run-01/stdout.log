@@ -1,0 +1,16 @@
+[cell 0 START +    0.8s] # Image generation with Flux.1 and OpenVINO |  | Flux is a AI image genera
+[cell 1 START +    0.8s] ## Prerequisites | [back to top ⬆️](#Table-of-contents:)
+[cell 2 START +    0.8s] %pip install -q "gradio>=4.19,<6" "torch==2.8" "transformers==4.57.6" 
+[cell 2 DONE  +  102.9s]
+[cell 3 START +  102.9s] import requests | from pathlib import Path |  | if not Path("cmd_helper.py")
+[cell 3 DONE  +  103.0s]
+[cell 4 START +  103.0s] ## Select model | [back to top ⬆️](#Table-of-contents:) |  | To strike a bal
+[cell 5 START +  103.0s] import ipywidgets as widgets |  | model_ids = ["black-forest-labs/FLUX.1-s
+[cell 5 DONE  +  103.1s]
+[cell 6 START +  103.1s] ## Convert model with OpenVINO | [back to top ⬆️](#Table-of-contents:) |  | 
+[cell 7 START +  103.1s] use_preconverted = widgets.Checkbox(value="schnell" in model_selector.
+[cell 7 DONE  +  103.1s]
+[cell 8 START +  103.1s] from pathlib import Path |  | model_id = model_selector.value |  | model_base_
+[cell 8 DONE  +  103.1s]
+[cell 9 START +  103.1s] from cmd_helper import optimum_cli | from huggingface_hub import snapsho
+[cell 9 DONE  +  195.9s]

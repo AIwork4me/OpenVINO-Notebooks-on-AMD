@@ -4,9 +4,9 @@ category: Image Generation
 upstream:
   repository: openvinotoolkit/openvino_notebooks
   branch: latest
-  commit: 329562e6031d1a989017d08697b0fabe5a989492
+  commit: 5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b
   path: notebooks/flux.1-image-generation/flux.1-image-generation.ipynb
-  url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/flux.1-image-generation/flux.1-image-generation.ipynb
+  url: https://github.com/openvinotoolkit/openvino_notebooks/blob/5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b/notebooks/flux.1-image-generation/flux.1-image-generation.ipynb
 model:
   name: ''
   source: ''
@@ -14,12 +14,16 @@ model:
   license: ''
 cpu:
   runtime: openvino
-  status: FAILED
+  status: VERIFIED_WITH_LIMITATIONS
+  wall_timeout_s: 7200
+  per_cell_timeout_s: 3600
 gpu:
   runtime: ''
   status: NOT_TESTED
 twin:
   level: WORKLOAD_TWIN
 validation: {}
-patches: {}
-last_verified: ''
+patches:
+  notes: 'v0.2.2: per-cell/wall overrides for throttled-network installs and large
+    model downloads; default 900s cell cap kills legitimate install cells'
+last_verified: '2026-10-07T18:32:02+00:00'

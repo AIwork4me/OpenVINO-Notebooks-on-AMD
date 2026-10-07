@@ -1,0 +1,56 @@
+[IPKernelApp] WARNING | Kernel is running over TCP without encryption. All communication (including code and outputs) is sent in plain text and is susceptible to eavesdropping. Use IPC transport or launch with kernel manager-provisioned CurveZMQ keys to enable transport encryption.
+Traceback (most recent call last):
+  File "/workspace/ov_amd/_nbexec.py", line 144, in main
+    client.execute()
+  File "/workspace/.venvs/cpu/97fe9f2a444e0506/lib/python3.12/site-packages/jupyter_core/utils/__init__.py", line 165, in wrapped
+    return loop.run_until_complete(inner)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/base_events.py", line 687, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/workspace/.venvs/cpu/97fe9f2a444e0506/lib/python3.12/site-packages/nbclient/client.py", line 709, in async_execute
+    await self.async_execute_cell(
+  File "/workspace/.venvs/cpu/97fe9f2a444e0506/lib/python3.12/site-packages/nbclient/client.py", line 1062, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/workspace/.venvs/cpu/97fe9f2a444e0506/lib/python3.12/site-packages/nbclient/client.py", line 918, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+# Download test images
+IMAGE_PATH = Path("./data/coco_bike.jpg")
+
+if not IMAGE_PATH.exists():
+    download_file(
+        url="https://storage.openvinotoolkit.org/repositories/openvino_notebooks/data/data/image/coco_bike.jpg",
+        filename=IMAGE_PATH.name,
+        directory=IMAGE_PATH.parent,
+    )
+------------------
+
+
+[31m---------------------------------------------------------------------------[39m
+[31mOSError[39m                                   Traceback (most recent call last)
+[36mCell[39m[36m [39m[32mIn[3][39m[32m, line 5[39m
+[32m      1[39m [38;5;66;03m# Download test images[39;00m
+[32m      2[39m IMAGE_PATH = Path([33m"./data/coco_bike.jpg"[39m)
+[32m      3[39m 
+[32m      4[39m [38;5;28;01mif[39;00m [38;5;28;01mnot[39;00m IMAGE_PATH.exists():
+[32m----> [39m[32m5[39m     download_file(
+[32m      6[39m         url=[33m"https://storage.openvinotoolkit.org/repositories/openvino_notebooks/data/data/image/coco_bike.jpg"[39m,
+[32m      7[39m         filename=IMAGE_PATH.name,
+[32m      8[39m         directory=IMAGE_PATH.parent,
+
+[36mFile [39m[32m/workspace/results/yoloe-26-open-vocabulary/workdir-cpu/notebook_utils.py:139[39m, in [36mdownload_file[39m[34m(url, filename, directory, show_progress)[39m
+[32m    137[39m [38;5;66;03m# create the directory if it does not exist, and add the directory to the filename[39;00m
+[32m    138[39m [38;5;28;01mif[39;00m directory [38;5;129;01mis[39;00m [38;5;129;01mnot[39;00m [38;5;28;01mNone[39;00m:
+[32m--> [39m[32m139[39m     [30;43mPath[39;49m[30;43m([39;49m[30;43mdirectory[39;49m[30;43m)[39;49m[30;43m.[39;49m[30;43mmkdir[39;49m[30;43m([39;49m[30;43mparents[39;49m[30;43m=[39;49m[30;43;01mTrue[39;49;00m[30;43m,[39;49m[30;43m [39;49m[30;43mexist_ok[39;49m[30;43m=[39;49m[30;43;01mTrue[39;49;00m[30;43m)[39;49m
+[32m    141[39m [38;5;28;01mtry[39;00m:
+[32m    142[39m     response = requests.get(url=url, headers={[33m"[39m[33mUser-agent[39m[33m"[39m: [33m"[39m[33mMozilla/5.0[39m[33m"[39m}, stream=[38;5;28;01mTrue[39;00m, timeout=[32m30[39m)
+
+[36mFile [39m[32m/usr/lib/python3.12/pathlib.py:1313[39m, in [36mPath.mkdir[39m[34m(self, mode, parents, exist_ok)[39m
+[32m   1309[39m [38;5;250m[39m[33;03m"""[39;00m
+[32m   1310[39m [33;03mCreate a new directory at this given path.[39;00m
+[32m   1311[39m [33;03m"""[39;00m
+[32m   1312[39m [38;5;28;01mtry[39;00m:
+[32m-> [39m[32m1313[39m     [30;43mos[39;49m[30;43m.[39;49m[30;43mmkdir[39;49m[30;43m([39;49m[30;43mself[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mmode[39;49m[30;43m)[39;49m
+[32

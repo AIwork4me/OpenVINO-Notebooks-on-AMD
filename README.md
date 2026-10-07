@@ -29,17 +29,19 @@ OpenVINO    ROCm
 ## AMD CPU Coverage: 100%
 
 <!-- generated:compatibility begin -->
-**AMD CPU Coverage: 171/171 OpenVINO Notebooks attempted on AMD Ryzen — 100.0% catalog coverage**
+**AMD CPU Coverage: 173/173 OpenVINO Notebooks attempted on AMD Ryzen — 100.0% catalog coverage**
 
-✅ 25 Verified · 🟡 60 Verified with limitations · 🚧 80 Blocked (network / model access / dependency / timeout / resource) · 🧩 5 Compatibility failures · ➖ 1 Not applicable
+Coverage is measured against the pinned OpenVINO Notebooks snapshot `5f0b2b5f63fd`. Upstream freshness: **CURRENT** (verified 2026-10-07)
+
+✅ 25 Verified · 🟡 63 Verified with limitations · 🚧 82 Blocked (network / model access / dependency / timeout / resource) · 🧩 1 Compatibility failures · ➖ 2 Not applicable
 
 > **100% coverage means every catalogued notebook has been attempted and classified on AMD Ryzen. It does not mean every notebook passed.**
 
-Successful executions: **85/170** of eligible notebooks (50.0%; 1 N/A excluded) — ✅ 25 L3 verified · 🟡 60 with documented limitations.
+Successful executions: **88/171** of eligible notebooks (51.5%; 2 N/A excluded) — ✅ 25 L3 verified · 🟡 63 with documented limitations.
 
-GPU (ROCm twins, Radeon): ✅ 8 verified · 🟡 0 limited · attempted 8/171
+GPU (ROCm twins, Radeon): ✅ 8 verified · 🟡 0 limited · attempted 8/173
 
-Evidence Schema **v2** · upstream `329562e6031d` · twin classification **171/171** (100.0%)
+Evidence Schema **v2** · upstream `5f0b2b5f63fd` · twin classification **173/173** (100.0%)
 
 Full matrix: [catalog/compatibility.md](catalog/compatibility.md) · Methodology: [docs/validation-policy.md](docs/validation-policy.md) · [benchmarks/METHODOLOGY.md](benchmarks/METHODOLOGY.md)
 <!-- generated:compatibility end -->
@@ -63,7 +65,7 @@ The distinction is strict everywhere: matrix, reports, release notes, and this R
 - Full generated matrix (every catalogued row, with outcome + validation level + reason + evidence link): [catalog/compatibility.md](catalog/compatibility.md)
 - Live campaign progress: [reports/marathon-progress.md](reports/marathon-progress.md)
 - Failure groups by outcome: [reports/failures.md](reports/failures.md)
-- Full dataset audit: [reports/full-171-integrity-audit.md](reports/full-171-integrity-audit.md)
+- Full dataset audit: [reports/full-173-integrity-audit.md](reports/full-173-integrity-audit.md)
 
 ## Quick start
 

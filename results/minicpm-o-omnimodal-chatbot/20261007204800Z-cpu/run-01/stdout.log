@@ -1,0 +1,15 @@
+[cell 0 START +    0.5s] # Omnimodal assistant with MiniCPM-o 2.6 and OpenVINO |  | MiniCPM-o 2.6 i
+[cell 1 START +    0.5s] ## Prerequisites | [back to top ⬆️](#Table-of-contents:)
+[cell 2 START +    0.5s] %pip install -q "torch>=2.3.1" "torchvision>=0.18.1" "librosa>=0.9.0" 
+[cell 2 DONE  +    2.7s]
+[cell 3 START +    2.7s] import requests | from pathlib import Path |  | if not Path("minicpm_o_helpe
+[cell 3 DONE  +    2.7s]
+[cell 4 START +    2.7s] ## Convert model to OpenVINO Intermediate Representation | [back to top 
+[cell 5 START +    2.7s] from minicpm_o_helper import convert_minicpmo26 |  | model_id = "openbmb/M
+[cell 5 DONE  +  239.7s]
+[cell 6 START +  239.7s] ### Compress Language Model Weights to 4 bits | [back to top ⬆️](#Table-
+[cell 7 START +  239.7s] from minicpm_o_helper import compression_widget |  | to_compress_weights =
+[cell 7 DONE  +  239.7s]
+[cell 8 START +  239.7s] import nncf | import gc | import openvino as ov |  | from minicpm_o_helper imp
+[cell 8 DONE  +  284.5s]
+NBEXEC_RESULT={"ok": false, "n_cells": 11, "n_skipped": 1, "n_substituted": 0, "stopped_after": null, "error_cell": null, "error_type": "CellExecutionError", "error_head": "\u001b[31mRuntimeError\u001b[39m: basic_ios::clear: iostream error", "duration_s": 286.69, "patch_notes": ["skipped cell 21: matched skip pattern"]}

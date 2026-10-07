@@ -1,0 +1,62 @@
+[IPKernelApp] WARNING | Kernel is running over TCP without encryption. All communication (including code and outputs) is sent in plain text and is susceptible to eavesdropping. Use IPC transport or launch with kernel manager-provisioned CurveZMQ keys to enable transport encryption.
+Traceback (most recent call last):
+  File "/workspace/ov_amd/_nbexec.py", line 144, in main
+    client.execute()
+  File "/workspace/.venvs/cpu/79fcc9bb724abfac/lib/python3.12/site-packages/jupyter_core/utils/__init__.py", line 165, in wrapped
+    return loop.run_until_complete(inner)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/base_events.py", line 687, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/workspace/.venvs/cpu/79fcc9bb724abfac/lib/python3.12/site-packages/nbclient/client.py", line 709, in async_execute
+    await self.async_execute_cell(
+  File "/workspace/.venvs/cpu/79fcc9bb724abfac/lib/python3.12/site-packages/nbclient/client.py", line 1062, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/workspace/.venvs/cpu/79fcc9bb724abfac/lib/python3.12/site-packages/nbclient/client.py", line 918, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+import nncf
+import gc
+import openvino as ov
+
+from minicpm_o_helper import llm_path, copy_llm_files
+
+compression_configuration = {"mode": nncf.CompressWeightsMode.INT4_SYM, "group_size": 64, "ratio": 1.0, "all_layers": True}
+
+
+core = ov.Core()
+llm_int4_path = Path("language_model_int4") / llm_path.name
+if to_compress_weights.value and not (model_dir / llm_int4_path).exists():
+    ov_model = core.read_model(model_dir / llm_path)
+    ov_compressed_model = nncf.compress_weights(ov_model, **compression_configuration)
+    ov.save_model(ov_compressed_model, model_dir / llm_int4_path)
+    del ov_compressed_model
+    del ov_model
+    gc.collect()
+    copy_llm_files(model_dir / llm_path.parent, model_dir / llm_int4_path.parent)
+------------------
+
+----- stdout -----
+INFO:nncf:Statistics of the bitwidth distribution:
+┍━━━━━━━━━━━━━━━━━━━━━━━━━━━┯━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┯━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┑
+│ Weight compression mode   │ % all parameters (layers)   │ % ratio-defining parameters (layers)   │
+┝━━━━━━━━━━━━━━━━━━━━━━━━━━━┿━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┿━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┥
+│ int4_sym, group size 64   │ 100% (197 / 197)            │ 100% (197 / 197)                       │
+┕━━━━━━━━━━━━━━━━━━━━━━━━━━━┷━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┷━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┙
+------------------
+
+[31m---------------------------------------------------------------------------[39m
+[31mRuntimeError[39m                              Traceback (most recent call last)
+[36mCell[39m[36m [39m[32mIn[5][39m[32m, line 15[39m
+[32m     11[39m llm_int4_path = Path([33m"language_model_int4"[39m) / llm_path.name
+[32m     12[39m [38;5;28;01mif[39;00m to_compress_weights.value [38;5;28;01mand[39;00m [38;5;28;01mnot[39;00m (model_dir / llm_int4_path).exists():
+[32m     13[39m     ov_model = core.read_model(model_dir / llm_path)
+[32m     14[39m     ov_compressed_model = nncf.compress_weights(ov_model, **compression_configuration)
+[32m---> [39m[32m15[39m     ov.save_model(ov_compressed_model, model_dir / llm_int4_path)
+[32m     16[39m     [38;5;28;01mdel[39;00m ov_compressed_model
+[32m     17[39m     [38;5;28;01mdel[39;00m ov_model
+[32m     18[39m     gc.collect()
+
+[31mRuntimeError[39m: basic_ios::clear: iostream error
+

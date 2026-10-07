@@ -1,0 +1,13 @@
+[cell 0 START +    0.8s] # High-Quality Text-Free One-Shot Voice Conversion with FreeVC and Ope
+[cell 1 START +    0.8s]  | #### Table of contents: |  | - [Pre-requisites](#Pre-requisites) | - [Impor
+[cell 2 START +    0.8s] ## Pre-requisites | [back to top ⬆️](#Table-of-contents:) |  | This steps ca
+[cell 3 START +    0.8s] Install extra requirements
+[cell 4 START +    0.8s] %pip install -q "setuptools<82" "openvino>=2023.3.0" "librosa>=0.8.1" 
+[cell 4 DONE  +   69.0s]
+[cell 5 START +   69.0s] # Fetch `notebook_utils` module | import requests | from pathlib import Pa
+[cell 5 DONE  +   69.2s]
+[cell 6 START +   69.2s] from pathlib import Path |  | from huggingface_hub import hf_hub_download | 
+[cell 6 DONE  +  110.8s]
+[cell 7 START +  110.8s] freevc_chpt_dir = Path("checkpoints") | freevc_chpt_name = "freevc.pth" | 
+[cell 7 DONE  +  111.5s]
+NBEXEC_RESULT={"ok": false, "n_cells": 28, "n_skipped": 1, "n_substituted": 1, "stopped_after": null, "error_cell": null, "error_type": "CellExecutionError", "error_head": "\u001b[31mException\u001b[39m: File downloading failed with error: HTTPSConnectionPool(host='storage.openvinotoolkit.org', port=443): Max retries exceeded with url: /repositories/openvino_notebooks/models/freevc/freevc.pth (Caused by ProxyError('Unable to connect to proxy', OSError('Tunnel connection failed: 403 Forbidden')))", "duration_s": 111.74, "patch_notes": ["substituted 2 occurrence(s) in cell 8", "skipped cell 53: matched skip pattern"]}

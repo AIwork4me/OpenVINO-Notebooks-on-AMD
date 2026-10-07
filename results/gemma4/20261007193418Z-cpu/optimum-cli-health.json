@@ -1,0 +1,33 @@
+{
+  "python": "/workspace/.venvs/cpu/68238909408dc049/bin/python",
+  "packages": {
+    "openvino": {
+      "installed": true,
+      "version": "2026.4.1"
+    },
+    "optimum": {
+      "installed": false
+    },
+    "optimum-intel": {
+      "installed": false
+    },
+    "transformers": {
+      "installed": false
+    },
+    "huggingface_hub": {
+      "installed": true,
+      "version": "2.1.1"
+    }
+  },
+  "cli": {
+    "path": null,
+    "help_exit_code": 127,
+    "help_ok": false
+  },
+  "diagnosis": "OPTIMUM_PACKAGES_MISSING",
+  "remediation": {
+    "attempted": true,
+    "ok": false,
+    "log_tail": "-cuda-nvrtc==13.0.88.* (from cuda-toolkit[cublas,cudart,cufft,cufile,cupti,curand,cusolver,cusparse,nvjitlink,nvrtc,nvtx]==13.0.3; platform_system == \"Linux\"->torch>=2.1->optimum-intel)\n  Using cached nvidia_cuda_nvrtc-13.0.88-py3-none-manylinux2010_x86_64.manylinux_2_12_x86_64.whl (90.2 MB)\nCollecting nvidia-cuda-runtime==13.0.96.* (from cuda-toolkit[cublas,cudart,cufft,cufile,cupti,curand,cusolver,cusparse,nvjitlink,nvrtc,nvtx]==13.0.3; platform_system == \"Linux\"->torch>=2.1->optimum-intel)\n  Using cached nvidia_cuda_runtime-13.0.96-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (2.2 MB)\nCollecting nvidia-cufft==12.0.0.61.* (from cuda-toolkit[cublas,cudart,cufft,cufile,cupti,curand,cusolver,cusparse,nvjitlink,nvrtc,nvtx]==13.0.3; platform_system == \"Linux\"->torch>=2.1->optimum-intel)\n  Using cached nvidia_cufft-12.0.0.61-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (214.1 MB)\nERROR: Could not install packages due to an OSError: [Errno 28] No space left on device\n\n"
+  }
+}

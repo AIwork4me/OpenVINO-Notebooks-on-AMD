@@ -1,0 +1,36 @@
+[IPKernelApp] WARNING | Kernel is running over TCP without encryption. All communication (including code and outputs) is sent in plain text and is susceptible to eavesdropping. Use IPC transport or launch with kernel manager-provisioned CurveZMQ keys to enable transport encryption.
+[39m[33mFor more details, check out https://huggingface.co/docs/huggingface_hub/main/en/guides/download#download-files-to-local-folder.[39m[33m"[39m
+[32m    992[39m         )
+[32m--> [39m[32m994[39m     [38;5;28;01mreturn[39;00m [30;43m_hf_hub_download_to_local_dir[39;49m[30;43m([39;49m
+[32m    995[39m [30;43m        [39;49m[30;43;03m# Destination[39;49;00m
+[32m    996[39m [30;43m        [39;49m[30;43mlocal_dir[39;49m[30;43m=[39;49m[30;43mlocal_dir[39;49m[30;43m,[39;49m
+[32m    997[39m [30;43m        [39;49m[30;43;03m# File info[39;49;00m
+[32m    998[39m [30;43m        [39;49m[30;43mrepo_id[39;49m[30;43m=[39;49m[30;43mrepo_id[39;49m[30;43m,[39;49m
+[32m    999[39m [30;43m        [39;49m[30;43mrepo_type[39;49m[30;43m=[39;49m[30;43mrepo_type[39;49m[30;43m,[39;49m
+[32m   1000[39m [30;43m        [39;49m[30;43mfilename[39;49m[30;43m=[39;49m[30;43mfilename[39;49m[30;43m,[39;49m
+[32m   1001[39m [30;43m        [39;49m[30;43mrevision[39;49m[30;43m=[39;49m[30;43mrevision[39;49m[30;43m,[39;49m
+[32m   1002[39m [30;43m        [39;49m[30;43;03m# HTTP info[39;49;00m
+[32m   1003[39m [30;43m        [39;49m[30;43mendpoint[39;49m[30;43m=[39;49m[30;43mendpoint[39;49m[30;43m,[39;49m
+[32m   1004[39m [30;43m        [39;49m[30;43metag_timeout[39;49m[30;43m=[39;49m[30;43metag_timeout[39;49m[30;43m,[39;49m
+[32m   1005[39m [30;43m        [39;49m[30;43mheaders[39;49m[30;43m=[39;49m[30;43mhf_headers[39;49m[30;43m,[39;49m
+[32m   1006[39m [30;43m        [39;49m[30;43mproxies[39;49m[30;43m=[39;49m[30;43mproxies[39;49m[30;43m,[39;49m
+[32m   1007[39m [30;43m        [39;49m[30;43mtoken[39;49m[30;43m=[39;49m[30;43mtoken[39;49m[30;43m,[39;49m
+[32m   1008[39m [30;43m        [39;49m[30;43;03m# Additional options[39;49;00m
+[32m   1009[39m [30;43m        [39;49m[30;43mcache_dir[39;49m[30;43m=[39;49m[30;43mcache_dir[39;49m[30;43m,[39;49m
+[32m   1010[39m [30;43m        [39;49m[30;43mforce_download[39;49m[30;43m=[39;49m[30;43mforce_download[39;49m[30;43m,[39;49m
+[32m   1011[39m [30;43m        [39;49m[30;43mlocal_files_only[39;49m[30;43m=[39;49m[30;43mlocal_files_only[39;49m[30;43m,[39;49m
+[32m   1012[39m [30;43m    [39;49m[30;43m)[39;49m
+[32m   1013[39m [38;5;28;01melse[39;00m:
+[32m   1014[39m     [38;5;28;01mreturn[39;00m _hf_hub_download_to_cache_dir(
+[32m   1015[39m         [38;5;66;03m# Destination[39;00m
+[32m   1016[39m         cache_dir=cache_dir,
+[32m   (...)[39m[32m   1030[39m         force_download=force_download,
+[32m   1031[39m     )
+
+[36mFile [39m[32m/workspace/.venvs/cpu/66fe5c0d3fd70b95/lib/python3.12/site-packages/huggingface_hub/file_download.py:1304[39m, in [36m_hf_hub_download_to_local_dir[39m[34m(local_dir, repo_id, repo_type, filename, revision, endpoint, etag_timeout, headers, proxies, token, cache_dir, force_download, local_files_only)[39m
+[32m   1302[39m [38;5;28;01mwith[39;00m WeakFileLock(paths.lock_path):
+[32m   1303[39m     paths.file_path.unlink(missing_ok=[38;5;28;01mTrue[39;00m)  [38;5;66;03m# delete outdated file first[39;00m
+[32m-> [39m[32m1304[39m     [30;43m_download_to_tmp_and_move[39;49m[30;43m([39;49m
+[32m   1305[39m [30;43m        [39;49m[30;43mincomplete_path[39;49m[30;43m=[39;49m[30;43mpaths[39;49m[30;43m.[39;49m[30;43mincomplete_path[39;49m[30;43m([39;49m[30;43metag[39;49m[30;43m)[39;49m[30;43m,[39;49m
+[32m   1306[39m [30;43m        [39;49m[30;43mdestination_path[39;49m[30;43m=[39;49m[30;43mpaths[39;49m[30;43m.[39;49m[30;43mfile_path[39;49m[30;43m,[39;49m
+[32m   1307[39m [30;43m        [39;49m[30;43murl_to_download[39;49m[30;43m=[39;49m[30;43murl_to_download

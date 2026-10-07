@@ -1,0 +1,4 @@
+[cell 0 START +    0.9s] # OpenVINO Tokenizers: Incorporate Text Processing Into OpenVINO Pipel
+[cell 1 START +    0.9s] ## Acquiring OpenVINO Tokenizers | [back to top ⬆️](#Table-of-contents:)
+[cell 2 START +    0.9s] %pip install -q -U --pre "openvino>=2024.3.0" openvino-tokenizers[tran
+NBEXEC_RESULT={"ok": false, "n_cells": 14, "n_skipped": 0, "n_substituted": 2, "stopped_after": null, "error_cell": null, "error_type": "CellTimeoutError", "error_head": "-------------------", "duration_s": 901.23, "patch_notes": ["substituted 1 occurrence(s) in cell 16", "substituted 1 occurrence(s) in cell 23"]}

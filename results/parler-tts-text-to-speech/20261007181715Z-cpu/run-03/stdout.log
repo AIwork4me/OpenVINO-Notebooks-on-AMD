@@ -1,0 +1,5 @@
+[cell 0 START +    0.5s] # Text-to-speech (TTS) with Parler-TTS and OpenVINO |  | Parler-TTS is a l
+[cell 1 START +    0.5s] ## Prerequisites | [back to top ⬆️](#Table-of-contents:)
+[cell 2 START +    0.5s] import os | import requests | from pathlib import Path |  | os.environ["GIT_CL
+[cell 2 DONE  +   80.0s]
+NBEXEC_RESULT={"ok": false, "n_cells": 15, "n_skipped": 1, "n_substituted": 0, "stopped_after": null, "error_cell": null, "error_type": "CellExecutionError", "error_head": "\u001b[31mCalledProcessError\u001b[39m: Command '['/workspace/.venvs/cpu/ff6077400904ce0b/bin/python', '-m', 'pip', 'install', '-q', 'git+https://github.com/huggingface/parler-tts.git', 'gradio>=4.19', 'torchaudio', '--extra-index-url', 'https://download.pytorch.org/whl/cpu', '--no-build-isolation']' returned non-zero exit status 1.", "duration_s": 80.12, "patch_notes": ["skipped cell 23: matched skip pattern"]}

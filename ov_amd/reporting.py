@@ -84,7 +84,7 @@ def build_compatibility(
         else:
             evidence = cpu.get("evidence_dir") or gpu.get("evidence_dir")
 
-        def _backend_fields(b: dict[str, Any]) -> dict[str, Any]:
+        def _backend_fields(b: dict[str, Any], backend: str = "cpu") -> dict[str, Any]:
             outcome = b.get("compatibility_outcome") or ""
             reason = b.get("outcome_reason") or ""
             if not outcome:
@@ -92,12 +92,14 @@ def build_compatibility(
                     b.get("status", Status.NOT_TESTED.value),
                     b.get("failure_category", ""),
                     "\n".join(b.get("notes") or []),
+                    device_proof=b.get("device_proof", ""),
+                    backend=backend,
                 )
                 outcome = outcome_o.value
             return {"compatibility_outcome": outcome, "outcome_reason": reason}
 
-        cpu_fields = _backend_fields(cpu)
-        gpu_fields = _backend_fields(gpu)
+        cpu_fields = _backend_fields(cpu, "cpu")
+        gpu_fields = _backend_fields(gpu, "gpu")
         rows.append(
             {
                 "id": e.id,
@@ -135,6 +137,31 @@ def build_compatibility(
         "counts": _counts(rows),
         "rows": rows,
     }
+
+
+def _freshness_line(pinned_commit: str) -> str:
+    """Render the upstream-freshness signal from the last recorded check.
+
+    The freshness check itself (scripts/check_upstream_freshness.py) is a
+    separate networked workflow — README generation never requires network.
+    It records `latest_commit` + `ahead_by` into reports/upstream-freshness.json;
+    this renderer only formats the committed record. When upstream moved, the
+    relevant scope is marked REVALIDATION_REQUIRED by the checker — historical
+    result statuses are never silently rewritten."""
+
+    fp = REPO_ROOT / "reports" / "upstream-freshness.json"
+    try:
+        rec = json.loads(fp.read_text())
+    except (OSError, ValueError):
+        return "UNKNOWN (no freshness check recorded yet)"
+    ahead = int(rec.get("ahead_by", -1))
+    latest = str(rec.get("latest_commit", ""))[:12]
+    checked = str(rec.get("checked_at", ""))[:10]
+    if ahead == 0:
+        return f"**CURRENT** (verified {checked})"
+    if ahead > 0:
+        return f"**UPSTREAM AHEAD BY {ahead} COMMITS** (`{latest}`; checked {checked}; affected scope flagged REVALIDATION_REQUIRED)"
+    return "UNKNOWN (freshness record unreadable)"
 
 
 def _counts(rows: list[dict[str, Any]]) -> dict[str, Any]:
@@ -312,10 +339,14 @@ def write_compatibility() -> dict[str, Any]:
         if (REPO_ROOT / "upstream" / "openvino-notebooks.json").exists() else {}
     blocked_total = sum(oc.get(k, 0) for k in (
         "BLOCKED_NETWORK", "BLOCKED_MODEL_ACCESS", "BLOCKED_DEPENDENCY", "BLOCKED_TIMEOUT", "BLOCKED_RESOURCE"))
+    freshness = _freshness_line(meta.get("commit", ""))
 
     block = [
         f"**AMD CPU Coverage: {compat['counts']['cpu_attempted']}/{compat['counts']['total']} OpenVINO Notebooks "
         f"attempted on AMD Ryzen — {compat['counts']['cpu_attempt_coverage_pct']}% catalog coverage**",
+        "",
+        f"Coverage is measured against the pinned OpenVINO Notebooks snapshot "
+        f"`{str(meta.get('commit', ''))[:12]}`. Upstream freshness: {freshness}",
         "",
         f"✅ {oc.get('VERIFIED', 0)} Verified · 🟡 {oc.get('VERIFIED_WITH_LIMITATIONS', 0)} Verified with limitations · "
         f"🚧 {blocked_total} Blocked (network / model access / dependency / timeout / resource) · "
@@ -412,7 +443,13 @@ def write_failures(state: dict[str, Any] | None = None) -> None:
                 outcome = r.get("compatibility_outcome") or ""
                 reason = r.get("outcome_reason") or ""
                 if not outcome:
-                    outcome_o, reason = derive_outcome(r.get("status", ""), r.get("failure_category", ""), note)
+                    outcome_o, reason = derive_outcome(
+                        r.get("status", ""),
+                        r.get("failure_category", ""),
+                        note,
+                        device_proof=r.get("device_proof", ""),
+                        backend=backend,
+                    )
                     outcome = outcome_o.value
                 key = f"{backend}:{outcome}" + (f":{reason}" if reason else "")
                 groups.setdefault(key, []).append(

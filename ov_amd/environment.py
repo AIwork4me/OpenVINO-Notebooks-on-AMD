@@ -37,6 +37,29 @@ _HF_ENDPOINT_CACHE: dict[str, object] = {}
 _GIT_TRANSPORT_CACHE: dict[str, object] = {}
 
 
+def resolve_uv_index() -> dict[str, object]:
+    """Mirror the pip index configuration into uv (installer parity).
+
+    uv does not read PIP_INDEX_URL. On runners whose egress allowlist routes
+    PyPI through a site mirror (ambient PIP_INDEX_URL), uv would otherwise
+    resolve against pypi.org directly — reachable but throttled to ~25KB/s on
+    the reference network, turning multi-hundred-MB torch installs into
+    day-long builds. Parity with pip's configured index keeps both installers
+    on the same, operator-chosen transport.
+
+    Priority: UV_INDEX_URL (explicit) > PIP_INDEX_URL (ambient pip config) >
+    uv default. Recorded in env-meta.json like the HF/git transport choices.
+    """
+
+    explicit = os.environ.get("UV_INDEX_URL", "")
+    ambient = os.environ.get("PIP_INDEX_URL", "")
+    if explicit:
+        return {"uv_index": explicit, "source": "env (UV_INDEX_URL)"}
+    if ambient:
+        return {"uv_index": ambient, "source": "ambient PIP_INDEX_URL (pip/uv parity)"}
+    return {"uv_index": "", "source": "uv default (pypi.org)"}
+
+
 def resolve_git_transport() -> dict[str, object]:
     """Decide whether `git+https://github.com/...` pip installs work directly
     on this runner, or must be rewritten to codeload tarball URLs.

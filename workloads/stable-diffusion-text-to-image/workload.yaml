@@ -4,9 +4,9 @@ category: Image Generation
 upstream:
   repository: openvinotoolkit/openvino_notebooks
   branch: latest
-  commit: 329562e6031d1a989017d08697b0fabe5a989492
+  commit: 5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b
   path: notebooks/stable-diffusion-text-to-image/stable-diffusion-text-to-image.ipynb
-  url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/stable-diffusion-text-to-image/stable-diffusion-text-to-image.ipynb
+  url: https://github.com/openvinotoolkit/openvino_notebooks/blob/5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b/notebooks/stable-diffusion-text-to-image/stable-diffusion-text-to-image.ipynb
 model:
   name: ''
   source: ''

@@ -49,13 +49,14 @@ def mirror_into_manifest(workload_id: str, backend: str, status: str, verified_n
 
 
 def sync_manifests(catalog: list | None = None, state: dict[str, Any] | None = None) -> dict[str, int]:
-    """Regenerate every manifest's cpu/gpu status and twin level mirrors from
-    the sources of truth. Returns a change count summary."""
+    """Regenerate every manifest's cpu/gpu status, twin level, and upstream-pin
+    mirrors from the sources of truth. Returns a change count summary."""
 
     catalog = catalog if catalog is not None else load_catalog()
     state = state if state is not None else load_state()
     attempts = state.get("attempts", {})
-    changed = {"status": 0, "twin": 0, "manifests": 0}
+    pin = (state.get("upstream") or {}).get("commit") or ""
+    changed = {"status": 0, "twin": 0, "pin": 0, "manifests": 0}
     for entry in catalog:
         wf = WORKLOADS_DIR / entry.id / "workload.yaml"
         if not wf.exists():
@@ -76,6 +77,13 @@ def sync_manifests(catalog: list | None = None, state: dict[str, Any] | None = N
         if twin.get("level") != entry.twin_level:
             twin["level"] = entry.twin_level
             changed["twin"] += 1
+        if pin:
+            up = cfg.setdefault("upstream", {})
+            if up.get("commit") != pin:
+                up["commit"] = pin
+                up["path"] = entry.upstream_path
+                up["url"] = entry.upstream_url
+                changed["pin"] += 1
         if json.dumps(cfg, sort_keys=True) != before:
             wf.write_text(yaml.safe_dump(cfg, sort_keys=False))
             changed["manifests"] += 1

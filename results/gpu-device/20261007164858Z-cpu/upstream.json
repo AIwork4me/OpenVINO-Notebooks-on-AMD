@@ -1,0 +1,9 @@
+{
+  "schema_version": 2,
+  "repository": "openvinotoolkit/openvino_notebooks",
+  "branch": "latest",
+  "commit": "5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b",
+  "path": "notebooks/gpu-device/gpu-device.ipynb",
+  "url": "https://github.com/openvinotoolkit/openvino_notebooks/blob/5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b/notebooks/gpu-device/gpu-device.ipynb",
+  "notebook_sha256": "b7eaf1a90ecf48e5c6a2b70281d601fcc4360f37294eba3a9b9555fcb289675f"
+}

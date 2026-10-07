@@ -1,0 +1,9 @@
+[cell 0 START +    0.8s] # YOLOE-26 Open-Vocabulary Detection and Segmentation with OpenVINO™ |  | 
+[cell 1 START +    0.8s] ## Prerequisites | [back to top ⬆️](#Table-of-contents:) |  | Install necess
+[cell 2 START +    0.8s] %pip install -qU "openvino>=2026.0.0" "nncf>=3.0.0" | %pip install -q "t
+[cell 2 DONE  +   35.0s]
+[cell 3 START +   35.0s] Import required utility functions.
+[cell 4 START +   35.0s] from pathlib import Path | import requests |  | if not Path("notebook_utils.
+[cell 4 DONE  +   35.1s]
+[cell 5 START +   35.1s] # Download test images | IMAGE_PATH = Path("./data/coco_bike.jpg") |  | if n
+[cell 5 DONE  +   35.4s]

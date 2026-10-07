@@ -1,0 +1,15 @@
+{
+  "schema_version": 2,
+  "passed": false,
+  "checks": {
+    "output_not_contains": {
+      "Traceback \\(most recent call last\\)": true
+    },
+    "min_output_chars": true,
+    "no_cell_error": false,
+    "skipped_cells": 0
+  },
+  "notes": [],
+  "level": "WORKLOAD_CORRECTNESS",
+  "contract_present": true
+}

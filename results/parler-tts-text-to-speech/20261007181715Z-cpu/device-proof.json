@@ -1,0 +1,19 @@
+{
+  "schema_version": 2,
+  "state": "PROVEN_CPU",
+  "requested_backend": "cpu",
+  "compile_events": 3,
+  "execution_devices": [
+    "CPU"
+  ],
+  "device_args": [
+    "CPU"
+  ],
+  "genai_pipeline_events": 0,
+  "genai_device_args": [],
+  "supporting_device_used": "CPU",
+  "probe_events": 1,
+  "probe_present": true,
+  "probe_installed": true,
+  "rollup_note": "v0.2.2: rollup regenerated from run-01 device-proof.jsonl (3 CPU compile_model events); the prior top-level rollup had been overwritten by the transport-failed retry runs 02-04 which never reached OpenVINO"
+}

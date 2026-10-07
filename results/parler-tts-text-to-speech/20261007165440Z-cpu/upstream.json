@@ -1,0 +1,9 @@
+{
+  "schema_version": 2,
+  "repository": "openvinotoolkit/openvino_notebooks",
+  "branch": "latest",
+  "commit": "5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b",
+  "path": "notebooks/parler-tts-text-to-speech/parler-tts-text-to-speech.ipynb",
+  "url": "https://github.com/openvinotoolkit/openvino_notebooks/blob/5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b/notebooks/parler-tts-text-to-speech/parler-tts-text-to-speech.ipynb",
+  "notebook_sha256": "af1c85e0d18cf0c36a1fa1a7c976a75dc5d5f65cb99d52a62a4a5333452e627d"
+}

@@ -1,0 +1,33 @@
+{
+  "python": "/workspace/.venvs/cpu/66fe5c0d3fd70b95/bin/python",
+  "packages": {
+    "openvino": {
+      "installed": true,
+      "version": "2026.4.1"
+    },
+    "optimum": {
+      "installed": false
+    },
+    "optimum-intel": {
+      "installed": false
+    },
+    "transformers": {
+      "installed": false
+    },
+    "huggingface_hub": {
+      "installed": true,
+      "version": "2.1.1"
+    }
+  },
+  "cli": {
+    "path": null,
+    "help_exit_code": 127,
+    "help_ok": false
+  },
+  "diagnosis": "OPTIMUM_PACKAGES_MISSING",
+  "remediation": {
+    "attempted": true,
+    "ok": false,
+    "log_tail": "_2_25_x86_64.whl (10.7 MB)\nCollecting nvidia-curand==10.4.0.35.* (from cuda-toolkit[cublas,cudart,cufft,cufile,cupti,curand,cusolver,cusparse,nvjitlink,nvrtc,nvtx]==13.0.3; platform_system == \"Linux\"->torch>=2.1->optimum-intel)\n  Using cached nvidia_curand-10.4.0.35-py3-none-manylinux_2_27_x86_64.whl (59.5 MB)\nCollecting nvidia-cusolver==12.0.4.66.* (from cuda-toolkit[cublas,cudart,cufft,cufile,cupti,curand,cusolver,cusparse,nvjitlink,nvrtc,nvtx]==13.0.3; platform_system == \"Linux\"->torch>=2.1->optimum-intel)\n  Using cached nvidia_cusolver-12.0.4.66-py3-none-manylinux_2_27_x86_64.whl (200.9 MB)\nCollecting nvidia-cusparse==12.6.3.3.* (from cuda-toolkit[cublas,cudart,cufft,cufile,cupti,curand,cusolver,cusparse,nvjitlink,nvrtc,nvtx]==13.0.3; platform_system == \"Linux\"->torch>=2.1->optimum-intel)\n  Using cached nvidia_cusparse-12.6.3.3-py3-none-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (145.9 MB)\nERROR: Could not install packages due to an OSError: [Errno 28] No space left on device\n\n"
+  }
+}

@@ -269,16 +269,52 @@ def _preseed_helpers(cwd: Path, nb_path: Path | None = None) -> list[str]:
             dst = cwd / py.name
             if not dst.exists():
                 _copy_patched(py, dst)
+        # notebooks in notebooks/<folder>/ reach helpers as ../../utils/<mod>.py
+        # (e.g. llm-chatbot's llm_config.py copy-or-update cell). The kernel
+        # cwd is the workdir, not the notebook dir, so that relative layout
+        # must exist too — otherwise the notebook's "update" branch falls
+        # back to raw.githubusercontent.com and dies on egress-restricted
+        # runners (v0.2.2 llm-chatbot SSLError). Bounded: only when ../../
+        # resolves inside RESULTS_DIR (no writes outside the results tree).
+        try:
+            shared_utils = (cwd / ".." / ".." / "utils").resolve()
+            results_root = (Path(__file__).resolve().parent.parent / "results").resolve()
+            if str(shared_utils).startswith(str(results_root) + os.sep):
+                shared_utils.mkdir(parents=True, exist_ok=True)
+                for py in utils.glob("*.py"):
+                    dst = shared_utils / py.name
+                    if not dst.exists():
+                        _copy_patched(py, dst)
+                patches.append(
+                    "preseeded ../../utils helper layout (notebooks resolve helpers relative to their folder; kernel cwd is the workdir)"
+                )
+        except OSError:
+            pass
 
     if nb_path is not None and nb_path.parent != root:
         for sibling in sorted(nb_path.parent.iterdir()):
             dst = cwd / sibling.name
-            if dst.exists() or not sibling.is_file() or sibling.is_symlink():
+            if not sibling.is_file() or sibling.is_symlink():
                 continue
             if sibling.suffix == ".py":
-                shutil.copy2(sibling, dst)
-                patches.append(f"preseeded sibling helper module {sibling.name} (kernel cwd differs from notebook dir)")
-            elif sibling.suffix.lower() in SIBLING_DATA_EXTS:
+                text = sibling.read_text()
+                patched = _guard_helper_notebook_utils_fetch(text)
+                if patched is not None:
+                    # refresh an unpatched copy we seeded earlier (preseed
+                    # normally skips existing files; a guard-fix landed after
+                    # the first seeding must still reach the workdir)
+                    if not dst.exists() or (dst.read_text() == text):
+                        dst.write_text(patched)
+                    text = patched
+                    patches.append(
+                        f"guarded unconditional notebook_utils.py fetch in sibling helper {sibling.name} "
+                        "(upstream helper refetches from raw.githubusercontent.com at import time; "
+                        "preseeded copy satisfies it offline)"
+                    )
+                if not dst.exists():
+                    dst.write_text(text)
+                    patches.append(f"preseeded sibling helper module {sibling.name} (kernel cwd differs from notebook dir)")
+            elif sibling.suffix.lower() in SIBLING_DATA_EXTS and not dst.exists():
                 try:
                     if sibling.stat().st_size <= SIBLING_DATA_MAX_BYTES:
                         shutil.copy2(sibling, dst)
@@ -287,7 +323,105 @@ def _preseed_helpers(cwd: Path, nb_path: Path | None = None) -> list[str]:
                         )
                 except OSError:
                     pass
+        # cross-notebook assets fetched from OUR OWN pinned repo via
+        # raw.githubusercontent.com (e.g. vlm-chatbot/nyc.jpg referenced by
+        # muse-glimmer): satisfy them from the sha-verified snapshot — pure
+        # transport substitution, identical content, recorded per file
+        patches.extend(_preseed_snapshot_raw_assets(cwd, nb_path, root))
     return patches
+
+
+def _preseed_snapshot_raw_assets(cwd: Path, nb_path: Path, root: Path) -> list[str]:
+    """Preseed files the notebook downloads from
+    raw.githubusercontent.com/openvinotoolkit/openvino_notebooks/<ref>/<path>
+    when <path> exists in the pinned snapshot (the raw CDN is unreachable on
+    egress-restricted runners). Foreign-repo URLs are left alone — those are
+    honest network blocks, not transport substitutions."""
+
+    import re as _re
+    import shutil
+
+    raw_re = _re.compile(
+        r"raw\.githubusercontent\.com/openvinotoolkit/openvino_notebooks/[^\s\"'/]+/([^\s\"')]+)"
+    )
+    try:
+        nb_text = nb_path.read_text(errors="ignore")
+    except OSError:
+        return []
+    notes: list[str] = []
+    seen: set[str] = set()
+    for match in raw_re.finditer(nb_text):
+        rel = match.group(1).split("\\")[0]
+        if not rel or rel in seen:
+            continue
+        seen.add(rel)
+        src = root / rel
+        dst = cwd / Path(rel).name
+        if not src.is_file() or dst.exists():
+            continue
+        try:
+            shutil.copy2(src, dst)
+            notes.append(
+                f"preseeded snapshot asset {rel} (notebook fetches it from raw.githubusercontent.com; "
+                "identical sha-verified snapshot content, transport substitution)"
+            )
+        except OSError:
+            continue
+    return notes
+
+
+def _guard_helper_notebook_utils_fetch(text: str) -> str | None:
+    """Wrap a sibling helper's unconditional notebook_utils.py refetch in an
+    exists() guard (documented minimal patch, recorded in evidence).
+
+    Upstream helpers (ct-segmentation-quantize's custom_segmentation.py,
+    async_pipeline.py) fetch notebook_utils.py from raw.githubusercontent.com
+    at import time with no existence check. The preseed already provides the
+    pinned, sha-verified notebook_utils.py in the kernel cwd; on
+    egress-restricted runners the unconditional fetch kills the import. The
+    guard keeps upstream behavior when the file is genuinely absent.
+    """
+
+    lines = text.splitlines(keepends=True)
+    out: list[str] = []
+    i = 0
+    changed = False
+    start_mark = "r = requests.get("
+    end_mark = 'open("notebook_utils.py", "w").write(r.text)'
+    while i < len(lines):
+        if lines[i].strip() == start_mark:
+            # confirm this fetch targets notebook_utils.py within the block
+            j = i + 1
+            block_end = None
+            targets_utils = False
+            while j < len(lines) and j <= i + 12:
+                if "notebook_utils.py" in lines[j] and "raw.githubusercontent" not in lines[j]:
+                    targets_utils = True
+                if lines[j].rstrip("\n").rstrip() == ")":
+                    block_end = j
+                    if targets_utils:
+                        break
+                j += 1
+            if block_end is not None and targets_utils:
+                k = block_end + 1
+                while k < len(lines) and not lines[k].startswith(end_mark):
+                    k += 1
+                if k < len(lines):
+                    indent = lines[i][: len(lines[i]) - len(lines[i].lstrip())]
+                    out.append(f'{indent}if not Path("notebook_utils.py").exists():\n')
+                    for m in range(i, k + 1):
+                        out.append("    " + lines[m])
+                    i = k + 1
+                    changed = True
+                    continue
+        out.append(lines[i])
+        i += 1
+    if not changed:
+        return None
+    new_text = "".join(out)
+    if "from pathlib import Path" not in new_text and "import pathlib" not in new_text:
+        new_text = new_text.replace("import requests\n", "import requests\nfrom pathlib import Path\n", 1)
+    return new_text
 
 
 def _kill_process_group(pid: int) -> None:

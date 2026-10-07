@@ -1,0 +1,40 @@
+[cell 0 START +    0.8s] # Working with GPUs in OpenVINO™ |  |  | #### Table of contents: |  | - [Introdu
+[cell 1 START +    0.8s] This tutorial provides a high-level overview of working with Intel GPU
+[cell 2 START +    0.8s] ## Introduction | [back to top ⬆️](#Table-of-contents:) | 
+[cell 3 START +    0.8s] Originally, graphic processing units (GPUs) began as specialized chips
+[cell 4 START +    0.8s] ### Install required packages | [back to top ⬆️](#Table-of-contents:) | 
+[cell 5 START +    0.8s] %pip install -q "openvino>=2024.4.0" "opencv-python" "tqdm" "huggingfa
+[cell 5 DONE  +    3.2s]
+[cell 6 START +    3.2s] ## Checking GPUs with Query Device | [back to top ⬆️](#Table-of-contents
+[cell 7 START +    3.2s] In this section, we will see how to list the available GPUs and check 
+[cell 8 START +    3.2s] ### List GPUs with core.available_devices | [back to top ⬆️](#Table-of-c
+[cell 9 START +    3.2s] OpenVINO Runtime provides the `available_devices` method for checking 
+[cell 10 START +    3.2s] import openvino as ov |  | core = ov.Core() | core.available_devices
+[cell 10 DONE  +    3.5s]
+[cell 11 START +    3.5s] Note that GPU devices are numbered starting at 0, where the integrated
+[cell 12 START +    3.5s] If the GPUs are installed correctly on the system and still do not app
+[cell 13 START +    3.5s] ### Check Properties with core.get_property | [back to top ⬆️](#Table-of
+[cell 14 START +    3.5s] To get information about the GPUs, we can use device properties. In Op
+[cell 15 START +    3.5s] To get the value of a property, such as the device name, we can use th
+[cell 16 START +    3.5s] import openvino.properties as props |  | device = "GPU" |  | core.get_property
+[cell 16 DONE  +    3.5s]
+[cell 17 START +    3.5s] Each device also has a specific property called `SUPPORTED_PROPERTIES`
+[cell 18 START +    3.5s] print(f"{device} SUPPORTED_PROPERTIES:\n") | supported_properties = core
+[cell 18 DONE  +    3.5s]
+[cell 19 START +    3.5s] ### Brief Descriptions of Key Properties | [back to top ⬆️](#Table-of-co
+[cell 20 START +    3.5s] Each device has several properties as seen in the last command. Some o
+[cell 21 START +    3.5s] ## Compiling a Model on GPU | [back to top ⬆️](#Table-of-contents:) | 
+[cell 22 START +    3.5s] Now, we know how to list the GPUs in the system and check their proper
+[cell 23 START +    3.5s] ### Download a Model | [back to top ⬆️](#Table-of-contents:) | 
+[cell 24 START +    3.5s] This tutorial uses the `ssdlite_mobilenet_v2` model. The `ssdlite_mobi
+[cell 25 START +    3.5s] import huggingface_hub as hf_hub | from pathlib import Path |  | # Fetch `no
+[cell 25 DONE  +    6.3s]
+[cell 26 START +    6.3s] ### Compile with Default Configuration | [back to top ⬆️](#Table-of-cont
+[cell 27 START +    6.3s] When the model is ready, first we need to read it, using the `read_mod
+[cell 28 START +    6.3s] compiled_model = core.compile_model(model, device)
+[cell 28 DONE  +   12.5s]
+[cell 29 START +   12.5s] If you have multiple GPUs in the system, you can specify which one to 
+[cell 30 START +   12.5s] ### Reduce Compile Time through Model Caching | [back to top ⬆️](#Table-
+[cell 31 START +   12.5s] Depending on the model used, device-specific optimizations and network
+[cell 32 START +   12.5s] import time | from pathlib import Path |  | # Create cache folder | cache_fold
+NBEXEC_RESULT={"ok": false, "n_cells": 26, "n_skipped": 0, "n_substituted": 0, "stopped_after": null, "error_cell": null, "error_type": "DeadKernelError", "error_head": "nbclient.exceptions.DeadKernelError: Kernel died", "duration_s": 14.53, "patch_notes": []}

@@ -1,0 +1,20 @@
+[cell 0 START +    0.8s] # Qwen3.8 Multi-Token Prediction with OpenVINO™ |  | This experimental not
+[cell 1 START +    0.8s] ## Prerequisites | [back to top ⬆️](#Table-of-contents:) |  | Install requir
+[cell 2 START +    0.8s] %pip install -q -U --pre openvino openvino-tokenizers openvino-genai -
+[cell 2 DONE  +   90.4s]
+[cell 3 START +   90.4s] from pathlib import Path | import subprocess | import sys |  | import requests
+[cell 3 DONE  +   90.7s]
+[cell 4 START +   90.7s] ## Select inference device | [back to top ⬆️](#Table-of-contents:) |  | NPU 
+[cell 5 START +   90.7s] import ipywidgets as widgets | from IPython.display import display |  | from
+[cell 5 DONE  +   90.9s]
+[cell 6 START +   90.9s] ## Get a model with an MTP head | [back to top ⬆️](#Table-of-contents:) | 
+[cell 7 START +   90.9s] PRECONVERTED_MODELS = { |     "hub_int4": "OpenVINO/Qwen3.8-27B-int4-ov"
+[cell 7 DONE  +   90.9s]
+[cell 8 START +   90.9s] import shutil |  | MODEL_DIR = MODEL_DIRS[model_source.value] | mtp_xml = MO
+[cell 8 DONE  +  810.3s]
+[cell 9 START +  810.3s] if not MODEL_DIR.exists(): |     raise FileNotFoundError(f"Model directo
+[cell 9 DONE  +  810.3s]
+[cell 10 START +  810.3s] ## Prepare an image | [back to top ⬆️](#Table-of-contents:) |  | Download a 
+[cell 11 START +  810.3s] from urllib.request import urlretrieve |  | import numpy as np | from PIL im
+[cell 11 DONE  +  811.6s]
+NBEXEC_RESULT={"ok": false, "n_cells": 17, "n_skipped": 0, "n_substituted": 1, "stopped_after": null, "error_cell": null, "error_type": "CellExecutionError", "error_head": "\u001b[31mURLError\u001b[39m: <urlopen error Tunnel connection failed: 403 Forbidden>", "duration_s": 811.97, "patch_notes": ["substituted 1 occurrence(s) in cell 2"]}

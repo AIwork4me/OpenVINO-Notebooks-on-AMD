@@ -147,6 +147,40 @@ torch device properties); the GFX architecture is never inferred from CUDA
 capability numbers — if it cannot be programmatically confirmed it is left
 unknown.
 
+## Device attribution (v0.2.2)
+
+Three execution paths exist and are never conflated:
+
+```text
+OpenVINO CPU plugin  on AMD Ryzen    -> the CPU matrix
+OpenVINO GPU plugin  on AMD Radeon   -> device-specific findings (reports/openvino-gpu-plugin-radeon-findings.md)
+ROCm / PyTorch       on AMD Radeon   -> ROCm twins (gpu_* columns)
+```
+
+- A cpu-backend attempt whose device proof is `PROVEN_GPU` can never yield an
+  AMD CPU compatibility verdict: the outcome guard in `ov_amd/outcomes.py`
+  maps such failures to `NOT_TESTED` + `DEVICE_ATTRIBUTION_INVALID_GPU_PLUGIN`
+  and requires CPU-forced revalidation (documented minimal `cell_subs` pins
+  for notebooks that hardcode `device = "GPU"`).
+- OpenVINO GPU-plugin-on-Radeon behavior (e.g. `clEnqueueMapBuffer
+  CL_INVALID_VALUE` on gfx1151) is recorded as a separate device-specific
+  finding with its own evidence links — it is neither a CPU result nor a ROCm
+  result.
+- GPU-purpose notebooks (e.g. `gpu-device`, which hardcodes `device = "GPU"`
+  for its property walkthrough) adjudicate to `NOT_APPLICABLE` on the CPU
+  dimension with a provenance note; the GPU-plugin behavior they exercise is
+  captured in the findings report instead.
+
+## Upstream freshness (v0.2.2)
+
+The pin is a commit, never a moving branch. `scripts/check_upstream_freshness.py`
+(networked, run as its own workflow) compares the pin against upstream `latest`
+and records `reports/upstream-freshness.json`; README generation renders that
+committed record (`CURRENT` / `UPSTREAM AHEAD BY N COMMITS`) without network.
+When upstream is ahead, changed-notebook scopes are marked
+`REVALIDATION_REQUIRED` with provenance — historical statuses are never
+silently rewritten.
+
 ## Honesty rules
 
 - No fabricated numbers, statuses, hardware, or commit IDs — ever.
@@ -155,7 +189,7 @@ unknown.
   `NOT_APPLICABLE` with a recorded reason.
 - Attempted ≠ catalogued: reports count real attempt records only
   (`cpu_attempted`, coverage %), never the default NOT_TESTED rows.
-- **Catalog coverage ≠ pass rate**: 171/171 coverage means every catalogued
+- **Catalog coverage ≠ pass rate**: 173/173 coverage means every catalogued
   notebook has an AMD CPU validation outcome; verified/limited/blocked/
   compatibility-failure counts are always reported alongside, and the README
   states the distinction explicitly.
@@ -163,5 +197,5 @@ unknown.
   `historical_status` + `historical_evidence` and are
   `REVALIDATION_REQUIRED` until revalidated under schema v2.
 - Evidence is validated at the recorded upstream pin; a pin move marks changed
-  notebooks for revalidation (see `reports/current-upstream-delta.md`) —
+  notebooks for revalidation (see `reports/v0.2.2-upstream-delta.md (current) and reports/current-upstream-delta.md (pre-repin historical record)`) —
   rows are never invalidated retroactively while the pin is unchanged.

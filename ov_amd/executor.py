@@ -339,6 +339,16 @@ def run_workload_cpu(entry: NotebookEntry, state: dict[str, Any], dry_run: bool 
     patches = cfg.get("patches", {}) or {}
     wall = TIER_TIMEOUTS.get(entry.est_weight, TIER_TIMEOUTS["medium"])
     wall = int(cpu_cfg.get("wall_timeout_s", wall))
+    # per-cell cap: default min(wall, 900); workload-configurable for
+    # install/download-heavy notebooks on throttled networks (a 15-min cap
+    # kills legitimate dependency-install cells there — v0.2.2 tokenizers
+    # revalidation hit exactly that). Hard ceiling: min(wall, 3600) so the
+    # override can never exceed the attempt's own wall clock.
+    try:
+        per_cell = int(cpu_cfg.get("per_cell_timeout_s", min(wall, 900)))
+    except (TypeError, ValueError):
+        per_cell = min(wall, 900)
+    per_cell = max(60, min(per_cell, wall, 3600))
     # per-runner cap (OV_AMD_WALL_CAP, seconds): throttled-network runners use
     # it to bound wall time for large/huge tiers whose model downloads cannot
     # complete; recorded transparently because evidence notes the timeout hit
@@ -410,7 +420,7 @@ def run_workload_cpu(entry: NotebookEntry, state: dict[str, Any], dry_run: bool 
             run_dir,
             backend="cpu",
             wall_timeout_s=wall,
-            per_cell_timeout_s=min(wall, 900),
+            per_cell_timeout_s=per_cell,
             skip_res=list(patches.get("skip_cells_matching") or DEFAULT_SKIP_RES),
             stop_after_re=patches.get("stop_after_cell_matching"),
             subs=subs,
@@ -432,6 +442,20 @@ def run_workload_cpu(entry: NotebookEntry, state: dict[str, Any], dry_run: bool 
         cat = FailureCategory(info.failure_category or FailureCategory.UNKNOWN.value)
         stop_reason = nbres.get("error_head") or ""
         stderr = (run_dir / "stderr.log").read_text(errors="replace") if (run_dir / "stderr.log").exists() else ""
+
+        # Kernel-death discrimination (v0.2.2): DeadKernelError / aborts /
+        # OOM-category exits get a host-level diagnostics record so "kernel
+        # died" can be adjudicated as OOM vs native crash vs Python crash
+        if (
+            "DeadKernel" in (nbres.get("error_head") or "")
+            or "dead" in str(nbres.get("error", "")).lower()
+            or cat is FailureCategory.OOM
+            or "std::bad_alloc" in stderr
+            or "Cannot allocate memory" in stderr
+        ):
+            from ov_amd.kernel_diagnostics import capture_kernel_death_diagnosis
+
+            capture_kernel_death_diagnosis(run_dir, stderr_tail=stderr)
 
         if (
             cat in (FailureCategory.NETWORK, FailureCategory.DOWNLOAD, FailureCategory.MODEL_ACCESS)
@@ -611,7 +635,9 @@ def _record(state: dict[str, Any], entry: NotebookEntry, backend: str, out: Atte
         except ValueError:
             evidence_ref = str(out.evidence_dir)
     notes_text = "\n".join(out.notes)
-    outcome, reason = derive_outcome(out.status.value, out.failure_category, notes_text)
+    outcome, reason = derive_outcome(
+        out.status.value, out.failure_category, notes_text, device_proof=out.device_proof, backend=backend
+    )
     from ov_amd.public_paths import sanitize_public_text as _spt
 
     rec[backend] = {

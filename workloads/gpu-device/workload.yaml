@@ -4,9 +4,9 @@ category: API
 upstream:
   repository: openvinotoolkit/openvino_notebooks
   branch: latest
-  commit: 329562e6031d1a989017d08697b0fabe5a989492
+  commit: 5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b
   path: notebooks/gpu-device/gpu-device.ipynb
-  url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/gpu-device/gpu-device.ipynb
+  url: https://github.com/openvinotoolkit/openvino_notebooks/blob/5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b/notebooks/gpu-device/gpu-device.ipynb
 model:
   name: ''
   source: ''
@@ -14,12 +14,16 @@ model:
   license: ''
 cpu:
   runtime: openvino
-  status: FAILED
+  status: NOT_APPLICABLE
+  wall_timeout_s: 3600
+  per_cell_timeout_s: 1200
 gpu:
   runtime: ''
   status: NOT_TESTED
 twin:
   level: OPENVINO_SPECIFIC
 validation: {}
-patches: {}
+patches:
+  notes: 'v0.2.2: per-cell/wall overrides for throttled-network installs and large
+    model downloads; default 900s cell cap kills legitimate install cells'
 last_verified: ''

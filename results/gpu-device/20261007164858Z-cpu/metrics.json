@@ -1,0 +1,31 @@
+{
+  "schema_version": 2,
+  "runs_ok": 0,
+  "runs_required": 1,
+  "wall_clock_s": [],
+  "cells_executed": 26,
+  "cells_skipped": 0,
+  "cells_substituted": 0,
+  "aggregate": "aggregate.json",
+  "env": {
+    "backend": "cpu",
+    "env_key": "b6d02e67454114a4",
+    "python": ".venvs/cpu/b6d02e67454114a4/bin/python",
+    "fingerprint": "812dd9900167feff007446a316e015a1f7f006b2f7ec7040a2471a6562b7f28b",
+    "reused": false,
+    "created": true
+  },
+  "hf_transport": {
+    "endpoint": "https://hf-mirror.com",
+    "source": "probe",
+    "probes": {
+      "https://huggingface.co": "unreachable (URLError)",
+      "https://hf-mirror.com": "HTTP 200"
+    }
+  },
+  "git_transport": {
+    "mode": "codeload",
+    "source": "probe",
+    "probe": "clone exit 128: fatal: unable to access 'http://github.com/octocat/Hello-World.git/': CONNECT tunnel failed, response 503"
+  }
+}

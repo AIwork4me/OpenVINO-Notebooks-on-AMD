@@ -1,0 +1,32 @@
+[cell 0 START +    0.5s] # Create an LLM-powered Chatbot using OpenVINO |  | In the rapidly evolvin
+[cell 1 START +    0.5s] ## Prerequisites | [back to top ⬆️](#Table-of-contents:) |  | Install requir
+[cell 2 START +    0.5s] import os |  | os.environ["GIT_CLONE_PROTECTION_ACTIVE"] = "false" |  | %pip i
+[cell 2 DONE  +   31.8s]
+[cell 3 START +   31.8s] import os | from pathlib import Path | import requests | import shutil |  | # fe
+[cell 3 DONE  +   31.8s]
+[cell 4 START +   31.8s] ## Select model for inference | [back to top ⬆️](#Table-of-contents:) |  | T
+[cell 5 START +   31.8s] from llm_config import SUPPORTED_LLM_MODELS | import ipywidgets as widge
+[cell 5 DONE  +   31.9s]
+[cell 6 START +   31.9s] model_languages = list(SUPPORTED_LLM_MODELS) |  | model_language = widgets
+[cell 6 DONE  +   31.9s]
+[cell 7 START +   31.9s] model_ids = list(SUPPORTED_LLM_MODELS[model_language.value]) |  | model_id
+[cell 7 DONE  +   31.9s]
+[cell 8 START +   31.9s] model_configuration = SUPPORTED_LLM_MODELS[model_language.value][model
+[cell 8 DONE  +   31.9s]
+[cell 9 START +   31.9s] ## Convert model using Optimum-CLI tool | [back to top ⬆️](#Table-of-con
+[cell 10 START +   31.9s] ## Compress model weights |  |  | The [Weights Compression](https://docs.ope
+[cell 11 START +   31.9s] from IPython.display import Markdown, display |  | prepare_int4_model = wi
+[cell 11 DONE  +   31.9s]
+[cell 12 START +   31.9s] ### Weight compression with AWQ | [back to top ⬆️](#Table-of-contents:) | 
+[cell 13 START +   31.9s] enable_awq = widgets.Checkbox( |     value=False, |     description="Enabl
+[cell 13 DONE  +   31.9s]
+[cell 14 START +   31.9s] We can now save floating point and compressed model variants
+[cell 15 START +   31.9s] from pathlib import Path |  | from llm_config import compression_configs |  | 
+[cell 15 DONE  +   31.9s]
+[cell 16 START +   31.9s] Let's compare model size for different compression types
+[cell 17 START +   31.9s] fp16_weights = fp16_model_dir / "openvino_model.bin" | int8_weights = in
+[cell 17 DONE  +   31.9s]
+[cell 18 START +   31.9s] ## Select device for inference and model variant | [back to top ⬆️](#Tab
+[cell 19 START +   31.9s] import requests |  | r = requests.get( |     url="https://raw.githubusercont
+[cell 19 DONE  +   32.2s]
+NBEXEC_RESULT={"ok": false, "n_cells": 16, "n_skipped": 1, "n_substituted": 0, "stopped_after": null, "error_cell": null, "error_type": "CellExecutionError", "error_head": "\u001b[31mSSLError\u001b[39m: HTTPSConnectionPool(host='raw.githubusercontent.com', port=443): Max retries exceeded with url: /openvinotoolkit/openvino_notebooks/latest/utils/notebook_utils.py (Caused by SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1000)')))", "duration_s": 32.35, "patch_notes": ["skipped cell 28: matched skip pattern"]}

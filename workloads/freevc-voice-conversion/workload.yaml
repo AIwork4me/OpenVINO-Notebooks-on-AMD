@@ -4,9 +4,9 @@ category: TTS
 upstream:
   repository: openvinotoolkit/openvino_notebooks
   branch: latest
-  commit: 329562e6031d1a989017d08697b0fabe5a989492
+  commit: 5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b
   path: notebooks/freevc-voice-conversion/freevc-voice-conversion.ipynb
-  url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/freevc-voice-conversion/freevc-voice-conversion.ipynb
+  url: https://github.com/openvinotoolkit/openvino_notebooks/blob/5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b/notebooks/freevc-voice-conversion/freevc-voice-conversion.ipynb
 model:
   name: ''
   source: ''
@@ -15,13 +15,16 @@ model:
 cpu:
   runtime: openvino
   status: FAILED
-  wall_timeout_s: 1800
+  wall_timeout_s: 5400
   repeats: 1
+  per_cell_timeout_s: 2700
 gpu:
   runtime: ''
   status: NOT_TESTED
 twin:
   level: WORKLOAD_TWIN
 validation: {}
-patches: {}
+patches:
+  notes: 'v0.2.2: per-cell/wall overrides for throttled-network installs and large
+    model downloads; default 900s cell cap kills legitimate install cells'
 last_verified: ''
