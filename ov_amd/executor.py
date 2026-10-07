@@ -358,12 +358,24 @@ def run_workload_cpu(entry: NotebookEntry, state: dict[str, Any], dry_run: bool 
     git_transport = resolve_git_transport()
     subs = _hf_mirror_subs() + _git_transport_subs() + _cell_subs(patches)
 
-    ts = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
+    ts = datetime.now(timezone.utc).strftime("%Y%m%d%H%M%SZ")
     ev = RESULTS_DIR / entry.id / f"{ts}-cpu"
     ev.mkdir(parents=True, exist_ok=True)
     out.evidence_dir = ev
     workdir = RESULTS_DIR / entry.id / "workdir-cpu"
     workdir.mkdir(parents=True, exist_ok=True)  # persistent across repeats: model downloads reused
+
+    # --- Optimum CLI health contract: preflight for notebooks that shell out
+    # to optimum-cli / import optimum.intel (recurring pre-closure failure
+    # cluster); bounded remediation, machine-readable evidence record ---
+    from ov_amd.optimum_health import health_contract, notebook_uses_optimum_cli
+
+    if notebook_uses_optimum_cli(nb_path):
+        oc_health = health_contract(str(env.python), ev)
+        if oc_health.get("diagnosis") != "HEALTHY":
+            out.notes.append(
+                f"optimum-cli health after bounded remediation: {oc_health.get('diagnosis')}"
+            )
 
     # --- evidence bound to the actual workload python (Defect D closure) ---
     hardware.snapshot(ev, str(env.python), names=("hardware.json", "software-before.json"))
@@ -450,6 +462,9 @@ def run_workload_cpu(entry: NotebookEntry, state: dict[str, Any], dry_run: bool 
 
     # --- post-run evidence ---
     hardware.snapshot(ev, str(env.python), names=("hardware.json", "software-after.json"))
+    from ov_amd.env_lock import write_lock as _write_lock
+
+    _write_lock(ev, env_python=str(env.python))
 
     runs_needed = repeats
     final_run = Path(last_info.get("run_dir", "")) if last_info else None
