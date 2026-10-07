@@ -62,11 +62,24 @@ review rounds corrected 12 misclassifications).
 the CPU smoke workflow completed successfully on the runner and produced a
 fully evidence-backed `hello-world` VERIFIED from a cold checkout.
 
-### Marathon v2 results
+### Marathon v2 results (final counts, recomputed from raw state)
 
-See `reports/v0.2-pinned-baseline.md` and `catalog/compatibility.md` for the
-full generated matrix. Failure taxonomy lives in
-`reports/marathon-v2-root-causes.md`.
+CPU (OpenVINO on Ryzen, pinned a8809170 baseline): attempted **133/171**
+(77.8%) — ✅ 4 VERIFIED (L3, PROVEN_CPU, 3-run repeatability) · 🟡 35
+VERIFIED_WITH_LIMITATIONS (explicit machine-readable limits) · 🔴 83 FAILED ·
+🔵 10 REVALIDATION_REQUIRED (upstream re-pin migration set) · ➖ 1 N/A · ⏳ 38
+NOT_TESTED. Failure taxonomy: `reports/marathon-v2-root-causes.md` (83
+failures → 32 clusters, compat vs environment separated).
+
+GPU (ROCm twins, **all 8 revalidated under Evidence Schema v2 on gfx1100**,
+pin 329562e6031d): ✅ 8 VERIFIED (PROVEN_GPU via hip 7.2.53211 + authoritative
+gcnArchName, WORKLOAD_CORRECTNESS, complete v2 evidence sets).
+
+Upstream re-pinned a8809170 → 329562e6031d (572/572 sha1-verified blobs;
+13 changed notebooks → migration handled honestly; 3 never-validated stay
+NOT_TESTED rather than fake "revalidation"). Full matrix:
+`catalog/compatibility.md`; baseline: `reports/v0.2-pinned-baseline.md`
+(dual-platform attribution on every green row).
 
 ### CI state
 
@@ -88,3 +101,17 @@ full generated matrix. Failure taxonomy lives in
   mirror (recorded in engineering decisions).
 - Gated models (e.g. `stabilityai/stable-diffusion-3-medium-diffusers`) remain
   blocked by model access.
+
+### Release audit
+
+Independent hostile release audit (Step 32): **RELEASE PASS** —
+`reports/release-audit-v0.2.md`. Its minor findings (D1–D7) were addressed
+in follow-up commits where applicable (matrix link resolution `../results/`,
+stale v0.1 report archived).
+
+### Step-33 note
+
+`python -m ov_amd run hello-world --device cpu` re-verified on the gfx1100
+secondary runner fails before any inference (blocked egress to
+storage.openvinotoolkit.org) — recorded as an environment constraint, not a
+compatibility verdict; the reference-machine VERIFIED record stands.

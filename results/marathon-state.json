@@ -70,11 +70,11 @@
         "status": "VERIFIED",
         "failure_category": "",
         "notes": [],
-        "evidence_dir": "results/hello-detection/20261006T040236Z-gpu",
+        "evidence_dir": "results/hello-detection/20261007T005417Z-gpu",
         "device_proof": "PROVEN_GPU",
         "validation_level": "WORKLOAD_CORRECTNESS",
         "platform_id": "amd-epyc-9334-32-core-processor-gfx1100",
-        "updated": "2026-10-06T04:04:30+00:00"
+        "updated": "2026-10-07T00:56:43+00:00"
       }
     },
     "hello-npu": {
@@ -464,11 +464,11 @@
         "status": "VERIFIED",
         "failure_category": "",
         "notes": [],
-        "evidence_dir": "results/deepseek-r1/20261006T064540Z-gpu",
+        "evidence_dir": "results/deepseek-r1/20261007T010103Z-gpu",
         "device_proof": "PROVEN_GPU",
         "validation_level": "WORKLOAD_CORRECTNESS",
         "platform_id": "amd-epyc-9334-32-core-processor-gfx1100",
-        "updated": "2026-10-06T06:51:32+00:00"
+        "updated": "2026-10-07T01:02:31+00:00"
       }
     },
     "deepseek-vl2": {
@@ -580,11 +580,11 @@
         "status": "VERIFIED",
         "failure_category": "",
         "notes": [],
-        "evidence_dir": "results/stable-diffusion-text-to-image/20261006T060313Z-gpu",
+        "evidence_dir": "results/stable-diffusion-text-to-image/20261007T005940Z-gpu",
         "device_proof": "PROVEN_GPU",
         "validation_level": "WORKLOAD_CORRECTNESS",
         "platform_id": "amd-epyc-9334-32-core-processor-gfx1100",
-        "updated": "2026-10-06T06:08:11+00:00"
+        "updated": "2026-10-07T01:00:05+00:00"
       },
       "cpu": {
         "status": "FAILED",
@@ -616,11 +616,11 @@
         "status": "VERIFIED",
         "failure_category": "",
         "notes": [],
-        "evidence_dir": "results/smolvlm2/20261007T004651Z-gpu",
+        "evidence_dir": "results/smolvlm2/20261007T005844Z-gpu",
         "device_proof": "PROVEN_GPU",
         "validation_level": "WORKLOAD_CORRECTNESS",
         "platform_id": "amd-epyc-9334-32-core-processor-gfx1100",
-        "updated": "2026-10-07T00:47:49+00:00"
+        "updated": "2026-10-07T00:59:40+00:00"
       },
       "cpu": {
         "status": "VERIFIED_WITH_LIMITATIONS",
@@ -688,11 +688,11 @@
         "status": "VERIFIED",
         "failure_category": "",
         "notes": [],
-        "evidence_dir": "results/qwen3/20261006T052020Z-gpu",
+        "evidence_dir": "results/qwen3/20261007T005803Z-gpu",
         "device_proof": "PROVEN_GPU",
         "validation_level": "WORKLOAD_CORRECTNESS",
         "platform_id": "amd-epyc-9334-32-core-processor-gfx1100",
-        "updated": "2026-10-06T05:21:10+00:00"
+        "updated": "2026-10-07T00:58:43+00:00"
       },
       "cpu": {
         "status": "FAILED",
@@ -724,11 +724,11 @@
         "status": "VERIFIED",
         "failure_category": "",
         "notes": [],
-        "evidence_dir": "results/whisper-asr-genai/20261006T040624Z-gpu",
+        "evidence_dir": "results/whisper-asr-genai/20261007T011710Z-gpu",
         "device_proof": "PROVEN_GPU",
         "validation_level": "WORKLOAD_CORRECTNESS",
         "platform_id": "amd-epyc-9334-32-core-processor-gfx1100",
-        "updated": "2026-10-06T04:07:47+00:00"
+        "updated": "2026-10-07T01:17:57+00:00"
       },
       "cpu": {
         "status": "FAILED",
@@ -842,11 +842,11 @@
         "status": "VERIFIED",
         "failure_category": "",
         "notes": [],
-        "evidence_dir": "results/kokoro/20261007T004558Z-gpu",
+        "evidence_dir": "results/kokoro/20261007T005721Z-gpu",
         "device_proof": "PROVEN_GPU",
         "validation_level": "WORKLOAD_CORRECTNESS",
         "platform_id": "amd-epyc-9334-32-core-processor-gfx1100",
-        "updated": "2026-10-07T00:46:51+00:00"
+        "updated": "2026-10-07T00:58:03+00:00"
       },
       "cpu": {
         "status": "VERIFIED_WITH_LIMITATIONS",
@@ -1013,11 +1013,11 @@
         "status": "VERIFIED",
         "failure_category": "",
         "notes": [],
-        "evidence_dir": "results/stable-diffusion-xl/20261006T061803Z-gpu",
+        "evidence_dir": "results/stable-diffusion-xl/20261007T010006Z-gpu",
         "device_proof": "PROVEN_GPU",
         "validation_level": "WORKLOAD_CORRECTNESS",
         "platform_id": "amd-epyc-9334-32-core-processor-gfx1100",
-        "updated": "2026-10-06T06:42:28+00:00"
+        "updated": "2026-10-07T01:01:02+00:00"
       },
       "cpu": {
         "status": "FAILED",

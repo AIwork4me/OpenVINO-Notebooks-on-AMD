@@ -20,18 +20,27 @@ jobs:
     timeout-minutes: 180
     steps:
       - uses: actions/checkout@v4
-      - name: Provision pinned upstream snapshot (runner-agnostic)
+      - name: Provision pinned upstream snapshot (pin-bound, runner-agnostic)
         run: |
-          # warm link first: runners that maintain a persistent checkout expose
-          # its pinned snapshot (same repo, same commit discipline); otherwise
-          # fetch the pinned commit (tarball transport, content pinned by sha)
+          set -e
+          PIN=$(python3 -c "import json;print(json.load(open('upstream/openvino-notebooks.json'))['commit'])")
+          echo "repo pin: $PIN"
+          # warm link only when the persistent snapshot is EXACTLY the pinned
+          # commit (checked via its manifest) — pin drift invalidates the run
           for REF in "$HOME/Desktop/OpenVINO-Notebooks-on-AMD" "$HOME/OpenVINO-Notebooks-on-AMD"; do
-            if [ -d "$REF/.cache/upstream/notebooks" ]; then
-              mkdir -p .cache && ln -s "$REF/.cache/upstream" .cache/upstream
-              echo "warm snapshot linked from $REF"; break
+            if [ -f "$REF/upstream/openvino-notebooks.json" ] && [ -d "$REF/.cache/upstream/notebooks" ]; then
+              WPIN=$(python3 -c "import json;print(json.load(open('$REF/upstream/openvino-notebooks.json'))['commit'])")
+              if [ "$WPIN" = "$PIN" ]; then
+                mkdir -p .cache && ln -s "$REF/.cache/upstream" .cache/upstream
+                echo "warm snapshot linked from $REF (pin verified)"; break
+              else
+                echo "warm snapshot at $REF is $WPIN != pin $PIN — not used"
+              fi
             fi
           done
-          [ -d .cache/upstream ] || python3 scripts/fetch_upstream.py --if-missing
+          if [ ! -d .cache/upstream ]; then
+            python3 scripts/fetch_upstream.py --blobs --commit "$PIN"
+          fi
           test -d .cache/upstream/notebooks || { echo "upstream snapshot unavailable"; exit 1; }
       - name: Doctor
         run: python3 -m ov_amd doctor

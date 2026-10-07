@@ -1,0 +1,23 @@
+{
+  "schema_version": 2,
+  "passed": true,
+  "level": "WORKLOAD_CORRECTNESS",
+  "contract_present": true,
+  "contract": "twin self-check (workload-specific checks in workloads/hello-detection/rocm/run.py; ok flag is their conjunction)",
+  "checks": [
+    {
+      "name": "twin_self_check",
+      "passed": true
+    },
+    {
+      "name": "hip_available",
+      "passed": true
+    },
+    {
+      "name": "amd_device_visible",
+      "passed": true
+    }
+  ],
+  "runs_ok": 5,
+  "aggregate_ref": "aggregate.json"
+}

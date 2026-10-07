@@ -1,0 +1,38 @@
+{
+  "schema_version": 2,
+  "twin_result": {
+    "ok": true,
+    "hip": "7.2.53211-e1a6bc5663",
+    "device": "AMD Radeon Graphics",
+    "gcn_arch": "gfx1100",
+    "metrics": {
+      "model": "deepseek-ai/DeepSeek-R1-Distill-Llama-8B",
+      "weights_source": "deepseek-ai/DeepSeek-R1-Distill-Llama-8B (ModelScope mirror; HF mirror stalls on deepseek-ai files)",
+      "precision": "bf16",
+      "load_s": 42.09,
+      "runs": [
+        {
+          "total_s": 4.565,
+          "new_tokens": 96,
+          "tokens_per_s": 21.03
+        },
+        {
+          "total_s": 4.579,
+          "new_tokens": 96,
+          "tokens_per_s": 20.97
+        },
+        {
+          "total_s": 4.589,
+          "new_tokens": 96,
+          "tokens_per_s": 20.92
+        }
+      ],
+      "deterministic": true,
+      "output_preview": "0 and 3. This allows me to use the distributive property.\n\nNext, I'll multiply 17 by 20, which is straightforward: 17 times 20 equals 340.\n\nThen, I'll multiply 17 by 3, resulting in 51.\n\nFinally, I'll add the two partial",
+      "peak_vram_gb": 15.05,
+      "peak_rss_gb": 9.18
+    }
+  },
+  "duration_s": 85.65,
+  "exit_code": 0
+}

@@ -154,7 +154,10 @@ def write_compatibility() -> dict[str, Any]:
         "|---|---|---|---|---|---|---|",
     ]
     for r in compat["rows"]:
-        ev = f"[link]({r['evidence']})" if r["evidence"] else "-"
+        # links are relative to catalog/compatibility.md (../results/...) so
+        # they resolve in the GitHub web UI, not only from the repo root
+        ev_link = f"../{r['evidence']}" if r["evidence"] and not str(r["evidence"]).startswith(("../", "/")) else r["evidence"]
+        ev = f"[link]({ev_link})" if r["evidence"] else "-"
         last = (r["last_tested"] or "")[:10]
         lines.append(
             f"| [{r['id']}]({r['upstream_url']}) | {r['category']} "

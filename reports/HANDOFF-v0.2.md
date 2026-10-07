@@ -261,3 +261,11 @@ codeload.github.com 稳定、user-images.githubusercontent.com 稳定。
   来源链回退 / 多平台证据身份）。
 - 参考 CPU 马拉松（Pass 1/2）状态以参考机会话为准；本会话未触碰 CPU 记录
   与上游 pin。剩余收口（§5.2 起）待参考机最终状态后执行。
+
+## 12. Step 33 说明：hello-world 本机复验的环境约束（2026-10-07）
+
+§5.8 的 `python3 -m ov_amd run hello-world --device cpu` 在 gfx1100 副机上实测
+FAILED/NETWORK——hello-world 依赖 storage.openvinotoolkit.org（本机出口被阻断），
+失败发生在任何推理之前（device proof 仅 NOT_INFERENCE）。这不是 AMD/OpenVINO
+兼容性结论，因此状态文件保留参考机的 VERIFIED / PROVEN_CPU / L3 记录与证据，
+被取代的本机失败证据目录已删除。参考机上该命令应真实复验。

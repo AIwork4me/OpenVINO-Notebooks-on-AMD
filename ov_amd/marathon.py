@@ -97,6 +97,7 @@ def run_gpu_twin(entry, state: dict[str, Any]) -> None:
             pass
     cmd = [str(venv_python("gpu")), str(script), "--evidence-dir", str(ev)]
     t0 = time.time()
+    start_ts = datetime.now(timezone.utc).isoformat(timespec="seconds")
     timed_out = False
     with open(ev / "stdout.log", "w") as so, open(ev / "stderr.log", "w") as se:
         proc = subprocess.Popen(cmd, stdout=so, stderr=se, env=kernel_env("gpu"), start_new_session=True, cwd=str(ev))
@@ -141,7 +142,8 @@ def run_gpu_twin(entry, state: dict[str, Any]) -> None:
             "branch": meta.get("branch"),
             "commit": meta.get("commit"),
             "path": entry.upstream_path,
-            "url": entry.upstream_url,
+            # url binds to the pin actually in force, not the catalog-time one
+            "url": f"https://github.com/{meta.get('repository')}/blob/{meta.get('commit')}/{entry.upstream_path}",
         },
     )
     _ev2.write_json(
@@ -150,7 +152,7 @@ def run_gpu_twin(entry, state: dict[str, Any]) -> None:
     _ev2.write_json(
         ev / "execution.json",
         {
-            "start": datetime.now(timezone.utc).isoformat(timespec="seconds"),
+            "start": start_ts,
             "end": datetime.now(timezone.utc).isoformat(timespec="seconds"),
             "duration_s": round(duration, 2),
             "exit_code": ret,
@@ -159,6 +161,14 @@ def run_gpu_twin(entry, state: dict[str, Any]) -> None:
             "failure_category": "" if twin_result.get("ok") else "CORRECTNESS_ERROR",
         },
     )
+    # twin runs carry latency_s (vision) or total_s (generation) — normalize
+    run_latencies = [
+        float(r[k])
+        for r in (twin_result.get("metrics", {}).get("runs") or [])
+        if isinstance(r, dict)
+        for k in ("latency_s", "total_s")
+        if isinstance(r.get(k), (int, float))
+    ]
     _ev2.write_json(
         ev / "device-proof.json",
         {
@@ -171,14 +181,28 @@ def run_gpu_twin(entry, state: dict[str, Any]) -> None:
     )
     _ev2.write_json(
         ev / "aggregate.json",
-        _ev2.aggregate_repeatability(
-            [
-                r.get("latency_s")
-                for r in (twin_result.get("metrics", {}).get("runs") or [])
-                if isinstance(r, dict) and r.get("latency_s")
+        _ev2.aggregate_repeatability(run_latencies, 3),
+    )
+    # validation.json: the twin's ok flag embodies its workload-correctness
+    # checks (>=1 detection / deterministic generation / finite audio ...);
+    # record them explicitly for the v2 contract
+    twin_ok = bool(twin_result.get("ok") and twin_result.get("hip"))
+    _ev2.write_json(
+        ev / "validation.json",
+        {
+            "passed": twin_ok,
+            "level": _ev2.ValidationLevel.WORKLOAD_CORRECTNESS.value if twin_ok else _ev2.ValidationLevel.EXECUTION_ONLY.value,
+            "contract_present": True,
+            "contract": "twin self-check (workload-specific checks in workloads/"
+            f"{entry.id}/rocm/run.py; ok flag is their conjunction)",
+            "checks": [
+                {"name": "twin_self_check", "passed": bool(twin_result.get("ok"))},
+                {"name": "hip_available", "passed": bool(twin_result.get("hip"))},
+                {"name": "amd_device_visible", "passed": bool(twin_result.get("device"))},
             ],
-            3,
-        ),
+            "runs_ok": len(run_latencies),
+            "aggregate_ref": "aggregate.json",
+        },
     )
     _ev2.write_json(
         ev / "metrics.json",
@@ -193,18 +217,35 @@ def run_gpu_twin(entry, state: dict[str, Any]) -> None:
         f"- hip: {twin_result.get('hip')}\n- device: {twin_result.get('device')}\n"
         f"- gcn_arch: {twin_result.get('gcn_arch')}\n- duration: {round(duration, 2)}s\n"
     )
+    runs_ok = len(run_latencies)
     if twin_result.get("ok") and twin_result.get("hip"):
         # the twin's own ok embodies its workload correctness checks (e.g.
         # >=1 detection with valid bounded confidences), so a green twin is
-        # L3 WORKLOAD_CORRECTNESS with PROVEN_GPU device proof
-        _record_gpu(
-            state,
-            entry,
-            Status.VERIFIED,
-            evidence=str(ev),
-            proof="PROVEN_GPU",
-            level="WORKLOAD_CORRECTNESS",
-        )
+        # L3 WORKLOAD_CORRECTNESS with PROVEN_GPU device proof. The same
+        # repeatability gate as the CPU path applies (gate finding, dual
+        # review): ok+hip with fewer than 3 measured runs degrades honestly
+        # instead of rendering full green.
+        if runs_ok >= _ev2.REPEATABILITY_MIN_RUNS and _ev2.aggregate_repeatability(run_latencies, 3)[
+            "repeatability_passed"
+        ]:
+            _record_gpu(
+                state,
+                entry,
+                Status.VERIFIED,
+                evidence=str(ev),
+                proof="PROVEN_GPU",
+                level="WORKLOAD_CORRECTNESS",
+            )
+        else:
+            _record_gpu(
+                state,
+                entry,
+                Status.VERIFIED_WITH_LIMITATIONS,
+                notes=[f"repeatability_not_established: {runs_ok} measured run(s) < 3"],
+                evidence=str(ev),
+                proof="PROVEN_GPU",
+                level="WORKLOAD_CORRECTNESS",
+            )
     elif twin_result:
         # script ran to completion and self-reported failure of its own checks;
         # log-grep classification would misread earlier fallback logs (e.g. a

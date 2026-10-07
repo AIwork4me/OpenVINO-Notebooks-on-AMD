@@ -182,9 +182,20 @@ def cmd_env(args: argparse.Namespace) -> int:
             print(json.dumps({"rebuilt": False, "error": "notebook not in upstream snapshot"}))
             return 2
         try:
-            fp = env_manager.dependency_fingerprint(nb_path)
+            # identity: a rebuild must produce EXACTLY what the marathon path
+            # would — same fingerprint inputs (incl. workload extra_deps) and
+            # same notebook-requirements install (gate finding: same key must
+            # mean same content)
+            from ov_amd.executor import workload_config
+
+            cfg = workload_config(entries[0])
+            extra = list((cfg.get("env") or {}).get("extra_deps") or [])
+            fp = env_manager.dependency_fingerprint(nb_path, extra_deps=extra)
             commit = json.loads((REPO_ROOT / "upstream" / "openvino-notebooks.json").read_text()).get("commit", "")
-            info = env_manager.build_env(args.device, fp, upstream_commit=commit)
+            info = env_manager.build_env(
+                args.device, fp, upstream_commit=commit, extra_deps=extra,
+                requirements=env_manager._requirements_next_to(nb_path),
+            )
             print(json.dumps({"rebuilt": True, "env_key": info.env_key, "fingerprint": info.fingerprint}, indent=2))
             return 0
         except RuntimeError as e:

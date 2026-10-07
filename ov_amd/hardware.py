@@ -42,13 +42,25 @@ def gpu_info() -> dict:
     info: dict = {"available": False}
     # multi-GPU servers enumerate slowly; 90s avoids a false "no GPU" record
     out = _run(["rocminfo"], timeout=90)
-    m = re.search(r"^\s*Marketing Name:\s*(.+?)\s*$", out, re.M)
     g = re.findall(r"^\s*Name:\s*(gfx\S+?)\s*$", out, re.M)
+    # Marketing Name must belong to the GPU agent. In rocminfo the GPU agent
+    # block reads: Name: gfxXXXX followed by its own Marketing Name line —
+    # take the first Marketing Name AFTER the gfx Name line, bounded by the
+    # next Agent header.
+    gpu_name = "AMD Radeon Graphics"
+    if g:
+        idx = out.find(g[0])
+        tail = out[idx if idx != -1 else 0 :]
+        nxt = tail.find("Agent ")
+        section = tail[: nxt if nxt != -1 else len(tail)]
+        m2 = re.search(r"^\s*Marketing Name:\s*(.+?)\s*$", section, re.M)
+        if m2:
+            gpu_name = m2.group(1).strip()
     if g:
         info["available"] = True
         archs = sorted(set(g))
         info["arch"] = archs[0] if len(archs) == 1 else archs
-        info["marketing_name"] = m.group(1).strip() if m else "AMD Radeon"
+        info["marketing_name"] = gpu_name
         info["gpu_count"] = len(g)
     smi = _run(["rocm-smi", "--showmeminfo", "vram", "--csv"], timeout=60)
     vm = re.search(r"(\d+)", smi.splitlines()[-1]) if smi else None
