@@ -91,21 +91,26 @@ def capture_kernel_death_diagnosis(run_dir: Path, stderr_tail: str = "") -> dict
         "verdict_hint": "",
     }
     kills = events.get("oom_kill", 0)
-    if kills > 0 or (vmstat_oom or 0) > 0:
+    oom_events = events.get("oom", 0)
+    if kills > 0:
         record["verdict_hint"] = (
-            f"OOM_PROVEN: cgroup oom_kill={kills}, vmstat oom_kill={vmstat_oom} — "
-            "kernel death is resource exhaustion (BLOCKED_RESOURCE)"
+            f"OOM_PROVEN: cgroup oom_kill={kills} — kernel death is resource "
+            "exhaustion in this container (BLOCKED_RESOURCE)"
         )
-    elif events.get("oom", 0) > 0:
+    elif oom_events > 0:
         record["verdict_hint"] = (
             "OOM_PRESSURE_PROVEN: cgroup oom events without kill in this container — "
             "allocation stalls preceded the death (BLOCKED_RESOURCE unless a native "
             "crash signature contradicts)"
         )
     else:
+        # /proc/vmstat oom_kill is NODE-WIDE (all containers/tenants) and cannot
+        # attribute a death to this workload; only the scoped cgroup counters can
         record["verdict_hint"] = (
-            "NO_OOM_EVIDENCE: cgroup counters show no OOM activity — treat as runtime "
-            "crash (FAILED_COMPATIBILITY if OpenVINO native, else adjudicate)"
+            "NO_CONTAINER_OOM_EVIDENCE: cgroup counters show no OOM activity in this "
+            "container (node-wide vmstat oom_kill is unscoped and not attributive); "
+            "treat as runtime crash — FAILED_COMPATIBILITY if a native crash signature "
+            "is present (e.g. GPU-plugin inline-asm), else adjudicate from stderr"
         )
     try:
         (run_dir / "kernel-death-diagnosis.json").write_text(json.dumps(record, indent=2) + "\n")

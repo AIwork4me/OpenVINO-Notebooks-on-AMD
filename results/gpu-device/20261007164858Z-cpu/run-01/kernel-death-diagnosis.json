@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "captured": "post-mortem (after kernel exit)",
+  "cgroup_memory_events": {
+    "low": 0,
+    "high": 0,
+    "max": 0,
+    "oom": 0,
+    "oom_kill": 0,
+    "oom_group_kill": 0
+  },
+  "cgroup_memory_peak_bytes": 59049406464,
+  "cgroup_memory_current_bytes": 58304598016,
+  "cgroup_memory_max_bytes": 59055800320,
+  "memory_psi": {
+    "some": {
+      "avg10": "0.24",
+      "avg60": "0.10",
+      "avg300": "0.03",
+      "total_us": "3763242275"
+    },
+    "full": {
+      "avg10": "0.16",
+      "avg60": "0.07",
+      "avg300": "0.02",
+      "total_us": "3706317553"
+    }
+  },
+  "proc_vmstat_oom_kill": 493,
+  "dmesg": "not permitted in validation container (kernel buffer read restricted)",
+  "stderr_signature": "v_amd/_nbexec.py\", line 144, in main\n    client.execute()\n  File \"/workspace/.venvs/cpu/b6d02e67454114a4/lib/python3.12/site-packages/jupyter_core/utils/__init__.py\", line 165, in wrapped\n    return loop.run_until_complete(inner)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/asyncio/base_events.py\", line 687, in run_until_complete\n    return future.result()\n           ^^^^^^^^^^^^^^^\n  File \"/workspace/.venvs/cpu/b6d02e67454114a4/lib/python3.12/site-packages/nbclient/client.py\", line 709, in async_execute\n    await self.async_execute_cell(\n  File \"/workspace/.venvs/cpu/b6d02e67454114a4/lib/python3.12/site-packages/nbclient/client.py\", line 1009, in async_execute_cell\n    raise DeadKernelError(\"Kernel died\") from None\nnbclient.exceptions.DeadKernelError: Kernel died\n",
+  "indicators": {
+    "oom_kill_events": 0,
+    "oom_events": 0,
+    "psi_full_avg10_pct": 0.16
+  },
+  "verdict_hint": "OOM_PROVEN: cgroup oom_kill=0, vmstat oom_kill=493 \u2014 kernel death is resource exhaustion (BLOCKED_RESOURCE)"
+}

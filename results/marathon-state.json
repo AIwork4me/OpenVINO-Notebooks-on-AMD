@@ -814,32 +814,32 @@
         "outcome_reason": ""
       },
       "cpu": {
-        "status": "FAILED",
-        "failure_category": "OPENVINO_ERROR",
-        "ok_runs": 0,
+        "status": "VERIFIED_WITH_LIMITATIONS",
+        "failure_category": "",
+        "compatibility_outcome": "VERIFIED_WITH_LIMITATIONS",
+        "outcome_reason": "",
+        "ok_runs": 1,
         "required_runs": 1,
-        "durations_s": [],
+        "durations_s": [
+          3132.64
+        ],
         "device_used": "CPU",
-        "device_proof": "PROVEN_GPU",
-        "validation_level": "",
-        "platform_id": "ryzen-ai-max-395-radeon-8060s-gfx1151",
-        "evidence_dir": "results/qwen3/20261006T183929Z-cpu",
+        "device_proof": "PROVEN_CPU",
+        "validation_level": "WORKLOAD_CORRECTNESS",
+        "platform_id": "amd-epyc-9334-32-core-processor-gfx1100",
+        "evidence_dir": "results/qwen3/20261007172217Z-cpu",
         "env": {
           "backend": "cpu",
-          "env_key": "99b75440a275fbb4",
-          "python": ".venvs/cpu/99b75440a275fbb4/bin/python",
+          "env_key": "a44cca17f83a8e03",
+          "python": ".venvs/cpu/a44cca17f83a8e03/bin/python",
           "fingerprint": "f1cfcf99013953944b8d57fd8418b80f4578e2545c4ee433f668b2accc054895",
-          "reused": false,
-          "created": true
+          "reused": true,
+          "created": false
         },
         "notes": [
-          "ok_runs=0/1: [GPU] clEnqueueMapBuffer, error code: -30 CL_INVALID_VALUE",
-          "adjudicated (OPENVINO_RUNTIME_CL_MAP): clEnqueueMapBuffer CL_INVALID_VALUE (-30) raised by the OpenVINO runtime; genuine runtime failure \u2014 RCA candidate (see reports/upstream/).",
-          "execution category corrected by comprehensive audit: UNKNOWN -> OPENVINO_ERROR (OpenVINO runtime CL error, not UNKNOWN)"
+          "repeatability_not_established: fewer than 3 successful runs (resource-bounded policy)"
         ],
-        "updated": "2026-10-06T18:39:35+00:00",
-        "compatibility_outcome": "FAILED_COMPATIBILITY",
-        "outcome_reason": "OPENVINO_RUNTIME_CL_MAP"
+        "updated": "2026-10-07T18:14:32+00:00"
       }
     },
     "whisper-asr-genai": {
@@ -1246,30 +1246,35 @@
     },
     "llm-chatbot-generate-api": {
       "cpu": {
-        "status": "FAILED",
-        "failure_category": "NETWORK",
-        "compatibility_outcome": "BLOCKED_NETWORK",
-        "outcome_reason": "NETWORK_UNREACHABLE",
-        "ok_runs": 0,
+        "status": "VERIFIED_WITH_LIMITATIONS",
+        "failure_category": "",
+        "compatibility_outcome": "VERIFIED_WITH_LIMITATIONS",
+        "outcome_reason": "",
+        "ok_runs": 3,
         "required_runs": 3,
-        "durations_s": [],
+        "durations_s": [
+          68.13,
+          44.0,
+          41.76
+        ],
         "device_used": "CPU",
-        "device_proof": "UNKNOWN",
-        "validation_level": "",
+        "device_proof": "PROVEN_CPU",
+        "validation_level": "EXECUTION_ONLY",
         "platform_id": "amd-epyc-9334-32-core-processor-gfx1100",
-        "evidence_dir": "results/llm-chatbot-generate-api/20261007163856Z-cpu",
+        "evidence_dir": "results/llm-chatbot-generate-api/20261007171917Z-cpu",
         "env": {
           "backend": "cpu",
           "env_key": "86135eb109a7a4dc",
           "python": ".venvs/cpu/86135eb109a7a4dc/bin/python",
           "fingerprint": "8b964d3727f166018304bae9dd554ce090c8054f16131d99a2d8e80b36d4ea7a",
-          "reused": false,
-          "created": true
+          "reused": true,
+          "created": false
         },
         "notes": [
-          "ok_runs=0/3: SSLError: HTTPSConnectionPool(host='raw.githubusercontent.com', port=443): Max retries exceeded with url: /openvinotoolkit/openvino_notebooks/latest/utils/llm_config.py (Caused by SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:100"
+          "EXECUTION_ONLY: no workload correctness contract (validation: {})",
+          "CORE_INFERENCE_VERIFIED; INTERACTIVE_UI_NOT_TESTED (documented skip policy)"
         ],
-        "updated": "2026-10-07T16:43:17+00:00"
+        "updated": "2026-10-07T17:21:57+00:00"
       }
     },
     "llm-rag-langchain-eval": {
@@ -1502,29 +1507,31 @@
     "parler-tts-text-to-speech": {
       "cpu": {
         "status": "FAILED",
-        "failure_category": "OPENVINO_ERROR",
-        "ok_runs": 0,
+        "failure_category": "CORRECTNESS_ERROR",
+        "compatibility_outcome": "FAILED_COMPATIBILITY",
+        "outcome_reason": "CORRECTNESS",
+        "ok_runs": 1,
         "required_runs": 3,
-        "durations_s": [],
-        "device_used": "",
-        "device_proof": "PROVEN_CPU",
-        "validation_level": "",
-        "platform_id": "ryzen-ai-max-395-radeon-8060s-gfx1151",
-        "evidence_dir": "results/parler-tts-text-to-speech/20261007T024813Z-cpu",
+        "durations_s": [
+          186.37
+        ],
+        "device_used": "AUTO",
+        "device_proof": "UNKNOWN",
+        "validation_level": "WORKLOAD_CORRECTNESS",
+        "platform_id": "amd-epyc-9334-32-core-processor-gfx1100",
+        "evidence_dir": "results/parler-tts-text-to-speech/20261007181715Z-cpu",
         "env": {
           "backend": "cpu",
-          "env_key": "61f5a7307753eddf",
-          "python": ".venvs/cpu/61f5a7307753eddf/bin/python",
-          "fingerprint": "481d69cd29b840829830b488c5086342bbda7aeb0dce53f9b6647cdfb87bf0b6",
-          "reused": true,
-          "created": false
+          "env_key": "ff6077400904ce0b",
+          "python": ".venvs/cpu/ff6077400904ce0b/bin/python",
+          "fingerprint": "7d5c49d071755e21e0ece4e3d699f228c575b61132cd589e06e8660ebf94dd98",
+          "reused": false,
+          "created": true
         },
         "notes": [
-          "ok_runs=0/3: BrgemmCPU node has incompatible input element types: f32 and bf16"
+          "{\"output_contains\": {\"IPython\\\\.lib\\\\.display\\\\.Audio\": true}, \"min_output_chars\": true, \"no_cell_error\": false, \"skipped_cells\": 1}"
         ],
-        "updated": "2026-10-07T02:49:24+00:00",
-        "compatibility_outcome": "FAILED_COMPATIBILITY",
-        "outcome_reason": "OPENVINO_RUNTIME"
+        "updated": "2026-10-07T18:24:15+00:00"
       }
     },
     "phi-3-vision": {
@@ -2196,30 +2203,35 @@
     },
     "flux.1-image-generation": {
       "cpu": {
-        "status": "FAILED",
-        "failure_category": "UNKNOWN",
-        "ok_runs": 0,
+        "status": "VERIFIED_WITH_LIMITATIONS",
+        "failure_category": "",
+        "compatibility_outcome": "VERIFIED_WITH_LIMITATIONS",
+        "outcome_reason": "",
+        "ok_runs": 1,
         "required_runs": 1,
-        "durations_s": [],
+        "durations_s": [
+          381.48
+        ],
         "device_used": "CPU",
         "device_proof": "PROVEN_CPU",
-        "validation_level": "",
-        "platform_id": "ryzen-ai-max-395-radeon-8060s-gfx1151",
-        "evidence_dir": "results/flux.1-image-generation/20261006T165049Z-cpu",
+        "validation_level": "EXECUTION_ONLY",
+        "platform_id": "amd-epyc-9334-32-core-processor-gfx1100",
+        "evidence_dir": "results/flux.1-image-generation/20261007182528Z-cpu",
         "env": {
           "backend": "cpu",
-          "env_key": "2680a958aa5363b9",
-          "python": ".venvs/cpu/2680a958aa5363b9/bin/python",
+          "env_key": "66fe5c0d3fd70b95",
+          "python": ".venvs/cpu/66fe5c0d3fd70b95/bin/python",
           "fingerprint": "6d1103abe5dca9de92c52398dbc71adad1d6371b5f5539d63f5cd65a1593e108",
-          "reused": false,
-          "created": true
+          "reused": true,
+          "created": false
         },
         "notes": [
-          "ok_runs=0/1: Empty weights data in bin file or bin file cannot be found!"
+          "optimum-cli health after bounded remediation: OPTIMUM_PACKAGES_MISSING",
+          "EXECUTION_ONLY: no workload correctness contract (validation: {})",
+          "repeatability_not_established: fewer than 3 successful runs (resource-bounded policy)",
+          "CORE_INFERENCE_VERIFIED; INTERACTIVE_UI_NOT_TESTED (documented skip policy)"
         ],
-        "updated": "2026-10-06T16:52:18+00:00",
-        "compatibility_outcome": "BLOCKED_RESOURCE",
-        "outcome_reason": "MODEL_ARTIFACT_INCOMPLETE_OR_CORRUPT"
+        "updated": "2026-10-07T18:32:02+00:00"
       }
     },
     "flux.1-kontext": {
@@ -2519,7 +2531,7 @@
         "device_proof": "UNKNOWN",
         "validation_level": "",
         "platform_id": "amd-epyc-9334-32-core-processor-gfx1100",
-        "evidence_dir": "results/llm-chatbot/20261007163304Z-cpu",
+        "evidence_dir": "results/llm-chatbot/20261007171556Z-cpu",
         "env": {
           "backend": "cpu",
           "env_key": "ae7be98adce5db71",
@@ -2529,9 +2541,9 @@
           "created": false
         },
         "notes": [
-          "ok_runs=0/1: SSLError: HTTPSConnectionPool(host='raw.githubusercontent.com', port=443): Max retries exceeded with url: /openvinotoolkit/openvino_notebooks/latest/utils/llm_config.py (Caused by SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:100"
+          "ok_runs=0/1: SSLError: HTTPSConnectionPool(host='raw.githubusercontent.com', port=443): Max retries exceeded with url: /openvinotoolkit/openvino_notebooks/latest/utils/notebook_utils.py (Caused by SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c"
         ],
-        "updated": "2026-10-07T16:37:41+00:00"
+        "updated": "2026-10-07T17:18:56+00:00"
       }
     },
     "llm-question-answering": {
@@ -3455,30 +3467,29 @@
     "ct-segmentation-quantize-nncf": {
       "cpu": {
         "status": "FAILED",
-        "failure_category": "OPENVINO_ERROR",
+        "failure_category": "NETWORK",
+        "compatibility_outcome": "BLOCKED_NETWORK",
+        "outcome_reason": "NETWORK_UNREACHABLE",
         "ok_runs": 0,
         "required_runs": 3,
         "durations_s": [],
-        "device_used": "GPU",
-        "device_proof": "AUTO_UNRESOLVED",
+        "device_used": "AUTO",
+        "device_proof": "NOT_INFERENCE",
         "validation_level": "",
-        "platform_id": "ryzen-ai-max-395-radeon-8060s-gfx1151",
-        "evidence_dir": "results/ct-segmentation-quantize-nncf/20261006T192227Z-cpu",
+        "platform_id": "amd-epyc-9334-32-core-processor-gfx1100",
+        "evidence_dir": "results/ct-segmentation-quantize-nncf/20261007181451Z-cpu",
         "env": {
           "backend": "cpu",
-          "env_key": "f694dc393f29d759",
-          "python": ".venvs/cpu/f694dc393f29d759/bin/python",
+          "env_key": "6fefe98ca1d57f2b",
+          "python": ".venvs/cpu/6fefe98ca1d57f2b/bin/python",
           "fingerprint": "0050f4801592e669d8d96dc49bcb41e920c1545ad5400c5f7062d053ed983685",
-          "reused": false,
-          "created": true
+          "reused": true,
+          "created": false
         },
         "notes": [
-          "ok_runs=0/3: nbclient.exceptions.DeadKernelError: Kernel died",
-          "adjudicated (KERNEL_DEATH_UNDIAGNOSED): nbclient DeadKernelError during NNCF quantization; no OOM/kernel-log proof either way. Genuine unresolved failure with a valid environment \u2014 kept as compatibility failure, RCA candidate."
+          "ok_runs=0/3: ReadTimeout: HTTPSConnectionPool(host='raw.githubusercontent.com', port=443): Read timed out. (read timeout=30)"
         ],
-        "updated": "2026-10-06T19:25:16+00:00",
-        "compatibility_outcome": "FAILED_COMPATIBILITY",
-        "outcome_reason": "KERNEL_DEATH_UNDIAGNOSED"
+        "updated": "2026-10-07T18:16:14+00:00"
       }
     },
     "detectron2-to-openvino": {
@@ -4476,29 +4487,28 @@
       "cpu": {
         "status": "FAILED",
         "failure_category": "OPENVINO_ERROR",
+        "compatibility_outcome": "FAILED_COMPATIBILITY",
+        "outcome_reason": "OPENVINO_RUNTIME",
         "ok_runs": 0,
         "required_runs": 1,
         "durations_s": [],
         "device_used": "GPU",
         "device_proof": "AUTO_UNRESOLVED",
         "validation_level": "",
-        "platform_id": "ryzen-ai-max-395-radeon-8060s-gfx1151",
-        "evidence_dir": "results/gpu-device/20261006T220955Z-cpu",
+        "platform_id": "amd-epyc-9334-32-core-processor-gfx1100",
+        "evidence_dir": "results/gpu-device/20261007164858Z-cpu",
         "env": {
           "backend": "cpu",
-          "env_key": "3d6da63c95162333",
-          "python": ".venvs/cpu/3d6da63c95162333/bin/python",
+          "env_key": "b6d02e67454114a4",
+          "python": ".venvs/cpu/b6d02e67454114a4/bin/python",
           "fingerprint": "812dd9900167feff007446a316e015a1f7f006b2f7ec7040a2471a6562b7f28b",
           "reused": false,
           "created": true
         },
         "notes": [
-          "ok_runs=0/1: nbclient.exceptions.DeadKernelError: Kernel died",
-          "adjudicated (OPENVINO_RUNTIME_DEVICE_ENUM): nbclient DeadKernelError while enumerating OpenVINO devices with an AMD Radeon iGPU present; unresolved \u2014 kept as compatibility failure, RCA candidate."
+          "ok_runs=0/1: nbclient.exceptions.DeadKernelError: Kernel died"
         ],
-        "updated": "2026-10-06T22:10:00+00:00",
-        "compatibility_outcome": "FAILED_COMPATIBILITY",
-        "outcome_reason": "OPENVINO_RUNTIME_DEVICE_ENUM"
+        "updated": "2026-10-07T16:49:15+00:00"
       }
     },
     "ltx-video": {
@@ -5233,29 +5243,29 @@
     "llm-code-assistant": {
       "cpu": {
         "status": "FAILED",
-        "failure_category": "PACKAGE_CONFLICT",
+        "failure_category": "NETWORK",
+        "compatibility_outcome": "BLOCKED_NETWORK",
+        "outcome_reason": "NETWORK_UNREACHABLE",
         "ok_runs": 0,
         "required_runs": 1,
         "durations_s": [],
         "device_used": "AUTO",
-        "device_proof": "AUTO_UNRESOLVED",
+        "device_proof": "UNKNOWN",
         "validation_level": "",
-        "platform_id": "ryzen-ai-max-395-radeon-8060s-gfx1151",
-        "evidence_dir": "results/llm-code-assistant/20261006T223847Z-cpu",
+        "platform_id": "amd-epyc-9334-32-core-processor-gfx1100",
+        "evidence_dir": "results/llm-code-assistant/20261007183204Z-cpu",
         "env": {
           "backend": "cpu",
-          "env_key": "0e02466db943f1d6",
-          "python": ".venvs/cpu/0e02466db943f1d6/bin/python",
+          "env_key": "b5474a66a7540a14",
+          "python": ".venvs/cpu/b5474a66a7540a14/bin/python",
           "fingerprint": "481d69cd29b840829830b488c5086342bbda7aeb0dce53f9b6647cdfb87bf0b6",
           "reused": true,
           "created": false
         },
         "notes": [
-          "ok_runs=0/1: Empty weights data in bin file or bin file cannot be found!"
+          "ok_runs=0/1: CalledProcessError: Command '['/workspace/.venvs/cpu/b5474a66a7540a14/bin/python', '-m', 'pip', 'install', '-q', '-U', 'gradio>=6.0.0', 'huggingface_hub', 'git+https://github.com/huggingface/optimum-intel.git', 'nncf>=2.18.0', 'torch==2.8', 'datasets<4.0.0', 'accelerate', 'transformers>=4."
         ],
-        "updated": "2026-10-06T22:39:02+00:00",
-        "compatibility_outcome": "BLOCKED_RESOURCE",
-        "outcome_reason": "MODEL_ARTIFACT_INCOMPLETE_OR_CORRUPT"
+        "updated": "2026-10-07T18:58:49+00:00"
       }
     },
     "llm-rag-langchain": {
@@ -5716,7 +5726,7 @@
       "log_tail": "Collecting json5\n  Using cached json5-0.15.0-py3-none-any.whl.metadata (37 kB)\nUsing cached json5-0.15.0-py3-none-any.whl (36 kB)\nInstalling collected packages: json5\nSuccessfully installed json5-0.15.0\n"
     }
   ],
-  "last_checkpoint": "2026-10-07T16:43:17+00:00",
+  "last_checkpoint": "2026-10-07T18:58:50+00:00",
   "current_workload": "llm-agent-react-langchain",
   "env_repairs": [
     {

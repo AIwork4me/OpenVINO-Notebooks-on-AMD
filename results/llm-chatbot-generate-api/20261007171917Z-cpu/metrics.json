@@ -1,0 +1,35 @@
+{
+  "schema_version": 2,
+  "runs_ok": 3,
+  "runs_required": 3,
+  "wall_clock_s": [
+    68.13,
+    44.0,
+    41.76
+  ],
+  "cells_executed": 9,
+  "cells_skipped": 1,
+  "cells_substituted": 0,
+  "aggregate": "aggregate.json",
+  "env": {
+    "backend": "cpu",
+    "env_key": "86135eb109a7a4dc",
+    "python": ".venvs/cpu/86135eb109a7a4dc/bin/python",
+    "fingerprint": "8b964d3727f166018304bae9dd554ce090c8054f16131d99a2d8e80b36d4ea7a",
+    "reused": true,
+    "created": false
+  },
+  "hf_transport": {
+    "endpoint": "https://hf-mirror.com",
+    "source": "probe",
+    "probes": {
+      "https://huggingface.co": "unreachable (URLError)",
+      "https://hf-mirror.com": "HTTP 200"
+    }
+  },
+  "git_transport": {
+    "mode": "direct",
+    "source": "probe",
+    "probe": "clone exit 0: [git-wrapper] gh-proxy clone failed, retrying via http://github.com"
+  }
+}

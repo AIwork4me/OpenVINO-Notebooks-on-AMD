@@ -1,0 +1,40 @@
+[cell 0 START +    0.5s] # Text-to-speech (TTS) with Parler-TTS and OpenVINO |  | Parler-TTS is a l
+[cell 1 START +    0.5s] ## Prerequisites | [back to top ⬆️](#Table-of-contents:)
+[cell 2 START +    0.5s] import os | import requests | from pathlib import Path |  | os.environ["GIT_CL
+[cell 2 DONE  +  127.2s]
+[cell 3 START +  127.2s] ## Load the original model and inference | [back to top ⬆️](#Table-of-co
+[cell 4 START +  127.2s] import torch | from parler_tts import ParlerTTSForConditionalGeneration | 
+[cell 4 DONE  +  297.3s]
+[cell 5 START +  297.3s] import IPython.display as ipd |  | ipd.Audio("parler_tts_out.wav")
+[cell 5 DONE  +  297.3s]
+[cell 6 START +  297.3s] ## Convert the model to OpenVINO IR | [back to top ⬆️](#Table-of-content
+[cell 7 START +  297.3s] import openvino as ov | from pathlib import Path |  |  | def convert(model: to
+[cell 7 DONE  +  297.4s]
+[cell 8 START +  297.4s] In the pipeline two models are used: Text Encoder (`T5EncoderModel`) a
+[cell 9 START +  297.4s] TEXT_ENCODER_OV_PATH = Path("models/text_encoder_ir.xml") |  |  | example_in
+[cell 9 DONE  +  301.9s]
+[cell 10 START +  301.9s] The Decoder Model performs in generation pipeline and we can separate 
+[cell 11 START +  301.9s] DECODER_STAGE_1_OV_PATH = Path("models/decoder_stage_1_ir.xml") |  |  | clas
+[cell 11 DONE  +  311.1s]
+[cell 12 START +  311.1s] DECODER_STAGE_2_OV_PATH = Path("models/decoder_stage_2_ir.xml") |  |  | clas
+[cell 12 DONE  +  318.4s]
+[cell 13 START +  318.4s] ## Compiling models and inference | [back to top ⬆️](#Table-of-contents:
+[cell 14 START +  318.4s] import requests |  | if not Path("notebook_utils.py").exists(): |     r = re
+[cell 14 DONE  +  318.6s]
+[cell 15 START +  318.6s] Let's create callable wrapper classes for compiled models to allow int
+[cell 16 START +  318.6s] from collections import namedtuple |  | import torch.nn as nn |  | EncoderOutp
+[cell 16 DONE  +  318.6s]
+[cell 17 START +  318.6s] Now we can replace the original models by our wrapped OpenVINO models 
+[cell 18 START +  318.6s] model.text_encoder = TextEncoderModelWrapper(TEXT_ENCODER_OV_PATH, mod
+[cell 18 DONE  +  320.5s]
+[cell 19 START +  320.5s] generation = model.generate(input_ids=input_ids, prompt_input_ids=prom
+[cell 19 DONE  +  332.0s]
+[cell 20 START +  332.0s] import IPython.display as ipd |  | ipd.Audio("parler_tts_out.wav")
+[cell 20 DONE  +  332.0s]
+[cell 21 START +  332.0s] ## Interactive inference | [back to top ⬆️](#Table-of-contents:)
+[cell 22 START +  332.0s] from transformers import AutoFeatureExtractor, set_seed |  | feature_extra
+[cell 22 DONE  +  332.5s]
+[cell 23 START +  332.5s] if not Path("gradio_helper.py").exists(): |     r = requests.get(url="ht
+[cell 24 START +  332.5s] # please uncomment and run this cell for stopping gradio interface | # d
+[cell 24 DONE  +  332.5s]
+NBEXEC_RESULT={"ok": true, "n_cells": 15, "n_skipped": 1, "n_substituted": 1, "stopped_after": null, "error_cell": null, "error_type": null, "error_head": null, "duration_s": 334.03, "patch_notes": ["substituted 1 occurrence(s) in cell 2", "skipped cell 23: matched skip pattern"]}

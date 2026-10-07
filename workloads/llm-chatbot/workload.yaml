@@ -24,6 +24,15 @@ twin:
   level: WORKLOAD_TWIN
 validation: {}
 patches:
-  notes: 'v0.2.2: per-cell/wall overrides for throttled-network installs and large
-    model downloads; default 900s cell cap kills legitimate install cells'
+  cell_subs:
+  - pattern: r = requests\.get\(\n    url="https://raw\.githubusercontent\.com/openvinotoolkit/openvino_notebooks/latest/utils/notebook_utils\.py",\n\)\nopen\("notebook_utils\.py",
+      "w"\)\.write\(r\.text\)
+    replacement: "from pathlib import Path\nif not Path(\"notebook_utils.py\").exists():\n\
+      \    r = requests.get(url=\"https://raw.githubusercontent.com/openvinotoolkit/openvino_notebooks/latest/utils/notebook_utils.py\"\
+      )\n    open(\"notebook_utils.py\", \"w\").write(r.text)"
+  notes: "v0.2.2 network adaptation: upstream cell 19 refetches notebook_utils.py\
+    \ UNCONDITIONALLY from raw.githubusercontent.com (no exists() guard \u2014 unlike\
+    \ every other notebook); on egress-restricted runners this kills the run after\
+    \ the model conversion stage. Documented minimal guard, identical semantics when\
+    \ the file is absent. The pinned, sha-verified copy is preseeded by the harness."
 last_verified: '2026-10-06T17:18:46+00:00'

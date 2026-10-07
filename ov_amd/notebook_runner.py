@@ -297,8 +297,23 @@ def _preseed_helpers(cwd: Path, nb_path: Path | None = None) -> list[str]:
             if dst.exists() or not sibling.is_file() or sibling.is_symlink():
                 continue
             if sibling.suffix == ".py":
-                shutil.copy2(sibling, dst)
-                patches.append(f"preseeded sibling helper module {sibling.name} (kernel cwd differs from notebook dir)")
+                text = sibling.read_text()
+                patched = _guard_helper_notebook_utils_fetch(text)
+                if patched is not None:
+                    # refresh an unpatched copy we seeded earlier (preseed
+                    # normally skips existing files; a guard-fix landed after
+                    # the first seeding must still reach the workdir)
+                    if dst.exists() and dst.read_text() == text:
+                        dst.write_text(patched)
+                    text = patched
+                    patches.append(
+                        f"guarded unconditional notebook_utils.py fetch in sibling helper {sibling.name} "
+                        "(upstream helper refetches from raw.githubusercontent.com at import time; "
+                        "preseeded copy satisfies it offline)"
+                    )
+                if not dst.exists():
+                    dst.write_text(text)
+                    patches.append(f"preseeded sibling helper module {sibling.name} (kernel cwd differs from notebook dir)")
             elif sibling.suffix.lower() in SIBLING_DATA_EXTS:
                 try:
                     if sibling.stat().st_size <= SIBLING_DATA_MAX_BYTES:
@@ -309,6 +324,60 @@ def _preseed_helpers(cwd: Path, nb_path: Path | None = None) -> list[str]:
                 except OSError:
                     pass
     return patches
+
+
+def _guard_helper_notebook_utils_fetch(text: str) -> str | None:
+    """Wrap a sibling helper's unconditional notebook_utils.py refetch in an
+    exists() guard (documented minimal patch, recorded in evidence).
+
+    Upstream helpers (ct-segmentation-quantize's custom_segmentation.py,
+    async_pipeline.py) fetch notebook_utils.py from raw.githubusercontent.com
+    at import time with no existence check. The preseed already provides the
+    pinned, sha-verified notebook_utils.py in the kernel cwd; on
+    egress-restricted runners the unconditional fetch kills the import. The
+    guard keeps upstream behavior when the file is genuinely absent.
+    """
+
+    lines = text.splitlines(keepends=True)
+    out: list[str] = []
+    i = 0
+    changed = False
+    start_mark = "r = requests.get("
+    end_mark = 'open("notebook_utils.py", "w").write(r.text)'
+    while i < len(lines):
+        if lines[i].strip() == start_mark:
+            # confirm this fetch targets notebook_utils.py within the block
+            j = i + 1
+            block_end = None
+            targets_utils = False
+            while j < len(lines) and j <= i + 12:
+                if "notebook_utils.py" in lines[j] and "raw.githubusercontent" not in lines[j]:
+                    targets_utils = True
+                if lines[j].rstrip("\n").rstrip() == ")":
+                    block_end = j
+                    if targets_utils:
+                        break
+                j += 1
+            if block_end is not None and targets_utils:
+                k = block_end + 1
+                while k < len(lines) and not lines[k].startswith(end_mark):
+                    k += 1
+                if k < len(lines):
+                    indent = lines[i][: len(lines[i]) - len(lines[i].lstrip())]
+                    out.append(f'{indent}if not Path("notebook_utils.py").exists():\n')
+                    for m in range(i, k + 1):
+                        out.append("    " + lines[m])
+                    i = k + 1
+                    changed = True
+                    continue
+        out.append(lines[i])
+        i += 1
+    if not changed:
+        return None
+    new_text = "".join(out)
+    if "from pathlib import Path" not in new_text and "import pathlib" not in new_text:
+        new_text = new_text.replace("import requests\n", "import requests\nfrom pathlib import Path\n", 1)
+    return new_text
 
 
 def _kill_process_group(pid: int) -> None:

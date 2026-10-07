@@ -1,0 +1,181 @@
+[IPKernelApp] WARNING | Kernel is running over TCP without encryption. All communication (including code and outputs) is sent in plain text and is susceptible to eavesdropping. Use IPC transport or launch with kernel manager-provisioned CurveZMQ keys to enable transport encryption.
+Traceback (most recent call last):
+  File "/workspace/ov_amd/_nbexec.py", line 144, in main
+    client.execute()
+  File "/workspace/.venvs/cpu/b5474a66a7540a14/lib/python3.12/site-packages/jupyter_core/utils/__init__.py", line 165, in wrapped
+    return loop.run_until_complete(inner)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/base_events.py", line 687, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/workspace/.venvs/cpu/b5474a66a7540a14/lib/python3.12/site-packages/nbclient/client.py", line 709, in async_execute
+    await self.async_execute_cell(
+  File "/workspace/.venvs/cpu/b5474a66a7540a14/lib/python3.12/site-packages/nbclient/client.py", line 1062, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/workspace/.venvs/cpu/b5474a66a7540a14/lib/python3.12/site-packages/nbclient/client.py", line 918, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+import json
+import re
+import urllib.error
+import urllib.request
+
+REPO_BASE_URL: str = "https://raw.githubusercontent.com/openvinotoolkit/openvino.genai/refs/heads/master"
+INITIAL_FILE: str = "samples/python/text_generation/chat_sample.py"
+
+
+def fetch_github_file(file_path: str) -> str | None:
+    """Fetch a file from the openvino.genai GitHub repository.
+
+    :param file_path: path relative to the repository root
+    :returns: file content as string, or None if not found / on error
+    """
+    url = f"{REPO_BASE_URL}/{file_path}"
+    try:
+        # noqa: S310 — URL is safe: base is a hardcoded GitHub raw content URL (REPO_BASE_URL constant),
+        # and file_path is validated by is_safe_repo_path() before calling this function
+        # (no traversal, no schemes, no absolute paths). No user-controlled URL components.
+        return urllib.request.urlopen(url, timeout=15).read().decode()  # noqa: S310
+    except (urllib.error.HTTPError, urllib.error.URLError, TimeoutError):
+        return None
+
+
+def is_safe_repo_path(file_path: str) -> bool:
+    """Validate that a model-requested path is safe (no traversal, no schemes, no absolute paths).
+
+    :param file_path: file path to validate
+    :returns: True if safe
+    """
+    if not isinstance(file_path, str):
+        return False
+    return not (".." in file_path or file_path.startswith("/") or "://" in file_path or "\\" in file_path or file_path.startswith("~"))
+
+
+# ---- Step 1: Fetch the initial file ----
+print(f"Fetching {INITIAL_FILE} from GitHub...\n")
+initial_code: str | None = fetch_github_file(INITIAL_FILE)
+if not initial_code:
+    raise RuntimeError(f"Failed to fetch {INITIAL_FILE}")
+print(f"✅ Fetched {len(initial_code)} bytes ({len(initial_code.splitlines())} lines)\n")
+print(initial_code)
+
+# ---- Step 2: Model decides what additional context it needs ----
+explore_prompt: str = f"""You are exploring the openvino.genai repository (https://github.com/openvinotoolkit/openvino.genai).
+
+Here is the file `{INITIAL_FILE}`:
+
+```python
+{initial_code}
+```
+
+To fully understand how this code works, you need to see related files from the same repository.
+
+Provide:
+1. A brief initial analysis (2-3 sentences about what this file does).
+2. A JSON array of up to 3 file paths you want to examine next.
+   Format: ```json
+["path/one.py", "path/two.py"]
+```
+
+Known paths in this repo:
+- samples/python/text_generation/README.md
+- samples/python/text_generation/greedy_causal_lm.py
+- samples/python/text_generation/multinomial_causal_lm.py
+- src/python/openvino_genai/py_openvino_genai.pyi"""
+
+print("=" * 60)
+print("Step 2: Initial analysis -- model decides what files to explore")
+print("=" * 60)
+explore_response: str = generate_code(explore_prompt, max_tokens=512)
+explore_response = re.sub(r"<think>.*?</think>", "", explore_response, flags=re.DOTALL).strip()
+print(explore_response)
+
+# Extract JSON file list from model response
+requested_files: list[str] = []
+json_match = re.search(r"```json\s*\n(\[.*?\])\s*\n```", explore_response, re.DOTALL)
+if json_match:
+    try:
+        requested_files = json.loads(json_match.group(1))
+    except json.JSONDecodeError:
+        pass
+
+if not requested_files:
+    array_match = re.search(r'\[(?:\s*"[^"]+"\s*,?\s*)+\]', explore_response)
+    if array_match:
+        try:
+            requested_files = json.loads(array_match.group(0))
+        except json.JSONDecodeError:
+            pass
+
+# ---- Step 3: Fetch files requested by the model ----
+print(f"\n{'=' * 60}")
+print(f"Step 3: Fetching {len(requested_files)} file(s) requested by model")
+print(f"{'=' * 60}")
+
+additional_context: str = ""
+fetched_count: int = 0
+
+for file_path in requested_files[:3]:
+    if not is_safe_repo_path(file_path):
+        print(f"  ⚠ Skipping suspicious path: {file_path}")
+        continue
+
+    print(f"  {file_path}...", end=" ")
+    content = fetch_github_file(file_path)
+
+    if content:
+        if len(content) > 5000:
+            content = content[:5000] + "\n# ... (truncated to 5000 chars)"
+        additional_context += f"\n\n--- {file_path} ---\n```\n{content}\n```"
+        fetched_count += 1
+        print(f"✅ ({len(content.splitlines())} lines)")
+    else:
+        additional_context += f"\n\n--- {file_path} ---\n(File not found in repository)"
+        print("❌ not found")
+
+print(f"\n  Fetched {fetched_count}/{len(requested_files)} requested files.")
+
+# ---- Step 4: Final comprehensive analysis with full context ----
+print(f"\n{'=' * 60}")
+print("Step 4: Comprehensive analysis with gathered context")
+print("=" * 60)
+
+final_prompt: str = f"""You previously analyzed `{INITIAL_FILE}` and requested additional files.
+
+**Original file** (`{INITIAL_FILE}`):
+```python
+{initial_code}
+```
+
+**Additional files you requested:**
+{additional_context if additional_context else "(No additional files were fetched)"}
+
+Now provide a comprehensive analysis:
+1. **Architecture overview** — how the components work together, data flow, key abstractions.
+2. **API insights** — what you learned from the additional files about the underlying openvino_genai API (ChatHistory, GenerationConfig, streaming, etc.).
+3. **Extension example** — show a modified version of chat_sample.py that adds system prompt support and temperature control via GenerationConfig."""
+
+final_response: str = generate_code(final_prompt, max_tokens=2048)
+final_response = re.sub(r"<think>.*?</think>", "", final_response, flags=re.DOTALL).strip()
+print(final_response)
+------------------
+
+----- stdout -----
+Fetching samples/python/text_generation/chat_sample.py from GitHub...
+------------------
+
+[31m---------------------------------------------------------------------------[39m
+[31mRuntimeError[39m                              Traceback (most recent call last)
+[36mCell[39m[36m [39m[32mIn[10][39m[32m, line 41[39m
+[32m     37[39m [38;5;66;03m# ---- Step 1: Fetch the initial file ----[39;00m
+[32m     38[39m print(f"Fetching {INITIAL_FILE} from GitHub...\n")
+[32m     39[39m initial_code: str | [38;5;28;01mNone[39;00m = fetch_github_file(INITIAL_FILE)
+[32m     40[39m [38;5;28;01mif[39;00m [38;5;28;01mnot[39;00m initial_code:
+[32m---> [39m[32m41[39m     [38;5;28;01mraise[39;00m RuntimeError(f"Failed to fetch {INITIAL_FILE}")
+[32m     42[39m print(f"✅ Fetched {len(initial_code)} bytes ({len(initial_code.splitlines())} lines)\n")
+[32m     43[39m print(initial_code)
+[32m     44[39m 
+
+[31mRuntimeError[39m: Failed to fetch samples/python/text_generation/chat_sample.py
+

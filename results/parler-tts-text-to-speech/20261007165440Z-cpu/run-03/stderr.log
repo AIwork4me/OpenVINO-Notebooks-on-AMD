@@ -1,0 +1,119 @@
+[IPKernelApp] WARNING | Kernel is running over TCP without encryption. All communication (including code and outputs) is sent in plain text and is susceptible to eavesdropping. Use IPC transport or launch with kernel manager-provisioned CurveZMQ keys to enable transport encryption.
+[31mERROR: pip's dependency resolver does not currently take into account all the packages that are installed. This behaviour is the source of the following dependency conflicts.
+descript-audio-codec 1.0.0 requires torchaudio, which is not installed.
+descript-audiotools 0.7.4 requires torchaudio, which is not installed.
+torch-stoi 0.2.3 requires torchaudio, which is not installed.[0m[31m
+[0m  [1;31merror[0m: [1msubprocess-exited-with-error[0m
+  
+  [31m×[0m [32mgit clone --[0m[32mfilter[0m[32m=[0m[32mblob[0m[32m:none --quiet [0m[4;32mhttps://github.com/descriptinc/audiotools[0m[32m [0m[32m/tmp/pip-install-lg0pvxw0/[0m[32mdescript-audiotools_b9fcdf8743814684abef98e284e369bd[0m did not run successfully.
+  [31m│[0m exit code: [1;36m128[0m
+  [31m╰─>[0m [31m[4 lines of output][0m
+  [31m   [0m [git-wrapper] cloning GitHub repo via gh-proxy.org
+  [31m   [0m fatal: unable to access 'https://gh-proxy.org/https://github.com/descriptinc/audiotools/': CONNECT tunnel failed, response 403
+  [31m   [0m [git-wrapper] gh-proxy clone failed, retrying via http://github.com
+  [31m   [0m fatal: unable to access 'http://github.com/descriptinc/audiotools/': CONNECT tunnel failed, response 503
+  [31m   [0m [31m[end of output][0m
+  
+  [1;35mnote[0m: This error originates from a subprocess, and is likely not a problem with pip.
+[31mERROR: Failed to build 'descript-audiotools' when git clone --filter=blob:none --quiet https://github.com/descriptinc/audiotools /tmp/pip-install-lg0pvxw0/descript-audiotools_b9fcdf8743814684abef98e284e369bd[0m[31m
+[0mTraceback (most recent call last):
+  File "/workspace/ov_amd/_nbexec.py", line 144, in main
+    client.execute()
+  File "/workspace/.venvs/cpu/b5474a66a7540a14/lib/python3.12/site-packages/jupyter_core/utils/__init__.py", line 165, in wrapped
+    return loop.run_until_complete(inner)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/base_events.py", line 687, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/workspace/.venvs/cpu/b5474a66a7540a14/lib/python3.12/site-packages/nbclient/client.py", line 709, in async_execute
+    await self.async_execute_cell(
+  File "/workspace/.venvs/cpu/b5474a66a7540a14/lib/python3.12/site-packages/nbclient/client.py", line 1062, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/workspace/.venvs/cpu/b5474a66a7540a14/lib/python3.12/site-packages/nbclient/client.py", line 918, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+import os
+import requests
+from pathlib import Path
+
+os.environ["GIT_CLONE_PROTECTION_ACTIVE"] = "false"
+
+
+if not Path("pip_helper.py").exists():
+    r = requests.get(
+        url="https://raw.githubusercontent.com/openvinotoolkit/openvino_notebooks/latest/utils/pip_helper.py",
+    )
+    open("pip_helper.py", "w").write(r.text)
+
+from pip_helper import pip_install
+
+%pip uninstall -q -y torch torchvision torchaudio
+
+pip_install("-q", "openvino>=2024.2.0", "torch", "--extra-index-url", "https://download.pytorch.org/whl/cpu")
+pip_install("-q", "setuptools", "wheel")
+pip_install(
+    "-q",
+    "https://codeload.github.com/huggingface/parler-tts/tar.gz/HEAD",
+    "gradio>=4.19",
+    "torchaudio",
+    "--extra-index-url",
+    "https://download.pytorch.org/whl/cpu",
+    "--no-build-isolation",
+)
+------------------
+
+----- stdout -----
+[33mWARNING: Skipping torchvision as it is not installed.[0m[33m
+[0m
+----- stdout -----
+Note: you may need to restart the kernel to use updated packages.
+----- stderr -----
+[31mERROR: pip's dependency resolver does not currently take into account all the packages that are installed. This behaviour is the source of the following dependency conflicts.
+descript-audio-codec 1.0.0 requires torchaudio, which is not installed.
+descript-audiotools 0.7.4 requires torchaudio, which is not installed.
+torch-stoi 0.2.3 requires torchaudio, which is not installed.[0m[31m
+[0m
+----- stderr -----
+  [1;31merror[0m: [1msubprocess-exited-with-error[0m
+  
+  [31m×[0m [32mgit clone --[0m[32mfilter[0m[32m=[0m[32mblob[0m[32m:none --quiet [0m[4;32mhttps://github.com/descriptinc/audiotools[0m[32m [0m[32m/tmp/pip-install-lg0pvxw0/[0m[32mdescript-audiotools_b9fcdf8743814684abef98e284e369bd[0m did not run successfully.
+  [31m│[0m exit code: [1;36m128[0m
+  [31m╰─>[0m [31m[4 lines of output][0m
+  [31m   [0m [git-wrapper] cloning GitHub repo via gh-proxy.org
+  [31m   [0m fatal: unable to access 'https://gh-proxy.org/https://github.com/descriptinc/audiotools/': CONNECT tunnel failed, response 403
+  [31m   [0m [git-wrapper] gh-proxy clone failed, retrying via http://github.com
+  [31m   [0m fatal: unable to access 'http://github.com/descriptinc/audiotools/': CONNECT tunnel failed, response 503
+  [31m   [0m [31m[end of output][0m
+  
+  [1;35mnote[0m: This error originates from a subprocess, and is likely not a problem with pip.
+[31mERROR: Failed to build 'descript-audiotools' when git clone --filter=blob:none --quiet https://github.com/descriptinc/audiotools /tmp/pip-install-lg0pvxw0/descript-audiotools_b9fcdf8743814684abef98e284e369bd[0m[31m
+[0m
+------------------
+
+[31m---------------------------------------------------------------------------[39m
+[31mCalledProcessError[39m                        Traceback (most recent call last)
+[36mCell[39m[36m [39m[32mIn[1][39m[32m, line 20[39m
+[32m     16[39m get_ipython().run_line_magic([33m'pip'[39m, [33m'uninstall -q -y torch torchvision torchaudio'[39m)
+[32m     17[39m 
+[32m     18[39m pip_install([33m"-q"[39m, [33m"openvino>=2024.2.0"[39m, [33m"torch"[39m, [33m"--extra-index-url"[39m, [33m"https://download.pytorch.org/whl/cpu"[39m)
+[32m     19[39m pip_install([33m"-q"[39m, [33m"setuptools"[39m, [33m"wheel"[39m)
+[32m---> [39m[32m20[39m pip_install(
+[32m     21[39m     [33m"-q"[39m,
+[32m     22[39m     [33m"https://codeload.github.com/huggingface/parler-tts/tar.gz/HEAD"[39m,
+[32m     23[39m     [33m"gradio>=4.19"[39m,
+
+[36mFile [39m[32m/workspace/results/parler-tts-text-to-speech/workdir-cpu/pip_helper.py:10[39m, in [36mpip_install[39m[34m(*args)[39m
+[32m      8[39m [38;5;28;01mfor[39;00m arg [38;5;129;01min[39;00m args:
+[32m      9[39m     cli_args.extend([38;5;28mstr[39m(arg).split([33m"[39m[33m [39m[33m"[39m))
+[32m---> [39m[32m10[39m [30;43msubprocess[39;49m[30;43m.[39;49m[30;43mrun[39;49m[30;43m([39;49m[30;43m[[39;49m[30;43msys[39;49m[30;43m.[39;49m[30;43mexecutable[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43m"[39;49m[30;43m-m[39;49m[30;43m"[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43m"[39;49m[30;43mpip[39;49m[30;43m"[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43m"[39;49m[30;43minstall[39;49m[30;43m"[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43m*[39;49m[30;43mcli_args[39;49m[30;43m][39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mcheck[39;49m[30;43m=[39;49m[30;43;01mTrue[39;49;00m[30;43m)[39;49m
+
+[36mFile [39m[32m/usr/lib/python3.12/subprocess.py:571[39m, in [36mrun[39m[34m(input, capture_output, timeout, check, *popenargs, **kwargs)[39m
+[32m    569[39m     retcode = process.poll()
+[32m    570[39m     [38;5;28;01mif[39;00m check [38;5;129;01mand[39;00m retcode:
+[32m--> [39m[32m571[39m         [38;5;28;01mraise[39;00m CalledProcessError(retcode, process.args,
+[32m    572[39m                                  output=stdout, stderr=stderr)
+[32m    573[39m [38;5;28;01mreturn[39;00m CompletedProcess(process.args, retcode, stdout, stderr)
+
+[31mCalledProcessError[39m: Command '['/workspace/.venvs/cpu/b5474a66a7540a14/bin/python', '-m', 'pip', 'install', '-q', 'https://codeload.github.com/huggingface/parler-tts/tar.gz/HEAD', 'gradio>=4.19', 'torchaudio', '--extra-index-url', 'https://download.pytorch.org/whl/cpu', '--no-build-isolation']' returned non-zero exit status 1.
+

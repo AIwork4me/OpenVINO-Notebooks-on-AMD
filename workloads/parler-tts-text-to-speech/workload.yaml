@@ -30,3 +30,11 @@ patches:
   notes: 'v0.2.2: per-cell/wall overrides for throttled-network installs and large
     model downloads; default 900s cell cap kills legitimate install cells'
 last_verified: '2026-10-06T12:51:34+00:00'
+env:
+  extra_deps:
+  - torchaudio==2.8.0
+  notes: 'v0.2.2 dependency-drift pin: the notebook pip_helper installs torchaudio
+    unpinned; the fresh current-pin env resolved torchaudio 2.11.0+cpu against torch
+    2.8.0+cpu and died importing _torchaudio.abi3.so (undefined symbol torch_lib)
+    before reaching the model stage. Pinning torchaudio==2.8.0 restores the upstream-intended
+    torch 2.8 pairing so the CPU path (RCA-001 BrgemmCPU repro) is actually exercisable.'

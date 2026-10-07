@@ -1,0 +1,81 @@
+[IPKernelApp] WARNING | Kernel is running over TCP without encryption. All communication (including code and outputs) is sent in plain text and is susceptible to eavesdropping. Use IPC transport or launch with kernel manager-provisioned CurveZMQ keys to enable transport encryption.
+30;43m.[39;49m[30;43m_raise_timeout[39;49m[30;43m([39;49m
+[32m    782[39m [30;43m        [39;49m[30;43merr[39;49m[30;43m=[39;49m[30;43me[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43murl[39;49m[30;43m=[39;49m[30;43mself[39;49m[30;43m.[39;49m[30;43mproxy[39;49m[30;43m.[39;49m[30;43murl[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mtimeout_value[39;49m[30;43m=[39;49m[30;43mconn[39;49m[30;43m.[39;49m[30;43mtimeout[39;49m
+[32m    783[39m [30;43m    [39;49m[30;43m)[39;49m
+[32m    784[39m     [38;5;28;01mraise[39;00m
+
+[36mFile [39m[32m/workspace/.venvs/cpu/6fefe98ca1d57f2b/lib/python3.12/site-packages/urllib3/connectionpool.py:373[39m, in [36mHTTPConnectionPool._raise_timeout[39m[34m(self, err, url, timeout_value)[39m
+[32m    372[39m [38;5;28;01mif[39;00m [38;5;28misinstance[39m(err, SocketTimeout):
+[32m--> [39m[32m373[39m     [38;5;28;01mraise[39;00m ReadTimeoutError(
+[32m    374[39m         [38;5;28mself[39m, url, [33mf[39m[33m"[39m[33mRead timed out. (read timeout=[39m[38;5;132;01m{[39;00mtimeout_value[38;5;132;01m}[39;00m[33m)[39m[33m"[39m
+[32m    375[39m     ) [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01merr[39;00m
+[32m    377[39m [38;5;66;03m# See the above comment about EAGAIN in Python 3.[39;00m
+
+[31mReadTimeoutError[39m: HTTPSConnectionPool(host='raw.githubusercontent.com', port=443): Read timed out. (read timeout=30)
+
+During handling of the above exception, another exception occurred:
+
+[31mReadTimeout[39m                               Traceback (most recent call last)
+[36mCell[39m[36m [39m[32mIn[2][39m[32m, line 34[39m
+[32m     30[39m [38;5;28;01mfrom[39;00m notebook_utils [38;5;28;01mimport[39;00m download_file, device_widget
+[32m     31[39m 
+[32m     32[39m [38;5;28;01mif[39;00m [38;5;28;01mnot[39;00m Path([33m"./custom_segmentation.py"[39m).exists():
+[32m     33[39m     download_file(url=[33m"https://raw.githubusercontent.com/openvinotoolkit/openvino_notebooks/latest/notebooks/ct-segmentation-quantize/custom_segmentation.py"[39m)
+[32m---> [39m[32m34[39m [38;5;28;01mfrom[39;00m custom_segmentation [38;5;28;01mimport[39;00m SegmentationModel
+[32m     35[39m 
+[32m     36[39m [38;5;28;01mif[39;00m [38;5;28;01mnot[39;00m Path([33m"./async_pipeline.py"[39m).exists():
+[32m     37[39m     download_file(url=[33m"https://raw.githubusercontent.com/openvinotoolkit/openvino_notebooks/latest/notebooks/ct-segmentation-quantize/async_pipeline.py"[39m)
+
+[36mFile [39m[32m/workspace/results/ct-segmentation-quantize-nncf/workdir-cpu/custom_segmentation.py:18[39m
+[32m     15[39m [38;5;66;03m# Fetch `notebook_utils` module[39;00m
+[32m     16[39m [38;5;28;01mimport[39;00m[38;5;250m [39m[34;01mrequests[39;00m
+[32m---> [39m[32m18[39m r = [30;43mrequests[39;49m[30;43m.[39;49m[30;43mget[39;49m[30;43m([39;49m
+[32m     19[39m [30;43m    [39;49m[30;43murl[39;49m[30;43m=[39;49m[30;43m"[39;49m[30;43mhttps://raw.githubusercontent.com/openvinotoolkit/openvino_notebooks/latest/utils/notebook_utils.py[39;49m[30;43m"[39;49m[30;43m,[39;49m
+[32m     20[39m [30;43m    [39;49m[30;43mtimeout[39;49m[30;43m=[39;49m[30;43m30[39;49m[30;43m,[39;49m
+[32m     21[39m [30;43m)[39;49m
+[32m     22[39m [38;5;28mopen[39m([33m"[39m[33mnotebook_utils.py[39m[33m"[39m, [33m"[39m[33mw[39m[33m"[39m).write(r.text)
+[32m     23[39m [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01mnotebook_utils[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m segmentation_map_to_overlay
+
+[36mFile [39m[32m/workspace/.venvs/cpu/6fefe98ca1d57f2b/lib/python3.12/site-packages/requests/api.py:87[39m, in [36mget[39m[34m(url, params, **kwargs)[39m
+[32m     74[39m [38;5;28;01mdef[39;00m[38;5;250m [39m[34mget[39m(
+[32m     75[39m     url: _t.UriType, params: _t.ParamsType = [38;5;28;01mNone[39;00m, **kwargs: Unpack[_t.GetKwargs]
+[32m     76[39m ) -> Response:
+[32m     77[39m [38;5;250m    [39m[33mr[39m[33;03m"""Sends a GET request.[39;00m
+[32m     78[39m 
+[32m     79[39m [33;03m    :param url: URL for the new :class:`Request` object.[39;00m
+[32m   (...)[39m[32m     84[39m [33;03m    :rtype: requests.Response[39;00m
+[32m     85[39m [33;03m    """[39;00m
+[32m---> [39m[32m87[39m     [38;5;28;01mreturn[39;00m [30;43mrequest[39;49m[30;43m([39;49m[30;43m"[39;49m[30;43mget[39;49m[30;43m"[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43murl[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mparams[39;49m[30;43m=[39;49m[30;43mparams[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43m*[39;49m[30;43m*[39;49m[30;43mkwargs[39;49m[30;43m)[39;49m
+
+[36mFile [39m[32m/workspace/.venvs/cpu/6fefe98ca1d57f2b/lib/python3.12/site-packages/requests/api.py:71[39m, in [36mrequest[39m[34m(method, url, **kwargs)[39m
+[32m     67[39m [38;5;66;03m# By using the 'with' statement we are sure the session is closed, thus we[39;00m
+[32m     68[39m [38;5;66;03m# avoid leaving sockets open which can trigger a ResourceWarning in some[39;00m
+[32m     69[39m [38;5;66;03m# cases, and look like a memory leak in others.[39;00m
+[32m     70[39m [38;5;28;01mwith[39;00m sessions.Session() [38;5;28;01mas[39;00m session:
+[32m---> [39m[32m71[39m     [38;5;28;01mreturn[39;00m [30;43msession[39;49m[30;43m.[39;49m[30;43mrequest[39;49m[30;43m([39;49m[30;43mmethod[39;49m[30;43m=[39;49m[30;43mmethod[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43murl[39;49m[30;43m=[39;49m[30;43murl[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43m*[39;49m[30;43m*[39;49m[30;43mkwargs[39;49m[30;43m)[39;49m
+
+[36mFile [39m[32m/workspace/.venvs/cpu/6fefe98ca1d57f2b/lib/python3.12/site-packages/requests/sessions.py:651[39m, in [36mSession.request[39m[34m(self, method, url, params, data, headers, cookies, files, auth, timeout, allow_redirects, proxies, hooks, stream, verify, cert, json)[39m
+[32m    646[39m send_kwargs = {
+[32m    647[39m     [33m"[39m[33mtimeout[39m[33m"[39m: timeout,
+[32m    648[39m     [33m"[39m[33mallow_redirects[39m[33m"[39m: allow_redirects,
+[32m    649[39m }
+[32m    650[39m send_kwargs.update(settings)
+[32m--> [39m[32m651[39m resp = [30;43mself[39;49m[30;43m.[39;49m[30;43msend[39;49m[30;43m([39;49m[30;43mprep[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43m*[39;49m[30;43m*[39;49m[30;43msend_kwargs[39;49m[30;43m)[39;49m
+[32m    653[39m [38;5;28;01mreturn[39;00m resp
+
+[36mFile [39m[32m/workspace/.venvs/cpu/6fefe98ca1d57f2b/lib/python3.12/site-packages/requests/sessions.py:784[39m, in [36mSession.send[39m[34m(self, request, **kwargs)[39m
+[32m    781[39m start = preferred_clock()
+[32m    783[39m [38;5;66;03m# Send the request[39;00m
+[32m--> [39m[32m784[39m r = [30;43madapter[39;49m[30;43m.[39;49m[30;43msend[39;49m[30;43m([39;49m[30;43mrequest[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43m*[39;49m[30;43m*[39;49m[30;43mkwargs[39;49m[30;43m)[39;49m
+[32m    786[39m [38;5;66;03m# Total elapsed time of the request (approximately)[39;00m
+[32m    787[39m elapsed = preferred_clock() - start
+
+[36mFile [39m[32m/workspace/.venvs/cpu/6fefe98ca1d57f2b/lib/python3.12/site-packages/requests/adapters.py:742[39m, in [36mHTTPAdapter.send[39m[34m(self, request, stream, timeout, verify, cert, proxies)[39m
+[32m    740[39m     [38;5;28;01mraise[39;00m SSLError(e, request=request)
+[32m    741[39m [38;5;28;01melif[39;00m [38;5;28misinstance[39m(e, ReadTimeoutError):
+[32m--> [39m[32m742[39m     [38;5;28;01mraise[39;00m ReadTimeout(e, request=request)
+[32m    743[39m [38;5;28;01melif[39;00m [38;5;28misinstance[39m(e, _InvalidHeader):
+[32m    744[39m     [38;5;28;01mraise[39;00m InvalidHeader(e, request=request)
+
+[31mReadTimeout[39m: HTTPSConnectionPool(host='raw.githubusercontent.com', port=443): Read timed out. (read timeout=30)
+

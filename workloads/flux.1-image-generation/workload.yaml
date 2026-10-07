@@ -14,7 +14,7 @@ model:
   license: ''
 cpu:
   runtime: openvino
-  status: FAILED
+  status: VERIFIED_WITH_LIMITATIONS
   wall_timeout_s: 7200
   per_cell_timeout_s: 3600
 gpu:
@@ -26,4 +26,4 @@ validation: {}
 patches:
   notes: 'v0.2.2: per-cell/wall overrides for throttled-network installs and large
     model downloads; default 900s cell cap kills legitimate install cells'
-last_verified: ''
+last_verified: '2026-10-07T18:32:02+00:00'
