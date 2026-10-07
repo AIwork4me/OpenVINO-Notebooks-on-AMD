@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-07T02:50:20+00:00",
+  "generated": "2026-10-07T02:58:13+00:00",
   "upstream": {
     "fetch_method": "github git-blobs API (sha1-verified); tarball transport failed on this network",
     "files_ok": 572,
@@ -553,13 +553,13 @@
       "cpu_device_proof": "PROVEN_CPU",
       "gpu_status": "VERIFIED",
       "gpu_failure_category": "",
-      "gpu_evidence": "results/deepseek-r1/20261006T064540Z-gpu",
+      "gpu_evidence": "results/deepseek-r1/20261007T010103Z-gpu",
       "gpu_validation_level": "WORKLOAD_CORRECTNESS",
       "gpu_device_proof": "PROVEN_GPU",
       "twin_level": "WORKLOAD_TWIN",
       "device_used": "CPU",
       "last_tested": "2026-10-07T01:04:52+00:00",
-      "evidence": "results/deepseek-r1/20261006T064540Z-gpu",
+      "evidence": "results/deepseek-r1/20261007T010103Z-gpu",
       "notes": [
         "CORE_INFERENCE_VERIFIED; INTERACTIVE_UI_NOT_TESTED (documented skip policy)"
       ]
@@ -1076,13 +1076,13 @@
       "cpu_device_proof": "PROVEN_CPU",
       "gpu_status": "VERIFIED",
       "gpu_failure_category": "",
-      "gpu_evidence": "results/hello-detection/20261006T040236Z-gpu",
+      "gpu_evidence": "results/hello-detection/20261007T005417Z-gpu",
       "gpu_validation_level": "WORKLOAD_CORRECTNESS",
       "gpu_device_proof": "PROVEN_GPU",
       "twin_level": "WORKLOAD_TWIN",
       "device_used": "CPU",
       "last_tested": "2026-10-05T19:43:49+00:00",
-      "evidence": "results/hello-detection/20261006T040236Z-gpu",
+      "evidence": "results/hello-detection/20261007T005417Z-gpu",
       "notes": []
     },
     {
@@ -1368,13 +1368,13 @@
       "cpu_device_proof": "PROVEN_CPU",
       "gpu_status": "VERIFIED",
       "gpu_failure_category": "",
-      "gpu_evidence": "results/kokoro/20261007T004558Z-gpu",
+      "gpu_evidence": "results/kokoro/20261007T005721Z-gpu",
       "gpu_validation_level": "WORKLOAD_CORRECTNESS",
       "gpu_device_proof": "PROVEN_GPU",
       "twin_level": "WORKLOAD_TWIN",
       "device_used": "CPU",
       "last_tested": "2026-10-07T01:11:30+00:00",
-      "evidence": "results/kokoro/20261007T004558Z-gpu",
+      "evidence": "results/kokoro/20261007T005721Z-gpu",
       "notes": [
         "CORE_INFERENCE_VERIFIED; INTERACTIVE_UI_NOT_TESTED (documented skip policy)"
       ]
@@ -3261,13 +3261,13 @@
       "cpu_device_proof": "UNKNOWN",
       "gpu_status": "VERIFIED",
       "gpu_failure_category": "",
-      "gpu_evidence": "results/smolvlm2/20261007T004651Z-gpu",
+      "gpu_evidence": "results/smolvlm2/20261007T005844Z-gpu",
       "gpu_validation_level": "WORKLOAD_CORRECTNESS",
       "gpu_device_proof": "PROVEN_GPU",
       "twin_level": "WORKLOAD_TWIN",
       "device_used": "AUTO",
       "last_tested": "2026-10-07T01:38:16+00:00",
-      "evidence": "results/smolvlm2/20261007T004651Z-gpu",
+      "evidence": "results/smolvlm2/20261007T005844Z-gpu",
       "notes": [
         "EXECUTION_ONLY: no workload correctness contract (validation: {})",
         "DEVICE_PROOF_INCOMPLETE: device proof state UNKNOWN",
@@ -3335,13 +3335,13 @@
       "cpu_device_proof": "UNKNOWN",
       "gpu_status": "VERIFIED",
       "gpu_failure_category": "",
-      "gpu_evidence": "results/stable-diffusion-text-to-image/20261006T060313Z-gpu",
+      "gpu_evidence": "results/stable-diffusion-text-to-image/20261007T005940Z-gpu",
       "gpu_validation_level": "WORKLOAD_CORRECTNESS",
       "gpu_device_proof": "PROVEN_GPU",
       "twin_level": "WORKLOAD_TWIN",
       "device_used": "",
       "last_tested": "2026-10-06T14:09:18+00:00",
-      "evidence": "results/stable-diffusion-text-to-image/20261006T060313Z-gpu",
+      "evidence": "results/stable-diffusion-text-to-image/20261007T005940Z-gpu",
       "notes": [
         "ok_runs=0/3: "
       ]
@@ -3412,13 +3412,13 @@
       "cpu_device_proof": "PROVEN_CPU",
       "gpu_status": "VERIFIED",
       "gpu_failure_category": "",
-      "gpu_evidence": "results/stable-diffusion-xl/20261006T061803Z-gpu",
+      "gpu_evidence": "results/stable-diffusion-xl/20261007T010006Z-gpu",
       "gpu_validation_level": "WORKLOAD_CORRECTNESS",
       "gpu_device_proof": "PROVEN_GPU",
       "twin_level": "WORKLOAD_TWIN",
       "device_used": "AUTO",
       "last_tested": "2026-10-06T14:12:38+00:00",
-      "evidence": "results/stable-diffusion-xl/20261006T061803Z-gpu",
+      "evidence": "results/stable-diffusion-xl/20261007T010006Z-gpu",
       "notes": [
         "ok_runs=0/3: NameError: name 'demo' is not defined"
       ]
@@ -3878,13 +3878,13 @@
       "cpu_device_proof": "PROVEN_CPU",
       "gpu_status": "VERIFIED",
       "gpu_failure_category": "",
-      "gpu_evidence": "results/whisper-asr-genai/20261006T040624Z-gpu",
+      "gpu_evidence": "results/whisper-asr-genai/20261007T011710Z-gpu",
       "gpu_validation_level": "WORKLOAD_CORRECTNESS",
       "gpu_device_proof": "PROVEN_GPU",
       "twin_level": "WORKLOAD_TWIN",
       "device_used": "CPU",
       "last_tested": "2026-10-06T19:13:58+00:00",
-      "evidence": "results/whisper-asr-genai/20261006T040624Z-gpu",
+      "evidence": "results/whisper-asr-genai/20261007T011710Z-gpu",
       "notes": [
         "ok_runs=0/1: ConnectTimeout: HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /spaces/distil-whisper/whisper-vs-distil-whisper/resolve/main/assets/example_1.wav (Caused by ConnectTimeoutError(<HTTPSConnection(host='huggingface.co', port=443) at 0x704b9c270a10>, 'Conn"
       ]
@@ -4280,13 +4280,13 @@
       "cpu_device_proof": "PROVEN_GPU",
       "gpu_status": "VERIFIED",
       "gpu_failure_category": "",
-      "gpu_evidence": "results/qwen3/20261006T052020Z-gpu",
+      "gpu_evidence": "results/qwen3/20261007T005803Z-gpu",
       "gpu_validation_level": "WORKLOAD_CORRECTNESS",
       "gpu_device_proof": "PROVEN_GPU",
       "twin_level": "WORKLOAD_TWIN",
       "device_used": "CPU",
       "last_tested": "2026-10-06T18:39:35+00:00",
-      "evidence": "results/qwen3/20261006T052020Z-gpu",
+      "evidence": "results/qwen3/20261007T005803Z-gpu",
       "notes": [
         "ok_runs=0/1: [GPU] clEnqueueMapBuffer, error code: -30 CL_INVALID_VALUE"
       ]
