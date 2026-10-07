@@ -9,12 +9,14 @@ Generated: 2026-10-07 — comprehensive verification closure §35.
 | Project pin (unchanged) | `329562e6031d1a989017d08697b0fabe5a989492` (2026-10-05T16:50:18Z) |
 | Upstream `latest` now | `faf88d73c65671cf34b0813ae44ff28f852508d1` (2026-10-06T19:33:31Z) |
 | Commits between | 9 |
-| Files changed | 19 (4 notebooks + 2 new-notebook files + CI/selector + 2 shared utils) |
+| Files changed | 18 (3 modified notebooks + 2 new-notebook files + READMEs + CI/selector + 2 shared utils) |
 
 ## Decision
 
-**The pin stays at `329562e`.** All 171 rows remain pin-coherent (evidence
-upstream.json commit == pin or sha-identical pre-repin content — see
+**The pin stays at `329562e`.** Dataset pin-coherence after this closure's full
+audit: 168 rows fully coherent + 3 disclosed warnings (pre-repin evidence on
+changed notebook content: `llm-rag-langchain`, `ltx-video`,
+`segment-anything-2-video` — revalidation queued; see
 reports/full-171-integrity-audit.md). Rows are NOT flipped to
 REVALIDATION_REQUIRED while the validated pin is unchanged; instead the
 re-pin scope is recorded here and will be applied when the project decides to
