@@ -114,7 +114,7 @@ def main() -> int:
 
                                 h = hashlib.sha256(cur.read_bytes()).hexdigest()
                                 if u.get("notebook_sha256") == h:
-                                    pin_label = "pre-repin, content-identical (sha256)"
+                                    pass  # pre-repin evidence, content-identical (sha256): valid
                                 else:
                                     queued = any(
                                         n.startswith("notebook changed upstream") for n in (cpu.get("notes") or [])
