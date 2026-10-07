@@ -94,8 +94,16 @@ def main() -> int:
 
     now = datetime.now(timezone.utc).isoformat(timespec="seconds")
     flipped = 0
+    never_tested: list[str] = []
     for wid in sorted(impacted):
         rec = state["attempts"].get(wid, {})
+        if not rec.get("cpu") and not rec.get("gpu"):
+            # impacted but never validated under the old pin: there is nothing
+            # to RE-validate. Creating a REVALIDATION_REQUIRED record would
+            # imply prior validation. They stay record-less (NOT_TESTED) and
+            # will simply be first-attempted under the new pin.
+            never_tested.append(wid)
+            continue
         for backend in ("cpu", "gpu"):
             r = rec.get(backend)
             if not r or r.get("status") in ("NOT_TESTED", "REVALIDATION_REQUIRED", "NOT_APPLICABLE"):
@@ -117,6 +125,8 @@ def main() -> int:
     print(f"changed files: {len(changed)} (notebooks: {len(notebook_changes)})")
     print(f"added: {len(added)}  removed: {len(removed)}")
     print(f"impacted workloads: {len(impacted)} ({flipped} attempt records flipped)")
+    if never_tested:
+        print(f"impacted but never validated under the old pin (stay NOT_TESTED, first-attempt under new pin): {', '.join(never_tested)}")
     for wid in sorted(impacted):
         print(f"  - {wid}: {len(impacted[wid])} changed file(s)")
     if added:
