@@ -4,9 +4,9 @@ category: Optimization
 upstream:
   repository: openvinotoolkit/openvino_notebooks
   branch: latest
-  commit: a8809170cc4fc6aa633fbb9c22214be67ac20b47
+  commit: 329562e6031d1a989017d08697b0fabe5a989492
   path: notebooks/speech-recognition-quantization/speech-recognition-quantization-wav2vec2.ipynb
-  url: https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/speech-recognition-quantization/speech-recognition-quantization-wav2vec2.ipynb
+  url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/speech-recognition-quantization/speech-recognition-quantization-wav2vec2.ipynb
 model:
   name: ''
   source: ''

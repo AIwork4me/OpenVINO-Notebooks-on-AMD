@@ -64,12 +64,12 @@ fully evidence-backed `hello-world` VERIFIED from a cold checkout.
 
 ### Marathon v2 results (final counts, recomputed from raw state)
 
-CPU (OpenVINO on Ryzen, pinned a8809170 baseline): attempted **133/171**
-(77.8%) — ✅ 4 VERIFIED (L3, PROVEN_CPU, 3-run repeatability) · 🟡 35
-VERIFIED_WITH_LIMITATIONS (explicit machine-readable limits) · 🔴 83 FAILED ·
-🔵 10 REVALIDATION_REQUIRED (upstream re-pin migration set) · ➖ 1 N/A · ⏳ 38
-NOT_TESTED. Failure taxonomy: `reports/marathon-v2-root-causes.md` (83
-failures → 32 clusters, compat vs environment separated).
+CPU (OpenVINO on Ryzen; passes 1–2 under pin a8809170, pass 3 under the
+re-pinned 329562e6031d): attempted **171/171** (100%) — ✅ 25 VERIFIED
+(L3 contract + PROVEN_CPU + ≥3-run repeatability) · 🟡 58
+VERIFIED_WITH_LIMITATIONS (explicit machine-readable limits) · 🔴 87
+FAILED · ➖ 1 N/A. Failure taxonomy: `reports/marathon-v2-root-causes.md`
+(87 failures → 55 clusters, compat vs environment separated).
 
 GPU (ROCm twins, **all 8 revalidated under Evidence Schema v2 on gfx1100**,
 pin 329562e6031d): ✅ 8 VERIFIED (PROVEN_GPU via hip 7.2.53211 + authoritative

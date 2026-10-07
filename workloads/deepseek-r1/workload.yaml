@@ -4,9 +4,9 @@ category: LLM
 upstream:
   repository: openvinotoolkit/openvino_notebooks
   branch: latest
-  commit: a8809170cc4fc6aa633fbb9c22214be67ac20b47
+  commit: 329562e6031d1a989017d08697b0fabe5a989492
   path: notebooks/deepseek-r1/deepseek-r1.ipynb
-  url: https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/deepseek-r1/deepseek-r1.ipynb
+  url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/deepseek-r1/deepseek-r1.ipynb
 model:
   name: deepseek-ai/DeepSeek-R1-Distill-Qwen-7B
   source: OpenVINO/DeepSeek-R1-Distill-Qwen-7B-int4-ov (preconverted INT4)
