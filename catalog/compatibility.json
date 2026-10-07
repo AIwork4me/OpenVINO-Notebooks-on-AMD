@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-07T09:28:24+00:00",
+  "generated": "2026-10-07T09:38:08+00:00",
   "upstream": {
     "fetch_method": "github git-blobs API (sha1-verified); tarball transport failed on this network",
     "files_ok": 572,
@@ -1323,7 +1323,9 @@
       "device_used": "CPU",
       "last_tested": "2026-10-05T19:48:53+00:00",
       "evidence": "results/handwritten-ocr/20261005T194844Z-cpu",
-      "notes": []
+      "notes": [
+        "platform_id backfilled by comprehensive audit from evidence hardware.json (field predated these records)"
+      ]
     },
     {
       "id": "hello-detection",
@@ -1351,7 +1353,9 @@
       "device_used": "CPU",
       "last_tested": "2026-10-05T19:43:49+00:00",
       "evidence": "results/hello-detection/20261007T035733Z-gpu",
-      "notes": []
+      "notes": [
+        "platform_id backfilled by comprehensive audit from evidence hardware.json (field predated these records)"
+      ]
     },
     {
       "id": "hello-npu",
@@ -1409,7 +1413,10 @@
       "device_used": "CPU",
       "last_tested": "2026-10-05T19:43:59+00:00",
       "evidence": "results/hello-segmentation/20261005T194349Z-cpu",
-      "notes": []
+      "notes": [
+        "platform_id backfilled by comprehensive audit from evidence hardware.json (field predated these records)",
+        "contract strengthened by comprehensive audit (rendered-segmentation figure + CPU device markers), re-evaluated against captured outputs: passed"
+      ]
     },
     {
       "id": "hello-world",
@@ -4291,7 +4298,8 @@
       "cpu_compatibility_outcome": "VERIFIED_WITH_LIMITATIONS",
       "cpu_outcome_reason": "",
       "cpu_limitation_codes": [
-        "REPEATABILITY_NOT_ESTABLISHED"
+        "REPEATABILITY_NOT_ESTABLISHED",
+        "INTERACTIVE_UI_NOT_TESTED"
       ],
       "cpu_evidence": "results/stable-video-diffusion/20261006T222152Z-cpu",
       "cpu_validation_level": "WORKLOAD_CORRECTNESS",

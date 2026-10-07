@@ -1,6 +1,6 @@
 # Full 171-Entry Integrity Audit (generated)
 
-Generated: 2026-10-07T09:28:42+00:00 · pin `329562e6031d`
+Generated: 2026-10-07T09:38:08+00:00 · pin `329562e6031d`
 
 Verdicts: {'OK': 168, 'WARN': 3}
 

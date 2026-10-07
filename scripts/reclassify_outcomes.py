@@ -230,7 +230,20 @@ def main() -> int:
             r["compatibility_outcome"] = outcome.value
             r["outcome_reason"] = reason
             if status == "VERIFIED_WITH_LIMITATIONS":
-                r["limitation_codes"] = limitation_codes(r.get("notes") or [])
+                codes = limitation_codes(r.get("notes") or [])
+                # UI-skip evidence also lives in validation.json notes ("N
+                # cell(s) skipped via documented patch"); state notes don't
+                # always carry it (gate-6 finding on stable-video-diffusion)
+                ev_val = None
+                if ev_dir and (ev_dir / "validation.json").exists():
+                    try:
+                        ev_val = json.loads((ev_dir / "validation.json").read_text())
+                    except json.JSONDecodeError:
+                        ev_val = None
+                if ev_val and any("skipped via documented patch" in n for n in ev_val.get("notes", [])):
+                    if "INTERACTIVE_UI_NOT_TESTED" not in codes:
+                        codes.append("INTERACTIVE_UI_NOT_TESTED")
+                r["limitation_codes"] = codes
             before[status] = before.get(status, 0) + 1
             after[outcome.value] = after.get(outcome.value, 0) + 1
 

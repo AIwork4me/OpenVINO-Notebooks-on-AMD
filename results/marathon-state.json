@@ -66,10 +66,13 @@
           "reused": true,
           "created": false
         },
-        "notes": [],
+        "notes": [
+          "platform_id backfilled by comprehensive audit from evidence hardware.json (field predated these records)"
+        ],
         "updated": "2026-10-05T19:43:49+00:00",
         "compatibility_outcome": "VERIFIED",
-        "outcome_reason": ""
+        "outcome_reason": "",
+        "platform_id": "ryzen-ai-max-395-radeon-8060s"
       },
       "gpu": {
         "status": "VERIFIED",
@@ -135,10 +138,14 @@
           "reused": true,
           "created": false
         },
-        "notes": [],
+        "notes": [
+          "platform_id backfilled by comprehensive audit from evidence hardware.json (field predated these records)",
+          "contract strengthened by comprehensive audit (rendered-segmentation figure + CPU device markers), re-evaluated against captured outputs: passed"
+        ],
         "updated": "2026-10-05T19:43:59+00:00",
         "compatibility_outcome": "VERIFIED",
-        "outcome_reason": ""
+        "outcome_reason": "",
+        "platform_id": "ryzen-ai-max-395-radeon-8060s"
       }
     },
     "openvino-api": {
@@ -1103,10 +1110,13 @@
           "reused": true,
           "created": false
         },
-        "notes": [],
+        "notes": [
+          "platform_id backfilled by comprehensive audit from evidence hardware.json (field predated these records)"
+        ],
         "updated": "2026-10-05T19:48:53+00:00",
         "compatibility_outcome": "VERIFIED",
-        "outcome_reason": ""
+        "outcome_reason": "",
+        "platform_id": "ryzen-ai-max-395-radeon-8060s"
       }
     },
     "inpainting-genai": {
@@ -4800,7 +4810,8 @@
         "compatibility_outcome": "VERIFIED_WITH_LIMITATIONS",
         "outcome_reason": "",
         "limitation_codes": [
-          "REPEATABILITY_NOT_ESTABLISHED"
+          "REPEATABILITY_NOT_ESTABLISHED",
+          "INTERACTIVE_UI_NOT_TESTED"
         ]
       }
     },
@@ -5664,7 +5675,7 @@
       "log_tail": "Collecting json5\n  Using cached json5-0.15.0-py3-none-any.whl.metadata (37 kB)\nUsing cached json5-0.15.0-py3-none-any.whl (36 kB)\nInstalling collected packages: json5\nSuccessfully installed json5-0.15.0\n"
     }
   ],
-  "last_checkpoint": "2026-10-07T09:28:11+00:00",
+  "last_checkpoint": "2026-10-07T09:38:07+00:00",
   "current_workload": "llm-agent-react-langchain",
   "env_repairs": [
     {
