@@ -1,17 +1,16 @@
 {
   "started": "2026-10-01T09:40:27+00:00",
   "upstream": {
+    "fetch_method": "github git-blobs API (sha1-verified); tarball transport failed on this network",
+    "files_ok": 572,
+    "files_cached": 0,
+    "files_failed": 0,
     "repository": "openvinotoolkit/openvino_notebooks",
     "branch": "latest",
-    "commit": "a8809170cc4fc6aa633fbb9c22214be67ac20b47",
-    "commit_date": "2026-09-30T13:40:38Z",
-    "commit_subject": "Bump ipykernel from 6.31.0 to 7.3.0 in /.docker (#3704)",
-    "discovered_at": "2026-10-01T09:53:40Z",
-    "local_path": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.cache/upstream",
-    "fetch_method": "github git-blobs API (sha1-verified); git protocol throttled ~47KB/s, raw CDN stalls on this network",
-    "files_ok": 0,
-    "files_cached": 570,
-    "files_failed": 1
+    "commit": "329562e6031d1a989017d08697b0fabe5a989492",
+    "commit_date": "2026-10-05T16:50:18Z",
+    "commit_subject": "[CI] [GHA] Copy `notebook_utils.py` into notebook folders before tests start instead of downloading it at runtime (#3712)",
+    "discovered_at": "2026-10-07T00:37:36Z"
   },
   "attempts": {
     "hello-world": {
@@ -247,7 +246,7 @@
     },
     "cosyvoice3-tts": {
       "cpu": {
-        "status": "FAILED",
+        "status": "REVALIDATION_REQUIRED",
         "failure_category": "UNKNOWN",
         "ok_runs": 0,
         "durations_s": [],
@@ -256,7 +255,13 @@
         "notes": [
           "ok_runs=0/3: \u001b[31mCalledProcessError\u001b[39m: Command '['/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/bin/python', '-m', 'pip', 'install', '-q', '--extra-index-url', '//huggingface\\\\.co', ':https://hf-mirror.com://download.pytorch.org/whl/cpu', 'setuptools<82', 'nncf', 'openvino>=2025.4.0', 'gradio', 'hugg"
         ],
-        "updated": "2026-10-01T16:38:01+00:00"
+        "updated": "2026-10-07T00:41:39+00:00",
+        "historical_status": "FAILED",
+        "historical_evidence": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/cosyvoice3-tts/20261001T163759Z-cpu",
+        "revalidation_reasons": [
+          "pin:a8809170cc4f->329562e6031d",
+          "upstream_notebook_changed"
+        ]
       }
     },
     "darkir-image-restoration": {
@@ -423,17 +428,23 @@
     },
     "smolvlm2": {
       "gpu": {
-        "status": "VERIFIED",
+        "status": "REVALIDATION_REQUIRED",
         "failure_category": "",
         "notes": [],
         "evidence_dir": "results/smolvlm2/20261006T052325Z-gpu",
         "device_proof": "PROVEN_GPU",
         "validation_level": "WORKLOAD_CORRECTNESS",
         "platform_id": "amd-epyc-9334-32-core-processor-gfx1100",
-        "updated": "2026-10-06T05:29:47+00:00"
+        "updated": "2026-10-07T00:41:39+00:00",
+        "historical_status": "VERIFIED",
+        "historical_evidence": "results/smolvlm2/20261006T052325Z-gpu",
+        "revalidation_reasons": [
+          "pin:a8809170cc4f->329562e6031d",
+          "upstream_notebook_changed"
+        ]
       },
       "cpu": {
-        "status": "FAILED",
+        "status": "REVALIDATION_REQUIRED",
         "failure_category": "UNKNOWN",
         "ok_runs": 0,
         "required_runs": 1,
@@ -453,12 +464,18 @@
         "notes": [
           "ok_runs=0/1: \u001b[31mFileNotFoundError\u001b[39m: [Errno 2] No such file or directory: 'optimum-cli'"
         ],
-        "updated": "2026-10-05T20:44:51+00:00"
+        "updated": "2026-10-07T00:41:39+00:00",
+        "historical_status": "FAILED",
+        "historical_evidence": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/smolvlm2/20261005T204227Z-cpu",
+        "revalidation_reasons": [
+          "pin:a8809170cc4f->329562e6031d",
+          "upstream_notebook_changed"
+        ]
       }
     },
     "flex.2-image-generation": {
       "cpu": {
-        "status": "FAILED",
+        "status": "REVALIDATION_REQUIRED",
         "failure_category": "UNKNOWN",
         "ok_runs": 0,
         "durations_s": [],
@@ -467,7 +484,13 @@
         "notes": [
           "ok_runs=0/3: \u001b[31mInvalidSchema\u001b[39m: No connection adapters were found for '//huggingface\\\\.co :https://hf-mirror.com://huggingface.co/spaces/VIDraft/Flex-preview/resolve/main/pipeline.py'"
         ],
-        "updated": "2026-10-01T16:46:20+00:00"
+        "updated": "2026-10-07T00:41:39+00:00",
+        "historical_status": "FAILED",
+        "historical_evidence": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/flex.2-image-generation/20261001T164618Z-cpu",
+        "revalidation_reasons": [
+          "pin:a8809170cc4f->329562e6031d",
+          "upstream_notebook_changed"
+        ]
       }
     },
     "qwen3": {
@@ -573,17 +596,23 @@
     },
     "kokoro": {
       "gpu": {
-        "status": "VERIFIED",
+        "status": "REVALIDATION_REQUIRED",
         "failure_category": "",
         "notes": [],
         "evidence_dir": "results/kokoro/20261006T044931Z-gpu",
         "device_proof": "PROVEN_GPU",
         "validation_level": "WORKLOAD_CORRECTNESS",
         "platform_id": "amd-epyc-9334-32-core-processor-gfx1100",
-        "updated": "2026-10-06T04:50:21+00:00"
+        "updated": "2026-10-07T00:41:39+00:00",
+        "historical_status": "VERIFIED",
+        "historical_evidence": "results/kokoro/20261006T044931Z-gpu",
+        "revalidation_reasons": [
+          "pin:a8809170cc4f->329562e6031d",
+          "upstream_notebook_changed"
+        ]
       },
       "cpu": {
-        "status": "VERIFIED_WITH_LIMITATIONS",
+        "status": "REVALIDATION_REQUIRED",
         "failure_category": "",
         "ok_runs": 3,
         "required_runs": 3,
@@ -608,7 +637,13 @@
           "DEVICE_PROOF_NOT_OBSERVED: no OpenVINO compile_model call was captured by the probe (notebooks driving openvino_genai pipelines or conversion-only code bypass the Python Core API; positive device execution therefore unproven)",
           "CORE_INFERENCE_VERIFIED; INTERACTIVE_UI_NOT_TESTED (documented skip policy)"
         ],
-        "updated": "2026-10-05T19:49:17+00:00"
+        "updated": "2026-10-07T00:41:39+00:00",
+        "historical_status": "VERIFIED_WITH_LIMITATIONS",
+        "historical_evidence": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/kokoro/20261005T194853Z-cpu",
+        "revalidation_reasons": [
+          "pin:a8809170cc4f->329562e6031d",
+          "upstream_notebook_changed"
+        ]
       }
     },
     "glm-ocr": {
@@ -1272,7 +1307,7 @@
     },
     "hunyuan-ocr": {
       "cpu": {
-        "status": "FAILED",
+        "status": "REVALIDATION_REQUIRED",
         "failure_category": "NETWORK",
         "ok_runs": 0,
         "durations_s": [],
@@ -1281,7 +1316,13 @@
         "notes": [
           "ok_runs=0/1: \u001b[31mCalledProcessError\u001b[39m: Command '['/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/bin/python', '-m', 'pip', 'install', '-q', 'git+https://github.com/openvino-dev-samples/optimum-intel.git@hunyuan-ocr-support']' returned non-zero exit status 1."
         ],
-        "updated": "2026-10-01T19:15:58+00:00"
+        "updated": "2026-10-07T00:41:39+00:00",
+        "historical_status": "FAILED",
+        "historical_evidence": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/hunyuan-ocr/20261001T191339Z-cpu",
+        "revalidation_reasons": [
+          "pin:a8809170cc4f->329562e6031d",
+          "upstream_notebook_changed"
+        ]
       }
     },
     "hunyuan-translation": {
@@ -1525,7 +1566,7 @@
     },
     "ministral-3": {
       "cpu": {
-        "status": "FAILED",
+        "status": "REVALIDATION_REQUIRED",
         "failure_category": "UNKNOWN",
         "ok_runs": 0,
         "durations_s": [],
@@ -1534,7 +1575,13 @@
         "notes": [
           "ok_runs=0/1: \u001b[31mFileNotFoundError\u001b[39m: [Errno 2] No such file or directory: 'optimum-cli'"
         ],
-        "updated": "2026-10-01T20:33:07+00:00"
+        "updated": "2026-10-07T00:41:39+00:00",
+        "historical_status": "FAILED",
+        "historical_evidence": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/ministral-3/20261001T203043Z-cpu",
+        "revalidation_reasons": [
+          "pin:a8809170cc4f->329562e6031d",
+          "upstream_notebook_changed"
+        ]
       }
     },
     "mllama-3.2": {
@@ -1567,7 +1614,7 @@
     },
     "olmocr-pdf-vlm": {
       "cpu": {
-        "status": "FAILED",
+        "status": "REVALIDATION_REQUIRED",
         "failure_category": "UNKNOWN",
         "ok_runs": 0,
         "durations_s": [],
@@ -1576,7 +1623,13 @@
         "notes": [
           "ok_runs=0/1: \u001b[31mCalledProcessError\u001b[39m: Command '['/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/bin/python', '-m', 'pip', 'install', '-qU', '--pre', 'openvino>=2025.0.0', 'openvino-tokenizers>=2025.0.0', 'openvino-genai>=2025.0.0', 'nncf>=2.15.0', '--extra-index-url', '//huggingface\\\\.co', ':https://"
         ],
-        "updated": "2026-10-01T18:05:57+00:00"
+        "updated": "2026-10-07T00:41:39+00:00",
+        "historical_status": "FAILED",
+        "historical_evidence": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/olmocr-pdf-vlm/20261001T180555Z-cpu",
+        "revalidation_reasons": [
+          "pin:a8809170cc4f->329562e6031d",
+          "upstream_notebook_changed"
+        ]
       }
     },
     "openvoice": {
@@ -1595,7 +1648,7 @@
     },
     "openvoice2-and-melotts": {
       "cpu": {
-        "status": "FAILED",
+        "status": "REVALIDATION_REQUIRED",
         "failure_category": "UNKNOWN",
         "ok_runs": 0,
         "durations_s": [],
@@ -1604,7 +1657,13 @@
         "notes": [
           "ok_runs=0/1: \u001b[31mCalledProcessError\u001b[39m: Command '['git', 'clone', '//huggingface\\\\.co :https://hf-mirror.com://github.com/myshell-ai/OpenVoice']' returned non-zero exit status 128."
         ],
-        "updated": "2026-10-01T18:06:04+00:00"
+        "updated": "2026-10-07T00:41:39+00:00",
+        "historical_status": "FAILED",
+        "historical_evidence": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/openvoice2-and-melotts/20261001T180602Z-cpu",
+        "revalidation_reasons": [
+          "pin:a8809170cc4f->329562e6031d",
+          "upstream_notebook_changed"
+        ]
       }
     },
     "paddle-ocr-webcam": {
@@ -2281,7 +2340,7 @@
     },
     "pointpillars": {
       "cpu": {
-        "status": "VERIFIED_WITH_LIMITATIONS",
+        "status": "REVALIDATION_REQUIRED",
         "failure_category": "",
         "ok_runs": 3,
         "required_runs": 3,
@@ -2305,7 +2364,13 @@
         "notes": [
           "EXECUTION_ONLY: no workload correctness contract (validation: {})"
         ],
-        "updated": "2026-10-05T22:50:55+00:00"
+        "updated": "2026-10-07T00:41:39+00:00",
+        "historical_status": "VERIFIED_WITH_LIMITATIONS",
+        "historical_evidence": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/pointpillars/20261005T224706Z-cpu",
+        "revalidation_reasons": [
+          "pin:a8809170cc4f->329562e6031d",
+          "upstream_notebook_changed"
+        ]
       }
     },
     "pytorch-post-training-quantization-nncf": {
@@ -2398,7 +2463,7 @@
     },
     "segment-anything-2-image": {
       "cpu": {
-        "status": "FAILED",
+        "status": "REVALIDATION_REQUIRED",
         "failure_category": "UNKNOWN",
         "ok_runs": 0,
         "required_runs": 3,
@@ -2418,7 +2483,13 @@
         "notes": [
           "ok_runs=0/3: \u001b[31mCalledProcessError\u001b[39m: Command '['git', 'clone', 'https://github.com/facebookresearch/sam2.git']' returned non-zero exit status 128."
         ],
-        "updated": "2026-10-05T23:11:30+00:00"
+        "updated": "2026-10-07T00:41:39+00:00",
+        "historical_status": "FAILED",
+        "historical_evidence": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/segment-anything-2-image/20261005T230918Z-cpu",
+        "revalidation_reasons": [
+          "pin:a8809170cc4f->329562e6031d",
+          "upstream_notebook_changed"
+        ]
       }
     },
     "siglip-zero-shot-image-classification": {
@@ -2903,7 +2974,7 @@
       "log_tail": "Collecting soxr\n  Using cached soxr-1.1.0-cp312-abi3-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata (5.8 kB)\nRequirement already satisfied: numpy in ./.venvs/cpu/14c79f40de9d556c/lib/python3.12/site-packages (from soxr) (2.1.3)\nUsing cached soxr-1.1.0-cp312-abi3-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl (240 kB)\nInstalling collected packages: soxr\nSuccessfully installed soxr-1.1.0\n"
     }
   ],
-  "last_checkpoint": "2026-10-06T06:51:32+00:00",
+  "last_checkpoint": "2026-10-07T00:41:39+00:00",
   "current_workload": "bernini-r-image-video",
   "env_repairs": [
     {

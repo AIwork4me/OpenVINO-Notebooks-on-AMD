@@ -24,7 +24,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 from ov_amd.environment import REPO_ROOT  # noqa: E402
-from ov_amd.scheduler import STATE_PATH, load_state, save_state  # noqa: E402
+from ov_amd.scheduler import load_state, save_state  # noqa: E402
 
 KINDS = ("*.ipynb", "requirements*.txt", "*.py")
 
@@ -104,7 +104,7 @@ def main() -> int:
             if r.get("evidence_dir") and not r.get("historical_evidence"):
                 r["historical_evidence"] = r["evidence_dir"]
             r["revalidation_reasons"] = sorted(
-                set((r.get("revalidation_reasons") or []))
+                set(r.get("revalidation_reasons") or [])
                 | {"upstream_notebook_changed", f"pin:{(old_commit or '?')[:12]}->{new_commit[:12]}"}
             )
             r["status"] = "REVALIDATION_REQUIRED"
