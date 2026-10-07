@@ -1,12 +1,12 @@
-id: qwen3.8-mtp
-title: Qwen3.8 Mtp
-category: LLM
+id: pyannote-embedding
+title: Pyannote Embedding
+category: ASR
 upstream:
   repository: openvinotoolkit/openvino_notebooks
   branch: latest
   commit: 5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b
-  path: notebooks/qwen3.8-mtp/qwen3.8-mtp.ipynb
-  url: https://github.com/openvinotoolkit/openvino_notebooks/blob/5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b/notebooks/qwen3.8-mtp/qwen3.8-mtp.ipynb
+  path: notebooks/pyannote-audio/pyannote-embedding.ipynb
+  url: https://github.com/openvinotoolkit/openvino_notebooks/blob/5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b/notebooks/pyannote-audio/pyannote-embedding.ipynb
 model:
   name: ''
   source: ''
@@ -14,7 +14,7 @@ model:
   license: ''
 cpu:
   runtime: openvino
-  status: FAILED
+  status: NOT_TESTED
 gpu:
   runtime: ''
   status: NOT_TESTED

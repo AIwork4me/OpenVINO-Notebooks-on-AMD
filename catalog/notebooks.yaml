@@ -1,41 +1,37 @@
-generated: '2026-10-01T09:53:40Z'
-upstream_commit: 329562e6031d1a989017d08697b0fabe5a989492
+generated: '2026-10-07T14:54:27Z'
+upstream_commit: 5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b
 notebooks:
 - id: pointpillars
   title: Pointpillars
   category: Vision
   upstream_path: notebooks/3D-point-pillars/pointpillars.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/3D-point-pillars/pointpillars.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b/notebooks/3D-point-pillars/pointpillars.ipynb
   requirements_path: null
   priority: 2
   workload_type: vision
   est_weight: small
   cpu_meaningful: true
-  gpu_meaningful: false
+  gpu_meaningful: true
   twin_level: WORKLOAD_TWIN
-  notes: 'twin: 3D object detection from LiDAR point clouds with PointPillars, a task and architecture
-    readily available in the PyTorch ecosystem (OpenPCDet/mmdet3d) on ROCm, even though this notebook
-    drives openvino_contrib''s custom-op export and OV e2e inference.'
+  notes: ''
 - id: 3d-pose-estimation
   title: 3D Pose Estimation
   category: Vision
   upstream_path: notebooks/3D-pose-estimation-webcam/3D-pose-estimation.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/3D-pose-estimation-webcam/3D-pose-estimation.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b/notebooks/3D-pose-estimation-webcam/3D-pose-estimation.ipynb
   requirements_path: null
   priority: 3
   workload_type: vision
   est_weight: large
   cpu_meaningful: true
-  gpu_meaningful: false
+  gpu_meaningful: true
   twin_level: WORKLOAD_TWIN
-  notes: 'twin: 3D human pose estimation with the OMZ human-pose-estimation-3d-0001 model (converted from
-    its PyTorch checkpoint) has comparable PyTorch implementations (e.g. MMPose) runnable on Radeon, and
-    the webcam loop is just an input source for real inference.'
+  notes: ''
 - id: 3d-segmentation-point-clouds
   title: 3D Segmentation Point Clouds
   category: Vision
   upstream_path: notebooks/3D-segmentation-point-clouds/3D-segmentation-point-clouds.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/3D-segmentation-point-clouds/3D-segmentation-point-clouds.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b/notebooks/3D-segmentation-point-clouds/3D-segmentation-point-clouds.ipynb
   requirements_path: null
   priority: 2
   workload_type: vision
@@ -48,66 +44,59 @@ notebooks:
   title: Ace Step Music Generation
   category: TTS
   upstream_path: notebooks/ace-step-music-generation/ace-step-music-generation.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/ace-step-music-generation/ace-step-music-generation.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b/notebooks/ace-step-music-generation/ace-step-music-generation.ipynb
   requirements_path: null
   priority: 1
   workload_type: tts
   est_weight: small
   cpu_meaningful: true
-  gpu_meaningful: false
+  gpu_meaningful: true
   twin_level: WORKLOAD_TWIN
-  notes: 'twin: Text-to-music generation and audio editing with the ACE-Step pipeline, whose PyTorch implementation
-    is exercised directly in the notebook and is runnable on ROCm before the NNCF-compressed OpenVINO
-    path.'
+  notes: ''
 - id: action-recognition-webcam
   title: Action Recognition Webcam
   category: Video
   upstream_path: notebooks/action-recognition-webcam/action-recognition-webcam.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/action-recognition-webcam/action-recognition-webcam.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b/notebooks/action-recognition-webcam/action-recognition-webcam.ipynb
   requirements_path: null
   priority: 3
   workload_type: video
   est_weight: large
   cpu_meaningful: true
-  gpu_meaningful: false
+  gpu_meaningful: true
   twin_level: WORKLOAD_TWIN
-  notes: 'twin: Video action recognition with the OMZ action-recognition-0001 encoder-decoder is a standard
-    video-classification task with comparable PyTorch models runnable on ROCm, with the webcam feed only
-    supplying frames.'
+  notes: ''
 - id: aloha-act
   title: Aloha Act
   category: LLM
   upstream_path: notebooks/aloha-act/aloha-act.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/aloha-act/aloha-act.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b/notebooks/aloha-act/aloha-act.ipynb
   requirements_path: null
   priority: 1
   workload_type: llm
   est_weight: small
   cpu_meaningful: true
-  gpu_meaningful: false
+  gpu_meaningful: true
   twin_level: WORKLOAD_TWIN
-  notes: 'twin: ACT robot-policy imitation learning from tonyzhaozh/act is native PyTorch (training/eval
-    invoked with an explicit --device), so policy conversion and evaluation twin directly on ROCm despite
-    the Intel embodied-SDK sample checkpoint.'
+  notes: ''
 - id: animate-anyone
   title: Animate Anyone
   category: Image Generation
   upstream_path: notebooks/animate-anyone/animate-anyone.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/animate-anyone/animate-anyone.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b/notebooks/animate-anyone/animate-anyone.ipynb
   requirements_path: null
   priority: 1
   workload_type: image-generation
   est_weight: large
   cpu_meaningful: true
-  gpu_meaningful: false
+  gpu_meaningful: true
   twin_level: WORKLOAD_TWIN
-  notes: 'twin: Pose-driven human video generation with the Moore-AnimateAnyone PyTorch repo (SD-1.5-based
-    UNets, pose guider, CLIP encoder), whose models and task run in PyTorch on ROCm.'
+  notes: ''
 - id: async-api
   title: Async Api
   category: API
   upstream_path: notebooks/async-api/async-api.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/async-api/async-api.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b/notebooks/async-api/async-api.ipynb
   requirements_path: null
   priority: 3
   workload_type: api
@@ -120,7 +109,7 @@ notebooks:
   title: Auto Device
   category: API
   upstream_path: notebooks/auto-device/auto-device.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/auto-device/auto-device.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b/notebooks/auto-device/auto-device.ipynb
   requirements_path: null
   priority: 2
   workload_type: api
@@ -128,43 +117,38 @@ notebooks:
   cpu_meaningful: true
   gpu_meaningful: false
   twin_level: OPENVINO_SPECIFIC
-  notes: 'twin: The notebook is a guided tour of OpenVINO''s AUTO device selection, available_devices
-    queries, compile-on-demand and log-level properties with no AI task beyond exercising the API itself,
-    so a ROCm twin is not applicable.'
+  notes: ''
 - id: bark-text-to-audio
   title: Bark Text To Audio
   category: TTS
   upstream_path: notebooks/bark-text-to-audio/bark-text-to-audio.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/bark-text-to-audio/bark-text-to-audio.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b/notebooks/bark-text-to-audio/bark-text-to-audio.ipynb
   requirements_path: null
   priority: 1
   workload_type: tts
   est_weight: small
   cpu_meaningful: true
-  gpu_meaningful: false
+  gpu_meaningful: true
   twin_level: WORKLOAD_TWIN
-  notes: 'twin: Bark text-to-audio generation where the notebook itself loads the PyTorch Bark models
-    from a bark fork and converts them, and the same torch models run on ROCm.'
+  notes: ''
 - id: bernini-r-image-video
   title: Bernini R Image Video
   category: Video
   upstream_path: notebooks/bernini-r-image-video/bernini-r-image-video.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/bernini-r-image-video/bernini-r-image-video.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b/notebooks/bernini-r-image-video/bernini-r-image-video.ipynb
   requirements_path: null
   priority: 2
   workload_type: video
   est_weight: medium
   cpu_meaningful: true
-  gpu_meaningful: false
+  gpu_meaningful: true
   twin_level: WORKLOAD_TWIN
-  notes: 'twin: Unified text-to-image and text-to-video generation with ByteDance Bernini-R, a diffusers-format
-    model that runs in PyTorch on ROCm, with NNCF INT8/INT4 compression only an option on the OpenVINO
-    path.'
+  notes: ''
 - id: blip-visual-language-processing
   title: Blip Visual Language Processing
   category: VLM
   upstream_path: notebooks/blip-visual-language-processing/blip-visual-language-processing.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/blip-visual-language-processing/blip-visual-language-processing.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b/notebooks/blip-visual-language-processing/blip-visual-language-processing.ipynb
   requirements_path: null
   priority: 1
   workload_type: vlm
@@ -177,21 +161,20 @@ notebooks:
   title: Catvton
   category: Image Generation
   upstream_path: notebooks/catvton/catvton.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/catvton/catvton.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b/notebooks/catvton/catvton.ipynb
   requirements_path: null
   priority: 1
   workload_type: image-generation
   est_weight: small
   cpu_meaningful: true
-  gpu_meaningful: false
+  gpu_meaningful: true
   twin_level: WORKLOAD_TWIN
-  notes: 'twin: Virtual try-on image generation with CatVTON, a PyTorch repo whose VAE/UNet/automasker
-    pipeline (and equivalents in diffusers) runs on ROCm.'
+  notes: ''
 - id: clip-zero-shot-classification
   title: Clip Zero Shot Classification
   category: Vision
   upstream_path: notebooks/clip-zero-shot-image-classification/clip-zero-shot-classification.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/clip-zero-shot-image-classification/clip-zero-shot-classification.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b/notebooks/clip-zero-shot-image-classification/clip-zero-shot-classification.ipynb
   requirements_path: null
   priority: 2
   workload_type: vision
@@ -204,7 +187,7 @@ notebooks:
   title: Controlnet Stable Diffusion
   category: Image Generation
   upstream_path: notebooks/controlnet-stable-diffusion/controlnet-stable-diffusion.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/controlnet-stable-diffusion/controlnet-stable-diffusion.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b/notebooks/controlnet-stable-diffusion/controlnet-stable-diffusion.ipynb
   requirements_path: null
   priority: 1
   workload_type: image-generation
@@ -217,7 +200,7 @@ notebooks:
   title: Convert To Openvino
   category: Conversion
   upstream_path: notebooks/convert-to-openvino/convert-to-openvino.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/convert-to-openvino/convert-to-openvino.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b/notebooks/convert-to-openvino/convert-to-openvino.ipynb
   requirements_path: null
   priority: 2
   workload_type: conversion
@@ -230,7 +213,7 @@ notebooks:
   title: Cosyvoice3 Tts
   category: TTS
   upstream_path: notebooks/cosyvoice3-tts/cosyvoice3-tts.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/cosyvoice3-tts/cosyvoice3-tts.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b/notebooks/cosyvoice3-tts/cosyvoice3-tts.ipynb
   requirements_path: null
   priority: 1
   workload_type: tts
@@ -243,7 +226,7 @@ notebooks:
   title: Ct Segmentation Quantize Nncf
   category: Vision
   upstream_path: notebooks/ct-segmentation-quantize/ct-segmentation-quantize-nncf.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/ct-segmentation-quantize/ct-segmentation-quantize-nncf.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b/notebooks/ct-segmentation-quantize/ct-segmentation-quantize-nncf.ipynb
   requirements_path: null
   priority: 2
   workload_type: vision
@@ -251,28 +234,25 @@ notebooks:
   cpu_meaningful: true
   gpu_meaningful: true
   twin_level: WORKLOAD_TWIN
-  notes: 'twin correction: notebook runs real PyTorch task inference (baseline) before OpenVINO conversion
-    -> task notebook (WORKLOAD_TWIN)'
+  notes: ''
 - id: darkir-image-restoration
   title: Darkir Image Restoration
   category: Image Generation
   upstream_path: notebooks/darkir-image-restoration/darkir-image-restoration.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/darkir-image-restoration/darkir-image-restoration.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b/notebooks/darkir-image-restoration/darkir-image-restoration.ipynb
   requirements_path: null
   priority: 1
   workload_type: image-generation
   est_weight: large
   cpu_meaningful: true
-  gpu_meaningful: false
+  gpu_meaningful: true
   twin_level: WORKLOAD_TWIN
-  notes: 'twin: Low-light/blind image restoration with DarkIR, a standard PyTorch model loaded from HF
-    weights and run in torch inside the notebook before ov.convert_model, so the same task and weights
-    run on ROCm.'
+  notes: ''
 - id: deepseek-ocr
   title: Deepseek Ocr
   category: OCR
   upstream_path: notebooks/deepseek-ocr/deepseek-ocr.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/deepseek-ocr/deepseek-ocr.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b/notebooks/deepseek-ocr/deepseek-ocr.ipynb
   requirements_path: null
   priority: 1
   workload_type: ocr
@@ -285,94 +265,85 @@ notebooks:
   title: Deepseek R1
   category: LLM
   upstream_path: notebooks/deepseek-r1/deepseek-r1.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/deepseek-r1/deepseek-r1.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b/notebooks/deepseek-r1/deepseek-r1.ipynb
   requirements_path: null
   priority: 1
   workload_type: llm
   est_weight: small
   cpu_meaningful: true
-  gpu_meaningful: false
+  gpu_meaningful: true
   twin_level: WORKLOAD_TWIN
-  notes: 'twin: LLM chat with DeepSeek-R1 distill checkpoints pulled from HF, the same public revisions
-    of which run in PyTorch/vLLM on ROCm; optimum conversion and weight compression are just the serving
-    path.'
+  notes: ''
 - id: deepseek-vl2
   title: Deepseek Vl2
   category: LLM
   upstream_path: notebooks/deepseek-vl2/deepseek-vl2.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/deepseek-vl2/deepseek-vl2.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b/notebooks/deepseek-vl2/deepseek-vl2.ipynb
   requirements_path: null
   priority: 1
   workload_type: llm
   est_weight: small
   cpu_meaningful: true
-  gpu_meaningful: false
+  gpu_meaningful: true
   twin_level: WORKLOAD_TWIN
-  notes: 'twin: Multimodal VLM chat with DeepSeek-VL2-tiny/small, whose PyTorch implementation from HF
-    runs on ROCm, with the OV conversion and INT4/INT8 compression being only the inference path.'
+  notes: ''
 - id: depth-anything
   title: Depth Anything
   category: Vision
   upstream_path: notebooks/depth-anything/depth-anything.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/depth-anything/depth-anything.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b/notebooks/depth-anything/depth-anything.ipynb
   requirements_path: null
   priority: 3
   workload_type: vision
   est_weight: large
   cpu_meaningful: true
-  gpu_meaningful: false
+  gpu_meaningful: true
   twin_level: WORKLOAD_TWIN
-  notes: 'twin: Monocular depth estimation with HF Depth-Anything/Depth-Anything-V2 checkpoints that the
-    notebook runs directly in PyTorch before converting, and the same models are runnable on ROCm.'
+  notes: ''
 - id: detectron2-to-openvino
   title: Detectron2 To Openvino
   category: Conversion
   upstream_path: notebooks/detectron2-to-openvino/detectron2-to-openvino.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/detectron2-to-openvino/detectron2-to-openvino.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b/notebooks/detectron2-to-openvino/detectron2-to-openvino.ipynb
   requirements_path: null
   priority: 2
   workload_type: conversion
   est_weight: small
   cpu_meaningful: true
-  gpu_meaningful: false
+  gpu_meaningful: true
   twin_level: WORKLOAD_TWIN
-  notes: 'twin: Object detection/instance segmentation with Detectron2 model-zoo models; detectron2 is
-    PyTorch-native and ROCm-installable, and the conversion focus here is on concrete task models like
-    the paddle/tensorflow-to-openvino precedents rather than teaching the OV API generically.'
+  notes: ''
 - id: ernie-image
   title: Ernie Image
   category: Image Generation
   upstream_path: notebooks/ernie-image/ernie-image.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/ernie-image/ernie-image.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b/notebooks/ernie-image/ernie-image.ipynb
   requirements_path: null
   priority: 1
   workload_type: image-generation
   est_weight: small
   cpu_meaningful: true
-  gpu_meaningful: false
+  gpu_meaningful: true
   twin_level: WORKLOAD_TWIN
-  notes: 'twin: Text-to-image generation with Baidu ERNIE-Image-Turbo, a diffusers-compatible HF model
-    exportable via optimum and runnable in PyTorch on ROCm.'
+  notes: ''
 - id: fast-segment-anything
   title: Fast Segment Anything
   category: Vision
   upstream_path: notebooks/fast-segment-anything/fast-segment-anything.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/fast-segment-anything/fast-segment-anything.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b/notebooks/fast-segment-anything/fast-segment-anything.ipynb
   requirements_path: null
   priority: 2
   workload_type: vision
   est_weight: small
   cpu_meaningful: true
-  gpu_meaningful: false
+  gpu_meaningful: true
   twin_level: WORKLOAD_TWIN
-  notes: 'twin: FastSAM promptable instance segmentation demoed end-to-end in ultralytics/PyTorch, which
-    runs natively on ROCm; the OV export and optional NNCF PTQ section accelerate the task rather than
-    being the notebook''s subject.'
+  notes: ''
 - id: fireredtts2
   title: Fireredtts2
   category: TTS
   upstream_path: notebooks/fireredtts2/fireredtts2.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/fireredtts2/fireredtts2.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b/notebooks/fireredtts2/fireredtts2.ipynb
   requirements_path: null
   priority: 1
   workload_type: tts
@@ -385,7 +356,7 @@ notebooks:
   title: Flex.2 Image Generation
   category: Image Generation
   upstream_path: notebooks/flex.2-image-generation/flex.2-image-generation.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/flex.2-image-generation/flex.2-image-generation.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b/notebooks/flex.2-image-generation/flex.2-image-generation.ipynb
   requirements_path: null
   priority: 1
   workload_type: image-generation
@@ -398,35 +369,33 @@ notebooks:
   title: Florence2
   category: VLM
   upstream_path: notebooks/florence2/florence2.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/florence2/florence2.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b/notebooks/florence2/florence2.ipynb
   requirements_path: null
   priority: 1
   workload_type: vlm
   est_weight: small
   cpu_meaningful: true
-  gpu_meaningful: false
+  gpu_meaningful: true
   twin_level: WORKLOAD_TWIN
-  notes: 'twin: Florence-2 VLM for detection, grounding, OCR and captioning with the HF PyTorch implementation
-    (trust_remote_code) runnable on ROCm, converted here per-model to OpenVINO IR.'
+  notes: ''
 - id: flux-fill
   title: Flux Fill
   category: Image Generation
   upstream_path: notebooks/flux-fill/flux-fill.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/flux-fill/flux-fill.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b/notebooks/flux-fill/flux-fill.ipynb
   requirements_path: null
   priority: 1
   workload_type: image-generation
   est_weight: large
   cpu_meaningful: true
-  gpu_meaningful: false
+  gpu_meaningful: true
   twin_level: WORKLOAD_TWIN
-  notes: 'twin: Inpainting with FLUX.1-Fill-dev from diffusers via optimum export, and the same published
-    HF model runs in PyTorch/diffusers on ROCm.'
+  notes: ''
 - id: flux.1-image-generation
   title: Flux.1 Image Generation
   category: Image Generation
   upstream_path: notebooks/flux.1-image-generation/flux.1-image-generation.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/flux.1-image-generation/flux.1-image-generation.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b/notebooks/flux.1-image-generation/flux.1-image-generation.ipynb
   requirements_path: null
   priority: 1
   workload_type: image-generation
@@ -439,49 +408,46 @@ notebooks:
   title: Flux.1 Kontext
   category: Image Generation
   upstream_path: notebooks/flux.1-kontext/flux.1-kontext.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/flux.1-kontext/flux.1-kontext.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b/notebooks/flux.1-kontext/flux.1-kontext.ipynb
   requirements_path: null
   priority: 1
   workload_type: image-generation
   est_weight: large
   cpu_meaningful: true
-  gpu_meaningful: false
+  gpu_meaningful: true
   twin_level: WORKLOAD_TWIN
-  notes: 'twin: Instruction-based image editing with FLUX.1-Kontext-dev, a diffusers pipeline model runnable
-    in PyTorch on ROCm with the OV/INT4 path only serving inference.'
+  notes: ''
 - id: flux.2-klein
   title: Flux.2 Klein
   category: Image Generation
   upstream_path: notebooks/flux.2-klein/flux.2-klein.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/flux.2-klein/flux.2-klein.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b/notebooks/flux.2-klein/flux.2-klein.ipynb
   requirements_path: null
   priority: 1
   workload_type: image-generation
   est_weight: large
   cpu_meaningful: true
-  gpu_meaningful: false
+  gpu_meaningful: true
   twin_level: WORKLOAD_TWIN
-  notes: 'twin: Text-to-image generation with FLUX.2-klein 4B/9B diffusers models that run in PyTorch
-    on ROCm, exported to OpenVINO with optional INT4 compression.'
+  notes: ''
 - id: freevc-voice-conversion
   title: Freevc Voice Conversion
   category: TTS
   upstream_path: notebooks/freevc-voice-conversion/freevc-voice-conversion.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/freevc-voice-conversion/freevc-voice-conversion.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b/notebooks/freevc-voice-conversion/freevc-voice-conversion.ipynb
   requirements_path: null
   priority: 1
   workload_type: tts
   est_weight: small
   cpu_meaningful: true
-  gpu_meaningful: false
+  gpu_meaningful: true
   twin_level: WORKLOAD_TWIN
-  notes: 'twin: Speaker voice conversion with FreeVC, a PyTorch repo (SynthesizerTrn + WavLM + speaker
-    encoder) whose same checkpoints run on ROCm, converted component-wise to OpenVINO IR.'
+  notes: ''
 - id: funasr-nano
   title: Funasr Nano
   category: ASR
   upstream_path: notebooks/funasr-nano/funasr-nano.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/funasr-nano/funasr-nano.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b/notebooks/funasr-nano/funasr-nano.ipynb
   requirements_path: null
   priority: 1
   workload_type: asr
@@ -494,22 +460,20 @@ notebooks:
   title: Gemma4
   category: LLM
   upstream_path: notebooks/gemma4/gemma4.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/gemma4/gemma4.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b/notebooks/gemma4/gemma4.ipynb
   requirements_path: null
   priority: 4
   workload_type: llm
   est_weight: huge
   cpu_meaningful: true
-  gpu_meaningful: false
+  gpu_meaningful: true
   twin_level: WORKLOAD_TWIN
-  notes: 'twin: Chat/text-and-image understanding with Google Gemma-4 HF checkpoints (image-text-to-text),
-    which run in PyTorch/transformers on ROCm; optimum export and preconverted OV weights are just the
-    serving path.'
+  notes: ''
 - id: glm-ocr
   title: Glm Ocr
   category: OCR
   upstream_path: notebooks/glm-ocr/glm-ocr.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/glm-ocr/glm-ocr.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b/notebooks/glm-ocr/glm-ocr.ipynb
   requirements_path: null
   priority: 1
   workload_type: ocr
@@ -522,22 +486,20 @@ notebooks:
   title: Glm4.1 V Thinking
   category: VLM
   upstream_path: notebooks/glm4.1-v-thinking/glm4.1-v-thinking.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/glm4.1-v-thinking/glm4.1-v-thinking.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b/notebooks/glm4.1-v-thinking/glm4.1-v-thinking.ipynb
   requirements_path: null
   priority: 1
   workload_type: vlm
   est_weight: large
   cpu_meaningful: true
-  gpu_meaningful: false
+  gpu_meaningful: true
   twin_level: WORKLOAD_TWIN
-  notes: 'twin: VLM chat task notebook that converts GLM-4.1V-9B-Thinking via optimum-cli to INT4 OV IR
-    and serves a Gradio assistant; the same zai-org HF model runs directly in transformers on ROCm, so
-    a PyTorch twin of the vision-language-assistant workload is straightforward.'
+  notes: ''
 - id: gpu-device
   title: Gpu Device
   category: API
   upstream_path: notebooks/gpu-device/gpu-device.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/gpu-device/gpu-device.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b/notebooks/gpu-device/gpu-device.ipynb
   requirements_path: null
   priority: 3
   workload_type: api
@@ -545,29 +507,25 @@ notebooks:
   cpu_meaningful: true
   gpu_meaningful: false
   twin_level: OPENVINO_SPECIFIC
-  notes: 'twin: The notebook is a tutorial on OpenVINO runtime APIs itself (core.available_devices/get_property
-    device queries, compile_model options, model caching, performance hints, benchmark_app, MULTI/AUTO
-    and AsyncInferQueue), so there is no ROCm-PyTorch counterpart and the GPU twin is not applicable.'
+  notes: ''
 - id: grounded-segment-anything
   title: Grounded Segment Anything
   category: VLM
   upstream_path: notebooks/grounded-segment-anything/grounded-segment-anything.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/grounded-segment-anything/grounded-segment-anything.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b/notebooks/grounded-segment-anything/grounded-segment-anything.ipynb
   requirements_path: null
   priority: 1
   workload_type: vlm
   est_weight: small
   cpu_meaningful: true
-  gpu_meaningful: false
+  gpu_meaningful: true
   twin_level: WORKLOAD_TWIN
-  notes: 'twin: Text-prompted detection and segmentation task built from GroundingDINO and SAM/EfficientSAM
-    torch checkpoints that the notebook itself traces to OpenVINO; the identical PyTorch models run on
-    ROCm, making the same workload fully reproducible in torch.'
+  notes: ''
 - id: handwritten-ocr
   title: Handwritten Ocr
   category: OCR
   upstream_path: notebooks/handwritten-ocr/handwritten-ocr.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/handwritten-ocr/handwritten-ocr.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b/notebooks/handwritten-ocr/handwritten-ocr.ipynb
   requirements_path: null
   priority: 1
   workload_type: ocr
@@ -580,7 +538,7 @@ notebooks:
   title: Hello Detection
   category: Vision
   upstream_path: notebooks/hello-detection/hello-detection.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/hello-detection/hello-detection.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b/notebooks/hello-detection/hello-detection.ipynb
   requirements_path: null
   priority: 0
   workload_type: vision
@@ -593,7 +551,7 @@ notebooks:
   title: Hello Npu
   category: API
   upstream_path: notebooks/hello-npu/hello-npu.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/hello-npu/hello-npu.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b/notebooks/hello-npu/hello-npu.ipynb
   requirements_path: null
   priority: 0
   workload_type: api
@@ -601,14 +559,12 @@ notebooks:
   cpu_meaningful: true
   gpu_meaningful: false
   twin_level: OPENVINO_SPECIFIC
-  notes: 'twin: The notebook teaches OpenVINO device APIs on the Intel NPU (available_devices/get_property
-    queries, UMD and OpenVINO model caching, performance hints, benchmark_app NPU vs CPU), which is OpenVINO/Intel-hardware
-    tooling with no meaningful ROCm twin.'
+  notes: ''
 - id: hello-segmentation
   title: Hello Segmentation
   category: Vision
   upstream_path: notebooks/hello-segmentation/hello-segmentation.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/hello-segmentation/hello-segmentation.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b/notebooks/hello-segmentation/hello-segmentation.ipynb
   requirements_path: null
   priority: 0
   workload_type: vision
@@ -621,22 +577,20 @@ notebooks:
   title: Hello World
   category: API
   upstream_path: notebooks/hello-world/hello-world.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/hello-world/hello-world.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b/notebooks/hello-world/hello-world.ipynb
   requirements_path: null
   priority: 0
   workload_type: api
   est_weight: small
   cpu_meaningful: true
-  gpu_meaningful: false
+  gpu_meaningful: true
   twin_level: WORKLOAD_TWIN
-  notes: 'twin: Minimal image-classification task (pre-converted TF MobileNetV3 IR, load/infer/argmax
-    on one image) with the same shape as the already-WORKLOAD_TWIN hello-detection and hello-segmentation
-    notebooks; torchvision MobileNetV3 on ROCm covers the same task.'
+  notes: ''
 - id: hugging-face-hub
   title: Hugging Face Hub
   category: API
   upstream_path: notebooks/hugging-face-hub/hugging-face-hub.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/hugging-face-hub/hugging-face-hub.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b/notebooks/hugging-face-hub/hugging-face-hub.ipynb
   requirements_path: null
   priority: 2
   workload_type: api
@@ -644,15 +598,12 @@ notebooks:
   cpu_meaningful: true
   gpu_meaningful: true
   twin_level: WORKLOAD_TWIN
-  notes: 'twin: The lesson is OpenVINO conversion tooling itself - ov.convert_model/ov.save_model of an
-    HF model, optimum-intel OVModel auto-export and optimum-cli export - so on ROCm where you would simply
-    run the HF model in PyTorch, the notebook''s content has no twin.; twin correction: notebook runs
-    real PyTorch task inference (baseline) before OpenVINO conversion -> task notebook (WORKLOAD_TWIN)'
+  notes: ''
 - id: hunyuan-ocr
   title: Hunyuan Ocr
   category: OCR
   upstream_path: notebooks/hunyuan-ocr/hunyuan-ocr.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/hunyuan-ocr/hunyuan-ocr.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b/notebooks/hunyuan-ocr/hunyuan-ocr.ipynb
   requirements_path: null
   priority: 1
   workload_type: ocr
@@ -665,22 +616,20 @@ notebooks:
   title: Hunyuan Translation
   category: LLM
   upstream_path: notebooks/hunyuan-translation/hunyuan-translation.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/hunyuan-translation/hunyuan-translation.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b/notebooks/hunyuan-translation/hunyuan-translation.ipynb
   requirements_path: null
   priority: 1
   workload_type: llm
   est_weight: large
   cpu_meaningful: true
-  gpu_meaningful: false
+  gpu_meaningful: true
   twin_level: WORKLOAD_TWIN
-  notes: 'twin: Machine-translation task with tencent Hy-MT/HY-MT LLMs exported via optimum-cli and run
-    through openvino_genai.LLMPipeline; the same HF translation models run in transformers/vLLM on ROCm,
-    giving a comparable same-model PyTorch path.'
+  notes: ''
 - id: image-classification-quantization
   title: Image Classification Quantization
   category: Optimization
   upstream_path: notebooks/image-classification-quantization/image-classification-quantization.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/image-classification-quantization/image-classification-quantization.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b/notebooks/image-classification-quantization/image-classification-quantization.ipynb
   requirements_path: null
   priority: 2
   workload_type: optimization
@@ -693,22 +642,20 @@ notebooks:
   title: Image To Image Genai
   category: Image Generation
   upstream_path: notebooks/image-to-image-genai/image-to-image-genai.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/image-to-image-genai/image-to-image-genai.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b/notebooks/image-to-image-genai/image-to-image-genai.ipynb
   requirements_path: null
   priority: 1
   workload_type: image-generation
   est_weight: large
   cpu_meaningful: true
-  gpu_meaningful: false
+  gpu_meaningful: true
   twin_level: WORKLOAD_TWIN
-  notes: 'twin: Stable Diffusion v1.5 image-to-image generation via openvino_genai.Image2ImagePipeline
-    on an INT8 OV export; the identical diffusers img2img pipeline with the same SD1.5 weights runs on
-    ROCm (mirrors the WORKLOAD_TWIN inpainting-genai convention).'
+  notes: ''
 - id: inpainting-genai
   title: Inpainting Genai
   category: Image Generation
   upstream_path: notebooks/inpainting-genai/inpainting-genai.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/inpainting-genai/inpainting-genai.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b/notebooks/inpainting-genai/inpainting-genai.ipynb
   requirements_path: null
   priority: 1
   workload_type: image-generation
@@ -721,22 +668,20 @@ notebooks:
   title: Instant Id
   category: Image Generation
   upstream_path: notebooks/instant-id/instant-id.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/instant-id/instant-id.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b/notebooks/instant-id/instant-id.ipynb
   requirements_path: null
   priority: 1
   workload_type: image-generation
   est_weight: large
   cpu_meaningful: true
-  gpu_meaningful: false
+  gpu_meaningful: true
   twin_level: WORKLOAD_TWIN
-  notes: 'twin: Zero-shot identity-preserving image generation with InstantID (SDXL + InstantX ControlNet
-    + IP-Adapter + antelopev2 face models) whose components the notebook traces to OV IR and quantizes
-    with NNCF; InstantID is a torch/diffusers project that runs natively on ROCm.'
+  notes: ''
 - id: jina-clip
   title: Jina Clip
   category: Vision
   upstream_path: notebooks/jina-clip/jina-clip.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/jina-clip/jina-clip.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b/notebooks/jina-clip/jina-clip.ipynb
   requirements_path: null
   priority: 2
   workload_type: vision
@@ -749,22 +694,20 @@ notebooks:
   title: Kokoro
   category: TTS
   upstream_path: notebooks/kokoro/kokoro.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/kokoro/kokoro.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b/notebooks/kokoro/kokoro.ipynb
   requirements_path: null
   priority: 1
   workload_type: tts
   est_weight: small
   cpu_meaningful: true
-  gpu_meaningful: false
+  gpu_meaningful: true
   twin_level: WORKLOAD_TWIN
-  notes: 'twin: Text-to-speech task with hexgrad/Kokoro-82M run via openvino_genai.Text2SpeechPipeline
-    on pre-converted FP16/INT8/INT4 exports; Kokoro is a torch model with an official pip package, so
-    the same TTS workload runs on ROCm in PyTorch.'
+  notes: ''
 - id: language-quantize-bert
   title: Language Quantize Bert
   category: Optimization
   upstream_path: notebooks/language-quantize-bert/language-quantize-bert.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/language-quantize-bert/language-quantize-bert.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b/notebooks/language-quantize-bert/language-quantize-bert.ipynb
   requirements_path: null
   priority: 2
   workload_type: optimization
@@ -772,15 +715,12 @@ notebooks:
   cpu_meaningful: true
   gpu_meaningful: false
   twin_level: OPENVINO_SPECIFIC
-  notes: 'twin: The notebook is an NNCF post-training quantization tutorial (torch.export, ov.convert_model,
-    nncf.quantize with ModelType.TRANSFORMER, F1 and benchmark_app comparisons of FP32 vs INT8 IR), teaching
-    OpenVINO/NNCF optimization tooling like the OPENVINO_SPECIFIC pytorch-post-training-quantization-nncf
-    notebook.'
+  notes: ''
 - id: latent-consistency-models-image-generation
   title: Latent Consistency Models Image Generation
   category: Image Generation
   upstream_path: notebooks/latent-consistency-models-image-generation/latent-consistency-models-image-generation.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/latent-consistency-models-image-generation/latent-consistency-models-image-generation.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b/notebooks/latent-consistency-models-image-generation/latent-consistency-models-image-generation.ipynb
   requirements_path: null
   priority: 1
   workload_type: image-generation
@@ -793,7 +733,7 @@ notebooks:
   title: Llm Agent Functioncall Qwen
   category: LLM
   upstream_path: notebooks/llm-agent-functioncall/llm-agent-functioncall-qwen.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/llm-agent-functioncall/llm-agent-functioncall-qwen.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b/notebooks/llm-agent-functioncall/llm-agent-functioncall-qwen.ipynb
   requirements_path: null
   priority: 1
   workload_type: llm
@@ -806,7 +746,7 @@ notebooks:
   title: Llm Agent Mcp
   category: LLM
   upstream_path: notebooks/llm-agent-mcp/llm-agent-mcp.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/llm-agent-mcp/llm-agent-mcp.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b/notebooks/llm-agent-mcp/llm-agent-mcp.ipynb
   requirements_path: null
   priority: 1
   workload_type: llm
@@ -819,7 +759,7 @@ notebooks:
   title: Llm Agent Rag Llamaindex
   category: LLM
   upstream_path: notebooks/llm-agent-rag-llamaindex/llm-agent-rag-llamaindex.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/llm-agent-rag-llamaindex/llm-agent-rag-llamaindex.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b/notebooks/llm-agent-rag-llamaindex/llm-agent-rag-llamaindex.ipynb
   requirements_path: null
   priority: 1
   workload_type: llm
@@ -832,7 +772,7 @@ notebooks:
   title: Llm Agent React Langchain
   category: LLM
   upstream_path: notebooks/llm-agent-react-langchain/llm-agent-react-langchain.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/llm-agent-react-langchain/llm-agent-react-langchain.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b/notebooks/llm-agent-react-langchain/llm-agent-react-langchain.ipynb
   requirements_path: null
   priority: 4
   workload_type: llm
@@ -845,7 +785,7 @@ notebooks:
   title: Llm Chatbot Generate Api
   category: LLM
   upstream_path: notebooks/llm-chatbot/llm-chatbot-generate-api.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/llm-chatbot/llm-chatbot-generate-api.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b/notebooks/llm-chatbot/llm-chatbot-generate-api.ipynb
   requirements_path: null
   priority: 1
   workload_type: llm
@@ -858,7 +798,7 @@ notebooks:
   title: Llm Chatbot
   category: LLM
   upstream_path: notebooks/llm-chatbot/llm-chatbot.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/llm-chatbot/llm-chatbot.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b/notebooks/llm-chatbot/llm-chatbot.ipynb
   requirements_path: null
   priority: 1
   workload_type: llm
@@ -871,7 +811,7 @@ notebooks:
   title: Llm Code Assistant
   category: LLM
   upstream_path: notebooks/llm-code-assistant/llm-code-assistant.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/llm-code-assistant/llm-code-assistant.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b/notebooks/llm-code-assistant/llm-code-assistant.ipynb
   requirements_path: null
   priority: 4
   workload_type: llm
@@ -884,7 +824,7 @@ notebooks:
   title: Llm Lora
   category: LLM
   upstream_path: notebooks/llm-lora/llm-lora.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/llm-lora/llm-lora.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b/notebooks/llm-lora/llm-lora.ipynb
   requirements_path: null
   priority: 1
   workload_type: llm
@@ -897,7 +837,7 @@ notebooks:
   title: Llm Question Answering
   category: LLM
   upstream_path: notebooks/llm-question-answering/llm-question-answering.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/llm-question-answering/llm-question-answering.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b/notebooks/llm-question-answering/llm-question-answering.ipynb
   requirements_path: null
   priority: 1
   workload_type: llm
@@ -910,7 +850,7 @@ notebooks:
   title: Llm Rag Langchain Eval
   category: LLM
   upstream_path: notebooks/llm-rag-langchain/llm-rag-langchain-eval.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/llm-rag-langchain/llm-rag-langchain-eval.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b/notebooks/llm-rag-langchain/llm-rag-langchain-eval.ipynb
   requirements_path: null
   priority: 1
   workload_type: llm
@@ -923,7 +863,7 @@ notebooks:
   title: Llm Rag Langchain Genai
   category: LLM
   upstream_path: notebooks/llm-rag-langchain/llm-rag-langchain-genai.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/llm-rag-langchain/llm-rag-langchain-genai.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b/notebooks/llm-rag-langchain/llm-rag-langchain-genai.ipynb
   requirements_path: null
   priority: 4
   workload_type: llm
@@ -936,7 +876,7 @@ notebooks:
   title: Llm Rag Langchain
   category: LLM
   upstream_path: notebooks/llm-rag-langchain/llm-rag-langchain.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/llm-rag-langchain/llm-rag-langchain.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b/notebooks/llm-rag-langchain/llm-rag-langchain.ipynb
   requirements_path: null
   priority: 4
   workload_type: llm
@@ -949,7 +889,7 @@ notebooks:
   title: Llm Rag Llamaindex
   category: LLM
   upstream_path: notebooks/llm-rag-llamaindex/llm-rag-llamaindex.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/llm-rag-llamaindex/llm-rag-llamaindex.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b/notebooks/llm-rag-llamaindex/llm-rag-llamaindex.ipynb
   requirements_path: null
   priority: 4
   workload_type: llm
@@ -962,22 +902,20 @@ notebooks:
   title: Ltx Video
   category: Video
   upstream_path: notebooks/ltx-video/ltx-video.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/ltx-video/ltx-video.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b/notebooks/ltx-video/ltx-video.ipynb
   requirements_path: null
   priority: 3
   workload_type: video
   est_weight: large
   cpu_meaningful: true
-  gpu_meaningful: false
+  gpu_meaningful: true
   twin_level: WORKLOAD_TWIN
-  notes: 'twin: Text-to-video generation with Lightricks/LTX-Video exported via optimum-cli and run through
-    openvino_genai.Text2VideoPipeline; LTX-Video is a diffusers model that runs in PyTorch on ROCm, so
-    the video-generation task has a direct torch twin.'
+  notes: ''
 - id: medasr-medical-asr
   title: Medasr Medical Asr
   category: ASR
   upstream_path: notebooks/medasr-medical-asr/medasr-medical-asr.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/medasr-medical-asr/medasr-medical-asr.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b/notebooks/medasr-medical-asr/medasr-medical-asr.ipynb
   requirements_path: null
   priority: 1
   workload_type: asr
@@ -990,53 +928,46 @@ notebooks:
   title: Meter Reader
   category: OCR
   upstream_path: notebooks/meter-reader/meter-reader.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/meter-reader/meter-reader.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b/notebooks/meter-reader/meter-reader.ipynb
   requirements_path: null
   priority: 1
   workload_type: ocr
   est_weight: large
   cpu_meaningful: true
-  gpu_meaningful: false
+  gpu_meaningful: true
   twin_level: WORKLOAD_TWIN
-  notes: 'twin: Industrial analog-meter reading task combining Paddle detection and segmentation models
-    plus geometric pointer decoding; the same detect-segment-read task is implementable with comparable
-    torch-ecosystem detection/segmentation models on ROCm (consistent with other Paddle-based task notebooks
-    classified WORKLOAD_TWIN).'
+  notes: ''
 - id: mineru2.5
   title: Mineru2.5
   category: OCR
   upstream_path: notebooks/mineru2.5/mineru2.5.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/mineru2.5/mineru2.5.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b/notebooks/mineru2.5/mineru2.5.ipynb
   requirements_path: null
   priority: 1
   workload_type: ocr
   est_weight: medium
   cpu_meaningful: true
-  gpu_meaningful: false
+  gpu_meaningful: true
   twin_level: WORKLOAD_TWIN
-  notes: 'twin: PDF document-parsing (layout blocks plus Markdown) with the opendatalab MinerU2.5 VLM
-    exported via optimum-cli; the same HF transformers model runs in PyTorch on ROCm, like the other OCR-VLM
-    notebooks already classified WORKLOAD_TWIN.'
+  notes: ''
 - id: minicpm-o-4.5
   title: Minicpm O 4.5
   category: VLM
   upstream_path: notebooks/minicpm-o-4.5/minicpm-o-4.5.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/minicpm-o-4.5/minicpm-o-4.5.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b/notebooks/minicpm-o-4.5/minicpm-o-4.5.ipynb
   requirements_path: null
   priority: 1
   workload_type: vlm
   est_weight: large
   cpu_meaningful: true
-  gpu_meaningful: false
+  gpu_meaningful: true
   twin_level: WORKLOAD_TWIN
-  notes: 'twin: Omni-modal chatbot task (image chat, ASR, speaker/scene analysis, streaming speech conversation,
-    TTS) with openbmb/MiniCPM-o-4_5 converted to stateful OV models; the same HF model provides the PyTorch
-    path on ROCm, matching the WORKLOAD_TWIN minicpm-o-omnimodal-chatbot convention.'
+  notes: ''
 - id: minicpm-o-omnimodal-chatbot
   title: Minicpm O Omnimodal Chatbot
   category: VLM
   upstream_path: notebooks/minicpm-o-omnimodal-chatbot/minicpm-o-omnimodal-chatbot.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/minicpm-o-omnimodal-chatbot/minicpm-o-omnimodal-chatbot.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b/notebooks/minicpm-o-omnimodal-chatbot/minicpm-o-omnimodal-chatbot.ipynb
   requirements_path: null
   priority: 1
   workload_type: vlm
@@ -1049,22 +980,20 @@ notebooks:
   title: Minicpm V 4.6
   category: VLM
   upstream_path: notebooks/minicpm-v-4.6/minicpm-v-4.6.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/minicpm-v-4.6/minicpm-v-4.6.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b/notebooks/minicpm-v-4.6/minicpm-v-4.6.ipynb
   requirements_path: null
   priority: 1
   workload_type: vlm
   est_weight: large
   cpu_meaningful: true
-  gpu_meaningful: false
+  gpu_meaningful: true
   twin_level: WORKLOAD_TWIN
-  notes: 'twin: Vision-language assistant task with openbmb/MiniCPM-V-4.6 (image and video understanding)
-    exported via optimum-cli and run with OVModelForVisualCausalLM; the identical HF model runs in transformers
-    on ROCm.'
+  notes: ''
 - id: minicpm-v-multimodal-chatbot
   title: Minicpm V Multimodal Chatbot
   category: VLM
   upstream_path: notebooks/minicpm-v-multimodal-chatbot/minicpm-v-multimodal-chatbot.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/minicpm-v-multimodal-chatbot/minicpm-v-multimodal-chatbot.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b/notebooks/minicpm-v-multimodal-chatbot/minicpm-v-multimodal-chatbot.ipynb
   requirements_path: null
   priority: 1
   workload_type: vlm
@@ -1077,22 +1006,20 @@ notebooks:
   title: Ministral 3
   category: LLM
   upstream_path: notebooks/ministral-3/ministral-3.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/ministral-3/ministral-3.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b/notebooks/ministral-3/ministral-3.ipynb
   requirements_path: null
   priority: 1
   workload_type: llm
   est_weight: large
   cpu_meaningful: true
-  gpu_meaningful: false
+  gpu_meaningful: true
   twin_level: WORKLOAD_TWIN
-  notes: 'twin: Vision-language chat/reasoning task with mistralai Ministral-3 checkpoints (3B/8B) exported
-    via optimum-cli and run with OVModelForVisualCausalLM; the same published HF models run in transformers/vLLM
-    on ROCm, so a comparable PyTorch twin exists.'
+  notes: ''
 - id: mllama-3.2
   title: Mllama 3.2
   category: LLM
   upstream_path: notebooks/mllama-3.2/mllama-3.2.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/mllama-3.2/mllama-3.2.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b/notebooks/mllama-3.2/mllama-3.2.ipynb
   requirements_path: null
   priority: 1
   workload_type: llm
@@ -1105,7 +1032,7 @@ notebooks:
   title: Mms Massively Multilingual Speech
   category: ASR
   upstream_path: notebooks/mms-massively-multilingual-speech/mms-massively-multilingual-speech.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/mms-massively-multilingual-speech/mms-massively-multilingual-speech.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b/notebooks/mms-massively-multilingual-speech/mms-massively-multilingual-speech.ipynb
   requirements_path: null
   priority: 1
   workload_type: asr
@@ -1118,7 +1045,7 @@ notebooks:
   title: Mobileclip Video Search
   category: Vision
   upstream_path: notebooks/mobileclip-video-search/mobileclip-video-search.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/mobileclip-video-search/mobileclip-video-search.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b/notebooks/mobileclip-video-search/mobileclip-video-search.ipynb
   requirements_path: null
   priority: 3
   workload_type: vision
@@ -1131,7 +1058,7 @@ notebooks:
   title: Modelscope To Openvino
   category: Conversion
   upstream_path: notebooks/modelscope-to-openvino/modelscope-to-openvino.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/modelscope-to-openvino/modelscope-to-openvino.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b/notebooks/modelscope-to-openvino/modelscope-to-openvino.ipynb
   requirements_path: null
   priority: 2
   workload_type: conversion
@@ -1139,14 +1066,12 @@ notebooks:
   cpu_meaningful: true
   gpu_meaningful: false
   twin_level: OPENVINO_SPECIFIC
-  notes: 'twin: The notebook''s lesson is OpenVINO conversion workflows for ModelScope models - ov.convert_model
-    of a classification net, optimum-intel OVModel auto-export, and optimum-cli LLM export into openvino-genai
-    - i.e. conversion tooling itself, so the GPU twin is not applicable.'
+  notes: ''
 - id: multilora-image-generation
   title: Multilora Image Generation
   category: Image Generation
   upstream_path: notebooks/multilora-image-generation/multilora-image-generation.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/multilora-image-generation/multilora-image-generation.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b/notebooks/multilora-image-generation/multilora-image-generation.ipynb
   requirements_path: null
   priority: 1
   workload_type: image-generation
@@ -1159,7 +1084,7 @@ notebooks:
   title: Multimodal Rag Llamaindex
   category: VLM
   upstream_path: notebooks/multimodal-rag/multimodal-rag-llamaindex.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/multimodal-rag/multimodal-rag-llamaindex.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b/notebooks/multimodal-rag/multimodal-rag-llamaindex.ipynb
   requirements_path: null
   priority: 4
   workload_type: vlm
@@ -1172,53 +1097,46 @@ notebooks:
   title: Muse Glimmer
   category: Image Generation
   upstream_path: notebooks/muse-glimmer/muse-glimmer.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/muse-glimmer/muse-glimmer.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b/notebooks/muse-glimmer/muse-glimmer.ipynb
   requirements_path: null
   priority: 4
   workload_type: image-generation
   est_weight: huge
   cpu_meaningful: true
-  gpu_meaningful: false
+  gpu_meaningful: true
   twin_level: WORKLOAD_TWIN
-  notes: 'twin: Multimodal-reasoning task (image/video understanding and image-conditioned code generation)
-    with the Muse-Glimmer-30B VLM run via openvino_genai.VLMPipeline on compressed weights; the same HF
-    VLM runs in transformers on ROCm, making the VLM workload twin-able.'
+  notes: ''
 - id: music-generation
   title: Music Generation
   category: TTS
   upstream_path: notebooks/music-generation/music-generation.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/music-generation/music-generation.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b/notebooks/music-generation/music-generation.ipynb
   requirements_path: null
   priority: 1
   workload_type: tts
   est_weight: small
   cpu_meaningful: true
-  gpu_meaningful: false
+  gpu_meaningful: true
   twin_level: WORKLOAD_TWIN
-  notes: 'twin: Controllable text-to-music generation with facebook/musicgen-small whose T5 encoder, decoder
-    and EnCodec the notebook converts to OV IR and plugs back into the HF generate loop; MusicGen runs
-    natively in transformers/PyTorch on ROCm, so the same music-generation workload has a direct torch
-    path.'
+  notes: ''
 - id: nuextract-structure-extraction
   title: Nuextract Structure Extraction
   category: LLM
   upstream_path: notebooks/nuextract-structure-extraction/nuextract-structure-extraction.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/nuextract-structure-extraction/nuextract-structure-extraction.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b/notebooks/nuextract-structure-extraction/nuextract-structure-extraction.ipynb
   requirements_path: null
   priority: 4
   workload_type: llm
   est_weight: huge
   cpu_meaningful: true
-  gpu_meaningful: false
+  gpu_meaningful: true
   twin_level: WORKLOAD_TWIN
-  notes: 'twin: Schema-guided structured-information-extraction task with numind NuExtract models exported
-    via optimum-cli and run through openvino_genai.LLMPipeline; the same HF models run in PyTorch on ROCm
-    for an equivalent workload.'
+  notes: ''
 - id: object-detection
   title: Object Detection
   category: Vision
   upstream_path: notebooks/object-detection-webcam/object-detection.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/object-detection-webcam/object-detection.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b/notebooks/object-detection-webcam/object-detection.ipynb
   requirements_path: null
   priority: 3
   workload_type: vision
@@ -1231,7 +1149,7 @@ notebooks:
   title: Olmocr Pdf Vlm
   category: VLM
   upstream_path: notebooks/olmocr-pdf-vlm/olmocr-pdf-vlm.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/olmocr-pdf-vlm/olmocr-pdf-vlm.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b/notebooks/olmocr-pdf-vlm/olmocr-pdf-vlm.ipynb
   requirements_path: null
   priority: 1
   workload_type: vlm
@@ -1244,37 +1162,33 @@ notebooks:
   title: Omniparser
   category: OCR
   upstream_path: notebooks/omniparser/omniparser.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/omniparser/omniparser.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b/notebooks/omniparser/omniparser.ipynb
   requirements_path: null
   priority: 1
   workload_type: ocr
   est_weight: small
   cpu_meaningful: true
-  gpu_meaningful: false
+  gpu_meaningful: true
   twin_level: WORKLOAD_TWIN
-  notes: 'twin: Screen/UI parsing task combining a YOLO icon detector (ultralytics export), a Florence-2
-    region captioner and EasyOCR - all torch-ecosystem models that run on ROCm - so the OmniParser workload
-    is reproducible in PyTorch.'
+  notes: ''
 - id: omnivoice
   title: Omnivoice
   category: ASR
   upstream_path: notebooks/omnivoice/omnivoice.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/omnivoice/omnivoice.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b/notebooks/omnivoice/omnivoice.ipynb
   requirements_path: null
   priority: 1
   workload_type: asr
   est_weight: small
   cpu_meaningful: true
-  gpu_meaningful: false
+  gpu_meaningful: true
   twin_level: WORKLOAD_TWIN
-  notes: 'twin: Text-to-speech, voice design and voice-cloning task with k2-fsa/OmniVoice converted via
-    a helper (with NNCF INT8 LLM weights) plus a pre-converted Whisper for auto-transcription; OmniVoice
-    is a PyTorch model, so the same speech-synthesis workload runs on ROCm.'
+  notes: ''
 - id: oneformer-segmentation
   title: Oneformer Segmentation
   category: Vision
   upstream_path: notebooks/oneformer-segmentation/oneformer-segmentation.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/oneformer-segmentation/oneformer-segmentation.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b/notebooks/oneformer-segmentation/oneformer-segmentation.ipynb
   requirements_path: null
   priority: 2
   workload_type: vision
@@ -1287,7 +1201,7 @@ notebooks:
   title: Openvino Api
   category: API
   upstream_path: notebooks/openvino-api/openvino-api.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/openvino-api/openvino-api.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b/notebooks/openvino-api/openvino-api.ipynb
   requirements_path: null
   priority: 0
   workload_type: api
@@ -1300,7 +1214,7 @@ notebooks:
   title: Openvino Tokenizers
   category: API
   upstream_path: notebooks/openvino-tokenizers/openvino-tokenizers.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/openvino-tokenizers/openvino-tokenizers.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b/notebooks/openvino-tokenizers/openvino-tokenizers.ipynb
   requirements_path: null
   priority: 2
   workload_type: api
@@ -1308,29 +1222,25 @@ notebooks:
   cpu_meaningful: true
   gpu_meaningful: false
   twin_level: OPENVINO_SPECIFIC
-  notes: 'twin: The notebook teaches the openvino-tokenizers library itself (convert_tokenizer CLI/Python
-    API, saving and compiling tokenizer/detokenizer models, EOS rt_info, openvino-genai Tokenizer integration
-    and connect_models merging), which is explicitly OpenVINO-specific tooling with no ROCm counterpart.'
+  notes: ''
 - id: openvoice
   title: Openvoice
   category: TTS
   upstream_path: notebooks/openvoice/openvoice.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/openvoice/openvoice.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b/notebooks/openvoice/openvoice.ipynb
   requirements_path: null
   priority: 1
   workload_type: tts
   est_weight: large
   cpu_meaningful: true
-  gpu_meaningful: false
+  gpu_meaningful: true
   twin_level: WORKLOAD_TWIN
-  notes: 'twin: Task notebook for TTS plus tone-color voice conversion that loads OpenVoice PyTorch checkpoints
-    from HF, converts them to OpenVINO IR with NNCF compression and runs a Gradio demo; the same TTS/voice-cloning
-    workload runs in PyTorch on ROCm (matches openvoice2-and-melotts = WORKLOAD_TWIN convention).'
+  notes: ''
 - id: openvoice2-and-melotts
   title: Openvoice2 And Melotts
   category: TTS
   upstream_path: notebooks/openvoice2-and-melotts/openvoice2-and-melotts.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/openvoice2-and-melotts/openvoice2-and-melotts.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b/notebooks/openvoice2-and-melotts/openvoice2-and-melotts.ipynb
   requirements_path: null
   priority: 1
   workload_type: tts
@@ -1343,22 +1253,20 @@ notebooks:
   title: Optical Character Recognition
   category: Other
   upstream_path: notebooks/optical-character-recognition/optical-character-recognition.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/optical-character-recognition/optical-character-recognition.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b/notebooks/optical-character-recognition/optical-character-recognition.ipynb
   requirements_path: null
   priority: 2
   workload_type: other
   est_weight: small
   cpu_meaningful: true
-  gpu_meaningful: false
+  gpu_meaningful: true
   twin_level: WORKLOAD_TWIN
-  notes: 'twin: OCR task pipeline over pre-converted Open Model Zoo IRs (horizontal-text-detection-0001
-    + text-recognition-0014); text detection+recognition is readily done in the PyTorch/ROCm ecosystem
-    (EasyOCR, TrOCR, PaddleOCR), so like hello-detection it is a workload twin, not an exact one.'
+  notes: ''
 - id: optimize-preprocessing
   title: Optimize Preprocessing
   category: API
   upstream_path: notebooks/optimize-preprocessing/optimize-preprocessing.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/optimize-preprocessing/optimize-preprocessing.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b/notebooks/optimize-preprocessing/optimize-preprocessing.ipynb
   requirements_path: null
   priority: 2
   workload_type: api
@@ -1366,14 +1274,12 @@ notebooks:
   cpu_meaningful: true
   gpu_meaningful: false
   twin_level: OPENVINO_SPECIFIC
-  notes: 'twin: The notebook exists to teach the OpenVINO Preprocessing API (PrePostProcessor layouts,
-    element types, resize/mean/scale fused into the model) and benchmarks it against manual preprocessing,
-    so it is OpenVINO tooling instruction with no meaningful ROCm twin.'
+  notes: ''
 - id: paddle-ocr-webcam
   title: Paddle Ocr Webcam
   category: OCR
   upstream_path: notebooks/paddle-ocr-webcam/paddle-ocr-webcam.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/paddle-ocr-webcam/paddle-ocr-webcam.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b/notebooks/paddle-ocr-webcam/paddle-ocr-webcam.ipynb
   requirements_path: null
   priority: 1
   workload_type: ocr
@@ -1386,7 +1292,7 @@ notebooks:
   title: Paddle To Openvino Classification
   category: OCR
   upstream_path: notebooks/paddle-to-openvino/paddle-to-openvino-classification.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/paddle-to-openvino/paddle-to-openvino-classification.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b/notebooks/paddle-to-openvino/paddle-to-openvino-classification.ipynb
   requirements_path: null
   priority: 1
   workload_type: ocr
@@ -1399,7 +1305,7 @@ notebooks:
   title: Paddleocr Vl
   category: OCR
   upstream_path: notebooks/paddleocr_vl/paddleocr_vl.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/paddleocr_vl/paddleocr_vl.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b/notebooks/paddleocr_vl/paddleocr_vl.ipynb
   requirements_path: null
   priority: 1
   workload_type: ocr
@@ -1412,7 +1318,7 @@ notebooks:
   title: Parler Tts Text To Speech
   category: TTS
   upstream_path: notebooks/parler-tts-text-to-speech/parler-tts-text-to-speech.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/parler-tts-text-to-speech/parler-tts-text-to-speech.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b/notebooks/parler-tts-text-to-speech/parler-tts-text-to-speech.ipynb
   requirements_path: null
   priority: 1
   workload_type: tts
@@ -1425,68 +1331,59 @@ notebooks:
   title: Person Counting
   category: Vision
   upstream_path: notebooks/person-counting-webcam/person-counting.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/person-counting-webcam/person-counting.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b/notebooks/person-counting-webcam/person-counting.ipynb
   requirements_path: null
   priority: 3
   workload_type: vision
   est_weight: large
   cpu_meaningful: true
-  gpu_meaningful: false
+  gpu_meaningful: true
   twin_level: WORKLOAD_TWIN
-  notes: 'twin: Person detection and line-crossing counting on a video file (webcam optional) using YOLOv8n
-    exported from ultralytics to OpenVINO; the identical workload runs in PyTorch/ultralytics on ROCm
-    (same model family as hello-detection/yolov8n = WORKLOAD_TWIN).'
+  notes: ''
 - id: person-tracking
   title: Person Tracking
   category: Video
   upstream_path: notebooks/person-tracking-webcam/person-tracking.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/person-tracking-webcam/person-tracking.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b/notebooks/person-tracking-webcam/person-tracking.ipynb
   requirements_path: null
   priority: 3
   workload_type: video
   est_weight: large
   cpu_meaningful: true
-  gpu_meaningful: false
+  gpu_meaningful: true
   twin_level: WORKLOAD_TWIN
-  notes: 'twin: Person detection plus re-identification tracking (DeepSORT) on video using pre-converted
-    OMZ IRs; the detect-and-track workload maps to PyTorch/ROCm equivalents (YOLO detection + torchreid/BoxMOT),
-    so it is a workload twin rather than exact.'
+  notes: ''
 - id: phi-3-vision
   title: Phi 3 Vision
   category: LLM
   upstream_path: notebooks/phi-3-vision/phi-3-vision.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/phi-3-vision/phi-3-vision.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b/notebooks/phi-3-vision/phi-3-vision.ipynb
   requirements_path: null
   priority: 1
   workload_type: llm
   est_weight: small
   cpu_meaningful: true
-  gpu_meaningful: false
+  gpu_meaningful: true
   twin_level: WORKLOAD_TWIN
-  notes: 'twin: Phi-3.5-vision-instruct is exported via optimum-cli to OpenVINO IR and served with the
-    openvino_genai VLMPipeline for image QA, an LLM/VLM chat task whose same HF model runs in PyTorch
-    on ROCm; the notebook never runs the PyTorch model directly, so it is a workload twin (like phi3_chatbot_demo
-    and mllama-3.2).'
+  notes: ''
 - id: phi-4-multimodal
   title: Phi 4 Multimodal
   category: VLM
   upstream_path: notebooks/phi-4-multimodal/phi-4-multimodal.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/phi-4-multimodal/phi-4-multimodal.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b/notebooks/phi-4-multimodal/phi-4-multimodal.ipynb
   requirements_path: null
   priority: 1
   workload_type: vlm
   est_weight: small
   cpu_meaningful: true
-  gpu_meaningful: false
+  gpu_meaningful: true
   twin_level: WORKLOAD_TWIN
-  notes: 'twin: Text/image/audio chat with microsoft/phi-4-multimodal-instruct converted via optimum-cli
-    and run through OVModelForVisualCausalLM; the VLM task is directly runnable in PyTorch/transformers
-    on ROCm, making this a workload twin.'
+  notes: ''
 - id: physical-ai-robotics
   title: Physical Ai Robotics
   category: LLM
   upstream_path: notebooks/physical-ai-robotics/physical-ai-robotics.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/physical-ai-robotics/physical-ai-robotics.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b/notebooks/physical-ai-robotics/physical-ai-robotics.ipynb
   requirements_path: null
   priority: 1
   workload_type: llm
@@ -1494,29 +1391,51 @@ notebooks:
   cpu_meaningful: true
   gpu_meaningful: false
   twin_level: CONCEPT_MAPPING
-  notes: 'twin: The notebook contains no code at all - it is a pointer to the openvinotoolkit/physicalai
-    tutorial repo whose workflows require a physical robot arm, teleoperation data collection and an OpenVINO-supported
-    Intel platform, so a real ROCm twin is implausible and only the concept maps.'
+  notes: ''
 - id: pose-estimation
   title: Pose Estimation
   category: Vision
   upstream_path: notebooks/pose-estimation-webcam/pose-estimation.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/pose-estimation-webcam/pose-estimation.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b/notebooks/pose-estimation-webcam/pose-estimation.ipynb
   requirements_path: null
   priority: 3
   workload_type: vision
   est_weight: large
   cpu_meaningful: true
-  gpu_meaningful: false
+  gpu_meaningful: true
   twin_level: WORKLOAD_TWIN
-  notes: 'twin: Human pose estimation on a video file using the OMZ human-pose-estimation-0001 IR with
-    a numpy OpenPose decoder; 2D human pose estimation is a standard task in the PyTorch/ROCm ecosystem
-    (MMPose, openpifpaf, YOLO-pose), so it is a workload twin.'
+  notes: ''
+- id: pyannote-audio
+  title: Pyannote Audio
+  category: ASR
+  upstream_path: notebooks/pyannote-audio/pyannote-audio.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b/notebooks/pyannote-audio/pyannote-audio.ipynb
+  requirements_path: null
+  priority: 1
+  workload_type: asr
+  est_weight: small
+  cpu_meaningful: true
+  gpu_meaningful: true
+  twin_level: WORKLOAD_TWIN
+  notes: ''
+- id: pyannote-embedding
+  title: Pyannote Embedding
+  category: ASR
+  upstream_path: notebooks/pyannote-audio/pyannote-embedding.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b/notebooks/pyannote-audio/pyannote-embedding.ipynb
+  requirements_path: null
+  priority: 1
+  workload_type: asr
+  est_weight: small
+  cpu_meaningful: true
+  gpu_meaningful: true
+  twin_level: WORKLOAD_TWIN
+  notes: ''
 - id: pytorch-post-training-quantization-nncf
   title: Pytorch Post Training Quantization Nncf
   category: Conversion
   upstream_path: notebooks/pytorch-post-training-quantization-nncf/pytorch-post-training-quantization-nncf.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/pytorch-post-training-quantization-nncf/pytorch-post-training-quantization-nncf.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b/notebooks/pytorch-post-training-quantization-nncf/pytorch-post-training-quantization-nncf.ipynb
   requirements_path: null
   priority: 2
   workload_type: conversion
@@ -1524,13 +1443,12 @@ notebooks:
   cpu_meaningful: true
   gpu_meaningful: true
   twin_level: WORKLOAD_TWIN
-  notes: 'twin correction: notebook runs real PyTorch task inference (baseline) before OpenVINO conversion
-    -> task notebook (WORKLOAD_TWIN)'
+  notes: ''
 - id: pytorch-to-openvino
   title: Pytorch To Openvino
   category: Conversion
   upstream_path: notebooks/pytorch-to-openvino/pytorch-to-openvino.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/pytorch-to-openvino/pytorch-to-openvino.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b/notebooks/pytorch-to-openvino/pytorch-to-openvino.ipynb
   requirements_path: null
   priority: 2
   workload_type: conversion
@@ -1538,13 +1456,12 @@ notebooks:
   cpu_meaningful: true
   gpu_meaningful: true
   twin_level: WORKLOAD_TWIN
-  notes: 'twin correction: notebook runs real PyTorch task inference (baseline) before OpenVINO conversion
-    -> task notebook (WORKLOAD_TWIN)'
+  notes: ''
 - id: qwen-image
   title: Qwen Image
   category: LLM
   upstream_path: notebooks/qwen-image/qwen-image.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/qwen-image/qwen-image.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b/notebooks/qwen-image/qwen-image.ipynb
   requirements_path: null
   priority: 1
   workload_type: llm
@@ -1557,7 +1474,7 @@ notebooks:
   title: Qwen Image 2.1
   category: LLM
   upstream_path: notebooks/qwen-image-2.1/qwen-image-2.1.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/qwen-image-2.1/qwen-image-2.1.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b/notebooks/qwen-image-2.1/qwen-image-2.1.ipynb
   requirements_path: null
   priority: 1
   workload_type: llm
@@ -1570,7 +1487,7 @@ notebooks:
   title: Qwen2 Audio
   category: LLM
   upstream_path: notebooks/qwen2-audio/qwen2-audio.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/qwen2-audio/qwen2-audio.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b/notebooks/qwen2-audio/qwen2-audio.ipynb
   requirements_path: null
   priority: 1
   workload_type: llm
@@ -1583,7 +1500,7 @@ notebooks:
   title: Qwen2.5 Omni Chatbot
   category: LLM
   upstream_path: notebooks/qwen2.5-omni-chatbot/qwen2.5-omni-chatbot.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/qwen2.5-omni-chatbot/qwen2.5-omni-chatbot.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b/notebooks/qwen2.5-omni-chatbot/qwen2.5-omni-chatbot.ipynb
   requirements_path: null
   priority: 1
   workload_type: llm
@@ -1596,7 +1513,7 @@ notebooks:
   title: Qwen3 Asr
   category: ASR
   upstream_path: notebooks/qwen3-asr/qwen3-asr.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/qwen3-asr/qwen3-asr.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b/notebooks/qwen3-asr/qwen3-asr.ipynb
   requirements_path: null
   priority: 1
   workload_type: asr
@@ -1609,7 +1526,7 @@ notebooks:
   title: Qwen3 Embedding
   category: LLM
   upstream_path: notebooks/qwen3-embedding/qwen3-embedding.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/qwen3-embedding/qwen3-embedding.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b/notebooks/qwen3-embedding/qwen3-embedding.ipynb
   requirements_path: null
   priority: 1
   workload_type: llm
@@ -1622,7 +1539,7 @@ notebooks:
   title: Qwen3 Reranker
   category: LLM
   upstream_path: notebooks/qwen3-embedding/qwen3-reranker.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/qwen3-embedding/qwen3-reranker.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b/notebooks/qwen3-embedding/qwen3-reranker.ipynb
   requirements_path: null
   priority: 1
   workload_type: llm
@@ -1635,7 +1552,7 @@ notebooks:
   title: Qwen3 Tts
   category: TTS
   upstream_path: notebooks/qwen3-tts/qwen3-tts.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/qwen3-tts/qwen3-tts.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b/notebooks/qwen3-tts/qwen3-tts.ipynb
   requirements_path: null
   priority: 1
   workload_type: tts
@@ -1648,7 +1565,7 @@ notebooks:
   title: Qwen3 Vl Embedding
   category: LLM
   upstream_path: notebooks/qwen3-vl-embedding/qwen3-vl-embedding.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/qwen3-vl-embedding/qwen3-vl-embedding.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b/notebooks/qwen3-vl-embedding/qwen3-vl-embedding.ipynb
   requirements_path: null
   priority: 1
   workload_type: llm
@@ -1661,7 +1578,7 @@ notebooks:
   title: Qwen3 Vl Reranker
   category: LLM
   upstream_path: notebooks/qwen3-vl-embedding/qwen3-vl-reranker.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/qwen3-vl-embedding/qwen3-vl-reranker.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b/notebooks/qwen3-vl-embedding/qwen3-vl-reranker.ipynb
   requirements_path: null
   priority: 1
   workload_type: llm
@@ -1674,7 +1591,7 @@ notebooks:
   title: Qwen3.8 Mtp
   category: LLM
   upstream_path: notebooks/qwen3.8-mtp/qwen3.8-mtp.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/qwen3.8-mtp/qwen3.8-mtp.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b/notebooks/qwen3.8-mtp/qwen3.8-mtp.ipynb
   requirements_path: null
   priority: 4
   workload_type: llm
@@ -1687,7 +1604,7 @@ notebooks:
   title: Rf Detr Object Detection
   category: Vision
   upstream_path: notebooks/rf-detr-object-detection/rf-detr-object-detection.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/rf-detr-object-detection/rf-detr-object-detection.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b/notebooks/rf-detr-object-detection/rf-detr-object-detection.ipynb
   requirements_path: null
   priority: 2
   workload_type: vision
@@ -1700,23 +1617,20 @@ notebooks:
   title: Rmbg Background Removal
   category: Image Generation
   upstream_path: notebooks/rmbg-background-removal/rmbg-background-removal.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/rmbg-background-removal/rmbg-background-removal.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b/notebooks/rmbg-background-removal/rmbg-background-removal.ipynb
   requirements_path: null
   priority: 1
   workload_type: image-generation
   est_weight: small
   cpu_meaningful: true
-  gpu_meaningful: false
+  gpu_meaningful: true
   twin_level: WORKLOAD_TWIN
-  notes: 'twin: Background removal with briaai/RMBG-1.4: the notebook runs the HF PyTorch model once and
-    converts the same object via ov.convert_model, but following the established convention for identical
-    torch-inference-then-convert notebooks (clip-zero-shot = WORKLOAD_TWIN) it is a workload twin for
-    the segmentation task, which rembg/torch run on ROCm.'
+  notes: ''
 - id: segment-anything-2-image
   title: Segment Anything 2 Image
   category: Vision
   upstream_path: notebooks/sam2-image-segmentation/segment-anything-2-image.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/sam2-image-segmentation/segment-anything-2-image.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b/notebooks/sam2-image-segmentation/segment-anything-2-image.ipynb
   requirements_path: null
   priority: 2
   workload_type: vision
@@ -1729,7 +1643,7 @@ notebooks:
   title: Segment Anything 2 Video
   category: Vision
   upstream_path: notebooks/sam2-video-segmentation/segment-anything-2-video.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/sam2-video-segmentation/segment-anything-2-video.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b/notebooks/sam2-video-segmentation/segment-anything-2-video.ipynb
   requirements_path: null
   priority: 3
   workload_type: vision
@@ -1742,7 +1656,7 @@ notebooks:
   title: Sam3 Segmentation
   category: Vision
   upstream_path: notebooks/sam3/sam3-segmentation.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/sam3/sam3-segmentation.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b/notebooks/sam3/sam3-segmentation.ipynb
   requirements_path: null
   priority: 3
   workload_type: vision
@@ -1755,7 +1669,7 @@ notebooks:
   title: Siglip Zero Shot Image Classification
   category: Vision
   upstream_path: notebooks/siglip-zero-shot-image-classification/siglip-zero-shot-image-classification.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/siglip-zero-shot-image-classification/siglip-zero-shot-image-classification.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b/notebooks/siglip-zero-shot-image-classification/siglip-zero-shot-image-classification.ipynb
   requirements_path: null
   priority: 2
   workload_type: vision
@@ -1768,22 +1682,20 @@ notebooks:
   title: Smoldocling
   category: OCR
   upstream_path: notebooks/smoldocling/smoldocling.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/smoldocling/smoldocling.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b/notebooks/smoldocling/smoldocling.ipynb
   requirements_path: null
   priority: 1
   workload_type: ocr
   est_weight: small
   cpu_meaningful: true
-  gpu_meaningful: false
+  gpu_meaningful: true
   twin_level: WORKLOAD_TWIN
-  notes: 'twin: Document image to structured DoclingDocument conversion with ds4sd/SmolDocling-256M-preview
-    exported via optimum-cli and run through OVModelForVisualCausalLM; the VLM document-parsing task runs
-    in PyTorch/transformers on ROCm, so it is a workload twin.'
+  notes: ''
 - id: smolvlm2
   title: Smolvlm2
   category: VLM
   upstream_path: notebooks/smolvlm2/smolvlm2.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/smolvlm2/smolvlm2.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b/notebooks/smolvlm2/smolvlm2.ipynb
   requirements_path: null
   priority: 1
   workload_type: vlm
@@ -1796,23 +1708,20 @@ notebooks:
   title: Speculative Sampling
   category: LLM
   upstream_path: notebooks/speculative-sampling/speculative-sampling.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/speculative-sampling/speculative-sampling.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b/notebooks/speculative-sampling/speculative-sampling.ipynb
   requirements_path: null
   priority: 1
   workload_type: llm
   est_weight: small
   cpu_meaningful: true
-  gpu_meaningful: false
+  gpu_meaningful: true
   twin_level: WORKLOAD_TWIN
-  notes: 'twin: LLM text/code generation on pre-converted Phi-3/Phi-4 OV IRs benchmarking autoregressive
-    vs openvino_genai speculative decoding; the generation workload (including speculative decoding via
-    HF assisted generation or vLLM) maps to PyTorch on ROCm, matching the qwen3.8-mtp = WORKLOAD_TWIN
-    precedent for the same baseline-vs-speculative notebook shape.'
+  notes: ''
 - id: speech-recognition-quantization-wav2vec2
   title: Speech Recognition Quantization Wav2Vec2
   category: Optimization
   upstream_path: notebooks/speech-recognition-quantization/speech-recognition-quantization-wav2vec2.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/speech-recognition-quantization/speech-recognition-quantization-wav2vec2.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b/notebooks/speech-recognition-quantization/speech-recognition-quantization-wav2vec2.ipynb
   requirements_path: null
   priority: 2
   workload_type: optimization
@@ -1825,7 +1734,7 @@ notebooks:
   title: Stable Diffusion Text To Image
   category: Image Generation
   upstream_path: notebooks/stable-diffusion-text-to-image/stable-diffusion-text-to-image.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/stable-diffusion-text-to-image/stable-diffusion-text-to-image.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b/notebooks/stable-diffusion-text-to-image/stable-diffusion-text-to-image.ipynb
   requirements_path: null
   priority: 1
   workload_type: image-generation
@@ -1838,7 +1747,7 @@ notebooks:
   title: Stable Diffusion V3
   category: Image Generation
   upstream_path: notebooks/stable-diffusion-v3/stable-diffusion-v3.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/stable-diffusion-v3/stable-diffusion-v3.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b/notebooks/stable-diffusion-v3/stable-diffusion-v3.ipynb
   requirements_path: null
   priority: 1
   workload_type: image-generation
@@ -1851,7 +1760,7 @@ notebooks:
   title: Stable Diffusion V3 Torch Fx
   category: Image Generation
   upstream_path: notebooks/stable-diffusion-v3-torch-fx/stable-diffusion-v3-torch-fx.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/stable-diffusion-v3-torch-fx/stable-diffusion-v3-torch-fx.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b/notebooks/stable-diffusion-v3-torch-fx/stable-diffusion-v3-torch-fx.ipynb
   requirements_path: null
   priority: 1
   workload_type: image-generation
@@ -1864,7 +1773,7 @@ notebooks:
   title: Stable Diffusion Xl
   category: Image Generation
   upstream_path: notebooks/stable-diffusion-xl/stable-diffusion-xl.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/stable-diffusion-xl/stable-diffusion-xl.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b/notebooks/stable-diffusion-xl/stable-diffusion-xl.ipynb
   requirements_path: null
   priority: 1
   workload_type: image-generation
@@ -1877,22 +1786,20 @@ notebooks:
   title: Stable Video Diffusion
   category: Video
   upstream_path: notebooks/stable-video-diffusion/stable-video-diffusion.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/stable-video-diffusion/stable-video-diffusion.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b/notebooks/stable-video-diffusion/stable-video-diffusion.ipynb
   requirements_path: null
   priority: 3
   workload_type: video
   est_weight: large
   cpu_meaningful: true
-  gpu_meaningful: false
+  gpu_meaningful: true
   twin_level: WORKLOAD_TWIN
-  notes: 'twin: Image-to-video generation with diffusers Stable Video Diffusion converted to an OV pipeline
-    with optional NNCF INT8 quantization; the same SVD model runs in diffusers/PyTorch on ROCm, so the
-    video-generation task is a workload twin.'
+  notes: ''
 - id: surya-line-level-text-detection
   title: Surya Line Level Text Detection
   category: Vision
   upstream_path: notebooks/surya-line-level-text-detection/surya-line-level-text-detection.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/surya-line-level-text-detection/surya-line-level-text-detection.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b/notebooks/surya-line-level-text-detection/surya-line-level-text-detection.ipynb
   requirements_path: null
   priority: 2
   workload_type: vision
@@ -1905,7 +1812,7 @@ notebooks:
   title: Tensorflow Classification To Openvino
   category: Conversion
   upstream_path: notebooks/tensorflow-classification-to-openvino/tensorflow-classification-to-openvino.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/tensorflow-classification-to-openvino/tensorflow-classification-to-openvino.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b/notebooks/tensorflow-classification-to-openvino/tensorflow-classification-to-openvino.ipynb
   requirements_path: null
   priority: 2
   workload_type: conversion
@@ -1918,7 +1825,7 @@ notebooks:
   title: Tensorflow Object Detection Api With Openvino
   category: Conversion
   upstream_path: notebooks/tensorflow-object-detection-to-openvino/tensorflow-object-detection-api-with-openvino.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/tensorflow-object-detection-to-openvino/tensorflow-object-detection-api-with-openvino.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b/notebooks/tensorflow-object-detection-to-openvino/tensorflow-object-detection-api-with-openvino.ipynb
   requirements_path: null
   priority: 2
   workload_type: conversion
@@ -1931,23 +1838,20 @@ notebooks:
   title: Text To Image Genai
   category: Image Generation
   upstream_path: notebooks/text-to-image-genai/text-to-image-genai.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/text-to-image-genai/text-to-image-genai.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b/notebooks/text-to-image-genai/text-to-image-genai.ipynb
   requirements_path: null
   priority: 1
   workload_type: image-generation
   est_weight: small
   cpu_meaningful: true
-  gpu_meaningful: false
+  gpu_meaningful: true
   twin_level: WORKLOAD_TWIN
-  notes: 'twin: Text-to-image generation with dreamlike-anime-1.0 exported via optimum-cli and served
-    through openvino_genai.Text2ImagePipeline including LoRA adapter loading; the same SD-family model
-    and LoRA workflow run in diffusers on ROCm (stable-diffusion-text-to-image and multilora = WORKLOAD_TWIN
-    convention).'
+  notes: ''
 - id: text-to-speech-genai
   title: Text To Speech Genai
   category: TTS
   upstream_path: notebooks/text-to-speech-genai/text-to-speech-genai.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/text-to-speech-genai/text-to-speech-genai.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b/notebooks/text-to-speech-genai/text-to-speech-genai.ipynb
   requirements_path: null
   priority: 1
   workload_type: tts
@@ -1960,7 +1864,7 @@ notebooks:
   title: Tflite Selfie Segmentation
   category: Conversion
   upstream_path: notebooks/tflite-selfie-segmentation/tflite-selfie-segmentation.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/tflite-selfie-segmentation/tflite-selfie-segmentation.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b/notebooks/tflite-selfie-segmentation/tflite-selfie-segmentation.ipynb
   requirements_path: null
   priority: 3
   workload_type: conversion
@@ -1973,23 +1877,20 @@ notebooks:
   title: Tflite To Openvino
   category: Conversion
   upstream_path: notebooks/tflite-to-openvino/tflite-to-openvino.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/tflite-to-openvino/tflite-to-openvino.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b/notebooks/tflite-to-openvino/tflite-to-openvino.ipynb
   requirements_path: null
   priority: 2
   workload_type: conversion
   est_weight: small
   cpu_meaningful: true
-  gpu_meaningful: false
+  gpu_meaningful: true
   twin_level: WORKLOAD_TWIN
-  notes: 'twin: Converts a TFLite EfficientNet-Lite0 to OpenVINO IR and then demos ImageNet classification
-    inference and benchmark_app; per the repo convention for framework-conversion-plus-task notebooks
-    (tensorflow-classification-to-openvino = WORKLOAD_TWIN) the classification workload maps to PyTorch/timm
-    on ROCm, and it never runs the source model so it is not an exact twin.'
+  notes: ''
 - id: convnext-classification
   title: Convnext Classification
   category: Vision
   upstream_path: notebooks/torchvision-zoo-to-openvino/convnext-classification.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/torchvision-zoo-to-openvino/convnext-classification.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b/notebooks/torchvision-zoo-to-openvino/convnext-classification.ipynb
   requirements_path: null
   priority: 2
   workload_type: vision
@@ -2002,7 +1903,7 @@ notebooks:
   title: Unlimited Ocr
   category: OCR
   upstream_path: notebooks/unlimited-ocr/unlimited-ocr.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/unlimited-ocr/unlimited-ocr.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b/notebooks/unlimited-ocr/unlimited-ocr.ipynb
   requirements_path: null
   priority: 1
   workload_type: ocr
@@ -2015,7 +1916,7 @@ notebooks:
   title: Vehicle Detection And Recognition
   category: Vision
   upstream_path: notebooks/vehicle-detection-and-recognition/vehicle-detection-and-recognition.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/vehicle-detection-and-recognition/vehicle-detection-and-recognition.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b/notebooks/vehicle-detection-and-recognition/vehicle-detection-and-recognition.ipynb
   requirements_path: null
   priority: 2
   workload_type: vision
@@ -2028,37 +1929,33 @@ notebooks:
   title: Vision Background Removal
   category: Image Generation
   upstream_path: notebooks/vision-background-removal/vision-background-removal.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/vision-background-removal/vision-background-removal.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b/notebooks/vision-background-removal/vision-background-removal.ipynb
   requirements_path: null
   priority: 1
   workload_type: image-generation
   est_weight: small
   cpu_meaningful: true
-  gpu_meaningful: false
+  gpu_meaningful: true
   twin_level: WORKLOAD_TWIN
-  notes: 'twin: Salient-object background removal by loading U2NET PyTorch weights, converting via ov.convert_model
-    and running OpenVINO inference with background replacement; the U2NET model and task run directly
-    in PyTorch on ROCm, so it is a workload twin.'
+  notes: ''
 - id: vision-monodepth
   title: Vision Monodepth
   category: Vision
   upstream_path: notebooks/vision-monodepth/vision-monodepth.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/vision-monodepth/vision-monodepth.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b/notebooks/vision-monodepth/vision-monodepth.ipynb
   requirements_path: null
   priority: 3
   workload_type: vision
   est_weight: large
   cpu_meaningful: true
-  gpu_meaningful: false
+  gpu_meaningful: true
   twin_level: WORKLOAD_TWIN
-  notes: 'twin: Monocular depth estimation on an image and a video using the pre-converted MiDaS_small
-    IR (with OV model caching as a side feature); MiDaS and equivalent depth models (Depth Anything) run
-    in PyTorch on ROCm, so the depth-estimation task is a workload twin.'
+  notes: ''
 - id: vlm-chatbot-generate-api
   title: Vlm Chatbot Generate Api
   category: VLM
   upstream_path: notebooks/vlm-chatbot/vlm-chatbot-generate-api.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/vlm-chatbot/vlm-chatbot-generate-api.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b/notebooks/vlm-chatbot/vlm-chatbot-generate-api.ipynb
   requirements_path: null
   priority: 1
   workload_type: vlm
@@ -2071,7 +1968,7 @@ notebooks:
   title: Voxcpm2 Tts
   category: TTS
   upstream_path: notebooks/voxcpm2-tts/voxcpm2-tts.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/voxcpm2-tts/voxcpm2-tts.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b/notebooks/voxcpm2-tts/voxcpm2-tts.ipynb
   requirements_path: null
   priority: 1
   workload_type: tts
@@ -2084,52 +1981,46 @@ notebooks:
   title: Wan2.1 Text To Video
   category: Video
   upstream_path: notebooks/wan2.1-text-to-video/wan2.1-text-to-video.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/wan2.1-text-to-video/wan2.1-text-to-video.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b/notebooks/wan2.1-text-to-video/wan2.1-text-to-video.ipynb
   requirements_path: null
   priority: 2
   workload_type: video
   est_weight: medium
   cpu_meaningful: true
-  gpu_meaningful: false
+  gpu_meaningful: true
   twin_level: WORKLOAD_TWIN
-  notes: 'twin: Text-to-video generation with Wan-AI/Wan2.1-T2V-1.3B-Diffusers converted from the diffusers
-    pipeline to OpenVINO with NNCF INT4/INT8 options; the same diffusers model runs on ROCm, so the video-generation
-    task is a workload twin.'
+  notes: ''
 - id: wan2.2-text-image-to-video
   title: Wan2.2 Text Image To Video
   category: Video
   upstream_path: notebooks/wan2.2-text-image-to-video/wan2.2-text-image-to-video.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/wan2.2-text-image-to-video/wan2.2-text-image-to-video.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b/notebooks/wan2.2-text-image-to-video/wan2.2-text-image-to-video.ipynb
   requirements_path: null
   priority: 3
   workload_type: video
   est_weight: large
   cpu_meaningful: true
-  gpu_meaningful: false
+  gpu_meaningful: true
   twin_level: WORKLOAD_TWIN
-  notes: 'twin: Text+image-to-video generation with Wan-AI/Wan2.2-TI2V-5B-Diffusers converted to an OpenVINO
-    pipeline with NNCF compression; the identical diffusers model runs in PyTorch on ROCm, making it a
-    workload twin.'
+  notes: ''
 - id: wav2lip
   title: Wav2Lip
   category: Image Generation
   upstream_path: notebooks/wav2lip/wav2lip.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/wav2lip/wav2lip.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b/notebooks/wav2lip/wav2lip.ipynb
   requirements_path: null
   priority: 1
   workload_type: image-generation
   est_weight: large
   cpu_meaningful: true
-  gpu_meaningful: false
+  gpu_meaningful: true
   twin_level: WORKLOAD_TWIN
-  notes: 'twin: Audio-driven lip-sync (talking face) video generation using the Rudrabha/Wav2Lip PyTorch
-    repo''s models converted to OpenVINO with a face-detection model; the original Wav2Lip pipeline is
-    PyTorch and runs on ROCm, so the task is a workload twin.'
+  notes: ''
 - id: whisper-asr-genai
   title: Whisper Asr Genai
   category: ASR
   upstream_path: notebooks/whisper-asr-genai/whisper-asr-genai.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/whisper-asr-genai/whisper-asr-genai.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b/notebooks/whisper-asr-genai/whisper-asr-genai.ipynb
   requirements_path: null
   priority: 1
   workload_type: asr
@@ -2142,7 +2033,7 @@ notebooks:
   title: Yolov11 Instance Segmentation
   category: Vision
   upstream_path: notebooks/yolov11-optimization/yolov11-instance-segmentation.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/yolov11-optimization/yolov11-instance-segmentation.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b/notebooks/yolov11-optimization/yolov11-instance-segmentation.ipynb
   requirements_path: null
   priority: 3
   workload_type: vision
@@ -2150,13 +2041,12 @@ notebooks:
   cpu_meaningful: true
   gpu_meaningful: true
   twin_level: WORKLOAD_TWIN
-  notes: 'twin correction: notebook runs real Ultralytics PyTorch inference before OpenVINO export ->
-    task notebook (WORKLOAD_TWIN)'
+  notes: ''
 - id: yolov11-keypoint-detection
   title: Yolov11 Keypoint Detection
   category: Vision
   upstream_path: notebooks/yolov11-optimization/yolov11-keypoint-detection.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/yolov11-optimization/yolov11-keypoint-detection.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b/notebooks/yolov11-optimization/yolov11-keypoint-detection.ipynb
   requirements_path: null
   priority: 3
   workload_type: vision
@@ -2164,13 +2054,12 @@ notebooks:
   cpu_meaningful: true
   gpu_meaningful: true
   twin_level: WORKLOAD_TWIN
-  notes: 'twin correction: notebook runs real Ultralytics PyTorch inference before OpenVINO export ->
-    task notebook (WORKLOAD_TWIN)'
+  notes: ''
 - id: yolov11-object-detection
   title: Yolov11 Object Detection
   category: Vision
   upstream_path: notebooks/yolov11-optimization/yolov11-object-detection.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/yolov11-optimization/yolov11-object-detection.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b/notebooks/yolov11-optimization/yolov11-object-detection.ipynb
   requirements_path: null
   priority: 3
   workload_type: vision
@@ -2178,13 +2067,12 @@ notebooks:
   cpu_meaningful: true
   gpu_meaningful: true
   twin_level: WORKLOAD_TWIN
-  notes: 'twin correction: notebook runs real Ultralytics PyTorch inference before OpenVINO export ->
-    task notebook (WORKLOAD_TWIN)'
+  notes: ''
 - id: yolov11-quantization-with-accuracy-control
   title: Yolov11 Quantization With Accuracy Control
   category: Optimization
   upstream_path: notebooks/yolov11-quantization-with-accuracy-control/yolov11-quantization-with-accuracy-control.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/yolov11-quantization-with-accuracy-control/yolov11-quantization-with-accuracy-control.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b/notebooks/yolov11-quantization-with-accuracy-control/yolov11-quantization-with-accuracy-control.ipynb
   requirements_path: null
   priority: 2
   workload_type: optimization
@@ -2197,7 +2085,7 @@ notebooks:
   title: Yoloe 26 Open Vocabulary
   category: Vision
   upstream_path: notebooks/yolov26-optimization/yoloe-26-open-vocabulary.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/yolov26-optimization/yoloe-26-open-vocabulary.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b/notebooks/yolov26-optimization/yoloe-26-open-vocabulary.ipynb
   requirements_path: null
   priority: 3
   workload_type: vision
@@ -2205,13 +2093,12 @@ notebooks:
   cpu_meaningful: true
   gpu_meaningful: true
   twin_level: WORKLOAD_TWIN
-  notes: 'twin correction: notebook runs real Ultralytics PyTorch inference before OpenVINO export ->
-    task notebook (WORKLOAD_TWIN)'
+  notes: ''
 - id: yolov26-instance-segmentation
   title: Yolov26 Instance Segmentation
   category: Vision
   upstream_path: notebooks/yolov26-optimization/yolov26-instance-segmentation.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/yolov26-optimization/yolov26-instance-segmentation.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b/notebooks/yolov26-optimization/yolov26-instance-segmentation.ipynb
   requirements_path: null
   priority: 3
   workload_type: vision
@@ -2219,13 +2106,12 @@ notebooks:
   cpu_meaningful: true
   gpu_meaningful: true
   twin_level: WORKLOAD_TWIN
-  notes: 'twin correction: notebook runs real Ultralytics PyTorch inference before OpenVINO export ->
-    task notebook (WORKLOAD_TWIN)'
+  notes: ''
 - id: yolov26-keypoint-detection
   title: Yolov26 Keypoint Detection
   category: Vision
   upstream_path: notebooks/yolov26-optimization/yolov26-keypoint-detection.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/yolov26-optimization/yolov26-keypoint-detection.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b/notebooks/yolov26-optimization/yolov26-keypoint-detection.ipynb
   requirements_path: null
   priority: 3
   workload_type: vision
@@ -2233,13 +2119,12 @@ notebooks:
   cpu_meaningful: true
   gpu_meaningful: true
   twin_level: WORKLOAD_TWIN
-  notes: 'twin correction: notebook runs real Ultralytics PyTorch inference before OpenVINO export ->
-    task notebook (WORKLOAD_TWIN)'
+  notes: ''
 - id: yolov26-obb
   title: Yolov26 Obb
   category: Vision
   upstream_path: notebooks/yolov26-optimization/yolov26-obb.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/yolov26-optimization/yolov26-obb.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b/notebooks/yolov26-optimization/yolov26-obb.ipynb
   requirements_path: null
   priority: 2
   workload_type: vision
@@ -2247,13 +2132,12 @@ notebooks:
   cpu_meaningful: true
   gpu_meaningful: true
   twin_level: WORKLOAD_TWIN
-  notes: 'twin correction: notebook runs real Ultralytics PyTorch inference before OpenVINO export ->
-    task notebook (WORKLOAD_TWIN)'
+  notes: ''
 - id: yolov26-object-detection
   title: Yolov26 Object Detection
   category: Vision
   upstream_path: notebooks/yolov26-optimization/yolov26-object-detection.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/yolov26-optimization/yolov26-object-detection.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b/notebooks/yolov26-optimization/yolov26-object-detection.ipynb
   requirements_path: null
   priority: 3
   workload_type: vision
@@ -2261,43 +2145,38 @@ notebooks:
   cpu_meaningful: true
   gpu_meaningful: true
   twin_level: WORKLOAD_TWIN
-  notes: 'twin correction: notebook runs real Ultralytics PyTorch inference before OpenVINO export ->
-    task notebook (WORKLOAD_TWIN)'
+  notes: ''
 - id: z-image-turbo
   title: Z Image Turbo
   category: Other
   upstream_path: notebooks/z-image-turbo/z-image-turbo.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/z-image-turbo/z-image-turbo.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b/notebooks/z-image-turbo/z-image-turbo.ipynb
   requirements_path: null
   priority: 2
   workload_type: other
   est_weight: small
   cpu_meaningful: true
-  gpu_meaningful: false
+  gpu_meaningful: true
   twin_level: WORKLOAD_TWIN
-  notes: 'twin: Text-to-image generation with Tongyi-MAI/Z-Image-Turbo exported via optimum-cli and run
-    through OVZImagePipeline; the same diffusers-based model runs in PyTorch on ROCm, so it is a workload
-    twin for the image-generation task.'
+  notes: ''
 - id: zeroscope-text2video
   title: Zeroscope Text2Video
   category: Video
   upstream_path: notebooks/zeroscope-text2video/zeroscope-text2video.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/zeroscope-text2video/zeroscope-text2video.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b/notebooks/zeroscope-text2video/zeroscope-text2video.ipynb
   requirements_path: null
   priority: 3
   workload_type: video
   est_weight: large
   cpu_meaningful: true
-  gpu_meaningful: false
+  gpu_meaningful: true
   twin_level: WORKLOAD_TWIN
-  notes: 'twin: Text-to-video generation with the cerspense/zeroscope_v2_576w diffusers pipeline whose
-    UNet/VAE/text-encoder are converted via ov.convert_model and reassembled in an OV pipeline; the same
-    diffusers model runs in PyTorch on ROCm, so the task is a workload twin.'
+  notes: ''
 - id: 001-whisper-evaluation
   title: 001 Whisper Evaluation
   category: ASR
   upstream_path: supplementary_materials/notebooks/001-whisper-evaluation/001-whisper-evaluation.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/supplementary_materials/notebooks/001-whisper-evaluation/001-whisper-evaluation.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b/supplementary_materials/notebooks/001-whisper-evaluation/001-whisper-evaluation.ipynb
   requirements_path: null
   priority: 1
   workload_type: asr
@@ -2310,22 +2189,20 @@ notebooks:
   title: Fastdraft Deepseek
   category: LLM
   upstream_path: supplementary_materials/notebooks/fastdraft-deepseek/fastdraft_deepseek.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/supplementary_materials/notebooks/fastdraft-deepseek/fastdraft_deepseek.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b/supplementary_materials/notebooks/fastdraft-deepseek/fastdraft_deepseek.ipynb
   requirements_path: null
   priority: 1
   workload_type: llm
   est_weight: large
   cpu_meaningful: true
-  gpu_meaningful: false
+  gpu_meaningful: true
   twin_level: WORKLOAD_TWIN
-  notes: 'twin: DeepSeek-R1-Distill-Llama-8B chat with openvino_genai speculative decoding using the OpenVINO
-    FastDraft draft model, benchmarking AR vs SD speedup; the LLM generation workload (with speculative
-    decoding available in vLLM/HF on ROCm) maps to PyTorch, matching the qwen3.8-mtp = WORKLOAD_TWIN precedent.'
+  notes: ''
 - id: phi3_chatbot_demo
   title: Phi3 Chatbot Demo
   category: LLM
   upstream_path: supplementary_materials/notebooks/phi3_chatbot_demo.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/supplementary_materials/notebooks/phi3_chatbot_demo.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b/supplementary_materials/notebooks/phi3_chatbot_demo.ipynb
   requirements_path: null
   priority: 1
   workload_type: llm
@@ -2338,7 +2215,7 @@ notebooks:
   title: Phi3 Rag On Client
   category: LLM
   upstream_path: supplementary_materials/notebooks/phi3_rag_on_client.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/supplementary_materials/notebooks/phi3_rag_on_client.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b/supplementary_materials/notebooks/phi3_rag_on_client.ipynb
   requirements_path: null
   priority: 1
   workload_type: llm
@@ -2351,7 +2228,7 @@ notebooks:
   title: Qwen3
   category: LLM
   upstream_path: supplementary_materials/notebooks/qwen-3/qwen3.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/supplementary_materials/notebooks/qwen-3/qwen3.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b/supplementary_materials/notebooks/qwen-3/qwen3.ipynb
   requirements_path: null
   priority: 1
   workload_type: llm
@@ -2364,7 +2241,7 @@ notebooks:
   title: Qwen3 Agent
   category: LLM
   upstream_path: supplementary_materials/notebooks/qwen-3/smolagents/qwen3_agent.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/supplementary_materials/notebooks/qwen-3/smolagents/qwen3_agent.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b/supplementary_materials/notebooks/qwen-3/smolagents/qwen3_agent.ipynb
   requirements_path: supplementary_materials/notebooks/qwen-3/smolagents/requirements.txt
   priority: 1
   workload_type: llm

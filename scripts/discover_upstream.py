@@ -34,7 +34,7 @@ CATEGORY_RULES: list[tuple[str, str]] = [
     ),
     (r"tensorflow|onnx|pytorch|detectron2|modelscope|tflite|convert|export|migration", "Conversion"),
     (r"neural-compression|quantization|weight-compression|compression|language-quantize", "Optimization"),
-    (r"whisper|asr|speech-recognition|wav2vec|speech-to-text|mms-massively|omnivoice", "ASR"),
+    (r"whisper|asr|speech-recognition|wav2vec|speech-to-text|mms-massively|omnivoice|pyannote", "ASR"),
     (
         r"tts|text-to-speech|speech-synthesis|sunset|kokoro|fish-speech|bark-text-to-audio|openvoice|freevc|voice-conversion|music-generation|ace-step",
         "TTS",
@@ -77,7 +77,7 @@ TWIN_RULES: list[tuple[str, str]] = [
         r"openvino-api|pot-quantization|model-server|async-api|neural-compression|weight-compression|nncf|optimization|convert|export|migration|tensorflow-to-openvino|pytorch-to-openvino|onnx",
         TwinLevel.OPENVINO_SPECIFIC.value,
     ),
-    (r"whisper|asr|speech", TwinLevel.WORKLOAD_TWIN.value),
+    (r"whisper|asr|speech|pyannote", TwinLevel.WORKLOAD_TWIN.value),
     (r"stable-diffusion|image-generation|animatediff|inpainting", TwinLevel.WORKLOAD_TWIN.value),
     (r"llm|qwen|llama|chatbot|rag|agent|question-answering|text-generation", TwinLevel.WORKLOAD_TWIN.value),
     (r"yolo|detection|classification|segmentation|clip", TwinLevel.WORKLOAD_TWIN.value),
@@ -244,6 +244,20 @@ def main() -> int:
     UPSTREAM_META.parent.mkdir(parents=True, exist_ok=True)
     UPSTREAM_META.write_text(json.dumps(meta, indent=2))
 
+    # Incremental rediscovery: the committed catalog carries audited
+    # classifications (twin levels/categories corrected during release
+    # closures). Surviving notebooks keep their audited values; fresh rules
+    # only classify genuinely new entries. A pin switch must never silently
+    # reset 171 audited rows back to NOT_CLASSIFIED.
+    prior: dict[str, dict] = {}
+    retired: list[str] = []
+    if CATALOG.exists():
+        try:
+            prev = yaml.safe_load(CATALOG.read_text()) or {}
+            prior = {e.get("id"): e for e in prev.get("notebooks", []) if e.get("id")}
+        except (OSError, yaml.YAMLError):
+            prior = {}
+
     base = f"https://github.com/openvinotoolkit/openvino_notebooks/blob/{meta['commit']}"
     entries: list[NotebookEntry] = []
     for nb in sorted(UPSTREAM_DIR.rglob("*.ipynb")):
@@ -257,6 +271,21 @@ def main() -> int:
         category, _pat = classify(rel)
         weight = weight_for(nb, req)
         entry_id = nb.stem.lower()
+        prev_entry = prior.get(entry_id)
+        if prev_entry is not None:
+            # audited values win over heuristics for surviving notebooks
+            if prev_entry.get("category"):
+                category = prev_entry["category"]
+            prev_twin = prev_entry.get("twin_level")
+            if prev_twin and prev_twin != TwinLevel.NOT_CLASSIFIED.value:
+                twin_lvl = prev_twin
+            else:
+                twin_lvl = twin_of(rel)
+            prev_weight = prev_entry.get("est_weight")
+            if prev_weight:
+                weight = prev_weight
+        else:
+            twin_lvl = twin_of(rel)
         entries.append(
             NotebookEntry(
                 id=entry_id,
@@ -265,12 +294,12 @@ def main() -> int:
                 upstream_path=rel,
                 upstream_url=f"{base}/{rel}",
                 requirements_path=(nb.parent / req.name).relative_to(UPSTREAM_DIR).as_posix() if req else None,
-                priority=priority_for(entry_id, category, weight, rel),
+                priority=(prev_entry or {}).get("priority") or priority_for(entry_id, category, weight, rel),
                 workload_type=category.lower().replace(" ", "-"),
                 est_weight=weight,
-                cpu_meaningful=True,
-                gpu_meaningful=twin_of(rel) in ("EXACT_TWIN", "WORKLOAD_TWIN"),
-                twin_level=twin_of(rel),
+                cpu_meaningful=(prev_entry or {}).get("cpu_meaningful", True),
+                gpu_meaningful=twin_lvl in ("EXACT_TWIN", "WORKLOAD_TWIN"),
+                twin_level=twin_lvl,
             )
         )
 
@@ -284,18 +313,27 @@ def main() -> int:
             counts[e.id] = counts.get(e.id, 0) + 1
             e.id = f"{e.id}~{counts[e.id]}"
 
+    discovered_ids = {e.id for e in entries}
+    retired = sorted(i for i in prior if i not in discovered_ids)
+
+    payload: dict = {
+        "generated": meta["discovered_at"],
+        "upstream_commit": meta["commit"],
+        "notebooks": [e.to_dict() for e in entries],
+    }
+    if retired:
+        # explicit retirement: removed upstream notebooks are recorded, never
+        # silently retained (their historical evidence stays under results/)
+        payload["retired"] = retired
+
     CATALOG.parent.mkdir(parents=True, exist_ok=True)
-    CATALOG.write_text(
-        yaml.safe_dump(
-            {
-                "generated": meta["discovered_at"],
-                "upstream_commit": meta["commit"],
-                "notebooks": [e.to_dict() for e in entries],
-            },
-            sort_keys=False,
-        )
-    )
+    CATALOG.write_text(yaml.safe_dump(payload, sort_keys=False))
     print(f"catalog: {len(entries)} notebooks -> {CATALOG}")
+    if retired:
+        print(f"retired (no longer upstream): {retired}")
+    new_ids = [e.id for e in entries if e.id not in prior]
+    if new_ids:
+        print(f"new notebooks: {new_ids}")
     from collections import Counter
 
     print("categories:", dict(Counter(e.category for e in entries)))

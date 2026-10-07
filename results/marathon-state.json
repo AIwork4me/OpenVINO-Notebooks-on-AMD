@@ -2,15 +2,16 @@
   "started": "2026-10-01T09:40:27+00:00",
   "upstream": {
     "fetch_method": "github git-blobs API (sha1-verified); tarball transport failed on this network",
-    "files_ok": 572,
-    "files_cached": 0,
+    "files_ok": 14,
+    "files_cached": 562,
     "files_failed": 0,
     "repository": "openvinotoolkit/openvino_notebooks",
     "branch": "latest",
-    "commit": "329562e6031d1a989017d08697b0fabe5a989492",
-    "commit_date": "2026-10-05T16:50:18Z",
-    "commit_subject": "[CI] [GHA] Copy `notebook_utils.py` into notebook folders before tests start instead of downloading it at runtime (#3712)",
-    "discovered_at": "2026-10-07T00:37:36Z"
+    "commit": "5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b",
+    "commit_date": "2026-10-07T12:14:36Z",
+    "commit_subject": "[Dependencies] Update selector dependencies to the latest compatible version (#3721)",
+    "discovered_at": "2026-10-07T14:54:27Z",
+    "local_path": ".cache/upstream"
   },
   "attempts": {
     "hello-world": {
@@ -5677,7 +5678,7 @@
       "log_tail": "Collecting json5\n  Using cached json5-0.15.0-py3-none-any.whl.metadata (37 kB)\nUsing cached json5-0.15.0-py3-none-any.whl (36 kB)\nInstalling collected packages: json5\nSuccessfully installed json5-0.15.0\n"
     }
   ],
-  "last_checkpoint": "2026-10-07T13:54:35+00:00",
+  "last_checkpoint": "2026-10-07T14:59:27+00:00",
   "current_workload": "llm-agent-react-langchain",
   "env_repairs": [
     {
