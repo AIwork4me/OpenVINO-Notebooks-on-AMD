@@ -189,7 +189,7 @@ silently rewritten.
   `NOT_APPLICABLE` with a recorded reason.
 - Attempted ≠ catalogued: reports count real attempt records only
   (`cpu_attempted`, coverage %), never the default NOT_TESTED rows.
-- **Catalog coverage ≠ pass rate**: 171/171 coverage means every catalogued
+- **Catalog coverage ≠ pass rate**: 173/173 coverage means every catalogued
   notebook has an AMD CPU validation outcome; verified/limited/blocked/
   compatibility-failure counts are always reported alongside, and the README
   states the distinction explicitly.

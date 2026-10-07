@@ -65,7 +65,7 @@ The distinction is strict everywhere: matrix, reports, release notes, and this R
 - Full generated matrix (every catalogued row, with outcome + validation level + reason + evidence link): [catalog/compatibility.md](catalog/compatibility.md)
 - Live campaign progress: [reports/marathon-progress.md](reports/marathon-progress.md)
 - Failure groups by outcome: [reports/failures.md](reports/failures.md)
-- Full dataset audit: [reports/full-171-integrity-audit.md](reports/full-171-integrity-audit.md)
+- Full dataset audit: [reports/full-173-integrity-audit.md](reports/full-173-integrity-audit.md)
 
 ## Quick start
 
