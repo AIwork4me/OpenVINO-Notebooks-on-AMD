@@ -1,0 +1,30 @@
+[marathon/cpu 1/23] openvino-api (p0/small)
+[marathon/cpu 2/23] ace-step-music-generation (p1/small)
+[marathon/cpu 3/23] deepseek-r1 (p1/small)
+[marathon/cpu 4/23] flex.2-image-generation (p1/small)
+[marathon/cpu 5/23] florence2 (p1/small)
+[marathon/cpu 6/23] kokoro (p1/small)
+[marathon/cpu 7/23] llm-chatbot-generate-api (p1/small)
+[marathon/cpu 8/23] paddle-to-openvino-classification (p1/small)
+[marathon/cpu 9/23] parler-tts-text-to-speech (p1/small)
+[marathon/cpu 10/23] cosyvoice3-tts (p1/medium)
+[marathon/cpu 11/23] hunyuan-ocr (p1/large)
+[marathon/cpu 12/23] ministral-3 (p1/large)
+[marathon/cpu 13/23] olmocr-pdf-vlm (p1/large)
+[marathon/cpu 14/23] openvoice2-and-melotts (p1/large)
+[marathon/cpu 15/23] smolvlm2 (p1/large)
+[marathon/cpu 16/23] stable-diffusion-v3 (p1/large)
+[marathon/cpu 17/23] pointpillars (p2/small)
+[marathon/cpu 18/23] segment-anything-2-image (p2/small)
+[marathon/cpu 19/23] yolov11-keypoint-detection (p3/large)
+[marathon/cpu 20/23] yolov26-instance-segmentation (p3/large)
+[marathon/cpu 21/23] yolov26-keypoint-detection (p3/large)
+[marathon/cpu 22/23] yolov26-object-detection (p3/large)
+[marathon/cpu 23/23] llm-agent-react-langchain (p4/huge)
+{
+  "cpu_attempted": 23,
+  "verified": 3,
+  "failed": 5,
+  "blocked": 0,
+  "skipped": 0
+}
