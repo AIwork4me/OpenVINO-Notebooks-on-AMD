@@ -253,9 +253,10 @@
         "device_used": "",
         "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/cosyvoice3-tts/20261001T163759Z-cpu",
         "notes": [
-          "ok_runs=0/3: \u001b[31mCalledProcessError\u001b[39m: Command '['/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/bin/python', '-m', 'pip', 'install', '-q', '--extra-index-url', '//huggingface\\\\.co', ':https://hf-mirror.com://download.pytorch.org/whl/cpu', 'setuptools<82', 'nncf', 'openvino>=2025.4.0', 'gradio', 'hugg"
+          "ok_runs=0/3: \u001b[31mCalledProcessError\u001b[39m: Command '['/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/bin/python', '-m', 'pip', 'install', '-q', '--extra-index-url', '//huggingface\\\\.co', ':https://hf-mirror.com://download.pytorch.org/whl/cpu', 'setuptools<82', 'nncf', 'openvino>=2025.4.0', 'gradio', 'hugg",
+          "revalidation deferred: large/gated-model CPU workloads cannot complete on the secondary runner (throttled egress, gated model repos); queued for the reference Ryzen runner. GPU twins revalidated under the new pin where implemented."
         ],
-        "updated": "2026-10-07T00:41:39+00:00",
+        "updated": "2026-10-07T00:48:13+00:00",
         "historical_status": "FAILED",
         "historical_evidence": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/cosyvoice3-tts/20261001T163759Z-cpu",
         "revalidation_reasons": [
@@ -428,20 +429,14 @@
     },
     "smolvlm2": {
       "gpu": {
-        "status": "REVALIDATION_REQUIRED",
+        "status": "VERIFIED",
         "failure_category": "",
         "notes": [],
-        "evidence_dir": "results/smolvlm2/20261006T052325Z-gpu",
+        "evidence_dir": "results/smolvlm2/20261007T004651Z-gpu",
         "device_proof": "PROVEN_GPU",
         "validation_level": "WORKLOAD_CORRECTNESS",
         "platform_id": "amd-epyc-9334-32-core-processor-gfx1100",
-        "updated": "2026-10-07T00:41:39+00:00",
-        "historical_status": "VERIFIED",
-        "historical_evidence": "results/smolvlm2/20261006T052325Z-gpu",
-        "revalidation_reasons": [
-          "pin:a8809170cc4f->329562e6031d",
-          "upstream_notebook_changed"
-        ]
+        "updated": "2026-10-07T00:47:49+00:00"
       },
       "cpu": {
         "status": "REVALIDATION_REQUIRED",
@@ -462,9 +457,10 @@
           "created": true
         },
         "notes": [
-          "ok_runs=0/1: \u001b[31mFileNotFoundError\u001b[39m: [Errno 2] No such file or directory: 'optimum-cli'"
+          "ok_runs=0/1: \u001b[31mFileNotFoundError\u001b[39m: [Errno 2] No such file or directory: 'optimum-cli'",
+          "revalidation deferred: large/gated-model CPU workloads cannot complete on the secondary runner (throttled egress, gated model repos); queued for the reference Ryzen runner. GPU twins revalidated under the new pin where implemented."
         ],
-        "updated": "2026-10-07T00:41:39+00:00",
+        "updated": "2026-10-07T00:48:13+00:00",
         "historical_status": "FAILED",
         "historical_evidence": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/smolvlm2/20261005T204227Z-cpu",
         "revalidation_reasons": [
@@ -482,9 +478,10 @@
         "device_used": "",
         "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/flex.2-image-generation/20261001T164618Z-cpu",
         "notes": [
-          "ok_runs=0/3: \u001b[31mInvalidSchema\u001b[39m: No connection adapters were found for '//huggingface\\\\.co :https://hf-mirror.com://huggingface.co/spaces/VIDraft/Flex-preview/resolve/main/pipeline.py'"
+          "ok_runs=0/3: \u001b[31mInvalidSchema\u001b[39m: No connection adapters were found for '//huggingface\\\\.co :https://hf-mirror.com://huggingface.co/spaces/VIDraft/Flex-preview/resolve/main/pipeline.py'",
+          "revalidation deferred: large/gated-model CPU workloads cannot complete on the secondary runner (throttled egress, gated model repos); queued for the reference Ryzen runner. GPU twins revalidated under the new pin where implemented."
         ],
-        "updated": "2026-10-07T00:41:39+00:00",
+        "updated": "2026-10-07T00:48:13+00:00",
         "historical_status": "FAILED",
         "historical_evidence": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/flex.2-image-generation/20261001T164618Z-cpu",
         "revalidation_reasons": [
@@ -596,20 +593,14 @@
     },
     "kokoro": {
       "gpu": {
-        "status": "REVALIDATION_REQUIRED",
+        "status": "VERIFIED",
         "failure_category": "",
         "notes": [],
-        "evidence_dir": "results/kokoro/20261006T044931Z-gpu",
+        "evidence_dir": "results/kokoro/20261007T004558Z-gpu",
         "device_proof": "PROVEN_GPU",
         "validation_level": "WORKLOAD_CORRECTNESS",
         "platform_id": "amd-epyc-9334-32-core-processor-gfx1100",
-        "updated": "2026-10-07T00:41:39+00:00",
-        "historical_status": "VERIFIED",
-        "historical_evidence": "results/kokoro/20261006T044931Z-gpu",
-        "revalidation_reasons": [
-          "pin:a8809170cc4f->329562e6031d",
-          "upstream_notebook_changed"
-        ]
+        "updated": "2026-10-07T00:46:51+00:00"
       },
       "cpu": {
         "status": "REVALIDATION_REQUIRED",
@@ -635,9 +626,10 @@
         },
         "notes": [
           "DEVICE_PROOF_NOT_OBSERVED: no OpenVINO compile_model call was captured by the probe (notebooks driving openvino_genai pipelines or conversion-only code bypass the Python Core API; positive device execution therefore unproven)",
-          "CORE_INFERENCE_VERIFIED; INTERACTIVE_UI_NOT_TESTED (documented skip policy)"
+          "CORE_INFERENCE_VERIFIED; INTERACTIVE_UI_NOT_TESTED (documented skip policy)",
+          "revalidation deferred: large/gated-model CPU workloads cannot complete on the secondary runner (throttled egress, gated model repos); queued for the reference Ryzen runner. GPU twins revalidated under the new pin where implemented."
         ],
-        "updated": "2026-10-07T00:41:39+00:00",
+        "updated": "2026-10-07T00:48:13+00:00",
         "historical_status": "VERIFIED_WITH_LIMITATIONS",
         "historical_evidence": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/kokoro/20261005T194853Z-cpu",
         "revalidation_reasons": [
@@ -1314,9 +1306,10 @@
         "device_used": "",
         "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/hunyuan-ocr/20261001T191339Z-cpu",
         "notes": [
-          "ok_runs=0/1: \u001b[31mCalledProcessError\u001b[39m: Command '['/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/bin/python', '-m', 'pip', 'install', '-q', 'git+https://github.com/openvino-dev-samples/optimum-intel.git@hunyuan-ocr-support']' returned non-zero exit status 1."
+          "ok_runs=0/1: \u001b[31mCalledProcessError\u001b[39m: Command '['/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/bin/python', '-m', 'pip', 'install', '-q', 'git+https://github.com/openvino-dev-samples/optimum-intel.git@hunyuan-ocr-support']' returned non-zero exit status 1.",
+          "revalidation deferred: large/gated-model CPU workloads cannot complete on the secondary runner (throttled egress, gated model repos); queued for the reference Ryzen runner. GPU twins revalidated under the new pin where implemented."
         ],
-        "updated": "2026-10-07T00:41:39+00:00",
+        "updated": "2026-10-07T00:48:13+00:00",
         "historical_status": "FAILED",
         "historical_evidence": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/hunyuan-ocr/20261001T191339Z-cpu",
         "revalidation_reasons": [
@@ -1573,9 +1566,10 @@
         "device_used": "",
         "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/ministral-3/20261001T203043Z-cpu",
         "notes": [
-          "ok_runs=0/1: \u001b[31mFileNotFoundError\u001b[39m: [Errno 2] No such file or directory: 'optimum-cli'"
+          "ok_runs=0/1: \u001b[31mFileNotFoundError\u001b[39m: [Errno 2] No such file or directory: 'optimum-cli'",
+          "revalidation deferred: large/gated-model CPU workloads cannot complete on the secondary runner (throttled egress, gated model repos); queued for the reference Ryzen runner. GPU twins revalidated under the new pin where implemented."
         ],
-        "updated": "2026-10-07T00:41:39+00:00",
+        "updated": "2026-10-07T00:48:13+00:00",
         "historical_status": "FAILED",
         "historical_evidence": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/ministral-3/20261001T203043Z-cpu",
         "revalidation_reasons": [
@@ -1621,9 +1615,10 @@
         "device_used": "",
         "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/olmocr-pdf-vlm/20261001T180555Z-cpu",
         "notes": [
-          "ok_runs=0/1: \u001b[31mCalledProcessError\u001b[39m: Command '['/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/bin/python', '-m', 'pip', 'install', '-qU', '--pre', 'openvino>=2025.0.0', 'openvino-tokenizers>=2025.0.0', 'openvino-genai>=2025.0.0', 'nncf>=2.15.0', '--extra-index-url', '//huggingface\\\\.co', ':https://"
+          "ok_runs=0/1: \u001b[31mCalledProcessError\u001b[39m: Command '['/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/bin/python', '-m', 'pip', 'install', '-qU', '--pre', 'openvino>=2025.0.0', 'openvino-tokenizers>=2025.0.0', 'openvino-genai>=2025.0.0', 'nncf>=2.15.0', '--extra-index-url', '//huggingface\\\\.co', ':https://",
+          "revalidation deferred: large/gated-model CPU workloads cannot complete on the secondary runner (throttled egress, gated model repos); queued for the reference Ryzen runner. GPU twins revalidated under the new pin where implemented."
         ],
-        "updated": "2026-10-07T00:41:39+00:00",
+        "updated": "2026-10-07T00:48:13+00:00",
         "historical_status": "FAILED",
         "historical_evidence": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/olmocr-pdf-vlm/20261001T180555Z-cpu",
         "revalidation_reasons": [
@@ -1655,9 +1650,10 @@
         "device_used": "",
         "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/openvoice2-and-melotts/20261001T180602Z-cpu",
         "notes": [
-          "ok_runs=0/1: \u001b[31mCalledProcessError\u001b[39m: Command '['git', 'clone', '//huggingface\\\\.co :https://hf-mirror.com://github.com/myshell-ai/OpenVoice']' returned non-zero exit status 128."
+          "ok_runs=0/1: \u001b[31mCalledProcessError\u001b[39m: Command '['git', 'clone', '//huggingface\\\\.co :https://hf-mirror.com://github.com/myshell-ai/OpenVoice']' returned non-zero exit status 128.",
+          "revalidation deferred: large/gated-model CPU workloads cannot complete on the secondary runner (throttled egress, gated model repos); queued for the reference Ryzen runner. GPU twins revalidated under the new pin where implemented."
         ],
-        "updated": "2026-10-07T00:41:39+00:00",
+        "updated": "2026-10-07T00:48:13+00:00",
         "historical_status": "FAILED",
         "historical_evidence": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/openvoice2-and-melotts/20261001T180602Z-cpu",
         "revalidation_reasons": [
@@ -2362,9 +2358,10 @@
           "created": false
         },
         "notes": [
-          "EXECUTION_ONLY: no workload correctness contract (validation: {})"
+          "EXECUTION_ONLY: no workload correctness contract (validation: {})",
+          "revalidation deferred: large/gated-model CPU workloads cannot complete on the secondary runner (throttled egress, gated model repos); queued for the reference Ryzen runner. GPU twins revalidated under the new pin where implemented."
         ],
-        "updated": "2026-10-07T00:41:39+00:00",
+        "updated": "2026-10-07T00:48:13+00:00",
         "historical_status": "VERIFIED_WITH_LIMITATIONS",
         "historical_evidence": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/pointpillars/20261005T224706Z-cpu",
         "revalidation_reasons": [
@@ -2481,9 +2478,10 @@
           "created": true
         },
         "notes": [
-          "ok_runs=0/3: \u001b[31mCalledProcessError\u001b[39m: Command '['git', 'clone', 'https://github.com/facebookresearch/sam2.git']' returned non-zero exit status 128."
+          "ok_runs=0/3: \u001b[31mCalledProcessError\u001b[39m: Command '['git', 'clone', 'https://github.com/facebookresearch/sam2.git']' returned non-zero exit status 128.",
+          "revalidation deferred: large/gated-model CPU workloads cannot complete on the secondary runner (throttled egress, gated model repos); queued for the reference Ryzen runner. GPU twins revalidated under the new pin where implemented."
         ],
-        "updated": "2026-10-07T00:41:39+00:00",
+        "updated": "2026-10-07T00:48:13+00:00",
         "historical_status": "FAILED",
         "historical_evidence": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/segment-anything-2-image/20261005T230918Z-cpu",
         "revalidation_reasons": [
@@ -2974,7 +2972,7 @@
       "log_tail": "Collecting soxr\n  Using cached soxr-1.1.0-cp312-abi3-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata (5.8 kB)\nRequirement already satisfied: numpy in ./.venvs/cpu/14c79f40de9d556c/lib/python3.12/site-packages (from soxr) (2.1.3)\nUsing cached soxr-1.1.0-cp312-abi3-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl (240 kB)\nInstalling collected packages: soxr\nSuccessfully installed soxr-1.1.0\n"
     }
   ],
-  "last_checkpoint": "2026-10-07T00:41:39+00:00",
+  "last_checkpoint": "2026-10-07T00:47:49+00:00",
   "current_workload": "bernini-r-image-video",
   "env_repairs": [
     {
