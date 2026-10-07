@@ -18,7 +18,10 @@ permissions:
 jobs:
   ingest:
     runs-on: [self-hosted, amd64, amd-cpu]
-    timeout-minutes: 90
+    # the artifact bundle is ~180MB over a heavily-throttled route; the
+    # resumable download loop supports 12 x 900s attempts, so the job cap must
+    # give it room (single-shot transfers reset; Range resume does not)
+    timeout-minutes: 150
     steps:
       - name: Resilient checkout (github.com with site-mirror fallback)
         run: |
