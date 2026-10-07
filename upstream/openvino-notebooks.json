@@ -1,5 +1,5 @@
 {
-  "fetch_method": "github git-blobs API (sha1-verified); tarball transport failed on this network",
+  "fetch_method": "codeload tarball (572 files kept, filter ('.ipynb', '.txt', '.py', '.json', '.csv', '.yaml', '.yml', '.xml', '.md', '.png', '.jpg', '.jpeg', '.gif')); blobs API fallback available",
   "files_ok": 572,
   "files_cached": 0,
   "files_failed": 0,
@@ -8,6 +8,6 @@
   "commit": "329562e6031d1a989017d08697b0fabe5a989492",
   "commit_date": "2026-10-05T16:50:18Z",
   "commit_subject": "[CI] [GHA] Copy `notebook_utils.py` into notebook folders before tests start instead of downloading it at runtime (#3712)",
-  "discovered_at": "2026-10-07T00:37:36Z",
-  "local_path": "/workspace/.cache/upstream"
+  "discovered_at": "2026-10-07T00:49:51Z",
+  "local_path": ".cache/upstream"
 }
