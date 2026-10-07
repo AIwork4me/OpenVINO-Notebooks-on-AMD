@@ -1,6 +1,6 @@
 # Compatibility Matrix (generated)
 
-Generated: 2026-10-07T03:47:52+00:00 — do not edit by hand; run `python -m ov_amd report`.
+Generated: 2026-10-07T05:51:45+00:00 — do not edit by hand; run `python -m ov_amd report`.
 
 Total notebooks: **171**
 
@@ -47,10 +47,10 @@ Total notebooks: **171**
 | [gpu-device](https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/gpu-device/gpu-device.ipynb) | API | 🔴 FAILED | ⏳ NOT_TESTED | OPENVINO_SPECIFIC | 2026-10-06 | [link](../results/gpu-device/20261006T220955Z-cpu) |
 | [grounded-segment-anything](https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/grounded-segment-anything/grounded-segment-anything.ipynb) | VLM | 🔴 FAILED | ⏳ NOT_TESTED | WORKLOAD_TWIN | 2026-10-06 | [link](../results/grounded-segment-anything/20261006T111645Z-cpu) |
 | [handwritten-ocr](https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/handwritten-ocr/handwritten-ocr.ipynb) | OCR | ✅ VERIFIED | ⏳ NOT_TESTED | WORKLOAD_TWIN | 2026-10-05 | [link](../results/handwritten-ocr/20261005T194844Z-cpu) |
-| [hello-detection](https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/hello-detection/hello-detection.ipynb) | Vision | ✅ VERIFIED | ✅ VERIFIED | WORKLOAD_TWIN | 2026-10-05 | [link](../results/hello-detection/20261007T005417Z-gpu) |
+| [hello-detection](https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/hello-detection/hello-detection.ipynb) | Vision | ✅ VERIFIED | ✅ VERIFIED | WORKLOAD_TWIN | 2026-10-05 | [link](../results/hello-detection/20261007T035733Z-gpu) |
 | [hello-npu](https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/hello-npu/hello-npu.ipynb) | API | 🔴 FAILED | ⏳ NOT_TESTED | OPENVINO_SPECIFIC | 2026-10-06 | [link](../results/hello-npu/20261006T090223Z-cpu) |
 | [hello-segmentation](https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/hello-segmentation/hello-segmentation.ipynb) | Vision | ✅ VERIFIED | ⏳ NOT_TESTED | WORKLOAD_TWIN | 2026-10-05 | [link](../results/hello-segmentation/20261005T194349Z-cpu) |
-| [hello-world](https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/hello-world/hello-world.ipynb) | API | ✅ VERIFIED | ⏳ NOT_TESTED | WORKLOAD_TWIN | 2026-10-05 | [link](../results/hello-world/20261005T170119Z-cpu) |
+| [hello-world](https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/hello-world/hello-world.ipynb) | API | ✅ VERIFIED | ⏳ NOT_TESTED | WORKLOAD_TWIN | 2026-10-07 | [link](../results/hello-world/20261007T034828Z-cpu) |
 | [hugging-face-hub](https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/hugging-face-hub/hugging-face-hub.ipynb) | API | ✅ VERIFIED | ⏳ NOT_TESTED | WORKLOAD_TWIN | 2026-10-06 | [link](../results/hugging-face-hub/20261006T192929Z-cpu) |
 | [hunyuan-ocr](https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/hunyuan-ocr/hunyuan-ocr.ipynb) | OCR | 🔴 FAILED | ⏳ NOT_TESTED | WORKLOAD_TWIN | 2026-10-07 | [link](../results/hunyuan-ocr/20261007T013051Z-cpu) |
 | [hunyuan-translation](https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/hunyuan-translation/hunyuan-translation.ipynb) | LLM | 🟡 VERIFIED_WITH_LIMITATIONS | ⏳ NOT_TESTED | WORKLOAD_TWIN | 2026-10-06 | [link](../results/hunyuan-translation/20261006T165950Z-cpu) |
