@@ -279,7 +279,12 @@ def main() -> int:
             "commit_date": commit_date,
             "commit_subject": commit_subject,
             "discovered_at": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
-            "local_path": str(DEST),
+            # repo-relative on purpose: the manifest is published and shared
+            # across validation machines, and upstream_root() resolves relative
+            # paths against the repo root — an absolute path works only on the
+            # machine that ran the fetch (the reference machine's all-23-BLOCKED
+            # pass-3 launch was exactly this)
+            "local_path": str(DEST.relative_to(REPO_ROOT)),
         }
     )
     META_PATH.parent.mkdir(parents=True, exist_ok=True)
