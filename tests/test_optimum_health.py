@@ -67,7 +67,6 @@ def test_health_contract_end_to_end_on_venv() -> None:
     """Real end-to-end proof on the validation venv: the contract must reach a
     HEALTHY (or explicitly diagnosed) state with evidence recorded."""
     import shutil
-    import subprocess
     from pathlib import Path
 
     py = str(Path(".venv-cpu/bin/python"))
