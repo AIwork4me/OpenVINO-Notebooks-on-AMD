@@ -14,7 +14,7 @@ model:
   license: ''
 cpu:
   runtime: openvino
-  status: FAILED
+  status: VERIFIED_WITH_LIMITATIONS
   wall_timeout_s: 3600
   repeats: 1
 gpu:
@@ -24,4 +24,4 @@ twin:
   level: WORKLOAD_TWIN
 validation: {}
 patches: {}
-last_verified: ''
+last_verified: '2026-10-07T01:10:06+00:00'

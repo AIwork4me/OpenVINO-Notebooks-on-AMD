@@ -14,7 +14,7 @@ model:
   license: ''
 cpu:
   runtime: openvino
-  status: VERIFIED_WITH_LIMITATIONS
+  status: VERIFIED
 gpu:
   runtime: ''
   status: NOT_TESTED
@@ -25,4 +25,4 @@ validation:
   - A MAN SAID TO THE UNIVERSE
   - 'Word Error Rate: \d'
 patches: {}
-last_verified: '2026-10-05T23:33:52+00:00'
+last_verified: '2026-10-06T20:43:05+00:00'

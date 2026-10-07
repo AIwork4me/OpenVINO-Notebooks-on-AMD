@@ -26,4 +26,4 @@ validation:
   - 'throughput in async mode with async infer queue: \d+\.\d+ fps'
   output_finite_numbers: true
 patches: {}
-last_verified: '2026-10-06T01:20:09+00:00'
+last_verified: '2026-10-06T22:06:47+00:00'

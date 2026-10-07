@@ -1,0 +1,25 @@
+id: qwen3.8-mtp
+title: Qwen3.8 Mtp
+category: LLM
+upstream:
+  repository: openvinotoolkit/openvino_notebooks
+  branch: latest
+  commit: a8809170cc4fc6aa633fbb9c22214be67ac20b47
+  path: notebooks/qwen3.8-mtp/qwen3.8-mtp.ipynb
+  url: https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/qwen3.8-mtp/qwen3.8-mtp.ipynb
+model:
+  name: ''
+  source: ''
+  revision: ''
+  license: ''
+cpu:
+  runtime: openvino
+  status: FAILED
+gpu:
+  runtime: ''
+  status: NOT_TESTED
+twin:
+  level: WORKLOAD_TWIN
+validation: {}
+patches: {}
+last_verified: ''

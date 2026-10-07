@@ -14,7 +14,7 @@ model:
   license: ''
 cpu:
   runtime: openvino
-  status: VERIFIED_WITH_LIMITATIONS
+  status: VERIFIED
 gpu:
   runtime: ''
   status: NOT_TESTED
@@ -25,4 +25,4 @@ validation:
   - flat-coated retriever
   output_finite_numbers: true
 patches: {}
-last_verified: '2026-10-05T23:39:45+00:00'
+last_verified: '2026-10-06T20:52:49+00:00'

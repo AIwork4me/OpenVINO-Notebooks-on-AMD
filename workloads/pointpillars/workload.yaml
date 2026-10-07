@@ -14,7 +14,7 @@ model:
   license: ''
 cpu:
   runtime: openvino
-  status: VERIFIED_WITH_LIMITATIONS
+  status: VERIFIED
 gpu:
   runtime: ''
   status: NOT_TESTED
@@ -25,4 +25,4 @@ validation:
   - Verification passed
   - 'Data matches: \d+ points'
 patches: {}
-last_verified: '2026-10-05T22:50:55+00:00'
+last_verified: '2026-10-07T01:42:31+00:00'

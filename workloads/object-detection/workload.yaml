@@ -25,4 +25,4 @@ validation:
   - Loading yolov8n_openvino_model for OpenVINO inference
   - Source ended
 patches: {}
-last_verified: '2026-10-06T01:36:44+00:00'
+last_verified: '2026-10-06T22:14:56+00:00'
