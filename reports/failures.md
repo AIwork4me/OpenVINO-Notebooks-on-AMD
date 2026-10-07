@@ -128,7 +128,7 @@ Total non-green attempts: 83
 
 ## 💾 cpu · BLOCKED_RESOURCE · MODEL_ARTIFACT_INCOMPLETE_OR_CORRUPT — model artifact incomplete or corrupt — 3 workload(s)
 
-- **minicpm-o-omnimodal-chatbot** — ok_runs=0/1: FileNotFoundError: No such file or directory: MiniCPM-o-2_6/ckpt/model-00001-of-00004.safetensors (evidence: results/minicpm-o-omnimodal-chatbot/20261006T171938Z-cpu)
+- **minicpm-o-omnimodal-chatbot** — v0.2.2 signature-gap correction: basic_ios::clear iostream error raised from core.read_model(model_dir/llm_path) — IR file read failure (artifact integrity), not an inference-time runtime defect; classifier signature add (evidence: results/minicpm-o-omnimodal-chatbot/20261007204800Z-cpu)
 - **bernini-r-image-video** — ok_runs=0/3: KeyError: 'blocks.0.attn1.to_q.weight' (evidence: results/bernini-r-image-video/20261006T211512Z-cpu)
 - **multimodal-rag-llamaindex** — ok_runs=0/1: Can not open file results/multimodal-rag-llamaindex/workdir-cpu/distil-whisper-large-v3-int8-ov/openvino_decoder_model.bin for mapping. Ensure that file exists and has appropriate permissions. (evidence: results/multimodal-rag-llamaindex/20261006T224956Z-cpu)
 

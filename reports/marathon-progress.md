@@ -1,6 +1,6 @@
 # Marathon Progress (generated)
 
-Updated: 2026-10-07T20:47:04+00:00
+Updated: 2026-10-07T20:55:58+00:00
 
 - Catalog discovered: 173
 - CPU attempted: 173 (100.0% of catalog; attempt records only, NOT_TESTED excluded)
@@ -34,7 +34,7 @@ Updated: 2026-10-07T20:47:04+00:00
 - NETWORK: 13
 - MODEL_ACCESS: 10
 - PACKAGE_CONFLICT: 7
-- UNKNOWN: 5
-- OPENVINO_ERROR: 3
+- OPENVINO_ERROR: 4
+- UNKNOWN: 4
 - CORRECTNESS_ERROR: 2
 - BLOCKED_DEPENDENCY: 1

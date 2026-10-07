@@ -102,7 +102,8 @@ _SIGNATURES: list[tuple[str, CompatibilityOutcome, str]] = [
         r"Empty weights data in bin file|PytorchStreamReader failed reading zip archive|"
         r"Can not open file [^\n]*\.(bin|xml)|"
         r"No such file or directory[^\n]*\.safetensors|"
-        r"KeyError: '(blocks|model)\.[^\n]*weight'",
+        r"KeyError: '(blocks|model)\.[^\n]*weight'|"
+        r"basic_ios::clear: iostream error",
         CompatibilityOutcome.BLOCKED_RESOURCE,
         "MODEL_ARTIFACT_INCOMPLETE_OR_CORRUPT",
     ),

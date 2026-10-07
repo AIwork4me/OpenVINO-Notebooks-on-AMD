@@ -1,15 +1,12 @@
 # Full 173-Entry Integrity Audit (generated)
 
-Generated: 2026-10-07T20:47:18+00:00 · pin `5f0b2b5f63fd`
+Generated: 2026-10-07T20:55:58+00:00 · pin `5f0b2b5f63fd`
 
-Verdicts: {'OK': 166, 'FAIL': 4, 'WARN': 3}
+Verdicts: {'OK': 170, 'WARN': 3}
 
 ## Critical anomalies
 
-- flux.1-image-generation: yellow without limitation codes
-- llm-chatbot-generate-api: yellow without limitation codes
-- llm-chatbot: yellow without limitation codes
-- qwen3: yellow without limitation codes
+- none
 
 ## Warnings
 
@@ -51,7 +48,7 @@ Verdicts: {'OK': 166, 'FAIL': 4, 'WARN': 3}
 | flex.2-image-generation | VERIFIED_WITH_LIMITATIONS | VERIFIED_WITH_LIMITATIONS | OK |  |
 | florence2 | VERIFIED_WITH_LIMITATIONS | VERIFIED_WITH_LIMITATIONS | OK |  |
 | flux-fill | FAILED | BLOCKED_MODEL_ACCESS | OK |  |
-| flux.1-image-generation | VERIFIED_WITH_LIMITATIONS | VERIFIED_WITH_LIMITATIONS | FAIL | yellow without limitation codes |
+| flux.1-image-generation | VERIFIED_WITH_LIMITATIONS | VERIFIED_WITH_LIMITATIONS | OK |  |
 | flux.1-kontext | FAILED | BLOCKED_MODEL_ACCESS | OK |  |
 | flux.2-klein | FAILED | BLOCKED_DEPENDENCY | OK |  |
 | freevc-voice-conversion | FAILED | BLOCKED_NETWORK | OK |  |
@@ -81,8 +78,8 @@ Verdicts: {'OK': 166, 'FAIL': 4, 'WARN': 3}
 | llm-agent-mcp | FAILED | BLOCKED_NETWORK | OK |  |
 | llm-agent-rag-llamaindex | VERIFIED_WITH_LIMITATIONS | VERIFIED_WITH_LIMITATIONS | OK |  |
 | llm-agent-react-langchain | VERIFIED_WITH_LIMITATIONS | VERIFIED_WITH_LIMITATIONS | OK |  |
-| llm-chatbot-generate-api | VERIFIED_WITH_LIMITATIONS | VERIFIED_WITH_LIMITATIONS | FAIL | yellow without limitation codes |
-| llm-chatbot | VERIFIED_WITH_LIMITATIONS | VERIFIED_WITH_LIMITATIONS | FAIL | yellow without limitation codes |
+| llm-chatbot-generate-api | VERIFIED_WITH_LIMITATIONS | VERIFIED_WITH_LIMITATIONS | OK |  |
+| llm-chatbot | VERIFIED_WITH_LIMITATIONS | VERIFIED_WITH_LIMITATIONS | OK |  |
 | llm-code-assistant | FAILED | BLOCKED_NETWORK | OK |  |
 | llm-lora | VERIFIED | VERIFIED | OK |  |
 | llm-question-answering | VERIFIED_WITH_LIMITATIONS | VERIFIED_WITH_LIMITATIONS | OK |  |
@@ -192,7 +189,7 @@ Verdicts: {'OK': 166, 'FAIL': 4, 'WARN': 3}
 | fastdraft_deepseek | FAILED | BLOCKED_RESOURCE | OK |  |
 | phi3_chatbot_demo | FAILED | BLOCKED_DEPENDENCY | OK |  |
 | phi3_rag_on_client | FAILED | BLOCKED_DEPENDENCY | OK |  |
-| qwen3 | VERIFIED_WITH_LIMITATIONS | VERIFIED_WITH_LIMITATIONS | FAIL | yellow without limitation codes |
+| qwen3 | VERIFIED_WITH_LIMITATIONS | VERIFIED_WITH_LIMITATIONS | OK |  |
 | qwen3_agent | FAILED | BLOCKED_NETWORK | OK |  |
 
 ## Method

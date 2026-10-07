@@ -8,10 +8,10 @@ upstream:
   path: notebooks/pyannote-audio/pyannote-embedding.ipynb
   url: https://github.com/openvinotoolkit/openvino_notebooks/blob/5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b/notebooks/pyannote-audio/pyannote-embedding.ipynb
 model:
-  name: ''
-  source: ''
+  name: pyannote/embedding
+  source: huggingface_hub
   revision: ''
-  license: ''
+  license: gated (accept conditions + auth required)
 cpu:
   runtime: openvino
   status: FAILED

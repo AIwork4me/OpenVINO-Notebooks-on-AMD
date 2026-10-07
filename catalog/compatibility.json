@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-07T20:47:04+00:00",
+  "generated": "2026-10-07T20:55:58+00:00",
   "upstream": {
     "fetch_method": "github git-blobs API (sha1-verified); tarball transport failed on this network",
     "files_ok": 14,
@@ -1006,7 +1006,11 @@
       "cpu_failure_category": "",
       "cpu_compatibility_outcome": "VERIFIED_WITH_LIMITATIONS",
       "cpu_outcome_reason": "",
-      "cpu_limitation_codes": [],
+      "cpu_limitation_codes": [
+        "REPEATABILITY_NOT_ESTABLISHED",
+        "INTERACTIVE_UI_NOT_TESTED",
+        "EXECUTION_ONLY"
+      ],
       "cpu_evidence": "results/flux.1-image-generation/20261007182528Z-cpu",
       "cpu_validation_level": "EXECUTION_ONLY",
       "cpu_device_proof": "PROVEN_CPU",
@@ -1926,7 +1930,10 @@
       "cpu_failure_category": "",
       "cpu_compatibility_outcome": "VERIFIED_WITH_LIMITATIONS",
       "cpu_outcome_reason": "",
-      "cpu_limitation_codes": [],
+      "cpu_limitation_codes": [
+        "INTERACTIVE_UI_NOT_TESTED",
+        "EXECUTION_ONLY"
+      ],
       "cpu_evidence": "results/llm-chatbot-generate-api/20261007171917Z-cpu",
       "cpu_validation_level": "EXECUTION_ONLY",
       "cpu_device_proof": "PROVEN_CPU",
@@ -1957,7 +1964,11 @@
       "cpu_failure_category": "",
       "cpu_compatibility_outcome": "VERIFIED_WITH_LIMITATIONS",
       "cpu_outcome_reason": "",
-      "cpu_limitation_codes": [],
+      "cpu_limitation_codes": [
+        "REPEATABILITY_NOT_ESTABLISHED",
+        "INTERACTIVE_UI_NOT_TESTED",
+        "EXECUTION_ONLY"
+      ],
       "cpu_evidence": "results/llm-chatbot/20261007200738Z-cpu",
       "cpu_validation_level": "EXECUTION_ONLY",
       "cpu_device_proof": "PROVEN_CPU",
@@ -2361,13 +2372,13 @@
       "upstream_url": "https://github.com/openvinotoolkit/openvino_notebooks/blob/5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b/notebooks/minicpm-o-omnimodal-chatbot/minicpm-o-omnimodal-chatbot.ipynb",
       "priority": 1,
       "cpu_status": "FAILED",
-      "cpu_failure_category": "UNKNOWN",
+      "cpu_failure_category": "OPENVINO_ERROR",
       "cpu_compatibility_outcome": "BLOCKED_RESOURCE",
       "cpu_outcome_reason": "MODEL_ARTIFACT_INCOMPLETE_OR_CORRUPT",
       "cpu_limitation_codes": [],
-      "cpu_evidence": "results/minicpm-o-omnimodal-chatbot/20261006T171938Z-cpu",
+      "cpu_evidence": "results/minicpm-o-omnimodal-chatbot/20261007204800Z-cpu",
       "cpu_validation_level": "",
-      "cpu_device_proof": "NOT_INFERENCE",
+      "cpu_device_proof": "PROVEN_CPU",
       "gpu_status": "NOT_TESTED",
       "gpu_failure_category": "",
       "gpu_compatibility_outcome": "NOT_TESTED",
@@ -2377,10 +2388,11 @@
       "gpu_device_proof": "",
       "twin_level": "WORKLOAD_TWIN",
       "device_used": "AUTO",
-      "last_tested": "2026-10-06T17:21:49+00:00",
-      "evidence": "results/minicpm-o-omnimodal-chatbot/20261006T171938Z-cpu",
+      "last_tested": "2026-10-07T20:52:54+00:00",
+      "evidence": "results/minicpm-o-omnimodal-chatbot/20261007204800Z-cpu",
       "notes": [
-        "ok_runs=0/1: FileNotFoundError: No such file or directory: MiniCPM-o-2_6/ckpt/model-00001-of-00004.safetensors"
+        "ok_runs=0/1: RuntimeError: basic_ios::clear: iostream error",
+        "v0.2.2 signature-gap correction: basic_ios::clear iostream error raised from core.read_model(model_dir/llm_path) \u2014 IR file read failure (artifact integrity), not an inference-time runtime defect; classifier signature added so the class derives correctly from evidence text"
       ]
     },
     {
@@ -3370,7 +3382,7 @@
       "cpu_status": "NOT_APPLICABLE",
       "cpu_failure_category": "",
       "cpu_compatibility_outcome": "NOT_APPLICABLE",
-      "cpu_outcome_reason": "",
+      "cpu_outcome_reason": "NO_EXECUTABLE_CONTENT",
       "cpu_limitation_codes": [],
       "cpu_evidence": "results/physical-ai-robotics/20261001T135247Z-cpu",
       "cpu_validation_level": "",
@@ -4360,8 +4372,7 @@
       "cpu_compatibility_outcome": "VERIFIED_WITH_LIMITATIONS",
       "cpu_outcome_reason": "",
       "cpu_limitation_codes": [
-        "REPEATABILITY_NOT_ESTABLISHED",
-        "INTERACTIVE_UI_NOT_TESTED"
+        "REPEATABILITY_NOT_ESTABLISHED"
       ],
       "cpu_evidence": "results/stable-video-diffusion/20261006T222152Z-cpu",
       "cpu_validation_level": "WORKLOAD_CORRECTNESS",
@@ -5412,7 +5423,9 @@
       "cpu_failure_category": "",
       "cpu_compatibility_outcome": "VERIFIED_WITH_LIMITATIONS",
       "cpu_outcome_reason": "",
-      "cpu_limitation_codes": [],
+      "cpu_limitation_codes": [
+        "REPEATABILITY_NOT_ESTABLISHED"
+      ],
       "cpu_evidence": "results/qwen3/20261007172217Z-cpu",
       "cpu_validation_level": "WORKLOAD_CORRECTNESS",
       "cpu_device_proof": "PROVEN_CPU",
