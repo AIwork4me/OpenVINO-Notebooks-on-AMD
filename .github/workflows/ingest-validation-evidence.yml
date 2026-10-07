@@ -20,10 +20,34 @@ jobs:
     runs-on: [self-hosted, amd64, amd-cpu]
     timeout-minutes: 90
     steps:
-      - uses: actions/checkout@v4
-        with:
-          # the ingest must land on top of the latest evidence
-          ref: main
+      - name: Resilient checkout (github.com with site-mirror fallback)
+        run: |
+          set -e
+          # actions/checkout hangs for hours on runners whose only reliable
+          # git route is the site mirror; do it manually with bounded retries
+          # across both transports (clone is unauthenticated — repo is public;
+          # pushes later use the runner's stored credentials as before).
+          REPO="$GITHUB_REPOSITORY"
+          rm -rf "$GITHUB_WORKSPACE" && mkdir -p "$GITHUB_WORKSPACE"
+          cd "$GITHUB_WORKSPACE"
+          git init -q
+          git config user.name "ovamd-ingest"
+          git config user.email "runner@users.noreply.github.com"
+          ok=""
+          for BASE in "https://github.com" "${OV_AMD_GIT_MIRROR:-https://gh-test.anruicloud.com}"; do
+            for i in 1 2 3; do
+              URL="$BASE/$REPO"
+              if git fetch --depth 1 "$URL" main 2>/dev/null; then ok="$URL"; break; fi
+              echo "fetch failed via $BASE (attempt $i)"; sleep 10
+            done
+            [ -n "$ok" ] && break
+          done
+          [ -z "$ok" ] && { echo "FATAL: could not fetch main via any transport"; exit 1; }
+          echo "fetched via $ok"
+          git checkout -q FETCH_HEAD
+          git branch -q -f main FETCH_HEAD 2>/dev/null || true
+          git checkout -q main 2>/dev/null || true
+          git log --oneline -1
       - name: Download artifacts (resumable)
         run: |
           set -e
