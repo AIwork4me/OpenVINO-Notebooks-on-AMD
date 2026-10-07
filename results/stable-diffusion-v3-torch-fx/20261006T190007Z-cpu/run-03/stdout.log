@@ -1,0 +1,14 @@
+[cell 0 START +    0.5s] # Image generation with Torch.FX Stable Diffusion v3 and OpenVINO |  | Sta
+[cell 1 START +    0.5s] ## Prerequisites | [back to top ⬆️](#Table-of-contents:)
+[cell 2 START +    0.5s] from pathlib import Path | import platform |  | import requests |  | if not Path
+Requirement already satisfied: triton<3.2.0 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (2.3.1)
+Requirement already satisfied: filelock in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (from triton<3.2.0) (3.32.7)
+[cell 2 DONE  +    2.5s]
+[cell 3 START +    2.5s] # Read more about telemetry collection at https://github.com/openvinot
+[cell 3 DONE  +    2.5s]
+[cell 4 START +    2.5s] ## Build PyTorch pipeline | [back to top ⬆️](#Table-of-contents:) |  | >**No
+[cell 5 START +    2.5s] # uncomment these lines to login to huggingfacehub to get access to pr
+[cell 5 DONE  +    2.5s]
+[cell 6 START +    2.5s] from sd3_torch_fx_helper import get_sd3_pipeline, init_pipeline |  | pipe 
+[cell 6 DONE  +    7.4s]
+NBEXEC_RESULT={"ok": false, "n_cells": 20, "n_skipped": 1, "n_substituted": 0, "stopped_after": null, "error_cell": null, "error_type": "CellExecutionError", "error_head": "Access to model stabilityai/stable-diffusion-3-medium-diffusers is restricted and you are not in the authorized list. Visit https://huggingface.co/stabilityai/stable-diffusion-3-medium-diffusers to ask for access.", "duration_s": 10.09, "patch_notes": ["skipped cell 33: matched skip pattern"]}

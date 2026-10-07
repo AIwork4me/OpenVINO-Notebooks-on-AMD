@@ -1,0 +1,98 @@
+[IPKernelApp] WARNING | Kernel is running over TCP without encryption. All communication (including code and outputs) is sent in plain text and is susceptible to eavesdropping. Use IPC transport or launch with kernel manager-provisioned CurveZMQ keys to enable transport encryption.
+[31mERROR: pip's dependency resolver does not currently take into account all the packages that are installed. This behaviour is the source of the following dependency conflicts.
+parler-tts 0.2.2 requires transformers<=4.46.1,>=4.46.1, but you have transformers 4.55.4 which is incompatible.
+google-api-core 2.41.0 requires protobuf<8.0.0,>=6.33.5, but you have protobuf 5.29.6 which is incompatible.
+proto-plus 1.29.0 requires protobuf<8.0.0,>=6.33.5, but you have protobuf 5.29.6 which is incompatible.
+onnx 1.23.2 requires protobuf>=6.31.1, but you have protobuf 5.29.6 which is incompatible.
+descript-audiotools 0.7.4 requires protobuf!=4.24.0,<5.0.0,>=3.19.6, but you have protobuf 5.29.6 which is incompatible.
+googleapis-common-protos 1.75.5 requires protobuf<8.0.0,>=6.33.5, but you have protobuf 5.29.6 which is incompatible.[0m[31m
+[0m[31mERROR: pip's dependency resolver does not currently take into account all the packages that are installed. This behaviour is the source of the following dependency conflicts.
+tensorflow 2.19.1 requires protobuf!=4.21.0,!=4.21.1,!=4.21.2,!=4.21.3,!=4.21.4,!=4.21.5,<6.0.0dev,>=3.20.3, but you have protobuf 7.36.2 which is incompatible.
+parler-tts 0.2.2 requires transformers<=4.46.1,>=4.46.1, but you have transformers 4.55.4 which is incompatible.
+descript-audiotools 0.7.4 requires protobuf!=4.24.0,<5.0.0,>=3.19.6, but you have protobuf 7.36.2 which is incompatible.[0m[31m
+[0m[38;5;28;01mimport[39;00m dtype_abbrs
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages/torch/_inductor/runtime/hints.py:40[39m
+[32m     39[39m [38;5;28;01mimport[39;00m[38;5;250m [39m[34;01mtriton[39;00m
+[32m---> [39m[32m40[39m [38;5;28;01mimport[39;00m[38;5;250m [39m[34;01mtriton[39;00m[34;01m.[39;00m[34;01mbackends[39;00m[34;01m.[39;00m[34;01mcompiler[39;00m
+[32m     41[39m [38;5;28;01mimport[39;00m[38;5;250m [39m[34;01mtriton[39;00m[34;01m.[39;00m[34;01mcompiler[39;00m[34;01m.[39;00m[34;01mcompiler[39;00m
+
+[31mModuleNotFoundError[39m: No module named 'triton.backends'
+
+The above exception was the direct cause of the following exception:
+
+[31mModuleNotFoundError[39m                       Traceback (most recent call last)
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages/transformers/utils/import_utils.py:2292[39m, in [36m_LazyModule.__getattr__[39m[34m(self, name)[39m
+[32m   2291[39m [38;5;28;01mtry[39;00m:
+[32m-> [39m[32m2292[39m     module = [30;43mself[39;49m[30;43m.[39;49m[30;43m_get_module[39;49m[30;43m([39;49m[30;43mself[39;49m[30;43m.[39;49m[30;43m_class_to_module[39;49m[30;43m[[39;49m[30;43mname[39;49m[30;43m][39;49m[30;43m)[39;49m
+[32m   2293[39m     value = [38;5;28mgetattr[39m(module, name)
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages/transformers/utils/import_utils.py:2322[39m, in [36m_LazyModule._get_module[39m[34m(self, module_name)[39m
+[32m   2321[39m [38;5;28;01mexcept[39;00m [38;5;167;01mException[39;00m [38;5;28;01mas[39;00m e:
+[32m-> [39m[32m2322[39m     [38;5;28;01mraise[39;00m e
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages/transformers/utils/import_utils.py:2320[39m, in [36m_LazyModule._get_module[39m[34m(self, module_name)[39m
+[32m   2319[39m [38;5;28;01mtry[39;00m:
+[32m-> [39m[32m2320[39m     [38;5;28;01mreturn[39;00m [30;43mimportlib[39;49m[30;43m.[39;49m[30;43mimport_module[39;49m[30;43m([39;49m[30;43m"[39;49m[30;43m.[39;49m[30;43m"[39;49m[30;43m [39;49m[30;43m+[39;49m[30;43m [39;49m[30;43mmodule_name[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mself[39;49m[30;43m.[39;49m[30;43m__name__[39;49m[30;43m)[39;49m
+[32m   2321[39m [38;5;28;01mexcept[39;00m [38;5;167;01mException[39;00m [38;5;28;01mas[39;00m e:
+
+[36mFile [39m[32m/usr/lib/python3.12/importlib/__init__.py:90[39m, in [36mimport_module[39m[34m(name, package)[39m
+[32m     89[39m         level += [32m1[39m
+[32m---> [39m[32m90[39m [38;5;28;01mreturn[39;00m [30;43m_bootstrap[39;49m[30;43m.[39;49m[30;43m_gcd_import[39;49m[30;43m([39;49m[30;43mname[39;49m[30;43m[[39;49m[30;43mlevel[39;49m[30;43m:[39;49m[30;43m][39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mpackage[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mlevel[39;49m[30;43m)[39;49m
+
+[36mFile [39m[32m<frozen importlib._bootstrap>:1387[39m, in [36m_gcd_import[39m[34m(name, package, level)[39m
+
+[36mFile [39m[32m<frozen importlib._bootstrap>:1360[39m, in [36m_find_and_load[39m[34m(name, import_)[39m
+
+[36mFile [39m[32m<frozen importlib._bootstrap>:1334[39m, in [36m_find_and_load_unlocked[39m[34m(name, import_)[39m
+
+[36mFile [39m[32m<frozen importlib._bootstrap>:950[39m, in [36m_load_unlocked[39m[34m(spec)[39m
+
+[36mFile [39m[32m<frozen importlib._bootstrap_external>:995[39m, in [36m_LoaderBasics.exec_module[39m[34m(self, module)[39m
+
+[36mFile [39m[32m<frozen importlib._bootstrap>:488[39m, in [36m_call_with_frames_removed[39m[34m(f, *args, **kwds)[39m
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages/transformers/models/auto/modeling_auto.py:23[39m
+[32m     22[39m [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01m.[39;00m[34;01m.[39;00m[34;01m.[39;00m[34;01mutils[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m logging
+[32m---> [39m[32m23[39m [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01m.[39;00m[34;01mauto_factory[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m (
+[32m     24[39m     _BaseAutoBackboneClass,
+[32m     25[39m     _BaseAutoModelClass,
+[32m     26[39m     _LazyAutoMapping,
+[32m     27[39m     auto_class_update,
+[32m     28[39m )
+[32m     29[39m [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01m.[39;00m[34;01mconfiguration_auto[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m CONFIG_MAPPING_NAMES
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages/transformers/models/auto/auto_factory.py:43[39m
+[32m     42[39m [38;5;28;01mif[39;00m is_torch_available():
+[32m---> [39m[32m43[39m     [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01m.[39;00m[34;01m.[39;00m[34;01m.[39;00m[34;01mgeneration[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m GenerationMixin
+[32m     46[39m logger = logging.get_logger([34m__name__[39m)
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages/transformers/utils/import_utils.py:2295[39m, in [36m_LazyModule.__getattr__[39m[34m(self, name)[39m
+[32m   2294[39m     [38;5;28;01mexcept[39;00m ([38;5;167;01mModuleNotFoundError[39;00m, [38;5;167;01mRuntimeError[39;00m) [38;5;28;01mas[39;00m e:
+[32m-> [39m[32m2295[39m         [38;5;28;01mraise[39;00m [38;5;167;01mModuleNotFoundError[39;00m(
+[32m   2296[39m             [33mf[39m[33m"[39m[33mCould not import module [39m[33m'[39m[38;5;132;01m{[39;00mname[38;5;132;01m}[39;00m[33m'[39m[33m. Are this object[39m[33m'[39m[33ms requirements defined correctly?[39m[33m"[39m
+[32m   2297[39m         ) [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01me[39;00m
+[32m   2299[39m [38;5;28;01melif[39;00m name [38;5;129;01min[39;00m [38;5;28mself[39m._modules:
+
+[31mModuleNotFoundError[39m: Could not import module 'GenerationMixin'. Are this object's requirements defined correctly?
+
+The above exception was the direct cause of the following exception:
+
+[31mModuleNotFoundError[39m                       Traceback (most recent call last)
+[36mCell[39m[36m [39m[32mIn[4][39m[32m, line 1[39m
+[32m----> [39m[32m1[39m [38;5;28;01mfrom[39;00m transformers [38;5;28;01mimport[39;00m AutoModelForSequenceClassification, AutoTokenizer
+[32m      2[39m [38;5;28;01mimport[39;00m torch
+[32m      3[39m 
+[32m      4[39m ONNX_NLP_MODEL_PATH = MODEL_DIRECTORY_PATH / [33m"distilbert.onnx"[39m
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages/transformers/utils/import_utils.py:2295[39m, in [36m_LazyModule.__getattr__[39m[34m(self, name)[39m
+[32m   2293[39m         value = [38;5;28mgetattr[39m(module, name)
+[32m   2294[39m     [38;5;28;01mexcept[39;00m ([38;5;167;01mModuleNotFoundError[39;00m, [38;5;167;01mRuntimeError[39;00m) [38;5;28;01mas[39;00m e:
+[32m-> [39m[32m2295[39m         [38;5;28;01mraise[39;00m [38;5;167;01mModuleNotFoundError[39;00m(
+[32m   2296[39m             [33mf[39m[33m"[39m[33mCould not import module [39m[33m'[39m[38;5;132;01m{[39;00mname[38;5;132;01m}[39;00m[33m'[39m[33m. Are this object[39m[33m'[39m[33ms requirements defined correctly?[39m[33m"[39m
+[32m   2297[39m         ) [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01me[39;00m
+[32m   2299[39m [38;5;28;01melif[39;00m name [38;5;129;01min[39;00m [38;5;28mself[39m._modules:
+[32m   2300[39m     [38;5;28;01mtry[39;00m:
+
+[31mModuleNotFoundError[39m: Could not import module 'AutoModelForSequenceClassification'. Are this object's requirements defined correctly?
+

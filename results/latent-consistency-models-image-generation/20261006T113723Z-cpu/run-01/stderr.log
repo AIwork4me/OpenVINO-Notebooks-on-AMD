@@ -1,0 +1,89 @@
+[IPKernelApp] WARNING | Kernel is running over TCP without encryption. All communication (including code and outputs) is sent in plain text and is susceptible to eavesdropping. Use IPC transport or launch with kernel manager-provisioned CurveZMQ keys to enable transport encryption.
+nVINO-Notebooks-on-AMD/.venvs/cpu/d7c41fb5888c35a9/lib/python3.12/site-packages/nbclient/client.py", line 1062, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/d7c41fb5888c35a9/lib/python3.12/site-packages/nbclient/client.py", line 918, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+from cmd_helper import optimum_cli
+
+model_id = "SimianLuo/LCM_Dreamshaper_v7"
+model_path = Path(model_id.split("/")[-1] + "_ov")
+
+if not model_path.exists():
+    optimum_cli(model_id, model_path, additional_args={"weight-format": "fp16"})
+------------------
+
+----- stderr -----
+Command failed with exit code 1
+----- stderr -----
+STDERR:
+Multiple distributions found for package optimum. Picked distribution: optimum
+Optimum-intel requires OpenVINO version 2025.4.0 or higher. Please upgrade OpenVINO to version 2025.4 or later. The current version of OpenVINO is 2025.3.0-19807.
+Traceback (most recent call last):
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/d7c41fb5888c35a9/bin/optimum-cli", line 6, in <module>
+    sys.exit(main())
+             ^^^^^^
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/d7c41fb5888c35a9/lib/python3.12/site-packages/optimum/commands/optimum_cli.py", line 219, in main
+    service.run()
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/d7c41fb5888c35a9/lib/python3.12/site-packages/optimum/commands/export/openvino.py", line 346, in run
+    from ...intel.openvino.configuration import (
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/d7c41fb5888c35a9/lib/python3.12/site-packages/optimum/intel/openvino/__init__.py", line 49, in <module>
+    from .configuration import (
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/d7c41fb5888c35a9/lib/python3.12/site-packages/optimum/intel/openvino/configuration.py", line 45, in <module>
+    import nncf
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/d7c41fb5888c35a9/lib/python3.12/site-packages/nncf/__init__.py", line 53, in <module>
+    from nncf.quantization import QuantizationPreset as QuantizationPreset
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/d7c41fb5888c35a9/lib/python3.12/site-packages/nncf/quantization/__init__.py", line 14, in <module>
+    from nncf.quantization.quantize_model import compress_weights as compress_weights
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/d7c41fb5888c35a9/lib/python3.12/site-packages/nncf/quantization/quantize_model.py", line 34, in <module>
+    from nncf.quantization.algorithms.hyperparameter_tuner.algorithm import HyperparameterTuner
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/d7c41fb5888c35a9/lib/python3.12/site-packages/nncf/quantization/algorithms/hyperparameter_tuner/algorithm.py", line 22, in <module>
+    from nncf.common.tensor_statistics.statistic_point import StatisticPointsContainer
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/d7c41fb5888c35a9/lib/python3.12/site-packages/nncf/common/tensor_statistics/statistic_point.py", line 16, in <module>
+    from nncf.common.tensor_statistics.collectors import TensorCollector
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/d7c41fb5888c35a9/lib/python3.12/site-packages/nncf/common/tensor_statistics/collectors.py", line 24, in <module>
+    import nncf.tensor.functions as fns
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/d7c41fb5888c35a9/lib/python3.12/site-packages/nncf/tensor/functions/__init__.py", line 96, in <module>
+    _initialize_backends()
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/d7c41fb5888c35a9/lib/python3.12/site-packages/nncf/tensor/functions/__init__.py", line 93, in _initialize_backends
+    import nncf.tensor.functions.openvino_numeric  # noqa: F401
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/d7c41fb5888c35a9/lib/python3.12/site-packages/nncf/tensor/functions/openvino_numeric.py", line 25, in <module>
+    TensorDataType.int2: ov.Type.u2,
+                         ^^^^^^^^^^
+AttributeError: type object 'openvino._pyopenvino.Type' has no attribute 'u2'. Did you mean: 'u1'?
+------------------
+
+[31m---------------------------------------------------------------------------[39m
+[31mCalledProcessError[39m                        Traceback (most recent call last)
+[36mCell[39m[36m [39m[32mIn[3][39m[32m, line 7[39m
+[32m      3[39m model_id = [33m"SimianLuo/LCM_Dreamshaper_v7"[39m
+[32m      4[39m model_path = Path(model_id.split([33m"/"[39m)[-[32m1[39m] + [33m"_ov"[39m)
+[32m      5[39m 
+[32m      6[39m [38;5;28;01mif[39;00m [38;5;28;01mnot[39;00m model_path.exists():
+[32m----> [39m[32m7[39m     optimum_cli(model_id, model_path, additional_args={[33m"weight-format"[39m: [33m"fp16"[39m})
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/results/latent-consistency-models-image-generation/workdir-cpu/cmd_helper.py:62[39m, in [36moptimum_cli[39m[34m(model_id, output_dir, show_command, additional_args, debug_logs)[39m
+[32m     60[39m     [38;5;28;01mif[39;00m transofrmers_loglevel [38;5;129;01mis[39;00m [38;5;129;01mnot[39;00m [38;5;28;01mNone[39;00m:
+[32m     61[39m         os.environ[[33m"[39m[33mTRANSFORMERS_VERBOSITY[39m[33m"[39m] = transofrmers_loglevel
+[32m---> [39m[32m62[39m     [38;5;28;01mraise[39;00m exc
+[32m     63[39m [38;5;28;01mfinally[39;00m:
+[32m     64[39m     [38;5;28;01mif[39;00m transofrmers_loglevel [38;5;129;01mis[39;00m [38;5;129;01mnot[39;00m [38;5;28;01mNone[39;00m:
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/results/latent-consistency-models-image-generation/workdir-cpu/cmd_helper.py:49[39m, in [36moptimum_cli[39m[34m(model_id, output_dir, show_command, additional_args, debug_logs)[39m
+[32m     46[39m     os.environ[[33m"[39m[33mTRANSFORMERS_VERBOSITY[39m[33m"[39m] = [33m"[39m[33mdebug[39m[33m"[39m
+[32m     48[39m [38;5;28;01mtry[39;00m:
+[32m---> [39m[32m49[39m     [30;43msubprocess[39;49m[30;43m.[39;49m[30;43mrun[39;49m[30;43m([39;49m[30;43mexport_command[39;49m[30;43m.[39;49m[30;43msplit[39;49m[30;43m([39;49m[30;43m"[39;49m[30;43m [39;49m[30;43m"[39;49m[30;43m)[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mshell[39;49m[30;43m=[39;49m[30;43m([39;49m[30;43mplatform[39;49m[30;43m.[39;49m[30;43msystem[39;49m[30;43m([39;49m[30;43m)[39;49m[30;43m [39;49m[30;43m==[39;49m[30;43m [39;49m[30;43m"[39;49m[30;43mWindows[39;49m[30;43m"[39;49m[30;43m)[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mcheck[39;49m[30;43m=[39;49m[30;43;01mTrue[39;49;00m[30;43m,[39;49m[30;43m [39;49m[30;43mcapture_output[39;49m[30;43m=[39;49m[30;43;01mTrue[39;49;00m[30;43m)[39;49m
+[32m     50[39m [38;5;28;01mexcept[39;00m subprocess.CalledProcessError [38;5;28;01mas[39;00m exc:
+[32m     51[39m     logger = logging.getLogger()
+
+[36mFile [39m[32m/usr/lib/python3.12/subprocess.py:571[39m, in [36mrun[39m[34m(input, capture_output, timeout, check, *popenargs, **kwargs)[39m
+[32m    569[39m     retcode = process.poll()
+[32m    570[39m     [38;5;28;01mif[39;00m check [38;5;129;01mand[39;00m retcode:
+[32m--> [39m[32m571[39m         [38;5;28;01mraise[39;00m CalledProcessError(retcode, process.args,
+[32m    572[39m                                  output=stdout, stderr=stderr)
+[32m    573[39m [38;5;28;01mreturn[39;00m CompletedProcess(process.args, retcode, stdout, stderr)
+
+[31mCalledProcessError[39m: Command '['optimum-cli', 'export', 'openvino', '--model', 'SimianLuo/LCM_Dreamshaper_v7', 'LCM_Dreamshaper_v7_ov', '--weight-format', 'fp16']' returned non-zero exit status 1.
+

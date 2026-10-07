@@ -1,0 +1,25 @@
+[cell 0 START +    0.4s] # Qwen3.8 Multi-Token Prediction with OpenVINO™ |  | This experimental not
+[cell 1 START +    0.4s] ## Prerequisites | [back to top ⬆️](#Table-of-contents:) |  | Install requir
+[cell 2 START +    0.4s] %pip install -q -U --pre openvino openvino-tokenizers openvino-genai -
+[cell 2 DONE  +  274.2s]
+[cell 3 START +  274.2s] from pathlib import Path | import subprocess | import sys |  | import requests
+[cell 3 DONE  +  274.3s]
+[cell 4 START +  274.3s] ## Select inference device | [back to top ⬆️](#Table-of-contents:) |  | NPU 
+[cell 5 START +  274.3s] import ipywidgets as widgets | from IPython.display import display |  | from
+[cell 5 DONE  +  274.5s]
+[cell 6 START +  274.5s] ## Get a model with an MTP head | [back to top ⬆️](#Table-of-contents:) | 
+[cell 7 START +  274.5s] PRECONVERTED_MODELS = { |     "hub_int4": "OpenVINO/Qwen3.8-27B-int4-ov"
+[cell 7 DONE  +  274.5s]
+[cell 8 START +  274.5s] import shutil |  | MODEL_DIR = MODEL_DIRS[model_source.value] | mtp_xml = MO
+[cell 8 DONE  +  274.5s]
+[cell 9 START +  274.5s] if not MODEL_DIR.exists(): |     raise FileNotFoundError(f"Model directo
+[cell 9 DONE  +  274.5s]
+[cell 10 START +  274.5s] ## Prepare an image | [back to top ⬆️](#Table-of-contents:) |  | Download a 
+[cell 11 START +  274.5s] from urllib.request import urlretrieve |  | import numpy as np | from PIL im
+[cell 11 DONE  +  276.6s]
+[cell 12 START +  276.6s] import gc | import time |  | MAX_NEW_TOKENS = 64 | NUM_ASSISTANT_TOKENS = 1 |  |  | 
+[cell 12 DONE  +  276.6s]
+[cell 13 START +  276.6s] ## Run the baseline | [back to top ⬆️](#Table-of-contents:) |  | First run Q
+[cell 14 START +  276.6s] print("Loading baseline VLMPipeline...") | load_started = time.perf_coun
+[cell 14 DONE  +  276.8s]
+NBEXEC_RESULT={"ok": false, "n_cells": 17, "n_skipped": 0, "n_substituted": 0, "stopped_after": null, "error_cell": null, "error_type": "CellExecutionError", "error_head": "Empty weights data in bin file or bin file cannot be found!", "duration_s": 277.01, "patch_notes": []}

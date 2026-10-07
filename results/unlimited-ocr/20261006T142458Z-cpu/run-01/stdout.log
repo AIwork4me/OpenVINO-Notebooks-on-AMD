@@ -1,0 +1,8 @@
+[cell 0 START +    0.4s] # Document Parsing using Unlimited-OCR and OpenVINO |  | **[Unlimited-OCR]
+[cell 1 START +    0.4s] ## Prerequisites | [back to top ⬆️](#Table-of-contents:)
+[cell 2 START +    0.4s] import requests | from pathlib import Path |  | utility_files = ["cmd_helper
+[cell 2 DONE  +    0.4s]
+[cell 3 START +    0.4s] from pip_helper import pip_install |  | pip_install("-Uq", "--pre", "openv
+[cell 3 DONE  +   19.9s]
+[cell 4 START +   19.9s] ## Download the original model | [back to top ⬆️](#Table-of-contents:) |  | 
+[cell 5 START +   19.9s] from huggingface_hub import snapshot_download |  | # Read more about telem

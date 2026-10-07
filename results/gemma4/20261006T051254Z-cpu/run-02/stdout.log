@@ -1,0 +1,25 @@
+[cell 0 START +    0.4s] # Visual-language assistant with Gemma 4 and OpenVINO | ![](https://ai.g
+[cell 1 START +    0.4s] ## Prerequisites | [back to top ⬆️](#Table-of-contents:)
+[cell 2 START +    0.4s] %pip install -q "git+https://github.com/huggingface/optimum-intel.git"
+[cell 2 DONE  +  108.8s]
+[cell 3 START +  108.8s] from pathlib import Path | import requests |  | if not Path("cmd_helper.py")
+[cell 3 DONE  +  108.9s]
+[cell 4 START +  108.9s] ## Select model | [back to top ⬆️](#Table-of-contents:) |  | Several Gemma 4
+[cell 5 START +  108.9s] import ipywidgets as widgets |  | # Read more about telemetry collection a
+[cell 5 DONE  +  108.9s]
+[cell 6 START +  108.9s] print(f"Selected {model_id.value}") | pt_model_id = model_id.value | model
+[cell 6 DONE  +  108.9s]
+[cell 7 START +  108.9s] ## Convert and Optimize model | [back to top ⬆️](#Table-of-contents:) |  | S
+[cell 8 START +  108.9s] from IPython.display import display |  | weight_format = widgets.Dropdown(
+[cell 8 DONE  +  108.9s]
+[cell 9 START +  108.9s] import huggingface_hub as hf_hub | from cmd_helper import optimum_cli |  | p
+[cell 9 DONE  +  108.9s]
+[cell 10 START +  108.9s] ### Select inference device | [back to top ⬆️](#Table-of-contents:) |  | We 
+[cell 11 START +  108.9s] from notebook_utils import device_widget |  | device = device_widget(defau
+[cell 11 DONE  +  109.1s]
+[cell 12 START +  109.1s] ## Run model inference | [back to top ⬆️](#Table-of-contents:)
+[cell 13 START +  109.1s] import openvino_genai as ov_genai | import openvino as ov | import numpy a
+[cell 13 DONE  +  109.2s]
+[cell 14 START +  109.2s] def load_image(path_or_url): |     import os |     from io import BytesIO | 
+[cell 14 DONE  +  110.3s]
+NBEXEC_RESULT={"ok": false, "n_cells": 16, "n_skipped": 1, "n_substituted": 0, "stopped_after": null, "error_cell": null, "error_type": "CellExecutionError", "error_head": "\u001b[31mConnectionError\u001b[39m: HTTPSConnectionPool(host='github-production-user-asset-6210df.s3.amazonaws.com', port=443): Max retries exceeded with url: /29454499/319483352-d5fbbd1a-d484-415c-88cb-9986625b7b11.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAVCODYLSA53PQK4ZA%2F20261006%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20261006T053207Z&X-Amz-Expires=300&X-Amz-Signature=3543140ae64b05ae640086c5c2f53856b4d8bab3b7ce575fe57767ca70e38f8b&X-Amz-SignedHeaders=host&response-content-type=i", "duration_s": 110.53, "patch_notes": ["skipped cell 26: matched skip pattern"]}

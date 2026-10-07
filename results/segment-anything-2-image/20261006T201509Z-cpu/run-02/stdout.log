@@ -1,0 +1,19 @@
+[cell 0 START +    0.4s] # Object masks from prompts with SAM2 and OpenVINO for Images |  | <div cl
+[cell 1 START +    0.4s] Segmentation - identifying which image pixels belong to an object - is
+[cell 2 START +    0.4s] ## Prerequisites | [back to top ⬆️](#Table-of-contents:) | 
+[cell 3 START +    0.4s] %pip install -q "gradio>=4.13,<4.41.0" "fastapi==0.112.4" "openvino>=2
+[cell 3 DONE  +    1.7s]
+[cell 4 START +    1.7s] import requests | from pathlib import Path |  | if not Path("notebook_utils.
+[cell 4 DONE  +    1.8s]
+[cell 5 START +    1.8s] Clone and install segment-anything-2
+[cell 6 START +    1.8s] from cmd_helper import clone_repo |  | repo_dir = clone_repo("https://gith
+[cell 6 DONE  +   12.1s]
+[cell 7 START +   12.1s] %env SAM2_BUILD_CUDA=0 | %cd sam2 | %pip install -q -e . | %cd ..
+[cell 7 DONE  +   34.0s]
+[cell 8 START +   34.0s] ov_sam2_helper_file_name = "ov_sam2_helper.py" |  | if not Path(ov_sam2_he
+[cell 8 DONE  +   34.0s]
+[cell 9 START +   34.0s] ## Image prediction | [back to top ⬆️](#Table-of-contents:)
+[cell 10 START +   34.0s] ## Prepare image | [back to top ⬆️](#Table-of-contents:)
+[cell 11 START +   34.0s] import numpy as np | import matplotlib.pyplot as plt | from PIL import Ima
+[cell 11 DONE  +   64.6s]
+NBEXEC_RESULT={"ok": false, "n_cells": 59, "n_skipped": 1, "n_substituted": 0, "stopped_after": null, "error_cell": null, "error_type": "CellExecutionError", "error_head": "\u001b[31mException\u001b[39m: Connection timed out. If you access the internet through a proxy server, please make sure the proxy is set in the shell from where you launched Jupyter.", "duration_s": 64.89, "patch_notes": ["skipped cell 68: matched skip pattern"]}

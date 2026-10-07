@@ -1,0 +1,45 @@
+[cell 0 START +    0.6s] # Vehicle Detection And Recognition with OpenVINO™ |  | This tutorial demo
+[cell 1 START +    0.6s] ## Imports | [back to top ⬆️](#Table-of-contents:) |  | Import the required 
+[cell 2 START +    0.6s] %pip install -q "openvino>=2023.1.0" opencv-python tqdm |  | %pip install 
+[cell 2 DONE  +    3.9s]
+[cell 3 START +    3.9s] import os | from pathlib import Path |  | import cv2 | import numpy as np | impo
+[cell 3 DONE  +    4.3s]
+[cell 4 START +    4.3s] ## Download Models | [back to top ⬆️](#Table-of-contents:) |  | Download pre
+[cell 5 START +    4.3s] # A directory where the model will be downloaded. | base_model_dir = Pat
+[cell 5 DONE  +    4.3s]
+[cell 6 START +    4.3s] ## Load Models | [back to top ⬆️](#Table-of-contents:) |  | This tutorial re
+[cell 7 START +    4.3s] device = utils.device_widget() |  | device
+[cell 7 DONE  +    4.5s]
+[cell 8 START +    4.5s] # Initialize OpenVINO Runtime runtime. | core = ov.Core() |  |  | def model_in
+[cell 8 DONE  +    4.5s]
+[cell 9 START +    4.5s] ### Get attributes from model | [back to top ⬆️](#Table-of-contents:) |  | U
+[cell 10 START +    4.5s] # de -> detection | # re -> recognition | # Detection model initialization
+[cell 10 DONE  +    4.6s]
+[cell 11 START +    4.6s] ### Helper function | [back to top ⬆️](#Table-of-contents:) |  | The `plt_sh
+[cell 12 START +    4.6s] def plt_show(raw_image): |     """ |     Use matplot to show image inline | 
+[cell 12 DONE  +    4.6s]
+[cell 13 START +    4.6s] ### Read and display a test image | [back to top ⬆️](#Table-of-contents:
+[cell 14 START +    4.6s] # Load an image. | url = "https://storage.openvinotoolkit.org/data/test_
+[cell 14 DONE  +    4.8s]
+[cell 15 START +    4.8s] ## Use the Detection Model to Detect Vehicles | [back to top ⬆️](#Table-
+[cell 16 START +    4.8s] # Run inference. | boxes = compiled_model_de([input_image_de])[output_ke
+[cell 16 DONE  +    4.8s]
+[cell 17 START +    4.8s] ### Detection Processing | [back to top ⬆️](#Table-of-contents:) |  | With t
+[cell 18 START +    4.8s] def crop_images(bgr_image, resized_image, boxes, threshold=0.6) -> np.
+[cell 18 DONE  +    4.8s]
+[cell 19 START +    4.8s] # Find the position of a car. | car_position = crop_images(image_de, res
+[cell 19 DONE  +    4.8s]
+[cell 20 START +    4.8s] ### Recognize vehicle attributes | [back to top ⬆️](#Table-of-contents:)
+[cell 21 START +    4.8s] # Select a vehicle to recognize. | pos = car_position[0] | # Crop the imag
+[cell 21 DONE  +    4.9s]
+[cell 22 START +    4.9s] ##### Recognition processing | [back to top ⬆️](#Table-of-contents:) |  | Th
+[cell 23 START +    4.9s] def vehicle_recognition(compiled_model_re, input_size, raw_image): |    
+[cell 23 DONE  +    4.9s]
+[cell 24 START +    4.9s] print(f"Attributes:{vehicle_recognition(compiled_model_re, (72, 72), t
+[cell 24 DONE  +    4.9s]
+[cell 25 START +    4.9s] ### Combine two models | [back to top ⬆️](#Table-of-contents:) |  | Congratu
+[cell 26 START +    4.9s] def convert_result_to_image(compiled_model_re, bgr_image, resized_imag
+[cell 26 DONE  +    4.9s]
+[cell 27 START +    4.9s] plt_show(convert_result_to_image(compiled_model_re, image_de, resized_
+[cell 27 DONE  +    5.0s]
+NBEXEC_RESULT={"ok": true, "n_cells": 16, "n_skipped": 0, "n_substituted": 0, "stopped_after": null, "error_cell": null, "error_type": null, "error_head": null, "duration_s": 5.27, "patch_notes": []}

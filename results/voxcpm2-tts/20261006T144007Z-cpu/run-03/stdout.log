@@ -1,0 +1,8 @@
+[cell 0 START +    0.5s] # VoxCPM2 Text-to-Speech with OpenVINO™ |  | [VoxCPM2](https://github.com/
+[cell 1 START +    0.5s] ## Prerequisites | [back to top ⬆️](#Table-of-contents:) |  | Install depend
+[cell 2 START +    0.5s] import requests | from pathlib import Path |  | # Fetch utility helpers | for 
+[cell 2 DONE  +    0.6s]
+[cell 3 START +    0.6s] from cmd_helper import clone_repo | from pip_helper import pip_install |  | 
+[cell 3 DONE  +  143.5s]
+[cell 4 START +  143.5s] ## Download VoxCPM2 Weights | [back to top ⬆️](#Table-of-contents:) |  | Dow
+[cell 5 START +  143.5s] from pathlib import Path | from huggingface_hub import snapshot_download

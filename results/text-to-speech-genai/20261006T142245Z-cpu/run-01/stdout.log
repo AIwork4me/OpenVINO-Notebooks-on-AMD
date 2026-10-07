@@ -1,0 +1,232 @@
+[cell 0 START +    0.4s] # Text-to-Speech Generation with OpenVINO GenAI |  | [OpenVINO™ GenAI](htt
+[cell 1 START +    0.4s] ## Prerequisites | [back to top ⬆️](#Table-of-contents:)
+[cell 2 START +    0.4s] import requests | from pathlib import Path |  | if not Path("pip_helper.py")
+Looking in indexes: https://pypi.org/simple, https://download.pytorch.org/whl/cpu
+Collecting https://codeload.github.com/huggingface/optimum-intel/tar.gz/HEAD
+  Using cached HEAD
+  Installing build dependencies: started
+  Installing build dependencies: finished with status 'done'
+  Getting requirements to build wheel: started
+  Getting requirements to build wheel: finished with status 'done'
+  Preparing metadata (pyproject.toml): started
+  Preparing metadata (pyproject.toml): finished with status 'done'
+Requirement already satisfied: transformers>=4.45 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (from transformers[sentencepiece]>=4.45) (4.57.6)
+Collecting transformers>=4.45 (from transformers[sentencepiece]>=4.45)
+  Using cached transformers-5.18.0-py3-none-any.whl.metadata (32 kB)
+Requirement already satisfied: soundfile in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (0.13.1)
+Collecting soundfile
+  Using cached soundfile-0.14.0-py2.py3-none-manylinux_2_28_x86_64.whl.metadata (18 kB)
+Collecting torch==2.11.*
+  Using cached torch-2.11.0%2Bcpu-cp312-cp312-manylinux_2_28_x86_64.whl.metadata (29 kB)
+Requirement already satisfied: torchaudio==2.11.* in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (2.11.0+cpu)
+Collecting torchvision==0.26.*
+  Using cached torchvision-0.26.0%2Bcpu-cp312-cp312-manylinux_2_28_x86_64.whl.metadata (5.5 kB)
+Collecting datasets<4.0.0
+  Using cached datasets-3.6.0-py3-none-any.whl.metadata (19 kB)
+Requirement already satisfied: librosa in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (0.11.0)
+Collecting librosa
+  Using cached librosa-1.0.0-py3-none-any.whl.metadata (6.7 kB)
+Collecting speechbrain
+  Downloading speechbrain-1.1.1-py3-none-any.whl.metadata (24 kB)
+Requirement already satisfied: gradio in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (5.50.0)
+Collecting gradio
+  Using cached gradio-6.29.1-py3-none-any.whl.metadata (16 kB)
+Requirement already satisfied: optimum~=2.3.0 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (from optimum-intel==2.3.0.dev0) (2.3.0)
+Collecting transformers>=4.45 (from transformers[sentencepiece]>=4.45)
+  Using cached transformers-5.10.4-py3-none-any.whl.metadata (33 kB)
+Requirement already satisfied: setuptools in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (from optimum-intel==2.3.0.dev0) (84.0.0)
+Requirement already satisfied: huggingface-hub<2.0,>=0.23.2 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (from optimum-intel==2.3.0.dev0) (0.36.2)
+Requirement already satisfied: nncf>=3.3.0 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (from optimum-intel==2.3.0.dev0) (3.4.0)
+Requirement already satisfied: openvino>=2026.0 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (from optimum-intel==2.3.0.dev0) (2026.5.0.dev20261005)
+Requirement already satisfied: openvino-tokenizers>=2026.0 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (from optimum-intel==2.3.0.dev0) (2026.5.0.0.dev20261005)
+Requirement already satisfied: requests<3.0,>=2.33 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (from optimum-intel==2.3.0.dev0) (2.34.2)
+Collecting huggingface-hub<2.0,>=0.23.2 (from optimum-intel==2.3.0.dev0)
+  Using cached huggingface_hub-1.33.0-py3-none-any.whl.metadata (16 kB)
+Requirement already satisfied: numpy>=1.17 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (from transformers>=4.45->transformers[sentencepiece]>=4.45) (2.4.6)
+Requirement already satisfied: packaging>=20.0 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (from transformers>=4.45->transformers[sentencepiece]>=4.45) (25.0)
+Requirement already satisfied: pyyaml>=5.1 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (from transformers>=4.45->transformers[sentencepiece]>=4.45) (6.0.3)
+Requirement already satisfied: regex>=2025.10.22 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (from transformers>=4.45->transformers[sentencepiece]>=4.45) (2026.9.29)
+Requirement already satisfied: tokenizers<=0.23.0,>=0.22.0 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (from transformers>=4.45->transformers[sentencepiece]>=4.45) (0.22.2)
+Requirement already satisfied: typer in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (from transformers>=4.45->transformers[sentencepiece]>=4.45) (0.27.2)
+Requirement already satisfied: safetensors>=0.4.3 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (from transformers>=4.45->transformers[sentencepiece]>=4.45) (0.8.0)
+Requirement already satisfied: tqdm>=4.27 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (from transformers>=4.45->transformers[sentencepiece]>=4.45) (4.70.1)
+Requirement already satisfied: filelock in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (from torch==2.11.*) (4.0.12)
+Requirement already satisfied: typing-extensions>=4.10.0 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (from torch==2.11.*) (4.16.0)
+Collecting setuptools (from optimum-intel==2.3.0.dev0)
+  Using cached setuptools-81.0.0-py3-none-any.whl.metadata (6.6 kB)
+Requirement already satisfied: sympy>=1.13.3 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (from torch==2.11.*) (1.14.0)
+Requirement already satisfied: networkx>=2.5.1 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (from torch==2.11.*) (3.4.2)
+Requirement already satisfied: jinja2 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (from torch==2.11.*) (3.1.6)
+Requirement already satisfied: fsspec>=0.8.5 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (from torch==2.11.*) (2024.12.0)
+Requirement already satisfied: pillow!=8.3.*,>=5.3.0 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (from torchvision==0.26.*) (11.3.0)
+Requirement already satisfied: pyarrow>=15.0.0 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (from datasets<4.0.0) (25.0.1)
+Requirement already satisfied: dill<0.3.9,>=0.3.0 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (from datasets<4.0.0) (0.3.8)
+Requirement already satisfied: pandas in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (from datasets<4.0.0) (2.3.3)
+Requirement already satisfied: xxhash in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (from datasets<4.0.0) (4.0.1)
+Requirement already satisfied: multiprocess<0.70.17 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (from datasets<4.0.0) (0.70.16)
+Requirement already satisfied: aiohttp!=4.0.0a0,!=4.0.0a1 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (from fsspec[http]<=2025.3.0,>=2023.1.0->datasets<4.0.0) (3.14.4)
+Requirement already satisfied: click<9.0.0,>=8.4.2 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (from huggingface-hub<2.0,>=0.23.2->optimum-intel==2.3.0.dev0) (8.5.0)
+Requirement already satisfied: hf-xet<2.0.0,>=1.6.0 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (from huggingface-hub<2.0,>=0.23.2->optimum-intel==2.3.0.dev0) (1.6.0)
+Requirement already satisfied: httpx<1,>=0.23.0 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (from huggingface-hub<2.0,>=0.23.2->optimum-intel==2.3.0.dev0) (0.28.1)
+Requirement already satisfied: anyio in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (from httpx<1,>=0.23.0->huggingface-hub<2.0,>=0.23.2->optimum-intel==2.3.0.dev0) (4.15.1)
+Requirement already satisfied: certifi in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (from httpx<1,>=0.23.0->huggingface-hub<2.0,>=0.23.2->optimum-intel==2.3.0.dev0) (2026.7.22)
+Requirement already satisfied: httpcore==1.* in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (from httpx<1,>=0.23.0->huggingface-hub<2.0,>=0.23.2->optimum-intel==2.3.0.dev0) (1.0.9)
+Requirement already satisfied: idna in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (from httpx<1,>=0.23.0->huggingface-hub<2.0,>=0.23.2->optimum-intel==2.3.0.dev0) (3.20)
+Requirement already satisfied: h11>=0.16 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (from httpcore==1.*->httpx<1,>=0.23.0->huggingface-hub<2.0,>=0.23.2->optimum-intel==2.3.0.dev0) (0.16.0)
+Requirement already satisfied: charset_normalizer<4,>=2 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (from requests<3.0,>=2.33->optimum-intel==2.3.0.dev0) (3.5.2)
+Requirement already satisfied: urllib3<3,>=1.26 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (from requests<3.0,>=2.33->optimum-intel==2.3.0.dev0) (2.8.0)
+Requirement already satisfied: cffi>=1.0 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (from soundfile) (2.1.1)
+Requirement already satisfied: numba>=0.61.0 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (from librosa) (0.68.0)
+Requirement already satisfied: scipy>=1.15.0 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (from librosa) (1.17.1)
+Requirement already satisfied: scikit-learn>=1.6.0 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (from librosa) (1.9.1)
+Requirement already satisfied: joblib>=1.2 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (from librosa) (1.6.0)
+Requirement already satisfied: decorator>=5.2.1 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (from librosa) (5.3.1)
+Requirement already satisfied: pooch>=1.7 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (from librosa) (1.9.0)
+Requirement already satisfied: soxr>=1.0.0 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (from librosa) (1.0.0)
+Requirement already satisfied: lazy_loader>=0.3 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (from librosa) (0.6)
+Requirement already satisfied: msgpack>=1.0.5 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (from librosa) (1.2.3)
+Collecting hyperpyyaml>=0.0.1 (from speechbrain)
+  Using cached hyperpyyaml-1.2.3-py3-none-any.whl.metadata (8.1 kB)
+Requirement already satisfied: sentencepiece>=0.1.91 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (from speechbrain) (0.2.2)
+Requirement already satisfied: brotli>=1.1.0 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (from gradio) (1.2.0)
+Requirement already satisfied: fastapi<1.0,>=0.115.2 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (from gradio) (0.142.2)
+Collecting gradio-client==2.7.2 (from gradio)
+  Using cached gradio_client-2.7.2-py3-none-any.whl.metadata (7.1 kB)
+Requirement already satisfied: groovy~=0.1 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (from gradio) (0.1.2)
+Requirement already satisfied: hf-gradio<1.0,>=0.4.1 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (from gradio) (0.4.1)
+Requirement already satisfied: markupsafe<4.0,>=2.0 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (from gradio) (2.1.5)
+Requirement already satisfied: orjson~=3.0 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (from gradio) (3.12.0)
+Requirement already satisfied: pydantic<=3.0,>=2.0 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (from gradio) (2.12.3)
+Requirement already satisfied: pydub<1.0 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (from gradio) (0.25.1)
+Requirement already satisfied: python-multipart<1.0,>=0.0.18 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (from gradio) (0.0.32)
+Requirement already satisfied: pytz>=2017.2 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (from gradio) (2026.5)
+Requirement already satisfied: safehttpx<0.2.0,>=0.1.7 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (from gradio) (0.1.7)
+Requirement already satisfied: semantic-version~=2.0 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (from gradio) (2.10.0)
+Collecting starlette<2.0,>=1.0.1 (from gradio)
+  Using cached starlette-1.7.0-py3-none-any.whl.metadata (6.6 kB)
+Requirement already satisfied: tomlkit<0.15.0,>=0.12.0 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (from gradio) (0.12.0)
+Requirement already satisfied: uvicorn>=0.14.0 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (from gradio) (0.54.0)
+Requirement already satisfied: typing-inspection>=0.4.2 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (from fastapi<1.0,>=0.115.2->gradio) (0.4.4)
+Requirement already satisfied: annotated-doc>=0.0.2 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (from fastapi<1.0,>=0.115.2->gradio) (0.0.5)
+Requirement already satisfied: opentelemetry-api>=1.44.0 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (from fastapi<1.0,>=0.115.2->gradio) (1.45.0)
+Requirement already satisfied: python-dateutil>=2.8.2 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (from pandas->datasets<4.0.0) (2.9.0.post0)
+Requirement already satisfied: tzdata>=2022.7 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (from pandas->datasets<4.0.0) (2026.5)
+Requirement already satisfied: annotated-types>=0.6.0 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (from pydantic<=3.0,>=2.0->gradio) (0.8.0)
+Requirement already satisfied: pydantic-core==2.41.4 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (from pydantic<=3.0,>=2.0->gradio) (2.41.4)
+Requirement already satisfied: shellingham>=1.3.0 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (from typer->transformers>=4.45->transformers[sentencepiece]>=4.45) (1.5.4)
+Requirement already satisfied: rich>=13.8.0 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (from typer->transformers>=4.45->transformers[sentencepiece]>=4.45) (15.0.0)
+Requirement already satisfied: aiohappyeyeballs>=2.5.0 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (from aiohttp!=4.0.0a0,!=4.0.0a1->fsspec[http]<=2025.3.0,>=2023.1.0->datasets<4.0.0) (2.7.1)
+Requirement already satisfied: aiosignal>=1.4.0 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (from aiohttp!=4.0.0a0,!=4.0.0a1->fsspec[http]<=2025.3.0,>=2023.1.0->datasets<4.0.0) (1.4.0)
+Requirement already satisfied: attrs>=17.3.0 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (from aiohttp!=4.0.0a0,!=4.0.0a1->fsspec[http]<=2025.3.0,>=2023.1.0->datasets<4.0.0) (26.1.0)
+Requirement already satisfied: frozenlist>=1.1.1 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (from aiohttp!=4.0.0a0,!=4.0.0a1->fsspec[http]<=2025.3.0,>=2023.1.0->datasets<4.0.0) (1.8.0)
+Requirement already satisfied: multidict<7.0,>=4.5 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (from aiohttp!=4.0.0a0,!=4.0.0a1->fsspec[http]<=2025.3.0,>=2023.1.0->datasets<4.0.0) (6.9.1)
+Requirement already satisfied: propcache>=0.2.0 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (from aiohttp!=4.0.0a0,!=4.0.0a1->fsspec[http]<=2025.3.0,>=2023.1.0->datasets<4.0.0) (0.5.4)
+Requirement already satisfied: yarl<2.0,>=1.25.1 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (from aiohttp!=4.0.0a0,!=4.0.0a1->fsspec[http]<=2025.3.0,>=2023.1.0->datasets<4.0.0) (1.25.1)
+Requirement already satisfied: pycparser in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (from cffi>=1.0->soundfile) (3.0)
+Collecting ruamel.yaml<0.19.0,>=0.17.28 (from hyperpyyaml>=0.0.1->speechbrain)
+  Using cached ruamel_yaml-0.18.17-py3-none-any.whl.metadata (27 kB)
+Collecting ruamel.yaml.clib>=0.2.15 (from ruamel.yaml<0.19.0,>=0.17.28->hyperpyyaml>=0.0.1->speechbrain)
+  Using cached ruamel_yaml_clib-0.2.15-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (3.5 kB)
+Requirement already satisfied: cloudpickle>=3.0 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (from joblib>=1.2->librosa) (3.1.2)
+Requirement already satisfied: ninja<1.14,>=1.10.0.post2 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (from nncf>=3.3.0->optimum-intel==2.3.0.dev0) (1.13.2)
+Requirement already satisfied: openvino-telemetry>=2023.2.0 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (from nncf>=3.3.0->optimum-intel==2.3.0.dev0) (2025.2.0)
+Requirement already satisfied: psutil in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (from nncf>=3.3.0->optimum-intel==2.3.0.dev0) (7.2.2)
+Requirement already satisfied: pydot<=4.0.1,>=1.4.1 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (from nncf>=3.3.0->optimum-intel==2.3.0.dev0) (3.0.4)
+Requirement already satisfied: tabulate>=0.9.0 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (from nncf>=3.3.0->optimum-intel==2.3.0.dev0) (0.10.0)
+Requirement already satisfied: pyparsing>=3.0.9 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (from pydot<=4.0.1,>=1.4.1->nncf>=3.3.0->optimum-intel==2.3.0.dev0) (3.3.3)
+Requirement already satisfied: llvmlite<0.51,>=0.50.0dev0 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (from numba>=0.61.0->librosa) (0.50.0)
+Requirement already satisfied: platformdirs>=2.5.0 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (from pooch>=1.7->librosa) (4.12.3)
+Requirement already satisfied: six>=1.5 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (from python-dateutil>=2.8.2->pandas->datasets<4.0.0) (1.17.0)
+Requirement already satisfied: markdown-it-py>=2.2.0 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (from rich>=13.8.0->typer->transformers>=4.45->transformers[sentencepiece]>=4.45) (4.2.0)
+Requirement already satisfied: pygments<3.0.0,>=2.13.0 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (from rich>=13.8.0->typer->transformers>=4.45->transformers[sentencepiece]>=4.45) (2.21.0)
+Requirement already satisfied: mdurl~=0.1 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (from markdown-it-py>=2.2.0->rich>=13.8.0->typer->transformers>=4.45->transformers[sentencepiece]>=4.45) (0.1.2)
+Requirement already satisfied: narwhals>=2.0.1 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (from scikit-learn>=1.6.0->librosa) (2.26.0)
+Requirement already satisfied: threadpoolctl>=3.5.0 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (from scikit-learn>=1.6.0->librosa) (3.7.0)
+Requirement already satisfied: mpmath<1.4,>=1.1.0 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (from sympy>=1.13.3->torch==2.11.*) (1.3.0)
+INFO: pip is looking at multiple versions of transformers[sentencepiece] to determine which version is compatible with other requirements. This could take a while.
+Collecting transformers[sentencepiece]>=4.45
+  Using cached transformers-5.17.0-py3-none-any.whl.metadata (32 kB)
+  Using cached transformers-5.16.1-py3-none-any.whl.metadata (32 kB)
+  Using cached transformers-5.16.0-py3-none-any.whl.metadata (32 kB)
+  Using cached transformers-5.15.1-py3-none-any.whl.metadata (32 kB)
+  Using cached transformers-5.15.0-py3-none-any.whl.metadata (32 kB)
+  Using cached transformers-5.14.1-py3-none-any.whl.metadata (32 kB)
+  Using cached transformers-5.14.0-py3-none-any.whl.metadata (32 kB)
+INFO: pip is still looking at multiple versions of transformers[sentencepiece] to determine which version is compatible with other requirements. This could take a while.
+  Using cached transformers-5.13.1-py3-none-any.whl.metadata (32 kB)
+  Using cached transformers-5.13.0-py3-none-any.whl.metadata (32 kB)
+  Using cached transformers-5.12.1-py3-none-any.whl.metadata (33 kB)
+  Using cached transformers-5.12.0-py3-none-any.whl.metadata (33 kB)
+  Using cached transformers-5.11.0-py3-none-any.whl.metadata (33 kB)
+INFO: This is taking longer than usual. You might need to provide the dependency resolver with stricter constraints to reduce runtime. See https://pip.pypa.io/warnings/backtracking for guidance. If you want to abort this run, press Ctrl + C.
+Requirement already satisfied: protobuf in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (from transformers[sentencepiece]>=4.45) (7.36.2)
+Using cached transformers-5.10.4-py3-none-any.whl (11.0 MB)
+Using cached torch-2.11.0%2Bcpu-cp312-cp312-manylinux_2_28_x86_64.whl (190.3 MB)
+Using cached torchvision-0.26.0%2Bcpu-cp312-cp312-manylinux_2_28_x86_64.whl (1.9 MB)
+Using cached datasets-3.6.0-py3-none-any.whl (491 kB)
+Using cached huggingface_hub-1.33.0-py3-none-any.whl (846 kB)
+Using cached setuptools-81.0.0-py3-none-any.whl (1.1 MB)
+Using cached soundfile-0.14.0-py2.py3-none-manylinux_2_28_x86_64.whl (1.3 MB)
+Using cached librosa-1.0.0-py3-none-any.whl (294 kB)
+Downloading speechbrain-1.1.1-py3-none-any.whl (2.3 MB)
+[?25l   [38;5;237m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m0.0/2.3 MB[0m [31m?[0m eta [36m-:--:--[0m[2K   [38;2;249;38;114m━━━━━━━━━[0m[38;5;237m╺[0m[38;5;237m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m0.5/2.3 MB[0m [31m4.4 MB/s[0m eta [36m0:00:01[0m[2K   [38;2;249;38;114m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m[38;5;237m╺[0m[38;5;237m━━━[0m [32m2.1/2.3 MB[0m [31m7.0 MB/s[0m eta [36m0:00:01[0m[2K   [38;2;114;156;31m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m2.3/2.3 MB[0m [31m7.6 MB/s[0m  [33m0:00:00[0m
+[?25hUsing cached gradio-6.29.1-py3-none-any.whl (31.4 MB)
+Using cached gradio_client-2.7.2-py3-none-any.whl (64 kB)
+Using cached starlette-1.7.0-py3-none-any.whl (78 kB)
+Using cached hyperpyyaml-1.2.3-py3-none-any.whl (16 kB)
+Using cached ruamel_yaml-0.18.17-py3-none-any.whl (121 kB)
+Using cached ruamel_yaml_clib-0.2.15-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (788 kB)
+Installing collected packages: setuptools, ruamel.yaml.clib, torch, starlette, soundfile, ruamel.yaml, torchvision, librosa, hyperpyyaml, huggingface-hub, speechbrain, gradio-client, datasets, transformers, gradio
+[?25l[2K  Attempting uninstall: setuptools
+[2K    Found existing installation: setuptools 84.0.0
+[2K    Uninstalling setuptools-84.0.0:
+[2K   [38;5;237m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m 0/15[0m [setuptools][2K      Successfully uninstalled setuptools-84.0.0
+   [38;5;237m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m 0/15[0m [setuptools][2K   [38;5;237m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m 0/15[0m [setuptools][2K   [38;5;237m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m 0/15[0m [setuptools][2K  Attempting uninstall: torch
+   [38;5;237m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m 0/15[0m [setuptools][2K    Found existing installation: torch 2.14.1+cpu
+   [38;5;237m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m 0/15[0m [setuptools][2K   [38;2;249;38;114m━━━━━[0m[38;5;237m╺[0m[38;5;237m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m 2/15[0m [torch][2K    Uninstalling torch-2.14.1+cpu:
+   [38;2;249;38;114m━━━━━[0m[38;5;237m╺[0m[38;5;237m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m 2/15[0m [torch][2K      Successfully uninstalled torch-2.14.1+cpu
+   [38;2;249;38;114m━━━━━[0m[38;5;237m╺[0m[38;5;237m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m 2/15[0m [torch][2K   [38;2;249;38;114m━━━━━[0m[38;5;237m╺[0m[38;5;237m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m 2/15[0m [torch][2K   [38;2;249;38;114m━━━━━[0m[38;5;237m╺[0m[38;5;237m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m 2/15[0m [torch][2K   [38;2;249;38;114m━━━━━[0m[38;5;237m╺[0m[38;5;237m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m 2/15[0m [torch][2K   [38;2;249;38;114m━━━━━[0m[38;5;237m╺[0m[38;5;237m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m 2/15[0m [torch][2K   [38;2;249;38;114m━━━━━[0m[38;5;237m╺[0m[38;5;237m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m 2/15[0m [torch][2K   [38;2;249;38;114m━━━━━[0m[38;5;237m╺[0m[38;5;237m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m 2/15[0m [torch][2K   [38;2;249;38;114m━━━━━[0m[38;5;237m╺[0m[38;5;237m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m 2/15[0m [torch][2K   [38;2;249;38;114m━━━━━[0m[38;5;237m╺[0m[38;5;237m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m 2/15[0m [torch][2K   [38;2;249;38;114m━━━━━[0m[38;5;237m╺[0m[38;5;237m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m 2/15[0m [torch][2K   [38;2;249;38;114m━━━━━[0m[38;5;237m╺[0m[38;5;237m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m 2/15[0m [torch][2K   [38;2;249;38;114m━━━━━[0m[38;5;237m╺[0m[38;5;237m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m 2/15[0m [torch][2K   [38;2;249;38;114m━━━━━[0m[38;5;237m╺[0m[38;5;237m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m 2/15[0m [torch][2K   [38;2;249;38;114m━━━━━[0m[38;5;237m╺[0m[38;5;237m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m 2/15[0m [torch][2K   [38;2;249;38;114m━━━━━[0m[38;5;237m╺[0m[38;5;237m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m 2/15[0m [torch][2K   [38;2;249;38;114m━━━━━[0m[38;5;237m╺[0m[38;5;237m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m 2/15[0m [torch][2K   [38;2;249;38;114m━━━━━[0m[38;5;237m╺[0m[38;5;237m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m 2/15[0m [torch][2K   [38;2;249;38;114m━━━━━[0m[38;5;237m╺[0m[38;5;237m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m 2/15[0m [torch][2K   [38;2;249;38;114m━━━━━[0m[38;5;237m╺[0m[38;5;237m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m 2/15[0m [torch][2K   [38;2;249;38;114m━━━━━[0m[38;5;237m╺[0m[38;5;237m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m 2/15[0m [torch][2K   [38;2;249;38;114m━━━━━[0m[38;5;237m╺[0m[38;5;237m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m 2/15[0m [torch][2K   [38;2;249;38;114m━━━━━[0m[38;5;237m╺[0m[38;5;237m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m 2/15[0m [torch][2K   [38;2;249;38;114m━━━━━[0m[38;5;237m╺[0m[38;5;237m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m 2/15[0m [torch][2K   [38;2;249;38;114m━━━━━[0m[38;5;237m╺[0m[38;5;237m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m 2/15[0m [torch][2K   [38;2;249;38;114m━━━━━[0m[38;5;237m╺[0m[38;5;237m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m 2/15[0m [torch][2K   [38;2;249;38;114m━━━━━[0m[38;5;237m╺[0m[38;5;237m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m 2/15[0m [torch][2K   [38;2;249;38;114m━━━━━[0m[38;5;237m╺[0m[38;5;237m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m 2/15[0m [torch][2K   [38;2;249;38;114m━━━━━[0m[38;5;237m╺[0m[38;5;237m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m 2/15[0m [torch][2K   [38;2;249;38;114m━━━━━[0m[38;5;237m╺[0m[38;5;237m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m 2/15[0m [torch][2K   [38;2;249;38;114m━━━━━[0m[38;5;237m╺[0m[38;5;237m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m 2/15[0m [torch][2K   [38;2;249;38;114m━━━━━[0m[38;5;237m╺[0m[38;5;237m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m 2/15[0m [torch][2K   [38;2;249;38;114m━━━━━[0m[38;5;237m╺[0m[38;5;237m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m 2/15[0m [torch][2K   [38;2;249;38;114m━━━━━[0m[38;5;237m╺[0m[38;5;237m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m 2/15[0m [torch][2K  Attempting uninstall: starlette
+   [38;2;249;38;114m━━━━━[0m[38;5;237m╺[0m[38;5;237m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m 2/15[0m [torch][2K    Found existing installation: starlette 0.52.1
+   [38;2;249;38;114m━━━━━[0m[38;5;237m╺[0m[38;5;237m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m 2/15[0m [torch][2K    Uninstalling starlette-0.52.1:
+   [38;2;249;38;114m━━━━━[0m[38;5;237m╺[0m[38;5;237m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m 2/15[0m [torch][2K      Successfully uninstalled starlette-0.52.1
+   [38;2;249;38;114m━━━━━[0m[38;5;237m╺[0m[38;5;237m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m 2/15[0m [torch][2K  Attempting uninstall: soundfile
+   [38;2;249;38;114m━━━━━[0m[38;5;237m╺[0m[38;5;237m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m 2/15[0m [torch][2K    Found existing installation: soundfile 0.13.1
+   [38;2;249;38;114m━━━━━[0m[38;5;237m╺[0m[38;5;237m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m 2/15[0m [torch][2K    Uninstalling soundfile-0.13.1:
+   [38;2;249;38;114m━━━━━[0m[38;5;237m╺[0m[38;5;237m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m 2/15[0m [torch][2K   [38;2;249;38;114m━━━━━━━━━━[0m[38;2;249;38;114m╸[0m[38;5;237m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m 4/15[0m [soundfile][2K      Successfully uninstalled soundfile-0.13.1
+   [38;2;249;38;114m━━━━━━━━━━[0m[38;2;249;38;114m╸[0m[38;5;237m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m 4/15[0m [soundfile][2K   [38;2;249;38;114m━━━━━━━━━━━━━[0m[38;5;237m╺[0m[38;5;237m━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m 5/15[0m [ruamel.yaml][2K  Attempting uninstall: torchvision
+   [38;2;249;38;114m━━━━━━━━━━━━━[0m[38;5;237m╺[0m[38;5;237m━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m 5/15[0m [ruamel.yaml][2K    Found existing installation: torchvision 0.29.1+cpu
+   [38;2;249;38;114m━━━━━━━━━━━━━[0m[38;5;237m╺[0m[38;5;237m━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m 5/15[0m [ruamel.yaml][2K    Uninstalling torchvision-0.29.1+cpu:
+   [38;2;249;38;114m━━━━━━━━━━━━━[0m[38;5;237m╺[0m[38;5;237m━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m 5/15[0m [ruamel.yaml][2K      Successfully uninstalled torchvision-0.29.1+cpu
+   [38;2;249;38;114m━━━━━━━━━━━━━[0m[38;5;237m╺[0m[38;5;237m━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m 5/15[0m [ruamel.yaml][2K   [38;2;249;38;114m━━━━━━━━━━━━━━━━[0m[38;5;237m╺[0m[38;5;237m━━━━━━━━━━━━━━━━━━━━━━━[0m [32m 6/15[0m [torchvision][2K  Attempting uninstall: librosa
+   [38;2;249;38;114m━━━━━━━━━━━━━━━━[0m[38;5;237m╺[0m[38;5;237m━━━━━━━━━━━━━━━━━━━━━━━[0m [32m 6/15[0m [torchvision][2K    Found existing installation: librosa 0.11.0
+   [38;2;249;38;114m━━━━━━━━━━━━━━━━[0m[38;5;237m╺[0m[38;5;237m━━━━━━━━━━━━━━━━━━━━━━━[0m [32m 6/15[0m [torchvision][2K    Uninstalling librosa-0.11.0:
+   [38;2;249;38;114m━━━━━━━━━━━━━━━━[0m[38;5;237m╺[0m[38;5;237m━━━━━━━━━━━━━━━━━━━━━━━[0m [32m 6/15[0m [torchvision][2K      Successfully uninstalled librosa-0.11.0
+   [38;2;249;38;114m━━━━━━━━━━━━━━━━[0m[38;5;237m╺[0m[38;5;237m━━━━━━━━━━━━━━━━━━━━━━━[0m [32m 6/15[0m [torchvision][2K   [38;2;249;38;114m━━━━━━━━━━━━━━━━━━[0m[38;2;249;38;114m╸[0m[38;5;237m━━━━━━━━━━━━━━━━━━━━━[0m [32m 7/15[0m [librosa][2K  Attempting uninstall: huggingface-hub
+   [38;2;249;38;114m━━━━━━━━━━━━━━━━━━[0m[38;2;249;38;114m╸[0m[38;5;237m━━━━━━━━━━━━━━━━━━━━━[0m [32m 7/15[0m [librosa][2K    Found existing installation: huggingface_hub 0.36.2
+   [38;2;249;38;114m━━━━━━━━━━━━━━━━━━[0m[38;2;249;38;114m╸[0m[38;5;237m━━━━━━━━━━━━━━━━━━━━━[0m [32m 7/15[0m [librosa][2K    Uninstalling huggingface_hub-0.36.2:
+   [38;2;249;38;114m━━━━━━━━━━━━━━━━━━[0m[38;2;249;38;114m╸[0m[38;5;237m━━━━━━━━━━━━━━━━━━━━━[0m [32m 7/15[0m [librosa][2K      Successfully uninstalled huggingface_hub-0.36.2
+   [38;2;249;38;114m━━━━━━━━━━━━━━━━━━[0m[38;2;249;38;114m╸[0m[38;5;237m━━━━━━━━━━━━━━━━━━━━━[0m [32m 7/15[0m [librosa][2K   [38;2;249;38;114m━━━━━━━━━━━━━━━━━━━━━━━━[0m[38;5;237m╺[0m[38;5;237m━━━━━━━━━━━━━━━[0m [32m 9/15[0m [huggingface-hub][2K   [38;2;249;38;114m━━━━━━━━━━━━━━━━━━━━━━━━━━[0m[38;2;249;38;114m╸[0m[38;5;237m━━━━━━━━━━━━━[0m [32m10/15[0m [speechbrain][2K   [38;2;249;38;114m━━━━━━━━━━━━━━━━━━━━━━━━━━[0m[38;2;249;38;114m╸[0m[38;5;237m━━━━━━━━━━━━━[0m [32m10/15[0m [speechbrain][2K   [38;2;249;38;114m━━━━━━━━━━━━━━━━━━━━━━━━━━[0m[38;2;249;38;114m╸[0m[38;5;237m━━━━━━━━━━━━━[0m [32m10/15[0m [speechbrain][2K   [38;2;249;38;114m━━━━━━━━━━━━━━━━━━━━━━━━━━[0m[38;2;249;38;114m╸[0m[38;5;237m━━━━━━━━━━━━━[0m [32m10/15[0m [speechbrain][2K  Attempting uninstall: gradio-client
+   [38;2;249;38;114m━━━━━━━━━━━━━━━━━━━━━━━━━━[0m[38;2;249;38;114m╸[0m[38;5;237m━━━━━━━━━━━━━[0m [32m10/15[0m [speechbrain][2K    Found existing installation: gradio_client 1.14.0
+   [38;2;249;38;114m━━━━━━━━━━━━━━━━━━━━━━━━━━[0m[38;2;249;38;114m╸[0m[38;5;237m━━━━━━━━━━━━━[0m [32m10/15[0m [speechbrain][2K    Uninstalling gradio_client-1.14.0:
+   [38;2;249;38;114m━━━━━━━━━━━━━━━━━━━━━━━━━━[0m[38;2;249;38;114m╸[0m[38;5;237m━━━━━━━━━━━━━[0m [32m10/15[0m [speechbrain][2K      Successfully uninstalled gradio_client-1.14.0
+   [38;2;249;38;114m━━━━━━━━━━━━━━━━━━━━━━━━━━[0m[38;2;249;38;114m╸[0m[38;5;237m━━━━━━━━━━━━━[0m [32m10/15[0m [speechbrain][2K  Attempting uninstall: datasets
+   [38;2;249;38;114m━━━━━━━━━━━━━━━━━━━━━━━━━━[0m[38;2;249;38;114m╸[0m[38;5;237m━━━━━━━━━━━━━[0m [32m10/15[0m [speechbrain][2K    Found existing installation: datasets 5.0.1
+   [38;2;249;38;114m━━━━━━━━━━━━━━━━━━━━━━━━━━[0m[38;2;249;38;114m╸[0m[38;5;237m━━━━━━━━━━━━━[0m [32m10/15[0m [speechbrain][2K   [38;2;249;38;114m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m[38;5;237m╺[0m[38;5;237m━━━━━━━[0m [32m12/15[0m [datasets][2K    Uninstalling datasets-5.0.1:
+   [38;2;249;38;114m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m[38;5;237m╺[0m[38;5;237m━━━━━━━[0m [32m12/15[0m [datasets][2K      Successfully uninstalled datasets-5.0.1
+   [38;2;249;38;114m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m[38;5;237m╺[0m[38;5;237m━━━━━━━[0m [32m12/15[0m [datasets][2K   [38;2;249;38;114m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m[38;5;237m╺[0m[38;5;237m━━━━━━━[0m [32m12/15[0m [datasets][2K  Attempting uninstall: transformers
+   [38;2;249;38;114m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m[38;5;237m╺[0m[38;5;237m━━━━━━━[0m [32m12/15[0m [datasets][2K    Found existing installation: transformers 4.57.6
+   [38;2;249;38;114m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m[38;5;237m╺[0m[38;5;237m━━━━━━━[0m [32m12/15[0m [datasets][2K    Uninstalling transformers-4.57.6:
+   [38;2;249;38;114m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m[38;5;237m╺[0m[38;5;237m━━━━━━━[0m [32m12/15[0m [datasets][2K      Successfully uninstalled transformers-4.57.6
+   [38;2;249;38;114m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m[38;5;237m╺[0m[38;5;237m━━━━━━━[0m [32m12/15[0m [datasets][2K   [38;2;249;38;114m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m[38;2;249;38;114m╸[0m[38;5;237m━━━━━[0m [32m13/15[0m [transformers][2K   [38;2;249;38;114m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m[38;2;249;38;114m╸[0m[38;5;237m━━━━━[0m [32m13/15[0m [transformers][2K   [38;2;249;38;114m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m[38;2;249;38;114m╸[0m[38;5;237m━━━━━[0m [32m13/15[0m [transformers][2K   [38;2;249;38;114m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m[38;2;249;38;114m╸[0m[38;5;237m━━━━━[0m [32m13/15[0m [transformers][2K   [38;2;249;38;114m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m[38;2;249;38;114m╸[0m[38;5;237m━━━━━[0m [32m13/15[0m [transformers][2K   [38;2;249;38;114m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m[38;2;249;38;114m╸[0m[38;5;237m━━━━━[0m [32m13/15[0m [transformers][2K   [38;2;249;38;114m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m[38;2;249;38;114m╸[0m[38;5;237m━━━━━[0m [32m13/15[0m [transformers][2K   [38;2;249;38;114m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m[38;2;249;38;114m╸[0m[38;5;237m━━━━━[0m [32m13/15[0m [transformers][2K   [38;2;249;38;114m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m[38;2;249;38;114m╸[0m[38;5;237m━━━━━[0m [32m13/15[0m [transformers][2K   [38;2;249;38;114m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m[38;2;249;38;114m╸[0m[38;5;237m━━━━━[0m [32m13/15[0m [transformers][2K   [38;2;249;38;114m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m[38;2;249;38;114m╸[0m[38;5;237m━━━━━[0m [32m13/15[0m [transformers][2K   [38;2;249;38;114m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m[38;2;249;38;114m╸[0m[38;5;237m━━━━━[0m [32m13/15[0m [transformers][2K   [38;2;249;38;114m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m[38;2;249;38;114m╸[0m[38;5;237m━━━━━[0m [32m13/15[0m [transformers][2K   [38;2;249;38;114m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m[38;2;249;38;114m╸[0m[38;5;237m━━━━━[0m [32m13/15[0m [transformers][2K   [38;2;249;38;114m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m[38;2;249;38;114m╸[0m[38;5;237m━━━━━[0m [32m13/15[0m [transformers][2K   [38;2;249;38;114m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m[38;2;249;38;114m╸[0m[38;5;237m━━━━━[0m [32m13/15[0m [transformers][2K   [38;2;249;38;114m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m[38;2;249;38;114m╸[0m[38;5;237m━━━━━[0m [32m13/15[0m [transformers][2K   [38;2;249;38;114m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m[38;2;249;38;114m╸[0m[38;5;237m━━━━━[0m [32m13/15[0m [transformers][2K   [38;2;249;38;114m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m[38;2;249;38;114m╸[0m[38;5;237m━━━━━[0m [32m13/15[0m [transformers][2K   [38;2;249;38;114m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m[38;2;249;38;114m╸[0m[38;5;237m━━━━━[0m [32m13/15[0m [transformers][2K   [38;2;249;38;114m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m[38;2;249;38;114m╸[0m[38;5;237m━━━━━[0m [32m13/15[0m [transformers][2K  Attempting uninstall: gradio
+   [38;2;249;38;114m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m[38;2;249;38;114m╸[0m[38;5;237m━━━━━[0m [32m13/15[0m [transformers][2K    Found existing installation: gradio 5.50.0
+   [38;2;249;38;114m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m[38;2;249;38;114m╸[0m[38;5;237m━━━━━[0m [32m13/15[0m [transformers][2K    Uninstalling gradio-5.50.0:
+   [38;2;249;38;114m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m[38;2;249;38;114m╸[0m[38;5;237m━━━━━[0m [32m13/15[0m [transformers][2K      Successfully uninstalled gradio-5.50.0
+   [38;2;249;38;114m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m[38;2;249;38;114m╸[0m[38;5;237m━━━━━[0m [32m13/15[0m [transformers][2K   [38;2;249;38;114m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m[38;5;237m╺[0m[38;5;237m━━[0m [32m14/15[0m [gradio][2K   [38;2;249;38;114m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m[38;5;237m╺[0m[38;5;237m━━[0m [32m14/15[0m [gradio][2K   [38;2;249;38;114m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m[38;5;237m╺[0m[38;5;237m━━[0m [32m14/15[0m [gradio][2K   [38;2;114;156;31m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m15/15[0m [gradio]
+[?25h[1A[2KSuccessfully installed datasets-3.6.0 gradio-6.29.1 gradio-client-2.7.2 huggingface-hub-1.33.0 hyperpyyaml-1.2.3 librosa-1.0.0 ruamel.yaml-0.18.17 ruamel.yaml.clib-0.2.15 setuptools-81.0.0 soundfile-0.14.0 speechbrain-1.1.1 starlette-1.7.0 torch-2.11.0+cpu torchvision-0.26.0+cpu transformers-5.10.4
+[cell 2 DONE  +  114.7s]
+[cell 3 START +  114.7s] from pathlib import Path | import requests |  | if not Path("notebook_utils.
+[cell 3 DONE  +  114.7s]
+[cell 4 START +  114.7s] ## Convert model using Optimum-CLI tool | [back to top ⬆️](#Table-of-con
+[cell 5 START +  114.7s] import json | from cmd_helper import optimum_cli |  | model_id = "microsoft/
+[cell 5 DONE  +  123.0s]
+NBEXEC_RESULT={"ok": false, "n_cells": 8, "n_skipped": 1, "n_substituted": 1, "stopped_after": null, "error_cell": null, "error_type": "CellExecutionError", "error_head": "\u001b[31mCalledProcessError\u001b[39m: Command '['optimum-cli', 'export', 'openvino', '--model', 'microsoft/speecht5_tts', 'speecht5_tts', '--model-kwargs', '{\"vocoder\":\"microsoft/speecht5_hifigan\"}']' returned non-zero exit status 1.", "duration_s": 123.23, "patch_notes": ["substituted 1 occurrence(s) in cell 2", "skipped cell 14: matched skip pattern"]}

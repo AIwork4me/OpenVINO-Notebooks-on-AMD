@@ -1,0 +1,36 @@
+{
+  "schema_version": 2,
+  "state": "AUTO_UNRESOLVED",
+  "requested_backend": "cpu",
+  "compile_events": 6,
+  "genai_pipeline_events": 0,
+  "execution_devices": [
+    [
+      "CPU"
+    ],
+    [
+      "CPU"
+    ],
+    [
+      "GPU.0"
+    ],
+    [
+      "CPU"
+    ],
+    [
+      "CPU"
+    ],
+    [
+      "CPU"
+    ]
+  ],
+  "device_args": [
+    "AUTO",
+    "GPU"
+  ],
+  "genai_device_args": [],
+  "supporting_device_used": "GPU",
+  "probe_events": 7,
+  "probe_present": true,
+  "probe_installed": true
+}

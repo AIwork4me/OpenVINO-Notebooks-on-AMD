@@ -1,0 +1,157 @@
+[cell 0 START +    0.4s] # Object masks from prompts with SAM2 and OpenVINO for Images |  | <div cl
+[cell 1 START +    0.4s] Segmentation - identifying which image pixels belong to an object - is
+[cell 2 START +    0.4s] ## Prerequisites | [back to top ⬆️](#Table-of-contents:) | 
+[cell 3 START +    0.4s] %pip install -q "gradio>=4.13,<4.41.0" "fastapi==0.112.4" "openvino>=2
+[cell 3 DONE  +    1.5s]
+[cell 4 START +    1.5s] import requests | from pathlib import Path |  | if not Path("notebook_utils.
+[cell 4 DONE  +    1.6s]
+[cell 5 START +    1.6s] Clone and install segment-anything-2
+[cell 6 START +    1.6s] from cmd_helper import clone_repo |  | repo_dir = clone_repo("https://gith
+[cell 6 DONE  +    1.6s]
+[cell 7 START +    1.6s] %env SAM2_BUILD_CUDA=0 | %cd sam2 | %pip install -q -e . | %cd ..
+[cell 7 DONE  +   19.9s]
+[cell 8 START +   19.9s] ov_sam2_helper_file_name = "ov_sam2_helper.py" |  | if not Path(ov_sam2_he
+[cell 8 DONE  +   19.9s]
+[cell 9 START +   19.9s] ## Image prediction | [back to top ⬆️](#Table-of-contents:)
+[cell 10 START +   19.9s] ## Prepare image | [back to top ⬆️](#Table-of-contents:)
+[cell 11 START +   19.9s] import numpy as np | import matplotlib.pyplot as plt | from PIL import Ima
+[cell 11 DONE  +   20.1s]
+[cell 12 START +   20.1s] plt.figure(figsize=(10, 10)) | plt.imshow(image) | plt.axis("on") | plt.show
+[cell 12 DONE  +   20.4s]
+[cell 13 START +   20.4s] ## Download and inference PyTorch model | [back to top ⬆️](#Table-of-con
+[cell 14 START +   20.4s] from sam2.sam2_image_predictor import SAM2ImagePredictor |  | predictor = 
+[cell 14 DONE  +   23.1s]
+[cell 15 START +   23.1s] input_point = np.array([[500, 375]]) | input_label = np.array([1])
+[cell 15 DONE  +   23.1s]
+[cell 16 START +   23.1s] from ov_sam2_helper import show_points |  | plt.figure(figsize=(10, 10)) | p
+[cell 16 DONE  +   23.3s]
+[cell 17 START +   23.3s] predictor.set_image(image) |  | masks, scores, logits = predictor.predict(
+[cell 17 DONE  +   25.4s]
+[cell 18 START +   25.4s] from ov_sam2_helper import show_masks |  | show_masks(image, masks, point_
+[cell 18 DONE  +   25.6s]
+[cell 19 START +   25.6s] predictor.reset_predictor()
+[cell 19 DONE  +   25.6s]
+[cell 20 START +   25.6s] ## Convert model to OpenVINO Intermediate Representation | [back to top 
+[cell 21 START +   25.6s] import openvino as ov |  | core = ov.Core()
+[cell 21 DONE  +   25.7s]
+[cell 22 START +   25.7s] from notebook_utils import device_widget |  | device = device_widget(exclu
+[cell 22 DONE  +   25.9s]
+[cell 23 START +   25.9s] ### Image Encoder | [back to top ⬆️](#Table-of-contents:) |  |  | The image en
+[cell 24 START +   25.9s] import warnings | import torch | from ov_sam2_helper import SamImageEncode
+[cell 24 DONE  +   26.0s]
+[cell 25 START +   26.0s] ov_encoder = core.compile_model(ov_encoder_model, device.value)
+[cell 25 DONE  +   33.4s]
+[cell 26 START +   33.4s] ### Mask predictor | [back to top ⬆️](#Table-of-contents:) |  | Mask predict
+[cell 27 START +   33.4s] Combined prompt encoder and mask decoder model has following list of i
+[cell 28 START +   33.4s] from ov_sam2_helper import SamImageMaskPredictionModel |  | ov_mask_predic
+[cell 28 DONE  +   33.5s]
+[cell 29 START +   33.5s] ov_predictor = core.compile_model(ov_mask_predictor_model, device.valu
+[cell 29 DONE  +   33.6s]
+[cell 30 START +   33.6s] ## Run OpenVINO model in interactive segmentation mode | [back to top ⬆️
+[cell 31 START +   33.6s] ### Example Image | [back to top ⬆️](#Table-of-contents:) | 
+[cell 32 START +   33.6s] import numpy as np | import cv2 | import matplotlib.pyplot as plt |  | downloa
+[cell 32 DONE  +   33.6s]
+[cell 33 START +   33.6s] plt.figure(figsize=(10, 10)) | plt.imshow(image) | plt.axis("off") | plt.sho
+[cell 33 DONE  +   33.8s]
+[cell 34 START +   33.8s] ### Preprocessing and visualization utilities | [back to top ⬆️](#Table-
+[cell 35 START +   33.8s] from ov_sam2_helper import ResizeLongestSide, preprocess_image, postpr
+[cell 35 DONE  +   33.8s]
+[cell 36 START +   33.8s] ### Image encoding | [back to top ⬆️](#Table-of-contents:) |  | To start wor
+[cell 37 START +   33.8s] preprocessed_image = preprocess_image(image, resizer) | encoding_results
+[cell 37 DONE  +   34.5s]
+[cell 38 START +   34.5s] Now, we can try to provide different prompts for mask generation |  | ### 
+[cell 39 START +   34.5s] input_point = np.array([[500, 375]]) | input_label = np.array([1]) |  | plt.
+[cell 39 DONE  +   34.7s]
+[cell 40 START +   34.7s] Add a batch index, concatenate a padding point, and transform it to in
+[cell 41 START +   34.7s] coord = np.concatenate([input_point, np.array([[0.0, 0.0]])], axis=0)[
+[cell 41 DONE  +   34.7s]
+[cell 42 START +   34.7s] Package the inputs to run in the mask predictor.
+[cell 43 START +   34.7s] inputs = { |     "image_embeddings": torch.from_numpy(encoding_results[o
+[cell 43 DONE  +   34.7s]
+[cell 44 START +   34.7s] Predict a mask and threshold it to get binary mask (0 - no object, 1 -
+[cell 45 START +   34.7s] results = ov_predictor(inputs) |  | masks = results[ov_predictor.output(0)
+[cell 45 DONE  +   34.7s]
+[cell 46 START +   34.7s] mask = masks[0] | mask = np.transpose(mask, (1, 2, 0))
+[cell 46 DONE  +   34.7s]
+[cell 47 START +   34.7s] from ov_sam2_helper import show_mask |  | plt.figure(figsize=(10, 10)) | plt
+[cell 47 DONE  +   35.0s]
+[cell 48 START +   35.0s] ### Example with multiple points | [back to top ⬆️](#Table-of-contents:)
+[cell 49 START +   35.0s] input_point = np.array([[500, 375], [1125, 625], [575, 750], [1405, 57
+[cell 49 DONE  +   35.0s]
+[cell 50 START +   35.0s] Now, prompt for model looks like represented on this image:
+[cell 51 START +   35.0s] plt.figure(figsize=(10, 10)) | plt.imshow(image) | show_points(input_point
+[cell 51 DONE  +   35.2s]
+[cell 52 START +   35.2s] Transform the points as in the previous example.
+[cell 53 START +   35.2s] coord = np.concatenate([input_point, np.array([[0.0, 0.0]])], axis=0)[
+[cell 53 DONE  +   35.2s]
+[cell 54 START +   35.2s] Package inputs, then predict and threshold the mask.
+[cell 55 START +   35.2s] inputs = { |     "image_embeddings": encoding_results[ov_encoder.output(
+[cell 55 DONE  +   35.2s]
+[cell 56 START +   35.2s] plt.figure(figsize=(10, 10)) | plt.imshow(image) | show_mask(masks, plt.gc
+[cell 56 DONE  +   35.5s]
+[cell 57 START +   35.5s] Great! Looks like now, predicted mask cover whole truck.
+[cell 58 START +   35.5s] ### Example box and point input with negative label | [back to top ⬆️](#
+[cell 59 START +   35.5s] input_box = np.array([425, 600, 700, 875]) | input_point = np.array([[57
+[cell 59 DONE  +   35.5s]
+[cell 60 START +   35.5s] from ov_sam2_helper import show_box |  | plt.figure(figsize=(10, 10)) | plt.
+[cell 60 DONE  +   35.6s]
+[cell 61 START +   35.6s] Add a batch index, concatenate a box and point inputs, add the appropr
+[cell 62 START +   35.6s] box_coords = input_box.reshape(2, 2) | box_labels = np.array([2, 3]) |  | co
+[cell 62 DONE  +   35.6s]
+[cell 63 START +   35.6s] Package inputs, then predict and threshold the mask.
+[cell 64 START +   35.6s] inputs = { |     "image_embeddings": encoding_results[ov_encoder.output(
+[cell 64 DONE  +   35.6s]
+[cell 65 START +   35.6s] plt.figure(figsize=(10, 10)) | plt.imshow(image) | show_mask(masks[0], plt
+[cell 65 DONE  +   35.9s]
+[cell 66 START +   35.9s] ## Interactive segmentation with Gradio | [back to top ⬆️](#Table-of-con
+[cell 67 START +   35.9s] class Segmenter: |     def __init__(self, ov_encoder, ov_predictor): |    
+[cell 67 DONE  +   35.9s]
+[cell 68 START +   35.9s] if not Path("gradio_helper.py").exists(): |     r = requests.get(url="ht
+[cell 69 START +   35.9s] # please uncomment and run this cell for stopping gradio interface | # d
+[cell 69 DONE  +   35.9s]
+[cell 70 START +   35.9s] ## Run OpenVINO model in automatic mask generation mode | [back to top ⬆
+[cell 71 START +   35.9s] mask_generation_helper_file_name = "automatic_mask_generation_helper.p
+[cell 71 DONE  +   35.9s]
+[cell 72 START +   35.9s] from automatic_mask_generation_helper import AutomaticMaskGenerationHe
+[cell 72 DONE  +   35.9s]
+[cell 73 START +   35.9s] There are several tunable parameters in automatic mask generation that
+[cell 74 START +   35.9s] prediction = mask_generator_helper.automatic_mask_generation(image)
+[cell 74 DONE  +   53.1s]
+[cell 75 START +   53.1s] `automatic_mask_generation` returns a list over masks, where each mask
+[cell 76 START +   53.1s] print(f"Number of detected masks: {len(prediction)}") | print(f"Annotati
+[cell 76 DONE  +   53.1s]
+[cell 77 START +   53.1s] import PIL | from automatic_mask_generation_helper import draw_anns |  | out
+[cell 77 DONE  +   53.4s]
+[cell 78 START +   53.4s] ## Optimize encoder using NNCF Post-training Quantization API | [back to
+[cell 79 START +   53.4s] from notebook_utils import quantization_widget |  | to_quantize = quantiza
+[cell 79 DONE  +   53.4s]
+[cell 80 START +   53.4s] # Fetch `skip_kernel_extension` module | skip_kernel_extension_file_name
+[cell 80 DONE  +   53.4s]
+[cell 81 START +   53.4s] ### Prepare a calibration dataset | [back to top ⬆️](#Table-of-contents:
+[cell 82 START +   53.4s] %%skip not $to_quantize.value |  | from zipfile import ZipFile |  | DATA_URL =
+[cell 82 DONE  +   53.4s]
+[cell 83 START +   53.4s] Create an instance of the `nncf.Dataset` class that represents the cal
+[cell 84 START +   53.4s] %%skip not $to_quantize.value |  | import torch.utils.data as data |  |  | class
+[cell 84 DONE  +   53.4s]
+[cell 85 START +   53.4s] The transformation function is a function that takes a sample from the
+[cell 86 START +   53.4s] %%skip not $to_quantize.value |  |  | import nncf |  |  | def transform_fn(image_d
+[cell 86 DONE  +   53.4s]
+[cell 87 START +   53.4s] ### Run quantization and serialize OpenVINO IR model | [back to top ⬆️](
+[cell 88 START +   53.4s] %%skip not $to_quantize.value |  | model = core.read_model(ov_encoder_path
+[cell 88 DONE  +   53.4s]
+[cell 89 START +   53.4s] ov_encoder_path_int8 = "ov_image_encoder_int8.xml"
+[cell 89 DONE  +   53.4s]
+[cell 90 START +   53.4s] %%skip not $to_quantize.value |  | ov.save_model(quantized_model, ov_encod
+[cell 90 DONE  +   53.4s]
+[cell 91 START +   53.4s] ### Validate Quantized Model Inference | [back to top ⬆️](#Table-of-cont
+[cell 92 START +   53.4s] %%skip not $to_quantize.value |  |  | # Load INT8 model and run pipeline aga
+[cell 92 DONE  +   53.4s]
+[cell 93 START +   53.4s] Run `INT8` model in automatic mask generation mode
+[cell 94 START +   53.4s] %%skip not $to_quantize.value |  |  | mask_generator_helper_int8 = Automatic
+[cell 94 DONE  +   53.4s]
+[cell 95 START +   53.4s] ### Compare Performance of the Original and Quantized Models | [back to 
+[cell 96 START +   53.4s] if Path(ov_encoder_path).exists() and Path(ov_encoder_path_int8).exist
+[cell 96 DONE  +   53.4s]
+[cell 97 START +   53.4s] if Path(ov_encoder_path).exists() and Path(ov_encoder_path_int8).exist
+[cell 97 DONE  +   53.4s]
+NBEXEC_RESULT={"ok": true, "n_cells": 59, "n_skipped": 1, "n_substituted": 0, "stopped_after": null, "error_cell": null, "error_type": null, "error_head": null, "duration_s": 56.37, "patch_notes": ["skipped cell 68: matched skip pattern"]}

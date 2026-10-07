@@ -1,0 +1,50 @@
+[cell 0 START +    0.7s] # 🤗 Hugging Face Model Hub with OpenVINO™ |  | The Hugging Face (HF) [Mode
+[cell 1 START +    0.7s] ## Converting a Model from the HF Transformers Package | [back to top ⬆️
+[cell 2 START +    0.7s] ### Installing Requirements | [back to top ⬆️](#Table-of-contents:) | 
+[cell 3 START +    0.7s] %pip uninstall -q -y optimum optimum-intel optimum-onnx | %pip install -
+[cell 3 DONE  +   20.3s]
+[cell 4 START +   20.3s] ### Imports | [back to top ⬆️](#Table-of-contents:) | 
+[cell 5 START +   20.3s] from pathlib import Path |  | import numpy as np | import torch |  | from transf
+[cell 5 DONE  +   22.1s]
+[cell 6 START +   22.1s] ### Initializing a Model Using the HF Transformers Package | [back to to
+[cell 7 START +   22.1s] MODEL = "distilbert/distilbert-base-uncased-finetuned-sst-2-english" |  | 
+[cell 7 DONE  +   23.5s]
+[cell 8 START +   23.5s] ### Original Model inference | [back to top ⬆️](#Table-of-contents:) |  | Le
+[cell 9 START +   23.5s] text = "HF models run perfectly with OpenVINO!" |  | encoded_input = token
+[cell 9 DONE  +   23.6s]
+[cell 10 START +   23.6s] ### Converting the Model to OpenVINO IR format | [back to top ⬆️](#Table
+[cell 11 START +   23.6s] import openvino as ov |  | save_model_path = Path("./models/model.xml") |  | i
+[cell 11 DONE  +   23.8s]
+[cell 12 START +   23.8s] ### Converted Model Inference | [back to top ⬆️](#Table-of-contents:) | 
+[cell 13 START +   23.8s] First, we pick a device to do the model inference
+[cell 14 START +   23.8s] from notebook_utils import device_widget |  | device = device_widget(exclu
+[cell 14 DONE  +   24.0s]
+[cell 15 START +   24.0s] OpenVINO model IR must be compiled for a specific device prior to the 
+[cell 16 START +   24.0s] import openvino as ov |  | core = ov.Core() |  | compiled_model = core.compile
+[cell 16 DONE  +   24.2s]
+[cell 17 START +   24.2s] Note the prediction of the converted model match exactly the one of th
+[cell 18 START +   24.2s] ## Converting a Model Using the Optimum Intel Package | [back to top ⬆️]
+[cell 19 START +   24.2s] ### Install Requirements for Optimum | [back to top ⬆️](#Table-of-conten
+[cell 20 START +   24.2s] %pip install -q --upgrade-strategy eager "optimum[openvino,nncf,onnxru
+[cell 20 DONE  +   32.2s]
+[cell 21 START +   32.2s] ### Import Optimum | [back to top ⬆️](#Table-of-contents:) |  | Documentatio
+[cell 22 START +   32.2s] from optimum.intel.openvino import OVModelForSequenceClassification
+[cell 22 DONE  +   32.6s]
+[cell 23 START +   32.6s] ### Initialize and Convert the Model Automatically using OVModel class
+[cell 24 START +   32.6s] model = OVModelForSequenceClassification.from_pretrained(MODEL, export
+[cell 24 DONE  +   43.0s]
+[cell 25 START +   43.0s] ### Convert model using Optimum CLI interface | [back to top ⬆️](#Table-
+[cell 26 START +   43.0s] !optimum-cli export openvino --help
+[cell 26 DONE  +   43.3s]
+[cell 27 START +   43.3s] The command line export for model from example above with FP16 weights
+[cell 28 START +   43.3s] # !optimum-cli export openvino --model $MODEL --task text-classificati
+[cell 28 DONE  +   56.1s]
+[cell 29 START +   56.1s] After export, model will be available in the specified directory and c
+[cell 30 START +   56.1s] model = OVModelForSequenceClassification.from_pretrained("models/optim
+[cell 30 DONE  +   56.3s]
+[cell 31 START +   56.3s] There are some models in the Hugging Face Models Hub, that are already
+[cell 32 START +   56.3s] ### The Optimum Model Inference | [back to top ⬆️](#Table-of-contents:) | 
+[cell 33 START +   56.3s] output = model(**encoded_input) | scores = output[0][0] | scores = torch.s
+[cell 33 DONE  +   56.3s]
+[cell 34 START +   56.3s] You can find more examples of using Optimum Intel here: | 1. [Accelerate
+NBEXEC_RESULT={"ok": true, "n_cells": 14, "n_skipped": 0, "n_substituted": 0, "stopped_after": null, "error_cell": null, "error_type": null, "error_head": null, "duration_s": 57.65, "patch_notes": []}

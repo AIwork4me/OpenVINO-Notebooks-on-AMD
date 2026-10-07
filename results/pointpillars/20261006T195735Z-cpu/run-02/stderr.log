@@ -1,0 +1,47 @@
+[IPKernelApp] WARNING | Kernel is running over TCP without encryption. All communication (including code and outputs) is sent in plain text and is susceptible to eavesdropping. Use IPC transport or launch with kernel manager-provisioned CurveZMQ keys to enable transport encryption.
+/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages/openvino/runtime/__init__.py:10: DeprecationWarning: The `openvino.runtime` module is deprecated and will be removed in the 2026.0 release. Please replace `openvino.runtime` with `openvino`.
+  warnings.warn(
+/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/pointpillars/workdir-cpu/openvino_contrib/modules/3d/pointPillars/ov_extensions/voxelization_op.cpp: In member function ‘virtual bool ov::custom_ops::VoxelizationOp::evaluate(ov::TensorVector&, const ov::TensorVector&) const’:
+/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/pointpillars/workdir-cpu/openvino_contrib/modules/3d/pointPillars/ov_extensions/voxelization_op.cpp:81:57: warning: ‘T* ov::Tensor::data() const [with T = float; datatype = float]’ is deprecated: This function will return const T* in 2026.0. Check if used correctly [-Wdeprecated-declarations]
+   81 |     const float* points_data = points_tensor.data<float>();
+      |                                ~~~~~~~~~~~~~~~~~~~~~~~~~^~
+In file included from /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages/openvino/include/openvino/core/descriptor/tensor.hpp:19,
+                 from /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages/openvino/include/openvino/core/descriptor/input.hpp:11,
+                 from /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages/openvino/include/openvino/core/node.hpp:24,
+                 from /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages/openvino/include/openvino/op/op.hpp:9,
+                 from /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/pointpillars/workdir-cpu/openvino_contrib/modules/3d/pointPillars/ov_extensions/voxelization_op.hpp:4,
+                 from /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/pointpillars/workdir-cpu/openvino_contrib/modules/3d/pointPillars/ov_extensions/voxelization_op.cpp:3:
+/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages/openvino/include/openvino/runtime/tensor.hpp:258:8: note: declared here
+  258 |     T* data() const {
+      |        ^~~~
+/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/pointpillars/workdir-cpu/openvino_contrib/modules/3d/pointPillars/ov_extensions/postprocessing_op.cpp: In member function ‘virtual bool ov::custom_ops::PostProcessingOp::evaluate(ov::TensorVector&, const ov::TensorVector&) const’:
+/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/pointpillars/workdir-cpu/openvino_contrib/modules/3d/pointPillars/ov_extensions/postprocessing_op.cpp:175:51: warning: ‘T* ov::Tensor::data() const [with T = float; datatype = float]’ is deprecated: This function will return const T* in 2026.0. Check if used correctly [-Wdeprecated-declarations]
+  175 |     const float* cls_data = cls_tensor.data<float>();
+      |                             ~~~~~~~~~~~~~~~~~~~~~~^~
+In file included from /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages/openvino/include/openvino/core/descriptor/tensor.hpp:19,
+                 from /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages/openvino/include/openvino/core/descriptor/input.hpp:11,
+                 from /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages/openvino/include/openvino/core/node.hpp:24,
+                 from /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages/openvino/include/openvino/op/op.hpp:9,
+                 from /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/pointpillars/workdir-cpu/openvino_contrib/modules/3d/pointPillars/ov_extensions/postprocessing_op.hpp:3,
+                 from /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/pointpillars/workdir-cpu/openvino_contrib/modules/3d/pointPillars/ov_extensions/postprocessing_op.cpp:1:
+/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages/openvino/include/openvino/runtime/tensor.hpp:258:8: note: declared here
+  258 |     T* data() const {
+      |        ^~~~
+/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/pointpillars/workdir-cpu/openvino_contrib/modules/3d/pointPillars/ov_extensions/postprocessing_op.cpp:176:53: warning: ‘T* ov::Tensor::data() const [with T = float; datatype = float]’ is deprecated: This function will return const T* in 2026.0. Check if used correctly [-Wdeprecated-declarations]
+  176 |     const float* bbox_data = bbox_tensor.data<float>();
+      |                              ~~~~~~~~~~~~~~~~~~~~~~~^~
+/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages/openvino/include/openvino/runtime/tensor.hpp:258:8: note: declared here
+  258 |     T* data() const {
+      |        ^~~~
+/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/pointpillars/workdir-cpu/openvino_contrib/modules/3d/pointPillars/ov_extensions/postprocessing_op.cpp:177:51: warning: ‘T* ov::Tensor::data() const [with T = float; datatype = float]’ is deprecated: This function will return const T* in 2026.0. Check if used correctly [-Wdeprecated-declarations]
+  177 |     const float* dir_data = dir_tensor.data<float>();
+      |                             ~~~~~~~~~~~~~~~~~~~~~~^~
+/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages/openvino/include/openvino/runtime/tensor.hpp:258:8: note: declared here
+  258 |     T* data() const {
+      |        ^~~~
+/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages/openvino/runtime/__init__.py:10: DeprecationWarning: The `openvino.runtime` module is deprecated and will be removed in the 2026.0 release. Please replace `openvino.runtime` with `openvino`.
+  warnings.warn(
+/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages/openvino/runtime/__init__.py:10: DeprecationWarning: The `openvino.runtime` module is deprecated and will be removed in the 2026.0 release. Please replace `openvino.runtime` with `openvino`.
+  warnings.warn(
+/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages/openvino/runtime/__init__.py:10: DeprecationWarning: The `openvino.runtime` module is deprecated and will be removed in the 2026.0 release. Please replace `openvino.runtime` with `openvino`.
+  warnings.warn(

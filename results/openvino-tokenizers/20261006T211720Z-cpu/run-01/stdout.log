@@ -1,0 +1,309 @@
+[cell 0 START +    0.6s] # OpenVINO Tokenizers: Incorporate Text Processing Into OpenVINO Pipel
+[cell 1 START +    0.6s] ## Acquiring OpenVINO Tokenizers | [back to top ⬆️](#Table-of-contents:)
+[cell 2 START +    0.6s] %pip uninstall -q -y optimum optimum-intel optimum-onnx | %pip install -
+[cell 2 DONE  +   36.2s]
+[cell 3 START +   36.2s] import requests | from pathlib import Path |  | if not Path("notebook_utils.
+[cell 3 DONE  +   36.3s]
+[cell 4 START +   36.3s] from pathlib import Path |  | tokenizer_dir = Path("tokenizer/") | model_id 
+[cell 4 DONE  +   36.3s]
+[cell 5 START +   36.3s] ### Convert Tokenizer from HuggingFace Hub with CLI Tool | [back to top 
+[cell 6 START +   36.3s] if not tokenizer_dir.exists(): |     !convert_tokenizer $model_id --with
+[cell 6 DONE  +   36.3s]
+[cell 7 START +   36.3s] > ⚠️ If you have any problems with the command above on MacOS, try to 
+[cell 8 START +   36.3s] from transformers import AutoTokenizer | from openvino_tokenizers import
+[cell 8 DONE  +   39.4s]
+[cell 9 START +   39.4s] That way you get OpenVINO model objects. Use `save_model` function fro
+[cell 10 START +   39.4s] import openvino as ov |  | # This import is needed to add all tokenizer-re
+[cell 10 DONE  +   39.4s]
+[cell 11 START +   39.4s] To use the tokenizer, compile the converted model and input a list of 
+[cell 12 START +   39.4s] tokenizer, detokenizer = ov.compile_model(ov_tokenizer), ov.compile_mo
+[05:18:00.5637]D[plugin.cpp:289][AUTO] deviceNameWithID:CPU, defaultDeviceID:, uniqueName:CPU_
+[05:18:00.5638]I[plugin.cpp:479][AUTO] device:CPU, config:LOG_LEVEL=LOG_NONE
+[05:18:00.5638]I[plugin.cpp:479][AUTO] device:CPU, config:PERFORMANCE_HINT=LATENCY
+[05:18:00.5638]I[plugin.cpp:479][AUTO] device:CPU, config:PERFORMANCE_HINT_NUM_REQUESTS=0
+[05:18:00.5638]I[plugin.cpp:479][AUTO] device:CPU, config:PERF_COUNT=NO
+[05:18:00.5638]I[plugin.cpp:484][AUTO] device:CPU, priority:0
+[05:18:00.5638]I[plugin.cpp:510][AUTO] Original device list() size to load the model: 0
+[05:18:00.5638]I[schedule.cpp:17][AUTO] scheduler starting
+[05:18:00.5638]I[auto_schedule.cpp:163][AUTO] select device:CPU
+[05:18:00.5642]I[auto_schedule.cpp:284][AUTO] Only one device or multiple devices of the same type will use passthrough compiled model
+[05:18:00.5812]I[auto_schedule.cpp:341][AUTO] Device: [CPU]: Compile model took 16.921354 ms
+[05:18:00.5814]I[auto_schedule.cpp:118][AUTO] device:CPU compiling model finished
+[05:18:00.5815]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:SUPPORTED_PROPERTIES=SUPPORTED_PROPERTIES NETWORK_NAME OPTIMAL_NUMBER_OF_INFER_REQUESTS NUM_STREAMS INFERENCE_NUM_THREADS PERF_COUNT INFERENCE_PRECISION_HINT PERFORMANCE_HINT EXECUTION_MODE_HINT PERFORMANCE_HINT_NUM_REQUESTS ENABLE_
+[05:18:00.5815]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:NETWORK_NAME=tokenizer
+[05:18:00.5815]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:OPTIMAL_NUMBER_OF_INFER_REQUESTS=1
+[05:18:00.5815]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:NUM_STREAMS=1
+[05:18:00.5815]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:INFERENCE_NUM_THREADS=16
+[05:18:00.5815]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:PERF_COUNT=NO
+[05:18:00.5815]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:INFERENCE_PRECISION_HINT=bf16
+[05:18:00.5815]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:PERFORMANCE_HINT=LATENCY
+[05:18:00.5815]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:EXECUTION_MODE_HINT=PERFORMANCE
+[05:18:00.5815]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:PERFORMANCE_HINT_NUM_REQUESTS=0
+[05:18:00.5815]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:ENABLE_CPU_PINNING=YES
+[05:18:00.5815]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:ENABLE_CPU_RESERVATION=NO
+[05:18:00.5815]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:SCHEDULING_CORE_TYPE=ANY_CORE
+[05:18:00.5815]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:MODEL_DISTRIBUTION_POLICY=
+[05:18:00.5815]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:ENABLE_HYPER_THREADING=NO
+[05:18:00.5816]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:EXECUTION_DEVICES=CPU
+[05:18:00.5816]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:CPU_DENORMALS_OPTIMIZATION=NO
+[05:18:00.5816]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:LOG_LEVEL=LOG_NONE
+[05:18:00.5816]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:CPU_SPARSE_WEIGHTS_DECOMPRESSION_RATE=1
+[05:18:00.5816]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:ENABLE_TENSOR_PARALLEL=NO
+[05:18:00.5816]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:TBB_PARTITIONER=STATIC
+[05:18:00.5816]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:DYNAMIC_QUANTIZATION_GROUP_SIZE=32
+[05:18:00.5816]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:KV_CACHE_PRECISION=u8
+[05:18:00.5816]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:KEY_CACHE_PRECISION=u8
+[05:18:00.5816]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:VALUE_CACHE_PRECISION=u8
+[05:18:00.5816]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:KEY_CACHE_GROUP_SIZE=0
+[05:18:00.5816]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:VALUE_CACHE_GROUP_SIZE=0
+[05:18:00.5816]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:RUNTIME_REQUIREMENTS=meta=1.0;ov=2026.4.1;isa=Intel AVX-512 with Intel DL Boost and bfloat16 support
+[05:18:00.5817]I[plugin.cpp:534][AUTO] underlying hardware does not support hardware context
+[05:18:00.5849]D[plugin.cpp:289][AUTO] deviceNameWithID:CPU, defaultDeviceID:, uniqueName:CPU_
+[05:18:00.5850]I[plugin.cpp:479][AUTO] device:CPU, config:LOG_LEVEL=LOG_NONE
+[05:18:00.5850]I[plugin.cpp:479][AUTO] device:CPU, config:PERFORMANCE_HINT=LATENCY
+[05:18:00.5850]I[plugin.cpp:479][AUTO] device:CPU, config:PERFORMANCE_HINT_NUM_REQUESTS=0
+[05:18:00.5850]I[plugin.cpp:479][AUTO] device:CPU, config:PERF_COUNT=NO
+[05:18:00.5850]I[plugin.cpp:484][AUTO] device:CPU, priority:0
+[05:18:00.5850]I[plugin.cpp:510][AUTO] Original device list() size to load the model: 0
+[05:18:00.5850]I[schedule.cpp:17][AUTO] scheduler starting
+[05:18:00.5850]I[auto_schedule.cpp:163][AUTO] select device:CPU
+[05:18:00.5852]I[auto_schedule.cpp:284][AUTO] Only one device or multiple devices of the same type will use passthrough compiled model
+[05:18:00.5975]I[auto_schedule.cpp:341][AUTO] Device: [CPU]: Compile model took 12.271292 ms
+[05:18:00.5976]I[auto_schedule.cpp:118][AUTO] device:CPU compiling model finished
+[05:18:00.5976]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:SUPPORTED_PROPERTIES=SUPPORTED_PROPERTIES NETWORK_NAME OPTIMAL_NUMBER_OF_INFER_REQUESTS NUM_STREAMS INFERENCE_NUM_THREADS PERF_COUNT INFERENCE_PRECISION_HINT PERFORMANCE_HINT EXECUTION_MODE_HINT PERFORMANCE_HINT_NUM_REQUESTS ENABLE_
+[05:18:00.5976]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:NETWORK_NAME=detokenizer
+[05:18:00.5976]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:OPTIMAL_NUMBER_OF_INFER_REQUESTS=1
+[05:18:00.5976]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:NUM_STREAMS=1
+[05:18:00.5976]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:INFERENCE_NUM_THREADS=16
+[05:18:00.5976]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:PERF_COUNT=NO
+[05:18:00.5976]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:INFERENCE_PRECISION_HINT=bf16
+[05:18:00.5976]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:PERFORMANCE_HINT=LATENCY
+[05:18:00.5976]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:EXECUTION_MODE_HINT=PERFORMANCE
+[05:18:00.5976]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:PERFORMANCE_HINT_NUM_REQUESTS=0
+[05:18:00.5976]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:ENABLE_CPU_PINNING=YES
+[05:18:00.5977]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:ENABLE_CPU_RESERVATION=NO
+[05:18:00.5977]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:SCHEDULING_CORE_TYPE=ANY_CORE
+[05:18:00.5977]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:MODEL_DISTRIBUTION_POLICY=
+[05:18:00.5977]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:ENABLE_HYPER_THREADING=NO
+[05:18:00.5977]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:EXECUTION_DEVICES=CPU
+[05:18:00.5977]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:CPU_DENORMALS_OPTIMIZATION=NO
+[05:18:00.5977]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:LOG_LEVEL=LOG_NONE
+[05:18:00.5977]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:CPU_SPARSE_WEIGHTS_DECOMPRESSION_RATE=1
+[05:18:00.5977]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:ENABLE_TENSOR_PARALLEL=NO
+[05:18:00.5977]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:TBB_PARTITIONER=STATIC
+[05:18:00.5977]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:DYNAMIC_QUANTIZATION_GROUP_SIZE=32
+[05:18:00.5977]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:KV_CACHE_PRECISION=u8
+[05:18:00.5977]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:KEY_CACHE_PRECISION=u8
+[05:18:00.5977]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:VALUE_CACHE_PRECISION=u8
+[05:18:00.5977]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:KEY_CACHE_GROUP_SIZE=0
+[05:18:00.5977]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:VALUE_CACHE_GROUP_SIZE=0
+[05:18:00.5977]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:RUNTIME_REQUIREMENTS=meta=1.0;ov=2026.4.1;isa=Intel AVX-512 with Intel DL Boost and bfloat16 support
+[05:18:00.5977]I[plugin.cpp:534][AUTO] underlying hardware does not support hardware context
+[cell 12 DONE  +   39.7s]
+[cell 13 START +   39.7s] We can compare the result of converted (de)tokenizer with the original
+[cell 14 START +   39.7s] hf_token_ids = hf_tokenizer(test_strings).input_ids | print(f"Token ids:
+[cell 14 DONE  +   39.7s]
+[cell 15 START +   39.7s] ## Text Generation Pipeline with OpenVINO Tokenizers | [back to top ⬆️](
+[cell 16 START +   39.7s] model_dir = Path(Path(model_id).name) |  | if not model_dir.exists(): |     
+[cell 16 DONE  +   39.7s]
+[cell 17 START +   39.7s] import numpy as np | from tqdm.notebook import trange | from pathlib impor
+[05:18:00.7111]D[plugin.cpp:289][AUTO] deviceNameWithID:CPU, defaultDeviceID:, uniqueName:CPU_
+[05:18:00.7112]I[plugin.cpp:479][AUTO] device:CPU, config:LOG_LEVEL=LOG_NONE
+[05:18:00.7112]I[plugin.cpp:479][AUTO] device:CPU, config:PERFORMANCE_HINT=LATENCY
+[05:18:00.7112]I[plugin.cpp:479][AUTO] device:CPU, config:PERFORMANCE_HINT_NUM_REQUESTS=0
+[05:18:00.7112]I[plugin.cpp:479][AUTO] device:CPU, config:PERF_COUNT=NO
+[05:18:00.7112]I[plugin.cpp:484][AUTO] device:CPU, priority:0
+[05:18:00.7112]I[plugin.cpp:510][AUTO] Original device list() size to load the model: 0
+[05:18:00.7112]I[schedule.cpp:17][AUTO] scheduler starting
+[05:18:00.7112]I[auto_schedule.cpp:163][AUTO] select device:CPU
+[05:18:00.7240]I[auto_schedule.cpp:284][AUTO] Only one device or multiple devices of the same type will use passthrough compiled model
+[05:18:01.3384]I[auto_schedule.cpp:341][AUTO] Device: [CPU]: Compile model took 614.359164 ms
+[05:18:01.3390]I[auto_schedule.cpp:118][AUTO] device:CPU compiling model finished
+[05:18:01.3390]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:SUPPORTED_PROPERTIES=SUPPORTED_PROPERTIES NETWORK_NAME OPTIMAL_NUMBER_OF_INFER_REQUESTS NUM_STREAMS INFERENCE_NUM_THREADS PERF_COUNT INFERENCE_PRECISION_HINT PERFORMANCE_HINT EXECUTION_MODE_HINT PERFORMANCE_HINT_NUM_REQUESTS ENABLE_
+[05:18:01.3391]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:NETWORK_NAME=Model0
+[05:18:01.3391]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:OPTIMAL_NUMBER_OF_INFER_REQUESTS=1
+[05:18:01.3391]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:NUM_STREAMS=1
+[05:18:01.3391]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:INFERENCE_NUM_THREADS=16
+[05:18:01.3391]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:PERF_COUNT=NO
+[05:18:01.3391]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:INFERENCE_PRECISION_HINT=bf16
+[05:18:01.3391]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:PERFORMANCE_HINT=LATENCY
+[05:18:01.3391]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:EXECUTION_MODE_HINT=PERFORMANCE
+[05:18:01.3391]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:PERFORMANCE_HINT_NUM_REQUESTS=0
+[05:18:01.3391]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:ENABLE_CPU_PINNING=YES
+[05:18:01.3391]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:ENABLE_CPU_RESERVATION=NO
+[05:18:01.3392]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:SCHEDULING_CORE_TYPE=ANY_CORE
+[05:18:01.3392]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:MODEL_DISTRIBUTION_POLICY=
+[05:18:01.3392]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:ENABLE_HYPER_THREADING=NO
+[05:18:01.3392]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:EXECUTION_DEVICES=CPU
+[05:18:01.3392]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:CPU_DENORMALS_OPTIMIZATION=NO
+[05:18:01.3392]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:LOG_LEVEL=LOG_NONE
+[05:18:01.3392]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:CPU_SPARSE_WEIGHTS_DECOMPRESSION_RATE=1
+[05:18:01.3392]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:ENABLE_TENSOR_PARALLEL=NO
+[05:18:01.3392]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:TBB_PARTITIONER=STATIC
+[05:18:01.3392]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:DYNAMIC_QUANTIZATION_GROUP_SIZE=32
+[05:18:01.3393]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:KV_CACHE_PRECISION=u8
+[05:18:01.3393]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:KEY_CACHE_PRECISION=u8
+[05:18:01.3393]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:VALUE_CACHE_PRECISION=u8
+[05:18:01.3393]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:KEY_CACHE_GROUP_SIZE=0
+[05:18:01.3393]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:VALUE_CACHE_GROUP_SIZE=0
+[05:18:01.3393]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:RUNTIME_REQUIREMENTS=meta=1.0;ov=2026.4.1;isa=Intel AVX-512 with Intel DL Boost and bfloat16 support
+[05:18:01.3394]I[plugin.cpp:534][AUTO] underlying hardware does not support hardware context
+[cell 17 DONE  +   40.4s]
+[cell 18 START +   40.4s] The `infer_request` object provides control over the model's state - a
+[cell 19 START +   40.4s] text_input = ["Quick brown fox jumped"] |  | model_input = {name.any_name:
+[cell 19 DONE  +   40.8s]
+[cell 20 START +   40.8s] ## Text Generation Pipeline with OpenVINO GenAI and OpenVINO Tokenizer
+[cell 21 START +   40.8s] import openvino_genai as ov_genai |  | genai_tokenizer = ov_genai.Tokenize
+Model: OV Tokenizer
+  NETWORK_NAME: tokenizer
+  OPTIMAL_NUMBER_OF_INFER_REQUESTS: 1
+  NUM_STREAMS: 1
+  INFERENCE_NUM_THREADS: 16
+  PERF_COUNT: NO
+  INFERENCE_PRECISION_HINT: bf16
+  PERFORMANCE_HINT: LATENCY
+  EXECUTION_MODE_HINT: PERFORMANCE
+  PERFORMANCE_HINT_NUM_REQUESTS: 0
+  ENABLE_CPU_PINNING: YES
+  ENABLE_CPU_RESERVATION: NO
+  SCHEDULING_CORE_TYPE: ANY_CORE
+  MODEL_DISTRIBUTION_POLICY: 
+  ENABLE_HYPER_THREADING: NO
+  EXECUTION_DEVICES: CPU
+  CPU_DENORMALS_OPTIMIZATION: NO
+  LOG_LEVEL: LOG_NONE
+  CPU_SPARSE_WEIGHTS_DECOMPRESSION_RATE: 1
+  ENABLE_TENSOR_PARALLEL: NO
+  TBB_PARTITIONER: STATIC
+  DYNAMIC_QUANTIZATION_GROUP_SIZE: 32
+  KV_CACHE_PRECISION: u8
+  KEY_CACHE_PRECISION: u8
+  VALUE_CACHE_PRECISION: u8
+  KEY_CACHE_GROUP_SIZE: 0
+  VALUE_CACHE_GROUP_SIZE: 0
+  RUNTIME_REQUIREMENTS: meta=1.0;ov=2026.4.1;isa=Intel AVX-512 with Intel DL Boost and bfloat16 support
+EXECUTION_DEVICES:
+ CPU: AMD RYZEN AI MAX+ PRO 395 w/ Radeon 8060S      
+Model: OV Detokenizer
+  NETWORK_NAME: detokenizer
+  OPTIMAL_NUMBER_OF_INFER_REQUESTS: 1
+  NUM_STREAMS: 1
+  INFERENCE_NUM_THREADS: 16
+  PERF_COUNT: NO
+  INFERENCE_PRECISION_HINT: bf16
+  PERFORMANCE_HINT: LATENCY
+  EXECUTION_MODE_HINT: PERFORMANCE
+  PERFORMANCE_HINT_NUM_REQUESTS: 0
+  ENABLE_CPU_PINNING: YES
+  ENABLE_CPU_RESERVATION: NO
+  SCHEDULING_CORE_TYPE: ANY_CORE
+  MODEL_DISTRIBUTION_POLICY: 
+  ENABLE_HYPER_THREADING: NO
+  EXECUTION_DEVICES: CPU
+  CPU_DENORMALS_OPTIMIZATION: NO
+  LOG_LEVEL: LOG_NONE
+  CPU_SPARSE_WEIGHTS_DECOMPRESSION_RATE: 1
+  ENABLE_TENSOR_PARALLEL: NO
+  TBB_PARTITIONER: STATIC
+  DYNAMIC_QUANTIZATION_GROUP_SIZE: 32
+  KV_CACHE_PRECISION: u8
+  KEY_CACHE_PRECISION: u8
+  VALUE_CACHE_PRECISION: u8
+  KEY_CACHE_GROUP_SIZE: 0
+  VALUE_CACHE_GROUP_SIZE: 0
+  RUNTIME_REQUIREMENTS: meta=1.0;ov=2026.4.1;isa=Intel AVX-512 with Intel DL Boost and bfloat16 support
+EXECUTION_DEVICES:
+ CPU: AMD RYZEN AI MAX+ PRO 395 w/ Radeon 8060S      
+SchedulerConfig { 
+  max_num_batched_tokens: 18446744073709551615
+  num_kv_blocks: 0
+  cache_size: 0
+  num_linear_attention_blocks: 0
+  cache_interval_multiplier: unset
+  dynamic_split_fuse: true
+  use_cache_eviction: false
+  max_num_seqs: 256
+  enable_prefix_caching: true
+  use_sparse_attention: false
+ }
+Model: LLM with Paged Attention
+  NETWORK_NAME: Model0
+  OPTIMAL_NUMBER_OF_INFER_REQUESTS: 1
+  NUM_STREAMS: 1
+  INFERENCE_NUM_THREADS: 16
+  PERF_COUNT: NO
+  INFERENCE_PRECISION_HINT: bf16
+  PERFORMANCE_HINT: LATENCY
+  EXECUTION_MODE_HINT: PERFORMANCE
+  PERFORMANCE_HINT_NUM_REQUESTS: 0
+  ENABLE_CPU_PINNING: YES
+  ENABLE_CPU_RESERVATION: NO
+  SCHEDULING_CORE_TYPE: ANY_CORE
+  MODEL_DISTRIBUTION_POLICY: 
+  ENABLE_HYPER_THREADING: NO
+  EXECUTION_DEVICES: CPU
+  CPU_DENORMALS_OPTIMIZATION: NO
+  LOG_LEVEL: LOG_NONE
+  CPU_SPARSE_WEIGHTS_DECOMPRESSION_RATE: 1
+  ENABLE_TENSOR_PARALLEL: NO
+  TBB_PARTITIONER: STATIC
+  DYNAMIC_QUANTIZATION_GROUP_SIZE: 32
+  KV_CACHE_PRECISION: u8
+  KEY_CACHE_PRECISION: u8
+  VALUE_CACHE_PRECISION: u8
+  KEY_CACHE_GROUP_SIZE: 0
+  VALUE_CACHE_GROUP_SIZE: 0
+  RUNTIME_REQUIREMENTS: meta=1.0;ov=2026.4.1;isa=Intel AVX-512 with Intel DL Boost and bfloat16 support
+EXECUTION_DEVICES:
+ CPU: AMD RYZEN AI MAX+ PRO 395 w/ Radeon 8060S      
+[cell 21 DONE  +   41.6s]
+[cell 22 START +   41.6s] ## Merge Tokenizer into a Model | [back to top ⬆️](#Table-of-contents:) | 
+[cell 23 START +   41.6s] from cmd_helper import optimum_cli |  | model_id = "mrm8488/bert-tiny-fine
+[cell 23 DONE  +   41.6s]
+[cell 24 START +   41.6s] from openvino_tokenizers import connect_models |  | core = ov.Core() | text_
+[05:18:02.5997]D[plugin.cpp:289][AUTO] deviceNameWithID:CPU, defaultDeviceID:, uniqueName:CPU_
+[05:18:02.5998]I[plugin.cpp:479][AUTO] device:CPU, config:LOG_LEVEL=LOG_NONE
+[05:18:02.5998]I[plugin.cpp:479][AUTO] device:CPU, config:PERFORMANCE_HINT=LATENCY
+[05:18:02.5998]I[plugin.cpp:479][AUTO] device:CPU, config:PERFORMANCE_HINT_NUM_REQUESTS=0
+[05:18:02.5998]I[plugin.cpp:479][AUTO] device:CPU, config:PERF_COUNT=NO
+[05:18:02.5998]I[plugin.cpp:484][AUTO] device:CPU, priority:0
+[05:18:02.5998]I[plugin.cpp:510][AUTO] Original device list() size to load the model: 0
+[05:18:02.5998]I[schedule.cpp:17][AUTO] scheduler starting
+[05:18:02.5998]I[auto_schedule.cpp:163][AUTO] select device:CPU
+[05:18:02.6008]I[auto_schedule.cpp:284][AUTO] Only one device or multiple devices of the same type will use passthrough compiled model
+[05:18:02.6484]I[auto_schedule.cpp:341][AUTO] Device: [CPU]: Compile model took 47.513309 ms
+[05:18:02.6484]I[auto_schedule.cpp:118][AUTO] device:CPU compiling model finished
+[05:18:02.6485]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:SUPPORTED_PROPERTIES=SUPPORTED_PROPERTIES NETWORK_NAME OPTIMAL_NUMBER_OF_INFER_REQUESTS NUM_STREAMS INFERENCE_NUM_THREADS PERF_COUNT INFERENCE_PRECISION_HINT PERFORMANCE_HINT EXECUTION_MODE_HINT PERFORMANCE_HINT_NUM_REQUESTS ENABLE_
+[05:18:02.6485]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:NETWORK_NAME=Model23_with_Model25
+[05:18:02.6485]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:OPTIMAL_NUMBER_OF_INFER_REQUESTS=1
+[05:18:02.6485]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:NUM_STREAMS=1
+[05:18:02.6485]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:INFERENCE_NUM_THREADS=16
+[05:18:02.6485]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:PERF_COUNT=NO
+[05:18:02.6485]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:INFERENCE_PRECISION_HINT=bf16
+[05:18:02.6485]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:PERFORMANCE_HINT=LATENCY
+[05:18:02.6485]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:EXECUTION_MODE_HINT=PERFORMANCE
+[05:18:02.6485]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:PERFORMANCE_HINT_NUM_REQUESTS=0
+[05:18:02.6485]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:ENABLE_CPU_PINNING=YES
+[05:18:02.6485]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:ENABLE_CPU_RESERVATION=NO
+[05:18:02.6485]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:SCHEDULING_CORE_TYPE=ANY_CORE
+[05:18:02.6485]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:MODEL_DISTRIBUTION_POLICY=
+[05:18:02.6485]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:ENABLE_HYPER_THREADING=NO
+[05:18:02.6485]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:EXECUTION_DEVICES=CPU
+[05:18:02.6485]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:CPU_DENORMALS_OPTIMIZATION=NO
+[05:18:02.6485]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:LOG_LEVEL=LOG_NONE
+[05:18:02.6485]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:CPU_SPARSE_WEIGHTS_DECOMPRESSION_RATE=1
+[05:18:02.6485]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:ENABLE_TENSOR_PARALLEL=NO
+[05:18:02.6485]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:TBB_PARTITIONER=STATIC
+[05:18:02.6485]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:DYNAMIC_QUANTIZATION_GROUP_SIZE=32
+[05:18:02.6485]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:KV_CACHE_PRECISION=u8
+[05:18:02.6485]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:KEY_CACHE_PRECISION=u8
+[05:18:02.6486]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:VALUE_CACHE_PRECISION=u8
+[05:18:02.6486]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:KEY_CACHE_GROUP_SIZE=0
+[05:18:02.6486]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:VALUE_CACHE_GROUP_SIZE=0
+[05:18:02.6486]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:RUNTIME_REQUIREMENTS=meta=1.0;ov=2026.4.1;isa=Intel AVX-512 with Intel DL Boost and bfloat16 support
+[05:18:02.6486]I[plugin.cpp:534][AUTO] underlying hardware does not support hardware context
+[cell 24 DONE  +   41.8s]
+[05:18:02.9127]I[schedule.cpp:312][AUTO] scheduler ending
+[05:18:02.9972]I[schedule.cpp:312][AUTO] scheduler ending
+[05:18:03.0869]I[schedule.cpp:312][AUTO] scheduler ending
+NBEXEC_RESULT={"ok": false, "n_cells": 14, "n_skipped": 0, "n_substituted": 2, "stopped_after": null, "error_cell": null, "error_type": "CellExecutionError", "error_head": "ReadValue node with name 'ReadValue_5627'  doesn't have sibling output", "duration_s": 42.82, "patch_notes": ["substituted 1 occurrence(s) in cell 16", "substituted 1 occurrence(s) in cell 23"]}

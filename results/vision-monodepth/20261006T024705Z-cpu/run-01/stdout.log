@@ -1,0 +1,42 @@
+[cell 0 START +    0.7s] # Monodepth Estimation with OpenVINO |  | This tutorial demonstrates Monoc
+[cell 1 START +    0.7s] ## Preparation | [back to top ⬆️](#Table-of-contents:) |  | ### Install requ
+[cell 2 START +    0.7s] %pip install -q "openvino>=2023.1.0" | %pip install -q opencv-python req
+[cell 2 DONE  +    4.6s]
+[cell 3 START +    4.6s] ### Imports | [back to top ⬆️](#Table-of-contents:) | 
+[cell 4 START +    4.6s] import time |  | import cv2 | import matplotlib.cm | import matplotlib.pyplot 
+[cell 4 DONE  +    4.9s]
+[cell 5 START +    4.9s] ### Download the model | [back to top ⬆️](#Table-of-contents:) |  | The mode
+[cell 6 START +    4.9s] model_folder = Path("model") |  | ir_model_url = "https://storage.openvino
+[cell 6 DONE  +   11.1s]
+[cell 7 START +   11.1s] ## Functions | [back to top ⬆️](#Table-of-contents:) | 
+[cell 8 START +   11.1s] def normalize_minmax(data): |     """Normalizes the values in `data` bet
+[cell 8 DONE  +   11.1s]
+[cell 9 START +   11.1s] ## Select inference device | [back to top ⬆️](#Table-of-contents:) |  | sele
+[cell 10 START +   11.1s] device = device_widget() |  | device
+[cell 10 DONE  +   11.3s]
+[cell 11 START +   11.3s] ## Load the Model | [back to top ⬆️](#Table-of-contents:) |  | Load the mode
+[cell 12 START +   11.3s] import openvino.properties as props |  | # Create cache folder | cache_folde
+[cell 12 DONE  +   11.5s]
+[cell 13 START +   11.5s] ## Monodepth on Image | [back to top ⬆️](#Table-of-contents:) |  | ### Load,
+[cell 14 START +   11.5s] IMAGE_URL = "https://storage.openvinotoolkit.org/repositories/openvino
+[cell 14 DONE  +   12.9s]
+[cell 15 START +   12.9s] ### Do inference on the image | [back to top ⬆️](#Table-of-contents:) |  | D
+[cell 16 START +   12.9s] result = compiled_model([input_image])[output_key] |  | # Convert the netw
+[cell 16 DONE  +   12.9s]
+[cell 17 START +   12.9s] ### Display monodepth image | [back to top ⬆️](#Table-of-contents:) | 
+[cell 18 START +   12.9s] fig, ax = plt.subplots(1, 2, figsize=(20, 15)) | ax[0].imshow(to_rgb(ima
+[cell 18 DONE  +   13.4s]
+[cell 19 START +   13.4s] ## Monodepth on Video | [back to top ⬆️](#Table-of-contents:) |  | By defaul
+[cell 20 START +   13.4s] ### Video Settings | [back to top ⬆️](#Table-of-contents:) | 
+[cell 21 START +   13.4s] # Video source: https://www.youtube.com/watch?v=fu1xcQdJRws (Public Do
+[cell 21 DONE  +   15.8s]
+[cell 22 START +   15.8s] ### Load the Video | [back to top ⬆️](#Table-of-contents:) |  | Load the vid
+[cell 23 START +   15.8s] cap = cv2.VideoCapture(str(VIDEO_FILE)) | ret, image = cap.read() | if not
+[cell 23 DONE  +   15.8s]
+[cell 24 START +   15.8s] ### Do Inference on a Video and Create Monodepth Video | [back to top ⬆️
+[cell 25 START +   15.8s] # Initialize variables. | input_video_frame_nr = 0 | start_time = time.per
+[cell 25 DONE  +   19.9s]
+[cell 26 START +   19.9s] ### Display Monodepth Video | [back to top ⬆️](#Table-of-contents:) | 
+[cell 27 START +   19.9s] video = Video(result_video_path, width=800, embed=True) | if not result_
+[cell 27 DONE  +   19.9s]
+NBEXEC_RESULT={"ok": true, "n_cells": 13, "n_skipped": 0, "n_substituted": 0, "stopped_after": null, "error_cell": null, "error_type": null, "error_head": null, "duration_s": 20.26, "patch_notes": []}

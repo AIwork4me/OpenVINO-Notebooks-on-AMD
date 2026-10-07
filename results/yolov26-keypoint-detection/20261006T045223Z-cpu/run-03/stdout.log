@@ -1,0 +1,62 @@
+[cell 0 START +    0.4s] # Convert and Optimize YOLO26 keypoint detection model with OpenVINO™ | 
+[cell 1 START +    0.4s] ## Get PyTorch model | [back to top ⬆️](#Table-of-contents:) |  | Generally,
+[cell 2 START +    0.4s] #### Prerequisites | [back to top ⬆️](#Table-of-contents:) |  | Install nece
+[cell 3 START +    0.4s] %pip install -qU "openvino>=2026.0.0" "nncf>=3.0.0" | %pip install -q "t
+[cell 3 DONE  +    1.8s]
+[cell 4 START +    1.8s] Import required utility functions. | The lower cell will download the `n
+[cell 5 START +    1.8s] from pathlib import Path | import requests |  | if not Path("notebook_utils.
+[cell 5 DONE  +    1.8s]
+[cell 6 START +    1.8s] # Download a test sample | IMAGE_PATH = Path("./data/bus.jpg") |  | if not I
+[cell 6 DONE  +    5.5s]
+[cell 7 START +    5.5s] ## Instantiate model | [back to top ⬆️](#Table-of-contents:) |  | For loadin
+[cell 8 START +    5.5s] import ipywidgets as widgets |  | model_id = ["yolo26n-pose", "yolo26s-pos
+[cell 8 DONE  +    5.5s]
+[cell 9 START +    5.5s] from PIL import Image | from ultralytics import YOLO |  | POSE_MODEL_NAME = 
+[cell 9 DONE  +  324.3s]
+[cell 10 START +  324.3s] ### Convert model to OpenVINO IR | [back to top ⬆️](#Table-of-contents:)
+[cell 11 START +  324.3s] # pose model | pose_model_path = Path(f"{POSE_MODEL_NAME}_openvino_model
+[cell 11 DONE  +  326.2s]
+[cell 12 START +  326.2s] ### Verify model inference | [back to top ⬆️](#Table-of-contents:) |  | We c
+[cell 13 START +  326.2s] ### Select inference device | [back to top ⬆️](#Table-of-contents:) |  | Sel
+[cell 14 START +  326.2s] device = device_widget() |  | device
+[cell 14 DONE  +  326.4s]
+[cell 15 START +  326.4s] ### Test on single image | [back to top ⬆️](#Table-of-contents:) |  | Now, o
+[cell 16 START +  326.4s] pose_model = YOLO(pose_model_path.parent, task="pose") |  | res = pose_mod
+[cell 16 DONE  +  326.6s]
+[cell 17 START +  326.6s] Great! The result is the same, as produced by original models.
+[cell 18 START +  326.6s] ## Optimize model using NNCF Post-training Quantization API | [back to t
+[cell 19 START +  326.6s] Please select below whether you would like to run quantization to impr
+[cell 20 START +  326.6s] int8_model_pose_path = Path(f"{POSE_MODEL_NAME}_openvino_model_int8/{P
+[cell 20 DONE  +  326.6s]
+[cell 21 START +  326.6s] Let's load `skip magic` extension to skip quantization if `to_quantize
+[cell 22 START +  326.6s] # Fetch skip_kernel_extension module | if not Path("skip_kernel_extensio
+[cell 22 DONE  +  326.6s]
+[cell 23 START +  326.6s] Prepare calibration dataset for quantization. We download a small data
+[cell 24 START +  326.6s] %%skip not $to_quantize.value |  | import cv2 | import numpy as np | from zipf
+[cell 24 DONE  +  416.0s]
+[cell 25 START +  416.0s] %%skip not $to_quantize.value |  | import nncf |  | if not int8_model_pose_pat
+[cell 25 DONE  +  416.2s]
+[cell 26 START +  416.2s] The `nncf.quantize` function provides an interface for model quantizat
+[cell 27 START +  416.2s] %%skip not $to_quantize.value |  | import shutil | import openvino as ov |  | co
+[cell 27 DONE  +  433.4s]
+[cell 28 START +  433.4s] %%skip not $to_quantize.value |  | pose_model = YOLO(int8_model_pose_path.
+[cell 28 DONE  +  434.0s]
+[cell 29 START +  434.0s] ## Compare performance of the Original and Quantized Models | [back to t
+[cell 30 START +  434.0s] device
+[cell 30 DONE  +  434.0s]
+[cell 31 START +  434.0s] # Inference FP16 model (OpenVINO IR) | !benchmark_app -m $pose_model_pat
+[cell 31 DONE  +  449.8s]
+[cell 32 START +  449.8s] if int8_model_pose_path.exists(): |     # Inference INT8 model (OpenVINO
+[cell 32 DONE  +  465.8s]
+[cell 33 START +  465.8s] ## Other ways to optimize model | [back to top ⬆️](#Table-of-contents:) | 
+[cell 34 START +  465.8s] ## Live demo | [back to top ⬆️](#Table-of-contents:) |  | The following code
+[cell 35 START +  465.8s] import collections | import time | from IPython import display | import cv2 | 
+[cell 35 DONE  +  465.8s]
+[cell 36 START +  465.8s] ### Run Keypoint Detection on video | [back to top ⬆️](#Table-of-content
+[cell 37 START +  465.8s] VIDEO_URL = "https://storage.openvinotoolkit.org/repositories/openvino
+[cell 37 DONE  +  472.5s]
+[cell 38 START +  472.5s] device
+[cell 38 DONE  +  472.5s]
+[cell 39 START +  472.5s] run_keypoint_detection( |     source=VIDEO_SOURCE, |     flip=True, |     us
+[cell 39 DONE  +  483.0s]
+NBEXEC_RESULT={"ok": true, "n_cells": 21, "n_skipped": 0, "n_substituted": 0, "stopped_after": null, "error_cell": null, "error_type": null, "error_head": null, "duration_s": 485.38, "patch_notes": []}

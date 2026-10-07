@@ -1,0 +1,20 @@
+[cell 0 START +    0.5s] # Image Background Removal with U^2-Net and OpenVINO™ |  | This notebook d
+[cell 1 START +    0.5s] ## Preparation | [back to top ⬆️](#Table-of-contents:) |  | ### Install requ
+[cell 2 START +    0.5s] %pip install -q "openvino>=2023.1.0" | %pip install -q --extra-index-url
+[cell 2 DONE  +    2.1s]
+[cell 3 START +    2.1s] ### Import the PyTorch Library and U$^2$-Net | [back to top ⬆️](#Table-o
+[cell 4 START +    2.1s] import os | import time | from collections import namedtuple | from pathlib 
+[cell 4 DONE  +    3.1s]
+[cell 5 START +    3.1s] # Import local modules | import requests |  | if not Path("./notebook_utils.
+[cell 5 DONE  +    3.2s]
+[cell 6 START +    3.2s] ### Settings | [back to top ⬆️](#Table-of-contents:) |  | This tutorial supp
+[cell 7 START +    3.2s] model_config = namedtuple("ModelConfig", ["name", "url", "model", "mod
+[cell 7 DONE  +    3.2s]
+[cell 8 START +    3.2s] # The filenames of the downloaded and converted models. | MODEL_DIR = "m
+[cell 8 DONE  +    3.3s]
+[cell 9 START +    3.3s] ### Load the U$^2$-Net Model | [back to top ⬆️](#Table-of-contents:) |  | Th
+[cell 10 START +    3.3s] if not model_path.exists(): |     import gdown |  |     os.makedirs(name=mod
+[cell 10 DONE  +    3.3s]
+[cell 11 START +    3.3s] # Load the model. | net = u2net_model.model(*u2net_model.model_args) | net
+[cell 11 DONE  +    3.4s]
+NBEXEC_RESULT={"ok": false, "n_cells": 13, "n_skipped": 0, "n_substituted": 0, "stopped_after": null, "error_cell": null, "error_type": "CellExecutionError", "error_head": "\u001b[31mEOFError\u001b[39m:", "duration_s": 4.16, "patch_notes": []}

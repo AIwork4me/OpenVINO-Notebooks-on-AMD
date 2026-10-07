@@ -1,0 +1,27 @@
+[cell 0 START +    0.4s] # Background removal with RMBG v1.4 and OpenVINO |  | Background matting i
+[cell 1 START +    0.4s] ## Prerequisites | [back to top ⬆️](#Table-of-contents:) |  | install requir
+[cell 2 START +    0.4s] %pip install -q torch torchvision pillow huggingface_hub "openvino>=20
+[cell 2 DONE  +    0.8s]
+[cell 3 START +    0.8s] Download model code from HuggingFace hub
+[cell 4 START +    0.8s] from huggingface_hub import hf_hub_download | from pathlib import Path | i
+[cell 4 DONE  +    0.9s]
+[cell 5 START +    0.9s] ## Load PyTorch model | [back to top ⬆️](#Table-of-contents:) |  | For loadi
+[cell 6 START +    0.9s] from transformers import AutoModelForImageSegmentation |  | net = AutoMode
+[cell 6 DONE  +    4.4s]
+[cell 7 START +    4.4s] ## Run PyTorch model inference | [back to top ⬆️](#Table-of-contents:) |  | 
+[cell 8 START +    4.4s] import torch | from PIL import Image | from utilities import preprocess_im
+[cell 8 DONE  +    5.4s]
+[cell 9 START +    5.4s] ## Convert Model to OpenVINO Intermediate Representation format | [back 
+[cell 10 START +    5.4s] import openvino as ov |  | ov_model_path = Path("rmbg-1.4.xml") |  | if not ov
+[cell 10 DONE  +    5.5s]
+[cell 11 START +    5.5s] ## Run OpenVINO model inference | [back to top ⬆️](#Table-of-contents:) | 
+[cell 12 START +    5.5s] from notebook_utils import device_widget |  | core = ov.Core() |  | device = d
+[cell 12 DONE  +    5.6s]
+[cell 13 START +    5.6s] Let's run model on the same image that we used before for launching Py
+[cell 14 START +    5.6s] ov_compiled_model = core.compile_model(ov_model_path, device.value) |  | r
+[cell 14 DONE  +    6.4s]
+[cell 15 START +    6.4s] ## Interactive demo | [back to top ⬆️](#Table-of-contents:)
+[cell 16 START +    6.4s] def get_background_mask(model, image): |     return model(image)[0] |  |  | de
+[cell 16 DONE  +    6.5s]
+[cell 17 START +    6.5s] import requests |  | if not Path("gradio_helper.py").exists(): |     r = req
+NBEXEC_RESULT={"ok": true, "n_cells": 9, "n_skipped": 1, "n_substituted": 0, "stopped_after": null, "error_cell": null, "error_type": null, "error_head": null, "duration_s": 7.69, "patch_notes": ["skipped cell 17: matched skip pattern"]}

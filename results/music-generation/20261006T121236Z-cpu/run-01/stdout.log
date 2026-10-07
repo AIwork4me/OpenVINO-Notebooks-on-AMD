@@ -1,0 +1,11 @@
+[cell 0 START +    0.6s] # Controllable Music Generation with MusicGen and OpenVINO |  | MusicGen i
+[cell 1 START +    0.6s]  | #### Table of contents: |  | - [Prerequisites](#Prerequisites) |     - [Ins
+[cell 2 START +    0.6s] ## Prerequisites | [back to top ⬆️](#Table-of-contents:) | 
+[cell 3 START +    0.6s] ### Install requirements | [back to top ⬆️](#Table-of-contents:) | 
+[cell 4 START +    0.6s] %pip install -q "openvino>=2025.4.0" | %pip install -q "torch>=2.1" "gra
+[cell 4 DONE  +   45.7s]
+[cell 5 START +   45.7s] ### Imports | [back to top ⬆️](#Table-of-contents:) | 
+[cell 6 START +   45.7s] from collections import namedtuple | from functools import partial | impor
+[cell 6 DONE  +   47.5s]
+[cell 7 START +   47.5s] ## MusicGen in HF Transformers | [back to top ⬆️](#Table-of-contents:) |  | 
+[cell 8 START +   47.5s] import sys | from packaging.version import parse |  | if sys.version_info < 

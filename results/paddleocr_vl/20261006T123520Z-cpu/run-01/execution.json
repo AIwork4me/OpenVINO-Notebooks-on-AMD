@@ -1,0 +1,10 @@
+{
+  "schema_version": 2,
+  "start": "2026-10-06T12:35:24+00:00",
+  "end": "2026-10-06T12:38:40+00:00",
+  "duration_s": 195.36,
+  "exit_code": 1,
+  "retry_count": 0,
+  "status": "ERROR",
+  "failure_category": "PACKAGE_CONFLICT"
+}

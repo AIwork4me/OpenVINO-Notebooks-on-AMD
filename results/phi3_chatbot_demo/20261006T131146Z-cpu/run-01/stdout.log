@@ -1,0 +1,10 @@
+[cell 0 START +    0.4s] # Intel Labs: Chat and Code with Phi-3 with OpenVINO and 🤗 Optimum on 
+[cell 1 START +    0.4s] ## Install dependencies | Make sure you have the latest GPU drivers inst
+[cell 2 START +    0.4s] # ! pip install optimum[openvino,nncf] torch
+[cell 2 DONE  +    0.4s]
+[cell 3 START +    0.4s] To use Phi-3 we need to use nightly version of optimum-intel until it 
+[cell 4 START +    0.4s] # ! pip install git+https://github.com/huggingface/optimum-intel
+[cell 4 DONE  +    0.4s]
+[cell 5 START +    0.4s] import os |  | from transformers import AutoTokenizer | from optimum.intel i
+[cell 5 DONE  +    6.1s]
+NBEXEC_RESULT={"ok": false, "n_cells": 14, "n_skipped": 1, "n_substituted": 0, "stopped_after": null, "error_cell": null, "error_type": "CellExecutionError", "error_head": "cannot import name 'runtime_version' from 'google.protobuf' (/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages/google/protobuf/__init__.py)", "duration_s": 9.07, "patch_notes": ["skipped cell 22: matched skip pattern"]}

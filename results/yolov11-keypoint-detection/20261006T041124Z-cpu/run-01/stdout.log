@@ -1,0 +1,38 @@
+[cell 0 START +    0.7s] # Convert and Optimize YOLOv11 keypoint detection model with OpenVINO™
+[cell 1 START +    0.7s] ## Get PyTorch model | [back to top ⬆️](#Table-of-contents:) |  | Generally,
+[cell 2 START +    0.7s] #### Prerequisites | [back to top ⬆️](#Table-of-contents:) |  | Install nece
+[cell 3 START +    0.7s] %pip install -q "openvino>=2025.1.0" "nncf>=2.16.0" | %pip install -q "p
+[cell 3 DONE  +   19.3s]
+[cell 4 START +   19.3s] Import required utility functions. | The lower cell will download the `n
+[cell 5 START +   19.3s] from pathlib import Path |  | # Fetch `notebook_utils` module | import reque
+[cell 5 DONE  +   19.4s]
+[cell 6 START +   19.4s] # Download a test sample | IMAGE_PATH = Path("./data/intel_rnb.jpg") |  | if
+[cell 6 DONE  +   22.7s]
+[cell 7 START +   22.7s] ## Instantiate model | [back to top ⬆️](#Table-of-contents:) |  | For loadin
+[cell 8 START +   22.7s] import ipywidgets as widgets |  | model_id = [ |     "yolo11n-pose", |     "yo
+[cell 8 DONE  +   22.7s]
+[cell 9 START +   22.7s] from PIL import Image | from ultralytics import YOLO |  | POSE_MODEL_NAME = 
+[cell 9 DONE  +  142.2s]
+[cell 10 START +  142.2s] ### Convert model to OpenVINO IR | [back to top ⬆️](#Table-of-contents:)
+[cell 11 START +  142.2s] # object detection model | pose_model_path = Path(f"{POSE_MODEL_NAME}_op
+[cell 11 DONE  +  143.9s]
+[cell 12 START +  143.9s] ### Verify model inference | [back to top ⬆️](#Table-of-contents:) |  | We c
+[cell 13 START +  143.9s] ### Select inference device | [back to top ⬆️](#Table-of-contents:) |  | Sel
+[cell 14 START +  143.9s] device = device_widget() |  | device
+[cell 14 DONE  +  144.1s]
+[cell 15 START +  144.1s] ### Test on single image | [back to top ⬆️](#Table-of-contents:) |  | Now, o
+[cell 16 START +  144.1s] pose_model = YOLO(pose_model_path.parent, task="pose") |  | res = pose_mod
+[cell 16 DONE  +  144.3s]
+[cell 17 START +  144.3s] Great! The result is the same, as produced by original models.
+[cell 18 START +  144.3s] ## Check model accuracy on the dataset | [back to top ⬆️](#Table-of-cont
+[cell 19 START +  144.3s] ## Optimize model using NNCF Post-training Quantization API | [back to t
+[cell 20 START +  144.3s] Please select below whether you would like to run quantization to impr
+[cell 21 START +  144.3s] import openvino as ov |  | core = ov.Core() | pose_ov_model = core.read_mode
+[cell 21 DONE  +  144.3s]
+[cell 22 START +  144.3s] Let's load `skip magic` extension to skip quantization if `to_quantize
+[cell 23 START +  144.3s] # Fetch skip_kernel_extension module | if not Path("skip_kernel_extensio
+[cell 23 DONE  +  144.3s]
+[cell 24 START +  144.3s] Reuse validation dataloader in accuracy testing for quantization.  | For
+[cell 25 START +  144.3s] %%skip not $to_quantize.value |  | import nncf |  | from zipfile import ZipFil
+[cell 25 DONE  +  177.2s]
+NBEXEC_RESULT={"ok": false, "n_cells": 21, "n_skipped": 0, "n_substituted": 0, "stopped_after": null, "error_cell": null, "error_type": "CellExecutionError", "error_head": "\u001b[31mException\u001b[39m: Connection timed out. If you access the internet through a proxy server, please make sure the proxy is set in the shell from where you launched Jupyter.", "duration_s": 179.85, "patch_notes": []}

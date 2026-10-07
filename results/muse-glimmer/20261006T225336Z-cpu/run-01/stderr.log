@@ -1,0 +1,79 @@
+[IPKernelApp] WARNING | Kernel is running over TCP without encryption. All communication (including code and outputs) is sent in plain text and is susceptible to eavesdropping. Use IPC transport or launch with kernel manager-provisioned CurveZMQ keys to enable transport encryption.
+Traceback (most recent call last):
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/ov_amd/_nbexec.py", line 144, in main
+    client.execute()
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/cbaede2d9ef8dd93/lib/python3.12/site-packages/jupyter_core/utils/__init__.py", line 165, in wrapped
+    return loop.run_until_complete(inner)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/base_events.py", line 687, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/cbaede2d9ef8dd93/lib/python3.12/site-packages/nbclient/client.py", line 709, in async_execute
+    await self.async_execute_cell(
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/cbaede2d9ef8dd93/lib/python3.12/site-packages/nbclient/client.py", line 1062, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/cbaede2d9ef8dd93/lib/python3.12/site-packages/nbclient/client.py", line 918, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+import time
+
+import numpy as np
+import openvino as ov
+import openvino_genai as ov_genai
+from PIL import Image
+
+from gradio_helper import (
+    generate_with_streaming,
+    load_video_frames,
+    split_atem_response,
+)
+
+load_started = time.time()
+pipe = ov_genai.VLMPipeline(str(model_dir), device.value)
+print(f"Model loaded in {time.time() - load_started:.2f} seconds")
+
+description_token_budgets = {
+    "low": 1024,
+    "medium": 2048,
+    "high": 4096,
+    "xhigh": 8192,
+}
+game_token_budgets = {
+    "low": 8192,
+    "medium": 12288,
+    "high": 16384,
+    "xhigh": 24576,
+}
+
+base_config = ov_genai.GenerationConfig()
+base_config.temperature = 1.0
+base_config.top_p = 0.95
+base_config.top_k = 64
+base_config.do_sample = True
+------------------
+
+
+[31m---------------------------------------------------------------------------[39m
+[31mRuntimeError[39m                              Traceback (most recent call last)
+[36mCell[39m[36m [39m[32mIn[6][39m[32m, line 15[39m
+[32m     11[39m     split_atem_response,
+[32m     12[39m )
+[32m     13[39m 
+[32m     14[39m load_started = time.time()
+[32m---> [39m[32m15[39m pipe = ov_genai.VLMPipeline(str(model_dir), device.value)
+[32m     16[39m print(f"Model loaded in {time.time() - load_started:.2f} seconds")
+[32m     17[39m 
+[32m     18[39m description_token_budgets = {
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/cbaede2d9ef8dd93/lib/python3.12/site-packages/ov_amd_device_probe.py:186[39m, in [36m_patch_genai.<locals>.make_patched.<locals>.__init__[39m[34m(self, *args, **kwargs)[39m
+[32m    184[39m [38;5;28;01mexcept[39;00m [38;5;167;01mException[39;00m:
+[32m    185[39m     [38;5;28;01mpass[39;00m
+[32m--> [39m[32m186[39m [38;5;28;01mreturn[39;00m [30;43morig[39;49m[30;43m([39;49m[30;43mself[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43m*[39;49m[30;43margs[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43m*[39;49m[30;43m*[39;49m[30;43mkwargs[39;49m[30;43m)[39;49m
+
+[31mRuntimeError[39m: Exception from src/inference/src/cpp/core.cpp:84:
+Check 'm_weights_provider' failed at src/core/xml_util/src/xml_deserialize_util.cpp:887:
+Empty weights data in bin file or bin file cannot be found!
+
+
+

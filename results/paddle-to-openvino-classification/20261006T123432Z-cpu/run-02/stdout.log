@@ -1,0 +1,51 @@
+[cell 0 START +    0.4s] # Convert a PaddlePaddle Model to OpenVINO™ IR |  | This notebook shows ho
+[cell 1 START +    0.4s] ## Preparation | [back to top ⬆️](#Table-of-contents:) |  | ### Imports | [bac
+[cell 2 START +    0.4s] %pip install -q "setuptools" "wheel" | %pip install -q "paddlepaddle>=2.
+[cell 2 DONE  +    2.5s]
+[cell 3 START +    2.5s] import time | import tarfile | from pathlib import Path |  | import matplotlib
+[cell 3 DONE  +    3.8s]
+[cell 4 START +    3.8s] ### Settings | [back to top ⬆️](#Table-of-contents:) |  | Set `IMAGE_FILENAM
+[cell 5 START +    3.8s] # Download the image from the openvino_notebooks storage | img = Path("d
+[cell 5 DONE  +    3.8s]
+[cell 6 START +    3.8s] ## Show Inference on PaddlePaddle Model | [back to top ⬆️](#Table-of-con
+[cell 7 START +    3.8s] classifier = PaddleClas(inference_model_dir=MODEL_DIR / "{}_infer".for
+[cell 7 DONE  +    4.1s]
+[cell 8 START +    4.1s] `classifier.predict()` takes an image file name, reads the image, prep
+[cell 9 START +    4.1s] # classifier??
+[cell 9 DONE  +    4.1s]
+[cell 10 START +    4.1s] # classifier.get_config()
+[cell 10 DONE  +    4.1s]
+[cell 11 START +    4.1s] The `classifier.get_config()` module shows the preprocessing configura
+[cell 12 START +    4.1s] preprocess_ops = classifier.predictor.preprocess_ops |  |  | def process_ima
+[cell 12 DONE  +    4.1s]
+[cell 13 START +    4.1s] It is useful to show the output of the `process_image()` function, to 
+[cell 14 START +    4.1s] pil_image = Image.open(IMAGE_FILENAME) | processed_image = process_image
+[cell 14 DONE  +    4.2s]
+[cell 15 START +    4.2s] To decode the labels predicted by the model to names of classes, we ne
+[cell 16 START +    4.2s] class_id_map_file = classifier.get_config()["PostProcess"]["Topk"]["cl
+[cell 16 DONE  +    4.2s]
+[cell 17 START +    4.2s] ## Convert the Model to OpenVINO IR Format | [back to top ⬆️](#Table-of-
+[cell 18 START +    4.2s] model_xml = Path(MODEL_NAME).with_suffix(".xml") | if not model_xml.exis
+[cell 18 DONE  +    4.2s]
+[cell 19 START +    4.2s] ## Select inference device | [back to top ⬆️](#Table-of-contents:) |  | sele
+[cell 20 START +    4.2s] core = ov.Core() | device = device_widget(exclude=["NPU"]) |  | device
+[cell 20 DONE  +    4.3s]
+[cell 21 START +    4.3s] ## Show Inference on OpenVINO Model | [back to top ⬆️](#Table-of-content
+[cell 22 START +    4.3s] # Load OpenVINO Runtime and OpenVINO IR model | core = ov.Core() | model =
+[cell 22 DONE  +    4.4s]
+[cell 23 START +    4.4s] ## Timing and Comparison | [back to top ⬆️](#Table-of-contents:) |  | Measur
+[cell 24 START +    4.4s] num_images = 50 |  | image = Image.open(fp=IMAGE_FILENAME)
+[cell 24 DONE  +    4.4s]
+[cell 25 START +    4.4s] import openvino.properties as props |  | # Show device information | core = 
+[cell 25 DONE  +    4.5s]
+[cell 26 START +    4.5s] # Show inference speed on PaddlePaddle model | start = time.perf_counter
+[cell 26 DONE  +    4.7s]
+[cell 27 START +    4.7s] ## Select inference device | [back to top ⬆️](#Table-of-contents:) |  | sele
+[cell 28 START +    4.7s] device
+[cell 28 DONE  +    4.7s]
+[cell 29 START +    4.7s] # Show inference speed on OpenVINO IR model | compiled_model = core.comp
+[cell 29 DONE  +    4.9s]
+[cell 30 START +    4.9s] ## References | [back to top ⬆️](#Table-of-contents:) |  |  | * [PaddleClas](h
+[cell 31 START +    4.9s] # Cleanup | # %pip uninstall -y -q paddlepaddle
+[cell 31 DONE  +    4.9s]
+NBEXEC_RESULT={"ok": true, "n_cells": 18, "n_skipped": 0, "n_substituted": 0, "stopped_after": null, "error_cell": null, "error_type": null, "error_head": null, "duration_s": 5.77, "patch_notes": []}

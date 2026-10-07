@@ -1,0 +1,18 @@
+{
+  "schema_version": 2,
+  "passed": true,
+  "checks": {
+    "output_contains": {
+      "Speedup: \\d+\\.\\d+x": true,
+      "OpenVINO \\(CPU\\): \\d+\\.\\d+s": true
+    },
+    "no_cell_error": true,
+    "skipped_cells": 1
+  },
+  "notes": [
+    "1 cell(s) skipped via documented patch (interactive/UI-only code)"
+  ],
+  "level": "WORKLOAD_CORRECTNESS",
+  "contract_present": true,
+  "aggregate_ref": "aggregate.json"
+}

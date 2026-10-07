@@ -1,0 +1,56 @@
+[IPKernelApp] WARNING | Kernel is running over TCP without encryption. All communication (including code and outputs) is sent in plain text and is susceptible to eavesdropping. Use IPC transport or launch with kernel manager-provisioned CurveZMQ keys to enable transport encryption.
+Traceback (most recent call last):
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/ov_amd/_nbexec.py", line 144, in main
+    client.execute()
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/ce0f7ea4aee23c0d/lib/python3.12/site-packages/jupyter_core/utils/__init__.py", line 165, in wrapped
+    return loop.run_until_complete(inner)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/base_events.py", line 687, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/ce0f7ea4aee23c0d/lib/python3.12/site-packages/nbclient/client.py", line 709, in async_execute
+    await self.async_execute_cell(
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/ce0f7ea4aee23c0d/lib/python3.12/site-packages/nbclient/client.py", line 1062, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/ce0f7ea4aee23c0d/lib/python3.12/site-packages/nbclient/client.py", line 918, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+print("Loading baseline VLMPipeline...")
+load_started = time.perf_counter()
+baseline_pipe = ov_genai.VLMPipeline(
+    str(MODEL_DIR),
+    device.value,
+    scheduler_config=make_scheduler_config(),
+)
+print(f"Loaded in {time.perf_counter() - load_started:.2f} s")
+
+baseline_config = make_generation_config()
+baseline_result, baseline_text, baseline_elapsed, baseline_tokens, baseline_throughput = run_generation(baseline_pipe, baseline_config)
+print_result("Baseline", baseline_text, baseline_elapsed, baseline_tokens, baseline_throughput)
+
+del baseline_result, baseline_pipe
+gc.collect()
+print("Baseline pipeline released.")
+------------------
+
+----- stdout -----
+Loading baseline VLMPipeline...
+------------------
+
+[31m---------------------------------------------------------------------------[39m
+[31mRuntimeError[39m                              Traceback (most recent call last)
+[36mCell[39m[36m [39m[32mIn[9][39m[32m, line 3[39m
+[32m      1[39m print([33m"Loading baseline VLMPipeline..."[39m)
+[32m      2[39m load_started = time.perf_counter()
+[32m----> [39m[32m3[39m baseline_pipe = ov_genai.VLMPipeline(
+[32m      4[39m     str(MODEL_DIR),
+[32m      5[39m     device.value,
+[32m      6[39m     scheduler_config=make_scheduler_config(),
+
+[31mRuntimeError[39m: Exception from src/inference/src/cpp/core.cpp:84:
+Check 'm_weights_provider' failed at src/core/xml_util/src/xml_deserialize_util.cpp:887:
+Empty weights data in bin file or bin file cannot be found!
+
+
+

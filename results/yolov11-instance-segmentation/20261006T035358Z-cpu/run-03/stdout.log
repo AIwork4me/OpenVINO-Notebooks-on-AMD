@@ -1,0 +1,40 @@
+[cell 0 START +    0.5s] # Convert and Optimize YOLOv11 instance segmentation model with OpenVI
+[cell 1 START +    0.5s] ## Get PyTorch model | [back to top ⬆️](#Table-of-contents:) |  | Generally,
+[cell 2 START +    0.5s] #### Prerequisites | [back to top ⬆️](#Table-of-contents:) |  | Install nece
+[cell 3 START +    0.5s] %pip install -q "openvino>=2025.1.0" "nncf>=2.16.0" | %pip install -q "t
+[cell 3 DONE  +    1.5s]
+[cell 4 START +    1.5s] Import required utility functions. | The lower cell will download the `n
+[cell 5 START +    1.5s] from pathlib import Path | import requests |  | if not Path("notebook_utils.
+[cell 5 DONE  +    1.6s]
+[cell 6 START +    1.6s] # Download a test sample | IMAGE_PATH = Path("./data/coco_bike.jpg") |  | if
+[cell 6 DONE  +    1.6s]
+[cell 7 START +    1.6s] ## Instantiate model | [back to top ⬆️](#Table-of-contents:) |  | For loadin
+[cell 8 START +    1.6s] import ipywidgets as widgets |  | model_id = [ |     "yolo11n-seg", |     "yol
+[cell 8 DONE  +    1.6s]
+[cell 9 START +    1.6s] Making prediction, the model accepts a path to input image and returns
+[cell 10 START +    1.6s] from PIL import Image | from ultralytics import YOLO |  | SEG_MODEL_NAME = m
+[cell 10 DONE  +    3.5s]
+[cell 11 START +    3.5s] ### Convert model to OpenVINO IR | [back to top ⬆️](#Table-of-contents:)
+[cell 12 START +    3.5s] # instance segmentation model | seg_model_path = Path(f"{SEG_MODEL_NAME}
+[cell 12 DONE  +    3.5s]
+[cell 13 START +    3.5s] ### Verify model inference | [back to top ⬆️](#Table-of-contents:) |  | We c
+[cell 14 START +    3.5s] ### Select inference device | [back to top ⬆️](#Table-of-contents:) |  | Sel
+[cell 15 START +    3.5s] device = device_widget() |  | device
+[cell 15 DONE  +    3.8s]
+[cell 16 START +    3.8s] ### Test on single image | [back to top ⬆️](#Table-of-contents:)
+[cell 17 START +    3.8s] seg_model = YOLO(seg_model_path.parent, task="segment")
+[cell 17 DONE  +    3.8s]
+[cell 18 START +    3.8s] res = seg_model(IMAGE_PATH, device=f"intel:{device.value.lower()}") | Im
+[cell 18 DONE  +    4.1s]
+[cell 19 START +    4.1s] Great! The result is the same, as produced by original models.
+[cell 20 START +    4.1s] ## Optimize model using NNCF Post-training Quantization API | [back to t
+[cell 21 START +    4.1s] Please select below whether you would like to run quantization to impr
+[cell 22 START +    4.1s] int8_model_seg_path = Path(f"{SEG_MODEL_NAME}_openvino_model_int8/{SEG
+[cell 22 DONE  +    4.1s]
+[cell 23 START +    4.1s] Let's load `skip magic` extension to skip quantization if `to_quantize
+[cell 24 START +    4.1s] # Fetch skip_kernel_extension module | import requests |  | if not Path("ski
+[cell 24 DONE  +    4.1s]
+[cell 25 START +    4.1s] Reuse validation dataloader in accuracy testing for quantization.  | For
+[cell 26 START +    4.1s] %%skip not $to_quantize.value |  |  | import nncf |  | from zipfile import ZipFi
+[cell 26 DONE  +    4.9s]
+NBEXEC_RESULT={"ok": false, "n_cells": 22, "n_skipped": 0, "n_substituted": 0, "stopped_after": null, "error_cell": null, "error_type": "CellExecutionError", "error_head": "\u001b[31mBadZipFile\u001b[39m: File is not a zip file", "duration_s": 6.67, "patch_notes": []}

@@ -1,0 +1,120 @@
+[IPKernelApp] WARNING | Kernel is running over TCP without encryption. All communication (including code and outputs) is sent in plain text and is susceptible to eavesdropping. Use IPC transport or launch with kernel manager-provisioned CurveZMQ keys to enable transport encryption.
+nished
+[06:38:45.0360]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:SUPPORTED_PROPERTIES=SUPPORTED_PROPERTIES NETWORK_NAME OPTIMAL_NUMBER_OF_INFER_REQUESTS NUM_STREAMS INFERENCE_NUM_THREADS PERF_COUNT INFERENCE_PRECISION_HINT PERFORMANCE_HINT EXECUTION_MODE_HINT PERFORMANCE_HINT_NUM_REQUESTS ENABLE_
+[06:38:45.0360]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:NETWORK_NAME=Model3
+[06:38:45.0360]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:OPTIMAL_NUMBER_OF_INFER_REQUESTS=1
+[06:38:45.0361]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:NUM_STREAMS=1
+[06:38:45.0361]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:INFERENCE_NUM_THREADS=16
+[06:38:45.0361]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:PERF_COUNT=NO
+[06:38:45.0361]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:INFERENCE_PRECISION_HINT=bf16
+[06:38:45.0361]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:PERFORMANCE_HINT=LATENCY
+[06:38:45.0361]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:EXECUTION_MODE_HINT=PERFORMANCE
+[06:38:45.0361]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:PERFORMANCE_HINT_NUM_REQUESTS=0
+[06:38:45.0361]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:ENABLE_CPU_PINNING=YES
+[06:38:45.0361]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:ENABLE_CPU_RESERVATION=NO
+[06:38:45.0361]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:SCHEDULING_CORE_TYPE=ANY_CORE
+[06:38:45.0361]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:MODEL_DISTRIBUTION_POLICY=
+[06:38:45.0361]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:ENABLE_HYPER_THREADING=NO
+[06:38:45.0362]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:EXECUTION_DEVICES=CPU
+[06:38:45.0362]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:CPU_DENORMALS_OPTIMIZATION=NO
+[06:38:45.0362]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:LOG_LEVEL=LOG_NONE
+[06:38:45.0362]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:CPU_SPARSE_WEIGHTS_DECOMPRESSION_RATE=1
+[06:38:45.0362]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:ENABLE_TENSOR_PARALLEL=NO
+[06:38:45.0362]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:TBB_PARTITIONER=STATIC
+[06:38:45.0362]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:DYNAMIC_QUANTIZATION_GROUP_SIZE=32
+[06:38:45.0362]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:KV_CACHE_PRECISION=u8
+[06:38:45.0362]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:KEY_CACHE_PRECISION=u8
+[06:38:45.0362]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:VALUE_CACHE_PRECISION=u8
+[06:38:45.0362]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:KEY_CACHE_GROUP_SIZE=0
+[06:38:45.0362]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:VALUE_CACHE_GROUP_SIZE=0
+[06:38:45.0363]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:RUNTIME_REQUIREMENTS=meta=1.0;ov=2026.5.0;isa=Intel AVX-512 with Intel DL Boost and bfloat16 support
+[06:38:45.0363]I[plugin.cpp:549][AUTO] underlying hardware does not support hardware context
+Model: text embeddings model
+  NETWORK_NAME: Model3
+  EXECUTION_DEVICES: CPU
+  PERFORMANCE_HINT: LATENCY
+  OPTIMAL_NUMBER_OF_INFER_REQUESTS: 1
+  MULTI_DEVICE_PRIORITIES: CPU
+  CPU: 
+    CPU_DENORMALS_OPTIMIZATION: NO
+    CPU_SPARSE_WEIGHTS_DECOMPRESSION_RATE: 1
+    DYNAMIC_QUANTIZATION_GROUP_SIZE: 32
+    ENABLE_CPU_PINNING: YES
+    ENABLE_CPU_RESERVATION: NO
+    ENABLE_HYPER_THREADING: NO
+    ENABLE_TENSOR_PARALLEL: NO
+    EXECUTION_DEVICES: CPU
+    EXECUTION_MODE_HINT: PERFORMANCE
+    INFERENCE_NUM_THREADS: 16
+    INFERENCE_PRECISION_HINT: bf16
+    KEY_CACHE_GROUP_SIZE: 0
+    KEY_CACHE_PRECISION: u8
+    KV_CACHE_PRECISION: u8
+    LOG_LEVEL: LOG_NONE
+    MODEL_DISTRIBUTION_POLICY: 
+    NETWORK_NAME: Model3
+    NUM_STREAMS: 1
+    OPTIMAL_NUMBER_OF_INFER_REQUESTS: 1
+    PERFORMANCE_HINT: LATENCY
+    PERFORMANCE_HINT_NUM_REQUESTS: 0
+    PERF_COUNT: NO
+    RUNTIME_REQUIREMENTS: meta=1.0;ov=2026.5.0;isa=Intel AVX-512 with Intel DL Boost and bfloat16 support
+    SCHEDULING_CORE_TYPE: ANY_CORE
+    SUPPORTED_PROPERTIES: SUPPORTED_PROPERTIES NETWORK_NAME OPTIMAL_NUMBER_OF_INFER_REQUESTS NUM_STREAMS INFERENCE_NUM_THREADS PERF_COUNT INFERENCE_PRECISION_HINT PERFORMANCE_HINT EXECUTION_MODE_HINT PERFORMANCE_HINT_NUM_REQUESTS ENABLE_CPU_PINNING ENABLE_CPU_RESERVATION SCHEDULING_CORE_TYPE MODEL_DISTRIBUTION_POLICY ENABLE_HYPER_THREADING EXECUTION_DEVICES CPU_DENORMALS_OPTIMIZATION LOG_LEVEL CPU_SPARSE_WEIGHTS_DECOMPRESSION_RATE ENABLE_TENSOR_PARALLEL TBB_PARTITIONER DYNAMIC_QUANTIZATION_GROUP_SIZE KV_CACHE_PRECISION KEY_CACHE_PRECISION VALUE_CACHE_PRECISION KEY_CACHE_GROUP_SIZE VALUE_CACHE_GROUP_SIZE RUNTIME_REQUIREMENTS
+    TBB_PARTITIONER: STATIC
+    VALUE_CACHE_GROUP_SIZE: 0
+    VALUE_CACHE_PRECISION: u8
+  MODEL_PRIORITY: MEDIUM
+  LOADED_FROM_CACHE: NO
+  PERF_COUNT: NO
+EXECUTION_DEVICES:
+ CPU: AMD RYZEN AI MAX+ PRO 395 w/ Radeon 8060S      
+[06:38:45.0372]D[plugin.cpp:289][AUTO] deviceNameWithID:CPU, defaultDeviceID:, uniqueName:CPU_
+[06:38:45.0372]I[plugin.cpp:469][AUTO] compile model with model path
+[06:38:45.0372]I[plugin.cpp:482][AUTO] device:CPU, config:LOG_LEVEL=LOG_NONE
+[06:38:45.0372]I[plugin.cpp:482][AUTO] device:CPU, config:PERFORMANCE_HINT=LATENCY
+[06:38:45.0372]I[plugin.cpp:482][AUTO] device:CPU, config:PERFORMANCE_HINT_NUM_REQUESTS=0
+[06:38:45.0372]I[plugin.cpp:482][AUTO] device:CPU, config:PERF_COUNT=NO
+[06:38:45.0372]I[plugin.cpp:487][AUTO] device:CPU, priority:0
+[06:38:45.0372]I[plugin.cpp:525][AUTO] Original device list() size to load the model: 0
+[06:38:45.0372]I[schedule.cpp:17][AUTO] scheduler starting
+[06:38:45.0372]I[auto_schedule.cpp:163][AUTO] select device:CPU
+[06:38:45.0372]I[auto_schedule.cpp:284][AUTO] Only one device or multiple devices of the same type will use passthrough compiled model
+[06:38:45.0390]W[auto_schedule.cpp:344][AUTO] Device: [CPU]: Compile model failure: Exception from src/inference/src/dev/plugin.cpp:59:
+Check 'm_weights_provider' failed at src/core/xml_util/src/xml_deserialize_util.cpp:887:
+Empty weights data in bin file or bin file cannot be found!
+
+
+[06:38:45.0390]ERROR[auto_schedule.cpp:436][AUTO] load failed, CPU:Exception from src/inference/src/dev/plugin.cpp:59:
+Check 'm_weights_provider' failed at src/core/xml_util/src/xml_deserialize_util.cpp:887:
+Empty weights data in bin file or bin file cannot be found!
+
+
+[06:38:45.0390]I[schedule.cpp:312][AUTO] scheduler ending
+[06:38:45.0391]I[schedule.cpp:312][AUTO] scheduler ending
+[06:38:45.0450]I[schedule.cpp:312][AUTO] scheduler ending
+[06:38:45.1063]I[schedule.cpp:312][AUTO] scheduler ending
+------------------
+
+[31m---------------------------------------------------------------------------[39m
+[31mRuntimeError[39m                              Traceback (most recent call last)
+[36mCell[39m[36m [39m[32mIn[10][39m[32m, line 1[39m
+[32m----> [39m[32m1[39m pipe = ov_genai.VLMPipeline(str(model_export_dir), device=device.value)
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/f9c1ee9127d27e36/lib/python3.12/site-packages/ov_amd_device_probe.py:186[39m, in [36m_patch_genai.<locals>.make_patched.<locals>.__init__[39m[34m(self, *args, **kwargs)[39m
+[32m    184[39m [38;5;28;01mexcept[39;00m [38;5;167;01mException[39;00m:
+[32m    185[39m     [38;5;28;01mpass[39;00m
+[32m--> [39m[32m186[39m [38;5;28;01mreturn[39;00m [30;43morig[39;49m[30;43m([39;49m[30;43mself[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43m*[39;49m[30;43margs[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43m*[39;49m[30;43m*[39;49m[30;43mkwargs[39;49m[30;43m)[39;49m
+
+[31mRuntimeError[39m: Exception from src/inference/src/cpp/core.cpp:132:
+Exception from src/inference/src/dev/plugin.cpp:59:
+Exception from src/plugins/auto/src/auto_schedule.cpp:439:
+[AUTO] compile model failed, CPU:Exception from src/inference/src/dev/plugin.cpp:59:
+Check 'm_weights_provider' failed at src/core/xml_util/src/xml_deserialize_util.cpp:887:
+Empty weights data in bin file or bin file cannot be found!
+
+; 
+
+
+
+

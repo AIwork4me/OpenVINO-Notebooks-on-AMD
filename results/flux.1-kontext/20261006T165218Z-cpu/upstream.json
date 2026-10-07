@@ -1,0 +1,9 @@
+{
+  "schema_version": 2,
+  "repository": "openvinotoolkit/openvino_notebooks",
+  "branch": "latest",
+  "commit": "a8809170cc4fc6aa633fbb9c22214be67ac20b47",
+  "path": "notebooks/flux.1-kontext/flux.1-kontext.ipynb",
+  "url": "https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/flux.1-kontext/flux.1-kontext.ipynb",
+  "notebook_sha256": "75ea9d77fbd7dd19c0298d179edd0be401865b44df6321622d45ccb7ff3b227c"
+}

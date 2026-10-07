@@ -1,0 +1,10 @@
+[cell 0 START +    0.4s] # RAG Performance & Fairness Evaluation Toolkit (OpenVINO + LangChain)
+[cell 1 START +    0.4s] ## 1. Environment Setup | [back to top ⬆️](#Table-of-contents:) |  |  | First,
+[cell 2 START +    0.4s] import os | import requests | from pathlib import Path | import io |  | if not P
+[cell 2 DONE  +   79.9s]
+[cell 3 START +   79.9s] ## 2. LLM and Tokenizer Setup | [back to top ⬆️](#Table-of-contents:) |  |  | 
+[cell 4 START +   79.9s] from notebook_utils import device_widget |  | llm_device = device_widget(e
+[cell 4 DONE  +   80.2s]
+[cell 5 START +   80.2s] import warnings |  | warnings.filterwarnings("ignore") | from optimum.intel 
+[cell 5 DONE  +   83.4s]
+NBEXEC_RESULT={"ok": false, "n_cells": 18, "n_skipped": 0, "n_substituted": 0, "stopped_after": null, "error_cell": null, "error_type": "CellExecutionError", "error_head": "\u001b[31mModuleNotFoundError\u001b[39m: Could not import module 'OVModelForCausalLM'. Are this object's requirements defined correctly?", "duration_s": 86.09, "patch_notes": []}

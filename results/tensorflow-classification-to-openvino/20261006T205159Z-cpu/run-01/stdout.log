@@ -1,0 +1,39 @@
+[cell 0 START +    0.6s] # Convert a TensorFlow Model to OpenVINO™ |  | This short tutorial shows h
+[cell 1 START +    0.6s] # Install openvino package | %pip install -q "openvino>=2025.4.0" "openc
+[cell 1 DONE  +   18.9s]
+[cell 2 START +   18.9s] ## Imports | [back to top ⬆️](#Table-of-contents:) | 
+[cell 3 START +   18.9s] import os | import time | from pathlib import Path |  | os.environ["TF_CPP_MIN
+[cell 3 DONE  +   20.2s]
+[cell 4 START +   20.2s] ## Settings | [back to top ⬆️](#Table-of-contents:) | 
+[cell 5 START +   20.2s] # The paths of the source and converted models. | model_dir = Path("mode
+[cell 5 DONE  +   20.2s]
+[cell 6 START +   20.2s] ## Download model | [back to top ⬆️](#Table-of-contents:) |  | Load model us
+[cell 7 START +   20.2s] model = tf.keras.applications.MobileNetV3Small() | model.save(model_path
+[cell 7 DONE  +   24.6s]
+[cell 8 START +   24.6s] ## Convert a Model to OpenVINO IR Format | [back to top ⬆️](#Table-of-co
+[cell 9 START +   24.6s] # Run model conversion API if the IR model file does not exist | if not 
+[cell 9 DONE  +   24.6s]
+[cell 10 START +   24.6s] ## Test Inference on the Converted Model | [back to top ⬆️](#Table-of-co
+[cell 11 START +   24.6s] ### Load the Model | [back to top ⬆️](#Table-of-contents:) | 
+[cell 12 START +   24.6s] core = ov.Core() | model = core.read_model(ir_path)
+[cell 12 DONE  +   24.6s]
+[cell 13 START +   24.6s] ## Select inference device | [back to top ⬆️](#Table-of-contents:) |  | sele
+[cell 14 START +   24.6s] device = device_widget()
+[cell 14 DONE  +   24.9s]
+[cell 15 START +   24.9s] compiled_model = core.compile_model(model=model, device_name=device.va
+[cell 15 DONE  +   25.0s]
+[cell 16 START +   25.0s] ### Get Model Information | [back to top ⬆️](#Table-of-contents:) | 
+[cell 17 START +   25.0s] input_key = compiled_model.input(0) | output_key = compiled_model.output
+[cell 17 DONE  +   25.0s]
+[cell 18 START +   25.0s] ### Load an Image | [back to top ⬆️](#Table-of-contents:) |  | Load an image
+[cell 19 START +   25.0s] # Download the image from the openvino_notebooks storage | image_filenam
+[cell 19 DONE  +   25.1s]
+[cell 20 START +   25.1s] ### Do Inference | [back to top ⬆️](#Table-of-contents:) | 
+[cell 21 START +   25.1s] result = compiled_model(input_image)[output_key] |  | result_index = np.ar
+[cell 21 DONE  +   25.1s]
+[cell 22 START +   25.1s] # Download the datasets from the openvino_notebooks storage | labels_fil
+[cell 22 DONE  +   25.1s]
+[cell 23 START +   25.1s] ## Timing | [back to top ⬆️](#Table-of-contents:) |  | Measure the time it t
+[cell 24 START +   25.1s] num_images = 1000 |  | start = time.perf_counter() |  | for _ in range(num_ima
+[cell 24 DONE  +   25.7s]
+NBEXEC_RESULT={"ok": true, "n_cells": 13, "n_skipped": 0, "n_substituted": 0, "stopped_after": null, "error_cell": null, "error_type": null, "error_head": null, "duration_s": 26.88, "patch_notes": []}

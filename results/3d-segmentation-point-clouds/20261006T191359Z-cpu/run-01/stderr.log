@@ -1,0 +1,53 @@
+[IPKernelApp] WARNING | Kernel is running over TCP without encryption. All communication (including code and outputs) is sent in plain text and is susceptible to eavesdropping. Use IPC transport or launch with kernel manager-provisioned CurveZMQ keys to enable transport encryption.
+Traceback (most recent call last):
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/ov_amd/_nbexec.py", line 144, in main
+    client.execute()
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/b4649cc10582be0f/lib/python3.12/site-packages/jupyter_core/utils/__init__.py", line 165, in wrapped
+    return loop.run_until_complete(inner)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/base_events.py", line 687, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/b4649cc10582be0f/lib/python3.12/site-packages/nbclient/client.py", line 709, in async_execute
+    await self.async_execute_cell(
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/b4649cc10582be0f/lib/python3.12/site-packages/nbclient/client.py", line 1062, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/b4649cc10582be0f/lib/python3.12/site-packages/nbclient/client.py", line 918, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+# Download data from the openvino_notebooks storage
+point_data_path = Path("data") / "chair.pts"
+
+if not point_data_path.exists():
+    point_data = download_file(
+        "https://storage.openvinotoolkit.org/repositories/openvino_notebooks/data/data/pts/chair.pts",
+        directory="data",
+    )
+
+points = load_data(str(point_data))
+X = points[:, 0]
+Y = points[:, 2]
+Z = points[:, 1]
+ax = visualize(points)
+ax.scatter3D(X, Y, Z, s=5, cmap="jet", marker="o", label="chair")
+ax.set_title("3D Visualization")
+plt.legend(loc="upper right", fontsize=8)
+plt.show()
+------------------
+
+
+[31m---------------------------------------------------------------------------[39m
+[31mNameError[39m                                 Traceback (most recent call last)
+[36mCell[39m[36m [39m[32mIn[6][39m[32m, line 10[39m
+[32m      6[39m         [33m"https://storage.openvinotoolkit.org/repositories/openvino_notebooks/data/data/pts/chair.pts"[39m,
+[32m      7[39m         directory=[33m"data"[39m,
+[32m      8[39m     )
+[32m      9[39m 
+[32m---> [39m[32m10[39m points = load_data(str(point_data))
+[32m     11[39m X = points[:, [32m0[39m]
+[32m     12[39m Y = points[:, [32m2[39m]
+[32m     13[39m Z = points[:, [32m1[39m]
+
+[31mNameError[39m: name 'point_data' is not defined
+

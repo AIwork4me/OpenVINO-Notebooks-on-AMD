@@ -1,0 +1,13 @@
+[cell 0 START +    0.4s] # RF-DETR Object Detection with OpenVINO |  | RF-DETR is a real-time trans
+[cell 1 START +    0.4s] ## Prerequisites | [back to top](#Table-of-contents) |  | Install the offici
+[cell 2 START +    0.4s] from pathlib import Path |  | import requests |  | for helper_name in ("notebo
+[cell 2 DONE  +    1.4s]
+[cell 3 START +    1.4s] from importlib.metadata import version |  | from notebook_utils import dev
+[cell 3 DONE  +    1.4s]
+[cell 4 START +    1.4s] ## Select a model | [back to top](#Table-of-contents) |  | The official RF-D
+[cell 5 START +    1.4s] import ipywidgets as widgets | from IPython.display import display |  | MODE
+[cell 5 DONE  +    1.6s]
+[cell 6 START +    1.6s] ## Convert the model | [back to top](#Table-of-contents) |  | `rfdetr` loads
+[cell 7 START +    1.6s] import gc |  | import openvino as ov | from rfdetr import RFDETRBase, RFDETR
+[cell 7 DONE  +    4.4s]
+NBEXEC_RESULT={"ok": false, "n_cells": 7, "n_skipped": 1, "n_substituted": 0, "stopped_after": null, "error_cell": null, "error_type": "CellExecutionError", "error_head": "\u001b[31mModuleNotFoundError\u001b[39m: No module named 'triton.backends'", "duration_s": 5.52, "patch_notes": ["skipped cell 12: matched skip pattern"]}

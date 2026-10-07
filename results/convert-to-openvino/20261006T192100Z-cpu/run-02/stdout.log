@@ -1,0 +1,13 @@
+[cell 0 START +    0.4s] # OpenVINO™ Model conversion |  | This notebook shows how to convert a mod
+[cell 1 START +    0.4s] import requests | from pathlib import Path |  | if not Path("notebook_utils.
+[cell 1 DONE  +    4.5s]
+[cell 2 START +    4.5s] ## OpenVINO IR format | [back to top ⬆️](#Table-of-contents:) |  | OpenVINO 
+[cell 3 START +    4.5s] # OVC CLI tool parameters description |  | ! ovc --help
+[cell 3 DONE  +    4.9s]
+[cell 4 START +    4.9s] ## Fetching example models | [back to top ⬆️](#Table-of-contents:) |  | This
+[cell 5 START +    4.9s] from pathlib import Path |  | # create a directory for models files | MODEL_
+[cell 5 DONE  +    4.9s]
+[cell 6 START +    4.9s] Fetch [distilbert](https://huggingface.co/distilbert-base-uncased-fine
+[cell 7 START +    4.9s] from transformers import AutoModelForSequenceClassification, AutoToken
+[cell 7 DONE  +    8.7s]
+NBEXEC_RESULT={"ok": false, "n_cells": 22, "n_skipped": 0, "n_substituted": 0, "stopped_after": null, "error_cell": null, "error_type": "CellExecutionError", "error_head": "\u001b[31mModuleNotFoundError\u001b[39m: Could not import module 'AutoModelForSequenceClassification'. Are this object's requirements defined correctly?", "duration_s": 11.07, "patch_notes": []}

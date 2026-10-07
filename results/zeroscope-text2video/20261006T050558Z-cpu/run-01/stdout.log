@@ -1,0 +1,71 @@
+[cell 0 START +    0.6s] # Video generation with ZeroScope and OpenVINO |  | #### Table of contents
+[cell 1 START +    0.6s] The ZeroScope model is a free and open-source text-to-video model that
+[cell 2 START +    0.6s] <div class="alert alert-block alert-warning"> |     This tutorial requir
+[cell 3 START +    0.6s] ## Install and import required packages | [back to top ⬆️](#Table-of-con
+[cell 4 START +    0.6s] To work with text-to-video synthesis model, we will use Hugging Face's
+[cell 5 START +    0.6s] # install requirements | %pip install --pre -Uq "openvino>=2023.1.0" --e
+[cell 5 DONE  +   41.2s]
+[cell 6 START +   41.2s] import gc | from typing import Optional, Union, Callable | import base64 | i
+[cell 6 DONE  +   45.6s]
+[cell 7 START +   45.6s] Original 576x320 inference requires a lot of RAM (>100GB), so let's ru
+[cell 8 START +   45.6s] WIDTH = 432  # must be divisible by 8 | HEIGHT = 240  # must be divisibl
+[cell 8 DONE  +   45.6s]
+[cell 9 START +   45.6s] ## Load the model | [back to top ⬆️](#Table-of-contents:) | 
+[cell 10 START +   45.6s] The model is loaded from HuggingFace using `.from_pretrained` method o
+[cell 11 START +   45.6s] pipe = diffusers.DiffusionPipeline.from_pretrained("cerspense/zeroscop
+[cell 11 DONE  +  272.0s]
+[cell 12 START +  272.0s] unet = pipe.unet | unet.eval() | vae = pipe.vae | vae.eval() | text_encoder = 
+[cell 12 DONE  +  272.3s]
+[cell 13 START +  272.3s] ## Convert the model | [back to top ⬆️](#Table-of-contents:) | 
+[cell 14 START +  272.3s] The architecture for generating videos from text comprises three disti
+[cell 15 START +  272.3s] ![](data:image/png;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/4gHYSUNDX1BST0ZJ
+[cell 16 START +  272.3s] ### Define the conversion function | [back to top ⬆️](#Table-of-contents
+[cell 17 START +  272.3s] Model components are PyTorch modules, that can be converted with `ov.c
+[cell 18 START +  272.3s] warnings.filterwarnings("ignore", category=torch.jit.TracerWarning)
+[cell 18 DONE  +  272.3s]
+[cell 19 START +  272.3s] from pathlib import Path |  |  | def convert(model: torch.nn.Module, xml_pat
+[cell 19 DONE  +  272.3s]
+[cell 20 START +  272.3s] ### UNet | [back to top ⬆️](#Table-of-contents:) | 
+[cell 21 START +  272.3s] Text-to-video generation pipeline main component is a conditional 3D U
+[cell 22 START +  272.3s] unet_xml_path = convert( |     unet, |     "models/unet.xml", |     example_
+[cell 22 DONE  +  289.0s]
+[cell 23 START +  289.0s] ### VAE | [back to top ⬆️](#Table-of-contents:) | 
+[cell 24 START +  289.0s] Variational autoencoder (VAE) uses UNet output to decode latents to vi
+[cell 25 START +  289.0s] class VaeDecoderWrapper(torch.nn.Module): |     def __init__(self, vae):
+[cell 25 DONE  +  289.0s]
+[cell 26 START +  289.0s] vae_decoder_xml_path = convert( |     VaeDecoderWrapper(vae), |     "model
+[cell 26 DONE  +  295.4s]
+[cell 27 START +  295.4s] ### Text encoder | [back to top ⬆️](#Table-of-contents:) | 
+[cell 28 START +  295.4s] Text encoder is used to encode the input prompt to tensor. Default ten
+[cell 29 START +  295.4s] text_encoder_xml = convert( |     text_encoder, |     "models/text_encoder
+[cell 29 DONE  +  300.3s]
+[cell 30 START +  300.3s] ## Build a pipeline | [back to top ⬆️](#Table-of-contents:) | 
+[cell 31 START +  300.3s] def tensor2vid(video: torch.Tensor, mean=[0.5, 0.5, 0.5], std=[0.5, 0.
+[cell 31 DONE  +  300.3s]
+[cell 32 START +  300.3s] try: |     from diffusers.utils import randn_tensor | except ImportError: | 
+[cell 32 DONE  +  300.4s]
+[cell 33 START +  300.4s] ## Inference with OpenVINO | [back to top ⬆️](#Table-of-contents:) | 
+[cell 34 START +  300.4s] core = ov.Core()
+[cell 34 DONE  +  300.4s]
+[cell 35 START +  300.4s] ### Select inference device | [back to top ⬆️](#Table-of-contents:) |  | sel
+[cell 36 START +  300.4s] from notebook_utils import device_widget |  | device = device_widget() |  | de
+[cell 36 DONE  +  300.6s]
+[cell 37 START +  300.6s] ov_unet = core.compile_model(unet_xml_path, device_name=device.value) | 
+[cell 37 DONE  +  302.9s]
+[cell 38 START +  302.9s] Here we replace the pipeline parts with versions converted to OpenVINO
+[cell 39 START +  302.9s] ov_pipe = OVTextToVideoSDPipeline(ov_vae_decoder, ov_text_encoder, tok
+[cell 39 DONE  +  302.9s]
+[cell 40 START +  302.9s] ### Define a prompt | [back to top ⬆️](#Table-of-contents:) | 
+[cell 41 START +  302.9s] prompt = "A panda eating bamboo on a rock."
+[cell 41 DONE  +  303.0s]
+[cell 42 START +  303.0s] Let's generate a video for our prompt. For full list of arguments, see
+[cell 43 START +  303.0s] ### Video generation | [back to top ⬆️](#Table-of-contents:) | 
+[cell 44 START +  303.0s] frames = ov_pipe(prompt, num_inference_steps=25)["frames"]
+[cell 44 DONE  +  408.5s]
+[cell 45 START +  408.5s] images = [PIL.Image.fromarray(frame) for frame in frames] | images[0].sa
+[cell 45 DONE  +  409.4s]
+[cell 46 START +  409.4s] ## Interactive demo | [back to top ⬆️](#Table-of-contents:) | 
+[cell 47 START +  409.4s] def generate(prompt, seed, num_inference_steps, _=gr.Progress(track_tq
+[cell 47 DONE  +  409.5s]
+[cell 48 START +  409.5s] if not Path("gradio_helper.py").exists(): |     r = requests.get(url="ht
+NBEXEC_RESULT={"ok": true, "n_cells": 22, "n_skipped": 1, "n_substituted": 0, "stopped_after": null, "error_cell": null, "error_type": null, "error_head": null, "duration_s": 411.79, "patch_notes": ["skipped cell 48: matched skip pattern"]}

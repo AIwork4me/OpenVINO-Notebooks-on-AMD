@@ -1,0 +1,12 @@
+[cell 0 START +    0.4s] # Virtual Try-On with CatVTON and OpenVINO |  | Virtual try-on methods bas
+[cell 1 START +    0.4s] ## Prerequisites | [back to top ⬆️](#Table-of-contents:)
+[cell 2 START +    0.4s] %pip install -q "openvino>=2024.4" "nncf>=2.13.0" | %pip install -q "tor
+[cell 2 DONE  +    3.0s]
+[cell 3 START +    3.0s] import requests | from pathlib import Path |  | if not Path("notebook_utils.
+[cell 3 DONE  +    3.0s]
+[cell 4 START +    3.0s] from cmd_helper import clone_repo |  | clone_repo("https://github.com/Zhen
+[cell 4 DONE  +    3.0s]
+[cell 5 START +    3.0s] ### Convert the model to OpenVINO IR | [back to top ⬆️](#Table-of-conten
+[cell 6 START +    3.0s] from ov_catvton_helper import download_models, convert_pipeline_models
+[cell 6 DONE  +    4.1s]
+NBEXEC_RESULT={"ok": false, "n_cells": 14, "n_skipped": 1, "n_substituted": 0, "stopped_after": null, "error_cell": null, "error_type": "CellExecutionError", "error_head": "\u001b[31mImportError\u001b[39m: cannot import name 'resolve_revision' from 'huggingface_hub' (/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/2c24bba1924a9c98/lib/python3.12/site-packages/huggingface_hub/__init__.py)", "duration_s": 4.57, "patch_notes": ["skipped cell 25: matched skip pattern"]}

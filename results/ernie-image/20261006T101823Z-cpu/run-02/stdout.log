@@ -1,0 +1,5 @@
+[cell 0 START +    0.5s] # Text-to-Image Generation with ERNIE-Image-Turbo and OpenVINO |  | [ERNIE
+[cell 1 START +    0.5s] ## Prerequisites | [back to top ⬆️](#Table-of-contents:)
+[cell 2 START +    0.5s] import requests | from pathlib import Path |  | if not Path("cmd_helper.py")
+[cell 2 DONE  +   97.5s]
+NBEXEC_RESULT={"ok": false, "n_cells": 10, "n_skipped": 1, "n_substituted": 1, "stopped_after": null, "error_cell": null, "error_type": "CellExecutionError", "error_head": "\u001b[31mCalledProcessError\u001b[39m: Command '['/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/bin/python', '-m', 'pip', 'install', '-q', 'https://codeload.github.com/openvino-dev-samples/optimum-intel/tar.gz/d643a5d8ceaff200654e212eca21ec1b4dbea507']' returned non-zero exit status 1.", "duration_s": 97.73, "patch_notes": ["substituted 2 occurrence(s) in cell 2", "skipped cell 18: matched skip pattern"]}

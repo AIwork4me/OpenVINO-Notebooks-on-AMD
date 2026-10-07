@@ -1,0 +1,11 @@
+[cell 0 START +    0.4s] # OmniVoice Text-to-Speech with OpenVINO™ |  | [OmniVoice](https://github.
+[cell 1 START +    0.4s] ## Prerequisites | [back to top ⬆️](#Table-of-contents)
+[cell 2 START +    0.4s] import requests | from pathlib import Path |  | for fname in ("notebook_util
+[cell 2 DONE  +    0.4s]
+[cell 3 START +    0.4s] ### Install dependencies | [back to top ⬆️](#Table-of-contents)
+[cell 4 START +    0.4s] from pip_helper import pip_install |  | pip_install( |     "-q", |     "--extr
+[cell 4 DONE  +   17.5s]
+[cell 5 START +   17.5s] ## Convert OmniVoice to OpenVINO | [back to top ⬆️](#Table-of-contents) | 
+[cell 6 START +   17.5s] import ipywidgets as widgets |  | to_quantize = widgets.Checkbox( |     valu
+[cell 6 DONE  +   17.6s]
+[cell 7 START +   17.6s] from pathlib import Path | import nncf |  | from omnivoice_helper import con

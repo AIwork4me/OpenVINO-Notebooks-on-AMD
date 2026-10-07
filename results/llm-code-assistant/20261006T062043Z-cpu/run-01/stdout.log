@@ -1,0 +1,12 @@
+[cell 0 START +    0.4s] # LLM Code Assistant with OpenVINO™ |  | This notebook demonstrates how to
+[cell 1 START +    0.4s] ## Installation | [back to top ⬆️](#Table-of-contents:) |  | Install the req
+[cell 2 START +    0.4s] import os | import shutil | import requests | from pathlib import Path |  | os.e
+[cell 2 DONE  +  234.2s]
+[cell 3 START +  234.2s] # Fetch llm_config.py (model definitions and conversion helpers) | confi
+[cell 3 DONE  +  234.7s]
+[cell 4 START +  234.7s] ## Configuration | [back to top ⬆️](#Table-of-contents:) |  | Select the mod
+[cell 5 START +  234.7s] import ipywidgets as widgets | from notebook_utils import device_widget | 
+[cell 5 DONE  +  235.0s]
+[cell 6 START +  235.0s] ## Convert and Download Model | [back to top ⬆️](#Table-of-contents:) |  | D
+[cell 7 START +  235.0s] from llm_config import convert_and_compress_model |  | model_configuration
+NBEXEC_RESULT={"ok": false, "n_cells": 12, "n_skipped": 1, "n_substituted": 0, "stopped_after": null, "error_cell": null, "error_type": "CellTimeoutError", "error_head": "-------------------", "duration_s": 1137.66, "patch_notes": ["skipped cell 21: matched skip pattern"]}

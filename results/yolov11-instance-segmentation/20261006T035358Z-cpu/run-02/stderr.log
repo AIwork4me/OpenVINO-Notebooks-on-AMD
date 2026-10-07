@@ -1,0 +1,55 @@
+[IPKernelApp] WARNING | Kernel is running over TCP without encryption. All communication (including code and outputs) is sent in plain text and is susceptible to eavesdropping. Use IPC transport or launch with kernel manager-provisioned CurveZMQ keys to enable transport encryption.
+_catcher[39;49m[30;43m([39;49m[30;43m)[39;49m[30;43m:[39;49m
+[32m   1046[39m [30;43m    [39;49m[30;43mdata[39;49m[30;43m [39;49m[30;43m=[39;49m[30;43m [39;49m[30;43mself[39;49m[30;43m.[39;49m[30;43m_fp_read[39;49m[30;43m([39;49m[30;43mamt[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mread1[39;49m[30;43m=[39;49m[30;43mread1[39;49m[30;43m)[39;49m[30;43m [39;49m[30;43;01mif[39;49;00m[30;43m [39;49m[30;43;01mnot[39;49;00m[30;43m [39;49m[30;43mfp_closed[39;49m[30;43m [39;49m[30;43;01melse[39;49;00m[30;43m [39;49m[30;43mb[39;49m[30;43m"[39;49m[30;43m"[39;49m
+
+[36mFile [39m[32m/usr/lib/python3.12/contextlib.py:158[39m, in [36m_GeneratorContextManager.__exit__[39m[34m(self, typ, value, traceback)[39m
+[32m    157[39m [38;5;28;01mtry[39;00m:
+[32m--> [39m[32m158[39m     [30;43mself[39;49m[30;43m.[39;49m[30;43mgen[39;49m[30;43m.[39;49m[30;43mthrow[39;49m[30;43m([39;49m[30;43mvalue[39;49m[30;43m)[39;49m
+[32m    159[39m [38;5;28;01mexcept[39;00m [38;5;167;01mStopIteration[39;00m [38;5;28;01mas[39;00m exc:
+[32m    160[39m     [38;5;66;03m# Suppress StopIteration *unless* it's the same exception that[39;00m
+[32m    161[39m     [38;5;66;03m# was passed to throw().  This prevents a StopIteration[39;00m
+[32m    162[39m     [38;5;66;03m# raised inside the "with" statement from being suppressed.[39;00m
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/12e02bc65a37bd74/lib/python3.12/site-packages/urllib3/response.py:934[39m, in [36mHTTPResponse._error_catcher[39m[34m(self)[39m
+[32m    931[39m [38;5;28;01mexcept[39;00m SocketTimeout [38;5;28;01mas[39;00m e:
+[32m    932[39m     [38;5;66;03m# FIXME: Ideally we'd like to include the url in the ReadTimeoutError but[39;00m
+[32m    933[39m     [38;5;66;03m# there is yet no clean way to get at it from this context.[39;00m
+[32m--> [39m[32m934[39m     [38;5;28;01mraise[39;00m ReadTimeoutError([38;5;28mself[39m._pool, [38;5;28;01mNone[39;00m, [33m"[39m[33mRead timed out.[39m[33m"[39m) [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01me[39;00m  [38;5;66;03m# type: ignore[arg-type][39;00m
+[32m    936[39m [38;5;28;01mexcept[39;00m BaseSSLError [38;5;28;01mas[39;00m e:
+[32m    937[39m     [38;5;66;03m# SSL errors related to framing/MAC get wrapped and reraised here[39;00m
+
+[31mReadTimeoutError[39m: HTTPSConnectionPool(host='release-assets.githubusercontent.com', port=443): Read timed out.
+
+During handling of the above exception, another exception occurred:
+
+[31mConnectionError[39m                           Traceback (most recent call last)
+[36mCell[39m[36m [39m[32mIn[12][39m[32m, line 1[39m
+[32m----> [39m[32m1[39m get_ipython().run_cell_magic([33m'skip'[39m, [33m'not $to_quantize.value'[39m, [33m'\n\nimport nncf\n\nfrom zipfile import ZipFile\n\nfrom notebook_utils import use_local_ultralytics_datasets\nfrom ultralytics.utils import DEFAULT_CFG\nfrom ultralytics.cfg import get_cfg\nfrom ultralytics.data.converter import coco80_to_coco91_class\nfrom ultralytics.data.utils import check_det_dataset\nfrom ultralytics.utils import ops\n\n\nif not int8_model_seg_path.exists():\n    DATA_URL = "http://images.cocodataset.org/zips/val2017.zip"\n    LABELS_URL = "https://github.com/ultralytics/yolov5/releases/download/v1.0/coco2017labels-segments.zip"\n    CFG_URL = "https://raw.githubusercontent.com/ultralytics/ultralytics/v8.1.0/ultralytics/cfg/datasets/coco.yaml"\n\n    OUT_DIR = use_local_ultralytics_datasets()\n\n    DATA_PATH = OUT_DIR / "val2017.zip"\n    LABELS_PATH = OUT_DIR / "coco2017labels-segments.zip"\n    CFG_PATH = OUT_DIR / "coco.yaml"\n\n    if not (OUT_DIR / "coco/labels/val2017").exists():\n        download_file(DATA_URL, DATA_PATH.name, DATA_PATH.parent)\n        download_file(LABELS_URL, LABELS_PATH.name, LABELS_PATH.parent)\n        download_file(CFG_URL, CFG_PATH.name, CFG_PATH.parent)\n        with ZipFile(LABELS_PATH, "r") as zip_ref:\n            zip_ref.extractall(OUT_DIR)\n        with ZipFile(DATA_PATH, "r") as zip_ref:\n            zip_ref.extractall(OUT_DIR / "coco/images")\n\n    args = get_cfg(cfg=DEFAULT_CFG)\n    args.data = str(CFG_PATH)\n    seg_validator = seg_model.task_map[seg_model.task]["validator"](args=args)\n    seg_validator.data = check_det_dataset(args.data)\n    seg_validator.stride = 32\n    seg_data_loader = seg_validator.get_dataloader(OUT_DIR / "coco/", 1)\n\n    seg_validator.is_coco = True\n    seg_validator.class_map = coco80_to_coco91_class()\n    seg_validator.names = label_map\n    seg_validator.metrics.names = seg_validator.names\n    seg_validator.nc = 80\n    seg_validator.nm = 32\n    seg_validator.process = ops.process_mask\n    seg_validator.plot_masks = []\n\n    def transform_fn(data_item: dict):\n        """\n        Quantization transform function. Extracts and preprocess input data from dataloader item for quantization.\n        Parameters:\n           data_item: Dict with data item produced by DataLoader during iteration\n        Returns:\n            input_tensor: Input data for quantization\n        """\n        input_tensor = seg_validator.preprocess(data_item)["img"].numpy()\n        return input_tensor\n\n    quantization_dataset = nncf.Dataset(seg_data_loader, transform_fn)\n'[39m)
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/results/yolov11-instance-segmentation/workdir-cpu/skip_kernel_extension.py:9[39m, in [36mskip[39m[34m(line, cell)[39m
+[32m      6[39m [38;5;28;01mif[39;00m [38;5;28meval[39m(line):
+[32m      7[39m     [38;5;28;01mreturn[39;00m
+[32m----> [39m[32m9[39m [30;43mget_ipython[39;49m[30;43m([39;49m[30;43m)[39;49m[30;43m.[39;49m[30;43mex[39;49m[30;43m([39;49m[30;43mcell[39;49m[30;43m)[39;49m
+
+[36mFile [39m[32m<string>:28[39m
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/results/yolov11-instance-segmentation/workdir-cpu/notebook_utils.py:168[39m, in [36mdownload_file[39m[34m(url, filename, directory, show_progress)[39m
+[32m    159[39m [38;5;28;01mwith[39;00m tqdm_notebook(
+[32m    160[39m     total=filesize,
+[32m    161[39m     unit=[33m"[39m[33mB[39m[33m"[39m,
+[32m   (...)[39m[32m    165[39m     disable=[38;5;129;01mnot[39;00m show_progress,
+[32m    166[39m ) [38;5;28;01mas[39;00m progress_bar:
+[32m    167[39m     [38;5;28;01mwith[39;00m [38;5;28mopen[39m(filepath, [33m"[39m[33mwb[39m[33m"[39m) [38;5;28;01mas[39;00m file_object:
+[32m--> [39m[32m168[39m [30;43m        [39;49m[30;43;01mfor[39;49;00m[30;43m [39;49m[30;43mchunk[39;49m[30;43m [39;49m[30;43;01min[39;49;00m[30;43m [39;49m[30;43mresponse[39;49m[30;43m.[39;49m[30;43miter_content[39;49m[30;43m([39;49m[30;43mchunk_size[39;49m[30;43m)[39;49m[30;43m:[39;49m
+[32m    169[39m [30;43m            [39;49m[30;43mfile_object[39;49m[30;43m.[39;49m[30;43mwrite[39;49m[30;43m([39;49m[30;43mchunk[39;49m[30;43m)[39;49m
+[32m    170[39m [30;43m            [39;49m[30;43mprogress_bar[39;49m[30;43m.[39;49m[30;43mupdate[39;49m[30;43m([39;49m[30;43mlen[39;49m[30;43m([39;49m[30;43mchunk[39;49m[30;43m)[39;49m[30;43m)[39;49m
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/12e02bc65a37bd74/lib/python3.12/site-packages/requests/models.py:943[39m, in [36mResponse.iter_content.<locals>.generate[39m[34m()[39m
+[32m    941[39m     [38;5;28;01mraise[39;00m ContentDecodingError(e)
+[32m    942[39m [38;5;28;01mexcept[39;00m ReadTimeoutError [38;5;28;01mas[39;00m e:
+[32m--> [39m[32m943[39m     [38;5;28;01mraise[39;00m [38;5;167;01mConnectionError[39;00m(e)
+[32m    944[39m [38;5;28;01mexcept[39;00m SSLError [38;5;28;01mas[39;00m e:
+[32m    945[39m     [38;5;28;01mraise[39;00m RequestsSSLError(e)
+
+[31mConnectionError[39m: HTTPSConnectionPool(host='release-assets.githubusercontent.com', port=443): Read timed out.
+

@@ -1,0 +1,43 @@
+[IPKernelApp] WARNING | Kernel is running over TCP without encryption. All communication (including code and outputs) is sent in plain text and is susceptible to eavesdropping. Use IPC transport or launch with kernel manager-provisioned CurveZMQ keys to enable transport encryption.
+Traceback (most recent call last):
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/ov_amd/_nbexec.py", line 144, in main
+    client.execute()
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages/jupyter_core/utils/__init__.py", line 165, in wrapped
+    return loop.run_until_complete(inner)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/base_events.py", line 687, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages/nbclient/client.py", line 709, in async_execute
+    await self.async_execute_cell(
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages/nbclient/client.py", line 1062, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages/nbclient/client.py", line 918, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+from transformers import AutoProcessor, AutoModelForSpeechSeq2Seq
+
+# PyTorch Whisper
+
+whisper_model_id = "openai/whisper-large-v2"
+
+if load_whisper_model_pt.value or load_whisper_model_ov.value or load_whisper_model_ov_int8.value:
+    whisper_processor = AutoProcessor.from_pretrained(whisper_model_id)
+
+    if load_whisper_model_pt.value:
+        whisper_model_pt = AutoModelForSpeechSeq2Seq.from_pretrained(whisper_model_id).eval()
+        AVAILABLE_MODELS.append((whisper_model_pt, whisper_processor, f"Whisper large-v2 PyTorch"))
+------------------
+
+
+[31m---------------------------------------------------------------------------[39m
+[31mModuleNotFoundError[39m                       Traceback (most recent call last)
+[36mCell[39m[36m [39m[32mIn[4][39m[32m, line 1[39m
+[32m----> [39m[32m1[39m [38;5;28;01mfrom[39;00m transformers [38;5;28;01mimport[39;00m AutoProcessor, AutoModelForSpeechSeq2Seq
+[32m      2[39m 
+[32m      3[39m [38;5;66;03m# PyTorch Whisper[39;00m
+[32m      4[39m 
+
+[31mModuleNotFoundError[39m: No module named 'transformers'
+

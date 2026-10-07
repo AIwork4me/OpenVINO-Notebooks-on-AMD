@@ -1,0 +1,10 @@
+[cell 0 START +    0.4s] # Wav2Lip: Accurately Lip-syncing Videos and OpenVINO |  | Lip sync techno
+[cell 1 START +    0.4s] ## Prerequisites | [back to top ⬆️](#Table-of-contents:)
+[cell 2 START +    0.4s] import requests | from pathlib import Path |  | if not Path("notebook_utils.
+[cell 2 DONE  +    1.9s]
+[cell 3 START +    1.9s] from cmd_helper import clone_repo |  | clone_repo("https://github.com/Rudr
+[cell 3 DONE  +   23.9s]
+[cell 4 START +   23.9s] Download example files.
+[cell 5 START +   23.9s] from notebook_utils import download_file |  | download_file("https://githu
+[cell 5 DONE  +   54.0s]
+NBEXEC_RESULT={"ok": false, "n_cells": 10, "n_skipped": 1, "n_substituted": 0, "stopped_after": null, "error_cell": null, "error_type": "CellExecutionError", "error_head": "\u001b[31mException\u001b[39m: Connection timed out. If you access the internet through a proxy server, please make sure the proxy is set in the shell from where you launched Jupyter.", "duration_s": 54.19, "patch_notes": ["skipped cell 19: matched skip pattern"]}

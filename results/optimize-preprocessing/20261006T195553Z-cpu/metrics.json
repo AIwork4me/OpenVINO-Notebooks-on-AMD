@@ -1,0 +1,35 @@
+{
+  "schema_version": 2,
+  "runs_ok": 3,
+  "runs_required": 3,
+  "wall_clock_s": [
+    44.78,
+    28.12,
+    27.87
+  ],
+  "cells_executed": 19,
+  "cells_skipped": 0,
+  "cells_substituted": 0,
+  "aggregate": "aggregate.json",
+  "env": {
+    "backend": "cpu",
+    "env_key": "1202e2644df633ff",
+    "python": ".venvs/cpu/1202e2644df633ff/bin/python",
+    "fingerprint": "64fbf2ba7bb487770e36ce3a1ce22787566af342c0c5803b65af66c936fff693",
+    "reused": false,
+    "created": true
+  },
+  "hf_transport": {
+    "endpoint": "https://hf-mirror.com",
+    "source": "probe",
+    "probes": {
+      "https://huggingface.co": "unreachable (URLError)",
+      "https://hf-mirror.com": "HTTP 200"
+    }
+  },
+  "git_transport": {
+    "mode": "codeload",
+    "source": "probe",
+    "probe": "clone failed (TimeoutExpired)"
+  }
+}

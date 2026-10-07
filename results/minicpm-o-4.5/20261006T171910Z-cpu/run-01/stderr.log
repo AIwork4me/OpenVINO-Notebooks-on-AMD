@@ -1,0 +1,93 @@
+[IPKernelApp] WARNING | Kernel is running over TCP without encryption. All communication (including code and outputs) is sent in plain text and is susceptible to eavesdropping. Use IPC transport or launch with kernel manager-provisioned CurveZMQ keys to enable transport encryption.
+[31mERROR: pip's dependency resolver does not currently take into account all the packages that are installed. This behaviour is the source of the following dependency conflicts.
+parler-tts 0.2.2 requires transformers<=4.46.1,>=4.46.1, but you have transformers 4.51.0 which is incompatible.
+qwen-tts 0.0.4 requires transformers==4.57.3, but you have transformers 4.51.0 which is incompatible.
+ace-step 0.2.0 requires accelerate==1.6.0, but you have accelerate 1.12.0 which is incompatible.
+ace-step 0.2.0 requires datasets==3.4.1, but you have datasets 3.6.0 which is incompatible.
+ace-step 0.2.0 requires librosa==0.11.0, but you have librosa 0.10.2 which is incompatible.
+ace-step 0.2.0 requires matplotlib==3.10.1, but you have matplotlib 3.11.2 which is incompatible.
+ace-step 0.2.0 requires soundfile==0.13.1, but you have soundfile 0.12.1 which is incompatible.
+ace-step 0.2.0 requires transformers==4.50.0, but you have transformers 4.51.0 which is incompatible.
+omnivoice 0.2.1 requires transformers>=5.3.0, but you have transformers 4.51.0 which is incompatible.[0m[31m
+[0m[31mERROR: pip's dependency resolver does not currently take into account all the packages that are installed. This behaviour is the source of the following dependency conflicts.
+easyocr 1.7.2 requires opencv-python-headless, which is not installed.
+controlnet-aux 0.0.10 requires opencv-python-headless, which is not installed.
+qwen-tts 0.0.4 requires transformers==4.57.3, but you have transformers 4.51.0 which is incompatible.
+ace-step 0.2.0 requires accelerate==1.6.0, but you have accelerate 1.12.0 which is incompatible.
+ace-step 0.2.0 requires datasets==3.4.1, but you have datasets 3.6.0 which is incompatible.
+ace-step 0.2.0 requires librosa==0.11.0, but you have librosa 0.9.0 which is incompatible.
+ace-step 0.2.0 requires matplotlib==3.10.1, but you have matplotlib 3.11.2 which is incompatible.
+ace-step 0.2.0 requires soundfile==0.13.1, but you have soundfile 0.12.1 which is incompatible.
+ace-step 0.2.0 requires transformers==4.50.0, but you have transformers 4.51.0 which is incompatible.
+hf-gradio 0.4.1 requires gradio-client<3.0,>=2.0, but you have gradio-client 2.0.0.dev3 which is incompatible.
+descript-audiotools 0.7.4 requires protobuf!=4.24.0,<5.0.0,>=3.19.6, but you have protobuf 6.33.5 which is incompatible.
+omnivoice 0.2.1 requires transformers>=5.3.0, but you have transformers 4.51.0 which is incompatible.[0m[31m
+[0mTraceback (most recent call last):
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/ov_amd/_nbexec.py", line 144, in main
+    client.execute()
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages/jupyter_core/utils/__init__.py", line 165, in wrapped
+    return loop.run_until_complete(inner)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/base_events.py", line 687, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages/nbclient/client.py", line 709, in async_execute
+    await self.async_execute_cell(
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages/nbclient/client.py", line 1062, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages/nbclient/client.py", line 918, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+# Chat with single image (aligned with original model README)
+question = "What is in the image?"
+msgs = [{"role": "user", "content": [image, question]}]
+
+answer = ov_model.chat(
+    msgs=msgs,
+    use_tts_template=False,
+)
+print(answer)
+------------------
+
+
+[31m---------------------------------------------------------------------------[39m
+[31mAttributeError[39m                            Traceback (most recent call last)
+[36mCell[39m[36m [39m[32mIn[10][39m[32m, line 5[39m
+[32m      1[39m [38;5;66;03m# Chat with single image (aligned with original model README)[39;00m
+[32m      2[39m question = [33m"What is in the image?"[39m
+[32m      3[39m msgs = [{[33m"role"[39m: [33m"user"[39m, [33m"content"[39m: [image, question]}]
+[32m      4[39m 
+[32m----> [39m[32m5[39m answer = ov_model.chat(
+[32m      6[39m     msgs=msgs,
+[32m      7[39m     use_tts_template=[38;5;28;01mFalse[39;00m,
+[32m      8[39m )
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages/torch/utils/_contextlib.py:120[39m, in [36mcontext_decorator.<locals>.decorate_context[39m[34m(*args, **kwargs)[39m
+[32m    117[39m [38;5;129m@functools[39m.wraps(func)
+[32m    118[39m [38;5;28;01mdef[39;00m[38;5;250m [39m[34mdecorate_context[39m(*args, **kwargs):
+[32m    119[39m     [38;5;28;01mwith[39;00m ctx_factory():
+[32m--> [39m[32m120[39m         [38;5;28;01mreturn[39;00m [30;43mfunc[39;49m[30;43m([39;49m[30;43m*[39;49m[30;43margs[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43m*[39;49m[30;43m*[39;49m[30;43mkwargs[39;49m[30;43m)[39;49m
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/results/minicpm-o-4.5/workdir-cpu/minicpm_o_4_5_helper.py:4833[39m, in [36mOVMiniCPMO.chat[39m[34m(self, msgs, image, tokenizer, processor, max_new_tokens, min_new_tokens, do_sample, max_inp_length, max_slice_nums, use_image_id, enable_thinking, use_tts_template, generate_audio, output_audio_path, omni_mode, stream, stream_input, sampling, **kwargs)[39m
+[32m   4830[39m         msg[[33m"[39m[33mcontent[39m[33m"[39m] = [33m"[39m[38;5;130;01m\n[39;00m[33m"[39m.join(cur_parts)
+[32m   4832[39m [38;5;66;03m# Apply chat template (aligned with original)[39;00m
+[32m-> [39m[32m4833[39m prompt = [30;43mprocessor[39;49m[30;43m.[39;49m[30;43mtokenizer[39;49m.apply_chat_template(
+[32m   4834[39m     copy_msgs,
+[32m   4835[39m     tokenize=[38;5;28;01mFalse[39;00m,
+[32m   4836[39m     add_generation_prompt=[38;5;28;01mTrue[39;00m,
+[32m   4837[39m     use_tts_template=use_tts_template,
+[32m   4838[39m     enable_thinking=enable_thinking,
+[32m   4839[39m )
+[32m   4841[39m prompts_lists.append(prompt)
+[32m   4842[39m input_images_list.append(images)
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages/transformers/tokenization_utils_base.py:1108[39m, in [36mSpecialTokensMixin.__getattr__[39m[34m(self, key)[39m
+[32m   1105[39m         [38;5;28;01mreturn[39;00m [38;5;28mself[39m.convert_tokens_to_ids(attr_as_tokens) [38;5;28;01mif[39;00m attr_as_tokens [38;5;129;01mis[39;00m [38;5;129;01mnot[39;00m [38;5;28;01mNone[39;00m [38;5;28;01melse[39;00m [38;5;28;01mNone[39;00m
+[32m   1107[39m [38;5;28;01mif[39;00m key [38;5;129;01mnot[39;00m [38;5;129;01min[39;00m [38;5;28mself[39m.[34m__dict__[39m:
+[32m-> [39m[32m1108[39m     [38;5;28;01mraise[39;00m [38;5;167;01mAttributeError[39;00m([33mf[39m[33m"[39m[38;5;132;01m{[39;00m[38;5;28mself[39m.[34m__class__[39m.[34m__name__[39m[38;5;132;01m}[39;00m[33m has no attribute [39m[38;5;132;01m{[39;00mkey[38;5;132;01m}[39;00m[33m"[39m)
+[32m   1109[39m [38;5;28;01melse[39;00m:
+[32m   1110[39m     [38;5;28;01mreturn[39;00m [38;5;28msuper[39m().[34m__getattr__[39m(key)
+
+[31mAttributeError[39m: MiniCPMOTokenizerFast has no attribute tokenizer
+

@@ -1,0 +1,72 @@
+[cell 0 START +    0.6s] # Convert a Tensorflow Lite Model to OpenVINO™ |  | [TensorFlow Lite](http
+[cell 1 START +    0.6s] ## Preparation | [back to top ⬆️](#Table-of-contents:) |  | ### Install requ
+[cell 2 START +    0.6s] %pip install -q "openvino>=2023.1.0" | %pip install -q opencv-python req
+[cell 2 DONE  +    3.3s]
+[cell 3 START +    3.3s] ### Imports | [back to top ⬆️](#Table-of-contents:) | 
+[cell 4 START +    3.3s] from pathlib import Path | import numpy as np | from PIL import Image | impo
+[cell 4 DONE  +    3.4s]
+[cell 5 START +    3.4s] ## Download TFLite model | [back to top ⬆️](#Table-of-contents:) | 
+[cell 6 START +    3.4s] import kagglehub |  | model_dir = kagglehub.model_download("tensorflow/eff
+[cell 6 DONE  +    5.3s]
+[cell 7 START +    5.3s] ## Convert a Model to OpenVINO IR Format | [back to top ⬆️](#Table-of-co
+[cell 8 START +    5.3s] ov_model = ov.convert_model(tflite_model_path) | ov.save_model(ov_model,
+[cell 8 DONE  +    5.5s]
+[cell 9 START +    5.5s] ## Load model using OpenVINO TensorFlow Lite Frontend | [back to top ⬆️]
+[cell 10 START +    5.5s] core = ov.Core() |  | ov_model = core.read_model(tflite_model_path)
+[cell 10 DONE  +    5.5s]
+[cell 11 START +    5.5s] ## Run OpenVINO model inference | [back to top ⬆️](#Table-of-contents:) | 
+[cell 12 START +    5.5s] image = load_image("coco_bricks.png", "https://storage.openvinotoolkit
+[cell 12 DONE  +    5.6s]
+[cell 13 START +    5.6s] ### Select inference device | [back to top ⬆️](#Table-of-contents:) |  | sel
+[cell 14 START +    5.6s] device = device_widget() |  | device
+[cell 14 DONE  +    5.7s]
+[cell 15 START +    5.7s] compiled_model = core.compile_model(ov_model, device.value) | predicted_
+[04:54:23.2503]D[plugin.cpp:289][AUTO] deviceNameWithID:CPU, defaultDeviceID:, uniqueName:CPU_
+[04:54:23.2504]I[plugin.cpp:479][AUTO] device:CPU, config:LOG_LEVEL=LOG_NONE
+[04:54:23.2504]I[plugin.cpp:479][AUTO] device:CPU, config:PERFORMANCE_HINT=LATENCY
+[04:54:23.2504]I[plugin.cpp:479][AUTO] device:CPU, config:PERFORMANCE_HINT_NUM_REQUESTS=0
+[04:54:23.2504]I[plugin.cpp:479][AUTO] device:CPU, config:PERF_COUNT=NO
+[04:54:23.2504]I[plugin.cpp:484][AUTO] device:CPU, priority:0
+[04:54:23.2504]I[plugin.cpp:510][AUTO] Original device list() size to load the model: 0
+[04:54:23.2504]I[schedule.cpp:17][AUTO] scheduler starting
+[04:54:23.2504]I[auto_schedule.cpp:163][AUTO] select device:CPU
+[04:54:23.2511]I[auto_schedule.cpp:284][AUTO] Only one device or multiple devices of the same type will use passthrough compiled model
+[04:54:23.2998]I[auto_schedule.cpp:341][AUTO] Device: [CPU]: Compile model took 48.724643 ms
+[04:54:23.2999]I[auto_schedule.cpp:118][AUTO] device:CPU compiling model finished
+[04:54:23.2999]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:SUPPORTED_PROPERTIES=SUPPORTED_PROPERTIES NETWORK_NAME OPTIMAL_NUMBER_OF_INFER_REQUESTS NUM_STREAMS INFERENCE_NUM_THREADS PERF_COUNT INFERENCE_PRECISION_HINT PERFORMANCE_HINT EXECUTION_MODE_HINT PERFORMANCE_HINT_NUM_REQUESTS ENABLE_
+[04:54:23.2999]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:NETWORK_NAME=TensorFlow_Lite_Frontend_IR
+[04:54:23.2999]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:OPTIMAL_NUMBER_OF_INFER_REQUESTS=1
+[04:54:23.2999]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:NUM_STREAMS=1
+[04:54:23.2999]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:INFERENCE_NUM_THREADS=16
+[04:54:23.2999]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:PERF_COUNT=NO
+[04:54:23.2999]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:INFERENCE_PRECISION_HINT=bf16
+[04:54:23.2999]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:PERFORMANCE_HINT=LATENCY
+[04:54:23.2999]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:EXECUTION_MODE_HINT=PERFORMANCE
+[04:54:23.2999]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:PERFORMANCE_HINT_NUM_REQUESTS=0
+[04:54:23.2999]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:ENABLE_CPU_PINNING=YES
+[04:54:23.2999]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:ENABLE_CPU_RESERVATION=NO
+[04:54:23.2999]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:SCHEDULING_CORE_TYPE=ANY_CORE
+[04:54:23.2999]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:MODEL_DISTRIBUTION_POLICY=
+[04:54:23.2999]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:ENABLE_HYPER_THREADING=NO
+[04:54:23.2999]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:EXECUTION_DEVICES=CPU
+[04:54:23.2999]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:CPU_DENORMALS_OPTIMIZATION=NO
+[04:54:23.2999]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:LOG_LEVEL=LOG_NONE
+[04:54:23.2999]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:CPU_SPARSE_WEIGHTS_DECOMPRESSION_RATE=1
+[04:54:23.3000]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:ENABLE_TENSOR_PARALLEL=NO
+[04:54:23.3000]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:TBB_PARTITIONER=STATIC
+[04:54:23.3000]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:DYNAMIC_QUANTIZATION_GROUP_SIZE=32
+[04:54:23.3000]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:KV_CACHE_PRECISION=u8
+[04:54:23.3000]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:KEY_CACHE_PRECISION=u8
+[04:54:23.3000]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:VALUE_CACHE_PRECISION=u8
+[04:54:23.3000]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:KEY_CACHE_GROUP_SIZE=0
+[04:54:23.3000]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:VALUE_CACHE_GROUP_SIZE=0
+[04:54:23.3000]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:RUNTIME_REQUIREMENTS=meta=1.0;ov=2026.4.1;isa=Intel AVX-512 with Intel DL Boost and bfloat16 support
+[04:54:23.3000]I[plugin.cpp:534][AUTO] underlying hardware does not support hardware context
+[cell 15 DONE  +    5.8s]
+[cell 16 START +    5.8s] imagenet_classes_file_path = download_file("https://storage.openvinoto
+[cell 16 DONE  +    5.9s]
+[cell 17 START +    5.9s] ## Estimate Model Performance | [back to top ⬆️](#Table-of-contents:) | [B
+[cell 18 START +    5.9s] print(f"Benchmark model inference on {device.value}") | !benchmark_app -
+[cell 18 DONE  +   21.4s]
+[04:54:38.9494]I[schedule.cpp:312][AUTO] scheduler ending
+NBEXEC_RESULT={"ok": true, "n_cells": 10, "n_skipped": 0, "n_substituted": 0, "stopped_after": null, "error_cell": null, "error_type": null, "error_head": null, "duration_s": 21.6, "patch_notes": []}

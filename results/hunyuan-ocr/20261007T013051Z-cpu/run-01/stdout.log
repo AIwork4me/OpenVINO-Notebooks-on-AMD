@@ -1,0 +1,7 @@
+[cell 0 START +    0.4s] # Document parsing with HunyuanOCR and OpenVINO |  | [HunyuanOCR](https://
+[cell 1 START +    0.4s] ## Prerequisites | [back to top ⬆️](#Table-of-contents:) |  | HunyuanOCR shi
+[cell 2 START +    0.4s] import requests | from pathlib import Path | from shutil import copyfile |  | 
+[cell 2 DONE  +    0.5s]
+[cell 3 START +    0.5s] %pip uninstall -q -y optimum optimum-intel optimum-onnx |  | import subpro
+[cell 3 DONE  +   14.9s]
+NBEXEC_RESULT={"ok": false, "n_cells": 11, "n_skipped": 1, "n_substituted": 1, "stopped_after": null, "error_cell": null, "error_type": "CellExecutionError", "error_head": "\u001b[31mValueError\u001b[39m: Unexpected dependency in optimum-intel/setup.py: \"optimum@https://codeload.github.com/huggingface/optimum/tar.gz/HEAD\"", "duration_s": 15.02, "patch_notes": ["substituted 3 occurrence(s) in cell 3", "skipped cell 16: matched skip pattern"]}

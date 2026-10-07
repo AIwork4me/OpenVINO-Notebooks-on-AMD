@@ -1,0 +1,7 @@
+[cell 0 START +    0.4s] # PDF converting with olmOCR model and OpenVINO |  | <div class="alert ale
+[cell 1 START +    0.4s] ## Prerequisites | [back to top ⬆️](#Table-of-contents:)
+[cell 2 START +    0.4s] from pathlib import Path | import requests |  | if not Path("notebook_utils.
+[cell 2 DONE  +   29.4s]
+[cell 3 START +   29.4s] ## The original model inference | [back to top ⬆️](#Table-of-contents:) | 
+[cell 4 START +   29.4s] import torch | import base64 | import urllib.request | import shutil |  | from i
+NBEXEC_RESULT={"ok": false, "n_cells": 14, "n_skipped": 1, "n_substituted": 1, "stopped_after": null, "error_cell": null, "error_type": "CellTimeoutError", "error_head": "-------------------", "duration_s": 932.02, "patch_notes": ["substituted 1 occurrence(s) in cell 2", "skipped cell 25: matched skip pattern"]}

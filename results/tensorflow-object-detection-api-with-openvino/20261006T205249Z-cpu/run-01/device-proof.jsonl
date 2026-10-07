@@ -1,0 +1,3 @@
+{"t": "2026-10-06T20:52:55Z", "kind": "probe_installed", "openvino_version": "2026.4.1-22982-e213a147257-releases/2026/4"}
+{"t": "2026-10-06T20:53:02Z", "kind": "compile_model", "device_arg": "AUTO", "execution_devices": ["CPU"], "openvino_version": "2026.4.1-22982-e213a147257-releases/2026/4"}
+{"t": "2026-10-06T20:53:18Z", "kind": "compile_model", "device_arg": "AUTO", "execution_devices": ["CPU"], "openvino_version": "2026.4.1-22982-e213a147257-releases/2026/4"}

@@ -1,0 +1,75 @@
+[IPKernelApp] WARNING | Kernel is running over TCP without encryption. All communication (including code and outputs) is sent in plain text and is susceptible to eavesdropping. Use IPC transport or launch with kernel manager-provisioned CurveZMQ keys to enable transport encryption.
+mum/exporters/openvino/__init__.py:15[39m
+[32m      1[39m [38;5;66;03m# Copyright 2024 The HuggingFace Team. All rights reserved.[39;00m
+[32m      2[39m [38;5;66;03m#[39;00m
+[32m      3[39m [38;5;66;03m# Licensed under the Apache License, Version 2.0 (the "License");[39;00m
+[32m   (...)[39m[32m     12[39m [38;5;66;03m# See the License for the specific language governing permissions and[39;00m
+[32m     13[39m [38;5;66;03m# limitations under the License.[39;00m
+[32m---> [39m[32m15[39m [38;5;28;01mimport[39;00m[38;5;250m [39m[34;01moptimum[39;00m[34;01m.[39;00m[34;01mexporters[39;00m[34;01m.[39;00m[34;01mopenvino[39;00m[34;01m.[39;00m[34;01mmodel_configs[39;00m
+[32m     17[39m [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01m.[39;00m[34;01m__main__[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m main_export
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages/optimum/exporters/openvino/model_configs.py:22[39m
+[32m     20[39m [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01mtransformers[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m AutoConfig, PretrainedConfig, PreTrainedModel
+[32m---> [39m[32m22[39m [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01moptimum[39;00m[34;01m.[39;00m[34;01mexporters[39;00m[34;01m.[39;00m[34;01monnx[39;00m[34;01m.[39;00m[34;01mconfig[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m OnnxConfig, TextDecoderOnnxConfig, TextDecoderWithPositionIdsOnnxConfig
+[32m     23[39m [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01moptimum[39;00m[34;01m.[39;00m[34;01mexporters[39;00m[34;01m.[39;00m[34;01monnx[39;00m[34;01m.[39;00m[34;01mmodel_configs[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m (
+[32m     24[39m     BartOnnxConfig,
+[32m     25[39m     BlenderbotOnnxConfig,
+[32m   (...)[39m[32m     53[39m     WhisperOnnxConfig,
+[32m     54[39m )
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages/optimum/exporters/onnx/config.py:26[39m
+[32m     25[39m [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01moptimum[39;00m[34;01m.[39;00m[34;01mexporters[39;00m[34;01m.[39;00m[34;01mtasks[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m TasksManager
+[32m---> [39m[32m26[39m [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01moptimum[39;00m[34;01m.[39;00m[34;01monnx[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m merge_decoders
+[32m     27[39m [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01moptimum[39;00m[34;01m.[39;00m[34;01mutils[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m (
+[32m     28[39m     DummyAudioInputGenerator,
+[32m     29[39m     DummyBboxInputGenerator,
+[32m   (...)[39m[32m     36[39m     logging,
+[32m     37[39m )
+
+[36mFile [39m[32m<frozen importlib._bootstrap>:1412[39m, in [36m_handle_fromlist[39m[34m(module, fromlist, import_, recursive)[39m
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages/transformers/utils/import_utils.py:1766[39m, in [36m_LazyModule.__getattr__[39m[34m(self, name)[39m
+[32m   1765[39m [38;5;28;01melif[39;00m name [38;5;129;01min[39;00m [38;5;28mself[39m._class_to_module.keys():
+[32m-> [39m[32m1766[39m     module = [30;43mself[39;49m[30;43m.[39;49m[30;43m_get_module[39;49m[30;43m([39;49m[30;43mself[39;49m[30;43m.[39;49m[30;43m_class_to_module[39;49m[30;43m[[39;49m[30;43mname[39;49m[30;43m][39;49m[30;43m)[39;49m
+[32m   1767[39m     value = [38;5;28mgetattr[39m(module, name)
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages/transformers/utils/import_utils.py:1780[39m, in [36m_LazyModule._get_module[39m[34m(self, module_name)[39m
+[32m   1779[39m [38;5;28;01mexcept[39;00m [38;5;167;01mException[39;00m [38;5;28;01mas[39;00m e:
+[32m-> [39m[32m1780[39m     [38;5;28;01mraise[39;00m [38;5;167;01mRuntimeError[39;00m(
+[32m   1781[39m         [33mf[39m[33m"[39m[33mFailed to import [39m[38;5;132;01m{[39;00m[38;5;28mself[39m.[34m__name__[39m[38;5;132;01m}[39;00m[33m.[39m[38;5;132;01m{[39;00mmodule_name[38;5;132;01m}[39;00m[33m because of the following error (look up to see its[39m[33m"[39m
+[32m   1782[39m         [33mf[39m[33m"[39m[33m traceback):[39m[38;5;130;01m\n[39;00m[38;5;132;01m{[39;00me[38;5;132;01m}[39;00m[33m"[39m
+[32m   1783[39m     ) [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01me[39;00m
+
+[31mRuntimeError[39m: Failed to import optimum.onnx.graph_transformations because of the following error (look up to see its traceback):
+cannot import name 'runtime_version' from 'google.protobuf' (/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages/google/protobuf/__init__.py)
+
+The above exception was the direct cause of the following exception:
+
+[31mRuntimeError[39m                              Traceback (most recent call last)
+[36mCell[39m[36m [39m[32mIn[3][39m[32m, line 4[39m
+[32m      1[39m [38;5;28;01mimport[39;00m os
+[32m      2[39m 
+[32m      3[39m [38;5;28;01mfrom[39;00m transformers [38;5;28;01mimport[39;00m AutoTokenizer
+[32m----> [39m[32m4[39m [38;5;28;01mfrom[39;00m optimum.intel [38;5;28;01mimport[39;00m OVModelForCausalLM, OVWeightQuantizationConfig
+
+[36mFile [39m[32m<frozen importlib._bootstrap>:1412[39m, in [36m_handle_fromlist[39m[34m(module, fromlist, import_, recursive)[39m
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages/transformers/utils/import_utils.py:1766[39m, in [36m_LazyModule.__getattr__[39m[34m(self, name)[39m
+[32m   1764[39m     value = Placeholder
+[32m   1765[39m [38;5;28;01melif[39;00m name [38;5;129;01min[39;00m [38;5;28mself[39m._class_to_module.keys():
+[32m-> [39m[32m1766[39m     module = [30;43mself[39;49m[30;43m.[39;49m[30;43m_get_module[39;49m[30;43m([39;49m[30;43mself[39;49m[30;43m.[39;49m[30;43m_class_to_module[39;49m[30;43m[[39;49m[30;43mname[39;49m[30;43m][39;49m[30;43m)[39;49m
+[32m   1767[39m     value = [38;5;28mgetattr[39m(module, name)
+[32m   1768[39m [38;5;28;01melif[39;00m name [38;5;129;01min[39;00m [38;5;28mself[39m._modules:
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages/transformers/utils/import_utils.py:1780[39m, in [36m_LazyModule._get_module[39m[34m(self, module_name)[39m
+[32m   1778[39m     [38;5;28;01mreturn[39;00m importlib.import_module([33m"[39m[33m.[39m[33m"[39m + module_name, [38;5;28mself[39m.[34m__name__[39m)
+[32m   1779[39m [38;5;28;01mexcept[39;00m [38;5;167;01mException[39;00m [38;5;28;01mas[39;00m e:
+[32m-> [39m[32m1780[39m     [38;5;28;01mraise[39;00m [38;5;167;01mRuntimeError[39;00m(
+[32m   1781[39m         [33mf[39m[33m"[39m[33mFailed to import [39m[38;5;132;01m{[39;00m[38;5;28mself[39m.[34m__name__[39m[38;5;132;01m}[39;00m[33m.[39m[38;5;132;01m{[39;00mmodule_name[38;5;132;01m}[39;00m[33m because of the following error (look up to see its[39m[33m"[39m
+[32m   1782[39m         [33mf[39m[33m"[39m[33m traceback):[39m[38;5;130;01m\n[39;00m[38;5;132;01m{[39;00me[38;5;132;01m}[39;00m[33m"[39m
+[32m   1783[39m     ) [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01me[39;00m
+
+[31mRuntimeError[39m: Failed to import optimum.intel.openvino because of the following error (look up to see its traceback):
+Failed to import optimum.onnx.graph_transformations because of the following error (look up to see its traceback):
+cannot import name 'runtime_version' from 'google.protobuf' (/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages/google/protobuf/__init__.py)
+

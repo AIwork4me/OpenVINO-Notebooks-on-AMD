@@ -1,0 +1,62 @@
+[cell 0 START +    0.6s] # Post-Training Quantization of PyTorch models with NNCF |  | The goal of 
+[cell 1 START +    0.6s] ## Preparations | [back to top ⬆️](#Table-of-contents:) | 
+[cell 2 START +    0.6s] # Install openvino package | %pip install -q "openvino>=2024.0.0" torch 
+[cell 2 DONE  +   20.6s]
+[cell 3 START +   20.6s] ### Imports | [back to top ⬆️](#Table-of-contents:) | 
+[cell 4 START +   20.6s] import os | import time | import zipfile | from pathlib import Path |  | import 
+[cell 4 DONE  +   22.2s]
+[cell 5 START +   22.2s] ### Settings | [back to top ⬆️](#Table-of-contents:) | 
+[cell 6 START +   22.2s] torch_device = torch.device("cuda" if torch.cuda.is_available() else "
+[cell 6 DONE  +   22.2s]
+[cell 7 START +   22.2s] ### Download and Prepare Tiny ImageNet dataset | [back to top ⬆️](#Table
+[cell 8 START +   22.2s] def download_tiny_imagenet_200( |     output_dir: Path, |     url: str = "
+[cell 8 DONE  +   22.2s]
+[cell 9 START +   22.2s] ### Helpers classes and functions | [back to top ⬆️](#Table-of-contents:
+[cell 10 START +   22.2s] class AverageMeter(object): |     """Computes and stores the average and
+[cell 10 DONE  +   22.3s]
+[cell 11 START +   22.3s] ### Validation function | [back to top ⬆️](#Table-of-contents:) | 
+[cell 12 START +   22.3s] from typing import Union |  |  | def validate( |     val_loader: torch.utils.d
+[cell 12 DONE  +   22.3s]
+[cell 13 START +   22.3s] ### Create and load original uncompressed model | [back to top ⬆️](#Tabl
+[cell 14 START +   22.3s] def create_model(model_path: Path): |     """Creates the ResNet-50 model
+[cell 14 DONE  +   22.7s]
+[cell 15 START +   22.7s] ### Create train and validation DataLoaders | [back to top ⬆️](#Table-of
+[cell 16 START +   22.7s] def create_dataloaders(batch_size: int = 128): |     """Creates train da
+[cell 16 DONE  +   22.8s]
+[cell 17 START +   22.8s] ## Model quantization and benchmarking | [back to top ⬆️](#Table-of-cont
+[cell 18 START +   22.8s] ### I. Evaluate the loaded model | [back to top ⬆️](#Table-of-contents:)
+[cell 19 START +   22.8s] acc1 = validate(val_loader, model) | print(f"Test accuracy of FP32 model
+[cell 19 DONE  +   35.6s]
+[cell 20 START +   35.6s] ### II. Create and initialize quantization | [back to top ⬆️](#Table-of-
+[cell 21 START +   35.6s] 1. Create a transformation function that accepts a sample from the dat
+[cell 22 START +   35.6s] def transform_fn(data_item): |     images, _ = data_item |     return imag
+[cell 22 DONE  +   35.6s]
+[cell 23 START +   35.6s] 2. Create a quantized model from the pre-trained `FP32` model and the 
+[cell 24 START +   35.6s] quantized_model = nncf.quantize(model, calibration_dataset)
+[cell 24 DONE  +  127.6s]
+[cell 25 START +  127.6s] 3. Evaluate the new model on the validation set after initialization o
+[cell 26 START +  127.6s] acc1 = validate(val_loader, quantized_model) | print(f"Accuracy of initi
+[cell 26 DONE  +  144.9s]
+[cell 27 START +  144.9s] It should be noted that the inference time for the quantized PyTorch m
+[cell 28 START +  144.9s] ### III. Convert the models to OpenVINO Intermediate Representation (O
+[cell 29 START +  144.9s] dummy_input = torch.randn(128, 3, *IMAGE_SIZE) |  | model_ir = ov.convert_
+[cell 29 DONE  +  146.5s]
+[cell 30 START +  146.5s] quantized_model_ir = ov.convert_model(quantized_model, example_input=d
+[cell 30 DONE  +  149.7s]
+[cell 31 START +  149.7s] Select inference device for OpenVINO
+[cell 32 START +  149.7s] device = device_widget(exclude=["NPU"]) |  | device
+[cell 32 DONE  +  149.9s]
+[cell 33 START +  149.9s] Evaluate the FP32 and INT8 models.
+[cell 34 START +  149.9s] core = ov.Core() | fp32_compiled_model = core.compile_model(model_ir, de
+[cell 34 DONE  +  153.2s]
+[cell 35 START +  153.2s] int8_compiled_model = core.compile_model(quantized_model_ir, device.va
+[cell 35 DONE  +  155.6s]
+[cell 36 START +  155.6s] ### IV. Compare performance of INT8 model and FP32 model in OpenVINO | [
+[cell 37 START +  155.6s] device
+[cell 37 DONE  +  155.6s]
+[cell 38 START +  155.6s] def parse_benchmark_output(benchmark_output: str): |     """Prints the o
+[cell 38 DONE  +  217.1s]
+[cell 39 START +  217.1s] Show device Information for reference:
+[cell 40 START +  217.1s] import openvino.properties as props |  | core = ov.Core() | devices = core.a
+[cell 40 DONE  +  217.1s]
+NBEXEC_RESULT={"ok": true, "n_cells": 20, "n_skipped": 0, "n_substituted": 0, "stopped_after": null, "error_cell": null, "error_type": null, "error_head": null, "duration_s": 218.4, "patch_notes": []}

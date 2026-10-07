@@ -1,0 +1,27 @@
+[cell 0 START +    0.5s] # Multimodal RAG for video analytics with LlamaIndex |  | Constructing a R
+[cell 1 START +    0.5s] ## Prerequisites |  | [back to top ⬆️](#Table-of-contents:) |  | install requi
+[cell 2 START +    0.5s] %pip uninstall -q -y "moviepy" "decorator" "optimum" "optimum-intel" "
+[cell 2 DONE  +    3.9s]
+[cell 3 START +    3.9s] %pip install -q "https://codeload.github.com/huggingface/optimum-intel
+[cell 3 DONE  +    6.1s]
+[cell 4 START +    6.1s] import os | import requests | from pathlib import Path |  | os.environ["GIT_CL
+[cell 4 DONE  +    6.1s]
+[cell 5 START +    6.1s] ## Convert and Compress models |  | [back to top ⬆️](#Table-of-contents:) | 
+[cell 6 START +    6.1s] import huggingface_hub as hf_hub |  | asr_model_id = "OpenVINO/distil-whis
+[cell 6 DONE  +    6.1s]
+[cell 7 START +    6.1s] ### CLIP model |  | [back to top ⬆️](#Table-of-contents:) |  | In this example
+[cell 8 START +    6.1s] from cmd_helper import optimum_cli |  | clip_model_id = "laion/CLIP-ViT-B-
+[cell 8 DONE  +    6.1s]
+[cell 9 START +    6.1s] ### VLM model |  | [back to top ⬆️](#Table-of-contents:) |  | Vision Language 
+[cell 10 START +    6.1s] vlm_model_id = "OpenVINO/Phi-3.5-vision-instruct-int4-ov" | vlm_model_pa
+[cell 10 DONE  +    6.1s]
+[cell 11 START +    6.1s] ## Download and process video |  | [back to top ⬆️](#Table-of-contents:) |  | 
+[cell 12 START +    6.1s] video_url = "https://github.com/user-attachments/assets/2e38afa5-ce3e-
+[cell 12 DONE  +    6.1s]
+[cell 13 START +    6.1s] ### Initialize ASR |  | [back to top ⬆️](#Table-of-contents:) |  | Select infe
+[cell 14 START +    6.1s] from notebook_utils import device_widget |  | asr_device = device_widget(d
+[cell 14 DONE  +    6.4s]
+[cell 15 START +    6.4s] The Hugging Face Optimum API is a high-level API that enables us to co
+[cell 16 START +    6.4s] from optimum.intel import OVModelForSpeechSeq2Seq | from transformers im
+[cell 16 DONE  +    9.3s]
+NBEXEC_RESULT={"ok": false, "n_cells": 24, "n_skipped": 1, "n_substituted": 1, "stopped_after": null, "error_cell": null, "error_type": "CellExecutionError", "error_head": "Can not open file /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/multimodal-rag-llamaindex/workdir-cpu/distil-whisper-large-v3-int8-ov/openvino_decoder_model.bin for mapping. Ensure that file exists and has appropriate permissions.", "duration_s": 10.86, "patch_notes": ["substituted 1 occurrence(s) in cell 3", "skipped cell 39: matched skip pattern"]}

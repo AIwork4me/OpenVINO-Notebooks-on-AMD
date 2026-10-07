@@ -1,0 +1,26 @@
+[cell 0 START +    0.4s] # Qwen3-TTS Text-to-Speech with OpenVINO™ |  | Qwen3-TTS is a state-of-the
+[cell 1 START +    0.4s] ## Prerequisites | [back to top ⬆️](#Table-of-contents:)
+[cell 2 START +    0.4s] # Fetch notebook_utils module | import requests | from pathlib import Path
+[cell 2 DONE  +    0.5s]
+[cell 3 START +    0.5s] ### Install Dependencies | [back to top ⬆️](#Table-of-contents:) |  | Instal
+[cell 4 START +    0.5s] from cmd_helper import clone_repo | from pip_helper import pip_install |  | 
+[cell 4 DONE  +   11.6s]
+[cell 5 START +   11.6s] ## Download and Prepare Qwen3-TTS Model | [back to top ⬆️](#Table-of-con
+[cell 6 START +   11.6s] import ipywidgets as widgets |  | model_options = { |     "Qwen3-TTS-CustomV
+[cell 6 DONE  +   11.7s]
+[cell 7 START +   11.7s] ### Model Architecture |  | The Qwen3-TTS pipeline consists of several key
+[cell 8 START +   11.7s] ## Convert Model to OpenVINO Format | [back to top ⬆️](#Table-of-content
+[cell 9 START +   11.7s] from qwen_3_tts_helper import convert_qwen3_tts_model |  | # from nncf imp
+[cell 9 DONE  +   14.8s]
+[cell 10 START +   14.8s] ## Create Inference Pipeline | [back to top ⬆️](#Table-of-contents:) |  | ##
+[cell 11 START +   14.8s] from notebook_utils import device_widget |  | device = device_widget("CPU"
+[cell 11 DONE  +   15.0s]
+[cell 12 START +   15.0s] ### Load OpenVINO Model | [back to top ⬆️](#Table-of-contents:) |  | Load th
+[cell 13 START +   15.0s] from qwen_3_tts_helper import OVQwen3TTSModel |  | ov_model = OVQwen3TTSMo
+[cell 13 DONE  +   17.2s]
+[cell 14 START +   17.2s] ### Run Text-to-Speech | [back to top ⬆️](#Table-of-contents:) |  | Now let'
+[cell 15 START +   17.2s] import time | import IPython.display as ipd |  | # Test text | test_text = "He
+[cell 15 DONE  +   25.3s]
+[cell 16 START +   25.3s] ## Interactive Demo | [back to top ⬆️](#Table-of-contents:) |  | Launch an i
+[cell 17 START +   25.3s] from gradio_helper import make_demo |  | demo = make_demo(ov_model, model_
+NBEXEC_RESULT={"ok": true, "n_cells": 8, "n_skipped": 1, "n_substituted": 0, "stopped_after": null, "error_cell": null, "error_type": null, "error_head": null, "duration_s": 28.14, "patch_notes": ["skipped cell 17: matched skip pattern"]}

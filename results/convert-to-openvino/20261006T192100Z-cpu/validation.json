@@ -1,0 +1,16 @@
+{
+  "schema_version": 2,
+  "passed": false,
+  "checks": {
+    "output_contains": {
+      "\\[ SUCCESS \\] XML file: model/distilbert\\.xml": false,
+      "\\[ SUCCESS \\] BIN file: model/distilbert\\.bin": false
+    },
+    "no_cell_error": false,
+    "skipped_cells": 0
+  },
+  "notes": [],
+  "level": "WORKLOAD_CORRECTNESS",
+  "contract_present": true,
+  "aggregate_ref": "aggregate.json"
+}

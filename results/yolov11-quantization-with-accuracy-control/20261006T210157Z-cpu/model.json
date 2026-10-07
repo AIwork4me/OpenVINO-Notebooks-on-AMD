@@ -1,0 +1,11 @@
+{
+  "schema_version": 2,
+  "declared": {
+    "name": "",
+    "source": "",
+    "revision": "",
+    "license": ""
+  },
+  "detected_hf_refs": [],
+  "notebook": "yolov11-quantization-with-accuracy-control.ipynb"
+}

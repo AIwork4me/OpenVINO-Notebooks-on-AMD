@@ -1,0 +1,44 @@
+[cell 0 START +    0.4s] # Line-level text detection with Surya |  | [![Colab](https://colab.resear
+[cell 1 START +    0.4s] ## Fetch test image | [back to top ⬆️](#Table-of-contents:) |  | We will use
+[cell 2 START +    0.4s] import os |  | os.environ["GIT_CLONE_PROTECTION_ACTIVE"] = "false" |  | %pip i
+[cell 2 DONE  +    1.3s]
+[cell 3 START +    1.3s] from datasets import load_dataset | import requests | from pathlib import 
+[cell 3 DONE  +   17.5s]
+[cell 4 START +   17.5s] ## Run PyTorch inference | [back to top ⬆️](#Table-of-contents:) |  | To per
+[cell 5 START +   17.5s] # Predictions visualization function | from PIL import ImageDraw |  |  | def v
+[cell 5 DONE  +   17.5s]
+[cell 6 START +   17.5s] from surya.detection import batch_text_detection | from surya.model.dete
+[cell 6 DONE  +   23.5s]
+[cell 7 START +   23.5s] ## Convert model to OpenVINO Intermediate Representation (IR) format | [
+[cell 8 START +   23.5s] # Build example input | from surya.input.processing import prepare_image
+[cell 8 DONE  +   23.6s]
+[cell 9 START +   23.6s] # Convert model | import openvino as ov | from pathlib import Path |  | ov_mod
+[cell 9 DONE  +   38.7s]
+[cell 10 START +   38.7s] ## Run OpenVINO model | [back to top ⬆️](#Table-of-contents:) |  | Select de
+[cell 11 START +   38.7s] from notebook_utils import device_widget |  | device = device_widget(exclu
+[cell 11 DONE  +   38.9s]
+[cell 12 START +   38.9s] We want to reuse model results postprocessing implemented in `batch_in
+[cell 13 START +   38.9s] core = ov.Core() |  | # Compile OpenVINO model for loading on device | compi
+[cell 13 DONE  +   40.8s]
+[cell 14 START +   40.8s] ## Apply post-training quantization using NNCF | [back to top ⬆️](#Table
+[cell 15 START +   40.8s] from notebook_utils import quantization_widget |  | to_quantize = quantiza
+[cell 15 DONE  +   40.8s]
+[cell 16 START +   40.8s] import requests |  | r = requests.get( |     url="https://raw.githubusercont
+[cell 16 DONE  +  307.0s]
+[cell 17 START +  307.0s] Free resources before quantization.
+[cell 18 START +  307.0s] import gc |  | del model | del ov_model | del compiled_ov_model | del ov_model_w
+[cell 18 DONE  +  307.4s]
+[cell 19 START +  307.4s] ### Prepare dataset | [back to top ⬆️](#Table-of-contents:) |  | We create c
+[cell 20 START +  307.4s] %%skip not $to_quantize.value |  | from surya.input.processing import spli
+[cell 20 DONE  +  321.6s]
+[cell 21 START +  321.6s] ### Quantize model | [back to top ⬆️](#Table-of-contents:) |  | Create a qua
+[cell 22 START +  321.6s] %%skip not $to_quantize.value |  | import nncf |  | quantized_ov_model = nncf.
+[cell 22 DONE  +  334.6s]
+[cell 23 START +  334.6s] ## Run quantized OpenVINO model | [back to top ⬆️](#Table-of-contents:) | 
+[cell 24 START +  334.6s] %%skip not $to_quantize.value |  | # Compile OpenVINO model for loading on
+[cell 24 DONE  +  336.8s]
+[cell 25 START +  336.8s] ## Interactive inference |  | [back to top ⬆️](#Table-of-contents:) |  | Now, 
+[cell 26 START +  336.8s] from pathlib import Path | import ipywidgets as widgets |  | quantized_model
+[cell 26 DONE  +  336.8s]
+[cell 27 START +  336.8s] compiled_model = ov.compile_model(INT8_MODEL_PATH if use_quantized_mod
+NBEXEC_RESULT={"ok": true, "n_cells": 16, "n_skipped": 1, "n_substituted": 0, "stopped_after": null, "error_cell": null, "error_type": null, "error_head": null, "duration_s": 338.28, "patch_notes": ["skipped cell 27: matched skip pattern"]}

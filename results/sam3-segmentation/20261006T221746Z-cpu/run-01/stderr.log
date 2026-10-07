@@ -1,0 +1,8 @@
+[IPKernelApp] WARNING | Kernel is running over TCP without encryption. All communication (including code and outputs) is sent in plain text and is susceptible to eavesdropping. Use IPC transport or launch with kernel manager-provisioned CurveZMQ keys to enable transport encryption.
+[31mERROR: pip's dependency resolver does not currently take into account all the packages that are installed. This behaviour is the source of the following dependency conflicts.
+olmocr 0.4.27 requires bleach, which is not installed.
+olmocr 0.4.27 requires markdownify, which is not installed.
+detectron2 0.6 requires iopath<0.1.10,>=0.1.7, but you have iopath 0.1.10 which is incompatible.
+gruut 2.2.3 requires networkx<3.0.0,>=2.5.0, but you have networkx 3.6.1 which is incompatible.
+gruut 2.2.3 requires numpy<2.0.0,>=1.19.0, but you have numpy 2.2.6 which is incompatible.[0m[31m
+[0m

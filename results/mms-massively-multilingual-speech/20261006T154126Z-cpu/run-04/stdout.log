@@ -1,0 +1,101 @@
+[cell 0 START +    0.4s] # MMS: Scaling Speech Technology to 1000+ languages with OpenVINO™ |  | Th
+[cell 1 START +    0.4s]  | #### Table of contents: |  | - [Prerequisites](#Prerequisites) | - [Prepare
+[cell 2 START +    0.4s] ## Prerequisites | [back to top ⬆️](#Table-of-contents:) | 
+[cell 3 START +    0.4s] %pip install -q --upgrade pip | %pip install -q  "openvino>=2023.1.0" "n
+[cell 3 DONE  +    2.0s]
+[cell 4 START +    2.0s] from pathlib import Path |  | import torch |  | import openvino as ov |  | import 
+[cell 4 DONE  +    2.7s]
+[cell 5 START +    2.7s] ## Prepare an example audio | [back to top ⬆️](#Table-of-contents:) |  | Rea
+[cell 6 START +    2.7s] import ipywidgets as widgets |  | SAMPLE_LANG = widgets.Dropdown( |     opti
+[cell 6 DONE  +    2.7s]
+[cell 7 START +    2.7s] Specify `streaming=True` to not download the entire dataset.
+[cell 8 START +    2.7s] from datasets import load_dataset |  | mls_dataset = load_dataset("faceboo
+[cell 8 DONE  +   53.4s]
+[cell 9 START +   53.4s] Example has a dictionary structure. It contains an audio data and a te
+[cell 10 START +   53.4s] print(example)  # look at structure
+[cell 10 DONE  +   53.4s]
+[cell 11 START +   53.4s] import IPython.display as ipd |  | print(example["transcript"]) | ipd.Audio(
+[cell 11 DONE  +   53.4s]
+[cell 12 START +   53.4s] ## Language Identification (LID)  | [back to top ⬆️](#Table-of-contents:
+[cell 13 START +   53.4s] ### Download pretrained model and processor | [back to top ⬆️](#Table-of
+[cell 14 START +   53.4s] from transformers import Wav2Vec2ForSequenceClassification, AutoFeatur
+[cell 14 DONE  +   72.0s]
+[cell 15 START +   72.0s] ### Use the original model to run an inference | [back to top ⬆️](#Table
+[cell 16 START +   72.0s] inputs = lid_processor(example["audio"]["array"], sampling_rate=16_000
+[cell 16 DONE  +   74.4s]
+[cell 17 START +   74.4s] ### Convert to OpenVINO IR model and run an inference | [back to top ⬆️]
+[cell 18 START +   74.4s] Select device from dropdown list for running inference using OpenVINO
+[cell 19 START +   74.4s] from notebook_utils import device_widget |  | core = ov.Core() |  | device = d
+[cell 19 DONE  +   74.6s]
+[cell 20 START +   74.6s] Convert model to OpenVINO format and compile it
+[cell 21 START +   74.6s] MAX_SEQ_LENGTH = 30480 |  | lid_model_xml_path = Path("models/ov_lid_model
+[cell 21 DONE  +   75.2s]
+[cell 22 START +   75.2s] Now it is possible to run an inference. 
+[cell 23 START +   75.2s] def detect_language(compiled_model, audio_data): |     inputs = lid_proc
+[cell 23 DONE  +   75.2s]
+[cell 24 START +   75.2s] detect_language(compiled_lid_model, example["audio"]["array"])
+[cell 24 DONE  +   76.0s]
+[cell 25 START +   76.0s] Let's check another language.
+[cell 26 START +   76.0s] SAMPLE_LANG = widgets.Dropdown( |     options=["german", "dutch", "frenc
+[cell 26 DONE  +   76.0s]
+[cell 27 START +   76.0s] mls_dataset = load_dataset("facebook/multilingual_librispeech", SAMPLE
+[cell 27 DONE  +  116.4s]
+[cell 28 START +  116.4s] language_id = detect_language(compiled_lid_model, example["audio"]["ar
+[cell 28 DONE  +  117.0s]
+[cell 29 START +  117.0s] ## Automatic Speech Recognition (ASR) | [back to top ⬆️](#Table-of-conte
+[cell 30 START +  117.0s] ### Download pretrained model and processor | [back to top ⬆️](#Table-of
+[cell 31 START +  117.0s] from transformers import Wav2Vec2ForCTC, AutoProcessor |  | model_id = "fa
+[cell 31 DONE  +  122.6s]
+[cell 32 START +  122.6s] You can look at all supported languages:
+[cell 33 START +  122.6s] asr_processor.tokenizer.vocab.keys()
+[cell 33 DONE  +  122.6s]
+[cell 34 START +  122.6s] Switch out the language adapters by calling the `load_adapter()` funct
+[cell 35 START +  122.6s] asr_processor.tokenizer.set_target_lang(language_id) | asr_model.load_ad
+[cell 35 DONE  +  124.4s]
+[cell 36 START +  124.4s] ### Use the original model for inference | [back to top ⬆️](#Table-of-co
+[cell 37 START +  124.4s] inputs = asr_processor(example["audio"]["array"], sampling_rate=16_000
+[cell 37 DONE  +  126.2s]
+[cell 38 START +  126.2s] ### Convert to OpenVINO IR model and run inference | [back to top ⬆️](#T
+[cell 39 START +  126.2s] asr_model_xml_path_template = "models/ov_asr_{}_model.xml" |  |  | def get_a
+[cell 39 DONE  +  126.9s]
+[cell 40 START +  126.9s] Run inference.
+[cell 41 START +  126.9s] def recognize_audio(compiled_model, src_audio): |     inputs = asr_proce
+[cell 41 DONE  +  127.6s]
+[cell 42 START +  127.6s] ## Quantization | [back to top ⬆️](#Table-of-contents:) |  | [NNCF](https://
+[cell 43 START +  127.6s] from notebook_utils import quantization_widget |  | compiled_quantized_lid
+[cell 43 DONE  +  127.6s]
+[cell 44 START +  127.6s] Let's load skip magic extension to skip quantization if to_quantize is
+[cell 45 START +  127.6s] # Fetch `skip_kernel_extension` module | import requests |  | if not Path("s
+[cell 45 DONE  +  127.7s]
+[cell 46 START +  127.7s] ### Preparing calibration dataset | [back to top ⬆️](#Table-of-contents:
+[cell 47 START +  127.7s] %%skip not $to_quantize.value |  | from IPython.display import display |  | di
+[cell 47 DONE  +  127.7s]
+[cell 48 START +  127.7s] Load dev split of the same [MLS](https://huggingface.co/datasets/faceb
+[cell 49 START +  127.7s] %%skip not $to_quantize.value |  | mls_dataset = iter(load_dataset("facebo
+[cell 49 DONE  +  140.2s]
+[cell 50 START +  140.2s] Create calibration dataset for quantization.
+[cell 51 START +  140.2s] %%skip not $to_quantize.value |  | CALIBRATION_DATASET_SIZE = 5 |  | calibrati
+[cell 51 DONE  +  140.4s]
+[cell 52 START +  140.4s] ### Language identification model quantization | [back to top ⬆️](#Table
+[cell 53 START +  140.4s] %%skip not $to_quantize.value |  | import nncf |  | quantized_lid_model_xml_pa
+[cell 53 DONE  +  142.6s]
+[cell 54 START +  142.6s] Detect language with the quantized model.
+[cell 55 START +  142.6s] %%skip not $to_quantize.value |  | language_id = detect_language(compiled_
+[cell 55 DONE  +  143.2s]
+[cell 56 START +  143.2s] ### Speech recognition model quantization | [back to top ⬆️](#Table-of-c
+[cell 57 START +  143.2s] %%skip not $to_quantize.value |  | quantized_asr_model_xml_path_template =
+[cell 57 DONE  +  145.2s]
+[cell 58 START +  145.2s] Run transcription with quantized model and compare the result to the o
+[cell 59 START +  145.2s] %%skip not $to_quantize.value |  | compiled_asr_model = get_asr_model(asr_
+[cell 59 DONE  +  147.3s]
+[cell 60 START +  147.3s] ### Compare model size, performance and accuracy | [back to top ⬆️](#Tab
+[cell 61 START +  147.3s] %%skip not $to_quantize.value |  | def calculate_compression_rate(model_pa
+[cell 61 DONE  +  147.3s]
+[cell 62 START +  147.3s] Secondly we compare accuracy values of the original and quantized mode
+[cell 63 START +  147.3s] %%skip not $to_quantize.value |  | import time | from tqdm.notebook import t
+[cell 63 DONE  +  205.7s]
+[cell 64 START +  205.7s] ## Interactive demo with Gradio | [back to top ⬆️](#Table-of-contents:) | 
+[cell 65 START +  205.7s] import gradio as gr | import librosa | import time |  | current_state = { |     
+[cell 65 DONE  +  206.7s]
+[cell 66 START +  206.7s] if not Path("gradio_helper.py").exists(): |     r = requests.get( |       
+NBEXEC_RESULT={"ok": true, "n_cells": 34, "n_skipped": 1, "n_substituted": 0, "stopped_after": null, "error_cell": null, "error_type": null, "error_head": null, "duration_s": 209.81, "patch_notes": ["skipped cell 66: matched skip pattern"]}

@@ -1,0 +1,24 @@
+[cell 0 START +    0.4s] # Image generation with universal control using Flex.2 and OpenVINO |  | F
+[cell 1 START +    0.4s] ## Prerequisites | [back to top ⬆️](#Table-of-contents:)
+[cell 2 START +    0.4s] %pip install -q "transformers==4.57.6" "diffusers>=0.33.0,<0.38.0" "gr
+[cell 2 DONE  +    7.2s]
+[cell 3 START +    7.2s] from pathlib import Path | import requests |  | if not Path("notebook_utils.
+[cell 3 DONE  +    7.2s]
+[cell 4 START +    7.2s] ## Convert model with OpenVINO | [back to top ⬆️](#Table-of-contents:) |  | 
+[cell 5 START +    7.2s] import ipywidgets as widgets |  | model_id = "ostris/Flex.2-preview" | model
+[cell 5 DONE  +    7.2s]
+[cell 6 START +    7.2s] # Read more about telemetry collection at https://github.com/openvinot
+[cell 6 DONE  +    7.2s]
+[cell 7 START +    7.2s] ## Run OpenVINO model inference | [back to top ⬆️](#Table-of-contents:) | 
+[cell 8 START +    7.2s] from notebook_utils import device_widget |  | device = device_widget(exclu
+[cell 8 DONE  +    7.5s]
+[cell 9 START +    7.5s] from ov_flex2_helper import OVFlex2Pipeline |  | ov_pipe = OVFlex2Pipeline
+[cell 9 DONE  +   13.7s]
+[cell 10 START +   13.7s] Let's check model inference result. In this example, we will provide a
+[cell 11 START +   13.7s] from diffusers.utils import load_image, make_image_grid | from PIL impor
+[cell 11 DONE  +   13.8s]
+[cell 12 START +   13.8s] import torch |  | image = ov_pipe( |     prompt="A white friendly robotic do
+[cell 12 DONE  +   80.6s]
+[cell 13 START +   80.6s] ## Interactive demo | [back to top ⬆️](#Table-of-contents:)
+[cell 14 START +   80.6s] from gradio_helper import make_demo |  | demo = make_demo(ov_pipe) |  | # if y
+NBEXEC_RESULT={"ok": true, "n_cells": 9, "n_skipped": 1, "n_substituted": 3, "stopped_after": null, "error_cell": null, "error_type": null, "error_head": null, "duration_s": 84.11, "patch_notes": ["substituted 1 occurrence(s) in cell 2", "substituted 1 occurrence(s) in cell 3", "substituted 1 occurrence(s) in cell 11", "skipped cell 14: matched skip pattern"]}

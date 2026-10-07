@@ -1,0 +1,68 @@
+[IPKernelApp] WARNING | Kernel is running over TCP without encryption. All communication (including code and outputs) is sent in plain text and is susceptible to eavesdropping. Use IPC transport or launch with kernel manager-provisioned CurveZMQ keys to enable transport encryption.
+8.28it/s, Materializing param=model.vision_tower.transformer.layers.23.feed_forward.down_proj.weight]Loading weights:  99%|█████████▉| 455/458 [00:00<00:00, 7545.29it/s, Materializing param=model.vision_tower.transformer.layers.23.feed_forward.down_proj.weight]Loading weights: 100%|█████████▉| 456/458 [00:00<00:00, 7555.78it/s, Materializing param=model.vision_tower.transformer.layers.23.feed_forward.gate_proj.weight]Loading weights: 100%|█████████▉| 456/458 [00:00<00:00, 7552.77it/s, Materializing param=model.vision_tower.transformer.layers.23.feed_forward.gate_proj.weight]Loading weights: 100%|█████████▉| 457/458 [00:00<00:00, 7563.30it/s, Materializing param=model.vision_tower.transformer.layers.23.feed_forward.up_proj.weight]  Loading weights: 100%|█████████▉| 457/458 [00:00<00:00, 7560.34it/s, Materializing param=model.vision_tower.transformer.layers.23.feed_forward.up_proj.weight]Loading weights: 100%|██████████| 458/458 [00:00<00:00, 7570.89it/s, Materializing param=model.vision_tower.transformer.layers.23.ffn_norm.weight]            Loading weights: 100%|██████████| 458/458 [00:00<00:00, 7568.05it/s, Materializing param=model.vision_tower.transformer.layers.23.ffn_norm.weight]Loading weights: 100%|██████████| 458/458 [00:00<00:00, 7559.12it/s, Materializing param=model.vision_tower.transformer.layers.23.ffn_norm.weight]
+Traceback (most recent call last):
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/6814c7e19c9304c8/bin/optimum-cli", line 6, in <module>
+    sys.exit(main())
+             ^^^^^^
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/6814c7e19c9304c8/lib/python3.12/site-packages/optimum/commands/optimum_cli.py", line 219, in main
+    service.run()
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/6814c7e19c9304c8/lib/python3.12/site-packages/optimum/commands/export/openvino.py", line 469, in run
+    main_export(
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/6814c7e19c9304c8/lib/python3.12/site-packages/optimum/exporters/openvino/__main__.py", line 647, in main_export
+    submodel_paths = export_from_model(
+                     ^^^^^^^^^^^^^^^^^^
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/6814c7e19c9304c8/lib/python3.12/site-packages/optimum/exporters/openvino/convert.py", line 743, in export_from_model
+    export_config, models_and_export_configs, stateful_submodels = _get_submodels_and_export_configs(
+                                                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/6814c7e19c9304c8/lib/python3.12/site-packages/optimum/exporters/openvino/convert.py", line 1080, in _get_submodels_and_export_configs
+    return _get_multi_modal_submodels_and_export_configs(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/6814c7e19c9304c8/lib/python3.12/site-packages/optimum/exporters/openvino/convert.py", line 1052, in _get_multi_modal_submodels_and_export_configs
+    model_part_config = main_config.with_behavior(behavior)
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/6814c7e19c9304c8/lib/python3.12/site-packages/optimum/exporters/openvino/model_configs.py", line 2249, in with_behavior
+    return super().with_behavior(behavior)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/6814c7e19c9304c8/lib/python3.12/site-packages/optimum/exporters/openvino/model_configs.py", line 2005, in with_behavior
+    return get_vlm_text_generation_config(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/6814c7e19c9304c8/lib/python3.12/site-packages/optimum/exporters/openvino/model_configs.py", line 1924, in get_vlm_text_generation_config
+    internal_export_config = get_vlm_internal_text_generation_config(model_type, model_config, int_dtype, float_dtype)
+                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/6814c7e19c9304c8/lib/python3.12/site-packages/optimum/exporters/openvino/model_configs.py", line 1875, in get_vlm_internal_text_generation_config
+    raise ValueError(
+ValueError: Unsupported language model type provided `ministral3`. Please define custom export config
+------------------
+
+[31m---------------------------------------------------------------------------[39m
+[31mCalledProcessError[39m                        Traceback (most recent call last)
+[36mCell[39m[36m [39m[32mIn[6][39m[32m, line 15[39m
+[32m     11[39m 
+[32m     12[39m [38;5;28;01mfrom[39;00m cmd_helper [38;5;28;01mimport[39;00m optimum_cli
+[32m     13[39m 
+[32m     14[39m [38;5;28;01mif[39;00m [38;5;28;01mnot[39;00m model_export_dir.exists():
+[32m---> [39m[32m15[39m     optimum_cli(pt_model_id, model_export_dir, additional_args=additional_args)
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/results/ministral-3/workdir-cpu/cmd_helper.py:62[39m, in [36moptimum_cli[39m[34m(model_id, output_dir, show_command, additional_args, debug_logs)[39m
+[32m     60[39m     [38;5;28;01mif[39;00m transofrmers_loglevel [38;5;129;01mis[39;00m [38;5;129;01mnot[39;00m [38;5;28;01mNone[39;00m:
+[32m     61[39m         os.environ[[33m"[39m[33mTRANSFORMERS_VERBOSITY[39m[33m"[39m] = transofrmers_loglevel
+[32m---> [39m[32m62[39m     [38;5;28;01mraise[39;00m exc
+[32m     63[39m [38;5;28;01mfinally[39;00m:
+[32m     64[39m     [38;5;28;01mif[39;00m transofrmers_loglevel [38;5;129;01mis[39;00m [38;5;129;01mnot[39;00m [38;5;28;01mNone[39;00m:
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/results/ministral-3/workdir-cpu/cmd_helper.py:49[39m, in [36moptimum_cli[39m[34m(model_id, output_dir, show_command, additional_args, debug_logs)[39m
+[32m     46[39m     os.environ[[33m"[39m[33mTRANSFORMERS_VERBOSITY[39m[33m"[39m] = [33m"[39m[33mdebug[39m[33m"[39m
+[32m     48[39m [38;5;28;01mtry[39;00m:
+[32m---> [39m[32m49[39m     [30;43msubprocess[39;49m[30;43m.[39;49m[30;43mrun[39;49m[30;43m([39;49m[30;43mexport_command[39;49m[30;43m.[39;49m[30;43msplit[39;49m[30;43m([39;49m[30;43m"[39;49m[30;43m [39;49m[30;43m"[39;49m[30;43m)[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mshell[39;49m[30;43m=[39;49m[30;43m([39;49m[30;43mplatform[39;49m[30;43m.[39;49m[30;43msystem[39;49m[30;43m([39;49m[30;43m)[39;49m[30;43m [39;49m[30;43m==[39;49m[30;43m [39;49m[30;43m"[39;49m[30;43mWindows[39;49m[30;43m"[39;49m[30;43m)[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mcheck[39;49m[30;43m=[39;49m[30;43;01mTrue[39;49;00m[30;43m,[39;49m[30;43m [39;49m[30;43mcapture_output[39;49m[30;43m=[39;49m[30;43;01mTrue[39;49;00m[30;43m)[39;49m
+[32m     50[39m [38;5;28;01mexcept[39;00m subprocess.CalledProcessError [38;5;28;01mas[39;00m exc:
+[32m     51[39m     logger = logging.getLogger()
+
+[36mFile [39m[32m/usr/lib/python3.12/subprocess.py:571[39m, in [36mrun[39m[34m(input, capture_output, timeout, check, *popenargs, **kwargs)[39m
+[32m    569[39m     retcode = process.poll()
+[32m    570[39m     [38;5;28;01mif[39;00m check [38;5;129;01mand[39;00m retcode:
+[32m--> [39m[32m571[39m         [38;5;28;01mraise[39;00m CalledProcessError(retcode, process.args,
+[32m    572[39m                                  output=stdout, stderr=stderr)
+[32m    573[39m [38;5;28;01mreturn[39;00m CompletedProcess(process.args, retcode, stdout, stderr)
+
+[31mCalledProcessError[39m: Command '['optimum-cli', 'export', 'openvino', '--model', 'mistralai/Ministral-3-3B-Reasoning-2512', 'Ministral-3-3B-Reasoning-2512/INT4', '--task', 'image-text-to-text', '--weight-format', 'int4']' returned non-zero exit status 1.
+

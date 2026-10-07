@@ -1,0 +1,47 @@
+[cell 0 START +    0.4s] # Quantize NLP models with Post-Training Quantization ​in NNCF | This tu
+[cell 1 START +    0.4s]  | #### Table of contents: |  | - [Imports](#Imports) | - [Settings](#Settings
+[cell 2 START +    0.4s] %pip install -q "nncf>=2.5.0" | %pip install -q "torch>=2.8" transformer
+[cell 2 DONE  +    1.8s]
+[cell 3 START +    1.8s] ## Imports | [back to top ⬆️](#Table-of-contents:) | 
+[cell 4 START +    1.8s] import time | from pathlib import Path | from zipfile import ZipFile | from 
+[cell 4 DONE  +    5.0s]
+[cell 5 START +    5.0s] ## Settings | [back to top ⬆️](#Table-of-contents:) | 
+[cell 6 START +    5.0s] # Set the data and model directories, source URL and the filename of t
+[cell 6 DONE  +    5.0s]
+[cell 7 START +    5.0s] ## Prepare the Model | [back to top ⬆️](#Table-of-contents:) |  | Perform th
+[cell 8 START +    5.0s] if not PRETRAINED_MODEL_DIR.exists(): |     download_file(MODEL_LINK, di
+[cell 8 DONE  +    5.0s]
+[cell 9 START +    5.0s] Convert the original PyTorch model to the OpenVINO Intermediate Repres
+[cell 10 START +    5.0s] MAX_SEQ_LENGTH = 128 | input_shape = ov.PartialShape([1, -1]) | ir_model_x
+[cell 10 DONE  +    5.2s]
+[cell 11 START +    5.2s] ## Prepare the Dataset | [back to top ⬆️](#Table-of-contents:) |  | We downl
+[cell 12 START +    5.2s] def create_data_source(): |     raw_dataset = datasets.load_dataset("glu
+[cell 12 DONE  +    9.0s]
+[cell 13 START +    9.0s] ## Optimize model using NNCF Post-training Quantization API | [back to t
+[cell 14 START +    9.0s] INPUT_NAMES = [key for key in inputs.keys()] |  |  | def transform_fn(data_i
+[cell 14 DONE  +   29.0s]
+[cell 15 START +   29.0s] compressed_model_xml = Path(MODEL_DIR) / "quantized_bert_mrpc.xml" | ov.
+[cell 15 DONE  +   29.2s]
+[cell 16 START +   29.2s] ## Load and Test OpenVINO Model | [back to top ⬆️](#Table-of-contents:) | 
+[cell 17 START +   29.2s] ### Select inference device | [back to top ⬆️](#Table-of-contents:) |  | sel
+[cell 18 START +   29.2s] device = device_widget() |  | device
+[cell 18 DONE  +   29.3s]
+[cell 19 START +   29.3s] # Compile the model for a specific device. | compiled_quantized_model = 
+[cell 19 DONE  +   29.8s]
+[cell 20 START +   29.8s] The Data Source returns a pair of sentences (indicated by `sample_idx`
+[cell 21 START +   29.8s] sample_idx = 5 | sample = data_source[sample_idx] | inputs = {k: torch.uns
+[cell 21 DONE  +   29.8s]
+[cell 22 START +   29.8s] ## Compare F1-score of FP32 and INT8 models | [back to top ⬆️](#Table-of
+[cell 23 START +   29.8s] def validate(model: ov.Model, dataset: Iterable[Any]) -> float: |     ""
+[cell 23 DONE  +   40.7s]
+[cell 24 START +   40.7s] ## Compare Performance of the Original, Converted and Quantized Models
+[cell 25 START +   40.7s] # Compile the model for a specific device. | compiled_model = core.compi
+[cell 25 DONE  +   40.9s]
+[cell 26 START +   40.9s] num_samples = 50 | sample = data_source[0] | inputs = {k: torch.unsqueeze(
+[cell 26 DONE  +   45.7s]
+[cell 27 START +   45.7s] Finally, measure the inference performance of OpenVINO `FP32` and `INT
+[cell 28 START +   45.7s] # Inference FP32 model (OpenVINO IR) | !benchmark_app -m $ir_model_xml -
+[cell 28 DONE  +  106.5s]
+[cell 29 START +  106.5s] # Inference INT8 model (OpenVINO IR) | ! benchmark_app -m $compressed_mo
+[cell 29 DONE  +  167.4s]
+NBEXEC_RESULT={"ok": true, "n_cells": 16, "n_skipped": 0, "n_substituted": 0, "stopped_after": null, "error_cell": null, "error_type": null, "error_head": null, "duration_s": 170.16, "patch_notes": []}

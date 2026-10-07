@@ -1,0 +1,103 @@
+[IPKernelApp] WARNING | Kernel is running over TCP without encryption. All communication (including code and outputs) is sent in plain text and is susceptible to eavesdropping. Use IPC transport or launch with kernel manager-provisioned CurveZMQ keys to enable transport encryption.
+[31mERROR: pip's dependency resolver does not currently take into account all the packages that are installed. This behaviour is the source of the following dependency conflicts.
+wavmark 0.0.3 requires torchaudio, which is not installed.
+ace-step 0.2.0 requires torchaudio, which is not installed.
+ace-step 0.2.0 requires torchvision, which is not installed.
+optimum-intel 2.3.0.dev0 requires torchvision, which is not installed.
+ace-step 0.2.0 requires diffusers>=0.33.0, but you have diffusers 0.29.0 which is incompatible.
+ace-step 0.2.0 requires librosa==0.11.0, but you have librosa 0.9.1 which is incompatible.
+ace-step 0.2.0 requires loguru==0.7.3, but you have loguru 0.7.2 which is incompatible.
+ace-step 0.2.0 requires num2words==0.5.14, but you have num2words 0.5.12 which is incompatible.
+ace-step 0.2.0 requires pypinyin==0.53.0, but you have pypinyin 0.50.0 which is incompatible.
+ace-step 0.2.0 requires soundfile==0.13.1, but you have soundfile 0.12.1 which is incompatible.
+ace-step 0.2.0 requires transformers==4.50.0, but you have transformers 4.53.3 which is incompatible.
+optimum-intel 2.3.0.dev0 requires openvino>=2026.0, but you have openvino 2025.3.0 which is incompatible.[0m[31m
+[0m[31mERROR: pip's dependency resolver does not currently take into account all the packages that are installed. This behaviour is the source of the following dependency conflicts.
+ace-step 0.2.0 requires torchvision, which is not installed.
+optimum-intel 2.3.0.dev0 requires torchvision, which is not installed.
+olmocr 0.4.27 requires bleach, which is not installed.
+olmocr 0.4.27 requires markdownify, which is not installed.
+olmocr 0.4.27 requires zstandard, which is not installed.
+google-api-core 2.41.0 requires protobuf<8.0.0,>=6.33.5, but you have protobuf 4.25.9 which is incompatible.
+proto-plus 1.29.0 requires protobuf<8.0.0,>=6.33.5, but you have protobuf 4.25.9 which is incompatible.
+ace-step 0.2.0 requires diffusers>=0.33.0, but you have diffusers 0.29.0 which is incompatible.
+ace-step 0.2.0 requires librosa==0.11.0, but you have librosa 0.9.1 which is incompatible.
+ace-step 0.2.0 requires loguru==0.7.3, but you have loguru 0.7.2 which is incompatible.
+ace-step 0.2.0 requires num2words==0.5.14, but you have num2words 0.5.12 which is incompatible.
+ace-step 0.2.0 requires pypinyin==0.53.0, but you have pypinyin 0.50.0 which is incompatible.
+ace-step 0.2.0 requires soundfile==0.13.1, but you have soundfile 0.12.1 which is incompatible.
+ace-step 0.2.0 requires transformers==4.50.0, but you have transformers 4.46.1 which is incompatible.
+optimum-intel 2.3.0.dev0 requires openvino>=2026.0, but you have openvino 2025.3.0 which is incompatible.
+optimum-intel 2.3.0.dev0 requires transformers<5.11,>=4.51, but you have transformers 4.46.1 which is incompatible.
+googleapis-common-protos 1.75.5 requires protobuf<8.0.0,>=6.33.5, but you have protobuf 4.25.9 which is incompatible.[0m[31m
+[0mhuggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)
+Traceback (most recent call last):
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/ov_amd/_nbexec.py", line 144, in main
+    client.execute()
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/61f5a7307753eddf/lib/python3.12/site-packages/jupyter_core/utils/__init__.py", line 165, in wrapped
+    return loop.run_until_complete(inner)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/base_events.py", line 687, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/61f5a7307753eddf/lib/python3.12/site-packages/nbclient/client.py", line 709, in async_execute
+    await self.async_execute_cell(
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/61f5a7307753eddf/lib/python3.12/site-packages/nbclient/client.py", line 1062, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/61f5a7307753eddf/lib/python3.12/site-packages/nbclient/client.py", line 918, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+model.text_encoder = TextEncoderModelWrapper(TEXT_ENCODER_OV_PATH, model.text_encoder.config)
+model.decoder.model.decoder = DecoderWrapper(DECODER_STAGE_1_OV_PATH, DECODER_STAGE_2_OV_PATH, model.decoder.model.decoder.config)
+model._supports_cache_class = False
+model._supports_static_cache = False
+------------------
+
+
+[31m---------------------------------------------------------------------------[39m
+[31mRuntimeError[39m                              Traceback (most recent call last)
+[36mCell[39m[36m [39m[32mIn[10][39m[32m, line 2[39m
+[32m      1[39m model.text_encoder = TextEncoderModelWrapper(TEXT_ENCODER_OV_PATH, model.text_encoder.config)
+[32m----> [39m[32m2[39m model.decoder.model.decoder = DecoderWrapper(DECODER_STAGE_1_OV_PATH, DECODER_STAGE_2_OV_PATH, model.decoder.model.decoder.config)
+[32m      3[39m model._supports_cache_class = [38;5;28;01mFalse[39;00m
+[32m      4[39m model._supports_static_cache = [38;5;28;01mFalse[39;00m
+
+[36mCell[39m[36m [39m[32mIn[9][39m[32m, line 29[39m, in [36mDecoderWrapper.__init__[39m[34m(self, decoder_stage_1_ir_path, decoder_stage_2_ir_path, config)[39m
+[32m     26[39m     [38;5;28;01mdef[39;00m __init__(self, decoder_stage_1_ir_path, decoder_stage_2_ir_path, config):
+[32m     27[39m         super().__init__()
+[32m     28[39m         self.decoder_stage_1 = core.compile_model(decoder_stage_1_ir_path, device.value)
+[32m---> [39m[32m29[39m         self.decoder_stage_2 = core.compile_model(decoder_stage_2_ir_path, device.value)
+[32m     30[39m         self.config = config
+[32m     31[39m         self.embed_tokens = [38;5;28;01mNone[39;00m
+[32m     32[39m         embed_dim = config.vocab_size + [32m1[39m  [38;5;66;03m# + 1 for pad token id[39;00m
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/61f5a7307753eddf/lib/python3.12/site-packages/ov_amd_device_probe.py:65[39m, in [36m_patch_openvino.<locals>.compile_model[39m[34m(self, *args, **kwargs)[39m
+[32m     63[39m     device = [38;5;28;01mNone[39;00m
+[32m     64[39m [38;5;28;01mtry[39;00m:
+[32m---> [39m[32m65[39m     compiled = [30;43morig_compile[39;49m[30;43m([39;49m[30;43mself[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43m*[39;49m[30;43margs[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43m*[39;49m[30;43m*[39;49m[30;43mkwargs[39;49m[30;43m)[39;49m
+[32m     66[39m [38;5;28;01mexcept[39;00m [38;5;167;01mException[39;00m:
+[32m     67[39m     _record({[33m"[39m[33mkind[39m[33m"[39m: [33m"[39m[33mcompile_model_error[39m[33m"[39m, [33m"[39m[33mdevice_arg[39m[33m"[39m: [38;5;28mstr[39m(device)})
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/61f5a7307753eddf/lib/python3.12/site-packages/openvino/_ov_api.py:610[39m, in [36mCore.compile_model[39m[34m(self, model, device_name, config, weights)[39m
+[32m    605[39m     [38;5;28;01mif[39;00m device_name [38;5;129;01mis[39;00m [38;5;28;01mNone[39;00m:
+[32m    606[39m         [38;5;28;01mreturn[39;00m CompiledModel(
+[32m    607[39m             [38;5;28msuper[39m().compile_model(model, {} [38;5;28;01mif[39;00m config [38;5;129;01mis[39;00m [38;5;28;01mNone[39;00m [38;5;28;01melse[39;00m config),
+[32m    608[39m         )
+[32m    609[39m     [38;5;28;01mreturn[39;00m CompiledModel(
+[32m--> [39m[32m610[39m         [30;43msuper[39;49m[30;43m([39;49m[30;43m)[39;49m[30;43m.[39;49m[30;43mcompile_model[39;49m[30;43m([39;49m[30;43mmodel[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mdevice_name[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43m{[39;49m[30;43m}[39;49m[30;43m [39;49m[30;43;01mif[39;49;00m[30;43m [39;49m[30;43mconfig[39;49m[30;43m [39;49m[30;43;01mis[39;49;00m[30;43m [39;49m[30;43;01mNone[39;49;00m[30;43m [39;49m[30;43;01melse[39;49;00m[30;43m [39;49m[30;43mconfig[39;49m[30;43m)[39;49m,
+[32m    611[39m     )
+[32m    612[39m [38;5;28;01melse[39;00m:
+[32m    613[39m     [38;5;28;01mif[39;00m device_name [38;5;129;01mis[39;00m [38;5;28;01mNone[39;00m:
+
+[31mRuntimeError[39m: Exception from src/inference/src/cpp/core.cpp:126:
+Exception from src/inference/src/dev/plugin.cpp:58:
+Exception from src/common/snippets/src/op/brgemm.cpp:135:
+BrgemmCPU node has incompatible input element types: f32 and bf16
+
+
+
+

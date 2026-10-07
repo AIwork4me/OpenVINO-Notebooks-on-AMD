@@ -1,0 +1,92 @@
+[IPKernelApp] WARNING | Kernel is running over TCP without encryption. All communication (including code and outputs) is sent in plain text and is susceptible to eavesdropping. Use IPC transport or launch with kernel manager-provisioned CurveZMQ keys to enable transport encryption.
+  [1;31merror[0m: [1msubprocess-exited-with-error[0m
+  
+  [31m×[0m [32mgit clone --[0m[32mfilter[0m[32m=[0m[32mblob[0m[32m:none --quiet [0m[4;32mhttps://github.com/huggingface/optimum-onnx.git[0m[32m [0m[32m/tmp/pip-install-uq3ift_w/[0m[32moptimum-onnx_b8bd32b158c342e482ab2fe4365dc1b6[0m did not run successfully.
+  [31m│[0m exit code: [1;36m128[0m
+  [31m╰─>[0m [31m[1 lines of output][0m
+  [31m   [0m fatal: unable to access 'https://github.com/huggingface/optimum-onnx.git/': GnuTLS recv error (-110): The TLS connection was non-properly terminated.
+  [31m   [0m [31m[end of output][0m
+  
+  [1;35mnote[0m: This error originates from a subprocess, and is likely not a problem with pip.
+[31mERROR: Failed to build 'optimum-onnx' when git clone --filter=blob:none --quiet https://github.com/huggingface/optimum-onnx.git /tmp/pip-install-uq3ift_w/optimum-onnx_b8bd32b158c342e482ab2fe4365dc1b6[0m[31m
+[0mTraceback (most recent call last):
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/ov_amd/_nbexec.py", line 144, in main
+    client.execute()
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages/jupyter_core/utils/__init__.py", line 165, in wrapped
+    return loop.run_until_complete(inner)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/base_events.py", line 687, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages/nbclient/client.py", line 709, in async_execute
+    await self.async_execute_cell(
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages/nbclient/client.py", line 1062, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages/nbclient/client.py", line 918, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+%pip uninstall -q -y optimum optimum-intel optimum-onnx
+
+from notebook_utils import pip_install
+
+pip_install("-q", "torch>=2.8", "torchvision", "--extra-index-url", "https://download.pytorch.org/whl/cpu")
+pip_install("-q", "https://codeload.github.com/openvino-dev-samples/optimum-intel/tar.gz/GLM-OCR")
+pip_install("-q", "transformers==5.5.4")
+pip_install("-q", "openvino>=2026.1.0", "nncf>=2.17.0")
+pip_install("-q", "gradio>=5.25.0", "Pillow>=10")
+
+# Fetch the sample OCR images used in the OCR inference and pipeline cells.
+# They are hosted as GitHub user-attachments rather than bundled in the repo.
+from gradio_helper import download_example_assets
+
+download_example_assets()
+------------------
+
+----- stdout -----
+[33mWARNING: Skipping optimum as it is not installed.[0m[33m
+[0m[33mWARNING: Skipping optimum-intel as it is not installed.[0m[33m
+[0m[33mWARNING: Skipping optimum-onnx as it is not installed.[0m[33m
+[0m
+----- stdout -----
+Note: you may need to restart the kernel to use updated packages.
+----- stderr -----
+  [1;31merror[0m: [1msubprocess-exited-with-error[0m
+  
+  [31m×[0m [32mgit clone --[0m[32mfilter[0m[32m=[0m[32mblob[0m[32m:none --quiet [0m[4;32mhttps://github.com/huggingface/optimum-onnx.git[0m[32m [0m[32m/tmp/pip-install-uq3ift_w/[0m[32moptimum-onnx_b8bd32b158c342e482ab2fe4365dc1b6[0m did not run successfully.
+  [31m│[0m exit code: [1;36m128[0m
+  [31m╰─>[0m [31m[1 lines of output][0m
+  [31m   [0m fatal: unable to access 'https://github.com/huggingface/optimum-onnx.git/': GnuTLS recv error (-110): The TLS connection was non-properly terminated.
+  [31m   [0m [31m[end of output][0m
+  
+  [1;35mnote[0m: This error originates from a subprocess, and is likely not a problem with pip.
+[31mERROR: Failed to build 'optimum-onnx' when git clone --filter=blob:none --quiet https://github.com/huggingface/optimum-onnx.git /tmp/pip-install-uq3ift_w/optimum-onnx_b8bd32b158c342e482ab2fe4365dc1b6[0m[31m
+[0m
+------------------
+
+[31m---------------------------------------------------------------------------[39m
+[31mCalledProcessError[39m                        Traceback (most recent call last)
+[36mCell[39m[36m [39m[32mIn[2][39m[32m, line 6[39m
+[32m      2[39m 
+[32m      3[39m [38;5;28;01mfrom[39;00m notebook_utils [38;5;28;01mimport[39;00m pip_install
+[32m      4[39m 
+[32m      5[39m pip_install([33m"-q"[39m, [33m"torch>=2.8"[39m, [33m"torchvision"[39m, [33m"--extra-index-url"[39m, [33m"https://download.pytorch.org/whl/cpu"[39m)
+[32m----> [39m[32m6[39m pip_install([33m"-q"[39m, [33m"https://codeload.github.com/openvino-dev-samples/optimum-intel/tar.gz/GLM-OCR"[39m)
+[32m      7[39m pip_install([33m"-q"[39m, [33m"transformers==5.5.4"[39m)
+[32m      8[39m pip_install([33m"-q"[39m, [33m"openvino>=2026.1.0"[39m, [33m"nncf>=2.17.0"[39m)
+[32m      9[39m pip_install([33m"-q"[39m, [33m"gradio>=5.25.0"[39m, [33m"Pillow>=10"[39m)
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/results/glm-ocr/workdir-cpu/notebook_utils.py:68[39m, in [36mpip_install[39m[34m(*args)[39m
+[32m     66[39m [38;5;28;01mfor[39;00m arg [38;5;129;01min[39;00m args:
+[32m     67[39m     cli_args.extend([38;5;28mstr[39m(arg).split([33m"[39m[33m [39m[33m"[39m))
+[32m---> [39m[32m68[39m [30;43msubprocess[39;49m[30;43m.[39;49m[30;43mrun[39;49m[30;43m([39;49m[30;43m[[39;49m[30;43msys[39;49m[30;43m.[39;49m[30;43mexecutable[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43m"[39;49m[30;43m-m[39;49m[30;43m"[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43m"[39;49m[30;43mpip[39;49m[30;43m"[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43m"[39;49m[30;43minstall[39;49m[30;43m"[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43m*[39;49m[30;43mcli_args[39;49m[30;43m][39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mshell[39;49m[30;43m=[39;49m[30;43m([39;49m[30;43mplatform[39;49m[30;43m.[39;49m[30;43msystem[39;49m[30;43m([39;49m[30;43m)[39;49m[30;43m [39;49m[30;43m==[39;49m[30;43m [39;49m[30;43m"[39;49m[30;43mWindows[39;49m[30;43m"[39;49m[30;43m)[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mcheck[39;49m[30;43m=[39;49m[30;43;01mTrue[39;49;00m[30;43m)[39;49m
+
+[36mFile [39m[32m/usr/lib/python3.12/subprocess.py:571[39m, in [36mrun[39m[34m(input, capture_output, timeout, check, *popenargs, **kwargs)[39m
+[32m    569[39m     retcode = process.poll()
+[32m    570[39m     [38;5;28;01mif[39;00m check [38;5;129;01mand[39;00m retcode:
+[32m--> [39m[32m571[39m         [38;5;28;01mraise[39;00m CalledProcessError(retcode, process.args,
+[32m    572[39m                                  output=stdout, stderr=stderr)
+[32m    573[39m [38;5;28;01mreturn[39;00m CompletedProcess(process.args, retcode, stdout, stderr)
+
+[31mCalledProcessError[39m: Command '['/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/bin/python', '-m', 'pip', 'install', '-q', 'https://codeload.github.com/openvino-dev-samples/optimum-intel/tar.gz/GLM-OCR']' returned non-zero exit status 1.
+

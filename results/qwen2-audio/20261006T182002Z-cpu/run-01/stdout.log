@@ -1,0 +1,13 @@
+[cell 0 START +    0.6s] # Audio-language assistant with Qwen2Audio and OpenVINO |  | Qwen2-Audio i
+[cell 1 START +    0.6s] ## Prerequisites | [back to top ⬆️](#Table-of-contents:)
+[cell 2 START +    0.6s] %pip install -q "transformers>=4.45,<4.53" "torch==2.8" "torchvision==
+[cell 2 DONE  +   53.3s]
+[cell 3 START +   53.3s] from pathlib import Path | import requests |  | if not Path("ov_qwen2_audio_
+[cell 3 DONE  +   53.4s]
+[cell 4 START +   53.4s] ## Convert and Optimize model | [back to top ⬆️](#Table-of-contents:) |  | Q
+[cell 5 START +   53.4s] pt_model_id = "Qwen/Qwen2-Audio-7B-Instruct" |  | model_dir = Path(pt_mode
+[cell 5 DONE  +   53.4s]
+[cell 6 START +   53.4s] from ov_qwen2_audio_helper import convert_qwen2audio_model |  | # uncommen
+[cell 6 DONE  +   55.8s]
+[cell 7 START +   55.8s] import nncf |  | compression_configuration = { |     "mode": nncf.CompressWe
+NBEXEC_RESULT={"ok": false, "n_cells": 13, "n_skipped": 1, "n_substituted": 0, "stopped_after": null, "error_cell": null, "error_type": "CellTimeoutError", "error_head": "-------------------", "duration_s": 958.46, "patch_notes": ["skipped cell 20: matched skip pattern"]}

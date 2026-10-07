@@ -1,0 +1,15 @@
+{
+  "schema_version": 2,
+  "passed": true,
+  "checks": {
+    "output_contains": {
+      "Loading yolov8n_openvino_model for OpenVINO inference": true,
+      "Source ended": true
+    },
+    "no_cell_error": true,
+    "skipped_cells": 0
+  },
+  "notes": [],
+  "level": "WORKLOAD_CORRECTNESS",
+  "contract_present": true
+}

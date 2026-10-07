@@ -1,0 +1,9 @@
+{
+  "schema_version": 2,
+  "repository": "openvinotoolkit/openvino_notebooks",
+  "branch": "latest",
+  "commit": "a8809170cc4fc6aa633fbb9c22214be67ac20b47",
+  "path": "notebooks/surya-line-level-text-detection/surya-line-level-text-detection.ipynb",
+  "url": "https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/surya-line-level-text-detection/surya-line-level-text-detection.ipynb",
+  "notebook_sha256": "6ab6aaaf4c2279a97f3b89790b1e8651a67388eb85a2d686c26402c539850e98"
+}

@@ -1,0 +1,17 @@
+[cell 0 START +    0.4s] # Visual-language assistant with Ministral-3 and OpenVINO |  | Ministral-3
+[cell 1 START +    0.4s] ## Prerequisites | [back to top ⬆️](#Table-of-contents:) |  | Install requir
+[cell 2 START +    0.4s] %pip install -q "transformers==5.0.0" "huggingface_hub==1.14.0" "nncf=
+[cell 2 DONE  +   10.3s]
+[cell 3 START +   10.3s] from pathlib import Path | import requests |  | if not Path("cmd_helper.py")
+[cell 3 DONE  +   10.4s]
+[cell 4 START +   10.4s] ## Select model | [back to top ⬆️](#Table-of-contents:) |  | Select the 3B R
+[cell 5 START +   10.4s] import ipywidgets as widgets |  | model_options = [ |     ("Ministral-3 3B R
+[cell 5 DONE  +   10.4s]
+[cell 6 START +   10.4s] print(f"Selected: {model_id.value}") | pt_model_id = model_id.value | mode
+[cell 6 DONE  +   10.4s]
+[cell 7 START +   10.4s] ## Convert and Optimize model | [back to top ⬆️](#Table-of-contents:) |  | M
+[cell 8 START +   10.4s] import ipywidgets as widgets |  | to_compress = widgets.Checkbox( |     valu
+[cell 8 DONE  +   10.4s]
+[cell 9 START +   10.4s] additional_args = {"task": "image-text-to-text"} |  | if to_compress.value
+[cell 9 DONE  +  485.3s]
+NBEXEC_RESULT={"ok": false, "n_cells": 13, "n_skipped": 1, "n_substituted": 1, "stopped_after": null, "error_cell": null, "error_type": "CellExecutionError", "error_head": "\u001b[31mCalledProcessError\u001b[39m: Command '['optimum-cli', 'export', 'openvino', '--model', 'mistralai/Ministral-3-3B-Reasoning-2512', 'Ministral-3-3B-Reasoning-2512/INT4', '--task', 'image-text-to-text', '--weight-format', 'int4']' returned non-zero exit status 1.", "duration_s": 485.47, "patch_notes": ["substituted 1 occurrence(s) in cell 2", "skipped cell 21: matched skip pattern"]}

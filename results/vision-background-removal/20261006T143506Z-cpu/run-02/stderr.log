@@ -1,0 +1,73 @@
+[IPKernelApp] WARNING | Kernel is running over TCP without encryption. All communication (including code and outputs) is sent in plain text and is susceptible to eavesdropping. Use IPC transport or launch with kernel manager-provisioned CurveZMQ keys to enable transport encryption.
+Traceback (most recent call last):
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/ov_amd/_nbexec.py", line 144, in main
+    client.execute()
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/c08eda82496d2a39/lib/python3.12/site-packages/jupyter_core/utils/__init__.py", line 165, in wrapped
+    return loop.run_until_complete(inner)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/base_events.py", line 687, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/c08eda82496d2a39/lib/python3.12/site-packages/nbclient/client.py", line 709, in async_execute
+    await self.async_execute_cell(
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/c08eda82496d2a39/lib/python3.12/site-packages/nbclient/client.py", line 1062, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/c08eda82496d2a39/lib/python3.12/site-packages/nbclient/client.py", line 918, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+# Load the model.
+net = u2net_model.model(*u2net_model.model_args)
+net.eval()
+
+# Load the weights.
+print(f"Loading model weights from: '{model_path}'")
+net.load_state_dict(state_dict=torch.load(model_path, map_location="cpu"))
+------------------
+
+----- stdout -----
+Loading model weights from: 'model/u2net_lite/u2net_lite.pth'
+------------------
+
+[31m---------------------------------------------------------------------------[39m
+[31mEOFError[39m                                  Traceback (most recent call last)
+[36mCell[39m[36m [39m[32mIn[7][39m[32m, line 7[39m
+[32m      3[39m net.eval()
+[32m      4[39m 
+[32m      5[39m [38;5;66;03m# Load the weights.[39;00m
+[32m      6[39m print(f"Loading model weights from: '{model_path}'")
+[32m----> [39m[32m7[39m net.load_state_dict(state_dict=torch.load(model_path, map_location=[33m"cpu"[39m))
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/c08eda82496d2a39/lib/python3.12/site-packages/torch/serialization.py:1632[39m, in [36mload[39m[34m(f, map_location, pickle_module, weights_only, mmap, **pickle_load_args)[39m
+[32m   1630[39m [38;5;28;01mif[39;00m weights_only:
+[32m   1631[39m     [38;5;28;01mtry[39;00m:
+[32m-> [39m[32m1632[39m         [38;5;28;01mreturn[39;00m [30;43m_legacy_load[39;49m[30;43m([39;49m
+[32m   1633[39m [30;43m            [39;49m[30;43mopened_file[39;49m[30;43m,[39;49m
+[32m   1634[39m [30;43m            [39;49m[30;43mmap_location[39;49m[30;43m,[39;49m
+[32m   1635[39m [30;43m            [39;49m[30;43m_weights_only_unpickler[39;49m[30;43m,[39;49m
+[32m   1636[39m [30;43m            [39;49m[30;43mweights_only[39;49m[30;43m=[39;49m[30;43;01mTrue[39;49;00m[30;43m,[39;49m
+[32m   1637[39m [30;43m            [39;49m[30;43m*[39;49m[30;43m*[39;49m[30;43mpickle_load_args[39;49m[30;43m,[39;49m
+[32m   1638[39m [30;43m        [39;49m[30;43m)[39;49m
+[32m   1639[39m     [38;5;28;01mexcept[39;00m pickle.UnpicklingError [38;5;28;01mas[39;00m e:
+[32m   1640[39m         [38;5;28;01mraise[39;00m pickle.UnpicklingError(_get_wo_message([38;5;28mstr[39m(e))) [38;5;28;01mfrom[39;00m[38;5;250m [39m[38;5;28;01mNone[39;00m
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/c08eda82496d2a39/lib/python3.12/site-packages/torch/serialization.py:1904[39m, in [36m_legacy_load[39m[34m(f, map_location, pickle_module, weights_only, **pickle_load_args)[39m
+[32m   1901[39m         [38;5;66;03m# if not a tarfile, reset file offset and proceed[39;00m
+[32m   1902[39m         f.seek([32m0[39m)
+[32m-> [39m[32m1904[39m magic_number = [30;43mpickle_module[39;49m[30;43m.[39;49m[30;43mload[39;49m[30;43m([39;49m[30;43mf[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43m*[39;49m[30;43m*[39;49m[30;43mpickle_load_args[39;49m[30;43m)[39;49m
+[32m   1905[39m [38;5;28;01mif[39;00m magic_number != MAGIC_NUMBER:
+[32m   1906[39m     [38;5;28;01mraise[39;00m [38;5;167;01mRuntimeError[39;00m([33m"[39m[33mInvalid magic number; corrupt file?[39m[33m"[39m)
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/c08eda82496d2a39/lib/python3.12/site-packages/torch/_weights_only_unpickler.py:593[39m, in [36mload[39m[34m(file, encoding)[39m
+[32m    592[39m [38;5;28;01mdef[39;00m[38;5;250m [39m[34mload[39m(file, *, encoding: [38;5;28mstr[39m = [33m"[39m[33mASCII[39m[33m"[39m):
+[32m--> [39m[32m593[39m     [38;5;28;01mreturn[39;00m [30;43mUnpickler[39;49m[30;43m([39;49m[30;43mfile[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mencoding[39;49m[30;43m=[39;49m[30;43mencoding[39;49m[30;43m)[39;49m[30;43m.[39;49m[30;43mload[39;49m[30;43m([39;49m[30;43m)[39;49m
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/c08eda82496d2a39/lib/python3.12/site-packages/torch/_weights_only_unpickler.py:327[39m, in [36mUnpickler.load[39m[34m(self)[39m
+[32m    325[39m key = read([32m1[39m)
+[32m    326[39m [38;5;28;01mif[39;00m [38;5;129;01mnot[39;00m key:
+[32m--> [39m[32m327[39m     [38;5;28;01mraise[39;00m [38;5;167;01mEOFError[39;00m
+[32m    328[39m [38;5;28;01mif[39;00m [38;5;129;01mnot[39;00m [38;5;28misinstance[39m(key, bytes_types):
+[32m    329[39m     [38;5;28;01mraise[39;00m [38;5;167;01mAssertionError[39;00m([33mf[39m[33m"[39m[33mExpected bytes, got [39m[38;5;132;01m{[39;00m[38;5;28mtype[39m(key).[34m__name__[39m[38;5;132;01m}[39;00m[33m"[39m)
+
+[31mEOFError[39m: 
+

@@ -1,0 +1,12 @@
+[cell 0 START +    0.4s] #  Text-to-Speech (TTS) system with Fun-CosyVoice 3.0 and OpenVINO |  | Fu
+[cell 1 START +    0.4s] ## Prerequisites | [back to top ⬆️](#Table-of-contents:)
+[cell 2 START +    0.4s] # Fetch `notebook_utils` module | import requests | from pathlib import Pa
+[cell 2 DONE  +    0.4s]
+[cell 3 START +    0.4s] from cmd_helper import clone_repo | from pip_helper import pip_install | i
+Submodule path 'third_party/Matcha-TTS': checked out 'dd9105b34bf2be2230f4aa1e4769fb586a3c824e'
+[cell 3 DONE  +   76.1s]
+[cell 4 START +   76.1s] ## Convert and Optimize model | [back to top ⬆️](#Table-of-contents:) | 
+[cell 5 START +   76.1s] The CosyVoice3 pipeline consists of six important parts: |  | * **Text Emb
+[cell 6 START +   76.1s] # Disable torchao to avoid version conflict with torch 2.3.1 | import os
+[cell 6 DONE  +  642.7s]
+NBEXEC_RESULT={"ok": false, "n_cells": 13, "n_skipped": 1, "n_substituted": 0, "stopped_after": null, "error_cell": null, "error_type": "CellExecutionError", "error_head": "\u001b[31mHTTPError\u001b[39m: Authentication token does not exist,", "duration_s": 645.52, "patch_notes": ["skipped cell 22: matched skip pattern"]}

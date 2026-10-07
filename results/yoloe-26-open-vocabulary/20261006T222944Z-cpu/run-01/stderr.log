@@ -1,0 +1,69 @@
+[IPKernelApp] WARNING | Kernel is running over TCP without encryption. All communication (including code and outputs) is sent in plain text and is susceptible to eavesdropping. Use IPC transport or launch with kernel manager-provisioned CurveZMQ keys to enable transport encryption.
+;5;66;03m# Run PyTorch inference with text prompts[39;00m
+[32m      6[39m [38;5;28;01mfrom[39;00m PIL [38;5;28;01mimport[39;00m Image
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/1578516ab5d9d50b/lib/python3.12/site-packages/ultralytics/models/yolo/model.py:318[39m, in [36mYOLOE.set_classes[39m[34m(self, classes, embeddings)[39m
+[32m    316[39m [38;5;28;01mif[39;00m [38;5;28msorted[39m([38;5;28mlist[39m([38;5;28mself[39m.model.names.values())) != [38;5;28msorted[39m(classes):
+[32m    317[39m     [38;5;28;01mif[39;00m embeddings [38;5;129;01mis[39;00m [38;5;28;01mNone[39;00m:
+[32m--> [39m[32m318[39m         embeddings = [30;43mself[39;49m[30;43m.[39;49m[30;43mget_text_pe[39;49m[30;43m([39;49m[30;43mclasses[39;49m[30;43m)[39;49m  [38;5;66;03m# generate text embeddings if not provided[39;00m
+[32m    319[39m     [38;5;28mself[39m.model.set_classes(classes, embeddings)
+[32m    321[39m [38;5;66;03m# Reset method class names[39;00m
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/1578516ab5d9d50b/lib/python3.12/site-packages/ultralytics/models/yolo/model.py:257[39m, in [36mYOLOE.get_text_pe[39m[34m(self, texts)[39m
+[32m    255[39m [38;5;250m[39m[33;03m"""Get text positional embeddings for the given texts."""[39;00m
+[32m    256[39m [38;5;28;01massert[39;00m [38;5;28misinstance[39m([38;5;28mself[39m.model, YOLOEModel)
+[32m--> [39m[32m257[39m [38;5;28;01mreturn[39;00m [30;43mself[39;49m[30;43m.[39;49m[30;43mmodel[39;49m[30;43m.[39;49m[30;43mget_text_pe[39;49m[30;43m([39;49m[30;43mtexts[39;49m[30;43m)[39;49m
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/1578516ab5d9d50b/lib/python3.12/site-packages/torch/utils/_contextlib.py:124[39m, in [36mcontext_decorator.<locals>.decorate_context[39m[34m(*args, **kwargs)[39m
+[32m    120[39m [38;5;129m@functools[39m.wraps(func)
+[32m    121[39m [38;5;28;01mdef[39;00m[38;5;250m [39m[34mdecorate_context[39m(*args, **kwargs):
+[32m    122[39m     [38;5;66;03m# pyrefly: ignore [bad-context-manager][39;00m
+[32m    123[39m     [38;5;28;01mwith[39;00m ctx_factory():
+[32m--> [39m[32m124[39m         [38;5;28;01mreturn[39;00m [30;43mfunc[39;49m[30;43m([39;49m[30;43m*[39;49m[30;43margs[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43m*[39;49m[30;43m*[39;49m[30;43mkwargs[39;49m[30;43m)[39;49m
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/1578516ab5d9d50b/lib/python3.12/site-packages/ultralytics/nn/tasks.py:1042[39m, in [36mYOLOEModel.get_text_pe[39m[34m(self, text, batch, cache_clip_model, without_reprta)[39m
+[32m   1035[39m [38;5;28;01mif[39;00m [38;5;129;01mnot[39;00m [38;5;28mgetattr[39m([38;5;28mself[39m, [33m"[39m[33mclip_model[39m[33m"[39m, [38;5;28;01mNone[39;00m) [38;5;129;01mand[39;00m cache_clip_model:
+[32m   1036[39m     [38;5;66;03m# For backwards compatibility of models lacking clip_model attribute[39;00m
+[32m   1037[39m     [38;5;28mself[39m.clip_model = build_text_model([38;5;28mgetattr[39m([38;5;28mself[39m, [33m"[39m[33mtext_model[39m[33m"[39m, [33m"[39m[33mmobileclip:blt[39m[33m"[39m), device=device)
+[32m   1039[39m model = (
+[32m   1040[39m     [38;5;28mself[39m.clip_model
+[32m   1041[39m     [38;5;28;01mif[39;00m cache_clip_model
+[32m-> [39m[32m1042[39m     [38;5;28;01melse[39;00m [30;43mbuild_text_model[39;49m[30;43m([39;49m[30;43mgetattr[39;49m[30;43m([39;49m[30;43mself[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43m"[39;49m[30;43mtext_model[39;49m[30;43m"[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43m"[39;49m[30;43mmobileclip:blt[39;49m[30;43m"[39;49m[30;43m)[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mdevice[39;49m[30;43m=[39;49m[30;43mdevice[39;49m[30;43m)[39;49m
+[32m   1043[39m )
+[32m   1044[39m text_token = model.tokenize(text)
+[32m   1045[39m txt_feats = [model.encode_text(token).detach() [38;5;28;01mfor[39;00m token [38;5;129;01min[39;00m text_token.split(batch)]
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/1578516ab5d9d50b/lib/python3.12/site-packages/ultralytics/nn/text_model.py:358[39m, in [36mbuild_text_model[39m[34m(variant, device)[39m
+[32m    356[39m     [38;5;28;01mreturn[39;00m MobileCLIPTS(device)
+[32m    357[39m [38;5;28;01melif[39;00m base == [33m"[39m[33mmobileclip2[39m[33m"[39m:
+[32m--> [39m[32m358[39m     [38;5;28;01mreturn[39;00m [30;43mMobileCLIPTS[39;49m[30;43m([39;49m[30;43mdevice[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mweight[39;49m[30;43m=[39;49m[30;43m"[39;49m[30;43mmobileclip2_b.ts[39;49m[30;43m"[39;49m[30;43m)[39;49m
+[32m    359[39m [38;5;28;01melse[39;00m:
+[32m    360[39m     [38;5;28;01mraise[39;00m [38;5;167;01mValueError[39;00m([33mf[39m[33m"[39m[33mUnrecognized base model [39m[33m'[39m[38;5;132;01m{[39;00mbase[38;5;132;01m}[39;00m[33m'[39m[33m. Supported models are [39m[33m'[39m[33mclip[39m[33m'[39m[33m, [39m[33m'[39m[33mmobileclip[39m[33m'[39m[33m, [39m[33m'[39m[33mmobileclip2[39m[33m'[39m[33m.[39m[33m"[39m)
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/1578516ab5d9d50b/lib/python3.12/site-packages/ultralytics/nn/text_model.py:292[39m, in [36mMobileCLIPTS.__init__[39m[34m(self, device, weight)[39m
+[32m    289[39m [38;5;28msuper[39m().[34m__init__[39m()
+[32m    290[39m [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01multralytics[39;00m[34;01m.[39;00m[34;01mutils[39;00m[34;01m.[39;00m[34;01mdownloads[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m attempt_download_asset
+[32m--> [39m[32m292[39m [38;5;28mself[39m.encoder = [30;43mtorch[39;49m[30;43m.[39;49m[30;43mjit[39;49m[30;43m.[39;49m[30;43mload[39;49m[30;43m([39;49m[30;43mattempt_download_asset[39;49m[30;43m([39;49m[30;43mweight[39;49m[30;43m)[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mmap_location[39;49m[30;43m=[39;49m[30;43mdevice[39;49m[30;43m)[39;49m
+[32m    293[39m [38;5;28mself[39m.tokenizer = clip.clip.tokenize
+[32m    294[39m [38;5;28mself[39m.device = device
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/1578516ab5d9d50b/lib/python3.12/site-packages/torch/jit/_serialization.py:192[39m, in [36mload[39m[34m(f, map_location, _extra_files, _restore_shapes)[39m
+[32m    190[39m cu = torch._C.CompilationUnit()
+[32m    191[39m [38;5;28;01mif[39;00m [38;5;28misinstance[39m(f, ([38;5;28mstr[39m, os.PathLike)):
+[32m--> [39m[32m192[39m     cpp_module = [30;43mtorch[39;49m[30;43m.[39;49m[30;43m_C[39;49m[30;43m.[39;49m[30;43mimport_ir_module[39;49m[30;43m([39;49m
+[32m    193[39m [30;43m        [39;49m[30;43mcu[39;49m[30;43m,[39;49m
+[32m    194[39m [30;43m        [39;49m[30;43mos[39;49m[30;43m.[39;49m[30;43mfspath[39;49m[30;43m([39;49m[30;43mf[39;49m[30;43m)[39;49m[30;43m,[39;49m
+[32m    195[39m [30;43m        [39;49m[30;43mmap_location[39;49m[30;43m,[39;49m
+[32m    196[39m [30;43m        [39;49m[30;43m_extra_files[39;49m[30;43m,[39;49m
+[32m    197[39m [30;43m        [39;49m[30;43;03m# pyrefly: ignore [bad-argument-count][39;49;00m
+[32m    198[39m [30;43m        [39;49m[30;43m_restore_shapes[39;49m[30;43m,[39;49m
+[32m    199[39m [30;43m    [39;49m[30;43m)[39;49m  [38;5;66;03m# type: ignore[call-arg][39;00m
+[32m    200[39m [38;5;28;01melse[39;00m:
+[32m    201[39m     cpp_module = torch._C.import_ir_module_from_buffer(
+[32m    202[39m         cu,
+[32m    203[39m         [38;5;66;03m# pyrefly: ignore [missing-attribute][39;00m
+[32m   (...)[39m[32m    208[39m         _restore_shapes,
+[32m    209[39m     )  [38;5;66;03m# type: ignore[call-arg][39;00m
+
+[31mRuntimeError[39m: PytorchStreamReader failed reading zip archive: failed finding central directory
+

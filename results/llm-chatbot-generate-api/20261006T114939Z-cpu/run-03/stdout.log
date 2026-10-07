@@ -1,0 +1,130 @@
+[cell 0 START +    0.4s] # Create an LLM-powered Chatbot using OpenVINO Generate API |  | In the ra
+[cell 1 START +    0.4s] ## Prerequisites | [back to top ⬆️](#Table-of-contents:) |  | Install requir
+[cell 2 START +    0.4s] import os |  | os.environ["GIT_CLONE_PROTECTION_ACTIVE"] = "false" |  | %pip i
+[cell 2 DONE  +    7.4s]
+[cell 3 START +    7.4s] import os | from pathlib import Path | import requests | import shutil |  | # fe
+[cell 3 DONE  +    8.2s]
+[cell 4 START +    8.2s] ## Select device for inference | [back to top ⬆️](#Table-of-contents:)
+[cell 5 START +    8.2s] from notebook_utils import device_widget |  | device = device_widget(defau
+[cell 5 DONE  +    8.5s]
+[cell 6 START +    8.5s] ## Select model for inference | [back to top ⬆️](#Table-of-contents:) |  | T
+[cell 7 START +    8.5s] from llm_config import get_llm_selection_widget |  | form, lang, model_id_
+[cell 7 DONE  +    8.5s]
+[cell 8 START +    8.5s] model_configuration = model_id_widget.value | model_id = model_id_widget
+[cell 8 DONE  +    8.5s]
+[cell 9 START +    8.5s] ## Convert model using Optimum-CLI tool | [back to top ⬆️](#Table-of-con
+[cell 10 START +    8.5s] from llm_config import convert_and_compress_model |  | model_dir = convert
+[cell 10 DONE  +    8.6s]
+[cell 11 START +    8.6s] Let's compare model size for different compression types
+[cell 12 START +    8.6s] from llm_config import compare_model_size |  | compare_model_size(model_di
+[cell 12 DONE  +    8.6s]
+[cell 13 START +    8.6s] ## Instantiate pipeline with OpenVINO Generate API | [back to top ⬆️](#T
+[cell 14 START +    8.6s] import openvino_genai as ov_genai | import sys |  | from gradio_helper_genai
+Model: OV Tokenizer
+  NETWORK_NAME: tokenizer
+  OPTIMAL_NUMBER_OF_INFER_REQUESTS: 1
+  NUM_STREAMS: 1
+  INFERENCE_NUM_THREADS: 16
+  PERF_COUNT: NO
+  INFERENCE_PRECISION_HINT: bf16
+  PERFORMANCE_HINT: LATENCY
+  EXECUTION_MODE_HINT: PERFORMANCE
+  PERFORMANCE_HINT_NUM_REQUESTS: 0
+  ENABLE_CPU_PINNING: YES
+  ENABLE_CPU_RESERVATION: NO
+  SCHEDULING_CORE_TYPE: ANY_CORE
+  MODEL_DISTRIBUTION_POLICY: 
+  ENABLE_HYPER_THREADING: NO
+  EXECUTION_DEVICES: CPU
+  CPU_DENORMALS_OPTIMIZATION: NO
+  LOG_LEVEL: LOG_NONE
+  CPU_SPARSE_WEIGHTS_DECOMPRESSION_RATE: 1
+  ENABLE_TENSOR_PARALLEL: NO
+  TBB_PARTITIONER: STATIC
+  DYNAMIC_QUANTIZATION_GROUP_SIZE: 32
+  KV_CACHE_PRECISION: u8
+  KEY_CACHE_PRECISION: u8
+  VALUE_CACHE_PRECISION: u8
+  KEY_CACHE_GROUP_SIZE: 0
+  VALUE_CACHE_GROUP_SIZE: 0
+  RUNTIME_REQUIREMENTS: meta=1.0;ov=2026.5.0;isa=Intel AVX-512 with Intel DL Boost and bfloat16 support
+EXECUTION_DEVICES:
+ CPU: AMD RYZEN AI MAX+ PRO 395 w/ Radeon 8060S      
+Model: OV Detokenizer
+  NETWORK_NAME: detokenizer
+  OPTIMAL_NUMBER_OF_INFER_REQUESTS: 1
+  NUM_STREAMS: 1
+  INFERENCE_NUM_THREADS: 16
+  PERF_COUNT: NO
+  INFERENCE_PRECISION_HINT: bf16
+  PERFORMANCE_HINT: LATENCY
+  EXECUTION_MODE_HINT: PERFORMANCE
+  PERFORMANCE_HINT_NUM_REQUESTS: 0
+  ENABLE_CPU_PINNING: YES
+  ENABLE_CPU_RESERVATION: NO
+  SCHEDULING_CORE_TYPE: ANY_CORE
+  MODEL_DISTRIBUTION_POLICY: 
+  ENABLE_HYPER_THREADING: NO
+  EXECUTION_DEVICES: CPU
+  CPU_DENORMALS_OPTIMIZATION: NO
+  LOG_LEVEL: LOG_NONE
+  CPU_SPARSE_WEIGHTS_DECOMPRESSION_RATE: 1
+  ENABLE_TENSOR_PARALLEL: NO
+  TBB_PARTITIONER: STATIC
+  DYNAMIC_QUANTIZATION_GROUP_SIZE: 32
+  KV_CACHE_PRECISION: u8
+  KEY_CACHE_PRECISION: u8
+  VALUE_CACHE_PRECISION: u8
+  KEY_CACHE_GROUP_SIZE: 0
+  VALUE_CACHE_GROUP_SIZE: 0
+  RUNTIME_REQUIREMENTS: meta=1.0;ov=2026.5.0;isa=Intel AVX-512 with Intel DL Boost and bfloat16 support
+EXECUTION_DEVICES:
+ CPU: AMD RYZEN AI MAX+ PRO 395 w/ Radeon 8060S      
+SchedulerConfig { 
+  max_num_batched_tokens: 18446744073709551615
+  num_kv_blocks: 0
+  cache_size: 0
+  num_linear_attention_blocks: 0
+  cache_interval_multiplier: unset (auto defined model-dependent)
+  dynamic_split_fuse: true
+  use_cache_eviction: false
+  max_num_seqs: 256
+  enable_prefix_caching: true
+  use_sparse_attention: false
+ }
+Model: LLM with Paged Attention
+  NETWORK_NAME: Model0
+  OPTIMAL_NUMBER_OF_INFER_REQUESTS: 1
+  NUM_STREAMS: 1
+  INFERENCE_NUM_THREADS: 16
+  PERF_COUNT: NO
+  INFERENCE_PRECISION_HINT: bf16
+  PERFORMANCE_HINT: LATENCY
+  EXECUTION_MODE_HINT: PERFORMANCE
+  PERFORMANCE_HINT_NUM_REQUESTS: 0
+  ENABLE_CPU_PINNING: YES
+  ENABLE_CPU_RESERVATION: NO
+  SCHEDULING_CORE_TYPE: ANY_CORE
+  MODEL_DISTRIBUTION_POLICY: 
+  ENABLE_HYPER_THREADING: NO
+  EXECUTION_DEVICES: CPU
+  CPU_DENORMALS_OPTIMIZATION: NO
+  LOG_LEVEL: LOG_NONE
+  CPU_SPARSE_WEIGHTS_DECOMPRESSION_RATE: 1
+  ENABLE_TENSOR_PARALLEL: NO
+  TBB_PARTITIONER: STATIC
+  DYNAMIC_QUANTIZATION_GROUP_SIZE: 32
+  KV_CACHE_PRECISION: u8
+  KEY_CACHE_PRECISION: u8
+  VALUE_CACHE_PRECISION: u8
+  KEY_CACHE_GROUP_SIZE: 0
+  VALUE_CACHE_GROUP_SIZE: 0
+  RUNTIME_REQUIREMENTS: meta=1.0;ov=2026.5.0;isa=Intel AVX-512 with Intel DL Boost and bfloat16 support
+EXECUTION_DEVICES:
+ CPU: AMD RYZEN AI MAX+ PRO 395 w/ Radeon 8060S      
+[INFO] PA backend is enabled.
+[cell 14 DONE  +   10.9s]
+[cell 15 START +   10.9s] ## Run Chatbot | [back to top ⬆️](#Table-of-contents:) |  | Now, when model 
+[cell 16 START +   10.9s] ### Advanced generation options | [back to top ⬆️](#Table-of-contents:) | 
+[cell 17 START +   10.9s] if not Path("gradio_helper_genai.py").exists(): |     r = requests.get(u
+NBEXEC_RESULT={"ok": true, "n_cells": 9, "n_skipped": 1, "n_substituted": 1, "stopped_after": null, "error_cell": null, "error_type": null, "error_head": null, "duration_s": 11.18, "patch_notes": ["substituted 1 occurrence(s) in cell 2", "skipped cell 17: matched skip pattern"]}

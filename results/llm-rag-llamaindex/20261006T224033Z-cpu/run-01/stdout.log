@@ -1,0 +1,288 @@
+[cell 0 START +    0.4s] # Create a RAG system using OpenVINO and LlamaIndex |  | **Retrieval-augme
+[cell 1 START +    0.4s] ## Prerequisites |  | [back to top ⬆️](#Table-of-contents:) |  | Install requi
+[cell 2 START +    0.4s] import os | import requests | from pathlib import Path |  | os.environ["GIT_CL
+Looking in indexes: https://pypi.org/simple, https://storage.openvinotoolkit.org/simple/wheels/nightly
+Requirement already satisfied: openvino>=2025.2 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (2026.5.0.dev20261005)
+Requirement already satisfied: numpy<2.6.0,>=1.16.6 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (from openvino>=2025.2) (2.2.6)
+Requirement already satisfied: openvino-telemetry>=2023.2.1 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (from openvino>=2025.2) (2025.2.0)
+Looking in indexes: https://pypi.org/simple, https://storage.openvinotoolkit.org/simple/wheels/nightly
+Requirement already satisfied: huggingface-hub<1.0,>=0.26.5 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (0.36.2)
+Requirement already satisfied: openvino-tokenizers>=2025.2 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (from openvino-tokenizers[transformers]>=2025.2) (2026.5.0.0.dev20261005)
+Requirement already satisfied: openvino-genai>=2025.2 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (2026.5.0.0.dev20261005)
+Requirement already satisfied: filelock in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (from huggingface-hub<1.0,>=0.26.5) (3.32.7)
+Requirement already satisfied: fsspec>=2023.5.0 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (from huggingface-hub<1.0,>=0.26.5) (2024.6.1)
+Requirement already satisfied: hf-xet<2.0.0,>=1.1.3 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (from huggingface-hub<1.0,>=0.26.5) (1.6.0)
+Requirement already satisfied: packaging>=20.9 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (from huggingface-hub<1.0,>=0.26.5) (24.2)
+Requirement already satisfied: pyyaml>=5.1 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (from huggingface-hub<1.0,>=0.26.5) (6.0.3)
+Requirement already satisfied: requests in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (from huggingface-hub<1.0,>=0.26.5) (2.34.2)
+Requirement already satisfied: tqdm>=4.42.1 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (from huggingface-hub<1.0,>=0.26.5) (4.70.1)
+Requirement already satisfied: typing-extensions>=3.7.4.3 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (from huggingface-hub<1.0,>=0.26.5) (4.16.0)
+Requirement already satisfied: openvino~=2026.5.0.dev in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (from openvino-tokenizers>=2025.2->openvino-tokenizers[transformers]>=2025.2) (2026.5.0.dev20261005)
+Requirement already satisfied: numpy<2.6.0,>=1.16.6 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (from openvino~=2026.5.0.dev->openvino-tokenizers>=2025.2->openvino-tokenizers[transformers]>=2025.2) (2.2.6)
+Requirement already satisfied: openvino-telemetry>=2023.2.1 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (from openvino~=2026.5.0.dev->openvino-tokenizers>=2025.2->openvino-tokenizers[transformers]>=2025.2) (2025.2.0)
+Requirement already satisfied: transformers>=4.36.0 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (from transformers[sentencepiece]>=4.36.0; extra == "transformers"->openvino-tokenizers[transformers]>=2025.2) (4.57.6)
+Requirement already satisfied: tiktoken>=0.3.0 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (from openvino-tokenizers[transformers]>=2025.2) (0.14.0)
+Requirement already satisfied: regex in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (from tiktoken>=0.3.0->openvino-tokenizers[transformers]>=2025.2) (2026.9.29)
+Requirement already satisfied: tokenizers<=0.23.0,>=0.22.0 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (from transformers>=4.36.0->transformers[sentencepiece]>=4.36.0; extra == "transformers"->openvino-tokenizers[transformers]>=2025.2) (0.22.2)
+Requirement already satisfied: safetensors>=0.4.3 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (from transformers>=4.36.0->transformers[sentencepiece]>=4.36.0; extra == "transformers"->openvino-tokenizers[transformers]>=2025.2) (0.7.0)
+Requirement already satisfied: sentencepiece!=0.1.92,>=0.1.91 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (from transformers[sentencepiece]>=4.36.0; extra == "transformers"->openvino-tokenizers[transformers]>=2025.2) (0.2.2)
+Requirement already satisfied: protobuf in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (from transformers[sentencepiece]>=4.36.0; extra == "transformers"->openvino-tokenizers[transformers]>=2025.2) (7.36.2)
+Requirement already satisfied: charset_normalizer<4,>=2 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (from requests->huggingface-hub<1.0,>=0.26.5) (3.5.2)
+Requirement already satisfied: idna<4,>=2.5 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (from requests->huggingface-hub<1.0,>=0.26.5) (3.20)
+Requirement already satisfied: urllib3<3,>=1.26 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (from requests->huggingface-hub<1.0,>=0.26.5) (2.8.0)
+Requirement already satisfied: certifi>=2023.5.7 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (from requests->huggingface-hub<1.0,>=0.26.5) (2026.7.22)
+[cell 2 DONE  +   41.3s]
+[cell 3 START +   41.3s] import os | from pathlib import Path | import requests | import shutil | impor
+[cell 3 DONE  +   44.3s]
+[cell 4 START +   44.3s] ## Select model for inference |  | [back to top ⬆️](#Table-of-contents:) |  | 
+[cell 5 START +   44.3s] from pathlib import Path | import ipywidgets as widgets | from notebook_ut
+[cell 5 DONE  +   44.4s]
+[cell 6 START +   44.4s] ## Convert model and compress model weights |  | [back to top ⬆️](#Table-o
+[cell 7 START +   44.4s] from llm_config import ( |     SUPPORTED_EMBEDDING_MODELS, |     SUPPORTED
+[cell 7 DONE  +   44.4s]
+[cell 8 START +   44.4s] llm_model_ids = [model_id for model_id, model_config in SUPPORTED_LLM_
+[cell 8 DONE  +   44.4s]
+[cell 9 START +   44.4s] llm_model_configuration = SUPPORTED_LLM_MODELS[model_language.value][l
+[cell 9 DONE  +   44.4s]
+[cell 10 START +   44.4s] 🤗 [Optimum Intel](https://huggingface.co/docs/optimum/intel/index) is 
+[cell 11 START +   44.4s] ### LLM conversion and Weights Compression using Optimum-CLI |  | [back to
+[cell 12 START +   44.4s] from IPython.display import Markdown, display |  | prepare_int4_model = wi
+[cell 12 DONE  +   44.4s]
+[cell 13 START +   44.4s] #### Weight compression with AWQ | [back to top ⬆️](#Table-of-contents:)
+[cell 14 START +   44.4s] enable_awq = widgets.Checkbox( |     value=False, |     description="Enabl
+[cell 14 DONE  +   44.4s]
+[cell 15 START +   44.4s] pt_model_id = llm_model_configuration["model_id"] | pt_model_name = llm_
+[cell 15 DONE  +  208.3s]
+[cell 16 START +  208.3s] Let's compare model size for different compression types | 
+[cell 17 START +  208.3s] fp16_weights = fp16_model_dir / "openvino_model.bin" | int8_weights = in
+[cell 17 DONE  +  208.3s]
+[cell 18 START +  208.3s] ### Convert embedding model using Optimum-CLI |  | [back to top ⬆️](#Table
+[cell 19 START +  208.3s] embedding_model_id = list(SUPPORTED_EMBEDDING_MODELS[model_language.va
+[cell 19 DONE  +  208.3s]
+[cell 20 START +  208.3s] embedding_model_configuration = SUPPORTED_EMBEDDING_MODELS[model_langu
+[cell 20 DONE  +  208.3s]
+[cell 21 START +  208.3s] OpenVINO embedding model and tokenizer can be exported by `feature-ext
+[cell 22 START +  208.3s] export_command_base = "optimum-cli export openvino --model {} --task f
+[cell 22 DONE  +  229.7s]
+[cell 23 START +  229.7s] ### Convert rerank model using Optimum-CLI |  | [back to top ⬆️](#Table-of
+[cell 24 START +  229.7s] rerank_model_id = list(SUPPORTED_RERANK_MODELS) |  | rerank_model_id = wid
+[cell 24 DONE  +  229.7s]
+[cell 25 START +  229.7s] rerank_model_configuration = SUPPORTED_RERANK_MODELS[rerank_model_id.v
+[cell 25 DONE  +  229.7s]
+[cell 26 START +  229.7s] Since `rerank` model is sort of sentence classification task, its Open
+[cell 27 START +  229.7s] export_command_base = "optimum-cli export openvino --model {} --task t
+[cell 27 DONE  +  391.4s]
+[cell 28 START +  391.4s] ## Select device for inference and model variant |  | [back to top ⬆️](#Ta
+[cell 29 START +  391.4s] embedding_device = device_widget() |  | embedding_device
+[cell 29 DONE  +  391.7s]
+[cell 30 START +  391.7s] print(f"Embedding model will be loaded to {embedding_device.value} dev
+[cell 30 DONE  +  391.7s]
+[cell 31 START +  391.7s] Optimize the BGE embedding model's parameter precision when loading mo
+[cell 32 START +  391.7s] USING_NPU = embedding_device.value == "NPU" |  | npu_embedding_dir = embed
+[cell 32 DONE  +  391.7s]
+[cell 33 START +  391.7s] ### Select device for rerank model inference |  | [back to top ⬆️](#Table-
+[cell 34 START +  391.7s] rerank_device = device_widget() |  | rerank_device
+[cell 34 DONE  +  391.7s]
+[cell 35 START +  391.7s] print(f"Rerenk model will be loaded to {rerank_device.value} device fo
+[cell 35 DONE  +  391.7s]
+[cell 36 START +  391.7s] ### Select device for LLM model inference |  | [back to top ⬆️](#Table-of-
+[cell 37 START +  391.7s] llm_device = device_widget("CPU", exclude=["NPU"]) | llm_device
+[cell 37 DONE  +  391.7s]
+[cell 38 START +  391.7s] print(f"LLM model will be loaded to {llm_device.value} device for resp
+[cell 38 DONE  +  391.7s]
+[cell 39 START +  391.7s] ## Load models |  | [back to top ⬆️](#Table-of-contents:) |  | ### Load embedd
+[cell 40 START +  391.7s] from llama_index.embeddings.huggingface_openvino import OpenVINOEmbedd
+Model: OV Tokenizer
+  NETWORK_NAME: tokenizer
+  OPTIMAL_NUMBER_OF_INFER_REQUESTS: 1
+  NUM_STREAMS: 1
+  INFERENCE_NUM_THREADS: 16
+  PERF_COUNT: NO
+  INFERENCE_PRECISION_HINT: bf16
+  PERFORMANCE_HINT: LATENCY
+  EXECUTION_MODE_HINT: PERFORMANCE
+  PERFORMANCE_HINT_NUM_REQUESTS: 0
+  ENABLE_CPU_PINNING: YES
+  ENABLE_CPU_RESERVATION: NO
+  SCHEDULING_CORE_TYPE: ANY_CORE
+  MODEL_DISTRIBUTION_POLICY: 
+  ENABLE_HYPER_THREADING: NO
+  EXECUTION_DEVICES: CPU
+  CPU_DENORMALS_OPTIMIZATION: NO
+  LOG_LEVEL: LOG_NONE
+  CPU_SPARSE_WEIGHTS_DECOMPRESSION_RATE: 1
+  ENABLE_TENSOR_PARALLEL: NO
+  TBB_PARTITIONER: STATIC
+  DYNAMIC_QUANTIZATION_GROUP_SIZE: 32
+  KV_CACHE_PRECISION: u8
+  KEY_CACHE_PRECISION: u8
+  VALUE_CACHE_PRECISION: u8
+  KEY_CACHE_GROUP_SIZE: 0
+  VALUE_CACHE_GROUP_SIZE: 0
+  RUNTIME_REQUIREMENTS: meta=1.0;ov=2026.5.0;isa=Intel AVX-512 with Intel DL Boost and bfloat16 support
+EXECUTION_DEVICES:
+ CPU: AMD RYZEN AI MAX+ PRO 395 w/ Radeon 8060S      
+Model: OV Detokenizer
+  NETWORK_NAME: detokenizer
+  OPTIMAL_NUMBER_OF_INFER_REQUESTS: 1
+  NUM_STREAMS: 1
+  INFERENCE_NUM_THREADS: 16
+  PERF_COUNT: NO
+  INFERENCE_PRECISION_HINT: bf16
+  PERFORMANCE_HINT: LATENCY
+  EXECUTION_MODE_HINT: PERFORMANCE
+  PERFORMANCE_HINT_NUM_REQUESTS: 0
+  ENABLE_CPU_PINNING: YES
+  ENABLE_CPU_RESERVATION: NO
+  SCHEDULING_CORE_TYPE: ANY_CORE
+  MODEL_DISTRIBUTION_POLICY: 
+  ENABLE_HYPER_THREADING: NO
+  EXECUTION_DEVICES: CPU
+  CPU_DENORMALS_OPTIMIZATION: NO
+  LOG_LEVEL: LOG_NONE
+  CPU_SPARSE_WEIGHTS_DECOMPRESSION_RATE: 1
+  ENABLE_TENSOR_PARALLEL: NO
+  TBB_PARTITIONER: STATIC
+  DYNAMIC_QUANTIZATION_GROUP_SIZE: 32
+  KV_CACHE_PRECISION: u8
+  KEY_CACHE_PRECISION: u8
+  VALUE_CACHE_PRECISION: u8
+  KEY_CACHE_GROUP_SIZE: 0
+  VALUE_CACHE_GROUP_SIZE: 0
+  RUNTIME_REQUIREMENTS: meta=1.0;ov=2026.5.0;isa=Intel AVX-512 with Intel DL Boost and bfloat16 support
+EXECUTION_DEVICES:
+ CPU: AMD RYZEN AI MAX+ PRO 395 w/ Radeon 8060S      
+Model: text embedding model
+  NETWORK_NAME: Model0
+  OPTIMAL_NUMBER_OF_INFER_REQUESTS: 1
+  NUM_STREAMS: 1
+  INFERENCE_NUM_THREADS: 16
+  PERF_COUNT: NO
+  INFERENCE_PRECISION_HINT: bf16
+  PERFORMANCE_HINT: LATENCY
+  EXECUTION_MODE_HINT: PERFORMANCE
+  PERFORMANCE_HINT_NUM_REQUESTS: 0
+  ENABLE_CPU_PINNING: YES
+  ENABLE_CPU_RESERVATION: NO
+  SCHEDULING_CORE_TYPE: ANY_CORE
+  MODEL_DISTRIBUTION_POLICY: 
+  ENABLE_HYPER_THREADING: NO
+  EXECUTION_DEVICES: CPU
+  CPU_DENORMALS_OPTIMIZATION: NO
+  LOG_LEVEL: LOG_NONE
+  CPU_SPARSE_WEIGHTS_DECOMPRESSION_RATE: 1
+  ENABLE_TENSOR_PARALLEL: NO
+  TBB_PARTITIONER: STATIC
+  DYNAMIC_QUANTIZATION_GROUP_SIZE: 32
+  KV_CACHE_PRECISION: u8
+  KEY_CACHE_PRECISION: u8
+  VALUE_CACHE_PRECISION: u8
+  KEY_CACHE_GROUP_SIZE: 0
+  VALUE_CACHE_GROUP_SIZE: 0
+  RUNTIME_REQUIREMENTS: meta=1.0;ov=2026.5.0;isa=Intel AVX-512 with Intel DL Boost and bfloat16 support
+EXECUTION_DEVICES:
+ CPU: AMD RYZEN AI MAX+ PRO 395 w/ Radeon 8060S      
+[cell 40 DONE  +  400.1s]
+[cell 41 START +  400.1s] ### Load rerank model |  | [back to top ⬆️](#Table-of-contents:) |  | Now a Hu
+[cell 42 START +  400.1s] from llama_index.postprocessor.openvino_rerank import OpenVINORerank | f
+Model: OV Tokenizer
+  NETWORK_NAME: tokenizer
+  OPTIMAL_NUMBER_OF_INFER_REQUESTS: 1
+  NUM_STREAMS: 1
+  INFERENCE_NUM_THREADS: 16
+  PERF_COUNT: NO
+  INFERENCE_PRECISION_HINT: bf16
+  PERFORMANCE_HINT: LATENCY
+  EXECUTION_MODE_HINT: PERFORMANCE
+  PERFORMANCE_HINT_NUM_REQUESTS: 0
+  ENABLE_CPU_PINNING: YES
+  ENABLE_CPU_RESERVATION: NO
+  SCHEDULING_CORE_TYPE: ANY_CORE
+  MODEL_DISTRIBUTION_POLICY: 
+  ENABLE_HYPER_THREADING: NO
+  EXECUTION_DEVICES: CPU
+  CPU_DENORMALS_OPTIMIZATION: NO
+  LOG_LEVEL: LOG_NONE
+  CPU_SPARSE_WEIGHTS_DECOMPRESSION_RATE: 1
+  ENABLE_TENSOR_PARALLEL: NO
+  TBB_PARTITIONER: STATIC
+  DYNAMIC_QUANTIZATION_GROUP_SIZE: 32
+  KV_CACHE_PRECISION: u8
+  KEY_CACHE_PRECISION: u8
+  VALUE_CACHE_PRECISION: u8
+  KEY_CACHE_GROUP_SIZE: 0
+  VALUE_CACHE_GROUP_SIZE: 0
+  RUNTIME_REQUIREMENTS: meta=1.0;ov=2026.5.0;isa=Intel AVX-512 with Intel DL Boost and bfloat16 support
+EXECUTION_DEVICES:
+ CPU: AMD RYZEN AI MAX+ PRO 395 w/ Radeon 8060S      
+Model: OV Detokenizer
+  NETWORK_NAME: detokenizer
+  OPTIMAL_NUMBER_OF_INFER_REQUESTS: 1
+  NUM_STREAMS: 1
+  INFERENCE_NUM_THREADS: 16
+  PERF_COUNT: NO
+  INFERENCE_PRECISION_HINT: bf16
+  PERFORMANCE_HINT: LATENCY
+  EXECUTION_MODE_HINT: PERFORMANCE
+  PERFORMANCE_HINT_NUM_REQUESTS: 0
+  ENABLE_CPU_PINNING: YES
+  ENABLE_CPU_RESERVATION: NO
+  SCHEDULING_CORE_TYPE: ANY_CORE
+  MODEL_DISTRIBUTION_POLICY: 
+  ENABLE_HYPER_THREADING: NO
+  EXECUTION_DEVICES: CPU
+  CPU_DENORMALS_OPTIMIZATION: NO
+  LOG_LEVEL: LOG_NONE
+  CPU_SPARSE_WEIGHTS_DECOMPRESSION_RATE: 1
+  ENABLE_TENSOR_PARALLEL: NO
+  TBB_PARTITIONER: STATIC
+  DYNAMIC_QUANTIZATION_GROUP_SIZE: 32
+  KV_CACHE_PRECISION: u8
+  KEY_CACHE_PRECISION: u8
+  VALUE_CACHE_PRECISION: u8
+  KEY_CACHE_GROUP_SIZE: 0
+  VALUE_CACHE_GROUP_SIZE: 0
+  RUNTIME_REQUIREMENTS: meta=1.0;ov=2026.5.0;isa=Intel AVX-512 with Intel DL Boost and bfloat16 support
+EXECUTION_DEVICES:
+ CPU: AMD RYZEN AI MAX+ PRO 395 w/ Radeon 8060S      
+Model: text rerank model
+  NETWORK_NAME: Model0
+  OPTIMAL_NUMBER_OF_INFER_REQUESTS: 1
+  NUM_STREAMS: 1
+  INFERENCE_NUM_THREADS: 16
+  PERF_COUNT: NO
+  INFERENCE_PRECISION_HINT: bf16
+  PERFORMANCE_HINT: LATENCY
+  EXECUTION_MODE_HINT: PERFORMANCE
+  PERFORMANCE_HINT_NUM_REQUESTS: 0
+  ENABLE_CPU_PINNING: YES
+  ENABLE_CPU_RESERVATION: NO
+  SCHEDULING_CORE_TYPE: ANY_CORE
+  MODEL_DISTRIBUTION_POLICY: 
+  ENABLE_HYPER_THREADING: NO
+  EXECUTION_DEVICES: CPU
+  CPU_DENORMALS_OPTIMIZATION: NO
+  LOG_LEVEL: LOG_NONE
+  CPU_SPARSE_WEIGHTS_DECOMPRESSION_RATE: 1
+  ENABLE_TENSOR_PARALLEL: NO
+  TBB_PARTITIONER: STATIC
+  DYNAMIC_QUANTIZATION_GROUP_SIZE: 32
+  KV_CACHE_PRECISION: u8
+  KEY_CACHE_PRECISION: u8
+  VALUE_CACHE_PRECISION: u8
+  KEY_CACHE_GROUP_SIZE: 0
+  VALUE_CACHE_GROUP_SIZE: 0
+  RUNTIME_REQUIREMENTS: meta=1.0;ov=2026.5.0;isa=Intel AVX-512 with Intel DL Boost and bfloat16 support
+EXECUTION_DEVICES:
+ CPU: AMD RYZEN AI MAX+ PRO 395 w/ Radeon 8060S      
+[cell 42 DONE  +  400.5s]
+[cell 43 START +  400.5s] ### Load LLM model |  | [back to top ⬆️](#Table-of-contents:) |  | OpenVINO mo
+[cell 44 START +  400.5s] available_models = [] | if int4_model_dir.exists(): |     available_models
+[cell 44 DONE  +  400.5s]
+[cell 45 START +  400.5s] OpenVINO models can be run locally through the `OpenVINOLLM` class in 
+[cell 46 START +  400.5s] from llama_index.llms.openvino import OpenVINOLLM |  | import openvino.pro
+[cell 46 DONE  +  401.3s]
+[cell 47 START +  401.3s] ## Run QA over Document |  | [back to top ⬆️](#Table-of-contents:) |  | A typi
+[cell 48 START +  401.3s] from llama_index.core import VectorStoreIndex, StorageContext | from lla
+[cell 48 DONE  +  553.9s]
+NBEXEC_RESULT={"ok": false, "n_cells": 32, "n_skipped": 1, "n_substituted": 1, "stopped_after": null, "error_cell": null, "error_type": "CellExecutionError", "error_head": "**********************************************************************", "duration_s": 557.33, "patch_notes": ["substituted 1 occurrence(s) in cell 2", "skipped cell 54: matched skip pattern"]}

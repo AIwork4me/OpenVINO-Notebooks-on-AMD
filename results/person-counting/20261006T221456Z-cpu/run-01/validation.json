@@ -1,0 +1,15 @@
+{
+  "schema_version": 2,
+  "passed": false,
+  "checks": {
+    "output_contains": {
+      "processing has been successfully completed": true,
+      "yolov8n_openvino_model": false
+    },
+    "no_cell_error": true,
+    "skipped_cells": 0
+  },
+  "notes": [],
+  "level": "WORKLOAD_CORRECTNESS",
+  "contract_present": true
+}

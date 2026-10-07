@@ -1,0 +1,131 @@
+[IPKernelApp] WARNING | Kernel is running over TCP without encryption. All communication (including code and outputs) is sent in plain text and is susceptible to eavesdropping. Use IPC transport or launch with kernel manager-provisioned CurveZMQ keys to enable transport encryption.
+Note: switching to '8b54619760fcb78abf5e4637a88e19c1b9ab53c9'.
+
+You are in 'detached HEAD' state. You can look around, make experimental
+changes and commit them, and you can discard any commits you make in this
+state without impacting any branches by switching back to a branch.
+
+If you want to create a new branch to retain commits you create, you may
+do so (now or later) by using -c with the switch command. Example:
+
+  git switch -c <new-branch-name>
+
+Or undo this operation with:
+
+  git switch -
+
+Turn off this advice by setting config variable advice.detachedHead to false
+
+HEAD is now at 8b54619 update
+[33m  WARNING: Connection interrupted while downloading.[0m[33m
+[0m[33m  WARNING: Attempting to resume incomplete download (4.5 MB/190.4 MB, attempt 1)[0m[33m
+[0m[31mERROR: pip's dependency resolver does not currently take into account all the packages that are installed. This behaviour is the source of the following dependency conflicts.
+supervision 0.18.0 requires opencv-python-headless>=4.5.5.64, which is not installed.
+easyocr 1.7.2 requires opencv-python-headless, which is not installed.
+langchain-core 0.3.86 requires pydantic<3.0.0,>=2.7.4, but you have pydantic 2.7.0 which is incompatible.
+langsmith 0.14.4 requires websockets>=15.0, but you have websockets 12.0 which is incompatible.
+torchvision 0.23.0+cpu requires torch==2.8.0, but you have torch 2.3.1+cpu which is incompatible.
+parler-tts 0.2.2 requires transformers<=4.46.1,>=4.46.1, but you have transformers 4.51.3 which is incompatible.
+opentelemetry-proto 1.45.0 requires protobuf<8.0,>=5.0, but you have protobuf 4.25.0 which is incompatible.
+onnxruntime 1.30.0 requires protobuf>=4.25.8, but you have protobuf 4.25.0 which is incompatible.
+ace-step 0.2.0 requires accelerate==1.6.0, but you have accelerate 1.15.0 which is incompatible.
+ace-step 0.2.0 requires datasets==3.4.1, but you have datasets 3.6.0 which is incompatible.
+ace-step 0.2.0 requires diffusers>=0.33.0, but you have diffusers 0.29.0 which is incompatible.
+ace-step 0.2.0 requires librosa==0.11.0, but you have librosa 0.10.2 which is incompatible.
+ace-step 0.2.0 requires matplotlib==3.10.1, but you have matplotlib 3.7.5 which is incompatible.
+ace-step 0.2.0 requires soundfile==0.13.1, but you have soundfile 0.12.1 which is incompatible.
+ace-step 0.2.0 requires transformers==4.50.0, but you have transformers 4.51.3 which is incompatible.
+py3langid 0.3.0 requires numpy>=2.0.0; python_version >= "3.9", but you have numpy 1.26.4 which is incompatible.
+hf-gradio 0.4.1 requires gradio-client<3.0,>=2.0, but you have gradio-client 1.4.2 which is incompatible.
+ml-dtypes 0.6.0 requires numpy>=2.0.0, but you have numpy 1.26.4 which is incompatible.
+tifffile 2026.9.20 requires numpy>=2.1, but you have numpy 1.26.4 which is incompatible.
+omnivoice 0.2.1 requires torch>=2.4, but you have torch 2.3.1+cpu which is incompatible.
+omnivoice 0.2.1 requires torchaudio>=2.4, but you have torchaudio 2.3.1+cpu which is incompatible.
+omnivoice 0.2.1 requires transformers>=5.3.0, but you have transformers 4.51.3 which is incompatible.
+langchain 0.3.27 requires pydantic<3.0.0,>=2.7.4, but you have pydantic 2.7.0 which is incompatible.
+onnxscript 0.7.2 requires onnx>=1.17, but you have onnx 1.16.0 which is incompatible.
+googleapis-common-protos 1.75.5 requires protobuf<8.0.0,>=6.33.5, but you have protobuf 4.25.0 which is incompatible.[0m[31m
+[0m[31mERROR: pip's dependency resolver does not currently take into account all the packages that are installed. This behaviour is the source of the following dependency conflicts.
+easyocr 1.7.2 requires opencv-python-headless, which is not installed.
+parler-tts 0.2.2 requires transformers<=4.46.1,>=4.46.1, but you have transformers 4.51.3 which is incompatible.
+ace-step 0.2.0 requires accelerate==1.6.0, but you have accelerate 1.15.0 which is incompatible.
+ace-step 0.2.0 requires datasets==3.4.1, but you have datasets 3.6.0 which is incompatible.
+ace-step 0.2.0 requires diffusers>=0.33.0, but you have diffusers 0.29.0 which is incompatible.
+ace-step 0.2.0 requires librosa==0.11.0, but you have librosa 0.10.2 which is incompatible.
+ace-step 0.2.0 requires matplotlib==3.10.1, but you have matplotlib 3.7.5 which is incompatible.
+ace-step 0.2.0 requires soundfile==0.13.1, but you have soundfile 0.12.1 which is incompatible.
+ace-step 0.2.0 requires transformers==4.50.0, but you have transformers 4.51.3 which is incompatible.
+hf-gradio 0.4.1 requires gradio-client<3.0,>=2.0, but you have gradio-client 1.10.1 which is incompatible.
+descript-audiotools 0.7.4 requires protobuf!=4.24.0,<5.0.0,>=3.19.6, but you have protobuf 6.33.5 which is incompatible.
+omnivoice 0.2.1 requires torch>=2.4, but you have torch 2.3.1+cpu which is incompatible.
+omnivoice 0.2.1 requires torchaudio>=2.4, but you have torchaudio 2.3.1+cpu which is incompatible.
+omnivoice 0.2.1 requires transformers>=5.3.0, but you have transformers 4.51.3 which is incompatible.[0m[31m
+[0mSubmodule 'third_party/Matcha-TTS' (https://github.com/shivammehta25/Matcha-TTS.git) registered for path 'third_party/Matcha-TTS'
+Cloning into '/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/cosyvoice3-tts/workdir-cpu/CosyVoice/third_party/Matcha-TTS'...
+[IPKernelApp] ERROR | Exception in message handler:
+Traceback (most recent call last):
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages/ipykernel/kernelbase.py", line 508, in dispatch_shell
+    await result
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages/ipykernel/ipkernel.py", line 372, in execute_request
+    await super().execute_request(stream, ident, parent)
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages/ipykernel/kernelbase.py", line 914, in execute_request
+    reply_msg: dict[str, t.Any] = self.session.send(  # type:ignore[assignment]
+                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages/jupyter_client/session.py", line 867, in send
+    stream.send_multipart(to_send, copy=copy)
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages/zmq/sugar/socket.py", line 765, in send_multipart
+    self.send(msg, zmq.SNDMORE | flags, copy=copy, track=track)
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages/zmq/sugar/socket.py", line 713, in send
+    return super().send(data, flags=flags, copy=copy, track=track)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "zmq/backend/cython/_zmq.py", line 1152, in zmq.backend.cython._zmq.Socket.send
+    def send(self, data, flags=0, copy: bint = True, track: bint = False):
+    ^^^^^^^^^^^
+  File "zmq/backend/cython/_zmq.py", line 1194, in zmq.backend.cython._zmq.Socket.send
+    _check_closed(self)
+    ^^^^^^^^^^^
+  File "zmq/backend/cython/_zmq.py", line 1339, in zmq.backend.cython._zmq._check_closed
+    raise ZMQError(ENOTSOCK)
+    ^^^^^^^^^^^
+zmq.error.ZMQError: Socket operation on non-socket
+Traceback (most recent call last):
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages/nbclient/client.py", line 782, in _async_poll_for_reply
+    msg = await ensure_async(self.kc.shell_channel.get_msg(timeout=new_timeout))
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages/jupyter_core/utils/__init__.py", line 214, in ensure_async
+    result = await obj
+             ^^^^^^^^^
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages/jupyter_client/channels.py", line 330, in get_msg
+    raise Empty
+_queue.Empty
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/ov_amd/_nbexec.py", line 144, in main
+    client.execute()
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages/jupyter_core/utils/__init__.py", line 165, in wrapped
+    return loop.run_until_complete(inner)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/base_events.py", line 687, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages/nbclient/client.py", line 709, in async_execute
+    await self.async_execute_cell(
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages/nbclient/client.py", line 1005, in async_execute_cell
+    exec_reply = await self.task_poll_for_reply
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages/nbclient/client.py", line 806, in _async_poll_for_reply
+    error_on_timeout_execute_reply = await self._async_handle_timeout(timeout, cell)
+                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages/nbclient/client.py", line 856, in _async_handle_timeout
+    raise CellTimeoutError.error_from_timeout_and_cell(
+nbclient.exceptions.CellTimeoutError: A cell timed out while it was being executed, after 900 seconds.
+The message was: Cell execution timed out.
+Here is a preview of the cell contents:
+-------------------
+['from cmd_helper import clone_repo', 'from pip_helper import pip_install', 'import subprocess', '', 'pip_install(']
+...
+['    "protobuf==6.33.5",', '    "torchvision==0.18.1",', '    "ruamel.yaml>=0.17,<0.19",', ')', 'subprocess.run(["git", "submodule", "update", "--init", "--recursive"], cwd=repo_dir, check=True)']
+-------------------
+

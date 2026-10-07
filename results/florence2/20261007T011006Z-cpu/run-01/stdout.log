@@ -1,0 +1,34 @@
+[cell 0 START +    0.6s] # Florence-2: Open Source Vision Foundation Model |  | Florence-2 is a lig
+[cell 1 START +    0.6s] ## Prerequisites | [back to top ⬆️](#Table-of-contents:)
+[cell 2 START +    0.6s] %pip install -q "einops" "torch==2.8" "torchvision==0.23.0" "matplotli
+[cell 2 DONE  +   40.6s]
+[cell 3 START +   40.6s] import requests | from pathlib import Path |  | if not Path("ov_florence2_he
+[cell 3 DONE  +   40.7s]
+[cell 4 START +   40.7s] ## Select model | [back to top ⬆️](#Table-of-contents:) |  | The Florence-2 
+[cell 5 START +   40.7s] from ov_florence2_helper import convert_florence2, get_model_selector | 
+[cell 5 DONE  +   42.2s]
+[cell 6 START +   42.2s] ## Convert model | [back to top ⬆️](#Table-of-contents:) |  | Florence2 is P
+[cell 7 START +   42.2s] model_id = model_selector.value | model_path = Path(model_id.split("/")[
+[cell 7 DONE  +   42.2s]
+[cell 8 START +   42.2s] convert_florence2(model_id, model_path)
+[cell 8 DONE  +   42.2s]
+[cell 9 START +   42.2s] ## Select inference device | [back to top ⬆️](#Table-of-contents:)
+[cell 10 START +   42.2s] from notebook_utils import device_widget |  | device = device_widget(exclu
+[cell 10 DONE  +   42.4s]
+[cell 11 START +   42.4s] ## Run model inference | [back to top ⬆️](#Table-of-contents:) |  | `OvFlore
+[cell 12 START +   42.4s] from ov_florence2_helper import OVFlorence2Model |  | # Uncomment the line
+[cell 12 DONE  +   42.4s]
+[cell 13 START +   42.4s] model = OVFlorence2Model(model_path, device.value)
+[cell 13 DONE  +   43.1s]
+[cell 14 START +   43.1s] Additionally, for model usage we also need `Processor` class, that dis
+[cell 15 START +   43.1s] import requests | from PIL import Image |  | from transformers import AutoPr
+[cell 15 DONE  +   44.5s]
+[cell 16 START +   44.5s] Let's check model capabilities in Object Detection.
+[cell 17 START +   44.5s] inputs = processor(text=prompt, images=image, return_tensors="pt") |  | ge
+[cell 17 DONE  +   45.2s]
+[cell 18 START +   45.2s] from gradio_helper import plot_bbox |  | fig = plot_bbox(image, parsed_ans
+[cell 18 DONE  +   46.3s]
+[cell 19 START +   46.3s]  More model capabilities will be demonstrated in interactive demo.
+[cell 20 START +   46.3s] ## Interactive Demo | [back to top ⬆️](#Table-of-contents:) |  | In this sec
+[cell 21 START +   46.3s] from gradio_helper import make_demo |  | demo = make_demo(model, processor
+NBEXEC_RESULT={"ok": true, "n_cells": 12, "n_skipped": 1, "n_substituted": 1, "stopped_after": null, "error_cell": null, "error_type": null, "error_head": null, "duration_s": 47.63, "patch_notes": ["substituted 1 occurrence(s) in cell 15", "skipped cell 21: matched skip pattern"]}

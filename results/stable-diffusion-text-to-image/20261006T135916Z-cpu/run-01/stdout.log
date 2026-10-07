@@ -1,0 +1,12 @@
+[cell 0 START +    0.6s] # Text-to-Image Generation with Stable Diffusion and OpenVINO™ |  | Stable
+[cell 1 START +    0.6s] #### Table of contents: |  | - [Prerequisites](#Prerequisites) | - [Load and
+[cell 2 START +    0.6s] ## Prerequisites | [back to top ⬆️](#Table-of-contents:)
+[cell 3 START +    0.6s] %pip uninstall -q -y optimum optimum-intel optimum-onnx | %pip install -
+[cell 3 DONE  +   74.9s]
+[cell 4 START +   74.9s] # Fetch `notebook_utils` module | import requests | from pathlib import Pa
+[cell 4 DONE  +   75.0s]
+[cell 5 START +   75.0s] ## Load and convert model | [back to top ⬆️](#Table-of-contents:) |  | There
+[cell 6 START +   75.0s] import ipywidgets as widgets |  | models = {"openjourney": "prompthero/ope
+[cell 6 DONE  +   75.1s]
+[cell 7 START +   75.1s] ### Convert model using Optimum-CLI tool | [back to top ⬆️](#Table-of-co
+[cell 8 START +   75.1s] from cmd_helper import optimum_cli |  | MODEL_ID = models[model_descr.valu

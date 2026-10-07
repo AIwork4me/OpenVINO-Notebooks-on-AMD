@@ -1,0 +1,53 @@
+[cell 0 START +    0.4s] # Quantization of Image Classification Models |  | This tutorial demonstra
+[cell 1 START +    0.4s]  | #### Table of contents: |  | - [Prepare the Model](#Prepare-the-Model) | - 
+[cell 2 START +    0.4s] # Install required packages | %pip install -q "openvino>=2023.1.0" "nncf
+[cell 2 DONE  +    0.9s]
+[cell 3 START +    0.9s] from pathlib import Path |  | # Set the data and model directories | DATA_DI
+[cell 3 DONE  +    0.9s]
+[cell 4 START +    0.9s] ## Prepare the Model | [back to top ⬆️](#Table-of-contents:) |  | Model prep
+[cell 5 START +    0.9s] import requests |  | if not Path("notebook_utils.py").exists(): |     r = re
+[cell 5 DONE  +    1.0s]
+[cell 6 START +    1.0s] from cmd_helper import clone_repo |  | clone_repo("https://github.com/chen
+[cell 6 DONE  +    1.0s]
+[cell 7 START +    1.0s] from pytorch_cifar_models import cifar10_mobilenetv2_x1_0 |  | model = cif
+[cell 7 DONE  +    1.6s]
+[cell 8 START +    1.6s] OpenVINO supports PyTorch models via conversion to OpenVINO Intermedia
+[cell 9 START +    1.6s] import openvino as ov |  | model.eval() |  | ov_model = ov.convert_model(model
+[cell 9 DONE  +    2.2s]
+[cell 10 START +    2.2s] ## Prepare Dataset | [back to top ⬆️](#Table-of-contents:) |  | We will use 
+[cell 11 START +    2.2s] import torch | from torchvision import transforms | from torchvision.datas
+[cell 11 DONE  +    3.2s]
+[cell 12 START +    3.2s] ## Perform Quantization | [back to top ⬆️](#Table-of-contents:) |  | [NNCF](
+[cell 13 START +    3.2s] import nncf |  |  | def transform_fn(data_item): |     image_tensor = data_ite
+[cell 13 DONE  +    3.5s]
+[cell 14 START +    3.5s] ## Run nncf.quantize for Getting an Optimized Model | [back to top ⬆️](#
+[cell 15 START +    3.5s] quant_ov_model = nncf.quantize(ov_model, quantization_dataset)
+[cell 15 DONE  +    7.3s]
+[cell 16 START +    7.3s] ##  Serialize an OpenVINO IR model | [back to top ⬆️](#Table-of-contents
+[cell 17 START +    7.3s] ov.save_model(quant_ov_model, MODEL_DIR / "quantized_mobilenet_v2.xml"
+[cell 17 DONE  +    7.3s]
+[cell 18 START +    7.3s] ## Compare Accuracy of the Original and Quantized Models | [back to top 
+[cell 19 START +    7.3s] from tqdm.notebook import tqdm | import numpy as np |  |  | def test_accuracy(
+[cell 19 DONE  +    7.3s]
+[cell 20 START +    7.3s] ### Select inference device | [back to top ⬆️](#Table-of-contents:) |  | sel
+[cell 21 START +    7.3s] from notebook_utils import device_widget |  | device = device_widget() |  | de
+[cell 21 DONE  +    7.5s]
+[cell 22 START +    7.5s] core = ov.Core() | compiled_model = core.compile_model(ov_model, device.
+[cell 22 DONE  +   18.5s]
+[cell 23 START +   18.5s] print(f"Accuracy of the original model: {orig_accuracy[0] * 100 :.2f}%
+[cell 23 DONE  +   18.5s]
+[cell 24 START +   18.5s] ## Compare Performance of the Original and Quantized Models | [back to t
+[cell 25 START +   18.5s] # Inference FP16 model (OpenVINO IR) | !benchmark_app -m "model/mobilene
+[cell 25 DONE  +   34.0s]
+[cell 26 START +   34.0s] # Inference INT8 model (OpenVINO IR) | !benchmark_app -m "model/quantize
+[cell 26 DONE  +   49.6s]
+[cell 27 START +   49.6s] ## Compare results on four pictures | [back to top ⬆️](#Table-of-content
+[cell 28 START +   49.6s] # Define all possible labels from the CIFAR10 dataset | labels_names = [
+[cell 28 DONE  +   50.1s]
+[cell 29 START +   50.1s] import matplotlib.pyplot as plt |  |  | def plot_pictures(indexes: list, all
+[cell 29 DONE  +   50.2s]
+[cell 30 START +   50.2s] def infer_on_pictures(model, indexes: list, all_pictures=all_pictures)
+[cell 30 DONE  +   50.2s]
+[cell 31 START +   50.2s] indexes_to_infer = [7, 12, 15, 20]  # To plot, specify 4 indexes. |  | plo
+[cell 31 DONE  +   50.6s]
+NBEXEC_RESULT={"ok": true, "n_cells": 20, "n_skipped": 0, "n_substituted": 0, "stopped_after": null, "error_cell": null, "error_type": null, "error_head": null, "duration_s": 53.2, "patch_notes": []}

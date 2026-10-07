@@ -1,0 +1,88 @@
+[IPKernelApp] WARNING | Kernel is running over TCP without encryption. All communication (including code and outputs) is sent in plain text and is susceptible to eavesdropping. Use IPC transport or launch with kernel manager-provisioned CurveZMQ keys to enable transport encryption.
+[31mERROR: pip's dependency resolver does not currently take into account all the packages that are installed. This behaviour is the source of the following dependency conflicts.
+ace-step 0.2.0 requires transformers==4.50.0, but you have transformers 4.53.3 which is incompatible.[0m[31m
+[0mTraceback (most recent call last):
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/ov_amd/_nbexec.py", line 144, in main
+    client.execute()
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages/jupyter_core/utils/__init__.py", line 165, in wrapped
+    return loop.run_until_complete(inner)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/base_events.py", line 687, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages/nbclient/client.py", line 709, in async_execute
+    await self.async_execute_cell(
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages/nbclient/client.py", line 1062, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages/nbclient/client.py", line 918, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+from cmd_helper import optimum_cli
+
+if not model_dir.exists():
+    optimum_cli(model_id, model_dir, additional_args=additional_args)
+else:
+    print(f"Model already exists at {model_dir}, skipping export.")
+------------------
+
+----- stderr -----
+Command failed with exit code 1
+----- stderr -----
+STDERR:
+Multiple distributions found for package optimum. Picked distribution: optimum-onnx
+optimum.exporters.tasks.get_diffusers_tasks_to_model_mapping method failed to import diffusers with the error below.Please make sure you have diffusers installed and compatible with your transformers version.
+
+Failed to import diffusers.pipelines.nucleusmoe_image.pipeline_nucleusmoe_image because of the following error (look up to see its traceback):
+cannot import name 'Qwen3VLForConditionalGeneration' from 'transformers' (/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages/transformers/__init__.py)
+Traceback (most recent call last):
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/bin/optimum-cli", line 6, in <module>
+    sys.exit(main())
+             ^^^^^^
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages/optimum/commands/optimum_cli.py", line 219, in main
+    service.run()
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages/optimum/commands/export/openvino.py", line 344, in run
+    from ...exporters.openvino.__main__ import _main_quantize, _merge_move, main_export
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages/optimum/exporters/openvino/__init__.py", line 15, in <module>
+    import optimum.exporters.openvino.model_configs
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages/optimum/exporters/openvino/model_configs.py", line 335, in <module>
+    init_model_configs()
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages/optimum/exporters/openvino/model_configs.py", line 298, in init_model_configs
+    TasksManager._DIFFUSERS_TASKS_TO_MODEL_MAPPINGS["text-to-image"]["sana"] = "SanaPipeline"
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+KeyError: 'text-to-image'
+------------------
+
+[31m---------------------------------------------------------------------------[39m
+[31mCalledProcessError[39m                        Traceback (most recent call last)
+[36mCell[39m[36m [39m[32mIn[4][39m[32m, line 4[39m
+[32m      1[39m [38;5;28;01mfrom[39;00m cmd_helper [38;5;28;01mimport[39;00m optimum_cli
+[32m      2[39m 
+[32m      3[39m [38;5;28;01mif[39;00m [38;5;28;01mnot[39;00m model_dir.exists():
+[32m----> [39m[32m4[39m     optimum_cli(model_id, model_dir, additional_args=additional_args)
+[32m      5[39m [38;5;28;01melse[39;00m:
+[32m      6[39m     print(f"Model already exists at {model_dir}, skipping export.")
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/results/ernie-image/workdir-cpu/cmd_helper.py:62[39m, in [36moptimum_cli[39m[34m(model_id, output_dir, show_command, additional_args, debug_logs)[39m
+[32m     60[39m     [38;5;28;01mif[39;00m transofrmers_loglevel [38;5;129;01mis[39;00m [38;5;129;01mnot[39;00m [38;5;28;01mNone[39;00m:
+[32m     61[39m         os.environ[[33m"[39m[33mTRANSFORMERS_VERBOSITY[39m[33m"[39m] = transofrmers_loglevel
+[32m---> [39m[32m62[39m     [38;5;28;01mraise[39;00m exc
+[32m     63[39m [38;5;28;01mfinally[39;00m:
+[32m     64[39m     [38;5;28;01mif[39;00m transofrmers_loglevel [38;5;129;01mis[39;00m [38;5;129;01mnot[39;00m [38;5;28;01mNone[39;00m:
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/results/ernie-image/workdir-cpu/cmd_helper.py:49[39m, in [36moptimum_cli[39m[34m(model_id, output_dir, show_command, additional_args, debug_logs)[39m
+[32m     46[39m     os.environ[[33m"[39m[33mTRANSFORMERS_VERBOSITY[39m[33m"[39m] = [33m"[39m[33mdebug[39m[33m"[39m
+[32m     48[39m [38;5;28;01mtry[39;00m:
+[32m---> [39m[32m49[39m     [30;43msubprocess[39;49m[30;43m.[39;49m[30;43mrun[39;49m[30;43m([39;49m[30;43mexport_command[39;49m[30;43m.[39;49m[30;43msplit[39;49m[30;43m([39;49m[30;43m"[39;49m[30;43m [39;49m[30;43m"[39;49m[30;43m)[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mshell[39;49m[30;43m=[39;49m[30;43m([39;49m[30;43mplatform[39;49m[30;43m.[39;49m[30;43msystem[39;49m[30;43m([39;49m[30;43m)[39;49m[30;43m [39;49m[30;43m==[39;49m[30;43m [39;49m[30;43m"[39;49m[30;43mWindows[39;49m[30;43m"[39;49m[30;43m)[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mcheck[39;49m[30;43m=[39;49m[30;43;01mTrue[39;49;00m[30;43m,[39;49m[30;43m [39;49m[30;43mcapture_output[39;49m[30;43m=[39;49m[30;43;01mTrue[39;49;00m[30;43m)[39;49m
+[32m     50[39m [38;5;28;01mexcept[39;00m subprocess.CalledProcessError [38;5;28;01mas[39;00m exc:
+[32m     51[39m     logger = logging.getLogger()
+
+[36mFile [39m[32m/usr/lib/python3.12/subprocess.py:571[39m, in [36mrun[39m[34m(input, capture_output, timeout, check, *popenargs, **kwargs)[39m
+[32m    569[39m     retcode = process.poll()
+[32m    570[39m     [38;5;28;01mif[39;00m check [38;5;129;01mand[39;00m retcode:
+[32m--> [39m[32m571[39m         [38;5;28;01mraise[39;00m CalledProcessError(retcode, process.args,
+[32m    572[39m                                  output=stdout, stderr=stderr)
+[32m    573[39m [38;5;28;01mreturn[39;00m CompletedProcess(process.args, retcode, stdout, stderr)
+
+[31mCalledProcessError[39m: Command '['optimum-cli', 'export', 'openvino', '--model', 'baidu/ERNIE-Image-Turbo', 'ERNIE-Image-Turbo/INT4', '--task', 'text-to-image', '--weight-format', 'int4', '--ratio', '0.8']' returned non-zero exit status 1.
+

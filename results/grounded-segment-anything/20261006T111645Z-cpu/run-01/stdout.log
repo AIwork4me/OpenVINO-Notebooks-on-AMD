@@ -1,0 +1,12 @@
+[cell 0 START +    0.6s] # Object detection and masking from prompts with GroundedSAM (Groundin
+[cell 1 START +    0.6s] ### Clone repositories and install requirements | [back to top ⬆️](#Tabl
+[cell 2 START +    0.6s] %pip install -q "openvino>=2026.0" "torch==2.8" opencv-python "Pillow>
+[cell 2 DONE  +   57.4s]
+[cell 3 START +   57.4s] For faster computation and to limit RAM by default we use `EfficientSA
+[cell 4 START +   57.4s] import ipywidgets as widgets |  | sam_type_widget = widgets.Dropdown( |     
+[cell 4 DONE  +   57.5s]
+[cell 5 START +   57.5s] use_efficient_sam = sam_type_widget.value == "EfficientSAM"
+[cell 5 DONE  +   57.5s]
+[cell 6 START +   57.5s] import requests | from pathlib import Path |  | if not Path("notebook_utils.
+[cell 6 DONE  +   57.5s]
+[cell 7 START +   57.5s] from pathlib import Path | import sys | import os |  | from cmd_helper import 

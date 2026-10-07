@@ -1,0 +1,25 @@
+[cell 0 START +    0.6s] # YOLOv11 quantization with accuracy control using NNCF |  | The YOLOv11 a
+[cell 1 START +    0.6s] #### Prerequisites | [back to top ⬆️](#Table-of-contents:) |  | Install nece
+[cell 2 START +    0.6s] %pip install -q "openvino>=2024.0.0" | %pip install -q "nncf>=2.9.0" | %pi
+[cell 2 DONE  +   30.2s]
+[cell 3 START +   30.2s] ## Get Pytorch model and OpenVINO IR model | [back to top ⬆️](#Table-of-
+[cell 4 START +   30.2s] import os | from pathlib import Path |  | from ultralytics import YOLO | from 
+[cell 4 DONE  +   31.0s]
+[cell 5 START +   31.0s] # Fetch the notebook utils script from the openvino_notebooks repo | imp
+[cell 5 DONE  +   31.1s]
+[cell 6 START +   31.1s] from zipfile import ZipFile |  | from notebook_utils import use_local_ultr
+[cell 6 DONE  +   31.1s]
+[cell 7 START +   31.1s] Load model.
+[cell 8 START +   31.1s] import openvino as ov |  | model_path = Path(f"{ROOT}/{MODEL_NAME}_openvin
+[cell 8 DONE  +   31.2s]
+[cell 9 START +   31.2s] #### Define validator and data loader | [back to top ⬆️](#Table-of-conte
+[cell 10 START +   31.2s] import torch |  | from ultralytics.data.converter import coco80_to_coco91_
+[cell 10 DONE  +   32.0s]
+[cell 11 START +   32.0s] #### Prepare calibration and validation datasets | [back to top ⬆️](#Tab
+[cell 12 START +   32.0s] import nncf |  |  | def transform_fn(data_item: dict): |     input_tensor = va
+[cell 12 DONE  +   32.3s]
+[cell 13 START +   32.3s] #### Prepare validation function | [back to top ⬆️](#Table-of-contents:)
+[cell 14 START +   32.3s] from functools import partial |  | import torch | from nncf.quantization.adv
+[cell 14 DONE  +   32.3s]
+[cell 15 START +   32.3s] ## Run quantization with accuracy control | [back to top ⬆️](#Table-of-c
+[cell 16 START +   32.3s] quantized_model = nncf.quantize_with_accuracy_control( |     ov_model, |  

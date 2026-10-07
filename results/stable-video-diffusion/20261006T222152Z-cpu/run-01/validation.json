@@ -1,0 +1,18 @@
+{
+  "schema_version": 2,
+  "passed": false,
+  "checks": {
+    "output_contains": {
+      "successfully converted to IR and saved to model/": false,
+      "compression rate: \\d+\\.\\d+": true,
+      "Running on local URL": true
+    },
+    "no_cell_error": true,
+    "skipped_cells": 1
+  },
+  "notes": [
+    "1 cell(s) skipped via documented patch (interactive/UI-only code)"
+  ],
+  "level": "WORKLOAD_CORRECTNESS",
+  "contract_present": true
+}

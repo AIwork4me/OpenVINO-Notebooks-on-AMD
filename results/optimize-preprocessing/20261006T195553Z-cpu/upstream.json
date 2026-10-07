@@ -1,0 +1,9 @@
+{
+  "schema_version": 2,
+  "repository": "openvinotoolkit/openvino_notebooks",
+  "branch": "latest",
+  "commit": "a8809170cc4fc6aa633fbb9c22214be67ac20b47",
+  "path": "notebooks/optimize-preprocessing/optimize-preprocessing.ipynb",
+  "url": "https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/optimize-preprocessing/optimize-preprocessing.ipynb",
+  "notebook_sha256": "bde04d8e295ae22c49f2e312fe3e6c56a02264daaedc4be901e0e3420a37ae1c"
+}

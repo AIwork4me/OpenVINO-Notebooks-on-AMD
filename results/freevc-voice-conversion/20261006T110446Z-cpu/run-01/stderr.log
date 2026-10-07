@@ -1,0 +1,69 @@
+[IPKernelApp] WARNING | Kernel is running over TCP without encryption. All communication (including code and outputs) is sent in plain text and is susceptible to eavesdropping. Use IPC transport or launch with kernel manager-provisioned CurveZMQ keys to enable transport encryption.
+Traceback (most recent call last):
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/ov_amd/_nbexec.py", line 144, in main
+    client.execute()
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0ee08dd45166bfc4/lib/python3.12/site-packages/jupyter_core/utils/__init__.py", line 165, in wrapped
+    return loop.run_until_complete(inner)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/base_events.py", line 687, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0ee08dd45166bfc4/lib/python3.12/site-packages/nbclient/client.py", line 709, in async_execute
+    await self.async_execute_cell(
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0ee08dd45166bfc4/lib/python3.12/site-packages/nbclient/client.py", line 1062, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0ee08dd45166bfc4/lib/python3.12/site-packages/nbclient/client.py", line 918, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+hps = utils.get_hparams_from_file("FreeVC/configs/freevc.json")
+os.makedirs("outputs/freevc", exist_ok=True)
+
+net_g = SynthesizerTrn(hps.data.filter_length // 2 + 1, hps.train.segment_size // hps.data.hop_length, **hps.model)
+
+utils.load_checkpoint(freevc_chpt_path, net_g, optimizer=None, strict=True)
+cmodel = get_cmodel()
+smodel = SpeakerEncoder("FreeVC/speaker_encoder/ckpt/pretrained_bak_5805000.pt", device="cpu")
+------------------
+
+----- stderr -----
+/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0ee08dd45166bfc4/lib/python3.12/site-packages/torch/nn/utils/weight_norm.py:144: FutureWarning: `torch.nn.utils.weight_norm` is deprecated in favor of `torch.nn.utils.parametrizations.weight_norm`.
+  WeightNorm.apply(module, name, dim)
+------------------
+
+[31m---------------------------------------------------------------------------[39m
+[31mRuntimeError[39m                              Traceback (most recent call last)
+[36mCell[39m[36m [39m[32mIn[8][39m[32m, line 6[39m
+[32m      2[39m os.makedirs([33m"outputs/freevc"[39m, exist_ok=[38;5;28;01mTrue[39;00m)
+[32m      3[39m 
+[32m      4[39m net_g = SynthesizerTrn(hps.data.filter_length // [32m2[39m + [32m1[39m, hps.train.segment_size // hps.data.hop_length, **hps.model)
+[32m      5[39m 
+[32m----> [39m[32m6[39m utils.load_checkpoint(freevc_chpt_path, net_g, optimizer=[38;5;28;01mNone[39;00m, strict=[38;5;28;01mTrue[39;00m)
+[32m      7[39m cmodel = get_cmodel()
+[32m      8[39m smodel = SpeakerEncoder([33m"FreeVC/speaker_encoder/ckpt/pretrained_bak_5805000.pt"[39m, device=[33m"cpu"[39m)
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/results/freevc-voice-conversion/workdir-cpu/FreeVC/utils.py:71[39m, in [36mload_checkpoint[39m[34m(checkpoint_path, model, optimizer, strict)[39m
+[32m     69[39m [38;5;28;01mdef[39;00m[38;5;250m [39m[34mload_checkpoint[39m(checkpoint_path, model, optimizer=[38;5;28;01mNone[39;00m, strict=[38;5;28;01mFalse[39;00m):
+[32m     70[39m   [38;5;28;01massert[39;00m os.path.isfile(checkpoint_path)
+[32m---> [39m[32m71[39m   checkpoint_dict = [30;43mtorch[39;49m[30;43m.[39;49m[30;43mload[39;49m[30;43m([39;49m[30;43mcheckpoint_path[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mmap_location[39;49m[30;43m=[39;49m[30;43m'[39;49m[30;43mcpu[39;49m[30;43m'[39;49m[30;43m)[39;49m
+[32m     72[39m   iteration = checkpoint_dict[[33m'[39m[33miteration[39m[33m'[39m]
+[32m     73[39m   learning_rate = checkpoint_dict[[33m'[39m[33mlearning_rate[39m[33m'[39m]
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0ee08dd45166bfc4/lib/python3.12/site-packages/torch/serialization.py:1491[39m, in [36mload[39m[34m(f, map_location, pickle_module, weights_only, mmap, **pickle_load_args)[39m
+[32m   1489[39m orig_position = opened_file.tell()
+[32m   1490[39m overall_storage = [38;5;28;01mNone[39;00m
+[32m-> [39m[32m1491[39m [38;5;28;01mwith[39;00m [30;43m_open_zipfile_reader[39;49m[30;43m([39;49m[30;43mopened_file[39;49m[30;43m)[39;49m [38;5;28;01mas[39;00m opened_zipfile:
+[32m   1492[39m     [38;5;28;01mif[39;00m _is_torchscript_zip(opened_zipfile):
+[32m   1493[39m         warnings.warn(
+[32m   1494[39m             [33m"[39m[33m'[39m[33mtorch.load[39m[33m'[39m[33m received a zip file that looks like a TorchScript archive[39m[33m"[39m
+[32m   1495[39m             [33m"[39m[33m dispatching to [39m[33m'[39m[33mtorch.jit.load[39m[33m'[39m[33m (call [39m[33m'[39m[33mtorch.jit.load[39m[33m'[39m[33m directly to[39m[33m"[39m
+[32m   1496[39m             [33m"[39m[33m silence this warning)[39m[33m"[39m,
+[32m   1497[39m             [38;5;167;01mUserWarning[39;00m,
+[32m   1498[39m         )
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0ee08dd45166bfc4/lib/python3.12/site-packages/torch/serialization.py:771[39m, in [36m_open_zipfile_reader.__init__[39m[34m(self, name_or_buffer)[39m
+[32m    770[39m [38;5;28;01mdef[39;00m[38;5;250m [39m[34m__init__[39m([38;5;28mself[39m, name_or_buffer: Union[[38;5;28mstr[39m, IO[[38;5;28mbytes[39m]]) -> [38;5;28;01mNone[39;00m:
+[32m--> [39m[32m771[39m     [38;5;28msuper[39m().[34m__init__[39m([30;43mtorch[39;49m[30;43m.[39;49m[30;43m_C[39;49m[30;43m.[39;49m[30;43mPyTorchFileReader[39;49m[30;43m([39;49m[30;43mname_or_buffer[39;49m[30;43m)[39;49m)
+
+[31mRuntimeError[39m: PytorchStreamReader failed reading zip archive: failed finding central directory
+

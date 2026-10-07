@@ -1,0 +1,16 @@
+[cell 0 START +    0.7s] # Visual-language assistant with Gemma 4 and OpenVINO | ![](https://ai.g
+[cell 1 START +    0.7s] ## Prerequisites | [back to top ⬆️](#Table-of-contents:)
+[cell 2 START +    0.7s] %pip install -q "git+https://github.com/huggingface/optimum-intel.git"
+[cell 2 DONE  +  137.7s]
+[cell 3 START +  137.7s] from pathlib import Path | import requests |  | if not Path("cmd_helper.py")
+[cell 3 DONE  +  137.8s]
+[cell 4 START +  137.8s] ## Select model | [back to top ⬆️](#Table-of-contents:) |  | Several Gemma 4
+[cell 5 START +  137.8s] import ipywidgets as widgets |  | # Read more about telemetry collection a
+[cell 5 DONE  +  137.8s]
+[cell 6 START +  137.8s] print(f"Selected {model_id.value}") | pt_model_id = model_id.value | model
+[cell 6 DONE  +  137.8s]
+[cell 7 START +  137.8s] ## Convert and Optimize model | [back to top ⬆️](#Table-of-contents:) |  | S
+[cell 8 START +  137.8s] from IPython.display import display |  | weight_format = widgets.Dropdown(
+[cell 8 DONE  +  137.8s]
+[cell 9 START +  137.8s] import huggingface_hub as hf_hub | from cmd_helper import optimum_cli |  | p
+NBEXEC_RESULT={"ok": false, "n_cells": 16, "n_skipped": 1, "n_substituted": 0, "stopped_after": null, "error_cell": null, "error_type": "CellTimeoutError", "error_head": "-------------------", "duration_s": 1040.45, "patch_notes": ["skipped cell 26: matched skip pattern"]}

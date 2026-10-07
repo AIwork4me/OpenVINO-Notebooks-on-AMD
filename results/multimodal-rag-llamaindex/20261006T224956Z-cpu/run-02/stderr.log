@@ -1,0 +1,67 @@
+[IPKernelApp] WARNING | Kernel is running over TCP without encryption. All communication (including code and outputs) is sent in plain text and is susceptible to eavesdropping. Use IPC transport or launch with kernel manager-provisioned CurveZMQ keys to enable transport encryption.
+[39m[34m(cls, model_id, config, export, subfolder, revision, force_download, local_files_only, trust_remote_code, cache_dir, token, **kwargs)[39m
+[32m    404[39m [38;5;28;01melse[39;00m:
+[32m    405[39m     from_pretrained_method = [38;5;28mcls[39m._from_pretrained
+[32m--> [39m[32m407[39m [38;5;28;01mreturn[39;00m [30;43mfrom_pretrained_method[39;49m[30;43m([39;49m
+[32m    408[39m [30;43m    [39;49m[30;43mmodel_id[39;49m[30;43m=[39;49m[30;43mmodel_id[39;49m[30;43m,[39;49m
+[32m    409[39m [30;43m    [39;49m[30;43mconfig[39;49m[30;43m=[39;49m[30;43mconfig[39;49m[30;43m,[39;49m
+[32m    410[39m [30;43m    [39;49m[30;43;03m# hub options[39;49;00m
+[32m    411[39m [30;43m    [39;49m[30;43mrevision[39;49m[30;43m=[39;49m[30;43mrevision[39;49m[30;43m,[39;49m
+[32m    412[39m [30;43m    [39;49m[30;43mcache_dir[39;49m[30;43m=[39;49m[30;43mcache_dir[39;49m[30;43m,[39;49m
+[32m    413[39m [30;43m    [39;49m[30;43mforce_download[39;49m[30;43m=[39;49m[30;43mforce_download[39;49m[30;43m,[39;49m
+[32m    414[39m [30;43m    [39;49m[30;43mtoken[39;49m[30;43m=[39;49m[30;43mtoken[39;49m[30;43m,[39;49m
+[32m    415[39m [30;43m    [39;49m[30;43msubfolder[39;49m[30;43m=[39;49m[30;43msubfolder[39;49m[30;43m,[39;49m
+[32m    416[39m [30;43m    [39;49m[30;43mlocal_files_only[39;49m[30;43m=[39;49m[30;43mlocal_files_only[39;49m[30;43m,[39;49m
+[32m    417[39m [30;43m    [39;49m[30;43mtrust_remote_code[39;49m[30;43m=[39;49m[30;43mtrust_remote_code[39;49m[30;43m,[39;49m
+[32m    418[39m [30;43m    [39;49m[30;43m*[39;49m[30;43m*[39;49m[30;43mkwargs[39;49m[30;43m,[39;49m
+[32m    419[39m [30;43m[39;49m[30;43m)[39;49m
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/efa5ad3f4648b242/lib/python3.12/site-packages/optimum/intel/openvino/modeling_seq2seq.py:1505[39m, in [36mOVModelForSpeechSeq2Seq._from_pretrained[39m[34m(cls, model_id, config, **kwargs)[39m
+[32m   1497[39m [38;5;129m@classmethod[39m
+[32m   1498[39m [38;5;28;01mdef[39;00m[38;5;250m [39m[34m_from_pretrained[39m(
+[32m   1499[39m     [38;5;28mcls[39m,
+[32m   (...)[39m[32m   1502[39m     **kwargs,
+[32m   1503[39m ):
+[32m   1504[39m     [38;5;28;01mif[39;00m [33m"[39m[33mWhisperForConditionalGeneration[39m[33m"[39m [38;5;129;01min[39;00m ([38;5;28mgetattr[39m(config, [33m"[39m[33marchitectures[39m[33m"[39m, [38;5;28;01mNone[39;00m) [38;5;129;01mor[39;00m []):
+[32m-> [39m[32m1505[39m         [38;5;28;01mreturn[39;00m [30;43m_OVModelForWhisper[39;49m[30;43m.[39;49m[30;43m_from_pretrained[39;49m[30;43m([39;49m[30;43mmodel_id[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mconfig[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43m*[39;49m[30;43m*[39;49m[30;43mkwargs[39;49m[30;43m)[39;49m
+[32m   1506[39m     [38;5;28;01mif[39;00m [38;5;28mgetattr[39m(config, [33m"[39m[33mmodel_type[39m[33m"[39m, [38;5;28;01mNone[39;00m) == [33m"[39m[33mfun_asr[39m[33m"[39m:
+[32m   1507[39m         [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01m.[39;00m[34;01mmodeling_funasr[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m _OVModelForFunAsr
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/efa5ad3f4648b242/lib/python3.12/site-packages/optimum/intel/openvino/modeling_seq2seq.py:1533[39m, in [36m_OVModelForWhisper._from_pretrained[39m[34m(cls, model_id, config, **kwargs)[39m
+[32m   1526[39m [38;5;129m@classmethod[39m
+[32m   1527[39m [38;5;28;01mdef[39;00m[38;5;250m [39m[34m_from_pretrained[39m(
+[32m   1528[39m     [38;5;28mcls[39m,
+[32m   (...)[39m[32m   1531[39m     **kwargs,
+[32m   1532[39m ):
+[32m-> [39m[32m1533[39m     [38;5;28;01mreturn[39;00m [30;43msuper[39;49m[30;43m([39;49m[30;43mOVModelForSpeechSeq2Seq[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mcls[39;49m[30;43m)[39;49m[30;43m.[39;49m[30;43m_from_pretrained[39;49m[30;43m([39;49m[30;43mmodel_id[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mconfig[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43m*[39;49m[30;43m*[39;49m[30;43mkwargs[39;49m[30;43m)[39;49m
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/efa5ad3f4648b242/lib/python3.12/site-packages/optimum/intel/openvino/modeling_seq2seq.py:505[39m, in [36mOVModelForSeq2SeqLM._from_pretrained[39m[34m(cls, model_id, config, token, revision, force_download, cache_dir, encoder_file_name, decoder_file_name, decoder_with_past_file_name, local_files_only, use_cache, from_onnx, load_in_8bit, quantization_config, trust_remote_code, **kwargs)[39m
+[32m    503[39m [38;5;28;01mif[39;00m [38;5;129;01mnot[39;00m compile_only:
+[32m    504[39m     encoder = [38;5;28mcls[39m.load_model(file_names[[33m"[39m[33mencoder[39m[33m"[39m])
+[32m--> [39m[32m505[39m     decoder = [30;43mcls[39;49m[30;43m.[39;49m[30;43mload_model[39;49m[30;43m([39;49m[30;43mfile_names[39;49m[30;43m[[39;49m[30;43m"[39;49m[30;43mdecoder[39;49m[30;43m"[39;49m[30;43m][39;49m[30;43m)[39;49m
+[32m    506[39m     [38;5;28;01mif[39;00m use_cache [38;5;129;01mand[39;00m [38;5;129;01mnot[39;00m model_has_state(decoder) [38;5;129;01mand[39;00m os.path.exists(file_names[[33m"[39m[33mdecoder_with_past[39m[33m"[39m]):
+[32m    507[39m         decoder_with_past = [38;5;28mcls[39m.load_model(file_names[[33m"[39m[33mdecoder_with_past[39m[33m"[39m])
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/efa5ad3f4648b242/lib/python3.12/site-packages/optimum/intel/openvino/modeling_base.py:405[39m, in [36mOVBaseModel.load_model[39m[34m(file_name, quantization_config)[39m
+[32m    402[39m [38;5;28;01mif[39;00m [38;5;28misinstance[39m(file_name, [38;5;28mstr[39m):
+[32m    403[39m     file_name = Path(file_name)
+[32m    404[39m model = (
+[32m--> [39m[32m405[39m     [30;43mcore[39;49m[30;43m.[39;49m[30;43mread_model[39;49m[30;43m([39;49m[30;43mfile_name[39;49m[30;43m.[39;49m[30;43mresolve[39;49m[30;43m([39;49m[30;43m)[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mfile_name[39;49m[30;43m.[39;49m[30;43mwith_suffix[39;49m[30;43m([39;49m[30;43m"[39;49m[30;43m.bin[39;49m[30;43m"[39;49m[30;43m)[39;49m[30;43m.[39;49m[30;43mresolve[39;49m[30;43m([39;49m[30;43m)[39;49m[30;43m)[39;49m
+[32m    406[39m     [38;5;28;01mif[39;00m [38;5;129;01mnot[39;00m file_name.suffix == [33m"[39m[33m.onnx[39m[33m"[39m
+[32m    407[39m     [38;5;28;01melse[39;00m convert_model(file_name)
+[32m    408[39m )
+[32m    409[39m [38;5;28;01mif[39;00m file_name.suffix == [33m"[39m[33m.onnx[39m[33m"[39m:
+[32m    410[39m     model = fix_op_names_duplicates(model)  [38;5;66;03m# should be called during model conversion to IR[39;00m
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/efa5ad3f4648b242/lib/python3.12/site-packages/openvino/_ov_api.py:603[39m, in [36mCore.read_model[39m[34m(self, model, weights, config)[39m
+[32m    601[39m     [38;5;28;01mreturn[39;00m Model([38;5;28msuper[39m().read_model(model, config=config))
+[32m    602[39m [38;5;28;01melse[39;00m:
+[32m--> [39m[32m603[39m     [38;5;28;01mreturn[39;00m Model([30;43msuper[39;49m[30;43m([39;49m[30;43m)[39;49m[30;43m.[39;49m[30;43mread_model[39;49m[30;43m([39;49m[30;43mmodel[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mweights[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mconfig[39;49m[30;43m)[39;49m)
+
+[31mRuntimeError[39m: Exception from src/inference/src/cpp/core.cpp:84:
+Check 'false' failed at src/frontends/common/src/frontend.cpp:47:
+Loading input model
+Can not open file /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/multimodal-rag-llamaindex/workdir-cpu/distil-whisper-large-v3-int8-ov/openvino_decoder_model.bin for mapping. Ensure that file exists and has appropriate permissions.
+
+
+

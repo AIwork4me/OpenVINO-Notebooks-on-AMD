@@ -1,0 +1,31 @@
+[cell 0 START +    0.4s] # Document Parsing using DeepSeek-OCR/DeepSeek-OCR-2 and OpenVINO |  | ## 
+[cell 1 START +    0.4s] ## Prerequisites | [back to top ⬆️](#Table-of-contents:) | 
+[cell 2 START +    0.4s] import requests | from pathlib import Path |  | utility_files = ["cmd_helper
+[cell 2 DONE  +    0.4s]
+[cell 3 START +    0.4s] from pip_helper import pip_install |  | pip_install("-Uq", "--pre", "openv
+[cell 3 DONE  +    3.0s]
+[cell 4 START +    3.0s] ## Select model | [back to top ⬆️](#Table-of-contents:)
+[cell 5 START +    3.0s] import ipywidgets as widgets |  | model_ids = ["deepseek-ai/DeepSeek-OCR-2
+[cell 5 DONE  +    3.0s]
+[cell 6 START +    3.0s] from huggingface_hub import snapshot_download |  | # Read more about telem
+[cell 6 DONE  +    3.4s]
+[cell 7 START +    3.4s] ## Convert model to OpenVINO Intermediate Representation | [back to top 
+[cell 8 START +    3.4s] from pathlib import Path | import shutil |  | # Copy deepencoder.py to repla
+[cell 8 DONE  +    3.4s]
+[cell 9 START +    3.4s] import ipywidgets as widgets |  | to_compress = widgets.Checkbox(value=Tru
+[cell 9 DONE  +    3.4s]
+[cell 10 START +    3.4s] import nncf |  | if is_v2_model: |     from ov_deepseek_ocr2_helper import c
+[cell 10 DONE  +    5.2s]
+[cell 11 START +    5.2s] ### Prepare inference pipeline | [back to top ⬆️](#Table-of-contents:) |  | 
+[cell 12 START +    5.2s] from notebook_utils import device_widget |  | device = device_widget(defau
+[cell 12 DONE  +    5.3s]
+[cell 13 START +    5.3s] from transformers import AutoTokenizer |  | if is_v2_model: |     from ov_de
+[cell 13 DONE  +   23.3s]
+[cell 14 START +   23.3s] ## Run model inference | [back to top ⬆️](#Table-of-contents:) |  |  | Let's c
+[cell 15 START +   23.3s] from PIL import Image |  | url = "https://hf-mirror.com/spaces/khang119966
+[cell 15 DONE  +   23.3s]
+[cell 16 START +   23.3s] prompt = "<image>\n<|grounding|>Convert the document to markdown. " | ou
+[cell 16 DONE  +   62.8s]
+[cell 17 START +   62.8s] ## Interactive demo | [back to top ⬆️](#Table-of-contents:)
+[cell 18 START +   62.8s] from gradio_helper import make_demo |  | demo = make_demo(model, tokenizer
+NBEXEC_RESULT={"ok": true, "n_cells": 12, "n_skipped": 1, "n_substituted": 1, "stopped_after": null, "error_cell": null, "error_type": null, "error_head": null, "duration_s": 65.03, "patch_notes": ["substituted 1 occurrence(s) in cell 15", "skipped cell 18: matched skip pattern"]}

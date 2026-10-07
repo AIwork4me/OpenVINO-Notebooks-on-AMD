@@ -1,0 +1,13 @@
+[cell 0 START +    0.4s] # End-to-End Speech Recognition with Fun-ASR-Nano and OpenVINO |  | Fun-AS
+[cell 1 START +    0.4s] ## Prerequisites | [back to top ⬆️](#Table-of-contents:)
+[cell 2 START +    0.4s] # Fetch `notebook_utils` module | import requests | from pathlib import Pa
+[cell 2 DONE  +    0.5s]
+[cell 3 START +    0.5s] from cmd_helper import clone_repo | from pip_helper import pip_install |  | 
+[cell 3 DONE  +   26.8s]
+[cell 4 START +   26.8s] ## Convert and Optimize model | [back to top ⬆️](#Table-of-contents:) | 
+[cell 5 START +   26.8s] import ipywidgets as widgets |  | model_ids = ["FunAudioLLM/Fun-ASR-Nano-2
+[cell 5 DONE  +   26.9s]
+[cell 6 START +   26.9s] The FunASR-Nano pipeline consists of four important parts: |  | * **Audio 
+[cell 7 START +   26.9s] from ov_funasr_helper import convert_funasr | from huggingface_hub impor
+[cell 7 DONE  +   33.3s]
+NBEXEC_RESULT={"ok": false, "n_cells": 9, "n_skipped": 1, "n_substituted": 0, "stopped_after": null, "error_cell": null, "error_type": "CellExecutionError", "error_head": "cannot import name 'Qwen3VLForConditionalGeneration' from 'transformers' (/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages/transformers/__init__.py)", "duration_s": 35.96, "patch_notes": ["skipped cell 16: matched skip pattern"]}

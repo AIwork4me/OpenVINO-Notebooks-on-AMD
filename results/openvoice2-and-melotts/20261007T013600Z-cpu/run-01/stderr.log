@@ -1,0 +1,97 @@
+[IPKernelApp] WARNING | Kernel is running over TCP without encryption. All communication (including code and outputs) is sent in plain text and is susceptible to eavesdropping. Use IPC transport or launch with kernel manager-provisioned CurveZMQ keys to enable transport encryption.
+[31mERROR: pip's dependency resolver does not currently take into account all the packages that are installed. This behaviour is the source of the following dependency conflicts.
+olmocr 0.4.27 requires bleach, which is not installed.
+olmocr 0.4.27 requires markdown2, which is not installed.
+olmocr 0.4.27 requires markdownify, which is not installed.
+olmocr 0.4.27 requires zstandard, which is not installed.
+ace-step 0.2.0 requires diffusers>=0.33.0, but you have diffusers 0.29.0 which is incompatible.
+ace-step 0.2.0 requires librosa==0.11.0, but you have librosa 0.9.1 which is incompatible.
+ace-step 0.2.0 requires loguru==0.7.3, but you have loguru 0.7.2 which is incompatible.
+ace-step 0.2.0 requires num2words==0.5.14, but you have num2words 0.5.12 which is incompatible.
+ace-step 0.2.0 requires pypinyin==0.53.0, but you have pypinyin 0.50.0 which is incompatible.
+ace-step 0.2.0 requires soundfile==0.13.1, but you have soundfile 0.12.1 which is incompatible.
+ace-step 0.2.0 requires transformers==4.50.0, but you have transformers 4.53.3 which is incompatible.[0m[31m
+[0m0m [30;43m_bootstrap[39;49m[30;43m.[39;49m[30;43m_gcd_import[39;49m[30;43m([39;49m[30;43mname[39;49m[30;43m[[39;49m[30;43mlevel[39;49m[30;43m:[39;49m[30;43m][39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mpackage[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mlevel[39;49m[30;43m)[39;49m
+
+[36mFile [39m[32m<frozen importlib._bootstrap>:1387[39m, in [36m_gcd_import[39m[34m(name, package, level)[39m
+
+[36mFile [39m[32m<frozen importlib._bootstrap>:1360[39m, in [36m_find_and_load[39m[34m(name, import_)[39m
+
+[36mFile [39m[32m<frozen importlib._bootstrap>:1334[39m, in [36m_find_and_load_unlocked[39m[34m(name, import_)[39m
+
+[36mFile [39m[32m<frozen importlib._bootstrap>:950[39m, in [36m_load_unlocked[39m[34m(spec)[39m
+
+[36mFile [39m[32m<frozen importlib._bootstrap_external>:995[39m, in [36m_LoaderBasics.exec_module[39m[34m(self, module)[39m
+
+[36mFile [39m[32m<frozen importlib._bootstrap>:488[39m, in [36m_call_with_frames_removed[39m[34m(f, *args, **kwds)[39m
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/61f5a7307753eddf/lib/python3.12/site-packages/transformers/models/auto/tokenization_auto.py:38[39m
+[32m     37[39m [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01m.[39;00m[34;01m.[39;00m[34;01mencoder_decoder[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m EncoderDecoderConfig
+[32m---> [39m[32m38[39m [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01m.[39;00m[34;01mauto_factory[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m _LazyAutoMapping
+[32m     39[39m [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01m.[39;00m[34;01mconfiguration_auto[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m (
+[32m     40[39m     CONFIG_MAPPING_NAMES,
+[32m     41[39m     AutoConfig,
+[32m   (...)[39m[32m     44[39m     replace_list_option_in_docstrings,
+[32m     45[39m )
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/61f5a7307753eddf/lib/python3.12/site-packages/transformers/models/auto/auto_factory.py:43[39m
+[32m     42[39m [38;5;28;01mif[39;00m is_torch_available():
+[32m---> [39m[32m43[39m     [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01m.[39;00m[34;01m.[39;00m[34;01m.[39;00m[34;01mgeneration[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m GenerationMixin
+[32m     46[39m logger = logging.get_logger([34m__name__[39m)
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/61f5a7307753eddf/lib/python3.12/site-packages/transformers/utils/import_utils.py:2157[39m, in [36m_LazyModule.__getattr__[39m[34m(self, name)[39m
+[32m   2156[39m     [38;5;28;01mexcept[39;00m ([38;5;167;01mModuleNotFoundError[39;00m, [38;5;167;01mRuntimeError[39;00m) [38;5;28;01mas[39;00m e:
+[32m-> [39m[32m2157[39m         [38;5;28;01mraise[39;00m [38;5;167;01mModuleNotFoundError[39;00m(
+[32m   2158[39m             [33mf[39m[33m"[39m[33mCould not import module [39m[33m'[39m[38;5;132;01m{[39;00mname[38;5;132;01m}[39;00m[33m'[39m[33m. Are this object[39m[33m'[39m[33ms requirements defined correctly?[39m[33m"[39m
+[32m   2159[39m         ) [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01me[39;00m
+[32m   2161[39m [38;5;28;01melif[39;00m name [38;5;129;01min[39;00m [38;5;28mself[39m._modules:
+
+[31mModuleNotFoundError[39m: Could not import module 'GenerationMixin'. Are this object's requirements defined correctly?
+
+The above exception was the direct cause of the following exception:
+
+[31mModuleNotFoundError[39m                       Traceback (most recent call last)
+[36mCell[39m[36m [39m[32mIn[4][39m[32m, line 12[39m
+[32m      8[39m core = ov.Core()
+[32m      9[39m 
+[32m     10[39m [38;5;28;01mfrom[39;00m openvoice.api [38;5;28;01mimport[39;00m ToneColorConverter, OpenVoiceBaseClass
+[32m     11[39m [38;5;28;01mimport[39;00m openvoice.se_extractor [38;5;28;01mas[39;00m se_extractor
+[32m---> [39m[32m12[39m [38;5;28;01mfrom[39;00m melo.api [38;5;28;01mimport[39;00m TTS
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/results/openvoice2-and-melotts/workdir-cpu/MeloTTS/melo/api.py:13[39m
+[32m     10[39m [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01mtqdm[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m tqdm
+[32m     11[39m [38;5;28;01mimport[39;00m[38;5;250m [39m[34;01mtorch[39;00m
+[32m---> [39m[32m13[39m [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01m.[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m utils
+[32m     14[39m [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01m.[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m commons
+[32m     15[39m [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01m.[39;00m[34;01mmodels[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m SynthesizerTrn
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/results/openvoice2-and-melotts/workdir-cpu/MeloTTS/melo/utils.py:13[39m
+[32m     11[39m [38;5;28;01mimport[39;00m[38;5;250m [39m[34;01mlibrosa[39;00m
+[32m     12[39m [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01mmelo[39;00m[34;01m.[39;00m[34;01mtext[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m cleaned_text_to_sequence, get_bert
+[32m---> [39m[32m13[39m [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01mmelo[39;00m[34;01m.[39;00m[34;01mtext[39;00m[34;01m.[39;00m[34;01mcleaner[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m clean_text
+[32m     14[39m [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01mmelo[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m commons
+[32m     16[39m MATPLOTLIB_FLAG = [38;5;28;01mFalse[39;00m
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/results/openvoice2-and-melotts/workdir-cpu/MeloTTS/melo/text/cleaner.py:1[39m
+[32m----> [39m[32m1[39m [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01m.[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m chinese, japanese, english, chinese_mix, korean, french, spanish
+[32m      2[39m [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01m.[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m cleaned_text_to_sequence
+[32m      3[39m [38;5;28;01mimport[39;00m[38;5;250m [39m[34;01mcopy[39;00m
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/results/openvoice2-and-melotts/workdir-cpu/MeloTTS/melo/text/english.py:21[39m
+[32m     17[39m         phones_per_word[min_index] += [32m1[39m
+[32m     18[39m     [38;5;28;01mreturn[39;00m phones_per_word
+[32m---> [39m[32m21[39m [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01mtransformers[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m AutoTokenizer
+[32m     23[39m current_file_path = os.path.dirname([34m__file__[39m)
+[32m     24[39m CMU_DICT_PATH = os.path.join(current_file_path, [33m"[39m[33mcmudict.rep[39m[33m"[39m)
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/61f5a7307753eddf/lib/python3.12/site-packages/transformers/utils/import_utils.py:2157[39m, in [36m_LazyModule.__getattr__[39m[34m(self, name)[39m
+[32m   2155[39m         value = [38;5;28mgetattr[39m(module, name)
+[32m   2156[39m     [38;5;28;01mexcept[39;00m ([38;5;167;01mModuleNotFoundError[39;00m, [38;5;167;01mRuntimeError[39;00m) [38;5;28;01mas[39;00m e:
+[32m-> [39m[32m2157[39m         [38;5;28;01mraise[39;00m [38;5;167;01mModuleNotFoundError[39;00m(
+[32m   2158[39m             [33mf[39m[33m"[39m[33mCould not import module [39m[33m'[39m[38;5;132;01m{[39;00mname[38;5;132;01m}[39;00m[33m'[39m[33m. Are this object[39m[33m'[39m[33ms requirements defined correctly?[39m[33m"[39m
+[32m   2159[39m         ) [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01me[39;00m
+[32m   2161[39m [38;5;28;01melif[39;00m name [38;5;129;01min[39;00m [38;5;28mself[39m._modules:
+[32m   2162[39m     [38;5;28;01mtry[39;00m:
+
+[31mModuleNotFoundError[39m: Could not import module 'AutoTokenizer'. Are this object's requirements defined correctly?
+

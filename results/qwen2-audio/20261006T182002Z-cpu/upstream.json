@@ -1,0 +1,9 @@
+{
+  "schema_version": 2,
+  "repository": "openvinotoolkit/openvino_notebooks",
+  "branch": "latest",
+  "commit": "a8809170cc4fc6aa633fbb9c22214be67ac20b47",
+  "path": "notebooks/qwen2-audio/qwen2-audio.ipynb",
+  "url": "https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/qwen2-audio/qwen2-audio.ipynb",
+  "notebook_sha256": "7a54715ae11af700d878306ac11468988e9e98f4a6fa026630e05ac3207b76a9"
+}

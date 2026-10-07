@@ -1,0 +1,8 @@
+[cell 0 START +    0.4s] # Multi-speaker dialogue generation with FireRedTTS‑2 and OpenVINO |  | Fi
+[cell 1 START +    0.4s] ## Prerequisites | [back to top ⬆️](#Table-of-contents:)
+[cell 2 START +    0.4s] # Fetch `notebook_utils` module | import requests | from pathlib import Pa
+[cell 2 DONE  +    0.4s]
+[cell 3 START +    0.4s] from cmd_helper import clone_repo | from pip_helper import pip_install |  | 
+[cell 3 DONE  +   70.6s]
+[cell 4 START +   70.6s] ## Convert and Optimize model | [back to top ⬆️](#Table-of-contents:) |  | F
+[cell 5 START +   70.6s] from ov_fireredtts_helper import convert_fireredtts2 | from huggingface_

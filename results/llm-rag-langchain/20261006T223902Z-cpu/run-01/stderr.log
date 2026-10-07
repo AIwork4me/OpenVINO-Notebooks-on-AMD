@@ -1,0 +1,107 @@
+[IPKernelApp] WARNING | Kernel is running over TCP without encryption. All communication (including code and outputs) is sent in plain text and is susceptible to eavesdropping. Use IPC transport or launch with kernel manager-provisioned CurveZMQ keys to enable transport encryption.
+[31mERROR: pip's dependency resolver does not currently take into account all the packages that are installed. This behaviour is the source of the following dependency conflicts.
+openvino-tokenizers 2026.4.1.0 requires openvino~=2026.4.1.dev, but you have openvino 2026.5.0.dev20261005 which is incompatible.[0m[31m
+[0m[31mERROR: pip's dependency resolver does not currently take into account all the packages that are installed. This behaviour is the source of the following dependency conflicts.
+openvino-genai 2026.4.1.0 requires openvino_tokenizers~=2026.4.1.0.dev, but you have openvino-tokenizers 2026.5.0.0.dev20261005 which is incompatible.[0m[31m
+[0m[31mERROR: pip's dependency resolver does not currently take into account all the packages that are installed. This behaviour is the source of the following dependency conflicts.
+detectron2 0.6 requires iopath<0.1.10,>=0.1.7, but you have iopath 0.1.10 which is incompatible.
+rfdetr 1.11.0 requires transformers<6.0.0,>=5.1.0, but you have transformers 4.57.6 which is incompatible.
+parler-tts 0.2.2 requires transformers<=4.46.1,>=4.46.1, but you have transformers 4.57.6 which is incompatible.
+qwen-tts 0.0.4 requires accelerate==1.12.0, but you have accelerate 1.15.0 which is incompatible.
+qwen-tts 0.0.4 requires transformers==4.57.3, but you have transformers 4.57.6 which is incompatible.
+ace-step 0.2.0 requires accelerate==1.6.0, but you have accelerate 1.15.0 which is incompatible.
+ace-step 0.2.0 requires datasets==3.4.1, but you have datasets 3.6.0 which is incompatible.
+ace-step 0.2.0 requires librosa==0.11.0, but you have librosa 0.9.2 which is incompatible.
+ace-step 0.2.0 requires loguru==0.7.3, but you have loguru 0.7.2 which is incompatible.
+ace-step 0.2.0 requires matplotlib==3.10.1, but you have matplotlib 3.11.2 which is incompatible.
+ace-step 0.2.0 requires num2words==0.5.14, but you have num2words 0.5.12 which is incompatible.
+ace-step 0.2.0 requires pypinyin==0.53.0, but you have pypinyin 0.50.0 which is incompatible.
+ace-step 0.2.0 requires soundfile==0.13.1, but you have soundfile 0.12.1 which is incompatible.
+ace-step 0.2.0 requires transformers==4.50.0, but you have transformers 4.57.6 which is incompatible.
+hf-gradio 0.4.1 requires gradio-client<3.0,>=2.0, but you have gradio-client 1.14.0 which is incompatible.
+descript-audiotools 0.7.4 requires protobuf!=4.24.0,<5.0.0,>=3.19.6, but you have protobuf 7.36.2 which is incompatible.
+torchaudio 2.10.0+cpu requires torch==2.10.0, but you have torch 2.9.1+cpu which is incompatible.
+omnivoice 0.2.1 requires transformers>=5.3.0, but you have transformers 4.57.6 which is incompatible.[0m[31m
+[0mm[34;01m.[39;00m[34;01m.[39;00m[34;01m.[39;00m[34;01mgeneration[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m GenerationMixin
+[32m     46[39m logger = logging.get_logger([34m__name__[39m)
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages/transformers/utils/import_utils.py:2320[39m, in [36m_LazyModule.__getattr__[39m[34m(self, name)[39m
+[32m   2319[39m     [38;5;28;01mexcept[39;00m ([38;5;167;01mModuleNotFoundError[39;00m, [38;5;167;01mRuntimeError[39;00m) [38;5;28;01mas[39;00m e:
+[32m-> [39m[32m2320[39m         [38;5;28;01mraise[39;00m [38;5;167;01mModuleNotFoundError[39;00m(
+[32m   2321[39m             [33mf[39m[33m"[39m[33mCould not import module [39m[33m'[39m[38;5;132;01m{[39;00mname[38;5;132;01m}[39;00m[33m'[39m[33m. Are this object[39m[33m'[39m[33ms requirements defined correctly?[39m[33m"[39m
+[32m   2322[39m         ) [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01me[39;00m
+[32m   2324[39m [38;5;28;01melif[39;00m name [38;5;129;01min[39;00m [38;5;28mself[39m._modules:
+
+[31mModuleNotFoundError[39m: Could not import module 'GenerationMixin'. Are this object's requirements defined correctly?
+
+The above exception was the direct cause of the following exception:
+
+[31mModuleNotFoundError[39m                       Traceback (most recent call last)
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages/langchain_community/embeddings/openvino.py:52[39m, in [36mOpenVINOEmbeddings.__init__[39m[34m(self, **kwargs)[39m
+[32m     51[39m [38;5;28;01mtry[39;00m:
+[32m---> [39m[32m52[39m     [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01moptimum[39;00m[34;01m.[39;00m[34;01mintel[39;00m[34;01m.[39;00m[34;01mopenvino[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m OVModelForFeatureExtraction
+[32m     53[39m [38;5;28;01mexcept[39;00m [38;5;167;01mImportError[39;00m [38;5;28;01mas[39;00m e:
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages/optimum/intel/openvino/__init__.py:26[39m
+[32m     18[39m [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01m.[39;00m[34;01m.[39;00m[34;01mutils[39;00m[34;01m.[39;00m[34;01mimport_utils[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m (
+[32m     19[39m     _openvino_version,
+[32m     20[39m     is_diffusers_available,
+[32m   (...)[39m[32m     24[39m     is_sentence_transformers_available,
+[32m     25[39m )
+[32m---> [39m[32m26[39m [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01m.[39;00m[34;01mutils[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m (
+[32m     27[39m     OV_DECODER_NAME,
+[32m     28[39m     OV_DECODER_WITH_PAST_NAME,
+[32m     29[39m     OV_DETOKENIZER_NAME,
+[32m     30[39m     OV_ENCODER_NAME,
+[32m     31[39m     OV_TOKENIZER_NAME,
+[32m     32[39m     OV_XML_FILE_NAME,
+[32m     33[39m )
+[32m     36[39m warnings.simplefilter(action=[33m"[39m[33mignore[39m[33m"[39m, category=[38;5;167;01mFutureWarning[39;00m)
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages/optimum/intel/openvino/utils.py:34[39m
+[32m     33[39m [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01mpackaging[39;00m[34;01m.[39;00m[34;01mversion[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m Version
+[32m---> [39m[32m34[39m [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01mtransformers[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m AutoTokenizer, CLIPTokenizer, PreTrainedTokenizer, PreTrainedTokenizerFast
+[32m     36[39m [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01moptimum[39;00m[34;01m.[39;00m[34;01mintel[39;00m[34;01m.[39;00m[34;01mutils[39;00m[34;01m.[39;00m[34;01mimport_utils[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m is_torch_version
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages/transformers/utils/import_utils.py:2320[39m, in [36m_LazyModule.__getattr__[39m[34m(self, name)[39m
+[32m   2319[39m     [38;5;28;01mexcept[39;00m ([38;5;167;01mModuleNotFoundError[39;00m, [38;5;167;01mRuntimeError[39;00m) [38;5;28;01mas[39;00m e:
+[32m-> [39m[32m2320[39m         [38;5;28;01mraise[39;00m [38;5;167;01mModuleNotFoundError[39;00m(
+[32m   2321[39m             [33mf[39m[33m"[39m[33mCould not import module [39m[33m'[39m[38;5;132;01m{[39;00mname[38;5;132;01m}[39;00m[33m'[39m[33m. Are this object[39m[33m'[39m[33ms requirements defined correctly?[39m[33m"[39m
+[32m   2322[39m         ) [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01me[39;00m
+[32m   2324[39m [38;5;28;01melif[39;00m name [38;5;129;01min[39;00m [38;5;28mself[39m._modules:
+
+[31mModuleNotFoundError[39m: Could not import module 'AutoTokenizer'. Are this object's requirements defined correctly?
+
+The above exception was the direct cause of the following exception:
+
+[31mImportError[39m                               Traceback (most recent call last)
+[36mCell[39m[36m [39m[32mIn[24][39m[32m, line 12[39m
+[32m      8[39m     [33m"normalize_embeddings"[39m: embedding_model_configuration[[33m"normalize_embeddings"[39m],
+[32m      9[39m     [33m"batch_size"[39m: batch_size,
+[32m     10[39m }
+[32m     11[39m 
+[32m---> [39m[32m12[39m embedding = OpenVINOBgeEmbeddings(
+[32m     13[39m     model_name_or_path=embedding_model_name,
+[32m     14[39m     model_kwargs=embedding_model_kwargs,
+[32m     15[39m     encode_kwargs=encode_kwargs,
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages/langchain_community/embeddings/openvino.py:322[39m, in [36mOpenVINOBgeEmbeddings.__init__[39m[34m(self, **kwargs)[39m
+[32m    320[39m [38;5;28;01mdef[39;00m[38;5;250m [39m[34m__init__[39m([38;5;28mself[39m, **kwargs: Any):
+[32m    321[39m [38;5;250m    [39m[33;03m"""Initialize the sentence_transformer."""[39;00m
+[32m--> [39m[32m322[39m     [30;43msuper[39;49m[30;43m([39;49m[30;43m)[39;49m[30;43m.[39;49m[30;43m__init__[39;49m[30;43m([39;49m[30;43m*[39;49m[30;43m*[39;49m[30;43mkwargs[39;49m[30;43m)[39;49m
+[32m    324[39m     [38;5;28;01mif[39;00m [33m"[39m[33m-zh[39m[33m"[39m [38;5;129;01min[39;00m [38;5;28mself[39m.model_name_or_path:
+[32m    325[39m         [38;5;28mself[39m.query_instruction = DEFAULT_QUERY_BGE_INSTRUCTION_ZH
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages/langchain_community/embeddings/openvino.py:54[39m, in [36mOpenVINOEmbeddings.__init__[39m[34m(self, **kwargs)[39m
+[32m     52[39m     [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01moptimum[39;00m[34;01m.[39;00m[34;01mintel[39;00m[34;01m.[39;00m[34;01mopenvino[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m OVModelForFeatureExtraction
+[32m     53[39m [38;5;28;01mexcept[39;00m [38;5;167;01mImportError[39;00m [38;5;28;01mas[39;00m e:
+[32m---> [39m[32m54[39m     [38;5;28;01mraise[39;00m [38;5;167;01mImportError[39;00m(
+[32m     55[39m         [33m"[39m[33mCould not import optimum-intel python package. [39m[33m"[39m
+[32m     56[39m         [33m"[39m[33mPlease install it with: [39m[33m"[39m
+[32m     57[39m         [33m"[39m[33mpip install -U [39m[33m'[39m[33moptimum[openvino,nncf][39m[33m'[39m[33m"[39m
+[32m     58[39m     ) [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01me[39;00m
+[32m     60[39m [38;5;28;01mtry[39;00m:
+[32m     61[39m     [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01mhuggingface_hub[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m HfApi
+
+[31mImportError[39m: Could not import optimum-intel python package. Please install it with: pip install -U 'optimum[openvino,nncf]'
+

@@ -1,0 +1,11 @@
+[cell 0 START +    0.6s] # Image generation with universal control using Flex.2 and OpenVINO |  | <
+[cell 1 START +    0.6s] ## Prerequisites | [back to top ⬆️](#Table-of-contents:)
+[cell 2 START +    0.6s] %pip install -q "transformers==4.57.6" "diffusers>=0.33.0,<0.38.0" "gr
+[cell 2 DONE  +   69.4s]
+[cell 3 START +   69.4s] from pathlib import Path | import requests |  | if not Path("notebook_utils.
+[cell 3 DONE  +   70.3s]
+[cell 4 START +   70.3s] ## Convert model with OpenVINO | [back to top ⬆️](#Table-of-contents:) |  | 
+[cell 5 START +   70.3s] import ipywidgets as widgets |  | model_id = "ostris/Flex.2-preview" | model
+[cell 5 DONE  +   70.3s]
+[cell 6 START +   70.3s] # Read more about telemetry collection at https://github.com/openvinot
+NBEXEC_RESULT={"ok": false, "n_cells": 9, "n_skipped": 1, "n_substituted": 2, "stopped_after": null, "error_cell": null, "error_type": "CellTimeoutError", "error_head": "-------------------", "duration_s": 970.76, "patch_notes": ["substituted 1 occurrence(s) in cell 2", "substituted 1 occurrence(s) in cell 3", "skipped cell 14: matched skip pattern"]}

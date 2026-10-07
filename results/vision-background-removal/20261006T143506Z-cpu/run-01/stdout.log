@@ -1,0 +1,18 @@
+[cell 0 START +    0.7s] # Image Background Removal with U^2-Net and OpenVINO™ |  | This notebook d
+[cell 1 START +    0.7s] ## Preparation | [back to top ⬆️](#Table-of-contents:) |  | ### Install requ
+[cell 2 START +    0.7s] %pip install -q "openvino>=2023.1.0" | %pip install -q --extra-index-url
+[cell 2 DONE  +   22.0s]
+[cell 3 START +   22.0s] ### Import the PyTorch Library and U$^2$-Net | [back to top ⬆️](#Table-o
+[cell 4 START +   22.0s] import os | import time | from collections import namedtuple | from pathlib 
+[cell 4 DONE  +   23.1s]
+[cell 5 START +   23.1s] # Import local modules | import requests |  | if not Path("./notebook_utils.
+[cell 5 DONE  +   23.8s]
+[cell 6 START +   23.8s] ### Settings | [back to top ⬆️](#Table-of-contents:) |  | This tutorial supp
+[cell 7 START +   23.8s] model_config = namedtuple("ModelConfig", ["name", "url", "model", "mod
+[cell 7 DONE  +   23.8s]
+[cell 8 START +   23.8s] # The filenames of the downloaded and converted models. | MODEL_DIR = "m
+[cell 8 DONE  +   23.8s]
+[cell 9 START +   23.8s] ### Load the U$^2$-Net Model | [back to top ⬆️](#Table-of-contents:) |  | Th
+[cell 10 START +   23.8s] if not model_path.exists(): |     import gdown |  |     os.makedirs(name=mod
+[cell 10 DONE  +  292.4s]
+NBEXEC_RESULT={"ok": false, "n_cells": 13, "n_skipped": 0, "n_substituted": 0, "stopped_after": null, "error_cell": null, "error_type": "CellExecutionError", "error_head": "\u001b[31mConnectTimeout\u001b[39m: HTTPSConnectionPool(host='drive.google.com', port=443): Max retries exceeded with url: /uc?id=1W8E4FHIlTVstfRkYmNOjbr0VDXTZm0jD (Caused by ConnectTimeoutError(<HTTPSConnection(host='drive.google.com', port=443) at 0x7e23e1f9e090>, 'Connection to drive.google.com timed out. (connect timeout=None)'))", "duration_s": 293.47, "patch_notes": []}
