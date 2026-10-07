@@ -59,9 +59,27 @@ def test_misclassified_model_access_corrected_by_signature() -> None:
 
 
 def test_optimum_cli_signature_outranks_category() -> None:
-    outcome, reason = derive_outcome("FAILED", "MODEL_ACCESS", "optimum-cli export openvino failed")
+    outcome, reason = derive_outcome(
+        "FAILED", "MODEL_ACCESS", "ImportError: Could not import optimum-intel python package. Please install it"
+    )
     assert outcome is CompatibilityOutcome.BLOCKED_DEPENDENCY
     assert reason == "OPTIMUM_CLI_MISSING_OR_BROKEN"
+
+
+def test_bare_optimum_cli_command_echo_does_not_match() -> None:
+    # a failing export whose log merely echoes the optimum-cli command must
+    # NOT be classified as a missing-CLI dependency (would mask RCA-001-class
+    # runtime failures during optimum exports)
+    outcome, _ = derive_outcome("FAILED", "OPENVINO_ERROR", "BrgemmCPU node has incompatible input element types")
+    assert outcome is CompatibilityOutcome.FAILED_COMPATIBILITY
+
+
+def test_npu_substring_in_input_does_not_match() -> None:
+    # "INPUT" contains "NPU" as a substring; the hardware-absent signature
+    # must not fire on it
+    outcome, reason = derive_outcome("FAILED", "OPENVINO_ERROR", "INPUT SHAPE MISMATCH between layers")
+    assert outcome is CompatibilityOutcome.FAILED_COMPATIBILITY
+    assert reason != "REQUIRED_HARDWARE_ABSENT"
 
 
 def test_timeout_keeps_timeout_semantics_with_stage() -> None:

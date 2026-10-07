@@ -592,7 +592,7 @@
         ],
         "updated": "2026-10-06T10:23:42+00:00",
         "compatibility_outcome": "BLOCKED_DEPENDENCY",
-        "outcome_reason": "OPTIMUM_CLI_MISSING_OR_BROKEN"
+        "outcome_reason": "PACKAGE_RESOLUTION_CONFLICT"
       }
     },
     "fastdraft_deepseek": {
@@ -1056,7 +1056,7 @@
         ],
         "updated": "2026-10-06T11:16:44+00:00",
         "compatibility_outcome": "BLOCKED_DEPENDENCY",
-        "outcome_reason": "OPTIMUM_CLI_MISSING_OR_BROKEN"
+        "outcome_reason": "MISSING_OR_BROKEN_DEPENDENCY"
       }
     },
     "grounded-segment-anything": {
@@ -1171,8 +1171,8 @@
           "ok_runs=0/3: CalledProcessError: Command '['optimum-cli', 'export', 'openvino', '--model', 'SimianLuo/LCM_Dreamshaper_v7', 'LCM_Dreamshaper_v7_ov', '--weight-format', 'fp16']' returned non-zero exit status 1."
         ],
         "updated": "2026-10-06T11:39:48+00:00",
-        "compatibility_outcome": "BLOCKED_DEPENDENCY",
-        "outcome_reason": "OPTIMUM_CLI_MISSING_OR_BROKEN"
+        "compatibility_outcome": "BLOCKED_MODEL_ACCESS",
+        "outcome_reason": "GATED_OR_RESTRICTED_MODEL"
       }
     },
     "stable-diffusion-xl": {
@@ -1305,7 +1305,7 @@
         ],
         "updated": "2026-10-06T12:01:25+00:00",
         "compatibility_outcome": "BLOCKED_DEPENDENCY",
-        "outcome_reason": "OPTIMUM_CLI_MISSING_OR_BROKEN"
+        "outcome_reason": "MISSING_OR_BROKEN_DEPENDENCY"
       }
     },
     "medasr-medical-asr": {
@@ -1617,7 +1617,7 @@
         ],
         "updated": "2026-10-06T13:11:59+00:00",
         "compatibility_outcome": "BLOCKED_DEPENDENCY",
-        "outcome_reason": "OPTIMUM_CLI_MISSING_OR_BROKEN"
+        "outcome_reason": "MISSING_OR_BROKEN_DEPENDENCY"
       }
     },
     "phi3_rag_on_client": {
@@ -1695,7 +1695,7 @@
         ],
         "updated": "2026-10-06T13:20:40+00:00",
         "compatibility_outcome": "BLOCKED_DEPENDENCY",
-        "outcome_reason": "OPTIMUM_CLI_MISSING_OR_BROKEN"
+        "outcome_reason": "PACKAGE_RESOLUTION_CONFLICT"
       }
     },
     "qwen-image-2.1": {
@@ -1885,7 +1885,7 @@
         ],
         "updated": "2026-10-06T14:24:58+00:00",
         "compatibility_outcome": "BLOCKED_DEPENDENCY",
-        "outcome_reason": "OPTIMUM_CLI_MISSING_OR_BROKEN"
+        "outcome_reason": "PACKAGE_RESOLUTION_CONFLICT"
       }
     },
     "unlimited-ocr": {
@@ -2105,7 +2105,7 @@
         ],
         "updated": "2026-10-06T16:19:13+00:00",
         "compatibility_outcome": "BLOCKED_DEPENDENCY",
-        "outcome_reason": "OPTIMUM_CLI_MISSING_OR_BROKEN"
+        "outcome_reason": "MISSING_OR_BROKEN_DEPENDENCY"
       }
     },
     "qwen3-tts": {
@@ -2198,8 +2198,8 @@
           "ok_runs=0/1: CalledProcessError: Command '['optimum-cli', 'export', 'openvino', '--model', 'black-forest-labs/FLUX.1-Fill-dev', 'FLUX.1-Fill-dev/INT4', '--weight-format', 'int4', '--group-size', '64', '--ratio', '1.0']' returned non-zero exit status 1."
         ],
         "updated": "2026-10-06T16:50:49+00:00",
-        "compatibility_outcome": "BLOCKED_DEPENDENCY",
-        "outcome_reason": "OPTIMUM_CLI_MISSING_OR_BROKEN"
+        "compatibility_outcome": "BLOCKED_MODEL_ACCESS",
+        "outcome_reason": "GATED_OR_RESTRICTED_MODEL"
       }
     },
     "flux.1-image-generation": {
@@ -2254,8 +2254,8 @@
           "ok_runs=0/1: CalledProcessError: Command '['optimum-cli', 'export', 'openvino', '--model', 'black-forest-labs/FLUX.1-Kontext-dev', 'FLUX.1-Kontext-dev/INT4', '--weight-format', 'int4', '--group-size', '64', '--ratio', '1.0']' returned non-zero exit status 1."
         ],
         "updated": "2026-10-06T16:54:48+00:00",
-        "compatibility_outcome": "BLOCKED_DEPENDENCY",
-        "outcome_reason": "OPTIMUM_CLI_MISSING_OR_BROKEN"
+        "compatibility_outcome": "BLOCKED_MODEL_ACCESS",
+        "outcome_reason": "GATED_OR_RESTRICTED_MODEL"
       }
     },
     "flux.2-klein": {
@@ -2283,7 +2283,7 @@
         ],
         "updated": "2026-10-06T16:55:08+00:00",
         "compatibility_outcome": "BLOCKED_DEPENDENCY",
-        "outcome_reason": "OPTIMUM_CLI_MISSING_OR_BROKEN"
+        "outcome_reason": "PACKAGE_RESOLUTION_CONFLICT"
       }
     },
     "glm4.1-v-thinking": {
@@ -2310,8 +2310,8 @@
           "ok_runs=0/1: CalledProcessError: Command '['optimum-cli', 'export', 'openvino', '--model', 'GLM-4.1V-9B-Thinking', 'GLM-4.1V-9B-Thinking/INT4', '--task', 'image-text-to-text', '--weight-format', 'int4', '--group-size', '128', '--ratio', '0.8']' returned non-zero exit status 1."
         ],
         "updated": "2026-10-06T16:57:31+00:00",
-        "compatibility_outcome": "BLOCKED_DEPENDENCY",
-        "outcome_reason": "OPTIMUM_CLI_MISSING_OR_BROKEN"
+        "compatibility_outcome": "FAILED_COMPATIBILITY",
+        "outcome_reason": "UNKNOWN_ADJUDICATION_REQUIRED"
       }
     },
     "hunyuan-ocr": {
@@ -2345,7 +2345,7 @@
           "upstream_notebook_changed"
         ],
         "compatibility_outcome": "BLOCKED_DEPENDENCY",
-        "outcome_reason": "MISSING_OR_BROKEN_DEPENDENCY"
+        "outcome_reason": "OPTIMUM_CLI_MISSING_OR_BROKEN"
       }
     },
     "hunyuan-translation": {
@@ -4237,7 +4237,7 @@
         ],
         "updated": "2026-10-06T21:15:11+00:00",
         "compatibility_outcome": "BLOCKED_DEPENDENCY",
-        "outcome_reason": "OPTIMUM_CLI_MISSING_OR_BROKEN"
+        "outcome_reason": "MISSING_OR_BROKEN_DEPENDENCY"
       }
     },
     "bernini-r-image-video": {
@@ -5327,7 +5327,7 @@
         ],
         "updated": "2026-10-06T22:40:33+00:00",
         "compatibility_outcome": "BLOCKED_DEPENDENCY",
-        "outcome_reason": "OPTIMUM_CLI_MISSING_OR_BROKEN"
+        "outcome_reason": "MISSING_OR_BROKEN_DEPENDENCY"
       }
     },
     "llm-rag-llamaindex": {
@@ -5383,8 +5383,8 @@
           "ok_runs=0/1: Can not open file results/multimodal-rag-llamaindex/workdir-cpu/distil-whisper-large-v3-int8-ov/openvino_decoder_model.bin for mapping. Ensure that file exists and has appropriate permissions."
         ],
         "updated": "2026-10-06T22:53:36+00:00",
-        "compatibility_outcome": "BLOCKED_DEPENDENCY",
-        "outcome_reason": "OPTIMUM_CLI_MISSING_OR_BROKEN"
+        "compatibility_outcome": "BLOCKED_RESOURCE",
+        "outcome_reason": "MODEL_ARTIFACT_INCOMPLETE_OR_CORRUPT"
       }
     },
     "muse-glimmer": {
@@ -5675,7 +5675,7 @@
       "log_tail": "Collecting json5\n  Using cached json5-0.15.0-py3-none-any.whl.metadata (37 kB)\nUsing cached json5-0.15.0-py3-none-any.whl (36 kB)\nInstalling collected packages: json5\nSuccessfully installed json5-0.15.0\n"
     }
   ],
-  "last_checkpoint": "2026-10-07T09:38:07+00:00",
+  "last_checkpoint": "2026-10-07T12:28:44+00:00",
   "current_workload": "llm-agent-react-langchain",
   "env_repairs": [
     {

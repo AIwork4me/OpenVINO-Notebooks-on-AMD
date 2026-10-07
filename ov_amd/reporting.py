@@ -294,7 +294,7 @@ def write_compatibility() -> dict[str, Any]:
         last = (r["last_tested"] or "")[:10]
         lines.append(
             f"| [{r['id']}]({r['upstream_url']}) | {r['category']} "
-            f"| {_outcome_cell(r['cpu_compatibility_outcome'], r['cpu_outcome_reason'])} "
+            f"| {_outcome_cell(r['cpu_compatibility_outcome'], '')} "
             f"| {r['cpu_validation_level'] or '-'} "
             f"| {r['cpu_outcome_reason'] or '-'} "
             f"| {_outcome_cell(r['gpu_compatibility_outcome'], '')} "
@@ -307,6 +307,7 @@ def write_compatibility() -> dict[str, Any]:
     gpu = compat["counts"]["gpu"]
     oc = compat["counts"]["cpu_outcomes"]
     sec = compat["counts"]["cpu_successful_execution_coverage"]
+    na = oc.get("NOT_APPLICABLE", 0)
     meta = json.loads((REPO_ROOT / "upstream" / "openvino-notebooks.json").read_text()) \
         if (REPO_ROOT / "upstream" / "openvino-notebooks.json").exists() else {}
     blocked_total = sum(oc.get(k, 0) for k in (
@@ -324,7 +325,7 @@ def write_compatibility() -> dict[str, Any]:
         "It does not mean every notebook passed.**",
         "",
         f"Successful executions: **{sec['verified'] + sec['verified_with_limitations']}/{sec['eligible_total']}** "
-        f"of eligible notebooks ({sec['pct']}%) — ✅ {sec['verified']} L3 verified · "
+        f"of eligible notebooks ({sec['pct']}%; {na} N/A excluded) — ✅ {sec['verified']} L3 verified · "
         f"🟡 {sec['verified_with_limitations']} with documented limitations.",
         "",
         f"GPU (ROCm twins, Radeon): ✅ {gpu.get('VERIFIED', 0)} verified · 🟡 {gpu.get('VERIFIED_WITH_LIMITATIONS', 0)} limited "
@@ -415,7 +416,7 @@ def write_failures(state: dict[str, Any] | None = None) -> None:
                     outcome = outcome_o.value
                 key = f"{backend}:{outcome}" + (f":{reason}" if reason else "")
                 groups.setdefault(key, []).append(
-                    {"id": wid, "note": note[:220], "evidence": r.get("evidence_dir")}
+                    {"id": wid, "note": note[:220], "evidence": r.get("evidence_dir"), "reason": reason}
                 )
     lines = [
         "# Failures (generated)",
@@ -444,7 +445,10 @@ def write_failures(state: dict[str, Any] | None = None) -> None:
         lines.append("")
         for it in groups[key][:60]:
             ev = f" (evidence: {it['evidence']})" if it.get("evidence") else ""
-            lines.append(f"- **{it['id']}** — {_sanitize_note(it['note'])}{ev}")
+            note = _sanitize_note(it["note"]).strip()
+            if not note or set(note) <= set("-;*=# "):
+                note = it.get("reason") or "(no excerpt recorded — see evidence)"
+            lines.append(f"- **{it['id']}** — {note}{ev}")
         lines.append("")
     FAILURES_MD.parent.mkdir(parents=True, exist_ok=True)
     FAILURES_MD.write_text("\n".join(lines) + "\n")

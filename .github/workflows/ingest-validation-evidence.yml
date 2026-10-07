@@ -47,6 +47,14 @@ jobs:
           done
           [ -z "$ok" ] && { echo "FATAL: could not fetch main via any transport"; exit 1; }
           echo "fetched via $ok"
+          # integrity pin: whatever transport delivered the tree, its HEAD
+          # must equal the commit github.com's API reports for main
+          EXPECT_SHA=$(gh api "repos/$GITHUB_REPOSITORY/commits/main" --jq .sha)
+          GOT_SHA=$(git rev-parse FETCH_HEAD)
+          if [ "$GOT_SHA" != "$EXPECT_SHA" ]; then
+            echo "FATAL: fetched HEAD $GOT_SHA != api main $EXPECT_SHA (mirror drift?)"; exit 1
+          fi
+          echo "sha pinned: $GOT_SHA"
           git checkout -q FETCH_HEAD
           git branch -q -f main FETCH_HEAD 2>/dev/null || true
           git checkout -q main 2>/dev/null || true

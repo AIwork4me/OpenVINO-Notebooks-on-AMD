@@ -34,7 +34,7 @@ STATE = REPO / "results" / "marathon-state.json"
 # (workload, backend) -> (outcome, reason, justification)
 # Every entry was manually adjudicated against the recorded evidence during the
 # comprehensive verification closure (see reports/full-171-integrity-audit.md).
-ADJUDICATIONS: dict[tuple[str, str], tuple[str, str, str, str]] = {
+ADJUDICATIONS: dict[tuple[str, str], tuple[str, str, str]] = {
     ("action-recognition-webcam", "cpu"): (
         "BLOCKED_DEPENDENCY",
         "UPSTREAM_NOTEBOOK_RERUN_SCOPING",
@@ -114,7 +114,7 @@ CONTRACT_CORRECTIONS: dict[str, dict] = {
     "person-counting": {
         "old": ["processing has been successfully completed", "yolov8n_openvino_model"],
         "new": ["processing has been successfully completed", "image 1/"],
-        "why": "'yolov8n_openvino_model' appears in notebook source paths but is never printed; "
+        "why": "'yolov8n_openvino_model' is only ever composed at runtime via f-string and is never printed; "
         "'image 1/' evidences the ultralytics OpenVINO inference actually executing.",
     },
     "stable-video-diffusion": {
@@ -196,6 +196,15 @@ def main() -> int:
             ev_dir = REPO / str(r.get("evidence_dir", "")) if r.get("evidence_dir") else None
             ev_text = ""
             stage = ""
+            catfix = CATEGORY_CORRECTIONS.get((wid, backend))
+            if catfix and r.get("failure_category") != catfix[0]:
+                old_cat = r.get("failure_category")
+                r["failure_category"] = catfix[0]
+                if not any(n.startswith("execution category corrected") for n in r.get("notes") or []):
+                    r.setdefault("notes", []).append(
+                        f"execution category corrected by comprehensive audit: {old_cat} -> {catfix[0]} ({catfix[1]})"
+                    )
+                cat = catfix[0]
             if status in ("FAILED", "BLOCKED", "SKIPPED_RESOURCE") and ev_dir and ev_dir.is_dir():
                 ev_text, stdout = evidence_text(ev_dir)
                 # execution-category correction: evidence contradicts the note-level class
@@ -212,15 +221,6 @@ def main() -> int:
                     stage = classify_timeout_stage(stdout, ev_text)
             notes_text = "\n".join(r.get("notes") or []) + "\n" + ev_text
             outcome, reason = derive_outcome(status, cat, notes_text, timeout_stage=stage)
-            catfix = CATEGORY_CORRECTIONS.get((wid, backend))
-            if catfix and r.get("failure_category") != catfix[0]:
-                old_cat = r.get("failure_category")
-                r["failure_category"] = catfix[0]
-                if not any(n.startswith("execution category corrected") for n in r.get("notes") or []):
-                    r.setdefault("notes", []).append(
-                        f"execution category corrected by comprehensive audit: {old_cat} -> {catfix[0]} ({catfix[1]})"
-                    )
-                cat = catfix[0]
             adj = ADJUDICATIONS.get((wid, backend))
             if adj:
                 outcome_s, reason, why = adj
@@ -284,6 +284,9 @@ def main() -> int:
         val["aggregate_ref"] = "aggregate.json"
         (ev_dir / "validation.json").write_text(json.dumps({"schema_version": 2, **val}, indent=2))
         old_status = r["status"]
+        # legal via the implicit RUNNING path: the evidence re-evaluation is a
+        # genuine re-run-equivalent transition (FAILED -> RUNNING -> yellow),
+        # so the explicit force hatch is NOT used — enforcement confirms it
         enforce_transition(old_status, "VERIFIED_WITH_LIMITATIONS", context=f"{wid}/cpu")
         r["status"] = "VERIFIED_WITH_LIMITATIONS"
         r["compatibility_outcome"] = "VERIFIED_WITH_LIMITATIONS"

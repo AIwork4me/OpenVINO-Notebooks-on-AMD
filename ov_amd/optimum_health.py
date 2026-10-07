@@ -85,7 +85,7 @@ def remediate(python: str, health: dict[str, Any]) -> tuple[bool, str]:
     """Bounded remediation: single targeted install from PyPI into the SAME
     environment, one re-check. Never a combinatorial resolver search."""
 
-    target = "optimum-intel" if health["diagnosis"] != "CLI_ENTRYPOINT_BROKEN" else "optimum-intel"
+    target = "optimum-intel"  # console entrypoint + library ship together; single targeted install
     r = subprocess.run(
         [python, "-m", "pip", "install", "--no-input", target],
         capture_output=True,

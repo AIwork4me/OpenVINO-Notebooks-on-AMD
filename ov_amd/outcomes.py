@@ -86,7 +86,10 @@ _CATEGORY_OUTCOME: dict[str, tuple[CompatibilityOutcome, str]] = {
 # to the concatenated notes / error head; first match wins.
 _SIGNATURES: list[tuple[str, CompatibilityOutcome, str]] = [
     (
-        r"optimum-cli|optimum\.intel|Could not import optimum",
+        r"FileNotFoundError[^\n]*'(optimum-cli|ovc)'|"
+        r"Could not import optimum(-intel)?|ImportError: Could not import optimum-intel|"
+        r"optimum-cli\.export[^\n]*returned non-zero|"
+        r"Unexpected dependency in optimum-intel/setup\.py",
         CompatibilityOutcome.BLOCKED_DEPENDENCY,
         "OPTIMUM_CLI_MISSING_OR_BROKEN",
     ),
@@ -111,7 +114,7 @@ _SIGNATURES: list[tuple[str, CompatibilityOutcome, str]] = [
         "EXTERNAL_HOST_UNREACHABLE",
     ),
     (
-        r"FULL_DEVICE_NAME|NPU",
+        r"FULL_DEVICE_NAME|\bNPU\b",
         CompatibilityOutcome.BLOCKED_RESOURCE,
         "REQUIRED_HARDWARE_ABSENT",
     ),

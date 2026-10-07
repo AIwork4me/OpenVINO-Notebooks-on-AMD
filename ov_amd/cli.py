@@ -55,6 +55,22 @@ def cmd_doctor(args: argparse.Namespace) -> int:
     return 0
 
 
+_STATUS_ALIASES = {
+    "BLOCKED": ("BLOCKED_NETWORK", "BLOCKED_MODEL_ACCESS", "BLOCKED_DEPENDENCY", "BLOCKED_TIMEOUT", "BLOCKED_RESOURCE"),
+    "BLOCKED_NETWORK": ("BLOCKED_NETWORK",),
+    "BLOCKED_MODEL_ACCESS": ("BLOCKED_MODEL_ACCESS",),
+    "BLOCKED_DEPENDENCY": ("BLOCKED_DEPENDENCY",),
+    "BLOCKED_TIMEOUT": ("BLOCKED_TIMEOUT",),
+    "BLOCKED_RESOURCE": ("BLOCKED_RESOURCE",),
+    "VERIFIED": ("VERIFIED",),
+    "LIMITED": ("VERIFIED_WITH_LIMITATIONS",),
+    "VERIFIED_WITH_LIMITATIONS": ("VERIFIED_WITH_LIMITATIONS",),
+    "FAILED_COMPATIBILITY": ("FAILED_COMPATIBILITY",),
+    "NOT_APPLICABLE": ("NOT_APPLICABLE",),
+    "NOT_TESTED": ("NOT_TESTED",),
+}
+
+
 def cmd_list(args: argparse.Namespace) -> int:
     entries = load_catalog()
     state = load_state()
@@ -62,15 +78,27 @@ def cmd_list(args: argparse.Namespace) -> int:
         entries = [e for e in entries if e.category == args.category]
     if args.status:
         wanted = args.status.upper()
-        entries = [
-            e
-            for e in entries
-            if wanted in (
-                (state.get("attempts", {}).get(e.id, {}).get("cpu") or {}).get("status", "NOT_TESTED"),
-                (state.get("attempts", {}).get(e.id, {}).get("cpu") or {}).get("compatibility_outcome", ""),
-                (state.get("attempts", {}).get(e.id, {}).get("gpu") or {}).get("status", "NOT_TESTED"),
+        if wanted not in _STATUS_ALIASES:
+            known = ", ".join(sorted(_STATUS_ALIASES))
+            print(f"unknown status filter: {args.status} (known: {known})", file=sys.stderr)
+            return 1
+        accepted = set(_STATUS_ALIASES[wanted])
+
+        def _matches(e) -> bool:
+            rec = state.get("attempts", {}).get(e.id, {})
+            cpu = rec.get("cpu") or {}
+            gpu = rec.get("gpu") or {}
+            return bool(
+                accepted
+                & {
+                    cpu.get("status", "NOT_TESTED"),
+                    cpu.get("compatibility_outcome", ""),
+                    gpu.get("status", "NOT_TESTED"),
+                    gpu.get("compatibility_outcome", ""),
+                }
             )
-        ]
+
+        entries = [e for e in entries if _matches(e)]
     for e in sorted(entries, key=lambda e: (e.priority, e.id)):
         rec = state.get("attempts", {}).get(e.id, {})
         cpu = (rec.get("cpu") or {}).get("status", "NOT_TESTED")
@@ -84,7 +112,7 @@ def cmd_list(args: argparse.Namespace) -> int:
         c = w.get("cpu") or {}
         if c.get("compatibility_outcome"):
             outcomes[c["compatibility_outcome"]] = outcomes.get(c["compatibility_outcome"], 0) + 1
-    print(f"\n{total} workloads")
+    print(f"\n{total} workloads" + (f" — showing {len(entries)}" if len(entries) != total else ""))
     print(f"AMD CPU: {sum(outcomes.values())}/{total} classified")
     for k in (
         "VERIFIED",

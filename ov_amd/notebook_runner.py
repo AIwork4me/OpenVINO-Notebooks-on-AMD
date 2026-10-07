@@ -273,7 +273,7 @@ def _preseed_helpers(cwd: Path, nb_path: Path | None = None) -> list[str]:
     if nb_path is not None and nb_path.parent != root:
         for sibling in sorted(nb_path.parent.iterdir()):
             dst = cwd / sibling.name
-            if dst.exists() or not sibling.is_file():
+            if dst.exists() or not sibling.is_file() or sibling.is_symlink():
                 continue
             if sibling.suffix == ".py":
                 shutil.copy2(sibling, dst)

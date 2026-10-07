@@ -35,7 +35,7 @@ OpenVINO    ROCm
 
 > **100% coverage means every catalogued notebook has been attempted and classified on AMD Ryzen. It does not mean every notebook passed.**
 
-Successful executions: **85/170** of eligible notebooks (50.0%) — ✅ 25 L3 verified · 🟡 60 with documented limitations.
+Successful executions: **85/170** of eligible notebooks (50.0%; 1 N/A excluded) — ✅ 25 L3 verified · 🟡 60 with documented limitations.
 
 GPU (ROCm twins, Radeon): ✅ 8 verified · 🟡 0 limited · attempted 8/171
 
@@ -97,6 +97,7 @@ The runner records what it observed; developers read what it means.
 | FAILED ← wall/cell timeout | BLOCKED_TIMEOUT (stage-aware) | ⏱️ |
 | FAILED/OOM/disk/artifact | BLOCKED_RESOURCE | 💾 |
 | FAILED ← runtime/model execution | FAILED_COMPATIBILITY | 🧩 |
+| NOT_TESTED (GPU twins pending) | NOT_TESTED | ⏳ |
 | NOT_APPLICABLE | NOT_APPLICABLE | ➖ |
 
 Full definitions: [docs/validation-policy.md](docs/validation-policy.md).

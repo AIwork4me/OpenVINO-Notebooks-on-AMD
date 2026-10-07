@@ -1,6 +1,6 @@
 # Full 171-Entry Integrity Audit (generated)
 
-Generated: 2026-10-07T09:38:08+00:00 · pin `329562e6031d`
+Generated: 2026-10-07T12:28:44+00:00 · pin `329562e6031d`
 
 Verdicts: {'OK': 168, 'WARN': 3}
 
@@ -47,15 +47,15 @@ Verdicts: {'OK': 168, 'WARN': 3}
 | fireredtts2 | FAILED | BLOCKED_TIMEOUT | OK |  |
 | flex.2-image-generation | VERIFIED_WITH_LIMITATIONS | VERIFIED_WITH_LIMITATIONS | OK |  |
 | florence2 | VERIFIED_WITH_LIMITATIONS | VERIFIED_WITH_LIMITATIONS | OK |  |
-| flux-fill | FAILED | BLOCKED_DEPENDENCY | OK |  |
+| flux-fill | FAILED | BLOCKED_MODEL_ACCESS | OK |  |
 | flux.1-image-generation | FAILED | BLOCKED_RESOURCE | OK |  |
-| flux.1-kontext | FAILED | BLOCKED_DEPENDENCY | OK |  |
+| flux.1-kontext | FAILED | BLOCKED_MODEL_ACCESS | OK |  |
 | flux.2-klein | FAILED | BLOCKED_DEPENDENCY | OK |  |
 | freevc-voice-conversion | FAILED | BLOCKED_RESOURCE | OK |  |
 | funasr-nano | FAILED | BLOCKED_DEPENDENCY | OK |  |
 | gemma4 | FAILED | BLOCKED_RESOURCE | OK |  |
 | glm-ocr | FAILED | BLOCKED_DEPENDENCY | OK |  |
-| glm4.1-v-thinking | FAILED | BLOCKED_DEPENDENCY | OK |  |
+| glm4.1-v-thinking | FAILED | FAILED_COMPATIBILITY | OK |  |
 | gpu-device | FAILED | FAILED_COMPATIBILITY | OK |  |
 | grounded-segment-anything | FAILED | BLOCKED_TIMEOUT | OK |  |
 | handwritten-ocr | VERIFIED | VERIFIED | OK |  |
@@ -73,7 +73,7 @@ Verdicts: {'OK': 168, 'WARN': 3}
 | jina-clip | FAILED | BLOCKED_TIMEOUT | OK |  |
 | kokoro | VERIFIED_WITH_LIMITATIONS | VERIFIED_WITH_LIMITATIONS | OK |  |
 | language-quantize-bert | VERIFIED | VERIFIED | OK |  |
-| latent-consistency-models-image-generation | FAILED | BLOCKED_DEPENDENCY | OK |  |
+| latent-consistency-models-image-generation | FAILED | BLOCKED_MODEL_ACCESS | OK |  |
 | llm-agent-functioncall-qwen | VERIFIED_WITH_LIMITATIONS | VERIFIED_WITH_LIMITATIONS | OK |  |
 | llm-agent-mcp | FAILED | BLOCKED_NETWORK | OK |  |
 | llm-agent-rag-llamaindex | VERIFIED_WITH_LIMITATIONS | VERIFIED_WITH_LIMITATIONS | OK |  |
@@ -101,7 +101,7 @@ Verdicts: {'OK': 168, 'WARN': 3}
 | mobileclip-video-search | VERIFIED_WITH_LIMITATIONS | VERIFIED_WITH_LIMITATIONS | OK |  |
 | modelscope-to-openvino | VERIFIED | VERIFIED | OK |  |
 | multilora-image-generation | VERIFIED_WITH_LIMITATIONS | VERIFIED_WITH_LIMITATIONS | OK |  |
-| multimodal-rag-llamaindex | FAILED | BLOCKED_DEPENDENCY | OK |  |
+| multimodal-rag-llamaindex | FAILED | BLOCKED_RESOURCE | OK |  |
 | muse-glimmer | FAILED | BLOCKED_RESOURCE | OK |  |
 | music-generation | FAILED | BLOCKED_TIMEOUT | OK |  |
 | nuextract-structure-extraction | VERIFIED_WITH_LIMITATIONS | VERIFIED_WITH_LIMITATIONS | OK |  |

@@ -28,7 +28,7 @@ def test_readme_generated_block_is_current() -> None:
         f"🚧 {blocked} Blocked",
         f"🧩 {oc.get('FAILED_COMPATIBILITY', 0)} Compatibility failures",
         f"➖ {oc.get('NOT_APPLICABLE', 0)} Not applicable",
-        f"**{sec['verified'] + sec['verified_with_limitations']}/{sec['eligible_total']}** of eligible notebooks ({sec['pct']}%)",
+        f"**{sec['verified'] + sec['verified_with_limitations']}/{sec['eligible_total']}** of eligible notebooks ({sec['pct']}%",
         "It does not mean every notebook passed",
     ]
     missing = [f for f in expected_fragments if f not in block]
