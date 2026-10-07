@@ -547,6 +547,8 @@ def _model_record(cfg: dict[str, Any], ev: Path, nb_path: Path) -> dict[str, Any
 
 
 def _summary_md(entry: NotebookEntry, out: AttemptOutcome, last_info: dict[str, Any]) -> str:
+    from ov_amd.public_paths import sanitize_public_text
+
     exec_info = last_info.get("execution", {})
     lines = [
         f"# {entry.id} — CPU attempt (evidence schema v2)",
@@ -560,7 +562,7 @@ def _summary_md(entry: NotebookEntry, out: AttemptOutcome, last_info: dict[str, 
         f"- environment: `.venvs/cpu/{out.env_info.get('env_key', '-')}` (reused={out.env_info.get('reused')})",
     ]
     for n in out.notes:
-        lines.append(f"- note: {n}")
+        lines.append(f"- note: {sanitize_public_text(n)}")
     return "\n".join(lines) + "\n"
 
 

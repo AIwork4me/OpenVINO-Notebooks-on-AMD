@@ -7,4 +7,4 @@
 - last duration: 36.17s
 - failure: PACKAGE_CONFLICT
 - environment: `.venvs/cpu/0e02466db943f1d6` (reused=True)
-- note: ok_runs=0/3: cannot import name 'Qwen3VLForConditionalGeneration' from 'transformers' (/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages/transformers/__init__.py)
+- note: ok_runs=0/3: cannot import name 'Qwen3VLForConditionalGeneration' from 'transformers' (.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages/transformers/__init__.py)
