@@ -14,6 +14,9 @@ upstream/openvino-notebooks.json.
 
 --if-missing: succeed without refetching when a complete snapshot already
 exists (used by CI provisioning).
+--commit <sha>: fetch THAT exact commit instead of the branch HEAD. Pin
+switching must never chase a moving `latest` (the upstream branch advanced
+twice during one v0.2 sync attempt); evidence binds to a fixed commit.
 """
 
 from __future__ import annotations
@@ -38,6 +41,15 @@ REPO = "openvinotoolkit/openvino_notebooks"
 BRANCH = "latest"
 DEST = REPO_ROOT / ".cache" / "upstream"
 META_PATH = REPO_ROOT / "upstream" / "openvino-notebooks.json"
+
+
+def _pinned_commit_arg() -> str | None:
+    if "--commit" in sys.argv:
+        i = sys.argv.index("--commit")
+        if i + 1 < len(sys.argv):
+            return sys.argv[i + 1]
+        raise SystemExit("--commit requires a sha")
+    return os.environ.get("OV_AMD_UPSTREAM_COMMIT") or None
 
 KEEP_EXT = (".ipynb", ".txt", ".py", ".json", ".csv", ".yaml", ".yml", ".xml", ".md", ".png", ".jpg", ".jpeg", ".gif")
 SKIP_PREFIX = (".",)
@@ -66,7 +78,20 @@ def snapshot_complete() -> bool:
         meta = json.loads(META_PATH.read_text())
     except (OSError, ValueError):
         return False
+    pinned = _pinned_commit_arg()
+    if pinned and meta.get("commit") != pinned:
+        return False  # different target: never treat as satisfiable
     return bool(meta.get("commit")) and meta.get("files_failed", 1) == 0 and any(DEST.iterdir())
+
+
+def _gh_api_json(url: str) -> dict:
+    """Fallback blob fetch through the gh CLI client (different HTTP stack:
+    survives proxies that cancel curl's HTTP/2 streams on large bodies)."""
+
+    r = subprocess.run(["gh", "api", url], capture_output=True, text=True, timeout=620)
+    if r.returncode == 0:
+        return json.loads(r.stdout)
+    raise RuntimeError(f"gh api {url}: {r.returncode} {r.stderr[:160]}")
 
 
 def api_get(url: str, tries: int = 4, timeout: int = 300) -> bytes:
@@ -75,6 +100,7 @@ def api_get(url: str, tries: int = 4, timeout: int = 300) -> bytes:
             [
                 CURL,
                 "-sSfL",
+                "--http1.1",  # flaky proxies cancel big HTTP/2 blob streams (curl 92)
                 "--max-time",
                 str(timeout),
                 "-H",
@@ -153,13 +179,23 @@ def fetch_tarball(commit: str, meta: dict) -> bool:
 
 def fetch_one(path: str, blob_sha: str, size: int) -> tuple[str, str]:
     out = DEST / path
+    # resume check is content-verified, not just existence+size: a file left
+    # over from a different pinned commit must never pass as cached
     if out.exists() and out.stat().st_size == size:
-        return path, "cached"
+
+        try:
+            if git_blob_sha(out.read_bytes()) == blob_sha:
+                return path, "cached"
+        except OSError:
+            pass
     out.parent.mkdir(parents=True, exist_ok=True)
     url = f"https://api.github.com/repos/{REPO}/git/blobs/{blob_sha}"
     for i in range(4):
         try:
-            d = json.loads(api_get(url, timeout=600))
+            try:
+                d = json.loads(api_get(url, timeout=600))
+            except Exception:  # noqa: BLE001 - curl route failed; try gh client
+                d = _gh_api_json(url)
             data = base64.b64decode(d["content"])
             if git_blob_sha(data) != blob_sha:
                 raise RuntimeError("blob sha mismatch")
@@ -177,14 +213,19 @@ def main() -> int:
         print("upstream snapshot already complete; skipping fetch")
         return 0
 
-    head = api_json(f"https://api.github.com/repos/{REPO}/commits/{BRANCH}")
+    pinned = _pinned_commit_arg()
+    if pinned:
+        head = api_json(f"https://api.github.com/repos/{REPO}/commits/{pinned}")
+    else:
+        head = api_json(f"https://api.github.com/repos/{REPO}/commits/{BRANCH}")
     commit = head["sha"]
     commit_date = head["commit"]["committer"]["date"]
     commit_subject = head["commit"]["message"].splitlines()[0]
     print(f"pinned {BRANCH} @ {commit[:12]} ({commit_subject[:60]})", flush=True)
 
     meta: dict = {}
-    if fetch_tarball(commit, meta):
+    force_blobs = "--blobs" in sys.argv or os.environ.get("OV_AMD_FETCH") == "blobs"
+    if not force_blobs and fetch_tarball(commit, meta):
         ok = meta["files_ok"]
         cached = fail = 0
         fails: list[str] = []
