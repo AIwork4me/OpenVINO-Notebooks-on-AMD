@@ -48,11 +48,24 @@ jobs:
         run: python3 scripts/run_marathon.py --cpu-only --priority ${{ github.event.inputs.priority_max || '1' }} --max-runtime 7200
       - name: Report
         run: python3 -m ov_amd report
+      - name: Bundle evidence (state + v2 evidence files, no model workdirs)
+        if: always()
+        run: |
+          tar -czf cpu-evidence.tgz \
+            --exclude='workdir-cpu' --exclude='workdir-gpu' \
+            --exclude='*.safetensors' --exclude='*.bin' --exclude='*.pt' --exclude='*.onnx' --exclude='*.zip' \
+            results
+          ls -la cpu-evidence.tgz
       - uses: actions/upload-artifact@v4
         if: always()
         with:
           name: marathon-state
           path: results/marathon-state.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: cpu-evidence
+          path: cpu-evidence.tgz
 
 # AMD reference platforms: CPU and GPU validation must never overlap (shared
 # memory/thermal domain on SoC platforms; serialized resource domain on
