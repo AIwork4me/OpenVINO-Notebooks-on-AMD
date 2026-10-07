@@ -1,6 +1,6 @@
 # Compatibility Matrix (generated)
 
-Generated: 2026-10-07T05:51:45+00:00 — do not edit by hand; run `python -m ov_amd report`.
+Generated: 2026-10-07T05:55:08+00:00 — do not edit by hand; run `python -m ov_amd report`.
 
 Total notebooks: **171**
 
