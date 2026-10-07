@@ -216,16 +216,29 @@ def run_notebook(
     return info, nbresult
 
 
+#: sibling data assets notebooks reference relative to their own directory
+#: (nyc.jpg, test.png, config.json ...). Size-capped; never copies code or
+#: huge binaries — the snapshot filter already kept only small assets.
+SIBLING_DATA_EXTS = {
+    ".jpg", ".jpeg", ".png", ".gif", ".bmp", ".webp",
+    ".json", ".csv", ".yaml", ".yml", ".xml", ".txt", ".md",
+    ".mp3", ".wav", ".mp4", ".pts", ".bin", ".npy",
+}
+SIBLING_DATA_MAX_BYTES = 64 * 1024 * 1024  # per file
+
+
 def _preseed_helpers(cwd: Path, nb_path: Path | None = None) -> list[str]:
-    """Copy helper modules into the execution dir, with documented patches.
+    """Copy helper modules and data assets into the execution dir, with
+    documented patches.
 
     1. utils pre-seed: nearly every notebook starts with `if not Path("notebook_utils.py")
        .exists(): requests.get(raw.githubusercontent...)`. raw CDN stalls on this
        network, so the existence check is satisfied from the pinned local
        snapshot — no network, identical file (sha-verified at fetch time).
-    2. sibling pre-seed: notebooks importing helper modules that live next to
-       them upstream (e.g. ov_catvton_helper.py) get those copied into cwd,
-       because the kernel runs with its own working directory.
+    2. sibling pre-seed: notebooks importing helper modules or opening data
+       files that live next to them upstream (e.g. ov_catvton_helper.py,
+       nyc.jpg, test.png) get those copied into cwd, because the kernel runs
+       with its own working directory (notebook-relative resource semantics).
     3. device pin: `device_widget(default="AUTO")` resolves to whatever AUTO
        picks (on this machine: an enumerated GPU), which would silently break
        the "validated on AMD Ryzen CPU" premise. The preseeded copy pins the
@@ -258,11 +271,22 @@ def _preseed_helpers(cwd: Path, nb_path: Path | None = None) -> list[str]:
                 _copy_patched(py, dst)
 
     if nb_path is not None and nb_path.parent != root:
-        for sibling in sorted(nb_path.parent.glob("*.py")):
+        for sibling in sorted(nb_path.parent.iterdir()):
             dst = cwd / sibling.name
-            if not dst.exists():
+            if dst.exists() or not sibling.is_file():
+                continue
+            if sibling.suffix == ".py":
                 shutil.copy2(sibling, dst)
                 patches.append(f"preseeded sibling helper module {sibling.name} (kernel cwd differs from notebook dir)")
+            elif sibling.suffix.lower() in SIBLING_DATA_EXTS:
+                try:
+                    if sibling.stat().st_size <= SIBLING_DATA_MAX_BYTES:
+                        shutil.copy2(sibling, dst)
+                        patches.append(
+                            f"preseeded sibling data asset {sibling.name} (notebook-relative resource semantics)"
+                        )
+                except OSError:
+                    pass
     return patches
 
 
