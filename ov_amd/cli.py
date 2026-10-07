@@ -17,6 +17,7 @@ from ov_amd.scheduler import load_catalog, load_state
 def cmd_doctor(args: argparse.Namespace) -> int:
     from ov_amd import hardware
     from ov_amd.environment import disk_free_mb, ram_available_mb
+    from ov_amd.scheduler import load_catalog
 
     hw = hardware.collect_hardware()
     print(f"ov-amd {__version__}")
@@ -24,6 +25,8 @@ def cmd_doctor(args: argparse.Namespace) -> int:
     print(f"RAM:       {hw['ram_total_mb'] // 1024} GB total, {ram_available_mb() // 1024} GB available")
     print(f"Disk free: {disk_free_mb() // 1024} GB")
     print(f"GPU:       {json.dumps(hw['gpu'])}")
+    amd_cpu = "AMD" in str(hw["cpu"].get("model", ""))
+    print(f"AMD CPU:   {'detected' if amd_cpu else 'NOT DETECTED (CPU validation premise not met)'}")
     for backend in ("cpu", "gpu"):
         exists = venv_exists(backend)
         print(f"venv[{backend}]: {'present' if exists else 'MISSING'} ({venv_python(backend)})")
@@ -34,10 +37,21 @@ def cmd_doctor(args: argparse.Namespace) -> int:
                 f"  torch:    {sw['torch_rocm']['torch']} hip={sw['torch_rocm']['hip']} "
                 f"cuda_available={sw['torch_rocm']['cuda_available']}"
             )
+    gpu_hw = hw.get("gpu") or {}
+    rocm = bool(gpu_hw.get("available")) if isinstance(gpu_hw, dict) else False
+    print(f"ROCm:      {'detected' if rocm else 'not detected (CPU validation works without it)'}")
     meta = load_upstream_meta()
     print(f"upstream:  {meta.get('repository', '?')} @ {meta.get('commit', '?')[:12]} ({meta.get('branch', '?')})")
+    catalog = load_catalog()
     state = load_state()
-    print(f"attempts:  {len(state.get('attempts', {}))} recorded in results/marathon-state.json")
+    attempts = state.get("attempts", {})
+    cpu_terminal = sum(1 for w in attempts.values() if (w.get("cpu") or {}).get("status"))
+    print(
+        f"catalog:   {len(catalog)} notebooks pinned; {cpu_terminal} CPU attempt records "
+        "in results/marathon-state.json"
+    )
+    print(f"coverage:  {cpu_terminal}/{len(catalog)} CPU outcomes recorded "
+          f"({round(100 * cpu_terminal / max(1, len(catalog)), 1)}%)")
     return 0
 
 
@@ -46,12 +60,45 @@ def cmd_list(args: argparse.Namespace) -> int:
     state = load_state()
     if args.category:
         entries = [e for e in entries if e.category == args.category]
+    if args.status:
+        wanted = args.status.upper()
+        entries = [
+            e
+            for e in entries
+            if wanted in (
+                (state.get("attempts", {}).get(e.id, {}).get("cpu") or {}).get("status", "NOT_TESTED"),
+                (state.get("attempts", {}).get(e.id, {}).get("cpu") or {}).get("compatibility_outcome", ""),
+                (state.get("attempts", {}).get(e.id, {}).get("gpu") or {}).get("status", "NOT_TESTED"),
+            )
+        ]
     for e in sorted(entries, key=lambda e: (e.priority, e.id)):
         rec = state.get("attempts", {}).get(e.id, {})
         cpu = (rec.get("cpu") or {}).get("status", "NOT_TESTED")
+        outcome = (rec.get("cpu") or {}).get("compatibility_outcome", "")
         gpu = (rec.get("gpu") or {}).get("status", "NOT_TESTED")
-        print(f"p{e.priority}  cpu={cpu:<28} gpu={gpu:<28} {e.id}")
-    print(f"total: {len(entries)}")
+        print(f"p{e.priority}  cpu={cpu:<28} outcome={outcome:<28} gpu={gpu:<12} {e.id}")
+    total = len(load_catalog())
+    attempts = state.get("attempts", {})
+    outcomes: dict[str, int] = {}
+    for w in attempts.values():
+        c = w.get("cpu") or {}
+        if c.get("compatibility_outcome"):
+            outcomes[c["compatibility_outcome"]] = outcomes.get(c["compatibility_outcome"], 0) + 1
+    print(f"\n{total} workloads")
+    print(f"AMD CPU: {sum(outcomes.values())}/{total} classified")
+    for k in (
+        "VERIFIED",
+        "VERIFIED_WITH_LIMITATIONS",
+        "BLOCKED_NETWORK",
+        "BLOCKED_MODEL_ACCESS",
+        "BLOCKED_DEPENDENCY",
+        "BLOCKED_TIMEOUT",
+        "BLOCKED_RESOURCE",
+        "FAILED_COMPATIBILITY",
+        "NOT_APPLICABLE",
+    ):
+        if outcomes.get(k):
+            print(f"  {k:<28} {outcomes[k]}")
     return 0
 
 
@@ -229,6 +276,7 @@ def build_parser() -> argparse.ArgumentParser:
 
     sp = sub.add_parser("list")
     sp.add_argument("--category")
+    sp.add_argument("--status", help="filter by execution status or compatibility outcome (verified, blocked, FAILED_COMPATIBILITY, ...)")
     sp.set_defaults(func=cmd_list)
 
     sp = sub.add_parser("info")
