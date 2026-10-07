@@ -126,13 +126,31 @@ Honesty corrections made along the way:
 | Hosted `ci` (tests + ruff + generated-artifact checks) | green on `main` (21 runs) |
 | `amd-cpu-validation` (self-hosted) | run #3 **success** on `main` (2026-10-07T02:49Z); concurrency `amd-reference-validation`, `cancel-in-progress: false` |
 | `amd-rocm-validation` (self-hosted) | run #4 **success** (2026-10-06T09:08Z); same concurrency group — CPU/GPU never overlap |
-| `ingest-validation-evidence` | see INGEST-RESULT below |
+| `ingest-validation-evidence` | **BLOCKED by runner git-egress outage** (see INGEST-RESULT below) — workflow logic proven piecewise: resilient checkout success + 75 min of resumable download progress on record; 6 dispatches logged |
 
-### INGEST-RESULT
+### INGEST-RESULT — operational limitation (runner git-egress outage), workflow proven piecewise
 
-<!-- filled at closure: run 37602875728 dispatched against real artifacts of
-run 37563821402 (cpu-evidence 180MB + marathon-state). Outcome recorded in the
-release notes; see Known Limitations if bounded retries were exhausted. -->
+Six dispatches against the real artifacts of run `37563821402`
+(cpu-evidence 180 MB + marathon-state) during this closure:
+
+| Run | Outcome | What it proved |
+|---|---|---|
+| 37602875728 | cancelled | `actions/checkout` hangs for hours on the runner's github.com route (diagnosis) |
+| 37607950131 | cancelled | same hang confirmed on retry |
+| 37610065109 | cancelled (old 90-min job cap) | **resilient checkout SUCCESS via site-mirror fallback** (the fix works); **resumable download ran 75 min with progress** before the pre-fix job cap killed it |
+| 37621297425 | cancelled | dispatched before the per-attempt fetch-timeout fix; checkout TCP hang again |
+| 37628494427 | failure (fast, clean) | hardened checkout worked as designed: per-attempt timeouts fired; **both transports refused from the runner** (egress outage began ~13:34Z) |
+| 37630021723 | failure (fast, clean) | identical — runner git egress down entirely |
+
+Verdict: **BLOCKED by runner infrastructure** (git egress outage during the
+closure window), not by workflow logic. Piecewise proof on record: the
+resilient checkout step succeeded (run 37610065109) and the resumable download
+made real progress through the very throttling it was built for (75 min,
+Range-resumed). Workflow hardening shipped this closure: site-mirror fallback
+with an **API SHA pin** (mirror-delivered trees must match github.com's main),
+per-attempt fetch timeouts, 150-minute window sized for the bounded resumable
+download, and idempotent evidence overlay. A dispatch once the runner's egress
+recovers completes the proof; the operator runbook is the workflow itself.
 
 ## ROCm (Pillar B)
 
@@ -227,6 +245,12 @@ runner — nothing speculative filed upstream):
    re-downloads, gated models) is deliberately out of scope for this closure
    (v0.3 per the roadmap); the health contract and classifier fixes are in
    place so retries can be trusted.
+6. **Artifact-ingest proof run**: the ingest workflow's logic is proven
+   piecewise (checkout fallback success; resumable download progress) but no
+   single end-to-end green run completed during the closure window because the
+   self-hosted runner's git egress went down mid-verification (6 dispatches
+   logged, last two failing fast-and-clean by design). Queued as an
+   operational follow-up when the runner recovers; see INGEST-RESULT.
 
 ## Security
 
