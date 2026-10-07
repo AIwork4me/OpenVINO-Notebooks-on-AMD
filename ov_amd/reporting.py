@@ -297,7 +297,8 @@ def write_compatibility() -> dict[str, Any]:
         f"of eligible notebooks ({sec['pct']}%) — ✅ {sec['verified']} L3 verified · "
         f"🟡 {sec['verified_with_limitations']} with documented limitations.",
         "",
-        f"GPU (ROCm twins, Radeon): ✅ {gpu.get('VERIFIED', 0)} verified · 🟡 {gpu.get('VERIFIED_WITH_LIMITATIONS', 0)} limited",
+        f"GPU (ROCm twins, Radeon): ✅ {gpu.get('VERIFIED', 0)} verified · 🟡 {gpu.get('VERIFIED_WITH_LIMITATIONS', 0)} limited "
+        f"· attempted {compat['counts']['gpu_attempted']}/{compat['counts']['total']}",
         "",
         f"Evidence Schema **v2** · upstream `{str(meta.get('commit', ''))[:12]}` · "
         f"twin classification **{compat['counts']['twin_classified']}/{compat['counts']['total']}** "

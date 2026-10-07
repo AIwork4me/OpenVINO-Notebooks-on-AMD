@@ -6,7 +6,7 @@ Generated: 2026-10-07 (start of comprehensive verification & quality closure)
 
 | Item | Value |
 |---|---|
-| Remote | `https://gh-test.anruicloud.com/AIwork4me/OpenVINO-Notebooks-on-AMD.git` (mirrors `github.com/AIwork4me/OpenVINO-Notebooks-on-AMD`) |
+| Remote | `github.com/AIwork4me/OpenVINO-Notebooks-on-AMD` (pushed via a site git mirror; the public canonical URL is the github.com one) |
 | `main` HEAD | `0f59781d97b3d10fa2e48cce3bf8845fb8ecec67` |
 | Latest tags | `v0.2.1`, `v0.2.0`, `v0.1-validation-baseline` |
 | GitHub Releases | none exist yet (tags only) |

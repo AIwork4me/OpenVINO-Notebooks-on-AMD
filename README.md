@@ -37,7 +37,7 @@ OpenVINO    ROCm
 
 Successful executions: **85/170** of eligible notebooks (50.0%) — ✅ 25 L3 verified · 🟡 60 with documented limitations.
 
-GPU (ROCm twins, Radeon): ✅ 8 verified · 🟡 0 limited
+GPU (ROCm twins, Radeon): ✅ 8 verified · 🟡 0 limited · attempted 8/171
 
 Evidence Schema **v2** · upstream `329562e6031d` · twin classification **171/171** (100.0%)
 
@@ -60,7 +60,7 @@ The distinction is strict everywhere: matrix, reports, release notes, and this R
 
 ## Compatibility matrix
 
-- Full generated matrix (171 rows, outcome + validation level + reason + evidence link): [catalog/compatibility.md](catalog/compatibility.md)
+- Full generated matrix (every catalogued row, with outcome + validation level + reason + evidence link): [catalog/compatibility.md](catalog/compatibility.md)
 - Live campaign progress: [reports/marathon-progress.md](reports/marathon-progress.md)
 - Failure groups by outcome: [reports/failures.md](reports/failures.md)
 - Full dataset audit: [reports/full-171-integrity-audit.md](reports/full-171-integrity-audit.md)

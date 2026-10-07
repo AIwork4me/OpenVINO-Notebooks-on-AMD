@@ -46,3 +46,22 @@ def test_readme_quickstart_commands_resolve() -> None:
     for cmd in ("python -m ov_amd doctor", "python -m ov_amd list", "python -m ov_amd run hello-world --device cpu"):
         assert cmd in text
     assert (REPO_ROOT / "docs" / "validation-policy.md").exists()
+
+
+def test_readme_heading_matches_coverage_pct() -> None:
+    """The static H2 'AMD CPU Coverage: 100%' must match the computed coverage."""
+    compat = build_compatibility()
+    pct = int(compat["counts"]["cpu_attempt_coverage_pct"])
+    text = README.read_text()
+    assert f"## AMD CPU Coverage: {pct}%" in text, "coverage heading drifted from the data"
+
+
+def test_readme_has_no_hand_typed_catalog_total() -> None:
+    """Hand-typed totals outside the generated block drift on re-pin; the row
+    count lives only in generated text."""
+    import re
+
+    text = README.read_text()
+    block = text.split(README_BEGIN, 1)[1].split(README_END, 1)[0]
+    outside = text.replace(block, "")
+    assert not re.search(r"\(171 rows", outside), "hand-typed row count outside generated block"
