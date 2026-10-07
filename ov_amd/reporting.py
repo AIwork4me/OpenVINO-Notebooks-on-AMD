@@ -177,10 +177,37 @@ def _counts(rows: list[dict[str, Any]]) -> dict[str, Any]:
     return out
 
 
+def _rca_index() -> dict[str, str]:
+    """workload id -> reports/upstream/ RCA file that documents it."""
+
+    root = REPO_ROOT / "reports" / "upstream"
+    if not root.is_dir():
+        return {}
+    import re as _re
+
+    idx: dict[str, str] = {}
+    for p in sorted(root.glob("rca-*.md")):
+        try:
+            text = p.read_text(errors="replace")
+        except OSError:
+            continue
+        # RCA files document workloads on "**Workload(s)**/Workload:" lines as `id`
+        m = _re.search(r"\*\*Workload\(?s?\)?\*\*:[^\n]*", text)
+        span = m.group(0) if m else text[:400]
+        for wid in _re.findall(r"`([\w.-]+)`", span):
+            idx.setdefault(wid, f"reports/upstream/{p.name}")
+        # cluster files list member workloads anywhere with backticks
+        if "cluster" in p.name or "undiagnosed" in p.name:
+            for wid in _re.findall(r"`([\w.-]+)`", text[:2000]):
+                idx.setdefault(wid, f"reports/upstream/{p.name}")
+    return idx
+
+
 def write_compatibility() -> dict[str, Any]:
     from ov_amd.outcomes import OUTCOME_ICONS
 
     compat = build_compatibility()
+    rca = _rca_index()
     CATALOG_JSON.parent.mkdir(parents=True, exist_ok=True)
     CATALOG_JSON.write_text(json.dumps(compat, indent=2))
 
@@ -261,6 +288,9 @@ def write_compatibility() -> dict[str, Any]:
         # they resolve in the GitHub web UI, not only from the repo root
         ev_link = f"../{r['evidence']}" if r["evidence"] and not str(r["evidence"]).startswith(("../", "/")) else r["evidence"]
         ev = f"[link]({ev_link})" if r["evidence"] else "-"
+        rca_link = rca.get(r["id"])
+        if r["cpu_compatibility_outcome"] == "FAILED_COMPATIBILITY" and rca_link:
+            ev += f" · [rca](../{rca_link})"
         last = (r["last_tested"] or "")[:10]
         lines.append(
             f"| [{r['id']}]({r['upstream_url']}) | {r['category']} "

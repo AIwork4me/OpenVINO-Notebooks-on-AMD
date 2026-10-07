@@ -107,6 +107,8 @@ Full definitions: [docs/validation-policy.md](docs/validation-policy.md).
 
 Every row in the matrix is machine-generated from a resumable campaign checkpoint (`results/marathon-state.json`) — nothing is hand-entered. Each attempt produces an evidence directory (`results/<workload>/<ts>-<backend>/`) with hardware/software snapshots, upstream pin + notebook sha, device-proof probe events, repeatability aggregates, and validation contracts (Evidence Schema v2). Validation levels: L1 EXECUTION_ONLY → L3 WORKLOAD_CORRECTNESS; green requires L3 + positive `PROVEN_CPU` device proof + repeatability. See [docs/validation-policy.md](docs/validation-policy.md) and [benchmarks/METHODOLOGY.md](benchmarks/METHODOLOGY.md) (WORKLOAD_TWIN rows never carry CPU-vs-GPU speedup claims).
 
+Validation runs on real AMD hardware through self-hosted workflows — [amd-cpu-validation](https://github.com/AIwork4me/OpenVINO-Notebooks-on-AMD/actions/workflows/amd-cpu-validation.yml) (Ryzen, OpenVINO) and [amd-rocm-validation](https://github.com/AIwork4me/OpenVINO-Notebooks-on-AMD/actions/workflows/amd-rocm-validation.yml) (Radeon, ROCm) — serialized on a shared concurrency group; evidence lands back in this repository via the [ingest workflow](https://github.com/AIwork4me/OpenVINO-Notebooks-on-AMD/actions/workflows/ingest-validation-evidence.yml).
+
 ## Repository layout
 
 | Path | Content |
