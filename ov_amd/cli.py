@@ -154,8 +154,10 @@ def cmd_marathon(args: argparse.Namespace) -> int:
 
 
 def cmd_report(args: argparse.Namespace) -> int:
+    from ov_amd.manifest_sync import sync_manifests
     from ov_amd.reporting import write_compatibility, write_failures, write_progress
 
+    sync_manifests()
     compat = write_compatibility()
     write_progress()
     write_failures()

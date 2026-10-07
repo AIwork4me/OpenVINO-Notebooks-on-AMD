@@ -603,17 +603,15 @@ def _record(state: dict[str, Any], entry: NotebookEntry, backend: str, out: Atte
     }
     # mirror status into workloads/<id>/workload.yaml
     try:
-        wf = WORKLOADS_DIR / entry.id / "workload.yaml"
-        if wf.exists():
-            cfg = yaml.safe_load(wf.read_text()) or {}
-            cfg.setdefault(backend, {})["status"] = out.status.value
-            cfg["last_verified"] = (
-                _utcnow()
-                if out.status in (Status.VERIFIED, Status.VERIFIED_WITH_LIMITATIONS)
-                else cfg.get("last_verified", "")
-            )
-            wf.write_text(yaml.safe_dump(cfg, sort_keys=False))
-    except (OSError, yaml.YAMLError):
+        from ov_amd.manifest_sync import mirror_into_manifest
+
+        mirror_into_manifest(
+            entry.id,
+            backend,
+            out.status.value,
+            verified_now=_utcnow() if out.status in (Status.VERIFIED, Status.VERIFIED_WITH_LIMITATIONS) else None,
+        )
+    except OSError:
         pass
     save_state(state)
 

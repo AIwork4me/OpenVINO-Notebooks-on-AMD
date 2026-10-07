@@ -17,7 +17,7 @@ cpu:
   status: VERIFIED_WITH_LIMITATIONS
 gpu:
   runtime: ''
-  status: NOT_TESTED
+  status: VERIFIED
 twin:
   level: WORKLOAD_TWIN
 validation: {}

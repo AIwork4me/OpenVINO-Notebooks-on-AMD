@@ -62,6 +62,19 @@ def _record_gpu(
         "platform_id": _hw.platform_id(),
         "updated": _utcnow(),
     }
+    # mirror status into workloads/<id>/workload.yaml (same contract as the CPU
+    # path — pre-closure gap found by the dataset baseline audit)
+    try:
+        from ov_amd.manifest_sync import mirror_into_manifest
+
+        mirror_into_manifest(
+            entry.id,
+            "gpu",
+            status.value,
+            verified_now=_utcnow() if status in (Status.VERIFIED, Status.VERIFIED_WITH_LIMITATIONS) else None,
+        )
+    except OSError:
+        pass
     save_state(state)
 
 

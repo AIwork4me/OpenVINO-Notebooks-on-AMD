@@ -19,10 +19,10 @@ cpu:
   repeats: 1
 gpu:
   runtime: ''
-  status: NOT_TESTED
+  status: VERIFIED
   wall_timeout_s: 5400
 twin:
-  level: NOT_CLASSIFIED
+  level: WORKLOAD_TWIN
 validation:
   min_output_chars: 200
   output_not_contains:

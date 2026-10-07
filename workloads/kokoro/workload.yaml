@@ -17,10 +17,10 @@ cpu:
   status: VERIFIED_WITH_LIMITATIONS
 gpu:
   runtime: ''
-  status: NOT_TESTED
+  status: VERIFIED
   wall_timeout_s: 3600
 twin:
-  level: NOT_CLASSIFIED
+  level: WORKLOAD_TWIN
 validation:
   output_contains:
   - Generated \d+ samples at \d+ Hz

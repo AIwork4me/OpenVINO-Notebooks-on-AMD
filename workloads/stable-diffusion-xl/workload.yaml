@@ -12,10 +12,10 @@ cpu:
   status: FAILED
 gpu:
   runtime: pytorch-rocm
-  status: NOT_TESTED
+  status: VERIFIED
   wall_timeout_s: 5400
 twin:
-  level: ''
+  level: WORKLOAD_TWIN
 validation: {}
 patches: {}
 last_verified: ''

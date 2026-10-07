@@ -19,7 +19,7 @@ gpu:
   runtime: ''
   status: NOT_TESTED
 twin:
-  level: NOT_CLASSIFIED
+  level: WORKLOAD_TWIN
 validation:
   min_output_chars: 50
   output_not_contains:

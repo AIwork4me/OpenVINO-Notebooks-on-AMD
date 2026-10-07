@@ -19,7 +19,7 @@ gpu:
   runtime: ''
   status: NOT_TESTED
 twin:
-  level: NOT_CLASSIFIED
+  level: WORKLOAD_TWIN
 validation: {}
 patches: {}
 last_verified: '2026-10-06T13:32:09+00:00'

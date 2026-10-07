@@ -17,7 +17,7 @@ cpu:
   status: VERIFIED
 gpu:
   runtime: ''
-  status: NOT_TESTED
+  status: VERIFIED
   wall_timeout_s: 3600
 twin:
   level: WORKLOAD_TWIN
