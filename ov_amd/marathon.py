@@ -217,18 +217,35 @@ def run_gpu_twin(entry, state: dict[str, Any]) -> None:
         f"- hip: {twin_result.get('hip')}\n- device: {twin_result.get('device')}\n"
         f"- gcn_arch: {twin_result.get('gcn_arch')}\n- duration: {round(duration, 2)}s\n"
     )
+    runs_ok = len(run_latencies)
     if twin_result.get("ok") and twin_result.get("hip"):
         # the twin's own ok embodies its workload correctness checks (e.g.
         # >=1 detection with valid bounded confidences), so a green twin is
-        # L3 WORKLOAD_CORRECTNESS with PROVEN_GPU device proof
-        _record_gpu(
-            state,
-            entry,
-            Status.VERIFIED,
-            evidence=str(ev),
-            proof="PROVEN_GPU",
-            level="WORKLOAD_CORRECTNESS",
-        )
+        # L3 WORKLOAD_CORRECTNESS with PROVEN_GPU device proof. The same
+        # repeatability gate as the CPU path applies (gate finding, dual
+        # review): ok+hip with fewer than 3 measured runs degrades honestly
+        # instead of rendering full green.
+        if runs_ok >= _ev2.REPEATABILITY_MIN_RUNS and _ev2.aggregate_repeatability(run_latencies, 3)[
+            "repeatability_passed"
+        ]:
+            _record_gpu(
+                state,
+                entry,
+                Status.VERIFIED,
+                evidence=str(ev),
+                proof="PROVEN_GPU",
+                level="WORKLOAD_CORRECTNESS",
+            )
+        else:
+            _record_gpu(
+                state,
+                entry,
+                Status.VERIFIED_WITH_LIMITATIONS,
+                notes=[f"repeatability_not_established: {runs_ok} measured run(s) < 3"],
+                evidence=str(ev),
+                proof="PROVEN_GPU",
+                level="WORKLOAD_CORRECTNESS",
+            )
     elif twin_result:
         # script ran to completion and self-reported failure of its own checks;
         # log-grep classification would misread earlier fallback logs (e.g. a
