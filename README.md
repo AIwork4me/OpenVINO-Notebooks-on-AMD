@@ -31,7 +31,7 @@ OpenVINO    ROCm
 <!-- generated:compatibility begin -->
 **AMD CPU Coverage: 173/173 OpenVINO Notebooks attempted on AMD Ryzen — 100.0% catalog coverage**
 
-Coverage is measured against the pinned OpenVINO Notebooks snapshot `5f0b2b5f63fd`. Upstream freshness: **CURRENT** (verified 2026-10-07)
+Coverage is measured against the pinned OpenVINO Notebooks snapshot `2b1600de9620`. Upstream freshness: **CURRENT** (verified 2026-10-07)
 
 ✅ 25 Verified · 🟡 63 Verified with limitations · 🚧 82 Blocked (network / model access / dependency / timeout / resource) · 🧩 1 Compatibility failures · ➖ 2 Not applicable
 
@@ -41,7 +41,7 @@ Successful executions: **88/171** of eligible notebooks (51.5%; 2 N/A excluded) 
 
 GPU (ROCm twins, Radeon): ✅ 8 verified · 🟡 0 limited · attempted 8/173
 
-Evidence Schema **v2** · upstream `5f0b2b5f63fd` · twin classification **173/173** (100.0%)
+Evidence Schema **v2** · upstream `2b1600de9620` · twin classification **173/173** (100.0%)
 
 Full matrix: [catalog/compatibility.md](catalog/compatibility.md) · Methodology: [docs/validation-policy.md](docs/validation-policy.md) · [benchmarks/METHODOLOGY.md](benchmarks/METHODOLOGY.md)
 <!-- generated:compatibility end -->

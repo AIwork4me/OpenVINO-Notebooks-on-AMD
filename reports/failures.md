@@ -17,7 +17,7 @@ Total non-green attempts: 83
 
 ## 🌐 cpu · BLOCKED_NETWORK · EXTERNAL_HOST_UNREACHABLE — external host unreachable — 5 workload(s)
 
-- **whisper-asr-genai** — ok_runs=0/1: ConnectTimeout: HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /spaces/distil-whisper/whisper-vs-distil-whisper/resolve/main/assets/example_1.wav (Caused by ConnectTimeo (evidence: results/whisper-asr-genai/20261006T190640Z-cpu)
+- **whisper-asr-genai** — v0.3 network adjudication: upstream 2b1600d makes the notebook require OpenVINO nightly >=2026.5.0.dev20261005 from storage.openvinotoolkit.org (NPU-oriented; index unreachable via runner egress, 403) and its sample vide (evidence: results/whisper-asr-genai/20261007230104Z-cpu)
 - **llm-agent-mcp** — ok_runs=0/3: ConnectTimeout: HTTPSConnectionPool(host='cdn-avatars.huggingface.co', port=443): Max retries exceeded with url: /v1/production/uploads/1671615670447-6346651be2dcb5422bcd13dd.png (Caused by ConnectTimeoutErr (evidence: results/llm-agent-mcp/20261006T113948Z-cpu)
 - **vision-background-removal** — execution category corrected by comprehensive audit: UNKNOWN -> NETWORK (host unreachable; original UNKNOWN hid the network cause) (evidence: results/vision-background-removal/20261006T143506Z-cpu)
 - **instant-id** — ok_runs=0/1: ConnectTimeout: HTTPSConnectionPool(host='drive.google.com', port=443): Max retries exceeded with url: /uc?id=18wEUfMNohBJ4K3Ly5wpTejPfDzp-8fI8 (Caused by ConnectTimeoutError(<HTTPSConnection(host='drive.goo (evidence: results/instant-id/20261006T170232Z-cpu)

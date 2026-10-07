@@ -1,0 +1,60 @@
+/workspace/.venvs/cpu/19592c7c33c06bcb/lib/python3.12/site-packages/nbformat/validator.py:434: MissingIDFieldWarning: Cell is missing an id field, this will become a hard error in future nbformat versions. You may want to use `normalize()` on your notebooks before validations (available since nbformat 5.1.4). Previous versions of nbformat are fixing this issue transparently, and will stop doing so in the future.
+  _validate(nbdict, ref, version, version_minor, relax_add_props)
+[IPKernelApp] WARNING | Kernel is running over TCP without encryption. All communication (including code and outputs) is sent in plain text and is susceptible to eavesdropping. Use IPC transport or launch with kernel manager-provisioned CurveZMQ keys to enable transport encryption.
+Traceback (most recent call last):
+  File "/workspace/ov_amd/_nbexec.py", line 144, in main
+    client.execute()
+  File "/workspace/.venvs/cpu/19592c7c33c06bcb/lib/python3.12/site-packages/jupyter_core/utils/__init__.py", line 165, in wrapped
+    return loop.run_until_complete(inner)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/base_events.py", line 687, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/workspace/.venvs/cpu/19592c7c33c06bcb/lib/python3.12/site-packages/nbclient/client.py", line 709, in async_execute
+    await self.async_execute_cell(
+  File "/workspace/.venvs/cpu/19592c7c33c06bcb/lib/python3.12/site-packages/nbclient/client.py", line 1062, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/workspace/.venvs/cpu/19592c7c33c06bcb/lib/python3.12/site-packages/nbclient/client.py", line 918, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+from notebook_utils import download_file
+
+video_file = Path("downloaded_video.mp4")
+
+if not video_file.exists():
+    download_file(
+        "https://storage.openvinotoolkit.org/repositories/openvino_notebooks/data/data/video/Sheldon%20Cooper%20Jim%20Parsons%20at%20Intels%20Lab.mp4",
+        filename=video_file.name,
+    )
+------------------
+
+
+[31m---------------------------------------------------------------------------[39m
+[31mException[39m                                 Traceback (most recent call last)
+[36mCell[39m[36m [39m[32mIn[16][39m[32m, line 6[39m
+[32m      2[39m 
+[32m      3[39m video_file = Path([33m"downloaded_video.mp4"[39m)
+[32m      4[39m 
+[32m      5[39m [38;5;28;01mif[39;00m [38;5;28;01mnot[39;00m video_file.exists():
+[32m----> [39m[32m6[39m     download_file(
+[32m      7[39m         [33m"https://storage.openvinotoolkit.org/repositories/openvino_notebooks/data/data/video/Sheldon%20Cooper%20Jim%20Parsons%20at%20Intels%20Lab.mp4"[39m,
+[32m      8[39m         filename=video_file.name,
+[32m      9[39m     )
+
+[36mFile [39m[32m/workspace/results/whisper-asr-genai/workdir-cpu/notebook_utils.py:154[39m, in [36mdownload_file[39m[34m(url, filename, directory, show_progress)[39m
+[32m    149[39m     [38;5;28;01mraise[39;00m [38;5;167;01mException[39;00m(
+[32m    150[39m         [33m"[39m[33mConnection timed out. If you access the internet through a proxy server, please [39m[33m"[39m
+[32m    151[39m         [33m"[39m[33mmake sure the proxy is set in the shell from where you launched Jupyter.[39m[33m"[39m
+[32m    152[39m     ) [38;5;28;01mfrom[39;00m[38;5;250m [39m[38;5;28;01mNone[39;00m
+[32m    153[39m [38;5;28;01mexcept[39;00m requests.exceptions.RequestException [38;5;28;01mas[39;00m error:
+[32m--> [39m[32m154[39m     [38;5;28;01mraise[39;00m [38;5;167;01mException[39;00m([33mf[39m[33m"[39m[33mFile downloading failed with error: [39m[38;5;132;01m{[39;00merror[38;5;132;01m}[39;00m[33m"[39m) [38;5;28;01mfrom[39;00m[38;5;250m [39m[38;5;28;01mNone[39;00m
+[32m    156[39m filesize = [38;5;28mint[39m(response.headers.get([33m"[39m[33mContent-length[39m[33m"[39m, [32m0[39m))
+[32m    157[39m [38;5;66;03m# Let urllib3 verify we actually received as many bytes as the server[39;00m
+[32m    158[39m [38;5;66;03m# declared, at the raw transport level, before any gzip/deflate decoding[39;00m
+[32m    159[39m [38;5;66;03m# happens. iter_content() yields decompressed bytes, so counting those[39;00m
+[32m    160[39m [38;5;66;03m# ourselves and comparing to Content-length breaks for compressed[39;00m
+[32m    161[39m [38;5;66;03m# responses, since Content-length reflects the compressed size on the wire.[39;00m
+
+[31mException[39m: File downloading failed with error: HTTPSConnectionPool(host='storage.openvinotoolkit.org', port=443): Max retries exceeded with url: /repositories/openvino_notebooks/data/data/video/Sheldon%20Cooper%20Jim%20Parsons%20at%20Intels%20Lab.mp4 (Caused by ProxyError('Unable to connect to proxy', OSError('Tunnel connection failed: 403 Forbidden')))
+

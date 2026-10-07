@@ -1,17 +1,16 @@
 {
   "started": "2026-10-01T09:40:27+00:00",
   "upstream": {
-    "fetch_method": "github git-blobs API (sha1-verified); tarball transport failed on this network",
-    "files_ok": 14,
-    "files_cached": 562,
+    "fetch_method": "codeload tarball (576 files kept, filter ('.ipynb', '.txt', '.py', '.json', '.csv', '.yaml', '.yml', '.xml', '.md', '.png', '.jpg', '.jpeg', '.gif')); blobs API fallback available",
+    "files_ok": 576,
+    "files_cached": 0,
     "files_failed": 0,
     "repository": "openvinotoolkit/openvino_notebooks",
     "branch": "latest",
-    "commit": "5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b",
-    "commit_date": "2026-10-07T12:14:36Z",
-    "commit_subject": "[Dependencies] Update selector dependencies to the latest compatible version (#3721)",
-    "discovered_at": "2026-10-07T14:54:27Z",
-    "local_path": ".cache/upstream"
+    "commit": "2b1600de9620e4a2d26f1ef5c83fad64d7d76f7b",
+    "commit_date": "2026-10-07T17:58:32Z",
+    "commit_subject": "Kokoro notebook: switch default precision to fp16 (#3725)",
+    "discovered_at": "2026-10-07T22:57:47Z"
   },
   "attempts": {
     "hello-world": {
@@ -849,40 +848,41 @@
       "gpu": {
         "status": "VERIFIED",
         "failure_category": "",
+        "compatibility_outcome": "VERIFIED",
+        "outcome_reason": "",
         "notes": [],
-        "evidence_dir": "results/whisper-asr-genai/20261007T011710Z-gpu",
+        "evidence_dir": "results/whisper-asr-genai/20261007T230927Z-gpu",
         "device_proof": "PROVEN_GPU",
         "validation_level": "WORKLOAD_CORRECTNESS",
         "platform_id": "amd-epyc-9334-32-core-processor-gfx1100",
-        "updated": "2026-10-07T01:17:57+00:00",
-        "compatibility_outcome": "VERIFIED",
-        "outcome_reason": ""
+        "updated": "2026-10-07T23:10:09+00:00"
       },
       "cpu": {
         "status": "FAILED",
         "failure_category": "NETWORK",
+        "compatibility_outcome": "BLOCKED_NETWORK",
+        "outcome_reason": "EXTERNAL_HOST_UNREACHABLE",
         "ok_runs": 0,
         "required_runs": 1,
         "durations_s": [],
         "device_used": "CPU",
         "device_proof": "PROVEN_CPU",
         "validation_level": "",
-        "platform_id": "ryzen-ai-max-395-radeon-8060s-gfx1151",
-        "evidence_dir": "results/whisper-asr-genai/20261006T190640Z-cpu",
+        "platform_id": "amd-epyc-9334-32-core-processor-gfx1100",
+        "evidence_dir": "results/whisper-asr-genai/20261007230104Z-cpu",
         "env": {
           "backend": "cpu",
-          "env_key": "74694ad9d890d4ae",
-          "python": ".venvs/cpu/74694ad9d890d4ae/bin/python",
-          "fingerprint": "200542b9c1200f3e01579fbc81dd909580df40e60a6758ae4eb24aaa17040eb8",
+          "env_key": "19592c7c33c06bcb",
+          "python": ".venvs/cpu/19592c7c33c06bcb/bin/python",
+          "fingerprint": "7addc873b7c54a926d73c47da54da0aea03a7b30c83978ab897247bd31b0581c",
           "reused": false,
           "created": true
         },
         "notes": [
-          "ok_runs=0/1: ConnectTimeout: HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /spaces/distil-whisper/whisper-vs-distil-whisper/resolve/main/assets/example_1.wav (Caused by ConnectTimeoutError(<HTTPSConnection(host='huggingface.co', port=443) at 0x704b9c270a10>, 'Conn"
+          "ok_runs=0/1: Exception: File downloading failed with error: HTTPSConnectionPool(host='storage.openvinotoolkit.org', port=443): Max retries exceeded with url: /repositories/openvino_notebooks/data/data/video/Sheldon%20Cooper%20Jim%20Parsons%20at%20Intels%20Lab.mp4 (Caused by ProxyError('Unable to connec",
+          "v0.3 network adjudication: upstream 2b1600d makes the notebook require OpenVINO nightly >=2026.5.0.dev20261005 from storage.openvinotoolkit.org (NPU-oriented; index unreachable via runner egress, 403) and its sample video lives on the same host. Core CPU ASR flow nevertheless completed under pre-satisfied stable OpenVINO 2026.4.1 (whisper-base FP16 preconverted; courtroom.wav and MLS Italian samples transcribed with timestamps; perf metrics emitted) \u2014 see results/whisper-asr-genai/20261007230104Z-cpu/run-01/executed.ipynb cells 12-22. Sole fatal blocker is the external video asset for the gradio demo; classification stays BLOCKED_NETWORK (external host), not a compatibility failure."
         ],
-        "updated": "2026-10-06T19:13:58+00:00",
-        "compatibility_outcome": "BLOCKED_NETWORK",
-        "outcome_reason": "EXTERNAL_HOST_UNREACHABLE"
+        "updated": "2026-10-07T23:08:01+00:00"
       }
     },
     "florence2": {
@@ -980,59 +980,44 @@
       "gpu": {
         "status": "VERIFIED",
         "failure_category": "",
+        "compatibility_outcome": "VERIFIED",
+        "outcome_reason": "",
         "notes": [],
-        "evidence_dir": "results/kokoro/20261007T005721Z-gpu",
+        "evidence_dir": "results/kokoro/20261007T230834Z-gpu",
         "device_proof": "PROVEN_GPU",
         "validation_level": "WORKLOAD_CORRECTNESS",
         "platform_id": "amd-epyc-9334-32-core-processor-gfx1100",
-        "updated": "2026-10-07T00:58:03+00:00",
-        "historical_status": "VERIFIED",
-        "historical_evidence": "results/kokoro/20261006T044931Z-gpu",
-        "revalidation_reasons": [
-          "pin:a8809170cc4f->329562e6031d",
-          "upstream_notebook_changed"
-        ],
-        "compatibility_outcome": "VERIFIED",
-        "outcome_reason": ""
+        "updated": "2026-10-07T23:09:25+00:00"
       },
       "cpu": {
         "status": "VERIFIED_WITH_LIMITATIONS",
         "failure_category": "",
+        "compatibility_outcome": "VERIFIED_WITH_LIMITATIONS",
+        "outcome_reason": "",
         "ok_runs": 3,
         "required_runs": 3,
         "durations_s": [
-          4.98,
-          4.18,
-          4.12
+          31.05,
+          5.29,
+          5.22
         ],
         "device_used": "CPU",
         "device_proof": "PROVEN_CPU",
         "validation_level": "WORKLOAD_CORRECTNESS",
-        "platform_id": "ryzen-ai-max-395-radeon-8060s-gfx1151",
-        "evidence_dir": "results/kokoro/20261007T011113Z-cpu",
+        "platform_id": "amd-epyc-9334-32-core-processor-gfx1100",
+        "evidence_dir": "results/kokoro/20261007225919Z-cpu",
         "env": {
           "backend": "cpu",
-          "env_key": "61f5a7307753eddf",
-          "python": ".venvs/cpu/61f5a7307753eddf/bin/python",
+          "env_key": "0e3c03443623f289",
+          "python": ".venvs/cpu/0e3c03443623f289/bin/python",
           "fingerprint": "481d69cd29b840829830b488c5086342bbda7aeb0dce53f9b6647cdfb87bf0b6",
-          "reused": true,
-          "created": false
+          "reused": false,
+          "created": true
         },
         "notes": [
           "CORE_INFERENCE_VERIFIED; INTERACTIVE_UI_NOT_TESTED (documented skip policy)"
         ],
-        "updated": "2026-10-07T01:11:30+00:00",
-        "historical_status": "VERIFIED_WITH_LIMITATIONS",
-        "historical_evidence": "results/kokoro/20261005T194853Z-cpu",
-        "revalidation_reasons": [
-          "pin:a8809170cc4f->329562e6031d",
-          "upstream_notebook_changed"
-        ],
-        "compatibility_outcome": "VERIFIED_WITH_LIMITATIONS",
-        "outcome_reason": "",
-        "limitation_codes": [
-          "INTERACTIVE_UI_NOT_TESTED"
-        ]
+        "updated": "2026-10-07T23:00:03+00:00"
       }
     },
     "glm-ocr": {
@@ -5754,7 +5739,7 @@
       "log_tail": "Collecting json5\n  Using cached json5-0.15.0-py3-none-any.whl.metadata (37 kB)\nUsing cached json5-0.15.0-py3-none-any.whl (36 kB)\nInstalling collected packages: json5\nSuccessfully installed json5-0.15.0\n"
     }
   ],
-  "last_checkpoint": "2026-10-07T21:01:41+00:00",
+  "last_checkpoint": "2026-10-07T23:10:34+00:00",
   "current_workload": "llm-agent-react-langchain",
   "env_repairs": [
     {
