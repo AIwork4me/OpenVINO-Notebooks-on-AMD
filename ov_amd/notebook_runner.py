@@ -294,7 +294,7 @@ def _preseed_helpers(cwd: Path, nb_path: Path | None = None) -> list[str]:
     if nb_path is not None and nb_path.parent != root:
         for sibling in sorted(nb_path.parent.iterdir()):
             dst = cwd / sibling.name
-            if dst.exists() or not sibling.is_file() or sibling.is_symlink():
+            if not sibling.is_file() or sibling.is_symlink():
                 continue
             if sibling.suffix == ".py":
                 text = sibling.read_text()
@@ -303,7 +303,7 @@ def _preseed_helpers(cwd: Path, nb_path: Path | None = None) -> list[str]:
                     # refresh an unpatched copy we seeded earlier (preseed
                     # normally skips existing files; a guard-fix landed after
                     # the first seeding must still reach the workdir)
-                    if dst.exists() and dst.read_text() == text:
+                    if not dst.exists() or (dst.read_text() == text):
                         dst.write_text(patched)
                     text = patched
                     patches.append(
@@ -314,7 +314,7 @@ def _preseed_helpers(cwd: Path, nb_path: Path | None = None) -> list[str]:
                 if not dst.exists():
                     dst.write_text(text)
                     patches.append(f"preseeded sibling helper module {sibling.name} (kernel cwd differs from notebook dir)")
-            elif sibling.suffix.lower() in SIBLING_DATA_EXTS:
+            elif sibling.suffix.lower() in SIBLING_DATA_EXTS and not dst.exists():
                 try:
                     if sibling.stat().st_size <= SIBLING_DATA_MAX_BYTES:
                         shutil.copy2(sibling, dst)
@@ -323,7 +323,51 @@ def _preseed_helpers(cwd: Path, nb_path: Path | None = None) -> list[str]:
                         )
                 except OSError:
                     pass
+        # cross-notebook assets fetched from OUR OWN pinned repo via
+        # raw.githubusercontent.com (e.g. vlm-chatbot/nyc.jpg referenced by
+        # muse-glimmer): satisfy them from the sha-verified snapshot — pure
+        # transport substitution, identical content, recorded per file
+        patches.extend(_preseed_snapshot_raw_assets(cwd, nb_path, root))
     return patches
+
+
+def _preseed_snapshot_raw_assets(cwd: Path, nb_path: Path, root: Path) -> list[str]:
+    """Preseed files the notebook downloads from
+    raw.githubusercontent.com/openvinotoolkit/openvino_notebooks/<ref>/<path>
+    when <path> exists in the pinned snapshot (the raw CDN is unreachable on
+    egress-restricted runners). Foreign-repo URLs are left alone — those are
+    honest network blocks, not transport substitutions."""
+
+    import re as _re
+    import shutil
+
+    raw_re = _re.compile(
+        r"raw\.githubusercontent\.com/openvinotoolkit/openvino_notebooks/[^\s\"'/]+/([^\s\"')]+)"
+    )
+    try:
+        nb_text = nb_path.read_text(errors="ignore")
+    except OSError:
+        return []
+    notes: list[str] = []
+    seen: set[str] = set()
+    for match in raw_re.finditer(nb_text):
+        rel = match.group(1).split("\\")[0]
+        if not rel or rel in seen:
+            continue
+        seen.add(rel)
+        src = root / rel
+        dst = cwd / Path(rel).name
+        if not src.is_file() or dst.exists():
+            continue
+        try:
+            shutil.copy2(src, dst)
+            notes.append(
+                f"preseeded snapshot asset {rel} (notebook fetches it from raw.githubusercontent.com; "
+                "identical sha-verified snapshot content, transport substitution)"
+            )
+        except OSError:
+            continue
+    return notes
 
 
 def _guard_helper_notebook_utils_fetch(text: str) -> str | None:

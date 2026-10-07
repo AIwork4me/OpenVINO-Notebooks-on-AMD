@@ -920,29 +920,29 @@
     "freevc-voice-conversion": {
       "cpu": {
         "status": "FAILED",
-        "failure_category": "CONVERSION_ERROR",
+        "failure_category": "NETWORK",
+        "compatibility_outcome": "BLOCKED_NETWORK",
+        "outcome_reason": "NETWORK_UNREACHABLE",
         "ok_runs": 0,
         "required_runs": 3,
         "durations_s": [],
         "device_used": "AUTO",
-        "device_proof": "NOT_INFERENCE",
+        "device_proof": "UNKNOWN",
         "validation_level": "",
-        "platform_id": "ryzen-ai-max-395-radeon-8060s-gfx1151",
-        "evidence_dir": "results/freevc-voice-conversion/20261006T110446Z-cpu",
+        "platform_id": "amd-epyc-9334-32-core-processor-gfx1100",
+        "evidence_dir": "results/freevc-voice-conversion/20261007194447Z-cpu",
         "env": {
           "backend": "cpu",
-          "env_key": "0ee08dd45166bfc4",
-          "python": ".venvs/cpu/0ee08dd45166bfc4/bin/python",
+          "env_key": "4624eac095e5b33f",
+          "python": ".venvs/cpu/4624eac095e5b33f/bin/python",
           "fingerprint": "055c7b7582e29e6376e3940e1ef86d0f8cb8adbcc4cece72cec91718ab66d72b",
           "reused": false,
           "created": true
         },
         "notes": [
-          "ok_runs=0/3: RuntimeError: PytorchStreamReader failed reading zip archive: failed finding central directory"
+          "ok_runs=0/3: Exception: File downloading failed with error: HTTPSConnectionPool(host='storage.openvinotoolkit.org', port=443): Max retries exceeded with url: /repositories/openvino_notebooks/models/freevc/freevc.pth (Caused by ProxyError('Unable to connect to proxy', OSError('Tunnel connection failed: "
         ],
-        "updated": "2026-10-06T11:05:42+00:00",
-        "compatibility_outcome": "BLOCKED_RESOURCE",
-        "outcome_reason": "MODEL_ARTIFACT_INCOMPLETE_OR_CORRUPT"
+        "updated": "2026-10-07T19:46:46+00:00"
       }
     },
     "funasr-nano": {
@@ -5180,29 +5180,30 @@
     "gemma4": {
       "cpu": {
         "status": "FAILED",
-        "failure_category": "UNKNOWN",
+        "failure_category": "NETWORK",
+        "compatibility_outcome": "BLOCKED_NETWORK",
+        "outcome_reason": "NETWORK_UNREACHABLE",
         "ok_runs": 0,
         "required_runs": 1,
         "durations_s": [],
         "device_used": "AUTO",
-        "device_proof": "AUTO_UNRESOLVED",
+        "device_proof": "NOT_INFERENCE",
         "validation_level": "",
-        "platform_id": "ryzen-ai-max-395-radeon-8060s-gfx1151",
-        "evidence_dir": "results/gemma4/20261006T223734Z-cpu",
+        "platform_id": "amd-epyc-9334-32-core-processor-gfx1100",
+        "evidence_dir": "results/gemma4/20261007193418Z-cpu",
         "env": {
           "backend": "cpu",
-          "env_key": "f9c1ee9127d27e36",
-          "python": ".venvs/cpu/f9c1ee9127d27e36/bin/python",
+          "env_key": "68238909408dc049",
+          "python": ".venvs/cpu/68238909408dc049/bin/python",
           "fingerprint": "11931a82c53381ea8e7f480273b05f2226f51bdcb3969e7315f40b43f0d4439d",
           "reused": false,
           "created": true
         },
         "notes": [
-          "ok_runs=0/1: ;"
+          "optimum-cli health after bounded remediation: OPTIMUM_PACKAGES_MISSING",
+          "ok_runs=0/1: ProxyError: HTTPSConnectionPool(host='github-production-user-asset-6210df.s3.amazonaws.com', port=443): Max retries exceeded with url: /29454499/319483352-d5fbbd1a-d484-415c-88cb-9986625b7b11.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAVCODYLSA53PQK4ZA%2F20261007%2Fus-east-1%"
         ],
-        "updated": "2026-10-06T22:38:47+00:00",
-        "compatibility_outcome": "BLOCKED_RESOURCE",
-        "outcome_reason": "MODEL_ARTIFACT_INCOMPLETE_OR_CORRUPT"
+        "updated": "2026-10-07T19:44:26+00:00"
       }
     },
     "llm-agent-react-langchain": {
@@ -5385,29 +5386,29 @@
     "muse-glimmer": {
       "cpu": {
         "status": "FAILED",
-        "failure_category": "UNKNOWN",
+        "failure_category": "NETWORK",
+        "compatibility_outcome": "BLOCKED_NETWORK",
+        "outcome_reason": "NETWORK_UNREACHABLE",
         "ok_runs": 0,
         "required_runs": 1,
         "durations_s": [],
         "device_used": "CPU",
         "device_proof": "PROVEN_CPU",
         "validation_level": "",
-        "platform_id": "ryzen-ai-max-395-radeon-8060s-gfx1151",
-        "evidence_dir": "results/muse-glimmer/20261006T225336Z-cpu",
+        "platform_id": "amd-epyc-9334-32-core-processor-gfx1100",
+        "evidence_dir": "results/muse-glimmer/20261007190004Z-cpu",
         "env": {
           "backend": "cpu",
-          "env_key": "cbaede2d9ef8dd93",
-          "python": ".venvs/cpu/cbaede2d9ef8dd93/bin/python",
+          "env_key": "0e2bca151cfed707",
+          "python": ".venvs/cpu/0e2bca151cfed707/bin/python",
           "fingerprint": "da11a57febba5d7a22883376f1f404d73c22f3e747a38e239ff897bca6e23eef",
           "reused": false,
           "created": true
         },
         "notes": [
-          "ok_runs=0/1: Empty weights data in bin file or bin file cannot be found!"
+          "ok_runs=0/1: Exception: File downloading failed with error: HTTPSConnectionPool(host='raw.githubusercontent.com', port=443): Max retries exceeded with url: /openvinotoolkit/openvino_notebooks/latest/notebooks/vlm-chatbot/nyc.jpg (Caused by SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EO"
         ],
-        "updated": "2026-10-06T22:54:43+00:00",
-        "compatibility_outcome": "BLOCKED_RESOURCE",
-        "outcome_reason": "MODEL_ARTIFACT_INCOMPLETE_OR_CORRUPT"
+        "updated": "2026-10-07T19:17:41+00:00"
       }
     },
     "nuextract-structure-extraction": {
@@ -5450,29 +5451,30 @@
     "qwen3.8-mtp": {
       "cpu": {
         "status": "FAILED",
-        "failure_category": "UNKNOWN",
+        "failure_category": "NETWORK",
+        "compatibility_outcome": "BLOCKED_NETWORK",
+        "outcome_reason": "NETWORK_UNREACHABLE",
         "ok_runs": 0,
         "required_runs": 1,
         "durations_s": [],
         "device_used": "CPU",
-        "device_proof": "PROVEN_CPU",
+        "device_proof": "NOT_INFERENCE",
         "validation_level": "",
-        "platform_id": "ryzen-ai-max-395-radeon-8060s-gfx1151",
-        "evidence_dir": "results/qwen3.8-mtp/20261006T225549Z-cpu",
+        "platform_id": "amd-epyc-9334-32-core-processor-gfx1100",
+        "evidence_dir": "results/qwen3.8-mtp/20261007191855Z-cpu",
         "env": {
           "backend": "cpu",
-          "env_key": "febadd1cccd84b25",
-          "python": ".venvs/cpu/febadd1cccd84b25/bin/python",
+          "env_key": "680bfa52370f7499",
+          "python": ".venvs/cpu/680bfa52370f7499/bin/python",
           "fingerprint": "64a06186acaf5617b8438d6245e020c04d950c867e79025f6da6c845a71a4c52",
           "reused": false,
           "created": true
         },
         "notes": [
-          "ok_runs=0/1: Empty weights data in bin file or bin file cannot be found!"
+          "optimum-cli health after bounded remediation: OPTIMUM_PACKAGES_MISSING",
+          "ok_runs=0/1: URLError: <urlopen error Tunnel connection failed: 403 Forbidden>"
         ],
-        "updated": "2026-10-06T22:56:32+00:00",
-        "compatibility_outcome": "BLOCKED_RESOURCE",
-        "outcome_reason": "MODEL_ARTIFACT_INCOMPLETE_OR_CORRUPT"
+        "updated": "2026-10-07T19:34:05+00:00"
       }
     },
     "pyannote-audio": {
@@ -5726,7 +5728,7 @@
       "log_tail": "Collecting json5\n  Using cached json5-0.15.0-py3-none-any.whl.metadata (37 kB)\nUsing cached json5-0.15.0-py3-none-any.whl (36 kB)\nInstalling collected packages: json5\nSuccessfully installed json5-0.15.0\n"
     }
   ],
-  "last_checkpoint": "2026-10-07T18:58:50+00:00",
+  "last_checkpoint": "2026-10-07T19:46:46+00:00",
   "current_workload": "llm-agent-react-langchain",
   "env_repairs": [
     {

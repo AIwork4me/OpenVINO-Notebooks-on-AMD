@@ -1,12 +1,17 @@
-# RCA-005 — Undiagnosed kernel deaths (ct-segmentation-quantize-nncf, gpu-device)
+# RCA-005 — Kernel deaths, resolved as OpenVINO GPU-plugin codegen crashes (v0.2.2)
 
 - **Workloads:** `ct-segmentation-quantize-nncf`, `gpu-device` (CPU attempts,
-  FAILED_COMPATIBILITY, reason KERNEL_DEATH_UNDIAGNOSED / OPENVINO_RUNTIME_DEVICE_ENUM)
-- **Evidence:** `results/ct-segmentation-quantize-nncf/20261006T192227Z-cpu/`,
+  v0.2.1: FAILED_COMPATIBILITY, reason KERNEL_DEATH_UNDIAGNOSED / OPENVINO_RUNTIME_DEVICE_ENUM)
+- **Evidence (v0.2.1):** `results/ct-segmentation-quantize-nncf/20261006T192227Z-cpu/`,
   `results/gpu-device/20261006T220955Z-cpu/`
-- **Layer:** unresolved — kernel process died without a Python-level traceback
-- **Status:** open; kept as compatibility failures because the environment was
-  valid and the failure is not attributable to any external blocker
+- **Evidence (current pin):** `results/gpu-device/20261007164858Z-cpu/` (fresh
+  reproduction + kernel-death-diagnosis.json) and the ct-segmentation current-pin
+  row (CPU-pinned re-run)
+- **Layer (v0.2.2, RESOLVED):** OpenVINO **GPU plugin** kernel codegen — both
+  deaths show Intel-GPU ISA inline-asm emitted for a Radeon and rejected by the
+  assembler, hard-crashing the Python kernel
+- **Status:** resolved attribution — see OV G findings OVG-002/OVG-003 in
+  `reports/openvino-gpu-plugin-radeon-findings.md`
 
 ## Signature
 
@@ -14,19 +19,42 @@
 nbclient.exceptions.DeadKernelError: Kernel died
 ```
 
-- ct-segmentation: during NNCF quantization (memory/compute-heavy). No OOM
-  lines captured; RAM guard did not trigger.
-- gpu-device: during OpenVINO device enumeration with an AMD Radeon iGPU
-  present (the notebook's purpose is listing devices). Adjacent to RCA-003
-  (GPU plugin on AMD) — plausibly the same plugin-vs-driver layer, crashing
-  hard instead of raising.
+with, in stderr:
+
+```text
+<inline asm>:1:2: error: unknown directive
+        .decl AA0 v_type=G type=ud num_elts=1
+<inline asm>:4:1: error: unknown directive
+.implicit_PSEUDO_INPUT AA1 offset=256 size=4
+```
+
+## Resolution (v0.2.2)
+
+- **Attribution:** both notebooks reached the OpenVINO GPU plugin on the Radeon
+  (ct-segmentation via its explicit `MULTI:CPU,GPU` device list; gpu-device via
+  its hardcoded `device = "GPU"` walkthrough). The plugin's codegen emits
+  Intel-GPU ISA assembly; the assembler rejects it; the kernel dies inside the
+  native code — no Python traceback, no OOM.
+- **Not OOM:** the v0.2.2 kernel-death diagnostics (cgroup memory.events +
+  memory.peak + PSI, written per failing run as `kernel-death-diagnosis.json`)
+  show zero container OOM events for the fresh gpu-device reproduction. The
+  node-wide `/proc/vmstat` oom_kill counter is unscoped and non-attributive.
+- **Consequent corrections:**
+  - `gpu-device`: CPU-dimension outcome adjudicated `NOT_APPLICABLE`
+    (GPU-purpose notebook; no meaningful CPU validation path), GPU-plugin
+    crash recorded as OVG-003.
+  - `ct-segmentation-quantize-nncf`: re-run with a documented
+    `device_list=["CPU"]` pin so the CPU path is genuinely exercised; the
+    GPU-plugin crash is recorded as OVG-002. The v0.2.1
+    KERNEL_DEATH_UNDIAGNOSED compatibility failure was a device-attribution
+    defect (the dying device was the GPU plugin, not the CPU).
 
 ## Honesty note
 
-These stay FAILED_COMPATIBILITY precisely because nothing external blocked
-them and no alternative cause is proven. They are NOT counted as blocked. If
-post-mortem shows OOM (kernel log) they must move to BLOCKED_RESOURCE; if the
-GPU-plugin link is confirmed, gpu-device merges into RCA-003.
+The v0.2.1 rows stayed FAILED_COMPATIBILITY because nothing external blocked
+them and no cause was proven. v0.2.2 proves the cause from stderr signatures +
+scoped OOM counters; the mis-attribution is corrected, and the class can never
+recur silently (device-attribution guard + kernel-death diagnostics).
 
 ## Verification queued (reference runner)
 

@@ -1,0 +1,8 @@
+[cell 0 START +    0.5s] # Omnimodal assistant with MiniCPM-o 2.6 and OpenVINO |  | MiniCPM-o 2.6 i
+[cell 1 START +    0.5s] ## Prerequisites | [back to top ⬆️](#Table-of-contents:)
+[cell 2 START +    0.5s] %pip install -q "torch>=2.3.1" "torchvision>=0.18.1" "librosa>=0.9.0" 
+[cell 2 DONE  +   10.0s]
+[cell 3 START +   10.0s] import requests | from pathlib import Path |  | if not Path("minicpm_o_helpe
+[cell 3 DONE  +   10.1s]
+[cell 4 START +   10.1s] ## Convert model to OpenVINO Intermediate Representation | [back to top 
+[cell 5 START +   10.1s] from minicpm_o_helper import convert_minicpmo26 |  | model_id = "openbmb/M
