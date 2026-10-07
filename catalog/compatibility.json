@@ -1,29 +1,31 @@
 {
-  "generated": "2026-10-06T06:58:51+00:00",
+  "generated": "2026-10-07T00:41:51+00:00",
   "upstream": {
+    "fetch_method": "github git-blobs API (sha1-verified); tarball transport failed on this network",
+    "files_ok": 572,
+    "files_cached": 0,
+    "files_failed": 0,
     "repository": "openvinotoolkit/openvino_notebooks",
     "branch": "latest",
-    "commit": "a8809170cc4fc6aa633fbb9c22214be67ac20b47",
-    "commit_date": "2026-09-30T13:40:38Z",
-    "commit_subject": "Bump ipykernel from 6.31.0 to 7.3.0 in /.docker (#3704)",
-    "discovered_at": "2026-10-01T09:53:40Z",
-    "fetch_method": "github git-blobs API (sha1-verified); git protocol throttled ~47KB/s, raw CDN stalls on this network",
-    "files_ok": 0,
-    "files_cached": 570,
-    "files_failed": 1
+    "commit": "329562e6031d1a989017d08697b0fabe5a989492",
+    "commit_date": "2026-10-05T16:50:18Z",
+    "commit_subject": "[CI] [GHA] Copy `notebook_utils.py` into notebook folders before tests start instead of downloading it at runtime (#3712)",
+    "discovered_at": "2026-10-07T00:37:36Z"
   },
   "counts": {
     "total": 171,
     "cpu": {
-      "VERIFIED_WITH_LIMITATIONS": 37,
+      "REVALIDATION_REQUIRED": 10,
       "NOT_TESTED": 38,
-      "FAILED": 91,
+      "VERIFIED_WITH_LIMITATIONS": 35,
+      "FAILED": 83,
       "VERIFIED": 4,
       "NOT_APPLICABLE": 1
     },
     "gpu": {
       "NOT_TESTED": 163,
-      "VERIFIED": 8
+      "VERIFIED": 6,
+      "REVALIDATION_REQUIRED": 2
     },
     "twin_levels": {
       "WORKLOAD_TWIN": 160,
@@ -45,7 +47,7 @@
       "upstream_path": "notebooks/3D-point-pillars/pointpillars.ipynb",
       "upstream_url": "https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/3D-point-pillars/pointpillars.ipynb",
       "priority": 2,
-      "cpu_status": "VERIFIED_WITH_LIMITATIONS",
+      "cpu_status": "REVALIDATION_REQUIRED",
       "cpu_failure_category": "",
       "cpu_evidence": "results/pointpillars/20261005T224706Z-cpu",
       "cpu_validation_level": "EXECUTION_ONLY",
@@ -57,7 +59,7 @@
       "gpu_device_proof": "",
       "twin_level": "WORKLOAD_TWIN",
       "device_used": "CPU",
-      "last_tested": "2026-10-05T22:50:55+00:00",
+      "last_tested": "2026-10-07T00:41:39+00:00",
       "evidence": "results/pointpillars/20261005T224706Z-cpu",
       "notes": [
         "EXECUTION_ONLY: no workload correctness contract (validation: {})"
@@ -444,7 +446,7 @@
       "upstream_path": "notebooks/cosyvoice3-tts/cosyvoice3-tts.ipynb",
       "upstream_url": "https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/cosyvoice3-tts/cosyvoice3-tts.ipynb",
       "priority": 1,
-      "cpu_status": "FAILED",
+      "cpu_status": "REVALIDATION_REQUIRED",
       "cpu_failure_category": "UNKNOWN",
       "cpu_evidence": "results/cosyvoice3-tts/20261001T163759Z-cpu",
       "cpu_validation_level": "",
@@ -456,7 +458,7 @@
       "gpu_device_proof": "",
       "twin_level": "WORKLOAD_TWIN",
       "device_used": "",
-      "last_tested": "2026-10-01T16:38:01+00:00",
+      "last_tested": "2026-10-07T00:41:39+00:00",
       "evidence": "results/cosyvoice3-tts/20261001T163759Z-cpu",
       "notes": [
         "ok_runs=0/3: CalledProcessError: Command '['/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/bin/python', '-m', 'pip', 'install', '-q', '--extra-index-url', '//huggingface\\\\.co', ':https://hf-mirror.com://download.pytorch.org/whl/cpu', 'setuptools<82', 'nncf', 'openvino>=2025.4.0', 'gradio', 'hugg"
@@ -720,7 +722,7 @@
       "upstream_path": "notebooks/flex.2-image-generation/flex.2-image-generation.ipynb",
       "upstream_url": "https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/flex.2-image-generation/flex.2-image-generation.ipynb",
       "priority": 1,
-      "cpu_status": "FAILED",
+      "cpu_status": "REVALIDATION_REQUIRED",
       "cpu_failure_category": "UNKNOWN",
       "cpu_evidence": "results/flex.2-image-generation/20261001T164618Z-cpu",
       "cpu_validation_level": "",
@@ -732,7 +734,7 @@
       "gpu_device_proof": "",
       "twin_level": "WORKLOAD_TWIN",
       "device_used": "",
-      "last_tested": "2026-10-01T16:46:20+00:00",
+      "last_tested": "2026-10-07T00:41:39+00:00",
       "evidence": "results/flex.2-image-generation/20261001T164618Z-cpu",
       "notes": [
         "ok_runs=0/3: InvalidSchema: No connection adapters were found for '//huggingface\\\\.co :https://hf-mirror.com://huggingface.co/spaces/VIDraft/Flex-preview/resolve/main/pipeline.py'"
@@ -1183,7 +1185,7 @@
       "upstream_path": "notebooks/hunyuan-ocr/hunyuan-ocr.ipynb",
       "upstream_url": "https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/hunyuan-ocr/hunyuan-ocr.ipynb",
       "priority": 1,
-      "cpu_status": "FAILED",
+      "cpu_status": "REVALIDATION_REQUIRED",
       "cpu_failure_category": "NETWORK",
       "cpu_evidence": "results/hunyuan-ocr/20261001T191339Z-cpu",
       "cpu_validation_level": "",
@@ -1195,7 +1197,7 @@
       "gpu_device_proof": "",
       "twin_level": "WORKLOAD_TWIN",
       "device_used": "",
-      "last_tested": "2026-10-01T19:15:58+00:00",
+      "last_tested": "2026-10-07T00:41:39+00:00",
       "evidence": "results/hunyuan-ocr/20261001T191339Z-cpu",
       "notes": [
         "ok_runs=0/1: CalledProcessError: Command '['/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/bin/python', '-m', 'pip', 'install', '-q', 'git+https://github.com/openvino-dev-samples/optimum-intel.git@hunyuan-ocr-support']' returned non-zero exit status 1."
@@ -1362,20 +1364,20 @@
       "upstream_path": "notebooks/kokoro/kokoro.ipynb",
       "upstream_url": "https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/kokoro/kokoro.ipynb",
       "priority": 1,
-      "cpu_status": "VERIFIED_WITH_LIMITATIONS",
+      "cpu_status": "REVALIDATION_REQUIRED",
       "cpu_failure_category": "",
       "cpu_evidence": "results/kokoro/20261005T194853Z-cpu",
       "cpu_validation_level": "WORKLOAD_CORRECTNESS",
       "cpu_device_proof": "NOT_INFERENCE",
-      "gpu_status": "VERIFIED",
+      "gpu_status": "REVALIDATION_REQUIRED",
       "gpu_failure_category": "",
       "gpu_evidence": "results/kokoro/20261006T044931Z-gpu",
       "gpu_validation_level": "WORKLOAD_CORRECTNESS",
       "gpu_device_proof": "PROVEN_GPU",
       "twin_level": "WORKLOAD_TWIN",
       "device_used": "CPU",
-      "last_tested": "2026-10-05T19:49:17+00:00",
-      "evidence": "results/kokoro/20261006T044931Z-gpu",
+      "last_tested": "2026-10-07T00:41:39+00:00",
+      "evidence": "results/kokoro/20261005T194853Z-cpu",
       "notes": [
         "DEVICE_PROOF_NOT_OBSERVED: no OpenVINO compile_model call was captured by the probe (notebooks driving openvino_genai pipelines or conversion-only code bypass the Python Core API; positive device execution therefore unproven)",
         "CORE_INFERENCE_VERIFIED; INTERACTIVE_UI_NOT_TESTED (documented skip policy)"
@@ -1954,7 +1956,7 @@
       "upstream_path": "notebooks/ministral-3/ministral-3.ipynb",
       "upstream_url": "https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/ministral-3/ministral-3.ipynb",
       "priority": 1,
-      "cpu_status": "FAILED",
+      "cpu_status": "REVALIDATION_REQUIRED",
       "cpu_failure_category": "UNKNOWN",
       "cpu_evidence": "results/ministral-3/20261001T203043Z-cpu",
       "cpu_validation_level": "",
@@ -1966,7 +1968,7 @@
       "gpu_device_proof": "",
       "twin_level": "WORKLOAD_TWIN",
       "device_used": "",
-      "last_tested": "2026-10-01T20:33:07+00:00",
+      "last_tested": "2026-10-07T00:41:39+00:00",
       "evidence": "results/ministral-3/20261001T203043Z-cpu",
       "notes": [
         "ok_runs=0/1: FileNotFoundError: [Errno 2] No such file or directory: 'optimum-cli'"
@@ -2217,7 +2219,7 @@
       "upstream_path": "notebooks/olmocr-pdf-vlm/olmocr-pdf-vlm.ipynb",
       "upstream_url": "https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/olmocr-pdf-vlm/olmocr-pdf-vlm.ipynb",
       "priority": 1,
-      "cpu_status": "FAILED",
+      "cpu_status": "REVALIDATION_REQUIRED",
       "cpu_failure_category": "UNKNOWN",
       "cpu_evidence": "results/olmocr-pdf-vlm/20261001T180555Z-cpu",
       "cpu_validation_level": "",
@@ -2229,7 +2231,7 @@
       "gpu_device_proof": "",
       "twin_level": "WORKLOAD_TWIN",
       "device_used": "",
-      "last_tested": "2026-10-01T18:05:57+00:00",
+      "last_tested": "2026-10-07T00:41:39+00:00",
       "evidence": "results/olmocr-pdf-vlm/20261001T180555Z-cpu",
       "notes": [
         "ok_runs=0/1: CalledProcessError: Command '['/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/bin/python', '-m', 'pip', 'install', '-qU', '--pre', 'openvino>=2025.0.0', 'openvino-tokenizers>=2025.0.0', 'openvino-genai>=2025.0.0', 'nncf>=2.15.0', '--extra-index-url', '//huggingface\\\\.co', ':https://"
@@ -2393,7 +2395,7 @@
       "upstream_path": "notebooks/openvoice2-and-melotts/openvoice2-and-melotts.ipynb",
       "upstream_url": "https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/openvoice2-and-melotts/openvoice2-and-melotts.ipynb",
       "priority": 1,
-      "cpu_status": "FAILED",
+      "cpu_status": "REVALIDATION_REQUIRED",
       "cpu_failure_category": "UNKNOWN",
       "cpu_evidence": "results/openvoice2-and-melotts/20261001T180602Z-cpu",
       "cpu_validation_level": "",
@@ -2405,7 +2407,7 @@
       "gpu_device_proof": "",
       "twin_level": "WORKLOAD_TWIN",
       "device_used": "",
-      "last_tested": "2026-10-01T18:06:04+00:00",
+      "last_tested": "2026-10-07T00:41:39+00:00",
       "evidence": "results/openvoice2-and-melotts/20261001T180602Z-cpu",
       "notes": [
         "ok_runs=0/1: CalledProcessError: Command '['git', 'clone', '//huggingface\\\\.co :https://hf-mirror.com://github.com/myshell-ai/OpenVoice']' returned non-zero exit status 128."
@@ -3086,7 +3088,7 @@
       "upstream_path": "notebooks/sam2-image-segmentation/segment-anything-2-image.ipynb",
       "upstream_url": "https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/sam2-image-segmentation/segment-anything-2-image.ipynb",
       "priority": 2,
-      "cpu_status": "FAILED",
+      "cpu_status": "REVALIDATION_REQUIRED",
       "cpu_failure_category": "UNKNOWN",
       "cpu_evidence": "results/segment-anything-2-image/20261005T230918Z-cpu",
       "cpu_validation_level": "",
@@ -3098,7 +3100,7 @@
       "gpu_device_proof": "",
       "twin_level": "WORKLOAD_TWIN",
       "device_used": "AUTO",
-      "last_tested": "2026-10-05T23:11:30+00:00",
+      "last_tested": "2026-10-07T00:41:39+00:00",
       "evidence": "results/segment-anything-2-image/20261005T230918Z-cpu",
       "notes": [
         "ok_runs=0/3: CalledProcessError: Command '['git', 'clone', 'https://github.com/facebookresearch/sam2.git']' returned non-zero exit status 128."
@@ -3207,20 +3209,20 @@
       "upstream_path": "notebooks/smolvlm2/smolvlm2.ipynb",
       "upstream_url": "https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/smolvlm2/smolvlm2.ipynb",
       "priority": 1,
-      "cpu_status": "FAILED",
+      "cpu_status": "REVALIDATION_REQUIRED",
       "cpu_failure_category": "UNKNOWN",
       "cpu_evidence": "results/smolvlm2/20261005T204227Z-cpu",
       "cpu_validation_level": "",
       "cpu_device_proof": "UNKNOWN",
-      "gpu_status": "VERIFIED",
+      "gpu_status": "REVALIDATION_REQUIRED",
       "gpu_failure_category": "",
       "gpu_evidence": "results/smolvlm2/20261006T052325Z-gpu",
       "gpu_validation_level": "WORKLOAD_CORRECTNESS",
       "gpu_device_proof": "PROVEN_GPU",
       "twin_level": "WORKLOAD_TWIN",
       "device_used": "AUTO",
-      "last_tested": "2026-10-05T20:44:51+00:00",
-      "evidence": "results/smolvlm2/20261006T052325Z-gpu",
+      "last_tested": "2026-10-07T00:41:39+00:00",
+      "evidence": "results/smolvlm2/20261005T204227Z-cpu",
       "notes": [
         "ok_runs=0/1: FileNotFoundError: [Errno 2] No such file or directory: 'optimum-cli'"
       ]

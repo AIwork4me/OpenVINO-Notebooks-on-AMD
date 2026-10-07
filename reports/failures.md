@@ -1,18 +1,15 @@
 # Failures (generated)
 
-Total failed attempts: 91
+Total failed attempts: 83
 
-## cpu:UNKNOWN — 48 workload(s)
+## cpu:UNKNOWN — 41 workload(s)
 
 - **ace-step-music-generation** — ok_runs=0/3: CalledProcessError: Command '['/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/bin/python', '-m', 'pip', 'install', '-q', 'git+//huggingface\\.co', ':https://hf-mirror.com://github.com/ace-st
 - **aloha-act** — ok_runs=0/3: InvalidSchema: No connection adapters were found for '//huggingface\\.co :https://hf-mirror.com://eci.intel.com/embodied-sdk-docs/_downloads/sim_insertion_scripted.zip'
-- **cosyvoice3-tts** — ok_runs=0/3: CalledProcessError: Command '['/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/bin/python', '-m', 'pip', 'install', '-q', '--extra-index-url', '//huggingface\\.co', ':https://hf-mirror.com://
 - **deepseek-ocr** — ok_runs=0/3: CalledProcessError: Command '['/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/bin/python', '-m', 'pip', 'install', '-Uq', '--pre', 'openvino', '--extra-index-url', '//huggingface\\.co', ':ht
 - **deepseek-vl2** — ok_runs=0/3: CalledProcessError: Command '['/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/bin/python', '-m', 'pip', 'install', '-q', 'torch==2.8', 'torchvision', 'gradio>=4.19', 'einops', 'transformers=
 - **fireredtts2** — ok_runs=0/3: CalledProcessError: Command '['/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/bin/python', '-m', 'pip', 'install', '-q', '--extra-index-url', '//huggingface\\.co', ':https://hf-mirror.com://
 - **stable-diffusion-text-to-image** — ok_runs=0/3: FileNotFoundError: [Errno 2] No such file or directory: 'optimum-cli'
-- **smolvlm2** — ok_runs=0/1: FileNotFoundError: [Errno 2] No such file or directory: 'optimum-cli'
-- **flex.2-image-generation** — ok_runs=0/3: InvalidSchema: No connection adapters were found for '//huggingface\\.co :https://hf-mirror.com://huggingface.co/spaces/VIDraft/Flex-preview/resolve/main/pipeline.py'
 - **qwen3** — ok_runs=0/1: [GPU] clEnqueueMapBuffer, error code: -30 CL_INVALID_VALUE
 - **florence2** — ok_runs=0/3: InvalidSchema: No connection adapters were found for '//huggingface\\.co :https://hf-mirror.com://huggingface.co/datasets/huggingface/documentation-images/resolve/main/transformers/tasks/car.jpg?do
 - **funasr-nano** — ok_runs=0/3: CalledProcessError: Command '['/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/bin/python', '-m', 'pip', 'install', '-q', '--extra-index-url', '//huggingface\\.co', ':https://hf-mirror.com://
@@ -43,15 +40,11 @@ Total failed attempts: 91
 - **minicpm-o-4.5** — ok_runs=0/1: AttributeError: MiniCPMOTokenizerFast has no attribute tokenizer
 - **minicpm-o-omnimodal-chatbot** — ok_runs=0/1: FileNotFoundError: No such file or directory: MiniCPM-o-2_6/ckpt/model-00001-of-00004.safetensors
 - **minicpm-v-4.6** — ok_runs=0/1: FileNotFoundError: [Errno 2] No such file or directory: 'optimum-cli'
-- **ministral-3** — ok_runs=0/1: FileNotFoundError: [Errno 2] No such file or directory: 'optimum-cli'
-- **olmocr-pdf-vlm** — ok_runs=0/1: CalledProcessError: Command '['/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/bin/python', '-m', 'pip', 'install', '-qU', '--pre', 'openvino>=2025.0.0', 'openvino-tokenizers>=2025.0.0', 'ope
 - **openvoice** — ok_runs=0/1: CalledProcessError: Command '['git', 'clone', '//huggingface\\.co :https://hf-mirror.com://github.com/myshell-ai/OpenVoice']' returned non-zero exit status 128.
-- **openvoice2-and-melotts** — ok_runs=0/1: CalledProcessError: Command '['git', 'clone', '//huggingface\\.co :https://hf-mirror.com://github.com/myshell-ai/OpenVoice']' returned non-zero exit status 128.
 - **qwen2.5-omni-chatbot** — ok_runs=0/1: CalledProcessError: Command '['/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/bin/python', '-m', 'pip', 'install', 'transformers==4.52.3', 'torch==2.8', 'torchvision==0.23.0', 'accelerate', 
 - **qwen3-embedding** — ok_runs=0/1: FileNotFoundError: [Errno 2] No such file or directory: 'optimum-cli'
 - **qwen3-vl-reranker** — ok_runs=0/1: FileNotFoundError: [Errno 2] No such file or directory: 'optimum-cli'
 - **vlm-chatbot-generate-api** — ok_runs=0/1: FileNotFoundError: [Errno 2] No such file or directory: 'nyc.jpg'
-- **segment-anything-2-image** — ok_runs=0/3: CalledProcessError: Command '['git', 'clone', 'https://github.com/facebookresearch/sam2.git']' returned non-zero exit status 128.
 
 ## cpu:DEPENDENCY — 24 workload(s)
 
@@ -80,12 +73,11 @@ Total failed attempts: 91
 - **qwen3_agent** — ok_runs=0/1: ModuleNotFoundError: No module named 'smolagents'
 - **openvino-tokenizers** — ok_runs=0/3: ModuleNotFoundError: Could not import module 'LlamaConfig'. Are this object's requirements defined correctly?
 
-## cpu:NETWORK — 6 workload(s)
+## cpu:NETWORK — 5 workload(s)
 
 - **whisper-asr-genai** — ok_runs=0/1: ConnectTimeout: HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /spaces/distil-whisper/whisper-vs-distil-whisper/resolve/main/assets/example_1.wav (Caused by Co
 - **freevc-voice-conversion** — ok_runs=0/3: Exception: File downloading failed with error: No connection adapters were found for '//huggingface\\.co :https://hf-mirror.com://huggingface.co/spaces/OlaWod/FreeVC/resolve/main/p225_001.wav'
 - **paddle-to-openvino-classification** — ok_runs=0/3: Exception: File downloading failed with error: No connection adapters were found for '//huggingface\\.co :https://hf-mirror.com://storage.openvinotoolkit.org/repositories/openvino_notebooks/data/da
-- **hunyuan-ocr** — ok_runs=0/1: CalledProcessError: Command '['/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/bin/python', '-m', 'pip', 'install', '-q', 'git+https://github.com/openvino-dev-samples/optimum-intel.git@hunyua
 - **instant-id** — ok_runs=0/1: ConnectTimeout: HTTPSConnectionPool(host='drive.google.com', port=443): Max retries exceeded with url: /uc?id=18wEUfMNohBJ4K3Ly5wpTejPfDzp-8fI8 (Caused by ConnectTimeoutError(<HTTPSConnection(host=
 - **paddle-ocr-webcam** — ok_runs=0/1: Exception: File downloading failed with error: No connection adapters were found for '//huggingface\\.co :https://hf-mirror.com://huggingface.co/PaddlePaddle/PP-OCRv6_tiny_det_onnx/resolve/main/inf
 

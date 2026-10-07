@@ -54,3 +54,26 @@ No new or removed notebooks in this window.
 Per "change one variable at a time", the pin switch happens only after the
 v0.2 Full Marathon on the old pinned commit establishes the clean baseline
 (reports/v0.2-pinned-baseline.md).
+
+## Re-pin execution record (2026-10-06)
+
+- Fetch: pinned `--commit 329562e6031d...` via git-blobs API, **572/572
+  sha1-verified blobs, zero failures** (independent subagent re-verified:
+  bidirectional file-set equality with the commit tree; 8/8 spot
+  `git hash-object` matches; no cross-commit mixing).
+- `latest` continued to advance during the sync window (observed `f19782b9`,
+  `f1958fc8`) — the fetcher now refuses to chase it without an explicit
+  `--commit`; the pin stays at the reviewed `329562e`.
+- Impact (content sha256 diff of the two snapshots): 15 changed files,
+  13 notebooks; 1 added upstream file (`tests/test_cmd_helper.py`, not a
+  notebook); 0 removed.
+- 12 attempt records flipped to REVALIDATION_REQUIRED (historical
+  status/evidence preserved; reasons: `upstream_notebook_changed`,
+  `pin:a8809170cc4f->329562e6031d`).
+- **3 impacted workloads were never validated under the old pin**
+  (llm-rag-langchain, ltx-video, segment-anything-2-video): they stay
+  NOT_TESTED — there is nothing to "re"-validate; they will be first-attempted
+  under the new pin. (Gate finding; corrected in scripts/switch_upstream_pin.py
+  so never-tested workloads are reported explicitly instead of silently skipped.)
+- Python policy: `requires-python = ">=3.11"` (upstream dropped 3.10);
+  reference validation Python stays 3.12 (recorded in evidence).

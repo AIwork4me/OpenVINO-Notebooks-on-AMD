@@ -7,7 +7,7 @@ name = "ov-amd"
 version = "0.1.0"
 description = "Validate and run OpenVINO Notebooks on AMD Ryzen CPUs, with matching ROCm-powered references for AMD Radeon GPUs."
 readme = "README.md"
-requires-python = ">=3.10"
+requires-python = ">=3.11"
 license = { file = "LICENSE" }
 authors = [{ name = "OpenVINO Notebooks on AMD contributors" }]
 keywords = ["amd", "openvino", "rocm", "ryzen", "radeon", "inference", "validation", "benchmark"]
