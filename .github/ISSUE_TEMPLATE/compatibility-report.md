@@ -27,12 +27,28 @@ body:
   - type: dropdown
     id: status
     attributes:
-      label: Result
-      options: [VERIFIED, VERIFIED_WITH_LIMITATIONS, FAILED, BLOCKED, SKIPPED_RESOURCE]
+      label: Compatibility outcome
+      options:
+        - VERIFIED
+        - VERIFIED_WITH_LIMITATIONS
+        - BLOCKED_NETWORK
+        - BLOCKED_MODEL_ACCESS
+        - BLOCKED_DEPENDENCY
+        - BLOCKED_TIMEOUT
+        - BLOCKED_RESOURCE
+        - FAILED_COMPATIBILITY
+        - NOT_APPLICABLE
     validations:
       required: true
   - type: textarea
+    id: limitation
+    attributes:
+      label: If VERIFIED_WITH_LIMITATIONS: limitation reason (machine-readable code + explanation)
+      placeholder: "REPEATABILITY_NOT_ESTABLISHED: single run, large model"
+  - type: textarea
     id: logs
     attributes:
-      label: Logs / evidence
+      label: Logs / evidence (Evidence Schema v2 dir preferred)
       description: Attach stdout/stderr or evidence dir contents
+    validations:
+      required: true

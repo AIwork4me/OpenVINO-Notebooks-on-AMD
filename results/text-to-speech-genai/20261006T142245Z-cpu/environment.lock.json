@@ -1,0 +1,9 @@
+{
+  "schema_version": 2,
+  "source": "recorded-snapshot (venv not retained; partial \u2014 never reconstructed)",
+  "python": "3.12.3",
+  "key_packages": {
+    "openvino": "2026.5.0-23160-6db412d0a27",
+    "torch": "2.11.0+cpu"
+  }
+}

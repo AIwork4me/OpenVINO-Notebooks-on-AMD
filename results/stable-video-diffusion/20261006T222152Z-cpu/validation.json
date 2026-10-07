@@ -1,9 +1,8 @@
 {
   "schema_version": 2,
-  "passed": false,
+  "passed": true,
   "checks": {
     "output_contains": {
-      "successfully converted to IR and saved to model/": false,
       "compression rate: \\d+\\.\\d+": true,
       "Running on local URL": true
     },

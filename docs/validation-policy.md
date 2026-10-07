@@ -57,7 +57,41 @@ interactive-UI skip).
 `NOT_TESTED`, `QUEUED`, `RUNNING`, `VERIFIED`, `VERIFIED_WITH_LIMITATIONS`,
 `FAILED`, `BLOCKED`, `SKIPPED_RESOURCE`, `REVALIDATION_REQUIRED`,
 `NOT_APPLICABLE` — with a machine-checked transition table
-(`ov_amd/schemas.py:STATUS_TRANSITIONS`).
+(`ov_amd/schemas.py:STATUS_TRANSITIONS`) that is **mechanically enforced at
+every write** (`ov_amd/state_machine.py` raises `InvalidStateTransition`;
+state surgery must pass `force=True` explicitly).
+
+## Compatibility outcomes (developer-facing, separate dimension)
+
+Execution status records what the runner observed; the compatibility outcome
+records what a developer should conclude. Every terminal attempt carries both
+(`compatibility_outcome` + machine-readable `outcome_reason` in
+`results/marathon-state.json` and in the generated matrix):
+
+| Outcome | Meaning | Icon |
+|---|---|---|
+| `VERIFIED` / `VERIFIED_WITH_LIMITATIONS` | mirrors the execution status | ✅ / 🟡 |
+| `BLOCKED_NETWORK` | host unreachable / transport failure | 🌐 |
+| `BLOCKED_MODEL_ACCESS` | gated or restricted model repo, missing token | 🔐 |
+| `BLOCKED_DEPENDENCY` | missing package/CLI, resolver conflict, library API drift | 📦 |
+| `BLOCKED_TIMEOUT` | wall/cell timeout, stage-aware reason (`TIMEOUT_CONVERSION_EXPORT`, `TIMEOUT_MODEL_DOWNLOAD`, …) | ⏱️ |
+| `BLOCKED_RESOURCE` | OOM/RAM/disk, absent required hardware, corrupt or incomplete model artifact | 💾 |
+| `FAILED_COMPATIBILITY` | valid environment, real runtime/model execution failure (OpenVINO plugin rejection, conversion/runtime incompatibility, correctness failure) | 🧩 |
+| `NOT_APPLICABLE` | no executable content or no useful path for this backend | ➖ |
+
+Rules (enforced by `ov_amd/outcomes.py`, audited by
+`tests/test_outcomes.py`):
+
+- A network timeout, gated model, missing CLI, or truncated download is **never**
+  presented as an AMD/OpenVINO compatibility failure.
+- Root-cause-first: specific error signatures in evidence logs outrank the
+  coarse log-classifier category when they conflict (misclassifications are
+  corrected, with a note preserving the original label).
+- `FAILED_COMPATIBILITY` requires evidence tying the failure to runtime/model
+  execution in a valid environment; each carries a root-cause record under
+  `reports/upstream/` when genuine.
+- No row may keep outcome reason `UNKNOWN_ADJUDICATION_REQUIRED` — the dataset
+  test fails if any does.
 
 ## Failure categories
 
@@ -121,6 +155,13 @@ unknown.
   `NOT_APPLICABLE` with a recorded reason.
 - Attempted ≠ catalogued: reports count real attempt records only
   (`cpu_attempted`, coverage %), never the default NOT_TESTED rows.
+- **Catalog coverage ≠ pass rate**: 171/171 coverage means every catalogued
+  notebook has an AMD CPU validation outcome; verified/limited/blocked/
+  compatibility-failure counts are always reported alongside, and the README
+  states the distinction explicitly.
 - Historical evidence is immutable: legacy v0.1 greens carry
   `historical_status` + `historical_evidence` and are
   `REVALIDATION_REQUIRED` until revalidated under schema v2.
+- Evidence is validated at the recorded upstream pin; a pin move marks changed
+  notebooks for revalidation (see `reports/current-upstream-delta.md`) —
+  rows are never invalidated retroactively while the pin is unchanged.

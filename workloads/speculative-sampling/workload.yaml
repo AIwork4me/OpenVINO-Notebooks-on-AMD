@@ -19,7 +19,7 @@ gpu:
   runtime: ''
   status: NOT_TESTED
 twin:
-  level: NOT_CLASSIFIED
+  level: WORKLOAD_TWIN
 validation:
   output_contains:
   - 'average speedup: \d+\.\d+'

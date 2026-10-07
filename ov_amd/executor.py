@@ -358,12 +358,24 @@ def run_workload_cpu(entry: NotebookEntry, state: dict[str, Any], dry_run: bool 
     git_transport = resolve_git_transport()
     subs = _hf_mirror_subs() + _git_transport_subs() + _cell_subs(patches)
 
-    ts = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
+    ts = datetime.now(timezone.utc).strftime("%Y%m%d%H%M%SZ")
     ev = RESULTS_DIR / entry.id / f"{ts}-cpu"
     ev.mkdir(parents=True, exist_ok=True)
     out.evidence_dir = ev
     workdir = RESULTS_DIR / entry.id / "workdir-cpu"
     workdir.mkdir(parents=True, exist_ok=True)  # persistent across repeats: model downloads reused
+
+    # --- Optimum CLI health contract: preflight for notebooks that shell out
+    # to optimum-cli / import optimum.intel (recurring pre-closure failure
+    # cluster); bounded remediation, machine-readable evidence record ---
+    from ov_amd.optimum_health import health_contract, notebook_uses_optimum_cli
+
+    if notebook_uses_optimum_cli(nb_path):
+        oc_health = health_contract(str(env.python), ev)
+        if oc_health.get("diagnosis") != "HEALTHY":
+            out.notes.append(
+                f"optimum-cli health after bounded remediation: {oc_health.get('diagnosis')}"
+            )
 
     # --- evidence bound to the actual workload python (Defect D closure) ---
     hardware.snapshot(ev, str(env.python), names=("hardware.json", "software-before.json"))
@@ -450,6 +462,9 @@ def run_workload_cpu(entry: NotebookEntry, state: dict[str, Any], dry_run: bool 
 
     # --- post-run evidence ---
     hardware.snapshot(ev, str(env.python), names=("hardware.json", "software-after.json"))
+    from ov_amd.env_lock import write_lock as _write_lock
+
+    _write_lock(ev, env_python=str(env.python))
 
     runs_needed = repeats
     final_run = Path(last_info.get("run_dir", "")) if last_info else None
@@ -547,6 +562,8 @@ def _model_record(cfg: dict[str, Any], ev: Path, nb_path: Path) -> dict[str, Any
 
 
 def _summary_md(entry: NotebookEntry, out: AttemptOutcome, last_info: dict[str, Any]) -> str:
+    from ov_amd.public_paths import sanitize_public_text
+
     exec_info = last_info.get("execution", {})
     lines = [
         f"# {entry.id} — CPU attempt (evidence schema v2)",
@@ -560,7 +577,7 @@ def _summary_md(entry: NotebookEntry, out: AttemptOutcome, last_info: dict[str, 
         f"- environment: `.venvs/cpu/{out.env_info.get('env_key', '-')}` (reused={out.env_info.get('reused')})",
     ]
     for n in out.notes:
-        lines.append(f"- note: {n}")
+        lines.append(f"- note: {sanitize_public_text(n)}")
     return "\n".join(lines) + "\n"
 
 
@@ -577,18 +594,31 @@ def _sha256(p: Path | None) -> str | None:
 
 
 def _record(state: dict[str, Any], entry: NotebookEntry, backend: str, out: AttemptOutcome) -> None:
+    from ov_amd.outcomes import derive_outcome
+    from ov_amd.state_machine import enforce_transition
+
     rec = state.setdefault("attempts", {}).setdefault(entry.id, {})
-    # Evidence references are stored repo-relative (Defect C): state files must
-    # never carry machine-local absolute paths.
+    # State-machine enforcement: terminal records must be reachable from the
+    # previous status (an attempt implicitly passes through RUNNING). Direct
+    # state surgery (audit corrections/migrations) must use force=True
+    # explicitly at its own call site.
+    old = rec.get(backend, {}).get("status")
+    enforce_transition(old, out.status.value, context=f"{entry.id}/{backend}")
     evidence_ref = None
     if out.evidence_dir is not None:
         try:
             evidence_ref = str(out.evidence_dir.relative_to(REPO_ROOT))
         except ValueError:
             evidence_ref = str(out.evidence_dir)
+    notes_text = "\n".join(out.notes)
+    outcome, reason = derive_outcome(out.status.value, out.failure_category, notes_text)
+    from ov_amd.public_paths import sanitize_public_text as _spt
+
     rec[backend] = {
         "status": out.status.value,
         "failure_category": out.failure_category,
+        "compatibility_outcome": outcome.value,
+        "outcome_reason": reason,
         "ok_runs": out.ok_runs,
         "required_runs": out.required_runs,
         "durations_s": out.durations,
@@ -598,22 +628,20 @@ def _record(state: dict[str, Any], entry: NotebookEntry, backend: str, out: Atte
         "platform_id": hardware.platform_id(),
         "evidence_dir": evidence_ref,
         "env": out.env_info,
-        "notes": out.notes,
+        "notes": [_spt(n) for n in out.notes],
         "updated": _utcnow(),
     }
     # mirror status into workloads/<id>/workload.yaml
     try:
-        wf = WORKLOADS_DIR / entry.id / "workload.yaml"
-        if wf.exists():
-            cfg = yaml.safe_load(wf.read_text()) or {}
-            cfg.setdefault(backend, {})["status"] = out.status.value
-            cfg["last_verified"] = (
-                _utcnow()
-                if out.status in (Status.VERIFIED, Status.VERIFIED_WITH_LIMITATIONS)
-                else cfg.get("last_verified", "")
-            )
-            wf.write_text(yaml.safe_dump(cfg, sort_keys=False))
-    except (OSError, yaml.YAMLError):
+        from ov_amd.manifest_sync import mirror_into_manifest
+
+        mirror_into_manifest(
+            entry.id,
+            backend,
+            out.status.value,
+            verified_now=_utcnow() if out.status in (Status.VERIFIED, Status.VERIFIED_WITH_LIMITATIONS) else None,
+        )
+    except OSError:
         pass
     save_state(state)
 

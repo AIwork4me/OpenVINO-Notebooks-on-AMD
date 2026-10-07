@@ -17,7 +17,7 @@ cpu:
   status: FAILED
 gpu:
   runtime: ''
-  status: NOT_TESTED
+  status: VERIFIED
 twin:
   level: WORKLOAD_TWIN
 validation: {}

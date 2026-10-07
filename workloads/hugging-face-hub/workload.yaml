@@ -19,7 +19,7 @@ gpu:
   runtime: ''
   status: NOT_TESTED
 twin:
-  level: OPENVINO_SPECIFIC
+  level: WORKLOAD_TWIN
 validation:
   output_contains:
   - POSITIVE

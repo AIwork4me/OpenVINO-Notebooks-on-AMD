@@ -29,5 +29,29 @@ ruff check .              # must pass
 ## Reporting compatibility results
 
 Open an issue with: workload id, hardware (CPU/GPU), software versions
-(`python -m ov_amd doctor` output), status, and logs. We will reproduce before
-updating the matrix.
+(`python -m ov_amd doctor` output), **compatibility outcome** (VERIFIED /
+VERIFIED_WITH_LIMITATIONS / BLOCKED_* / FAILED_COMPATIBILITY — see
+`docs/validation-policy.md`), and logs. We will reproduce before updating the
+matrix. Templates: compatibility report, compatibility issue, blocked
+environment, upstream candidate (`.github/ISSUE_TEMPLATE/`).
+
+## What you can contribute
+
+- **New AMD CPU results** — run a workload on your Ryzen hardware with the
+  harness (`python -m ov_amd run <id> --device cpu`), attach the evidence dir.
+- **New AMD hardware** — `python -m ov_amd doctor` output + a representative
+  verified workload; platform attribution is recorded per row.
+- **ROCm twins** — add `workloads/<id>/rocm/run.py` (prints
+  `TWIN_RESULT={json}` with `ok` + `hip`), run on Radeon; twin levels
+  (EXACT/WORKLOAD/CONCEPT) decide what comparisons are publishable.
+- **Failure reproductions** — minimize a FAILED_COMPATIBILITY row into a
+  standalone script (see `reports/upstream/`).
+- **Upstream issues** — only with a minimized repro; never speculative.
+
+## Key distinction (read before filing)
+
+A gated model, network timeout, missing CLI, or truncated download is
+**blocked**, not an AMD/OpenVINO compatibility failure. If the environment
+was valid and the OpenVINO runtime itself failed, it is a compatibility
+issue. The issue templates encode this; the matrix enforces it
+(`ov_amd/outcomes.py`).

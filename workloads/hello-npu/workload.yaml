@@ -19,7 +19,7 @@ gpu:
   runtime: ''
   status: NOT_TESTED
 twin:
-  level: NOT_CLASSIFIED
+  level: OPENVINO_SPECIFIC
 validation: {}
 patches: {}
 last_verified: ''

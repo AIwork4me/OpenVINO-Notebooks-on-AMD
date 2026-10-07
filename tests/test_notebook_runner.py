@@ -145,3 +145,19 @@ def test_detect_device_widget_value_wins():
     assert detect_device_used("Dropdown(value='GPU')\nDropdown(value='CPU')") == "CPU"
     # device list alone must not claim GPU as the used device
     assert detect_device_used("available devices: ['CPU', 'GPU']") == "GPU"  # word fallback only when no value=...
+
+
+def test_cell_timeout_outranks_every_grep_rule():
+    """A per-cell timeout in the log must classify as TIMEOUT even when pip
+    resolver banners / 'timed out' download lines coexist (rule-order defect
+    found by the comprehensive audit: wan2.1 classified NETWORK,
+    controlnet-stable-diffusion PACKAGE_CONFLICT despite CellTimeoutError)."""
+    from ov_amd.notebook_runner import classify_failure
+
+    stderr = (
+        "WARNING: pip's dependency resolver does not currently take into account all the packages...\n"
+        "huggingface.co connection timed out. Retrying...\n"
+        "-------------------\n"
+        "nbclient.exceptions.CellTimeoutError: A cell timed out while it was being executed, after 900 seconds.\n"
+    )
+    assert classify_failure(stderr, "", timeout=False) is FailureCategory.TIMEOUT

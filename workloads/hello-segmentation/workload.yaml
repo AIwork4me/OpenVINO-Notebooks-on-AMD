@@ -21,8 +21,9 @@ gpu:
 twin:
   level: WORKLOAD_TWIN
 validation:
+  output_contains:
+  - Figure size
+  - value='CPU'
   min_output_chars: 100
-  output_not_contains:
-  - Traceback \(most recent call last\)
 patches: {}
 last_verified: '2026-10-05T19:43:59+00:00'

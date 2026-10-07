@@ -43,8 +43,12 @@ def _record_gpu(
 ) -> None:
     from ov_amd import hardware as _hw
     from ov_amd.environment import REPO_ROOT as _ROOT
+    from ov_amd.outcomes import derive_outcome
+    from ov_amd.state_machine import enforce_transition
 
     rec = state.setdefault("attempts", {}).setdefault(entry.id, {})
+    old_status = rec.get("gpu", {}).get("status")
+    enforce_transition(old_status, status.value, context=f"{entry.id}/gpu")
     evidence_ref = None
     if evidence:
         # repo-relative public reference (Defect C) — never machine-local paths
@@ -52,9 +56,12 @@ def _record_gpu(
             evidence_ref = str(_Path(evidence).relative_to(_ROOT))
         except ValueError:
             evidence_ref = evidence
+    outcome, reason = derive_outcome(status.value, category, "\n".join(notes or []))
     rec["gpu"] = {
         "status": status.value,
         "failure_category": category,
+        "compatibility_outcome": outcome.value,
+        "outcome_reason": reason,
         "notes": notes or [],
         "evidence_dir": evidence_ref,
         "device_proof": proof,
@@ -62,6 +69,19 @@ def _record_gpu(
         "platform_id": _hw.platform_id(),
         "updated": _utcnow(),
     }
+    # mirror status into workloads/<id>/workload.yaml (same contract as the CPU
+    # path — pre-closure gap found by the dataset baseline audit)
+    try:
+        from ov_amd.manifest_sync import mirror_into_manifest
+
+        mirror_into_manifest(
+            entry.id,
+            "gpu",
+            status.value,
+            verified_now=_utcnow() if status in (Status.VERIFIED, Status.VERIFIED_WITH_LIMITATIONS) else None,
+        )
+    except OSError:
+        pass
     save_state(state)
 
 

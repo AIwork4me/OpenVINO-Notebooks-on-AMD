@@ -14,12 +14,12 @@ model:
   license: ''
 cpu:
   runtime: openvino
-  status: VERIFIED
+  status: NOT_APPLICABLE
 gpu:
   runtime: ''
   status: NOT_TESTED
 twin:
-  level: NOT_CLASSIFIED
+  level: CONCEPT_MAPPING
 validation: {}
 patches: {}
 last_verified: '2026-10-01T13:52:48+00:00'

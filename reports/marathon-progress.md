@@ -1,12 +1,12 @@
 # Marathon Progress (generated)
 
-Updated: 2026-10-07T07:01:42+00:00
+Updated: 2026-10-07T14:01:20+00:00
 
 - Catalog discovered: 171
 - CPU attempted: 171 (100.0% of catalog; attempt records only, NOT_TESTED excluded)
 - CPU verified: 25
-- CPU verified with limitations: 58
-- CPU failed: 87
+- CPU verified with limitations: 60
+- CPU failed (execution): 85
 - CPU blocked/skipped: 0
 - CPU not tested: 0
 - GPU attempted: 8 (4.7%)
@@ -15,15 +15,27 @@ Updated: 2026-10-07T07:01:42+00:00
 - Terminal attempt records: 179
 - Current workload: llm-agent-react-langchain
 
-## Top recurring CPU failure categories
+## CPU compatibility outcomes (developer-facing)
 
-- TIMEOUT: 20
-- DEPENDENCY: 17
-- UNKNOWN: 14
-- PACKAGE_CONFLICT: 11
+- VERIFIED_WITH_LIMITATIONS: 60
+- BLOCKED_DEPENDENCY: 33
+- VERIFIED: 25
+- BLOCKED_TIMEOUT: 22
+- BLOCKED_RESOURCE: 12
+- BLOCKED_MODEL_ACCESS: 7
+- BLOCKED_NETWORK: 6
+- FAILED_COMPATIBILITY: 5
+- NOT_APPLICABLE: 1
+
+## Top recurring CPU failure categories (execution taxonomy)
+
+- DEPENDENCY: 23
+- TIMEOUT: 22
+- UNKNOWN: 10
+- PACKAGE_CONFLICT: 8
 - MODEL_ACCESS: 8
-- OPENVINO_ERROR: 7
+- OPENVINO_ERROR: 6
 - NETWORK: 6
 - CORRECTNESS_ERROR: 2
 - CONVERSION_ERROR: 1
-- LICENSE_RESTRICTION: 1
+- BLOCKED_DEPENDENCY: 1

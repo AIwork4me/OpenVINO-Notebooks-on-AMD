@@ -38,7 +38,9 @@
           "created": true
         },
         "notes": [],
-        "updated": "2026-10-07T03:48:40+00:00"
+        "updated": "2026-10-07T03:48:40+00:00",
+        "compatibility_outcome": "VERIFIED",
+        "outcome_reason": ""
       }
     },
     "hello-detection": {
@@ -64,8 +66,13 @@
           "reused": true,
           "created": false
         },
-        "notes": [],
-        "updated": "2026-10-05T19:43:49+00:00"
+        "notes": [
+          "platform_id backfilled by comprehensive audit from evidence hardware.json (field predated these records)"
+        ],
+        "updated": "2026-10-05T19:43:49+00:00",
+        "compatibility_outcome": "VERIFIED",
+        "outcome_reason": "",
+        "platform_id": "ryzen-ai-max-395-radeon-8060s"
       },
       "gpu": {
         "status": "VERIFIED",
@@ -75,7 +82,9 @@
         "device_proof": "PROVEN_GPU",
         "validation_level": "WORKLOAD_CORRECTNESS",
         "platform_id": "ryzen-ai-max-395-radeon-8060s-gfx1151",
-        "updated": "2026-10-07T03:59:38+00:00"
+        "updated": "2026-10-07T03:59:38+00:00",
+        "compatibility_outcome": "VERIFIED",
+        "outcome_reason": ""
       }
     },
     "hello-npu": {
@@ -101,7 +110,9 @@
         "notes": [
           "ok_runs=0/3: Unsupported configuration key: FULL_DEVICE_NAME"
         ],
-        "updated": "2026-10-06T09:02:27+00:00"
+        "updated": "2026-10-06T09:02:27+00:00",
+        "compatibility_outcome": "BLOCKED_RESOURCE",
+        "outcome_reason": "REQUIRED_HARDWARE_ABSENT"
       }
     },
     "hello-segmentation": {
@@ -127,8 +138,14 @@
           "reused": true,
           "created": false
         },
-        "notes": [],
-        "updated": "2026-10-05T19:43:59+00:00"
+        "notes": [
+          "platform_id backfilled by comprehensive audit from evidence hardware.json (field predated these records)",
+          "contract strengthened by comprehensive audit (rendered-segmentation figure + CPU device markers), re-evaluated against captured outputs: passed"
+        ],
+        "updated": "2026-10-05T19:43:59+00:00",
+        "compatibility_outcome": "VERIFIED",
+        "outcome_reason": "",
+        "platform_id": "ryzen-ai-max-395-radeon-8060s"
       }
     },
     "openvino-api": {
@@ -156,7 +173,9 @@
           "created": true
         },
         "notes": [],
-        "updated": "2026-10-07T00:54:17+00:00"
+        "updated": "2026-10-07T00:54:17+00:00",
+        "compatibility_outcome": "VERIFIED",
+        "outcome_reason": ""
       }
     },
     "001-whisper-evaluation": {
@@ -182,7 +201,9 @@
         "notes": [
           "ok_runs=0/3: Please note that you may need to restart your runtime after installation."
         ],
-        "updated": "2026-10-06T09:04:32+00:00"
+        "updated": "2026-10-06T09:04:32+00:00",
+        "compatibility_outcome": "BLOCKED_DEPENDENCY",
+        "outcome_reason": "MISSING_OR_BROKEN_DEPENDENCY"
       }
     },
     "ace-step-music-generation": {
@@ -212,7 +233,12 @@
         "notes": [
           "CORE_INFERENCE_VERIFIED; INTERACTIVE_UI_NOT_TESTED (documented skip policy)"
         ],
-        "updated": "2026-10-07T01:02:57+00:00"
+        "updated": "2026-10-07T01:02:57+00:00",
+        "compatibility_outcome": "VERIFIED_WITH_LIMITATIONS",
+        "outcome_reason": "",
+        "limitation_codes": [
+          "INTERACTIVE_UI_NOT_TESTED"
+        ]
       }
     },
     "aloha-act": {
@@ -238,7 +264,9 @@
         "notes": [
           "ok_runs=0/3: "
         ],
-        "updated": "2026-10-06T09:39:38+00:00"
+        "updated": "2026-10-06T09:39:38+00:00",
+        "compatibility_outcome": "BLOCKED_TIMEOUT",
+        "outcome_reason": "TIMEOUT_MODEL_DOWNLOAD"
       }
     },
     "animate-anyone": {
@@ -266,7 +294,13 @@
           "repeatability_not_established: fewer than 3 successful runs (resource-bounded policy)",
           "CORE_INFERENCE_VERIFIED; INTERACTIVE_UI_NOT_TESTED (documented skip policy)"
         ],
-        "updated": "2026-10-05T20:18:24+00:00"
+        "updated": "2026-10-05T20:18:24+00:00",
+        "compatibility_outcome": "VERIFIED_WITH_LIMITATIONS",
+        "outcome_reason": "",
+        "limitation_codes": [
+          "REPEATABILITY_NOT_ESTABLISHED",
+          "INTERACTIVE_UI_NOT_TESTED"
+        ]
       }
     },
     "bark-text-to-audio": {
@@ -292,7 +326,9 @@
         "notes": [
           "ok_runs=0/3: "
         ],
-        "updated": "2026-10-06T09:49:45+00:00"
+        "updated": "2026-10-06T09:49:45+00:00",
+        "compatibility_outcome": "BLOCKED_TIMEOUT",
+        "outcome_reason": "TIMEOUT_INFERENCE"
       }
     },
     "blip-visual-language-processing": {
@@ -318,7 +354,9 @@
         "notes": [
           "ok_runs=0/3: "
         ],
-        "updated": "2026-10-06T09:59:52+00:00"
+        "updated": "2026-10-06T09:59:52+00:00",
+        "compatibility_outcome": "BLOCKED_TIMEOUT",
+        "outcome_reason": "TIMEOUT_CONVERSION_EXPORT"
       }
     },
     "catvton": {
@@ -342,9 +380,11 @@
           "created": true
         },
         "notes": [
-          "ok_runs=0/3: \u001b[31mImportError\u001b[39m: cannot import name 'resolve_revision' from 'huggingface_hub' (/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/2c24bba1924a9c98/lib/python3.12/site-packages/huggingface_hub/__init__.py)"
+          "ok_runs=0/3: ImportError: cannot import name 'resolve_revision' from 'huggingface_hub' (.venvs/cpu/2c24bba1924a9c98/lib/python3.12/site-packages/huggingface_hub/__init__.py)"
         ],
-        "updated": "2026-10-06T10:00:46+00:00"
+        "updated": "2026-10-06T10:00:46+00:00",
+        "compatibility_outcome": "BLOCKED_DEPENDENCY",
+        "outcome_reason": "MISSING_OR_BROKEN_DEPENDENCY"
       }
     },
     "cosyvoice3-tts": {
@@ -368,7 +408,7 @@
           "created": false
         },
         "notes": [
-          "ok_runs=0/3: \u001b[31mHTTPError\u001b[39m: Authentication token does not exist,"
+          "ok_runs=0/3: HTTPError: Authentication token does not exist,"
         ],
         "updated": "2026-10-07T01:30:51+00:00",
         "historical_status": "FAILED",
@@ -376,7 +416,9 @@
         "revalidation_reasons": [
           "pin:a8809170cc4f->329562e6031d",
           "upstream_notebook_changed"
-        ]
+        ],
+        "compatibility_outcome": "BLOCKED_MODEL_ACCESS",
+        "outcome_reason": "GATED_OR_RESTRICTED_MODEL"
       }
     },
     "darkir-image-restoration": {
@@ -404,7 +446,13 @@
           "repeatability_not_established: fewer than 3 successful runs (resource-bounded policy)",
           "CORE_INFERENCE_VERIFIED; INTERACTIVE_UI_NOT_TESTED (documented skip policy)"
         ],
-        "updated": "2026-10-05T20:20:48+00:00"
+        "updated": "2026-10-05T20:20:48+00:00",
+        "compatibility_outcome": "VERIFIED_WITH_LIMITATIONS",
+        "outcome_reason": "",
+        "limitation_codes": [
+          "REPEATABILITY_NOT_ESTABLISHED",
+          "INTERACTIVE_UI_NOT_TESTED"
+        ]
       }
     },
     "deepseek-ocr": {
@@ -435,7 +483,13 @@
           "EXECUTION_ONLY: no workload correctness contract (validation: {})",
           "CORE_INFERENCE_VERIFIED; INTERACTIVE_UI_NOT_TESTED (documented skip policy)"
         ],
-        "updated": "2026-10-06T10:06:40+00:00"
+        "updated": "2026-10-06T10:06:40+00:00",
+        "compatibility_outcome": "VERIFIED_WITH_LIMITATIONS",
+        "outcome_reason": "",
+        "limitation_codes": [
+          "INTERACTIVE_UI_NOT_TESTED",
+          "EXECUTION_ONLY"
+        ]
       }
     },
     "deepseek-r1": {
@@ -465,7 +519,12 @@
         "notes": [
           "CORE_INFERENCE_VERIFIED; INTERACTIVE_UI_NOT_TESTED (documented skip policy)"
         ],
-        "updated": "2026-10-07T01:04:52+00:00"
+        "updated": "2026-10-07T01:04:52+00:00",
+        "compatibility_outcome": "VERIFIED_WITH_LIMITATIONS",
+        "outcome_reason": "",
+        "limitation_codes": [
+          "INTERACTIVE_UI_NOT_TESTED"
+        ]
       },
       "gpu": {
         "status": "VERIFIED",
@@ -475,7 +534,9 @@
         "device_proof": "PROVEN_GPU",
         "validation_level": "WORKLOAD_CORRECTNESS",
         "platform_id": "amd-epyc-9334-32-core-processor-gfx1100",
-        "updated": "2026-10-07T01:02:31+00:00"
+        "updated": "2026-10-07T01:02:31+00:00",
+        "compatibility_outcome": "VERIFIED",
+        "outcome_reason": ""
       }
     },
     "deepseek-vl2": {
@@ -501,7 +562,9 @@
         "notes": [
           "ok_runs=0/3: "
         ],
-        "updated": "2026-10-06T10:18:23+00:00"
+        "updated": "2026-10-06T10:18:23+00:00",
+        "compatibility_outcome": "BLOCKED_TIMEOUT",
+        "outcome_reason": "TIMEOUT_CONVERSION_EXPORT"
       }
     },
     "ernie-image": {
@@ -525,15 +588,17 @@
           "created": false
         },
         "notes": [
-          "ok_runs=0/3: \u001b[31mCalledProcessError\u001b[39m: Command '['optimum-cli', 'export', 'openvino', '--model', 'baidu/ERNIE-Image-Turbo', 'ERNIE-Image-Turbo/INT4', '--task', 'text-to-image', '--weight-format', 'int4', '--ratio', '0.8']' returned non-zero exit status 1."
+          "ok_runs=0/3: CalledProcessError: Command '['optimum-cli', 'export', 'openvino', '--model', 'baidu/ERNIE-Image-Turbo', 'ERNIE-Image-Turbo/INT4', '--task', 'text-to-image', '--weight-format', 'int4', '--ratio', '0.8']' returned non-zero exit status 1."
         ],
-        "updated": "2026-10-06T10:23:42+00:00"
+        "updated": "2026-10-06T10:23:42+00:00",
+        "compatibility_outcome": "BLOCKED_DEPENDENCY",
+        "outcome_reason": "PACKAGE_RESOLUTION_CONFLICT"
       }
     },
     "fastdraft_deepseek": {
       "cpu": {
         "status": "FAILED",
-        "failure_category": "OPENVINO_ERROR",
+        "failure_category": "MODEL_ACCESS",
         "ok_runs": 0,
         "required_runs": 1,
         "durations_s": [],
@@ -551,9 +616,13 @@
           "created": true
         },
         "notes": [
-          "ok_runs=0/1: Could not find a model in the directory '\"DeepSeek-R1-Distill-Llama-8B-int4-ov\"'"
+          "ok_runs=0/1: Could not find a model in the directory '\"DeepSeek-R1-Distill-Llama-8B-int4-ov\"'",
+          "adjudicated (MODEL_ARTIFACT_MISSING_DIR): Could not find a model in the directory 'DeepSeek-R1-Distill-Llama-8B-int4-ov' \u2014 the converted model directory was absent at load time (incomplete export), not a plugin failure.",
+          "execution category corrected by comprehensive audit: OPENVINO_ERROR -> MODEL_ACCESS (model artifact absent at load time, not a runtime error)"
         ],
-        "updated": "2026-10-06T16:48:28+00:00"
+        "updated": "2026-10-06T16:48:28+00:00",
+        "compatibility_outcome": "BLOCKED_RESOURCE",
+        "outcome_reason": "MODEL_ARTIFACT_MISSING_DIR"
       }
     },
     "fireredtts2": {
@@ -579,7 +648,9 @@
         "notes": [
           "ok_runs=0/3: "
         ],
-        "updated": "2026-10-06T10:33:45+00:00"
+        "updated": "2026-10-06T10:33:45+00:00",
+        "compatibility_outcome": "BLOCKED_TIMEOUT",
+        "outcome_reason": "TIMEOUT_CONVERSION_EXPORT"
       }
     },
     "stable-diffusion-text-to-image": {
@@ -591,7 +662,9 @@
         "device_proof": "PROVEN_GPU",
         "validation_level": "WORKLOAD_CORRECTNESS",
         "platform_id": "amd-epyc-9334-32-core-processor-gfx1100",
-        "updated": "2026-10-07T01:00:05+00:00"
+        "updated": "2026-10-07T01:00:05+00:00",
+        "compatibility_outcome": "VERIFIED",
+        "outcome_reason": ""
       },
       "cpu": {
         "status": "FAILED",
@@ -615,7 +688,9 @@
         "notes": [
           "ok_runs=0/3: "
         ],
-        "updated": "2026-10-06T14:09:18+00:00"
+        "updated": "2026-10-06T14:09:18+00:00",
+        "compatibility_outcome": "BLOCKED_TIMEOUT",
+        "outcome_reason": "TIMEOUT_INFERENCE"
       }
     },
     "smolvlm2": {
@@ -633,7 +708,9 @@
         "revalidation_reasons": [
           "pin:a8809170cc4f->329562e6031d",
           "upstream_notebook_changed"
-        ]
+        ],
+        "compatibility_outcome": "VERIFIED",
+        "outcome_reason": ""
       },
       "cpu": {
         "status": "VERIFIED_WITH_LIMITATIONS",
@@ -668,6 +745,14 @@
         "revalidation_reasons": [
           "pin:a8809170cc4f->329562e6031d",
           "upstream_notebook_changed"
+        ],
+        "compatibility_outcome": "VERIFIED_WITH_LIMITATIONS",
+        "outcome_reason": "",
+        "limitation_codes": [
+          "REPEATABILITY_NOT_ESTABLISHED",
+          "INTERACTIVE_UI_NOT_TESTED",
+          "EXECUTION_ONLY",
+          "DEVICE_PROOF_INCOMPLETE"
         ]
       }
     },
@@ -705,6 +790,12 @@
         "revalidation_reasons": [
           "pin:a8809170cc4f->329562e6031d",
           "upstream_notebook_changed"
+        ],
+        "compatibility_outcome": "VERIFIED_WITH_LIMITATIONS",
+        "outcome_reason": "",
+        "limitation_codes": [
+          "INTERACTIVE_UI_NOT_TESTED",
+          "EXECUTION_ONLY"
         ]
       }
     },
@@ -717,11 +808,13 @@
         "device_proof": "PROVEN_GPU",
         "validation_level": "WORKLOAD_CORRECTNESS",
         "platform_id": "amd-epyc-9334-32-core-processor-gfx1100",
-        "updated": "2026-10-07T00:58:43+00:00"
+        "updated": "2026-10-07T00:58:43+00:00",
+        "compatibility_outcome": "VERIFIED",
+        "outcome_reason": ""
       },
       "cpu": {
         "status": "FAILED",
-        "failure_category": "UNKNOWN",
+        "failure_category": "OPENVINO_ERROR",
         "ok_runs": 0,
         "required_runs": 1,
         "durations_s": [],
@@ -739,9 +832,13 @@
           "created": true
         },
         "notes": [
-          "ok_runs=0/1: [GPU] clEnqueueMapBuffer, error code: -30 CL_INVALID_VALUE"
+          "ok_runs=0/1: [GPU] clEnqueueMapBuffer, error code: -30 CL_INVALID_VALUE",
+          "adjudicated (OPENVINO_RUNTIME_CL_MAP): clEnqueueMapBuffer CL_INVALID_VALUE (-30) raised by the OpenVINO runtime; genuine runtime failure \u2014 RCA candidate (see reports/upstream/).",
+          "execution category corrected by comprehensive audit: UNKNOWN -> OPENVINO_ERROR (OpenVINO runtime CL error, not UNKNOWN)"
         ],
-        "updated": "2026-10-06T18:39:35+00:00"
+        "updated": "2026-10-06T18:39:35+00:00",
+        "compatibility_outcome": "FAILED_COMPATIBILITY",
+        "outcome_reason": "OPENVINO_RUNTIME_CL_MAP"
       }
     },
     "whisper-asr-genai": {
@@ -753,7 +850,9 @@
         "device_proof": "PROVEN_GPU",
         "validation_level": "WORKLOAD_CORRECTNESS",
         "platform_id": "amd-epyc-9334-32-core-processor-gfx1100",
-        "updated": "2026-10-07T01:17:57+00:00"
+        "updated": "2026-10-07T01:17:57+00:00",
+        "compatibility_outcome": "VERIFIED",
+        "outcome_reason": ""
       },
       "cpu": {
         "status": "FAILED",
@@ -775,9 +874,11 @@
           "created": true
         },
         "notes": [
-          "ok_runs=0/1: \u001b[31mConnectTimeout\u001b[39m: HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /spaces/distil-whisper/whisper-vs-distil-whisper/resolve/main/assets/example_1.wav (Caused by ConnectTimeoutError(<HTTPSConnection(host='huggingface.co', port=443) at 0x704b9c270a10>, 'Conn"
+          "ok_runs=0/1: ConnectTimeout: HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /spaces/distil-whisper/whisper-vs-distil-whisper/resolve/main/assets/example_1.wav (Caused by ConnectTimeoutError(<HTTPSConnection(host='huggingface.co', port=443) at 0x704b9c270a10>, 'Conn"
         ],
-        "updated": "2026-10-06T19:13:58+00:00"
+        "updated": "2026-10-06T19:13:58+00:00",
+        "compatibility_outcome": "BLOCKED_NETWORK",
+        "outcome_reason": "EXTERNAL_HOST_UNREACHABLE"
       }
     },
     "florence2": {
@@ -807,7 +908,12 @@
         "notes": [
           "CORE_INFERENCE_VERIFIED; INTERACTIVE_UI_NOT_TESTED (documented skip policy)"
         ],
-        "updated": "2026-10-07T01:11:13+00:00"
+        "updated": "2026-10-07T01:11:13+00:00",
+        "compatibility_outcome": "VERIFIED_WITH_LIMITATIONS",
+        "outcome_reason": "",
+        "limitation_codes": [
+          "INTERACTIVE_UI_NOT_TESTED"
+        ]
       }
     },
     "freevc-voice-conversion": {
@@ -831,9 +937,11 @@
           "created": true
         },
         "notes": [
-          "ok_runs=0/3: \u001b[31mRuntimeError\u001b[39m: PytorchStreamReader failed reading zip archive: failed finding central directory"
+          "ok_runs=0/3: RuntimeError: PytorchStreamReader failed reading zip archive: failed finding central directory"
         ],
-        "updated": "2026-10-06T11:05:42+00:00"
+        "updated": "2026-10-06T11:05:42+00:00",
+        "compatibility_outcome": "BLOCKED_RESOURCE",
+        "outcome_reason": "MODEL_ARTIFACT_INCOMPLETE_OR_CORRUPT"
       }
     },
     "funasr-nano": {
@@ -857,9 +965,11 @@
           "created": false
         },
         "notes": [
-          "ok_runs=0/3: cannot import name 'Qwen3VLForConditionalGeneration' from 'transformers' (/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages/transformers/__init__.py)"
+          "ok_runs=0/3: cannot import name 'Qwen3VLForConditionalGeneration' from 'transformers' (.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages/transformers/__init__.py)"
         ],
-        "updated": "2026-10-06T11:06:28+00:00"
+        "updated": "2026-10-06T11:06:28+00:00",
+        "compatibility_outcome": "BLOCKED_DEPENDENCY",
+        "outcome_reason": "PACKAGE_RESOLUTION_CONFLICT"
       }
     },
     "kokoro": {
@@ -877,7 +987,9 @@
         "revalidation_reasons": [
           "pin:a8809170cc4f->329562e6031d",
           "upstream_notebook_changed"
-        ]
+        ],
+        "compatibility_outcome": "VERIFIED",
+        "outcome_reason": ""
       },
       "cpu": {
         "status": "VERIFIED_WITH_LIMITATIONS",
@@ -911,6 +1023,11 @@
         "revalidation_reasons": [
           "pin:a8809170cc4f->329562e6031d",
           "upstream_notebook_changed"
+        ],
+        "compatibility_outcome": "VERIFIED_WITH_LIMITATIONS",
+        "outcome_reason": "",
+        "limitation_codes": [
+          "INTERACTIVE_UI_NOT_TESTED"
         ]
       }
     },
@@ -935,9 +1052,11 @@
           "created": false
         },
         "notes": [
-          "ok_runs=0/3: \u001b[31mCalledProcessError\u001b[39m: Command '['optimum-cli', 'export', 'openvino', '--model', 'zai-org/GLM-OCR', 'GLM-OCR/INT4', '--task', 'image-text-to-text', '--weight-format', 'int4', '--group-size', '128', '--ratio', '1.0']' returned non-zero exit status 1."
+          "ok_runs=0/3: CalledProcessError: Command '['optimum-cli', 'export', 'openvino', '--model', 'zai-org/GLM-OCR', 'GLM-OCR/INT4', '--task', 'image-text-to-text', '--weight-format', 'int4', '--group-size', '128', '--ratio', '1.0']' returned non-zero exit status 1."
         ],
-        "updated": "2026-10-06T11:16:44+00:00"
+        "updated": "2026-10-06T11:16:44+00:00",
+        "compatibility_outcome": "BLOCKED_DEPENDENCY",
+        "outcome_reason": "MISSING_OR_BROKEN_DEPENDENCY"
       }
     },
     "grounded-segment-anything": {
@@ -963,7 +1082,9 @@
         "notes": [
           "ok_runs=0/3: "
         ],
-        "updated": "2026-10-06T11:26:47+00:00"
+        "updated": "2026-10-06T11:26:47+00:00",
+        "compatibility_outcome": "BLOCKED_TIMEOUT",
+        "outcome_reason": "TIMEOUT_INFERENCE"
       }
     },
     "handwritten-ocr": {
@@ -989,8 +1110,13 @@
           "reused": true,
           "created": false
         },
-        "notes": [],
-        "updated": "2026-10-05T19:48:53+00:00"
+        "notes": [
+          "platform_id backfilled by comprehensive audit from evidence hardware.json (field predated these records)"
+        ],
+        "updated": "2026-10-05T19:48:53+00:00",
+        "compatibility_outcome": "VERIFIED",
+        "outcome_reason": "",
+        "platform_id": "ryzen-ai-max-395-radeon-8060s"
       }
     },
     "inpainting-genai": {
@@ -1016,7 +1142,9 @@
         "notes": [
           "ok_runs=0/3: "
         ],
-        "updated": "2026-10-06T11:36:54+00:00"
+        "updated": "2026-10-06T11:36:54+00:00",
+        "compatibility_outcome": "BLOCKED_TIMEOUT",
+        "outcome_reason": "TIMEOUT_INFERENCE"
       }
     },
     "latent-consistency-models-image-generation": {
@@ -1040,9 +1168,11 @@
           "created": true
         },
         "notes": [
-          "ok_runs=0/3: \u001b[31mCalledProcessError\u001b[39m: Command '['optimum-cli', 'export', 'openvino', '--model', 'SimianLuo/LCM_Dreamshaper_v7', 'LCM_Dreamshaper_v7_ov', '--weight-format', 'fp16']' returned non-zero exit status 1."
+          "ok_runs=0/3: CalledProcessError: Command '['optimum-cli', 'export', 'openvino', '--model', 'SimianLuo/LCM_Dreamshaper_v7', 'LCM_Dreamshaper_v7_ov', '--weight-format', 'fp16']' returned non-zero exit status 1."
         ],
-        "updated": "2026-10-06T11:39:48+00:00"
+        "updated": "2026-10-06T11:39:48+00:00",
+        "compatibility_outcome": "BLOCKED_MODEL_ACCESS",
+        "outcome_reason": "GATED_OR_RESTRICTED_MODEL"
       }
     },
     "stable-diffusion-xl": {
@@ -1054,7 +1184,9 @@
         "device_proof": "PROVEN_GPU",
         "validation_level": "WORKLOAD_CORRECTNESS",
         "platform_id": "amd-epyc-9334-32-core-processor-gfx1100",
-        "updated": "2026-10-07T01:01:02+00:00"
+        "updated": "2026-10-07T01:01:02+00:00",
+        "compatibility_outcome": "VERIFIED",
+        "outcome_reason": ""
       },
       "cpu": {
         "status": "FAILED",
@@ -1076,9 +1208,11 @@
           "created": true
         },
         "notes": [
-          "ok_runs=0/3: \u001b[31mNameError\u001b[39m: name 'demo' is not defined"
+          "ok_runs=0/3: NameError: name 'demo' is not defined"
         ],
-        "updated": "2026-10-06T14:12:38+00:00"
+        "updated": "2026-10-06T14:12:38+00:00",
+        "compatibility_outcome": "BLOCKED_DEPENDENCY",
+        "outcome_reason": "INTERACTIVE_UI_TEARDOWN_AFTER_SKIP"
       }
     },
     "llm-agent-mcp": {
@@ -1102,9 +1236,11 @@
           "created": true
         },
         "notes": [
-          "ok_runs=0/3: \u001b[31mConnectTimeout\u001b[39m: HTTPSConnectionPool(host='cdn-avatars.huggingface.co', port=443): Max retries exceeded with url: /v1/production/uploads/1671615670447-6346651be2dcb5422bcd13dd.png (Caused by ConnectTimeoutError(<HTTPSConnection(host='cdn-avatars.huggingface.co', port=443) at 0x73d8c4de6360>"
+          "ok_runs=0/3: ConnectTimeout: HTTPSConnectionPool(host='cdn-avatars.huggingface.co', port=443): Max retries exceeded with url: /v1/production/uploads/1671615670447-6346651be2dcb5422bcd13dd.png (Caused by ConnectTimeoutError(<HTTPSConnection(host='cdn-avatars.huggingface.co', port=443) at 0x73d8c4de6360>"
         ],
-        "updated": "2026-10-06T11:49:38+00:00"
+        "updated": "2026-10-06T11:49:38+00:00",
+        "compatibility_outcome": "BLOCKED_NETWORK",
+        "outcome_reason": "EXTERNAL_HOST_UNREACHABLE"
       }
     },
     "llm-chatbot-generate-api": {
@@ -1135,7 +1271,13 @@
           "EXECUTION_ONLY: no workload correctness contract (validation: {})",
           "CORE_INFERENCE_VERIFIED; INTERACTIVE_UI_NOT_TESTED (documented skip policy)"
         ],
-        "updated": "2026-10-07T01:13:06+00:00"
+        "updated": "2026-10-07T01:13:06+00:00",
+        "compatibility_outcome": "VERIFIED_WITH_LIMITATIONS",
+        "outcome_reason": "",
+        "limitation_codes": [
+          "INTERACTIVE_UI_NOT_TESTED",
+          "EXECUTION_ONLY"
+        ]
       }
     },
     "llm-rag-langchain-eval": {
@@ -1159,9 +1301,11 @@
           "created": false
         },
         "notes": [
-          "ok_runs=0/3: \u001b[31mModuleNotFoundError\u001b[39m: Could not import module 'OVModelForCausalLM'. Are this object's requirements defined correctly?"
+          "ok_runs=0/3: ModuleNotFoundError: Could not import module 'OVModelForCausalLM'. Are this object's requirements defined correctly?"
         ],
-        "updated": "2026-10-06T12:01:25+00:00"
+        "updated": "2026-10-06T12:01:25+00:00",
+        "compatibility_outcome": "BLOCKED_DEPENDENCY",
+        "outcome_reason": "MISSING_OR_BROKEN_DEPENDENCY"
       }
     },
     "medasr-medical-asr": {
@@ -1187,7 +1331,9 @@
         "notes": [
           "ok_runs=0/3: Access to model google/medasr is restricted and you are not in the authorized list. Visit https://huggingface.co/google/medasr to ask for access."
         ],
-        "updated": "2026-10-06T12:02:32+00:00"
+        "updated": "2026-10-06T12:02:32+00:00",
+        "compatibility_outcome": "BLOCKED_MODEL_ACCESS",
+        "outcome_reason": "GATED_OR_RESTRICTED_MODEL"
       }
     },
     "minicpm-v-multimodal-chatbot": {
@@ -1213,7 +1359,9 @@
         "notes": [
           "ok_runs=0/3: "
         ],
-        "updated": "2026-10-06T12:12:35+00:00"
+        "updated": "2026-10-06T12:12:35+00:00",
+        "compatibility_outcome": "BLOCKED_TIMEOUT",
+        "outcome_reason": "TIMEOUT_INFERENCE"
       }
     },
     "music-generation": {
@@ -1239,7 +1387,9 @@
         "notes": [
           "ok_runs=0/3: "
         ],
-        "updated": "2026-10-06T12:22:39+00:00"
+        "updated": "2026-10-06T12:22:39+00:00",
+        "compatibility_outcome": "BLOCKED_TIMEOUT",
+        "outcome_reason": "TIMEOUT_INFERENCE"
       }
     },
     "omniparser": {
@@ -1263,9 +1413,11 @@
           "created": false
         },
         "notes": [
-          "ok_runs=0/3: \u001b[31mException\u001b[39m: Connection timed out. If you access the internet through a proxy server, please make sure the proxy is set in the shell from where you launched Jupyter."
+          "ok_runs=0/3: Exception: Connection timed out. If you access the internet through a proxy server, please make sure the proxy is set in the shell from where you launched Jupyter."
         ],
-        "updated": "2026-10-06T12:24:27+00:00"
+        "updated": "2026-10-06T12:24:27+00:00",
+        "compatibility_outcome": "BLOCKED_DEPENDENCY",
+        "outcome_reason": "PACKAGE_RESOLUTION_CONFLICT"
       }
     },
     "omnivoice": {
@@ -1291,7 +1443,9 @@
         "notes": [
           "ok_runs=0/3: "
         ],
-        "updated": "2026-10-06T12:34:30+00:00"
+        "updated": "2026-10-06T12:34:30+00:00",
+        "compatibility_outcome": "BLOCKED_TIMEOUT",
+        "outcome_reason": "TIMEOUT_CONVERSION_EXPORT"
       }
     },
     "paddle-to-openvino-classification": {
@@ -1319,7 +1473,9 @@
           "created": true
         },
         "notes": [],
-        "updated": "2026-10-07T01:13:43+00:00"
+        "updated": "2026-10-07T01:13:43+00:00",
+        "compatibility_outcome": "VERIFIED",
+        "outcome_reason": ""
       }
     },
     "paddleocr_vl": {
@@ -1343,9 +1499,12 @@
           "created": false
         },
         "notes": [
-          "ok_runs=0/3: \u001b[31mFileNotFoundError\u001b[39m: [Errno 2] No such file or directory: '/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/paddleocr_vl/workdir-cpu/test.png'"
+          "ok_runs=0/3: FileNotFoundError: [Errno 2] No such file or directory: 'results/paddleocr_vl/workdir-cpu/test.png'",
+          "adjudicated (HARNESS_NOTEBOOK_RELATIVE_ASSET): Notebook expects sibling asset test.png; same harness notebook-relative-asset defect (fixed this closure \u2014 revalidation queued)."
         ],
-        "updated": "2026-10-06T12:38:41+00:00"
+        "updated": "2026-10-06T12:38:41+00:00",
+        "compatibility_outcome": "BLOCKED_DEPENDENCY",
+        "outcome_reason": "HARNESS_NOTEBOOK_RELATIVE_ASSET"
       }
     },
     "parler-tts-text-to-speech": {
@@ -1371,7 +1530,9 @@
         "notes": [
           "ok_runs=0/3: BrgemmCPU node has incompatible input element types: f32 and bf16"
         ],
-        "updated": "2026-10-07T02:49:24+00:00"
+        "updated": "2026-10-07T02:49:24+00:00",
+        "compatibility_outcome": "FAILED_COMPATIBILITY",
+        "outcome_reason": "OPENVINO_RUNTIME"
       }
     },
     "phi-3-vision": {
@@ -1397,7 +1558,9 @@
         "notes": [
           "ok_runs=0/3: "
         ],
-        "updated": "2026-10-06T13:01:38+00:00"
+        "updated": "2026-10-06T13:01:38+00:00",
+        "compatibility_outcome": "BLOCKED_TIMEOUT",
+        "outcome_reason": "TIMEOUT_INFERENCE"
       }
     },
     "phi-4-multimodal": {
@@ -1423,13 +1586,15 @@
         "notes": [
           "ok_runs=0/3: "
         ],
-        "updated": "2026-10-06T13:11:45+00:00"
+        "updated": "2026-10-06T13:11:45+00:00",
+        "compatibility_outcome": "BLOCKED_TIMEOUT",
+        "outcome_reason": "TIMEOUT_INFERENCE"
       }
     },
     "phi3_chatbot_demo": {
       "cpu": {
         "status": "FAILED",
-        "failure_category": "LICENSE_RESTRICTION",
+        "failure_category": "DEPENDENCY",
         "ok_runs": 0,
         "required_runs": 3,
         "durations_s": [],
@@ -1447,15 +1612,18 @@
           "created": false
         },
         "notes": [
-          "ok_runs=0/3: cannot import name 'runtime_version' from 'google.protobuf' (/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages/google/protobuf/__init__.py)"
+          "ok_runs=0/3: cannot import name 'runtime_version' from 'google.protobuf' (.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages/google/protobuf/__init__.py)",
+          "execution category corrected by comprehensive audit: LICENSE_RESTRICTION -> DEPENDENCY (protobuf API drift, not a license restriction)"
         ],
-        "updated": "2026-10-06T13:11:59+00:00"
+        "updated": "2026-10-06T13:11:59+00:00",
+        "compatibility_outcome": "BLOCKED_DEPENDENCY",
+        "outcome_reason": "MISSING_OR_BROKEN_DEPENDENCY"
       }
     },
     "phi3_rag_on_client": {
       "cpu": {
         "status": "FAILED",
-        "failure_category": "MODEL_ACCESS",
+        "failure_category": "DEPENDENCY",
         "ok_runs": 0,
         "required_runs": 3,
         "durations_s": [],
@@ -1473,9 +1641,13 @@
           "created": false
         },
         "notes": [
-          "ok_runs=0/3: \u001b[31mAttributeError\u001b[39m: 'Column' object has no attribute 'dtype'"
+          "ok_runs=0/3: AttributeError: 'Column' object has no attribute 'dtype'",
+          "adjudicated (DATASETS_API_DRIFT): AttributeError 'Column' object has no attribute 'dtype' \u2014 datasets library API drift versus the notebook's pinned stack; misclassified as MODEL_ACCESS by the log rules.",
+          "execution category corrected by comprehensive audit: MODEL_ACCESS -> DEPENDENCY (datasets API drift, not model access)"
         ],
-        "updated": "2026-10-06T13:13:10+00:00"
+        "updated": "2026-10-06T13:13:10+00:00",
+        "compatibility_outcome": "BLOCKED_DEPENDENCY",
+        "outcome_reason": "DATASETS_API_DRIFT"
       }
     },
     "physical-ai-robotics": {
@@ -1493,7 +1665,9 @@
         "notes": [
           "release-audit correction: notebook has zero executable code cells (markdown landing page); previous VERIFIED was invalid"
         ],
-        "updated": "2026-10-01T13:52:48+00:00"
+        "updated": "2026-10-01T13:52:48+00:00",
+        "compatibility_outcome": "NOT_APPLICABLE",
+        "outcome_reason": ""
       }
     },
     "qwen-image": {
@@ -1517,9 +1691,11 @@
           "created": false
         },
         "notes": [
-          "ok_runs=0/3: \u001b[31mCalledProcessError\u001b[39m: Command '['optimum-cli', 'export', 'openvino', '--model', 'Qwen/Qwen-Image-2512', 'Qwen-Image-2512/INT8', '--weight-format', 'int8']' returned non-zero exit status 1."
+          "ok_runs=0/3: CalledProcessError: Command '['optimum-cli', 'export', 'openvino', '--model', 'Qwen/Qwen-Image-2512', 'Qwen-Image-2512/INT8', '--weight-format', 'int8']' returned non-zero exit status 1."
         ],
-        "updated": "2026-10-06T13:20:40+00:00"
+        "updated": "2026-10-06T13:20:40+00:00",
+        "compatibility_outcome": "BLOCKED_DEPENDENCY",
+        "outcome_reason": "PACKAGE_RESOLUTION_CONFLICT"
       }
     },
     "qwen-image-2.1": {
@@ -1545,7 +1721,9 @@
         "notes": [
           "ok_runs=0/3: "
         ],
-        "updated": "2026-10-06T13:30:43+00:00"
+        "updated": "2026-10-06T13:30:43+00:00",
+        "compatibility_outcome": "BLOCKED_TIMEOUT",
+        "outcome_reason": "TIMEOUT_MODEL_DOWNLOAD"
       }
     },
     "rmbg-background-removal": {
@@ -1576,7 +1754,13 @@
           "EXECUTION_ONLY: no workload correctness contract (validation: {})",
           "CORE_INFERENCE_VERIFIED; INTERACTIVE_UI_NOT_TESTED (documented skip policy)"
         ],
-        "updated": "2026-10-06T13:32:09+00:00"
+        "updated": "2026-10-06T13:32:09+00:00",
+        "compatibility_outcome": "VERIFIED_WITH_LIMITATIONS",
+        "outcome_reason": "",
+        "limitation_codes": [
+          "INTERACTIVE_UI_NOT_TESTED",
+          "EXECUTION_ONLY"
+        ]
       }
     },
     "smoldocling": {
@@ -1608,7 +1792,14 @@
           "DEVICE_PROOF_INCOMPLETE: device proof state UNKNOWN",
           "CORE_INFERENCE_VERIFIED; INTERACTIVE_UI_NOT_TESTED (documented skip policy)"
         ],
-        "updated": "2026-10-06T13:42:20+00:00"
+        "updated": "2026-10-06T13:42:20+00:00",
+        "compatibility_outcome": "VERIFIED_WITH_LIMITATIONS",
+        "outcome_reason": "",
+        "limitation_codes": [
+          "INTERACTIVE_UI_NOT_TESTED",
+          "EXECUTION_ONLY",
+          "DEVICE_PROOF_INCOMPLETE"
+        ]
       }
     },
     "speculative-sampling": {
@@ -1636,7 +1827,9 @@
           "created": true
         },
         "notes": [],
-        "updated": "2026-10-06T13:59:14+00:00"
+        "updated": "2026-10-06T13:59:14+00:00",
+        "compatibility_outcome": "VERIFIED",
+        "outcome_reason": ""
       }
     },
     "text-to-image-genai": {
@@ -1662,7 +1855,9 @@
         "notes": [
           "ok_runs=0/3: "
         ],
-        "updated": "2026-10-06T14:22:45+00:00"
+        "updated": "2026-10-06T14:22:45+00:00",
+        "compatibility_outcome": "BLOCKED_TIMEOUT",
+        "outcome_reason": "TIMEOUT_INFERENCE"
       }
     },
     "text-to-speech-genai": {
@@ -1686,9 +1881,11 @@
           "created": false
         },
         "notes": [
-          "ok_runs=0/3: \u001b[31mCalledProcessError\u001b[39m: Command '['optimum-cli', 'export', 'openvino', '--model', 'microsoft/speecht5_tts', 'speecht5_tts', '--model-kwargs', '{\"vocoder\":\"microsoft/speecht5_hifigan\"}']' returned non-zero exit status 1."
+          "ok_runs=0/3: CalledProcessError: Command '['optimum-cli', 'export', 'openvino', '--model', 'microsoft/speecht5_tts', 'speecht5_tts', '--model-kwargs', '{\"vocoder\":\"microsoft/speecht5_hifigan\"}']' returned non-zero exit status 1."
         ],
-        "updated": "2026-10-06T14:24:58+00:00"
+        "updated": "2026-10-06T14:24:58+00:00",
+        "compatibility_outcome": "BLOCKED_DEPENDENCY",
+        "outcome_reason": "PACKAGE_RESOLUTION_CONFLICT"
       }
     },
     "unlimited-ocr": {
@@ -1714,13 +1911,15 @@
         "notes": [
           "ok_runs=0/3: "
         ],
-        "updated": "2026-10-06T14:35:04+00:00"
+        "updated": "2026-10-06T14:35:04+00:00",
+        "compatibility_outcome": "BLOCKED_TIMEOUT",
+        "outcome_reason": "TIMEOUT_MODEL_DOWNLOAD"
       }
     },
     "vision-background-removal": {
       "cpu": {
         "status": "FAILED",
-        "failure_category": "UNKNOWN",
+        "failure_category": "NETWORK",
         "ok_runs": 0,
         "required_runs": 3,
         "durations_s": [],
@@ -1738,9 +1937,13 @@
           "created": true
         },
         "notes": [
-          "ok_runs=0/3: \u001b[31mEOFError\u001b[39m:"
+          "ok_runs=0/3: EOFError:",
+          "adjudicated (EXTERNAL_HOST_UNREACHABLE): model host drive.google.com unreachable from the reference network (run-01 ConnectTimeout); run-02 EOFError is the truncated gdown download of the same unreachable artifact.",
+          "execution category corrected by comprehensive audit: UNKNOWN -> NETWORK (host unreachable; original UNKNOWN hid the network cause)"
         ],
-        "updated": "2026-10-06T14:40:07+00:00"
+        "updated": "2026-10-06T14:40:07+00:00",
+        "compatibility_outcome": "BLOCKED_NETWORK",
+        "outcome_reason": "EXTERNAL_HOST_UNREACHABLE"
       }
     },
     "voxcpm2-tts": {
@@ -1766,7 +1969,9 @@
         "notes": [
           "ok_runs=0/3: "
         ],
-        "updated": "2026-10-06T14:53:14+00:00"
+        "updated": "2026-10-06T14:53:14+00:00",
+        "compatibility_outcome": "BLOCKED_TIMEOUT",
+        "outcome_reason": "TIMEOUT_MODEL_DOWNLOAD"
       }
     },
     "llm-lora": {
@@ -1794,7 +1999,9 @@
           "created": true
         },
         "notes": [],
-        "updated": "2026-10-06T15:24:58+00:00"
+        "updated": "2026-10-06T15:24:58+00:00",
+        "compatibility_outcome": "VERIFIED",
+        "outcome_reason": ""
       }
     },
     "mineru2.5": {
@@ -1826,7 +2033,14 @@
           "DEVICE_PROOF_INCOMPLETE: device proof state AUTO_UNRESOLVED",
           "CORE_INFERENCE_VERIFIED; INTERACTIVE_UI_NOT_TESTED (documented skip policy)"
         ],
-        "updated": "2026-10-06T15:41:24+00:00"
+        "updated": "2026-10-06T15:41:24+00:00",
+        "compatibility_outcome": "VERIFIED_WITH_LIMITATIONS",
+        "outcome_reason": "",
+        "limitation_codes": [
+          "INTERACTIVE_UI_NOT_TESTED",
+          "EXECUTION_ONLY",
+          "DEVICE_PROOF_INCOMPLETE"
+        ]
       }
     },
     "mms-massively-multilingual-speech": {
@@ -1857,7 +2071,13 @@
           "EXECUTION_ONLY: no workload correctness contract (validation: {})",
           "CORE_INFERENCE_VERIFIED; INTERACTIVE_UI_NOT_TESTED (documented skip policy)"
         ],
-        "updated": "2026-10-06T16:16:20+00:00"
+        "updated": "2026-10-06T16:16:20+00:00",
+        "compatibility_outcome": "VERIFIED_WITH_LIMITATIONS",
+        "outcome_reason": "",
+        "limitation_codes": [
+          "INTERACTIVE_UI_NOT_TESTED",
+          "EXECUTION_ONLY"
+        ]
       }
     },
     "qwen3-asr": {
@@ -1881,9 +2101,11 @@
           "created": false
         },
         "notes": [
-          "ok_runs=0/3: \u001b[31mModuleNotFoundError\u001b[39m: Could not import module 'OVModelForSpeechSeq2Seq'. Are this object's requirements defined correctly?"
+          "ok_runs=0/3: ModuleNotFoundError: Could not import module 'OVModelForSpeechSeq2Seq'. Are this object's requirements defined correctly?"
         ],
-        "updated": "2026-10-06T16:19:13+00:00"
+        "updated": "2026-10-06T16:19:13+00:00",
+        "compatibility_outcome": "BLOCKED_DEPENDENCY",
+        "outcome_reason": "MISSING_OR_BROKEN_DEPENDENCY"
       }
     },
     "qwen3-tts": {
@@ -1914,13 +2136,19 @@
           "EXECUTION_ONLY: no workload correctness contract (validation: {})",
           "CORE_INFERENCE_VERIFIED; INTERACTIVE_UI_NOT_TESTED (documented skip policy)"
         ],
-        "updated": "2026-10-06T16:31:10+00:00"
+        "updated": "2026-10-06T16:31:10+00:00",
+        "compatibility_outcome": "VERIFIED_WITH_LIMITATIONS",
+        "outcome_reason": "",
+        "limitation_codes": [
+          "INTERACTIVE_UI_NOT_TESTED",
+          "EXECUTION_ONLY"
+        ]
       }
     },
     "controlnet-stable-diffusion": {
       "cpu": {
         "status": "FAILED",
-        "failure_category": "PACKAGE_CONFLICT",
+        "failure_category": "TIMEOUT",
         "ok_runs": 0,
         "required_runs": 1,
         "durations_s": [],
@@ -1938,9 +2166,12 @@
           "created": false
         },
         "notes": [
-          "ok_runs=0/1: -------------------"
+          "ok_runs=0/1: -------------------",
+          "reclassified by comprehensive audit: CellTimeoutError present in evidence logs; original category was a classifier rule-order defect"
         ],
-        "updated": "2026-10-06T16:46:54+00:00"
+        "updated": "2026-10-06T16:46:54+00:00",
+        "compatibility_outcome": "BLOCKED_TIMEOUT",
+        "outcome_reason": "TIMEOUT_INFERENCE"
       }
     },
     "flux-fill": {
@@ -1964,9 +2195,11 @@
           "created": true
         },
         "notes": [
-          "ok_runs=0/1: \u001b[31mCalledProcessError\u001b[39m: Command '['optimum-cli', 'export', 'openvino', '--model', 'black-forest-labs/FLUX.1-Fill-dev', 'FLUX.1-Fill-dev/INT4', '--weight-format', 'int4', '--group-size', '64', '--ratio', '1.0']' returned non-zero exit status 1."
+          "ok_runs=0/1: CalledProcessError: Command '['optimum-cli', 'export', 'openvino', '--model', 'black-forest-labs/FLUX.1-Fill-dev', 'FLUX.1-Fill-dev/INT4', '--weight-format', 'int4', '--group-size', '64', '--ratio', '1.0']' returned non-zero exit status 1."
         ],
-        "updated": "2026-10-06T16:50:49+00:00"
+        "updated": "2026-10-06T16:50:49+00:00",
+        "compatibility_outcome": "BLOCKED_MODEL_ACCESS",
+        "outcome_reason": "GATED_OR_RESTRICTED_MODEL"
       }
     },
     "flux.1-image-generation": {
@@ -1992,7 +2225,9 @@
         "notes": [
           "ok_runs=0/1: Empty weights data in bin file or bin file cannot be found!"
         ],
-        "updated": "2026-10-06T16:52:18+00:00"
+        "updated": "2026-10-06T16:52:18+00:00",
+        "compatibility_outcome": "BLOCKED_RESOURCE",
+        "outcome_reason": "MODEL_ARTIFACT_INCOMPLETE_OR_CORRUPT"
       }
     },
     "flux.1-kontext": {
@@ -2016,9 +2251,11 @@
           "created": false
         },
         "notes": [
-          "ok_runs=0/1: \u001b[31mCalledProcessError\u001b[39m: Command '['optimum-cli', 'export', 'openvino', '--model', 'black-forest-labs/FLUX.1-Kontext-dev', 'FLUX.1-Kontext-dev/INT4', '--weight-format', 'int4', '--group-size', '64', '--ratio', '1.0']' returned non-zero exit status 1."
+          "ok_runs=0/1: CalledProcessError: Command '['optimum-cli', 'export', 'openvino', '--model', 'black-forest-labs/FLUX.1-Kontext-dev', 'FLUX.1-Kontext-dev/INT4', '--weight-format', 'int4', '--group-size', '64', '--ratio', '1.0']' returned non-zero exit status 1."
         ],
-        "updated": "2026-10-06T16:54:48+00:00"
+        "updated": "2026-10-06T16:54:48+00:00",
+        "compatibility_outcome": "BLOCKED_MODEL_ACCESS",
+        "outcome_reason": "GATED_OR_RESTRICTED_MODEL"
       }
     },
     "flux.2-klein": {
@@ -2042,15 +2279,17 @@
           "created": false
         },
         "notes": [
-          "ok_runs=0/1: \u001b[31mCalledProcessError\u001b[39m: Command '['optimum-cli', 'export', 'openvino', '--model', 'black-forest-labs/FLUX.2-klein-4B', 'FLUX.2-klein-4B/INT4', '--task', 'text-to-image', '--weight-format', 'int4', '--group-size', '64', '--ratio', '1.0']' returned non-zero exit status 1."
+          "ok_runs=0/1: CalledProcessError: Command '['optimum-cli', 'export', 'openvino', '--model', 'black-forest-labs/FLUX.2-klein-4B', 'FLUX.2-klein-4B/INT4', '--task', 'text-to-image', '--weight-format', 'int4', '--group-size', '64', '--ratio', '1.0']' returned non-zero exit status 1."
         ],
-        "updated": "2026-10-06T16:55:08+00:00"
+        "updated": "2026-10-06T16:55:08+00:00",
+        "compatibility_outcome": "BLOCKED_DEPENDENCY",
+        "outcome_reason": "PACKAGE_RESOLUTION_CONFLICT"
       }
     },
     "glm4.1-v-thinking": {
       "cpu": {
         "status": "FAILED",
-        "failure_category": "UNKNOWN",
+        "failure_category": "BLOCKED_DEPENDENCY",
         "ok_runs": 0,
         "required_runs": 1,
         "durations_s": [],
@@ -2068,9 +2307,13 @@
           "created": true
         },
         "notes": [
-          "ok_runs=0/1: \u001b[31mCalledProcessError\u001b[39m: Command '['optimum-cli', 'export', 'openvino', '--model', 'GLM-4.1V-9B-Thinking', 'GLM-4.1V-9B-Thinking/INT4', '--task', 'image-text-to-text', '--weight-format', 'int4', '--group-size', '128', '--ratio', '0.8']' returned non-zero exit status 1."
+          "ok_runs=0/1: CalledProcessError: Command '['optimum-cli', 'export', 'openvino', '--model', 'GLM-4.1V-9B-Thinking', 'GLM-4.1V-9B-Thinking/INT4', '--task', 'image-text-to-text', '--weight-format', 'int4', '--group-size', '128', '--ratio', '0.8']' returned non-zero exit status 1.",
+          "execution category corrected by comprehensive audit: UNKNOWN -> CONVERSION_ERROR (optimum-cli export failure, not UNKNOWN)",
+          "adjudicated (OPTIMUM_EXPORT_FAILED_ROOT_CAUSE_NOT_CAPTURED): optimum-cli was present and ran; the export subprocess failed (exit 1) with its stderr swallowed by cmd_helper's capture_output (upstream helper limitation, fixed upstream after our pin). Most probable cause is model download inside the export on the throttled reference network; unproven \u2014 queued for retry with the optimum health contract recording the export environment."
         ],
-        "updated": "2026-10-06T16:57:31+00:00"
+        "updated": "2026-10-06T16:57:31+00:00",
+        "compatibility_outcome": "BLOCKED_DEPENDENCY",
+        "outcome_reason": "OPTIMUM_EXPORT_FAILED_ROOT_CAUSE_NOT_CAPTURED"
       }
     },
     "hunyuan-ocr": {
@@ -2094,7 +2337,7 @@
           "created": false
         },
         "notes": [
-          "ok_runs=0/1: \u001b[31mValueError\u001b[39m: Unexpected dependency in optimum-intel/setup.py: \"optimum@https://codeload.github.com/huggingface/optimum/tar.gz/HEAD\""
+          "ok_runs=0/1: ValueError: Unexpected dependency in optimum-intel/setup.py: \"optimum@https://codeload.github.com/huggingface/optimum/tar.gz/HEAD\""
         ],
         "updated": "2026-10-07T01:31:13+00:00",
         "historical_status": "FAILED",
@@ -2102,7 +2345,9 @@
         "revalidation_reasons": [
           "pin:a8809170cc4f->329562e6031d",
           "upstream_notebook_changed"
-        ]
+        ],
+        "compatibility_outcome": "BLOCKED_DEPENDENCY",
+        "outcome_reason": "OPTIMUM_CLI_MISSING_OR_BROKEN"
       }
     },
     "hunyuan-translation": {
@@ -2131,7 +2376,13 @@
           "repeatability_not_established: fewer than 3 successful runs (resource-bounded policy)",
           "CORE_INFERENCE_VERIFIED; INTERACTIVE_UI_NOT_TESTED (documented skip policy)"
         ],
-        "updated": "2026-10-06T17:00:49+00:00"
+        "updated": "2026-10-06T17:00:49+00:00",
+        "compatibility_outcome": "VERIFIED_WITH_LIMITATIONS",
+        "outcome_reason": "",
+        "limitation_codes": [
+          "REPEATABILITY_NOT_ESTABLISHED",
+          "INTERACTIVE_UI_NOT_TESTED"
+        ]
       }
     },
     "image-to-image-genai": {
@@ -2160,7 +2411,13 @@
           "repeatability_not_established: fewer than 3 successful runs (resource-bounded policy)",
           "CORE_INFERENCE_VERIFIED; INTERACTIVE_UI_NOT_TESTED (documented skip policy)"
         ],
-        "updated": "2026-10-06T17:02:32+00:00"
+        "updated": "2026-10-06T17:02:32+00:00",
+        "compatibility_outcome": "VERIFIED_WITH_LIMITATIONS",
+        "outcome_reason": "",
+        "limitation_codes": [
+          "REPEATABILITY_NOT_ESTABLISHED",
+          "INTERACTIVE_UI_NOT_TESTED"
+        ]
       }
     },
     "instant-id": {
@@ -2184,9 +2441,11 @@
           "created": true
         },
         "notes": [
-          "ok_runs=0/1: \u001b[31mConnectTimeout\u001b[39m: HTTPSConnectionPool(host='drive.google.com', port=443): Max retries exceeded with url: /uc?id=18wEUfMNohBJ4K3Ly5wpTejPfDzp-8fI8 (Caused by ConnectTimeoutError(<HTTPSConnection(host='drive.google.com', port=443) at 0x73bf26979e20>, 'Connection to drive.google.com timed out. "
+          "ok_runs=0/1: ConnectTimeout: HTTPSConnectionPool(host='drive.google.com', port=443): Max retries exceeded with url: /uc?id=18wEUfMNohBJ4K3Ly5wpTejPfDzp-8fI8 (Caused by ConnectTimeoutError(<HTTPSConnection(host='drive.google.com', port=443) at 0x73bf26979e20>, 'Connection to drive.google.com timed out. "
         ],
-        "updated": "2026-10-06T17:17:02+00:00"
+        "updated": "2026-10-06T17:17:02+00:00",
+        "compatibility_outcome": "BLOCKED_NETWORK",
+        "outcome_reason": "EXTERNAL_HOST_UNREACHABLE"
       }
     },
     "llm-agent-functioncall-qwen": {
@@ -2214,7 +2473,13 @@
           "repeatability_not_established: fewer than 3 successful runs (resource-bounded policy)",
           "CORE_INFERENCE_VERIFIED; INTERACTIVE_UI_NOT_TESTED (documented skip policy)"
         ],
-        "updated": "2026-10-05T20:28:52+00:00"
+        "updated": "2026-10-05T20:28:52+00:00",
+        "compatibility_outcome": "VERIFIED_WITH_LIMITATIONS",
+        "outcome_reason": "",
+        "limitation_codes": [
+          "REPEATABILITY_NOT_ESTABLISHED",
+          "INTERACTIVE_UI_NOT_TESTED"
+        ]
       }
     },
     "llm-agent-rag-llamaindex": {
@@ -2241,7 +2506,12 @@
         "notes": [
           "repeatability_not_established: fewer than 3 successful runs (resource-bounded policy)"
         ],
-        "updated": "2026-10-05T20:30:56+00:00"
+        "updated": "2026-10-05T20:30:56+00:00",
+        "compatibility_outcome": "VERIFIED_WITH_LIMITATIONS",
+        "outcome_reason": "",
+        "limitation_codes": [
+          "REPEATABILITY_NOT_ESTABLISHED"
+        ]
       }
     },
     "llm-chatbot": {
@@ -2271,7 +2541,14 @@
           "repeatability_not_established: fewer than 3 successful runs (resource-bounded policy)",
           "CORE_INFERENCE_VERIFIED; INTERACTIVE_UI_NOT_TESTED (documented skip policy)"
         ],
-        "updated": "2026-10-06T17:18:46+00:00"
+        "updated": "2026-10-06T17:18:46+00:00",
+        "compatibility_outcome": "VERIFIED_WITH_LIMITATIONS",
+        "outcome_reason": "",
+        "limitation_codes": [
+          "REPEATABILITY_NOT_ESTABLISHED",
+          "INTERACTIVE_UI_NOT_TESTED",
+          "EXECUTION_ONLY"
+        ]
       }
     },
     "llm-question-answering": {
@@ -2300,7 +2577,13 @@
           "repeatability_not_established: fewer than 3 successful runs (resource-bounded policy)",
           "CORE_INFERENCE_VERIFIED; INTERACTIVE_UI_NOT_TESTED (documented skip policy)"
         ],
-        "updated": "2026-10-06T17:19:10+00:00"
+        "updated": "2026-10-06T17:19:10+00:00",
+        "compatibility_outcome": "VERIFIED_WITH_LIMITATIONS",
+        "outcome_reason": "",
+        "limitation_codes": [
+          "REPEATABILITY_NOT_ESTABLISHED",
+          "INTERACTIVE_UI_NOT_TESTED"
+        ]
       }
     },
     "meter-reader": {
@@ -2327,13 +2610,18 @@
         "notes": [
           "repeatability_not_established: fewer than 3 successful runs (resource-bounded policy)"
         ],
-        "updated": "2026-10-05T20:31:44+00:00"
+        "updated": "2026-10-05T20:31:44+00:00",
+        "compatibility_outcome": "VERIFIED_WITH_LIMITATIONS",
+        "outcome_reason": "",
+        "limitation_codes": [
+          "REPEATABILITY_NOT_ESTABLISHED"
+        ]
       }
     },
     "minicpm-o-4.5": {
       "cpu": {
         "status": "FAILED",
-        "failure_category": "PACKAGE_CONFLICT",
+        "failure_category": "DEPENDENCY",
         "ok_runs": 0,
         "required_runs": 1,
         "durations_s": [],
@@ -2351,9 +2639,13 @@
           "created": false
         },
         "notes": [
-          "ok_runs=0/1: \u001b[31mAttributeError\u001b[39m: MiniCPMOTokenizerFast has no attribute tokenizer"
+          "ok_runs=0/1: AttributeError: MiniCPMOTokenizerFast has no attribute tokenizer",
+          "adjudicated (TRANSFORMERS_API_DRIFT): MiniCPMOTokenizerFast has no attribute tokenizer \u2014 transformers version drift versus the notebook's pinned stack; not a runtime compatibility issue.",
+          "execution category corrected by comprehensive audit: PACKAGE_CONFLICT -> DEPENDENCY (transformers API drift, not a package conflict)"
         ],
-        "updated": "2026-10-06T17:19:38+00:00"
+        "updated": "2026-10-06T17:19:38+00:00",
+        "compatibility_outcome": "BLOCKED_DEPENDENCY",
+        "outcome_reason": "TRANSFORMERS_API_DRIFT"
       }
     },
     "minicpm-o-omnimodal-chatbot": {
@@ -2377,9 +2669,11 @@
           "created": true
         },
         "notes": [
-          "ok_runs=0/1: \u001b[31mFileNotFoundError\u001b[39m: No such file or directory: MiniCPM-o-2_6/ckpt/model-00001-of-00004.safetensors"
+          "ok_runs=0/1: FileNotFoundError: No such file or directory: MiniCPM-o-2_6/ckpt/model-00001-of-00004.safetensors"
         ],
-        "updated": "2026-10-06T17:21:49+00:00"
+        "updated": "2026-10-06T17:21:49+00:00",
+        "compatibility_outcome": "BLOCKED_RESOURCE",
+        "outcome_reason": "MODEL_ARTIFACT_INCOMPLETE_OR_CORRUPT"
       }
     },
     "minicpm-v-4.6": {
@@ -2409,7 +2703,14 @@
           "repeatability_not_established: fewer than 3 successful runs (resource-bounded policy)",
           "CORE_INFERENCE_VERIFIED; INTERACTIVE_UI_NOT_TESTED (documented skip policy)"
         ],
-        "updated": "2026-10-06T17:31:35+00:00"
+        "updated": "2026-10-06T17:31:35+00:00",
+        "compatibility_outcome": "VERIFIED_WITH_LIMITATIONS",
+        "outcome_reason": "",
+        "limitation_codes": [
+          "REPEATABILITY_NOT_ESTABLISHED",
+          "INTERACTIVE_UI_NOT_TESTED",
+          "EXECUTION_ONLY"
+        ]
       }
     },
     "ministral-3": {
@@ -2446,6 +2747,14 @@
         "revalidation_reasons": [
           "pin:a8809170cc4f->329562e6031d",
           "upstream_notebook_changed"
+        ],
+        "compatibility_outcome": "VERIFIED_WITH_LIMITATIONS",
+        "outcome_reason": "",
+        "limitation_codes": [
+          "REPEATABILITY_NOT_ESTABLISHED",
+          "INTERACTIVE_UI_NOT_TESTED",
+          "EXECUTION_ONLY",
+          "DEVICE_PROOF_INCOMPLETE"
         ]
       }
     },
@@ -2472,7 +2781,9 @@
         "notes": [
           "ok_runs=0/1: Access to model meta-llama/Llama-3.2-11B-Vision-Instruct is restricted and you are not in the authorized list. Visit https://huggingface.co/meta-llama/Llama-3.2-11B-Vision-Instruct to ask for access."
         ],
-        "updated": "2026-10-06T17:44:48+00:00"
+        "updated": "2026-10-06T17:44:48+00:00",
+        "compatibility_outcome": "BLOCKED_MODEL_ACCESS",
+        "outcome_reason": "GATED_OR_RESTRICTED_MODEL"
       }
     },
     "multilora-image-generation": {
@@ -2502,7 +2813,14 @@
           "repeatability_not_established: fewer than 3 successful runs (resource-bounded policy)",
           "CORE_INFERENCE_VERIFIED; INTERACTIVE_UI_NOT_TESTED (documented skip policy)"
         ],
-        "updated": "2026-10-06T17:56:45+00:00"
+        "updated": "2026-10-06T17:56:45+00:00",
+        "compatibility_outcome": "VERIFIED_WITH_LIMITATIONS",
+        "outcome_reason": "",
+        "limitation_codes": [
+          "REPEATABILITY_NOT_ESTABLISHED",
+          "INTERACTIVE_UI_NOT_TESTED",
+          "EXECUTION_ONLY"
+        ]
       }
     },
     "olmocr-pdf-vlm": {
@@ -2526,7 +2844,7 @@
           "created": false
         },
         "notes": [
-          "ok_runs=0/1: \u001b[31mModuleNotFoundError\u001b[39m: Could not import module 'AutoProcessor'. Are this object's requirements defined correctly?"
+          "ok_runs=0/1: ModuleNotFoundError: Could not import module 'AutoProcessor'. Are this object's requirements defined correctly?"
         ],
         "updated": "2026-10-07T01:36:00+00:00",
         "historical_status": "FAILED",
@@ -2534,7 +2852,9 @@
         "revalidation_reasons": [
           "pin:a8809170cc4f->329562e6031d",
           "upstream_notebook_changed"
-        ]
+        ],
+        "compatibility_outcome": "BLOCKED_DEPENDENCY",
+        "outcome_reason": "MISSING_OR_BROKEN_DEPENDENCY"
       }
     },
     "openvoice": {
@@ -2564,7 +2884,14 @@
           "repeatability_not_established: fewer than 3 successful runs (resource-bounded policy)",
           "CORE_INFERENCE_VERIFIED; INTERACTIVE_UI_NOT_TESTED (documented skip policy)"
         ],
-        "updated": "2026-10-06T18:17:49+00:00"
+        "updated": "2026-10-06T18:17:49+00:00",
+        "compatibility_outcome": "VERIFIED_WITH_LIMITATIONS",
+        "outcome_reason": "",
+        "limitation_codes": [
+          "REPEATABILITY_NOT_ESTABLISHED",
+          "INTERACTIVE_UI_NOT_TESTED",
+          "EXECUTION_ONLY"
+        ]
       }
     },
     "openvoice2-and-melotts": {
@@ -2588,7 +2915,7 @@
           "created": false
         },
         "notes": [
-          "ok_runs=0/1: \u001b[31mModuleNotFoundError\u001b[39m: Could not import module 'AutoTokenizer'. Are this object's requirements defined correctly?"
+          "ok_runs=0/1: ModuleNotFoundError: Could not import module 'AutoTokenizer'. Are this object's requirements defined correctly?"
         ],
         "updated": "2026-10-07T01:37:03+00:00",
         "historical_status": "FAILED",
@@ -2596,7 +2923,9 @@
         "revalidation_reasons": [
           "pin:a8809170cc4f->329562e6031d",
           "upstream_notebook_changed"
-        ]
+        ],
+        "compatibility_outcome": "BLOCKED_DEPENDENCY",
+        "outcome_reason": "MISSING_OR_BROKEN_DEPENDENCY"
       }
     },
     "paddle-ocr-webcam": {
@@ -2625,7 +2954,13 @@
           "EXECUTION_ONLY: no workload correctness contract (validation: {})",
           "repeatability_not_established: fewer than 3 successful runs (resource-bounded policy)"
         ],
-        "updated": "2026-10-06T18:20:02+00:00"
+        "updated": "2026-10-06T18:20:02+00:00",
+        "compatibility_outcome": "VERIFIED_WITH_LIMITATIONS",
+        "outcome_reason": "",
+        "limitation_codes": [
+          "REPEATABILITY_NOT_ESTABLISHED",
+          "EXECUTION_ONLY"
+        ]
       }
     },
     "qwen2-audio": {
@@ -2655,7 +2990,14 @@
           "repeatability_not_established: fewer than 3 successful runs (resource-bounded policy)",
           "CORE_INFERENCE_VERIFIED; INTERACTIVE_UI_NOT_TESTED (documented skip policy)"
         ],
-        "updated": "2026-10-06T18:38:50+00:00"
+        "updated": "2026-10-06T18:38:50+00:00",
+        "compatibility_outcome": "VERIFIED_WITH_LIMITATIONS",
+        "outcome_reason": "",
+        "limitation_codes": [
+          "REPEATABILITY_NOT_ESTABLISHED",
+          "INTERACTIVE_UI_NOT_TESTED",
+          "EXECUTION_ONLY"
+        ]
       }
     },
     "qwen2.5-omni-chatbot": {
@@ -2679,9 +3021,11 @@
           "created": false
         },
         "notes": [
-          "ok_runs=0/1: \u001b[31mAttributeError\u001b[39m: type object 'openvino._pyopenvino.Type' has no attribute 'u2'"
+          "ok_runs=0/1: AttributeError: type object 'openvino._pyopenvino.Type' has no attribute 'u2'"
         ],
-        "updated": "2026-10-06T18:39:28+00:00"
+        "updated": "2026-10-06T18:39:28+00:00",
+        "compatibility_outcome": "BLOCKED_DEPENDENCY",
+        "outcome_reason": "MISSING_OR_BROKEN_DEPENDENCY"
       }
     },
     "qwen3-embedding": {
@@ -2710,7 +3054,13 @@
           "EXECUTION_ONLY: no workload correctness contract (validation: {})",
           "repeatability_not_established: fewer than 3 successful runs (resource-bounded policy)"
         ],
-        "updated": "2026-10-06T18:42:04+00:00"
+        "updated": "2026-10-06T18:42:04+00:00",
+        "compatibility_outcome": "VERIFIED_WITH_LIMITATIONS",
+        "outcome_reason": "",
+        "limitation_codes": [
+          "REPEATABILITY_NOT_ESTABLISHED",
+          "EXECUTION_ONLY"
+        ]
       }
     },
     "qwen3-reranker": {
@@ -2739,7 +3089,13 @@
           "EXECUTION_ONLY: no workload correctness contract (validation: {})",
           "repeatability_not_established: fewer than 3 successful runs (resource-bounded policy)"
         ],
-        "updated": "2026-10-06T18:43:55+00:00"
+        "updated": "2026-10-06T18:43:55+00:00",
+        "compatibility_outcome": "VERIFIED_WITH_LIMITATIONS",
+        "outcome_reason": "",
+        "limitation_codes": [
+          "REPEATABILITY_NOT_ESTABLISHED",
+          "EXECUTION_ONLY"
+        ]
       }
     },
     "qwen3-vl-embedding": {
@@ -2768,7 +3124,13 @@
           "EXECUTION_ONLY: no workload correctness contract (validation: {})",
           "repeatability_not_established: fewer than 3 successful runs (resource-bounded policy)"
         ],
-        "updated": "2026-10-06T18:49:54+00:00"
+        "updated": "2026-10-06T18:49:54+00:00",
+        "compatibility_outcome": "VERIFIED_WITH_LIMITATIONS",
+        "outcome_reason": "",
+        "limitation_codes": [
+          "REPEATABILITY_NOT_ESTABLISHED",
+          "EXECUTION_ONLY"
+        ]
       }
     },
     "qwen3-vl-reranker": {
@@ -2797,7 +3159,13 @@
           "EXECUTION_ONLY: no workload correctness contract (validation: {})",
           "repeatability_not_established: fewer than 3 successful runs (resource-bounded policy)"
         ],
-        "updated": "2026-10-06T18:52:20+00:00"
+        "updated": "2026-10-06T18:52:20+00:00",
+        "compatibility_outcome": "VERIFIED_WITH_LIMITATIONS",
+        "outcome_reason": "",
+        "limitation_codes": [
+          "REPEATABILITY_NOT_ESTABLISHED",
+          "EXECUTION_ONLY"
+        ]
       }
     },
     "qwen3_agent": {
@@ -2823,7 +3191,9 @@
         "notes": [
           "ok_runs=0/1: Connection error."
         ],
-        "updated": "2026-10-06T18:55:20+00:00"
+        "updated": "2026-10-06T18:55:20+00:00",
+        "compatibility_outcome": "BLOCKED_NETWORK",
+        "outcome_reason": "EXTERNAL_HOST_UNREACHABLE"
       }
     },
     "stable-diffusion-v3": {
@@ -2853,7 +3223,14 @@
           "repeatability_not_established: fewer than 3 successful runs (resource-bounded policy)",
           "CORE_INFERENCE_VERIFIED; INTERACTIVE_UI_NOT_TESTED (documented skip policy)"
         ],
-        "updated": "2026-10-07T01:39:46+00:00"
+        "updated": "2026-10-07T01:39:46+00:00",
+        "compatibility_outcome": "VERIFIED_WITH_LIMITATIONS",
+        "outcome_reason": "",
+        "limitation_codes": [
+          "REPEATABILITY_NOT_ESTABLISHED",
+          "INTERACTIVE_UI_NOT_TESTED",
+          "DEVICE_PROOF_INCOMPLETE"
+        ]
       }
     },
     "stable-diffusion-v3-torch-fx": {
@@ -2879,7 +3256,9 @@
         "notes": [
           "ok_runs=0/1: Access to model stabilityai/stable-diffusion-3-medium-diffusers is restricted and you are not in the authorized list. Visit https://huggingface.co/stabilityai/stable-diffusion-3-medium-diffusers to ask for access."
         ],
-        "updated": "2026-10-06T19:00:51+00:00"
+        "updated": "2026-10-06T19:00:51+00:00",
+        "compatibility_outcome": "BLOCKED_MODEL_ACCESS",
+        "outcome_reason": "GATED_OR_RESTRICTED_MODEL"
       }
     },
     "vlm-chatbot-generate-api": {
@@ -2903,9 +3282,12 @@
           "created": true
         },
         "notes": [
-          "ok_runs=0/1: \u001b[31mFileNotFoundError\u001b[39m: [Errno 2] No such file or directory: 'nyc.jpg'"
+          "ok_runs=0/1: FileNotFoundError: [Errno 2] No such file or directory: 'nyc.jpg'",
+          "adjudicated (HARNESS_NOTEBOOK_RELATIVE_ASSET): Notebook expects sibling asset nyc.jpg; the headless kernel cwd lacked notebook-dir data files (harness defect at validation time; fixed this closure \u2014 revalidation queued)."
         ],
-        "updated": "2026-10-06T19:02:02+00:00"
+        "updated": "2026-10-06T19:02:02+00:00",
+        "compatibility_outcome": "BLOCKED_DEPENDENCY",
+        "outcome_reason": "HARNESS_NOTEBOOK_RELATIVE_ASSET"
       }
     },
     "wav2lip": {
@@ -2929,15 +3311,17 @@
           "created": false
         },
         "notes": [
-          "ok_runs=0/1: \u001b[31mException\u001b[39m: Connection timed out. If you access the internet through a proxy server, please make sure the proxy is set in the shell from where you launched Jupyter."
+          "ok_runs=0/1: Exception: Connection timed out. If you access the internet through a proxy server, please make sure the proxy is set in the shell from where you launched Jupyter."
         ],
-        "updated": "2026-10-06T19:06:40+00:00"
+        "updated": "2026-10-06T19:06:40+00:00",
+        "compatibility_outcome": "BLOCKED_NETWORK",
+        "outcome_reason": "NETWORK_UNREACHABLE"
       }
     },
     "3d-segmentation-point-clouds": {
       "cpu": {
         "status": "FAILED",
-        "failure_category": "OPENVINO_ERROR",
+        "failure_category": "DEPENDENCY",
         "ok_runs": 0,
         "required_runs": 3,
         "durations_s": [],
@@ -2955,9 +3339,13 @@
           "created": true
         },
         "notes": [
-          "ok_runs=0/3: \u001b[31mNameError\u001b[39m: name 'point_data' is not defined"
+          "ok_runs=0/3: NameError: name 'point_data' is not defined",
+          "adjudicated (UPSTREAM_NOTEBOOK_RERUN_SCOPING): point_data is assigned only inside `if not point_data_path.exists()`; with data/chair.pts cached from an earlier partial run the variable is undefined (NameError cell 11). Upstream notebook rerun bug, not an OpenVINO/AMD failure.",
+          "execution category corrected by comprehensive audit: OPENVINO_ERROR -> DEPENDENCY (NameError from upstream rerun-scoping bug, not an OpenVINO runtime error)"
         ],
-        "updated": "2026-10-06T19:14:06+00:00"
+        "updated": "2026-10-06T19:14:06+00:00",
+        "compatibility_outcome": "BLOCKED_DEPENDENCY",
+        "outcome_reason": "UPSTREAM_NOTEBOOK_RERUN_SCOPING"
       }
     },
     "auto-device": {
@@ -2987,7 +3375,12 @@
         "notes": [
           "DEVICE_PROOF_INCOMPLETE: device proof state AUTO_UNRESOLVED"
         ],
-        "updated": "2026-10-06T19:20:37+00:00"
+        "updated": "2026-10-06T19:20:37+00:00",
+        "compatibility_outcome": "VERIFIED_WITH_LIMITATIONS",
+        "outcome_reason": "",
+        "limitation_codes": [
+          "DEVICE_PROOF_INCOMPLETE"
+        ]
       }
     },
     "clip-zero-shot-classification": {
@@ -3013,7 +3406,9 @@
         "notes": [
           "ok_runs=0/3: Please note that you may need to restart your runtime after installation."
         ],
-        "updated": "2026-10-06T19:21:00+00:00"
+        "updated": "2026-10-06T19:21:00+00:00",
+        "compatibility_outcome": "BLOCKED_DEPENDENCY",
+        "outcome_reason": "MISSING_OR_BROKEN_DEPENDENCY"
       }
     },
     "convert-to-openvino": {
@@ -3037,9 +3432,11 @@
           "created": false
         },
         "notes": [
-          "ok_runs=0/3: \u001b[31mModuleNotFoundError\u001b[39m: Could not import module 'AutoModelForSequenceClassification'. Are this object's requirements defined correctly?"
+          "ok_runs=0/3: ModuleNotFoundError: Could not import module 'AutoModelForSequenceClassification'. Are this object's requirements defined correctly?"
         ],
-        "updated": "2026-10-06T19:21:58+00:00"
+        "updated": "2026-10-06T19:21:58+00:00",
+        "compatibility_outcome": "BLOCKED_DEPENDENCY",
+        "outcome_reason": "MISSING_OR_BROKEN_DEPENDENCY"
       }
     },
     "convnext-classification": {
@@ -3067,7 +3464,9 @@
           "created": true
         },
         "notes": [],
-        "updated": "2026-10-06T19:22:26+00:00"
+        "updated": "2026-10-06T19:22:26+00:00",
+        "compatibility_outcome": "VERIFIED",
+        "outcome_reason": ""
       }
     },
     "ct-segmentation-quantize-nncf": {
@@ -3091,9 +3490,12 @@
           "created": true
         },
         "notes": [
-          "ok_runs=0/3: nbclient.exceptions.DeadKernelError: Kernel died"
+          "ok_runs=0/3: nbclient.exceptions.DeadKernelError: Kernel died",
+          "adjudicated (KERNEL_DEATH_UNDIAGNOSED): nbclient DeadKernelError during NNCF quantization; no OOM/kernel-log proof either way. Genuine unresolved failure with a valid environment \u2014 kept as compatibility failure, RCA candidate."
         ],
-        "updated": "2026-10-06T19:25:16+00:00"
+        "updated": "2026-10-06T19:25:16+00:00",
+        "compatibility_outcome": "FAILED_COMPATIBILITY",
+        "outcome_reason": "KERNEL_DEATH_UNDIAGNOSED"
       }
     },
     "detectron2-to-openvino": {
@@ -3121,7 +3523,9 @@
           "created": false
         },
         "notes": [],
-        "updated": "2026-10-06T19:26:26+00:00"
+        "updated": "2026-10-06T19:26:26+00:00",
+        "compatibility_outcome": "VERIFIED",
+        "outcome_reason": ""
       }
     },
     "fast-segment-anything": {
@@ -3151,7 +3555,12 @@
         "notes": [
           "CORE_INFERENCE_VERIFIED; INTERACTIVE_UI_NOT_TESTED (documented skip policy)"
         ],
-        "updated": "2026-10-06T19:29:29+00:00"
+        "updated": "2026-10-06T19:29:29+00:00",
+        "compatibility_outcome": "VERIFIED_WITH_LIMITATIONS",
+        "outcome_reason": "",
+        "limitation_codes": [
+          "INTERACTIVE_UI_NOT_TESTED"
+        ]
       }
     },
     "hugging-face-hub": {
@@ -3179,7 +3588,9 @@
           "created": true
         },
         "notes": [],
-        "updated": "2026-10-06T19:31:36+00:00"
+        "updated": "2026-10-06T19:31:36+00:00",
+        "compatibility_outcome": "VERIFIED",
+        "outcome_reason": ""
       }
     },
     "image-classification-quantization": {
@@ -3207,7 +3618,9 @@
           "created": true
         },
         "notes": [],
-        "updated": "2026-10-06T19:34:45+00:00"
+        "updated": "2026-10-06T19:34:45+00:00",
+        "compatibility_outcome": "VERIFIED",
+        "outcome_reason": ""
       }
     },
     "jina-clip": {
@@ -3233,7 +3646,9 @@
         "notes": [
           "ok_runs=0/3: "
         ],
-        "updated": "2026-10-06T19:44:47+00:00"
+        "updated": "2026-10-06T19:44:47+00:00",
+        "compatibility_outcome": "BLOCKED_TIMEOUT",
+        "outcome_reason": "TIMEOUT_CONVERSION_EXPORT"
       }
     },
     "language-quantize-bert": {
@@ -3261,7 +3676,9 @@
           "created": true
         },
         "notes": [],
-        "updated": "2026-10-06T19:54:00+00:00"
+        "updated": "2026-10-06T19:54:00+00:00",
+        "compatibility_outcome": "VERIFIED",
+        "outcome_reason": ""
       }
     },
     "oneformer-segmentation": {
@@ -3291,7 +3708,12 @@
         "notes": [
           "CORE_INFERENCE_VERIFIED; INTERACTIVE_UI_NOT_TESTED (documented skip policy)"
         ],
-        "updated": "2026-10-06T19:55:38+00:00"
+        "updated": "2026-10-06T19:55:38+00:00",
+        "compatibility_outcome": "VERIFIED_WITH_LIMITATIONS",
+        "outcome_reason": "",
+        "limitation_codes": [
+          "INTERACTIVE_UI_NOT_TESTED"
+        ]
       }
     },
     "optical-character-recognition": {
@@ -3319,7 +3741,9 @@
           "created": true
         },
         "notes": [],
-        "updated": "2026-10-06T19:55:52+00:00"
+        "updated": "2026-10-06T19:55:52+00:00",
+        "compatibility_outcome": "VERIFIED",
+        "outcome_reason": ""
       }
     },
     "optimize-preprocessing": {
@@ -3347,7 +3771,9 @@
           "created": true
         },
         "notes": [],
-        "updated": "2026-10-06T19:57:35+00:00"
+        "updated": "2026-10-06T19:57:35+00:00",
+        "compatibility_outcome": "VERIFIED",
+        "outcome_reason": ""
       }
     },
     "pointpillars": {
@@ -3381,7 +3807,9 @@
         "revalidation_reasons": [
           "pin:a8809170cc4f->329562e6031d",
           "upstream_notebook_changed"
-        ]
+        ],
+        "compatibility_outcome": "VERIFIED",
+        "outcome_reason": ""
       }
     },
     "pytorch-post-training-quantization-nncf": {
@@ -3409,7 +3837,9 @@
           "created": true
         },
         "notes": [],
-        "updated": "2026-10-06T20:10:14+00:00"
+        "updated": "2026-10-06T20:10:14+00:00",
+        "compatibility_outcome": "VERIFIED",
+        "outcome_reason": ""
       }
     },
     "pytorch-to-openvino": {
@@ -3437,7 +3867,9 @@
           "created": true
         },
         "notes": [],
-        "updated": "2026-10-06T20:14:34+00:00"
+        "updated": "2026-10-06T20:14:34+00:00",
+        "compatibility_outcome": "VERIFIED",
+        "outcome_reason": ""
       }
     },
     "rf-detr-object-detection": {
@@ -3461,9 +3893,11 @@
           "created": false
         },
         "notes": [
-          "ok_runs=0/3: \u001b[31mModuleNotFoundError\u001b[39m: No module named 'triton.backends'"
+          "ok_runs=0/3: ModuleNotFoundError: No module named 'triton.backends'"
         ],
-        "updated": "2026-10-06T20:15:09+00:00"
+        "updated": "2026-10-06T20:15:09+00:00",
+        "compatibility_outcome": "BLOCKED_DEPENDENCY",
+        "outcome_reason": "MISSING_OR_BROKEN_DEPENDENCY"
       }
     },
     "segment-anything-2-image": {
@@ -3500,6 +3934,12 @@
         "revalidation_reasons": [
           "pin:a8809170cc4f->329562e6031d",
           "upstream_notebook_changed"
+        ],
+        "compatibility_outcome": "VERIFIED_WITH_LIMITATIONS",
+        "outcome_reason": "",
+        "limitation_codes": [
+          "INTERACTIVE_UI_NOT_TESTED",
+          "EXECUTION_ONLY"
         ]
       }
     },
@@ -3526,7 +3966,9 @@
         "notes": [
           "ok_runs=0/3: "
         ],
-        "updated": "2026-10-06T20:32:04+00:00"
+        "updated": "2026-10-06T20:32:04+00:00",
+        "compatibility_outcome": "BLOCKED_TIMEOUT",
+        "outcome_reason": "TIMEOUT_CONVERSION_EXPORT"
       }
     },
     "speech-recognition-quantization-wav2vec2": {
@@ -3554,7 +3996,9 @@
           "created": true
         },
         "notes": [],
-        "updated": "2026-10-06T20:43:05+00:00"
+        "updated": "2026-10-06T20:43:05+00:00",
+        "compatibility_outcome": "VERIFIED",
+        "outcome_reason": ""
       }
     },
     "surya-line-level-text-detection": {
@@ -3584,7 +4028,12 @@
         "notes": [
           "CORE_INFERENCE_VERIFIED; INTERACTIVE_UI_NOT_TESTED (documented skip policy)"
         ],
-        "updated": "2026-10-06T20:51:59+00:00"
+        "updated": "2026-10-06T20:51:59+00:00",
+        "compatibility_outcome": "VERIFIED_WITH_LIMITATIONS",
+        "outcome_reason": "",
+        "limitation_codes": [
+          "INTERACTIVE_UI_NOT_TESTED"
+        ]
       }
     },
     "tensorflow-classification-to-openvino": {
@@ -3612,7 +4061,9 @@
           "created": true
         },
         "notes": [],
-        "updated": "2026-10-06T20:52:49+00:00"
+        "updated": "2026-10-06T20:52:49+00:00",
+        "compatibility_outcome": "VERIFIED",
+        "outcome_reason": ""
       }
     },
     "tensorflow-object-detection-api-with-openvino": {
@@ -3640,7 +4091,9 @@
           "created": true
         },
         "notes": [],
-        "updated": "2026-10-06T20:54:14+00:00"
+        "updated": "2026-10-06T20:54:14+00:00",
+        "compatibility_outcome": "VERIFIED",
+        "outcome_reason": ""
       }
     },
     "tflite-to-openvino": {
@@ -3668,7 +4121,9 @@
           "created": true
         },
         "notes": [],
-        "updated": "2026-10-06T21:01:45+00:00"
+        "updated": "2026-10-06T21:01:45+00:00",
+        "compatibility_outcome": "VERIFIED",
+        "outcome_reason": ""
       }
     },
     "vehicle-detection-and-recognition": {
@@ -3696,7 +4151,9 @@
           "created": true
         },
         "notes": [],
-        "updated": "2026-10-06T21:01:57+00:00"
+        "updated": "2026-10-06T21:01:57+00:00",
+        "compatibility_outcome": "VERIFIED",
+        "outcome_reason": ""
       }
     },
     "yolov11-quantization-with-accuracy-control": {
@@ -3722,7 +4179,9 @@
         "notes": [
           "ok_runs=0/3: "
         ],
-        "updated": "2026-10-06T21:11:59+00:00"
+        "updated": "2026-10-06T21:11:59+00:00",
+        "compatibility_outcome": "BLOCKED_TIMEOUT",
+        "outcome_reason": "TIMEOUT_CONVERSION_EXPORT"
       }
     },
     "yolov26-obb": {
@@ -3750,7 +4209,9 @@
           "created": true
         },
         "notes": [],
-        "updated": "2026-10-06T21:14:26+00:00"
+        "updated": "2026-10-06T21:14:26+00:00",
+        "compatibility_outcome": "VERIFIED",
+        "outcome_reason": ""
       }
     },
     "z-image-turbo": {
@@ -3774,9 +4235,11 @@
           "created": false
         },
         "notes": [
-          "ok_runs=0/3: \u001b[31mCalledProcessError\u001b[39m: Command '['optimum-cli', 'export', 'openvino', '--model', 'Tongyi-MAI/Z-Image-Turbo', 'Z-Image-Turbo/INT4', '--task', 'text-to-image', '--weight-format', 'int4', '--group-size', '64', '--ratio', '1.0']' returned non-zero exit status 1."
+          "ok_runs=0/3: CalledProcessError: Command '['optimum-cli', 'export', 'openvino', '--model', 'Tongyi-MAI/Z-Image-Turbo', 'Z-Image-Turbo/INT4', '--task', 'text-to-image', '--weight-format', 'int4', '--group-size', '64', '--ratio', '1.0']' returned non-zero exit status 1."
         ],
-        "updated": "2026-10-06T21:15:11+00:00"
+        "updated": "2026-10-06T21:15:11+00:00",
+        "compatibility_outcome": "BLOCKED_DEPENDENCY",
+        "outcome_reason": "MISSING_OR_BROKEN_DEPENDENCY"
       }
     },
     "bernini-r-image-video": {
@@ -3800,9 +4263,11 @@
           "created": true
         },
         "notes": [
-          "ok_runs=0/3: \u001b[31mKeyError\u001b[39m: 'blocks.0.attn1.to_q.weight'"
+          "ok_runs=0/3: KeyError: 'blocks.0.attn1.to_q.weight'"
         ],
-        "updated": "2026-10-06T21:16:10+00:00"
+        "updated": "2026-10-06T21:16:10+00:00",
+        "compatibility_outcome": "BLOCKED_RESOURCE",
+        "outcome_reason": "MODEL_ARTIFACT_INCOMPLETE_OR_CORRUPT"
       }
     },
     "modelscope-to-openvino": {
@@ -3830,7 +4295,9 @@
           "created": false
         },
         "notes": [],
-        "updated": "2026-10-06T21:17:19+00:00"
+        "updated": "2026-10-06T21:17:19+00:00",
+        "compatibility_outcome": "VERIFIED",
+        "outcome_reason": ""
       }
     },
     "openvino-tokenizers": {
@@ -3856,13 +4323,15 @@
         "notes": [
           "ok_runs=0/3: ReadValue node with name 'ReadValue_5627'  doesn't have sibling output"
         ],
-        "updated": "2026-10-06T21:18:05+00:00"
+        "updated": "2026-10-06T21:18:05+00:00",
+        "compatibility_outcome": "FAILED_COMPATIBILITY",
+        "outcome_reason": "OPENVINO_RUNTIME"
       }
     },
     "wan2.1-text-to-video": {
       "cpu": {
         "status": "FAILED",
-        "failure_category": "NETWORK",
+        "failure_category": "TIMEOUT",
         "ok_runs": 0,
         "required_runs": 3,
         "durations_s": [],
@@ -3880,9 +4349,12 @@
           "created": true
         },
         "notes": [
-          "ok_runs=0/3: -------------------"
+          "ok_runs=0/3: -------------------",
+          "reclassified by comprehensive audit: CellTimeoutError present in evidence logs; original category was a classifier rule-order defect"
         ],
-        "updated": "2026-10-06T22:05:39+00:00"
+        "updated": "2026-10-06T22:05:39+00:00",
+        "compatibility_outcome": "BLOCKED_TIMEOUT",
+        "outcome_reason": "TIMEOUT_CONVERSION_EXPORT"
       }
     },
     "3d-pose-estimation": {
@@ -3910,13 +4382,19 @@
           "EXECUTION_ONLY: no workload correctness contract (validation: {})",
           "repeatability_not_established: fewer than 3 successful runs (resource-bounded policy)"
         ],
-        "updated": "2026-10-06T01:18:44+00:00"
+        "updated": "2026-10-06T01:18:44+00:00",
+        "compatibility_outcome": "VERIFIED_WITH_LIMITATIONS",
+        "outcome_reason": "",
+        "limitation_codes": [
+          "REPEATABILITY_NOT_ESTABLISHED",
+          "EXECUTION_ONLY"
+        ]
       }
     },
     "action-recognition-webcam": {
       "cpu": {
         "status": "FAILED",
-        "failure_category": "UNKNOWN",
+        "failure_category": "DEPENDENCY",
         "ok_runs": 0,
         "required_runs": 1,
         "durations_s": [],
@@ -3934,9 +4412,13 @@
           "created": true
         },
         "notes": [
-          "ok_runs=0/1: \u001b[31mNameError\u001b[39m: name 'vocab_file_path' is not defined"
+          "ok_runs=0/1: NameError: name 'vocab_file_path' is not defined",
+          "adjudicated (UPSTREAM_NOTEBOOK_RERUN_SCOPING): vocab_file_path is assigned only inside a conditional in the upstream notebook; with the data file already cached (resumable workdir) the variable is undefined. Upstream notebook bug, not an OpenVINO/AMD failure.",
+          "execution category corrected by comprehensive audit: UNKNOWN -> DEPENDENCY (NameError from upstream rerun-scoping bug, not an OpenVINO runtime error)"
         ],
-        "updated": "2026-10-06T22:05:57+00:00"
+        "updated": "2026-10-06T22:05:57+00:00",
+        "compatibility_outcome": "BLOCKED_DEPENDENCY",
+        "outcome_reason": "UPSTREAM_NOTEBOOK_RERUN_SCOPING"
       }
     },
     "async-api": {
@@ -3964,7 +4446,12 @@
         "notes": [
           "repeatability_not_established: fewer than 3 successful runs (resource-bounded policy)"
         ],
-        "updated": "2026-10-06T22:06:47+00:00"
+        "updated": "2026-10-06T22:06:47+00:00",
+        "compatibility_outcome": "VERIFIED_WITH_LIMITATIONS",
+        "outcome_reason": "",
+        "limitation_codes": [
+          "REPEATABILITY_NOT_ESTABLISHED"
+        ]
       }
     },
     "depth-anything": {
@@ -3993,7 +4480,13 @@
           "repeatability_not_established: fewer than 3 successful runs (resource-bounded policy)",
           "CORE_INFERENCE_VERIFIED; INTERACTIVE_UI_NOT_TESTED (documented skip policy)"
         ],
-        "updated": "2026-10-06T22:09:54+00:00"
+        "updated": "2026-10-06T22:09:54+00:00",
+        "compatibility_outcome": "VERIFIED_WITH_LIMITATIONS",
+        "outcome_reason": "",
+        "limitation_codes": [
+          "REPEATABILITY_NOT_ESTABLISHED",
+          "INTERACTIVE_UI_NOT_TESTED"
+        ]
       }
     },
     "gpu-device": {
@@ -4017,9 +4510,12 @@
           "created": true
         },
         "notes": [
-          "ok_runs=0/1: nbclient.exceptions.DeadKernelError: Kernel died"
+          "ok_runs=0/1: nbclient.exceptions.DeadKernelError: Kernel died",
+          "adjudicated (OPENVINO_RUNTIME_DEVICE_ENUM): nbclient DeadKernelError while enumerating OpenVINO devices with an AMD Radeon iGPU present; unresolved \u2014 kept as compatibility failure, RCA candidate."
         ],
-        "updated": "2026-10-06T22:10:00+00:00"
+        "updated": "2026-10-06T22:10:00+00:00",
+        "compatibility_outcome": "FAILED_COMPATIBILITY",
+        "outcome_reason": "OPENVINO_RUNTIME_DEVICE_ENUM"
       }
     },
     "ltx-video": {
@@ -4043,9 +4539,12 @@
           "created": true
         },
         "notes": [
-          "ok_runs=0/1: \u001b[31mFileNotFoundError\u001b[39m: [Errno 2] No such file or directory: 'optimum-cli'"
+          "ok_runs=0/1: FileNotFoundError: [Errno 2] No such file or directory: 'optimum-cli'",
+          "notebook changed upstream after this attempt (pre-repin evidence; content sha differs from pinned snapshot); revalidation queued with failure-retry remediation"
         ],
-        "updated": "2026-10-06T22:14:18+00:00"
+        "updated": "2026-10-06T22:14:18+00:00",
+        "compatibility_outcome": "BLOCKED_DEPENDENCY",
+        "outcome_reason": "OPTIMUM_CLI_MISSING_OR_BROKEN"
       }
     },
     "mobileclip-video-search": {
@@ -4074,7 +4573,14 @@
           "repeatability_not_established: fewer than 3 successful runs (resource-bounded policy)",
           "CORE_INFERENCE_VERIFIED; INTERACTIVE_UI_NOT_TESTED (documented skip policy)"
         ],
-        "updated": "2026-10-06T01:36:09+00:00"
+        "updated": "2026-10-06T01:36:09+00:00",
+        "compatibility_outcome": "VERIFIED_WITH_LIMITATIONS",
+        "outcome_reason": "",
+        "limitation_codes": [
+          "REPEATABILITY_NOT_ESTABLISHED",
+          "INTERACTIVE_UI_NOT_TESTED",
+          "EXECUTION_ONLY"
+        ]
       }
     },
     "object-detection": {
@@ -4102,12 +4608,17 @@
         "notes": [
           "repeatability_not_established: fewer than 3 successful runs (resource-bounded policy)"
         ],
-        "updated": "2026-10-06T22:14:56+00:00"
+        "updated": "2026-10-06T22:14:56+00:00",
+        "compatibility_outcome": "VERIFIED_WITH_LIMITATIONS",
+        "outcome_reason": "",
+        "limitation_codes": [
+          "REPEATABILITY_NOT_ESTABLISHED"
+        ]
       }
     },
     "person-counting": {
       "cpu": {
-        "status": "FAILED",
+        "status": "VERIFIED_WITH_LIMITATIONS",
         "failure_category": "CORRECTNESS_ERROR",
         "ok_runs": 1,
         "required_runs": 1,
@@ -4128,9 +4639,15 @@
           "created": true
         },
         "notes": [
-          "{\"output_contains\": {\"processing has been successfully completed\": true, \"yolov8n_openvino_model\": false}, \"no_cell_error\": true, \"skipped_cells\": 0}"
+          "{\"output_contains\": {\"processing has been successfully completed\": true, \"yolov8n_openvino_model\": false}, \"no_cell_error\": true, \"skipped_cells\": 0}",
+          "contract corrected by comprehensive audit and re-evaluated against captured outputs (no new run): removed stale expectation(s) ['yolov8n_openvino_model']; reason: 'yolov8n_openvino_model' appears in notebook source paths but is never printed; 'image 1/' evidences the ultralytics OpenVINO inference actually executing."
         ],
-        "updated": "2026-10-06T22:15:31+00:00"
+        "updated": "2026-10-06T22:15:31+00:00",
+        "compatibility_outcome": "VERIFIED_WITH_LIMITATIONS",
+        "outcome_reason": "",
+        "limitation_codes": [
+          "REPEATABILITY_NOT_ESTABLISHED"
+        ]
       }
     },
     "person-tracking": {
@@ -4154,9 +4671,11 @@
           "created": true
         },
         "notes": [
-          "ok_runs=0/1: \u001b[31mModuleNotFoundError\u001b[39m: No module named 'deepsort_utils'"
+          "ok_runs=0/1: ModuleNotFoundError: No module named 'deepsort_utils'"
         ],
-        "updated": "2026-10-06T22:16:41+00:00"
+        "updated": "2026-10-06T22:16:41+00:00",
+        "compatibility_outcome": "BLOCKED_DEPENDENCY",
+        "outcome_reason": "MISSING_OR_BROKEN_DEPENDENCY"
       }
     },
     "pose-estimation": {
@@ -4184,7 +4703,12 @@
         "notes": [
           "repeatability_not_established: fewer than 3 successful runs (resource-bounded policy)"
         ],
-        "updated": "2026-10-06T22:17:46+00:00"
+        "updated": "2026-10-06T22:17:46+00:00",
+        "compatibility_outcome": "VERIFIED_WITH_LIMITATIONS",
+        "outcome_reason": "",
+        "limitation_codes": [
+          "REPEATABILITY_NOT_ESTABLISHED"
+        ]
       }
     },
     "sam3-segmentation": {
@@ -4213,7 +4737,13 @@
           "repeatability_not_established: fewer than 3 successful runs (resource-bounded policy)",
           "CORE_INFERENCE_VERIFIED; INTERACTIVE_UI_NOT_TESTED (documented skip policy)"
         ],
-        "updated": "2026-10-06T22:19:33+00:00"
+        "updated": "2026-10-06T22:19:33+00:00",
+        "compatibility_outcome": "VERIFIED_WITH_LIMITATIONS",
+        "outcome_reason": "",
+        "limitation_codes": [
+          "REPEATABILITY_NOT_ESTABLISHED",
+          "INTERACTIVE_UI_NOT_TESTED"
+        ]
       }
     },
     "segment-anything-2-video": {
@@ -4240,14 +4770,21 @@
         },
         "notes": [
           "repeatability_not_established: fewer than 3 successful runs (resource-bounded policy)",
-          "CORE_INFERENCE_VERIFIED; INTERACTIVE_UI_NOT_TESTED (documented skip policy)"
+          "CORE_INFERENCE_VERIFIED; INTERACTIVE_UI_NOT_TESTED (documented skip policy)",
+          "notebook changed upstream after this attempt (pre-repin evidence; content sha differs from pinned snapshot); revalidation queued with failure-retry remediation"
         ],
-        "updated": "2026-10-06T22:21:52+00:00"
+        "updated": "2026-10-06T22:21:52+00:00",
+        "compatibility_outcome": "VERIFIED_WITH_LIMITATIONS",
+        "outcome_reason": "",
+        "limitation_codes": [
+          "REPEATABILITY_NOT_ESTABLISHED",
+          "INTERACTIVE_UI_NOT_TESTED"
+        ]
       }
     },
     "stable-video-diffusion": {
       "cpu": {
-        "status": "FAILED",
+        "status": "VERIFIED_WITH_LIMITATIONS",
         "failure_category": "CORRECTNESS_ERROR",
         "ok_runs": 1,
         "required_runs": 1,
@@ -4268,9 +4805,16 @@
           "created": true
         },
         "notes": [
-          "{\"output_contains\": {\"successfully converted to IR and saved to model/\": false, \"compression rate: \\\\d+\\\\.\\\\d+\": true, \"Running on local URL\": true}, \"no_cell_error\": true, \"skipped_cells\": 1}"
+          "{\"output_contains\": {\"successfully converted to IR and saved to model/\": false, \"compression rate: \\\\d+\\\\.\\\\d+\": true, \"Running on local URL\": true}, \"no_cell_error\": true, \"skipped_cells\": 1}",
+          "contract corrected by comprehensive audit and re-evaluated against captured outputs (no new run): removed stale expectation(s) ['successfully converted to IR and saved to model/']; reason: conversion success is proven by the three compression-rate lines; the literal IR message changed upstream and is no longer printed."
         ],
-        "updated": "2026-10-06T22:26:02+00:00"
+        "updated": "2026-10-06T22:26:02+00:00",
+        "compatibility_outcome": "VERIFIED_WITH_LIMITATIONS",
+        "outcome_reason": "",
+        "limitation_codes": [
+          "REPEATABILITY_NOT_ESTABLISHED",
+          "INTERACTIVE_UI_NOT_TESTED"
+        ]
       }
     },
     "tflite-selfie-segmentation": {
@@ -4298,7 +4842,12 @@
         "notes": [
           "repeatability_not_established: fewer than 3 successful runs (resource-bounded policy)"
         ],
-        "updated": "2026-10-06T22:26:51+00:00"
+        "updated": "2026-10-06T22:26:51+00:00",
+        "compatibility_outcome": "VERIFIED_WITH_LIMITATIONS",
+        "outcome_reason": "",
+        "limitation_codes": [
+          "REPEATABILITY_NOT_ESTABLISHED"
+        ]
       }
     },
     "vision-monodepth": {
@@ -4326,7 +4875,12 @@
         "notes": [
           "repeatability_not_established: fewer than 3 successful runs (resource-bounded policy)"
         ],
-        "updated": "2026-10-06T22:27:07+00:00"
+        "updated": "2026-10-06T22:27:07+00:00",
+        "compatibility_outcome": "VERIFIED_WITH_LIMITATIONS",
+        "outcome_reason": "",
+        "limitation_codes": [
+          "REPEATABILITY_NOT_ESTABLISHED"
+        ]
       }
     },
     "wan2.2-text-image-to-video": {
@@ -4355,7 +4909,13 @@
           "repeatability_not_established: fewer than 3 successful runs (resource-bounded policy)",
           "CORE_INFERENCE_VERIFIED; INTERACTIVE_UI_NOT_TESTED (documented skip policy)"
         ],
-        "updated": "2026-10-06T22:29:43+00:00"
+        "updated": "2026-10-06T22:29:43+00:00",
+        "compatibility_outcome": "VERIFIED_WITH_LIMITATIONS",
+        "outcome_reason": "",
+        "limitation_codes": [
+          "REPEATABILITY_NOT_ESTABLISHED",
+          "INTERACTIVE_UI_NOT_TESTED"
+        ]
       }
     },
     "yoloe-26-open-vocabulary": {
@@ -4379,9 +4939,11 @@
           "created": true
         },
         "notes": [
-          "ok_runs=0/1: \u001b[31mRuntimeError\u001b[39m: PytorchStreamReader failed reading zip archive: failed finding central directory"
+          "ok_runs=0/1: RuntimeError: PytorchStreamReader failed reading zip archive: failed finding central directory"
         ],
-        "updated": "2026-10-06T22:30:49+00:00"
+        "updated": "2026-10-06T22:30:49+00:00",
+        "compatibility_outcome": "BLOCKED_RESOURCE",
+        "outcome_reason": "MODEL_ARTIFACT_INCOMPLETE_OR_CORRUPT"
       }
     },
     "yolov11-instance-segmentation": {
@@ -4410,7 +4972,13 @@
           "EXECUTION_ONLY: no workload correctness contract (validation: {})",
           "repeatability_not_established: fewer than 3 successful runs (resource-bounded policy)"
         ],
-        "updated": "2026-10-06T22:34:30+00:00"
+        "updated": "2026-10-06T22:34:30+00:00",
+        "compatibility_outcome": "VERIFIED_WITH_LIMITATIONS",
+        "outcome_reason": "",
+        "limitation_codes": [
+          "REPEATABILITY_NOT_ESTABLISHED",
+          "EXECUTION_ONLY"
+        ]
       }
     },
     "yolov11-keypoint-detection": {
@@ -4438,7 +5006,12 @@
         "notes": [
           "repeatability_not_established: fewer than 3 successful runs (resource-bounded policy)"
         ],
-        "updated": "2026-10-07T01:47:25+00:00"
+        "updated": "2026-10-07T01:47:25+00:00",
+        "compatibility_outcome": "VERIFIED_WITH_LIMITATIONS",
+        "outcome_reason": "",
+        "limitation_codes": [
+          "REPEATABILITY_NOT_ESTABLISHED"
+        ]
       }
     },
     "yolov11-object-detection": {
@@ -4467,7 +5040,13 @@
           "EXECUTION_ONLY: no workload correctness contract (validation: {})",
           "repeatability_not_established: fewer than 3 successful runs (resource-bounded policy)"
         ],
-        "updated": "2026-10-06T22:37:33+00:00"
+        "updated": "2026-10-06T22:37:33+00:00",
+        "compatibility_outcome": "VERIFIED_WITH_LIMITATIONS",
+        "outcome_reason": "",
+        "limitation_codes": [
+          "REPEATABILITY_NOT_ESTABLISHED",
+          "EXECUTION_ONLY"
+        ]
       }
     },
     "yolov26-instance-segmentation": {
@@ -4495,7 +5074,12 @@
         "notes": [
           "repeatability_not_established: fewer than 3 successful runs (resource-bounded policy)"
         ],
-        "updated": "2026-10-07T01:48:43+00:00"
+        "updated": "2026-10-07T01:48:43+00:00",
+        "compatibility_outcome": "VERIFIED_WITH_LIMITATIONS",
+        "outcome_reason": "",
+        "limitation_codes": [
+          "REPEATABILITY_NOT_ESTABLISHED"
+        ]
       }
     },
     "yolov26-keypoint-detection": {
@@ -4523,7 +5107,12 @@
         "notes": [
           "repeatability_not_established: fewer than 3 successful runs (resource-bounded policy)"
         ],
-        "updated": "2026-10-07T01:49:41+00:00"
+        "updated": "2026-10-07T01:49:41+00:00",
+        "compatibility_outcome": "VERIFIED_WITH_LIMITATIONS",
+        "outcome_reason": "",
+        "limitation_codes": [
+          "REPEATABILITY_NOT_ESTABLISHED"
+        ]
       }
     },
     "yolov26-object-detection": {
@@ -4551,7 +5140,12 @@
         "notes": [
           "repeatability_not_established: fewer than 3 successful runs (resource-bounded policy)"
         ],
-        "updated": "2026-10-07T01:50:39+00:00"
+        "updated": "2026-10-07T01:50:39+00:00",
+        "compatibility_outcome": "VERIFIED_WITH_LIMITATIONS",
+        "outcome_reason": "",
+        "limitation_codes": [
+          "REPEATABILITY_NOT_ESTABLISHED"
+        ]
       }
     },
     "zeroscope-text2video": {
@@ -4580,7 +5174,14 @@
           "repeatability_not_established: fewer than 3 successful runs (resource-bounded policy)",
           "CORE_INFERENCE_VERIFIED; INTERACTIVE_UI_NOT_TESTED (documented skip policy)"
         ],
-        "updated": "2026-10-06T05:12:54+00:00"
+        "updated": "2026-10-06T05:12:54+00:00",
+        "compatibility_outcome": "VERIFIED_WITH_LIMITATIONS",
+        "outcome_reason": "",
+        "limitation_codes": [
+          "REPEATABILITY_NOT_ESTABLISHED",
+          "INTERACTIVE_UI_NOT_TESTED",
+          "EXECUTION_ONLY"
+        ]
       }
     },
     "gemma4": {
@@ -4606,7 +5207,9 @@
         "notes": [
           "ok_runs=0/1: ;"
         ],
-        "updated": "2026-10-06T22:38:47+00:00"
+        "updated": "2026-10-06T22:38:47+00:00",
+        "compatibility_outcome": "BLOCKED_RESOURCE",
+        "outcome_reason": "MODEL_ARTIFACT_INCOMPLETE_OR_CORRUPT"
       }
     },
     "llm-agent-react-langchain": {
@@ -4635,7 +5238,13 @@
           "repeatability_not_established: fewer than 3 successful runs (resource-bounded policy)",
           "CORE_INFERENCE_VERIFIED; INTERACTIVE_UI_NOT_TESTED (documented skip policy)"
         ],
-        "updated": "2026-10-07T02:02:40+00:00"
+        "updated": "2026-10-07T02:02:40+00:00",
+        "compatibility_outcome": "VERIFIED_WITH_LIMITATIONS",
+        "outcome_reason": "",
+        "limitation_codes": [
+          "REPEATABILITY_NOT_ESTABLISHED",
+          "INTERACTIVE_UI_NOT_TESTED"
+        ]
       }
     },
     "llm-code-assistant": {
@@ -4661,7 +5270,9 @@
         "notes": [
           "ok_runs=0/1: Empty weights data in bin file or bin file cannot be found!"
         ],
-        "updated": "2026-10-06T22:39:02+00:00"
+        "updated": "2026-10-06T22:39:02+00:00",
+        "compatibility_outcome": "BLOCKED_RESOURCE",
+        "outcome_reason": "MODEL_ARTIFACT_INCOMPLETE_OR_CORRUPT"
       }
     },
     "llm-rag-langchain": {
@@ -4685,9 +5296,12 @@
           "created": false
         },
         "notes": [
-          "ok_runs=0/1: \u001b[31mImportError\u001b[39m: Could not import optimum-intel python package. Please install it with: pip install -U 'optimum[openvino,nncf]'"
+          "ok_runs=0/1: ImportError: Could not import optimum-intel python package. Please install it with: pip install -U 'optimum[openvino,nncf]'",
+          "notebook changed upstream after this attempt (pre-repin evidence; content sha differs from pinned snapshot); revalidation queued with failure-retry remediation"
         ],
-        "updated": "2026-10-06T22:39:56+00:00"
+        "updated": "2026-10-06T22:39:56+00:00",
+        "compatibility_outcome": "BLOCKED_DEPENDENCY",
+        "outcome_reason": "OPTIMUM_CLI_MISSING_OR_BROKEN"
       }
     },
     "llm-rag-langchain-genai": {
@@ -4711,15 +5325,17 @@
           "created": false
         },
         "notes": [
-          "ok_runs=0/1: \u001b[31mCalledProcessError\u001b[39m: Command '['optimum-cli', 'export', 'openvino', '--model', 'TinyLlama/TinyLlama-1.1B-Chat-v1.0', 'tiny-llama-1b-chat/INT4_compressed_weights', '--task', 'text-generation-with-past', '--weight-format', 'int4', '--group-size', '128', '--ratio', '0.8']' returned non-zero ex"
+          "ok_runs=0/1: CalledProcessError: Command '['optimum-cli', 'export', 'openvino', '--model', 'TinyLlama/TinyLlama-1.1B-Chat-v1.0', 'tiny-llama-1b-chat/INT4_compressed_weights', '--task', 'text-generation-with-past', '--weight-format', 'int4', '--group-size', '128', '--ratio', '0.8']' returned non-zero ex"
         ],
-        "updated": "2026-10-06T22:40:33+00:00"
+        "updated": "2026-10-06T22:40:33+00:00",
+        "compatibility_outcome": "BLOCKED_DEPENDENCY",
+        "outcome_reason": "MISSING_OR_BROKEN_DEPENDENCY"
       }
     },
     "llm-rag-llamaindex": {
       "cpu": {
         "status": "FAILED",
-        "failure_category": "PACKAGE_CONFLICT",
+        "failure_category": "DEPENDENCY",
         "ok_runs": 0,
         "required_runs": 1,
         "durations_s": [],
@@ -4737,9 +5353,12 @@
           "created": false
         },
         "notes": [
-          "ok_runs=0/1: **********************************************************************"
+          "ok_runs=0/1: **********************************************************************",
+          "execution category corrected by comprehensive audit: PACKAGE_CONFLICT -> DEPENDENCY (missing NLTK data resource, not a package conflict)"
         ],
-        "updated": "2026-10-06T22:49:54+00:00"
+        "updated": "2026-10-06T22:49:54+00:00",
+        "compatibility_outcome": "BLOCKED_DEPENDENCY",
+        "outcome_reason": "MISSING_OR_BROKEN_DEPENDENCY"
       }
     },
     "multimodal-rag-llamaindex": {
@@ -4763,9 +5382,11 @@
           "created": true
         },
         "notes": [
-          "ok_runs=0/1: Can not open file /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/multimodal-rag-llamaindex/workdir-cpu/distil-whisper-large-v3-int8-ov/openvino_decoder_model.bin for mapping. Ensure that file exists and has appropriate permissions."
+          "ok_runs=0/1: Can not open file results/multimodal-rag-llamaindex/workdir-cpu/distil-whisper-large-v3-int8-ov/openvino_decoder_model.bin for mapping. Ensure that file exists and has appropriate permissions."
         ],
-        "updated": "2026-10-06T22:53:36+00:00"
+        "updated": "2026-10-06T22:53:36+00:00",
+        "compatibility_outcome": "BLOCKED_RESOURCE",
+        "outcome_reason": "MODEL_ARTIFACT_INCOMPLETE_OR_CORRUPT"
       }
     },
     "muse-glimmer": {
@@ -4791,7 +5412,9 @@
         "notes": [
           "ok_runs=0/1: Empty weights data in bin file or bin file cannot be found!"
         ],
-        "updated": "2026-10-06T22:54:43+00:00"
+        "updated": "2026-10-06T22:54:43+00:00",
+        "compatibility_outcome": "BLOCKED_RESOURCE",
+        "outcome_reason": "MODEL_ARTIFACT_INCOMPLETE_OR_CORRUPT"
       }
     },
     "nuextract-structure-extraction": {
@@ -4821,7 +5444,14 @@
           "repeatability_not_established: fewer than 3 successful runs (resource-bounded policy)",
           "CORE_INFERENCE_VERIFIED; INTERACTIVE_UI_NOT_TESTED (documented skip policy)"
         ],
-        "updated": "2026-10-06T22:55:48+00:00"
+        "updated": "2026-10-06T22:55:48+00:00",
+        "compatibility_outcome": "VERIFIED_WITH_LIMITATIONS",
+        "outcome_reason": "",
+        "limitation_codes": [
+          "REPEATABILITY_NOT_ESTABLISHED",
+          "INTERACTIVE_UI_NOT_TESTED",
+          "EXECUTION_ONLY"
+        ]
       }
     },
     "qwen3.8-mtp": {
@@ -4847,7 +5477,9 @@
         "notes": [
           "ok_runs=0/1: Empty weights data in bin file or bin file cannot be found!"
         ],
-        "updated": "2026-10-06T22:56:32+00:00"
+        "updated": "2026-10-06T22:56:32+00:00",
+        "compatibility_outcome": "BLOCKED_RESOURCE",
+        "outcome_reason": "MODEL_ARTIFACT_INCOMPLETE_OR_CORRUPT"
       }
     }
   },
@@ -5045,7 +5677,7 @@
       "log_tail": "Collecting json5\n  Using cached json5-0.15.0-py3-none-any.whl.metadata (37 kB)\nUsing cached json5-0.15.0-py3-none-any.whl (36 kB)\nInstalling collected packages: json5\nSuccessfully installed json5-0.15.0\n"
     }
   ],
-  "last_checkpoint": "2026-10-07T03:59:38+00:00",
+  "last_checkpoint": "2026-10-07T13:54:35+00:00",
   "current_workload": "llm-agent-react-langchain",
   "env_repairs": [
     {
