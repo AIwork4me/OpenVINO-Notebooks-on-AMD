@@ -14,7 +14,7 @@ model:
   license: ''
 cpu:
   runtime: openvino
-  status: FAILED
+  status: VERIFIED_WITH_LIMITATIONS
   wall_timeout_s: 5400
   per_cell_timeout_s: 1800
 gpu:

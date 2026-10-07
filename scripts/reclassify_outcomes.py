@@ -154,7 +154,9 @@ CATEGORY_CORRECTIONS: dict[tuple[str, str], tuple[str, str]] = {
     ("minicpm-o-4.5", "cpu"): ("DEPENDENCY", "transformers API drift, not a package conflict"),
     ("fastdraft_deepseek", "cpu"): ("MODEL_ACCESS", "model artifact absent at load time, not a runtime error"),
     ("vision-background-removal", "cpu"): ("NETWORK", "host unreachable; original UNKNOWN hid the network cause"),
-    ("qwen3", "cpu"): ("OPENVINO_ERROR", "OpenVINO runtime CL error, not UNKNOWN"),
+    # ("qwen3", "cpu") correction removed in v0.2.2: the CL error was an
+    # OpenVINO GPU-plugin failure mis-attributed to the CPU path; the fresh
+    # CPU-forced run VERIFIES (see RCA-003 / OVG-001).
     ("phi3_chatbot_demo", "cpu"): ("DEPENDENCY", "protobuf API drift, not a license restriction"),
     ("llm-rag-llamaindex", "cpu"): ("DEPENDENCY", "missing NLTK data resource, not a package conflict"),
 }

@@ -1,0 +1,62 @@
+[IPKernelApp] WARNING | Kernel is running over TCP without encryption. All communication (including code and outputs) is sent in plain text and is susceptible to eavesdropping. Use IPC transport or launch with kernel manager-provisioned CurveZMQ keys to enable transport encryption.
+Traceback (most recent call last):
+  File "/workspace/ov_amd/_nbexec.py", line 144, in main
+    client.execute()
+  File "/workspace/.venvs/cpu/6fefe98ca1d57f2b/lib/python3.12/site-packages/jupyter_core/utils/__init__.py", line 165, in wrapped
+    return loop.run_until_complete(inner)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/base_events.py", line 687, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/workspace/.venvs/cpu/6fefe98ca1d57f2b/lib/python3.12/site-packages/nbclient/client.py", line 709, in async_execute
+    await self.async_execute_cell(
+  File "/workspace/.venvs/cpu/6fefe98ca1d57f2b/lib/python3.12/site-packages/nbclient/client.py", line 1062, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/workspace/.venvs/cpu/6fefe98ca1d57f2b/lib/python3.12/site-packages/nbclient/client.py", line 918, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+state_dict_file = Path("pretrained_model/unet_kits19_state_dict.pth")
+if not state_dict_file.exists():
+    state_dict_url = "https://storage.openvinotoolkit.org/repositories/openvino_notebooks/models/kidney-segmentation-kits19/unet_kits19_state_dict.pth"
+    state_dict_file = download_file(state_dict_url, directory="pretrained_model")
+state_dict = torch.load(state_dict_file, map_location=torch.device("cpu"))
+
+new_state_dict = {}
+for k, v in state_dict.items():
+    new_key = k.replace("_model.", "")
+    new_state_dict[new_key] = v
+new_state_dict.pop("loss_function.pos_weight")
+
+model = monai.networks.nets.BasicUNet(spatial_dims=2, in_channels=1, out_channels=1).eval()
+model.load_state_dict(new_state_dict)
+------------------
+
+
+[31m---------------------------------------------------------------------------[39m
+[31mException[39m                                 Traceback (most recent call last)
+[36mCell[39m[36m [39m[32mIn[4][39m[32m, line 4[39m
+[32m      1[39m state_dict_file = Path([33m"pretrained_model/unet_kits19_state_dict.pth"[39m)
+[32m      2[39m [38;5;28;01mif[39;00m [38;5;28;01mnot[39;00m state_dict_file.exists():
+[32m      3[39m     state_dict_url = [33m"https://storage.openvinotoolkit.org/repositories/openvino_notebooks/models/kidney-segmentation-kits19/unet_kits19_state_dict.pth"[39m
+[32m----> [39m[32m4[39m     state_dict_file = download_file(state_dict_url, directory=[33m"pretrained_model"[39m)
+[32m      5[39m state_dict = torch.load(state_dict_file, map_location=torch.device([33m"cpu"[39m))
+[32m      6[39m 
+[32m      7[39m new_state_dict = {}
+
+[36mFile [39m[32m/workspace/results/ct-segmentation-quantize-nncf/workdir-cpu/notebook_utils.py:154[39m, in [36mdownload_file[39m[34m(url, filename, directory, show_progress)[39m
+[32m    149[39m     [38;5;28;01mraise[39;00m [38;5;167;01mException[39;00m(
+[32m    150[39m         [33m"[39m[33mConnection timed out. If you access the internet through a proxy server, please [39m[33m"[39m
+[32m    151[39m         [33m"[39m[33mmake sure the proxy is set in the shell from where you launched Jupyter.[39m[33m"[39m
+[32m    152[39m     ) [38;5;28;01mfrom[39;00m[38;5;250m [39m[38;5;28;01mNone[39;00m
+[32m    153[39m [38;5;28;01mexcept[39;00m requests.exceptions.RequestException [38;5;28;01mas[39;00m error:
+[32m--> [39m[32m154[39m     [38;5;28;01mraise[39;00m [38;5;167;01mException[39;00m([33mf[39m[33m"[39m[33mFile downloading failed with error: [39m[38;5;132;01m{[39;00merror[38;5;132;01m}[39;00m[33m"[39m) [38;5;28;01mfrom[39;00m[38;5;250m [39m[38;5;28;01mNone[39;00m
+[32m    156[39m filesize = [38;5;28mint[39m(response.headers.get([33m"[39m[33mContent-length[39m[33m"[39m, [32m0[39m))
+[32m    157[39m [38;5;66;03m# Let urllib3 verify we actually received as many bytes as the server[39;00m
+[32m    158[39m [38;5;66;03m# declared, at the raw transport level, before any gzip/deflate decoding[39;00m
+[32m    159[39m [38;5;66;03m# happens. iter_content() yields decompressed bytes, so counting those[39;00m
+[32m    160[39m [38;5;66;03m# ourselves and comparing to Content-length breaks for compressed[39;00m
+[32m    161[39m [38;5;66;03m# responses, since Content-length reflects the compressed size on the wire.[39;00m
+
+[31mException[39m: File downloading failed with error: HTTPSConnectionPool(host='storage.openvinotoolkit.org', port=443): Max retries exceeded with url: /repositories/openvino_notebooks/models/kidney-segmentation-kits19/unet_kits19_state_dict.pth (Caused by ProxyError('Unable to connect to proxy', OSError('Tunnel connection failed: 403 Forbidden')))
+

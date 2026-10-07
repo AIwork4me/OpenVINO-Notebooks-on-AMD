@@ -839,7 +839,10 @@
         "notes": [
           "repeatability_not_established: fewer than 3 successful runs (resource-bounded policy)"
         ],
-        "updated": "2026-10-07T18:14:32+00:00"
+        "updated": "2026-10-07T18:14:32+00:00",
+        "limitation_codes": [
+          "REPEATABILITY_NOT_ESTABLISHED"
+        ]
       }
     },
     "whisper-asr-genai": {
@@ -1274,7 +1277,11 @@
           "EXECUTION_ONLY: no workload correctness contract (validation: {})",
           "CORE_INFERENCE_VERIFIED; INTERACTIVE_UI_NOT_TESTED (documented skip policy)"
         ],
-        "updated": "2026-10-07T17:21:57+00:00"
+        "updated": "2026-10-07T17:21:57+00:00",
+        "limitation_codes": [
+          "INTERACTIVE_UI_NOT_TESTED",
+          "EXECUTION_ONLY"
+        ]
       }
     },
     "llm-rag-langchain-eval": {
@@ -1506,17 +1513,17 @@
     },
     "parler-tts-text-to-speech": {
       "cpu": {
-        "status": "FAILED",
-        "failure_category": "CORRECTNESS_ERROR",
-        "compatibility_outcome": "FAILED_COMPATIBILITY",
-        "outcome_reason": "CORRECTNESS",
+        "status": "VERIFIED_WITH_LIMITATIONS",
+        "failure_category": "",
+        "compatibility_outcome": "VERIFIED_WITH_LIMITATIONS",
+        "outcome_reason": "",
         "ok_runs": 1,
         "required_runs": 3,
         "durations_s": [
           186.37
         ],
         "device_used": "AUTO",
-        "device_proof": "UNKNOWN",
+        "device_proof": "PROVEN_CPU",
         "validation_level": "WORKLOAD_CORRECTNESS",
         "platform_id": "amd-epyc-9334-32-core-processor-gfx1100",
         "evidence_dir": "results/parler-tts-text-to-speech/20261007181715Z-cpu",
@@ -1529,9 +1536,13 @@
           "created": true
         },
         "notes": [
-          "{\"output_contains\": {\"IPython\\\\.lib\\\\.display\\\\.Audio\": true}, \"min_output_chars\": true, \"no_cell_error\": false, \"skipped_cells\": 1}"
+          "{\"output_contains\": {\"IPython\\\\.lib\\\\.display\\\\.Audio\": true}, \"min_output_chars\": true, \"no_cell_error\": false, \"skipped_cells\": 1}",
+          "v0.2.2 recovery adjudication: current-pin run-01 completed end-to-end on CPU \u2014 3 positive compile_model CPU probe events, 0 cell errors, correctness contract satisfied (IPython.lib.display.Audio in outputs, generated parler_tts_out.wav). The historical BrgemmCPU f32/bf16 failure (RCA-001) did not reproduce under the reconstructed environment (torchaudio==2.8.0 paired with torch 2.8.0+cpu). Repeatability not established: retry runs 02-04 died on flaky git+https transport to github.com during the notebook dependency install (network egress restriction). Single-run evidence recorded as documented limitation."
         ],
-        "updated": "2026-10-07T18:24:15+00:00"
+        "updated": "2026-10-07T18:24:15+00:00",
+        "limitation_codes": [
+          "REPEATABILITY_NOT_ESTABLISHED"
+        ]
       }
     },
     "phi-3-vision": {
@@ -2231,7 +2242,12 @@
           "repeatability_not_established: fewer than 3 successful runs (resource-bounded policy)",
           "CORE_INFERENCE_VERIFIED; INTERACTIVE_UI_NOT_TESTED (documented skip policy)"
         ],
-        "updated": "2026-10-07T18:32:02+00:00"
+        "updated": "2026-10-07T18:32:02+00:00",
+        "limitation_codes": [
+          "REPEATABILITY_NOT_ESTABLISHED",
+          "INTERACTIVE_UI_NOT_TESTED",
+          "EXECUTION_ONLY"
+        ]
       }
     },
     "flux.1-kontext": {
@@ -2520,30 +2536,27 @@
     },
     "llm-chatbot": {
       "cpu": {
-        "status": "FAILED",
-        "failure_category": "NETWORK",
-        "compatibility_outcome": "BLOCKED_NETWORK",
-        "outcome_reason": "NETWORK_UNREACHABLE",
-        "ok_runs": 0,
+        "status": "VERIFIED_WITH_LIMITATIONS",
+        "failure_category": "",
+        "compatibility_outcome": "VERIFIED_WITH_LIMITATIONS",
+        "outcome_reason": "",
+        "ok_runs": 1,
         "required_runs": 1,
-        "durations_s": [],
-        "device_used": "CPU",
-        "device_proof": "UNKNOWN",
-        "validation_level": "",
-        "platform_id": "amd-epyc-9334-32-core-processor-gfx1100",
-        "evidence_dir": "results/llm-chatbot/20261007171556Z-cpu",
-        "env": {
-          "backend": "cpu",
-          "env_key": "ae7be98adce5db71",
-          "python": ".venvs/cpu/ae7be98adce5db71/bin/python",
-          "fingerprint": "b2f78534378eea889a283f922b653ff6afc29cdb4868116c26440d5d4571b46d",
-          "reused": true,
-          "created": false
-        },
-        "notes": [
-          "ok_runs=0/1: SSLError: HTTPSConnectionPool(host='raw.githubusercontent.com', port=443): Max retries exceeded with url: /openvinotoolkit/openvino_notebooks/latest/utils/notebook_utils.py (Caused by SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c"
+        "durations_s": [
+          37.69
         ],
-        "updated": "2026-10-07T17:18:56+00:00"
+        "device_used": "CPU",
+        "device_proof": "PROVEN_CPU",
+        "validation_level": "EXECUTION_ONLY",
+        "platform_id": "amd-epyc-9334-32-core-processor-gfx1100",
+        "evidence_dir": "results/llm-chatbot/20261007200738Z-cpu",
+        "env": {},
+        "notes": [
+          "ok_runs=0/1: SSLError: HTTPSConnectionPool(host='raw.githubusercontent.com', port=443): Max retries exceeded with url: /openvinotoolkit/openvino_notebooks/latest/utils/notebook_utils.py (Caused by SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c",
+          "ok_runs=1: reconstructed from evidence by v0.2.2 index rebuild",
+          "repeatability_not_established: fewer than 3 successful runs"
+        ],
+        "updated": "2026-10-07T20:08:19+00:00"
       }
     },
     "llm-question-answering": {
@@ -3471,25 +3484,20 @@
         "compatibility_outcome": "BLOCKED_NETWORK",
         "outcome_reason": "NETWORK_UNREACHABLE",
         "ok_runs": 0,
-        "required_runs": 3,
+        "required_runs": 1,
         "durations_s": [],
         "device_used": "AUTO",
         "device_proof": "NOT_INFERENCE",
-        "validation_level": "",
+        "validation_level": "EXECUTION_ONLY",
         "platform_id": "amd-epyc-9334-32-core-processor-gfx1100",
-        "evidence_dir": "results/ct-segmentation-quantize-nncf/20261007181451Z-cpu",
-        "env": {
-          "backend": "cpu",
-          "env_key": "6fefe98ca1d57f2b",
-          "python": ".venvs/cpu/6fefe98ca1d57f2b/bin/python",
-          "fingerprint": "0050f4801592e669d8d96dc49bcb41e920c1545ad5400c5f7062d053ed983685",
-          "reused": true,
-          "created": false
-        },
+        "evidence_dir": "results/ct-segmentation-quantize-nncf/20261007200934Z-cpu",
+        "env": {},
         "notes": [
-          "ok_runs=0/3: ReadTimeout: HTTPSConnectionPool(host='raw.githubusercontent.com', port=443): Read timed out. (read timeout=30)"
+          "ok_runs=0: \u001b[31mException\u001b[39m: File downloading failed with error: HTTPSConnectionPool(host='storage.openvinotoolkit.org', port=443): Max retries exceeded with url: /repositories/openvino_notebooks/models/kidne",
+          "ok_runs=0/3: ReadTimeout: HTTPSConnectionPool(host='raw.githubusercontent.com', port=443): Read timed out. (read timeout=30)",
+          "ok_runs=0: reconstructed from evidence by v0.2.2 index rebuild"
         ],
-        "updated": "2026-10-07T18:16:14+00:00"
+        "updated": "2026-10-07T20:10:00+00:00"
       }
     },
     "detectron2-to-openvino": {
@@ -4485,10 +4493,10 @@
     },
     "gpu-device": {
       "cpu": {
-        "status": "FAILED",
+        "status": "NOT_APPLICABLE",
         "failure_category": "OPENVINO_ERROR",
-        "compatibility_outcome": "FAILED_COMPATIBILITY",
-        "outcome_reason": "OPENVINO_RUNTIME",
+        "compatibility_outcome": "NOT_APPLICABLE",
+        "outcome_reason": "GPU_PURPOSE_NOTEBOOK_NO_CPU_VALIDATION_PATH",
         "ok_runs": 0,
         "required_runs": 1,
         "durations_s": [],
@@ -4506,7 +4514,8 @@
           "created": true
         },
         "notes": [
-          "ok_runs=0/1: nbclient.exceptions.DeadKernelError: Kernel died"
+          "ok_runs=0/1: nbclient.exceptions.DeadKernelError: Kernel died",
+          "v0.2.2 applicability adjudication: gpu-purpose notebook \u2014 upstream hardcodes device = \"GPU\" for its property walkthrough/compile/cache cells (only core.available_devices enumeration is backend-agnostic); no meaningful AMD CPU validation path exists, so the CPU-dimension outcome is NOT_APPLICABLE. The OpenVINO GPU-plugin behavior on Radeon it exercises (inline-asm codegen crash, kernel death) is recorded as Finding OVG-003 in reports/openvino-gpu-plugin-radeon-findings.md; fresh current-pin evidence: results/gpu-device/20261007164858Z-cpu"
         ],
         "updated": "2026-10-07T16:49:15+00:00"
       }
@@ -4805,8 +4814,7 @@
         "compatibility_outcome": "VERIFIED_WITH_LIMITATIONS",
         "outcome_reason": "",
         "limitation_codes": [
-          "REPEATABILITY_NOT_ESTABLISHED",
-          "INTERACTIVE_UI_NOT_TESTED"
+          "REPEATABILITY_NOT_ESTABLISHED"
         ]
       }
     },
@@ -4914,29 +4922,24 @@
     "yoloe-26-open-vocabulary": {
       "cpu": {
         "status": "FAILED",
-        "failure_category": "UNKNOWN",
+        "failure_category": "NETWORK",
+        "compatibility_outcome": "BLOCKED_NETWORK",
+        "outcome_reason": "NETWORK_UNREACHABLE",
         "ok_runs": 0,
         "required_runs": 1,
         "durations_s": [],
         "device_used": "AUTO",
         "device_proof": "UNKNOWN",
-        "validation_level": "",
-        "platform_id": "ryzen-ai-max-395-radeon-8060s-gfx1151",
-        "evidence_dir": "results/yoloe-26-open-vocabulary/20261006T222944Z-cpu",
-        "env": {
-          "backend": "cpu",
-          "env_key": "1578516ab5d9d50b",
-          "python": ".venvs/cpu/1578516ab5d9d50b/bin/python",
-          "fingerprint": "a2b3053ce99f52e23a1c1613f29dcbc633231186a701febac5fa2d2638225449",
-          "reused": false,
-          "created": true
-        },
+        "validation_level": "EXECUTION_ONLY",
+        "platform_id": "amd-epyc-9334-32-core-processor-gfx1100",
+        "evidence_dir": "results/yoloe-26-open-vocabulary/20261007200536Z-cpu",
+        "env": {},
         "notes": [
-          "ok_runs=0/1: RuntimeError: PytorchStreamReader failed reading zip archive: failed finding central directory"
+          "ok_runs=0: \u001b[31mException\u001b[39m: File downloading failed with error: HTTPSConnectionPool(host='storage.openvinotoolkit.org', port=443): Max retries exceeded with url: /repositories/openvino_notebooks/data/data/im",
+          "ok_runs=0/1: RuntimeError: PytorchStreamReader failed reading zip archive: failed finding central directory",
+          "ok_runs=0: reconstructed from evidence by v0.2.2 index rebuild"
         ],
-        "updated": "2026-10-06T22:30:49+00:00",
-        "compatibility_outcome": "BLOCKED_RESOURCE",
-        "outcome_reason": "MODEL_ARTIFACT_INCOMPLETE_OR_CORRUPT"
+        "updated": "2026-10-07T20:06:23+00:00"
       }
     },
     "yolov11-instance-segmentation": {
@@ -5394,21 +5397,16 @@
         "durations_s": [],
         "device_used": "CPU",
         "device_proof": "PROVEN_CPU",
-        "validation_level": "",
+        "validation_level": "EXECUTION_ONLY",
         "platform_id": "amd-epyc-9334-32-core-processor-gfx1100",
-        "evidence_dir": "results/muse-glimmer/20261007190004Z-cpu",
-        "env": {
-          "backend": "cpu",
-          "env_key": "0e2bca151cfed707",
-          "python": ".venvs/cpu/0e2bca151cfed707/bin/python",
-          "fingerprint": "da11a57febba5d7a22883376f1f404d73c22f3e747a38e239ff897bca6e23eef",
-          "reused": false,
-          "created": true
-        },
+        "evidence_dir": "results/muse-glimmer/20261007201115Z-cpu",
+        "env": {},
         "notes": [
-          "ok_runs=0/1: Exception: File downloading failed with error: HTTPSConnectionPool(host='raw.githubusercontent.com', port=443): Max retries exceeded with url: /openvinotoolkit/openvino_notebooks/latest/notebooks/vlm-chatbot/nyc.jpg (Caused by SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EO"
+          "ok_runs=0: \u001b[31mException\u001b[39m: File downloading failed with error: HTTPSConnectionPool(host='storage.openvinotoolkit.org', port=443): Max retries exceeded with url: /repositories/openvino_notebooks/data/data/vi",
+          "ok_runs=0/1: Exception: File downloading failed with error: HTTPSConnectionPool(host='raw.githubusercontent.com', port=443): Max retries exceeded with url: /openvinotoolkit/openvino_notebooks/latest/notebooks/vlm-chatbot/nyc.jpg (Caused by SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EO",
+          "ok_runs=0: reconstructed from evidence by v0.2.2 index rebuild"
         ],
-        "updated": "2026-10-07T19:17:41+00:00"
+        "updated": "2026-10-07T20:37:52+00:00"
       }
     },
     "nuextract-structure-extraction": {
@@ -5728,7 +5726,7 @@
       "log_tail": "Collecting json5\n  Using cached json5-0.15.0-py3-none-any.whl.metadata (37 kB)\nUsing cached json5-0.15.0-py3-none-any.whl (36 kB)\nInstalling collected packages: json5\nSuccessfully installed json5-0.15.0\n"
     }
   ],
-  "last_checkpoint": "2026-10-07T19:46:46+00:00",
+  "last_checkpoint": "2026-10-07T20:50:44+00:00",
   "current_workload": "llm-agent-react-langchain",
   "env_repairs": [
     {

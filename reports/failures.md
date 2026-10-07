@@ -2,7 +2,18 @@
 
 Grouped by developer-facing compatibility outcome. BLOCKED_* outcomes are environment/network/model-access blockers — not AMD/OpenVINO compatibility failures. FAILED_COMPATIBILITY rows carry a reason identifying the failing layer.
 
-Total non-green attempts: 85
+Total non-green attempts: 83
+
+## 🌐 cpu · BLOCKED_NETWORK · NETWORK_UNREACHABLE — network unreachable — 8 workload(s)
+
+- **freevc-voice-conversion** — ok_runs=0/3: Exception: File downloading failed with error: HTTPSConnectionPool(host='storage.openvinotoolkit.org', port=443): Max retries exceeded with url: /repositories/openvino_notebooks/models/freevc/freevc.pth (Cau (evidence: results/freevc-voice-conversion/20261007194447Z-cpu)
+- **wav2lip** — ok_runs=0/1: Exception: Connection timed out. If you access the internet through a proxy server, please make sure the proxy is set in the shell from where you launched Jupyter. (evidence: results/wav2lip/20261006T190203Z-cpu)
+- **ct-segmentation-quantize-nncf** — ok_runs=0/3: Exception: File downloading failed with error: HTTPSConnectionPool(host='storage.openvinotoolkit.org', port=443): Max retries exceeded with url: /repositories/openvino_notebooks/models/kidney-segmentation-ki (evidence: results/ct-segmentation-quantize-nncf/20261007200934Z-cpu)
+- **yoloe-26-open-vocabulary** — ok_runs=0/1: Exception: File downloading failed with error: HTTPSConnectionPool(host='storage.openvinotoolkit.org', port=443): Max retries exceeded with url: /repositories/openvino_notebooks/data/data/image/coco_bike.jpg (evidence: results/yoloe-26-open-vocabulary/20261007200536Z-cpu)
+- **gemma4** — ok_runs=0/1: ProxyError: HTTPSConnectionPool(host='github-production-user-asset-6210df.s3.amazonaws.com', port=443): Max retries exceeded with url: /29454499/319483352-d5fbbd1a-d484-415c-88cb-9986625b7b11.jpg?X-Amz-Algor (evidence: results/gemma4/20261007193418Z-cpu)
+- **llm-code-assistant** — ok_runs=0/1: CalledProcessError: Command '['/workspace/.venvs/cpu/b5474a66a7540a14/bin/python', '-m', 'pip', 'install', '-q', '-U', 'gradio>=6.0.0', 'huggingface_hub', 'git+https://github.com/huggingface/optimum-intel.gi (evidence: results/llm-code-assistant/20261007183204Z-cpu)
+- **muse-glimmer** — ok_runs=0/1: Exception: File downloading failed with error: HTTPSConnectionPool(host='storage.openvinotoolkit.org', port=443): Max retries exceeded with url: /repositories/openvino_notebooks/data/data/video/Coco%20Walkin (evidence: results/muse-glimmer/20261007201115Z-cpu)
+- **qwen3.8-mtp** — ok_runs=0/1: URLError: <urlopen error Tunnel connection failed: 403 Forbidden> (evidence: results/qwen3.8-mtp/20261007191855Z-cpu)
 
 ## 🌐 cpu · BLOCKED_NETWORK · EXTERNAL_HOST_UNREACHABLE — external host unreachable — 5 workload(s)
 
@@ -12,11 +23,7 @@ Total non-green attempts: 85
 - **instant-id** — ok_runs=0/1: ConnectTimeout: HTTPSConnectionPool(host='drive.google.com', port=443): Max retries exceeded with url: /uc?id=18wEUfMNohBJ4K3Ly5wpTejPfDzp-8fI8 (Caused by ConnectTimeoutError(<HTTPSConnection(host='drive.goo (evidence: results/instant-id/20261006T170232Z-cpu)
 - **qwen3_agent** — ok_runs=0/1: Connection error. (evidence: results/qwen3_agent/20261006T185231Z-cpu)
 
-## 🌐 cpu · BLOCKED_NETWORK · NETWORK_UNREACHABLE — network unreachable — 1 workload(s)
-
-- **wav2lip** — ok_runs=0/1: Exception: Connection timed out. If you access the internet through a proxy server, please make sure the proxy is set in the shell from where you launched Jupyter. (evidence: results/wav2lip/20261006T190203Z-cpu)
-
-## 🔐 cpu · BLOCKED_MODEL_ACCESS · GATED_OR_RESTRICTED_MODEL — gated or restricted model — 7 workload(s)
+## 🔐 cpu · BLOCKED_MODEL_ACCESS · GATED_OR_RESTRICTED_MODEL — gated or restricted model — 9 workload(s)
 
 - **cosyvoice3-tts** — ok_runs=0/3: HTTPError: Authentication token does not exist, (evidence: results/cosyvoice3-tts/20261007T012002Z-cpu)
 - **latent-consistency-models-image-generation** — ok_runs=0/3: CalledProcessError: Command '['optimum-cli', 'export', 'openvino', '--model', 'SimianLuo/LCM_Dreamshaper_v7', 'LCM_Dreamshaper_v7_ov', '--weight-format', 'fp16']' returned non-zero exit status 1. (evidence: results/latent-consistency-models-image-generation/20261006T113723Z-cpu)
@@ -25,6 +32,8 @@ Total non-green attempts: 85
 - **flux.1-kontext** — ok_runs=0/1: CalledProcessError: Command '['optimum-cli', 'export', 'openvino', '--model', 'black-forest-labs/FLUX.1-Kontext-dev', 'FLUX.1-Kontext-dev/INT4', '--weight-format', 'int4', '--group-size', '64', '--ratio', '1 (evidence: results/flux.1-kontext/20261006T165218Z-cpu)
 - **mllama-3.2** — ok_runs=0/1: Access to model meta-llama/Llama-3.2-11B-Vision-Instruct is restricted and you are not in the authorized list. Visit https://huggingface.co/meta-llama/Llama-3.2-11B-Vision-Instruct to ask for access. (evidence: results/mllama-3.2/20261006T174315Z-cpu)
 - **stable-diffusion-v3-torch-fx** — ok_runs=0/1: Access to model stabilityai/stable-diffusion-3-medium-diffusers is restricted and you are not in the authorized list. Visit https://huggingface.co/stabilityai/stable-diffusion-3-medium-diffusers to ask for a (evidence: results/stable-diffusion-v3-torch-fx/20261006T190007Z-cpu)
+- **pyannote-audio** — ok_runs=0/3: Access to model pyannote/speaker-diarization-community-1 is restricted and you are not in the authorized list. Visit https://huggingface.co/pyannote/speaker-diarization-community-1 to ask for access. (evidence: results/pyannote-audio/20261007151313Z-cpu)
+- **pyannote-embedding** — ok_runs=0/3: Access to model pyannote/embedding is restricted and you are not in the authorized list. Visit https://huggingface.co/pyannote/embedding to ask for access. (evidence: results/pyannote-embedding/20261007154612Z-cpu)
 
 ## 📦 cpu · BLOCKED_DEPENDENCY · MISSING_OR_BROKEN_DEPENDENCY — missing or broken dependency — 16 workload(s)
 
@@ -117,18 +126,11 @@ Total non-green attempts: 85
 - **unlimited-ocr** — ok_runs=0/3: (evidence: results/unlimited-ocr/20261006T142458Z-cpu)
 - **voxcpm2-tts** — ok_runs=0/3: (evidence: results/voxcpm2-tts/20261006T144007Z-cpu)
 
-## 💾 cpu · BLOCKED_RESOURCE · MODEL_ARTIFACT_INCOMPLETE_OR_CORRUPT — model artifact incomplete or corrupt — 10 workload(s)
+## 💾 cpu · BLOCKED_RESOURCE · MODEL_ARTIFACT_INCOMPLETE_OR_CORRUPT — model artifact incomplete or corrupt — 3 workload(s)
 
-- **freevc-voice-conversion** — ok_runs=0/3: RuntimeError: PytorchStreamReader failed reading zip archive: failed finding central directory (evidence: results/freevc-voice-conversion/20261006T110446Z-cpu)
-- **flux.1-image-generation** — ok_runs=0/1: Empty weights data in bin file or bin file cannot be found! (evidence: results/flux.1-image-generation/20261006T165049Z-cpu)
 - **minicpm-o-omnimodal-chatbot** — ok_runs=0/1: FileNotFoundError: No such file or directory: MiniCPM-o-2_6/ckpt/model-00001-of-00004.safetensors (evidence: results/minicpm-o-omnimodal-chatbot/20261006T171938Z-cpu)
 - **bernini-r-image-video** — ok_runs=0/3: KeyError: 'blocks.0.attn1.to_q.weight' (evidence: results/bernini-r-image-video/20261006T211512Z-cpu)
-- **yoloe-26-open-vocabulary** — ok_runs=0/1: RuntimeError: PytorchStreamReader failed reading zip archive: failed finding central directory (evidence: results/yoloe-26-open-vocabulary/20261006T222944Z-cpu)
-- **gemma4** — ok_runs=0/1: ; (evidence: results/gemma4/20261006T223734Z-cpu)
-- **llm-code-assistant** — ok_runs=0/1: Empty weights data in bin file or bin file cannot be found! (evidence: results/llm-code-assistant/20261006T223847Z-cpu)
 - **multimodal-rag-llamaindex** — ok_runs=0/1: Can not open file results/multimodal-rag-llamaindex/workdir-cpu/distil-whisper-large-v3-int8-ov/openvino_decoder_model.bin for mapping. Ensure that file exists and has appropriate permissions. (evidence: results/multimodal-rag-llamaindex/20261006T224956Z-cpu)
-- **muse-glimmer** — ok_runs=0/1: Empty weights data in bin file or bin file cannot be found! (evidence: results/muse-glimmer/20261006T225336Z-cpu)
-- **qwen3.8-mtp** — ok_runs=0/1: Empty weights data in bin file or bin file cannot be found! (evidence: results/qwen3.8-mtp/20261006T225549Z-cpu)
 
 ## 💾 cpu · BLOCKED_RESOURCE · REQUIRED_HARDWARE_ABSENT — required hardware absent — 1 workload(s)
 
@@ -138,20 +140,7 @@ Total non-green attempts: 85
 
 - **fastdraft_deepseek** — execution category corrected by comprehensive audit: OPENVINO_ERROR -> MODEL_ACCESS (model artifact absent at load time, not a runtime error) (evidence: results/fastdraft_deepseek/20261006T164655Z-cpu)
 
-## 🧩 cpu · FAILED_COMPATIBILITY · OPENVINO_RUNTIME — openvino runtime — 2 workload(s)
+## 🧩 cpu · FAILED_COMPATIBILITY · OPENVINO_RUNTIME — openvino runtime — 1 workload(s)
 
-- **parler-tts-text-to-speech** — ok_runs=0/3: BrgemmCPU node has incompatible input element types: f32 and bf16 (evidence: results/parler-tts-text-to-speech/20261007T024813Z-cpu)
-- **openvino-tokenizers** — ok_runs=0/3: ReadValue node with name 'ReadValue_5627'  doesn't have sibling output (evidence: results/openvino-tokenizers/20261006T211720Z-cpu)
-
-## 🧩 cpu · FAILED_COMPATIBILITY · OPENVINO_RUNTIME_CL_MAP — openvino runtime cl map — 1 workload(s)
-
-- **qwen3** — execution category corrected by comprehensive audit: UNKNOWN -> OPENVINO_ERROR (OpenVINO runtime CL error, not UNKNOWN) (evidence: results/qwen3/20261006T183929Z-cpu)
-
-## 🧩 cpu · FAILED_COMPATIBILITY · KERNEL_DEATH_UNDIAGNOSED — kernel death undiagnosed — 1 workload(s)
-
-- **ct-segmentation-quantize-nncf** — adjudicated (KERNEL_DEATH_UNDIAGNOSED): nbclient DeadKernelError during NNCF quantization; no OOM/kernel-log proof either way. Genuine unresolved failure with a valid environment — kept as compatibility failure, RCA cand (evidence: results/ct-segmentation-quantize-nncf/20261006T192227Z-cpu)
-
-## 🧩 cpu · FAILED_COMPATIBILITY · OPENVINO_RUNTIME_DEVICE_ENUM — openvino runtime device enum — 1 workload(s)
-
-- **gpu-device** — adjudicated (OPENVINO_RUNTIME_DEVICE_ENUM): nbclient DeadKernelError while enumerating OpenVINO devices with an AMD Radeon iGPU present; unresolved — kept as compatibility failure, RCA candidate. (evidence: results/gpu-device/20261006T220955Z-cpu)
+- **openvino-tokenizers** — ok_runs=0/3: ReadValue node with name 'ReadValue_5627'  doesn't have sibling output (evidence: results/openvino-tokenizers/20261007162645Z-cpu)
 

@@ -14,7 +14,7 @@ model:
   license: ''
 cpu:
   runtime: openvino
-  status: FAILED
+  status: VERIFIED_WITH_LIMITATIONS
   wall_timeout_s: 5400
   per_cell_timeout_s: 2700
 gpu:
@@ -35,4 +35,4 @@ patches:
     \ every other notebook); on egress-restricted runners this kills the run after\
     \ the model conversion stage. Documented minimal guard, identical semantics when\
     \ the file is absent. The pinned, sha-verified copy is preseeded by the harness."
-last_verified: '2026-10-06T17:18:46+00:00'
+last_verified: '2026-10-07T20:08:22+00:00'
