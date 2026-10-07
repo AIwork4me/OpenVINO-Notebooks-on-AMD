@@ -28,9 +28,5 @@
     "help_ok": true
   },
   "diagnosis": "HEALTHY",
-  "remediation": {
-    "attempted": true,
-    "ok": true,
-    "log_tail": "{\n  \"openvino\": {\n    \"installed\": true,\n    \"version\": \"2026.4.1\"\n  },\n  \"optimum\": {\n    \"installed\": true,\n    \"version\": \"2.3.0\"\n  },\n  \"optimum-intel\": {\n    \"installed\": true,\n    \"version\": \"2.2.0\"\n  },\n  \"transformers\": {\n    \"installed\": true,\n    \"version\": \"5.5.4\"\n  },\n  \"huggingface_hub\": {\n    \"installed\": true,\n    \"version\": \"1.21.0\"\n  }\n}"
-  }
+  "remediation": null
 }

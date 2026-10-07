@@ -32,12 +32,6 @@ KEY_PACKAGES = (
 
 
 def _live_packages(python: str) -> dict[str, str]:
-    code = (
-        "import importlib.metadata as md, json\n"
-        "out = {}\n"
-        "for d in md.distributions():\n"
-    )
-    # single-pass with fallback for missing metadata
     script = (
         "import importlib.metadata as md, json\n"
         "out = {}\n"
