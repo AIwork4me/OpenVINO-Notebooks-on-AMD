@@ -597,6 +597,8 @@ def _record(state: dict[str, Any], entry: NotebookEntry, backend: str, out: Atte
             evidence_ref = str(out.evidence_dir)
     notes_text = "\n".join(out.notes)
     outcome, reason = derive_outcome(out.status.value, out.failure_category, notes_text)
+    from ov_amd.public_paths import sanitize_public_text as _spt
+
     rec[backend] = {
         "status": out.status.value,
         "failure_category": out.failure_category,
@@ -611,7 +613,7 @@ def _record(state: dict[str, Any], entry: NotebookEntry, backend: str, out: Atte
         "platform_id": hardware.platform_id(),
         "evidence_dir": evidence_ref,
         "env": out.env_info,
-        "notes": out.notes,
+        "notes": [_spt(n) for n in out.notes],
         "updated": _utcnow(),
     }
     # mirror status into workloads/<id>/workload.yaml

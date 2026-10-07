@@ -373,7 +373,7 @@
           "created": true
         },
         "notes": [
-          "ok_runs=0/3: \u001b[31mImportError\u001b[39m: cannot import name 'resolve_revision' from 'huggingface_hub' (/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/2c24bba1924a9c98/lib/python3.12/site-packages/huggingface_hub/__init__.py)"
+          "ok_runs=0/3: ImportError: cannot import name 'resolve_revision' from 'huggingface_hub' (.venvs/cpu/2c24bba1924a9c98/lib/python3.12/site-packages/huggingface_hub/__init__.py)"
         ],
         "updated": "2026-10-06T10:00:46+00:00",
         "compatibility_outcome": "BLOCKED_DEPENDENCY",
@@ -401,7 +401,7 @@
           "created": false
         },
         "notes": [
-          "ok_runs=0/3: \u001b[31mHTTPError\u001b[39m: Authentication token does not exist,"
+          "ok_runs=0/3: HTTPError: Authentication token does not exist,"
         ],
         "updated": "2026-10-07T01:30:51+00:00",
         "historical_status": "FAILED",
@@ -581,7 +581,7 @@
           "created": false
         },
         "notes": [
-          "ok_runs=0/3: \u001b[31mCalledProcessError\u001b[39m: Command '['optimum-cli', 'export', 'openvino', '--model', 'baidu/ERNIE-Image-Turbo', 'ERNIE-Image-Turbo/INT4', '--task', 'text-to-image', '--weight-format', 'int4', '--ratio', '0.8']' returned non-zero exit status 1."
+          "ok_runs=0/3: CalledProcessError: Command '['optimum-cli', 'export', 'openvino', '--model', 'baidu/ERNIE-Image-Turbo', 'ERNIE-Image-Turbo/INT4', '--task', 'text-to-image', '--weight-format', 'int4', '--ratio', '0.8']' returned non-zero exit status 1."
         ],
         "updated": "2026-10-06T10:23:42+00:00",
         "compatibility_outcome": "BLOCKED_DEPENDENCY",
@@ -867,7 +867,7 @@
           "created": true
         },
         "notes": [
-          "ok_runs=0/1: \u001b[31mConnectTimeout\u001b[39m: HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /spaces/distil-whisper/whisper-vs-distil-whisper/resolve/main/assets/example_1.wav (Caused by ConnectTimeoutError(<HTTPSConnection(host='huggingface.co', port=443) at 0x704b9c270a10>, 'Conn"
+          "ok_runs=0/1: ConnectTimeout: HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /spaces/distil-whisper/whisper-vs-distil-whisper/resolve/main/assets/example_1.wav (Caused by ConnectTimeoutError(<HTTPSConnection(host='huggingface.co', port=443) at 0x704b9c270a10>, 'Conn"
         ],
         "updated": "2026-10-06T19:13:58+00:00",
         "compatibility_outcome": "BLOCKED_NETWORK",
@@ -930,7 +930,7 @@
           "created": true
         },
         "notes": [
-          "ok_runs=0/3: \u001b[31mRuntimeError\u001b[39m: PytorchStreamReader failed reading zip archive: failed finding central directory"
+          "ok_runs=0/3: RuntimeError: PytorchStreamReader failed reading zip archive: failed finding central directory"
         ],
         "updated": "2026-10-06T11:05:42+00:00",
         "compatibility_outcome": "BLOCKED_RESOURCE",
@@ -958,7 +958,7 @@
           "created": false
         },
         "notes": [
-          "ok_runs=0/3: cannot import name 'Qwen3VLForConditionalGeneration' from 'transformers' (/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages/transformers/__init__.py)"
+          "ok_runs=0/3: cannot import name 'Qwen3VLForConditionalGeneration' from 'transformers' (.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages/transformers/__init__.py)"
         ],
         "updated": "2026-10-06T11:06:28+00:00",
         "compatibility_outcome": "BLOCKED_DEPENDENCY",
@@ -1045,7 +1045,7 @@
           "created": false
         },
         "notes": [
-          "ok_runs=0/3: \u001b[31mCalledProcessError\u001b[39m: Command '['optimum-cli', 'export', 'openvino', '--model', 'zai-org/GLM-OCR', 'GLM-OCR/INT4', '--task', 'image-text-to-text', '--weight-format', 'int4', '--group-size', '128', '--ratio', '1.0']' returned non-zero exit status 1."
+          "ok_runs=0/3: CalledProcessError: Command '['optimum-cli', 'export', 'openvino', '--model', 'zai-org/GLM-OCR', 'GLM-OCR/INT4', '--task', 'image-text-to-text', '--weight-format', 'int4', '--group-size', '128', '--ratio', '1.0']' returned non-zero exit status 1."
         ],
         "updated": "2026-10-06T11:16:44+00:00",
         "compatibility_outcome": "BLOCKED_DEPENDENCY",
@@ -1158,7 +1158,7 @@
           "created": true
         },
         "notes": [
-          "ok_runs=0/3: \u001b[31mCalledProcessError\u001b[39m: Command '['optimum-cli', 'export', 'openvino', '--model', 'SimianLuo/LCM_Dreamshaper_v7', 'LCM_Dreamshaper_v7_ov', '--weight-format', 'fp16']' returned non-zero exit status 1."
+          "ok_runs=0/3: CalledProcessError: Command '['optimum-cli', 'export', 'openvino', '--model', 'SimianLuo/LCM_Dreamshaper_v7', 'LCM_Dreamshaper_v7_ov', '--weight-format', 'fp16']' returned non-zero exit status 1."
         ],
         "updated": "2026-10-06T11:39:48+00:00",
         "compatibility_outcome": "BLOCKED_DEPENDENCY",
@@ -1198,7 +1198,7 @@
           "created": true
         },
         "notes": [
-          "ok_runs=0/3: \u001b[31mNameError\u001b[39m: name 'demo' is not defined"
+          "ok_runs=0/3: NameError: name 'demo' is not defined"
         ],
         "updated": "2026-10-06T14:12:38+00:00",
         "compatibility_outcome": "BLOCKED_DEPENDENCY",
@@ -1226,7 +1226,7 @@
           "created": true
         },
         "notes": [
-          "ok_runs=0/3: \u001b[31mConnectTimeout\u001b[39m: HTTPSConnectionPool(host='cdn-avatars.huggingface.co', port=443): Max retries exceeded with url: /v1/production/uploads/1671615670447-6346651be2dcb5422bcd13dd.png (Caused by ConnectTimeoutError(<HTTPSConnection(host='cdn-avatars.huggingface.co', port=443) at 0x73d8c4de6360>"
+          "ok_runs=0/3: ConnectTimeout: HTTPSConnectionPool(host='cdn-avatars.huggingface.co', port=443): Max retries exceeded with url: /v1/production/uploads/1671615670447-6346651be2dcb5422bcd13dd.png (Caused by ConnectTimeoutError(<HTTPSConnection(host='cdn-avatars.huggingface.co', port=443) at 0x73d8c4de6360>"
         ],
         "updated": "2026-10-06T11:49:38+00:00",
         "compatibility_outcome": "BLOCKED_NETWORK",
@@ -1291,7 +1291,7 @@
           "created": false
         },
         "notes": [
-          "ok_runs=0/3: \u001b[31mModuleNotFoundError\u001b[39m: Could not import module 'OVModelForCausalLM'. Are this object's requirements defined correctly?"
+          "ok_runs=0/3: ModuleNotFoundError: Could not import module 'OVModelForCausalLM'. Are this object's requirements defined correctly?"
         ],
         "updated": "2026-10-06T12:01:25+00:00",
         "compatibility_outcome": "BLOCKED_DEPENDENCY",
@@ -1403,7 +1403,7 @@
           "created": false
         },
         "notes": [
-          "ok_runs=0/3: \u001b[31mException\u001b[39m: Connection timed out. If you access the internet through a proxy server, please make sure the proxy is set in the shell from where you launched Jupyter."
+          "ok_runs=0/3: Exception: Connection timed out. If you access the internet through a proxy server, please make sure the proxy is set in the shell from where you launched Jupyter."
         ],
         "updated": "2026-10-06T12:24:27+00:00",
         "compatibility_outcome": "BLOCKED_DEPENDENCY",
@@ -1489,7 +1489,7 @@
           "created": false
         },
         "notes": [
-          "ok_runs=0/3: \u001b[31mFileNotFoundError\u001b[39m: [Errno 2] No such file or directory: '/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/paddleocr_vl/workdir-cpu/test.png'",
+          "ok_runs=0/3: FileNotFoundError: [Errno 2] No such file or directory: 'results/paddleocr_vl/workdir-cpu/test.png'",
           "adjudicated (HARNESS_NOTEBOOK_RELATIVE_ASSET): Notebook expects sibling asset test.png; same harness notebook-relative-asset defect (fixed this closure \u2014 revalidation queued)."
         ],
         "updated": "2026-10-06T12:38:41+00:00",
@@ -1602,7 +1602,7 @@
           "created": false
         },
         "notes": [
-          "ok_runs=0/3: cannot import name 'runtime_version' from 'google.protobuf' (/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages/google/protobuf/__init__.py)",
+          "ok_runs=0/3: cannot import name 'runtime_version' from 'google.protobuf' (.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages/google/protobuf/__init__.py)",
           "execution category corrected by comprehensive audit: LICENSE_RESTRICTION -> DEPENDENCY (protobuf API drift, not a license restriction)"
         ],
         "updated": "2026-10-06T13:11:59+00:00",
@@ -1631,7 +1631,7 @@
           "created": false
         },
         "notes": [
-          "ok_runs=0/3: \u001b[31mAttributeError\u001b[39m: 'Column' object has no attribute 'dtype'",
+          "ok_runs=0/3: AttributeError: 'Column' object has no attribute 'dtype'",
           "adjudicated (DATASETS_API_DRIFT): AttributeError 'Column' object has no attribute 'dtype' \u2014 datasets library API drift versus the notebook's pinned stack; misclassified as MODEL_ACCESS by the log rules.",
           "execution category corrected by comprehensive audit: MODEL_ACCESS -> DEPENDENCY (datasets API drift, not model access)"
         ],
@@ -1681,7 +1681,7 @@
           "created": false
         },
         "notes": [
-          "ok_runs=0/3: \u001b[31mCalledProcessError\u001b[39m: Command '['optimum-cli', 'export', 'openvino', '--model', 'Qwen/Qwen-Image-2512', 'Qwen-Image-2512/INT8', '--weight-format', 'int8']' returned non-zero exit status 1."
+          "ok_runs=0/3: CalledProcessError: Command '['optimum-cli', 'export', 'openvino', '--model', 'Qwen/Qwen-Image-2512', 'Qwen-Image-2512/INT8', '--weight-format', 'int8']' returned non-zero exit status 1."
         ],
         "updated": "2026-10-06T13:20:40+00:00",
         "compatibility_outcome": "BLOCKED_DEPENDENCY",
@@ -1871,7 +1871,7 @@
           "created": false
         },
         "notes": [
-          "ok_runs=0/3: \u001b[31mCalledProcessError\u001b[39m: Command '['optimum-cli', 'export', 'openvino', '--model', 'microsoft/speecht5_tts', 'speecht5_tts', '--model-kwargs', '{\"vocoder\":\"microsoft/speecht5_hifigan\"}']' returned non-zero exit status 1."
+          "ok_runs=0/3: CalledProcessError: Command '['optimum-cli', 'export', 'openvino', '--model', 'microsoft/speecht5_tts', 'speecht5_tts', '--model-kwargs', '{\"vocoder\":\"microsoft/speecht5_hifigan\"}']' returned non-zero exit status 1."
         ],
         "updated": "2026-10-06T14:24:58+00:00",
         "compatibility_outcome": "BLOCKED_DEPENDENCY",
@@ -1927,7 +1927,7 @@
           "created": true
         },
         "notes": [
-          "ok_runs=0/3: \u001b[31mEOFError\u001b[39m:",
+          "ok_runs=0/3: EOFError:",
           "adjudicated (EXTERNAL_HOST_UNREACHABLE): model host drive.google.com unreachable from the reference network (run-01 ConnectTimeout); run-02 EOFError is the truncated gdown download of the same unreachable artifact.",
           "execution category corrected by comprehensive audit: UNKNOWN -> NETWORK (host unreachable; original UNKNOWN hid the network cause)"
         ],
@@ -2091,7 +2091,7 @@
           "created": false
         },
         "notes": [
-          "ok_runs=0/3: \u001b[31mModuleNotFoundError\u001b[39m: Could not import module 'OVModelForSpeechSeq2Seq'. Are this object's requirements defined correctly?"
+          "ok_runs=0/3: ModuleNotFoundError: Could not import module 'OVModelForSpeechSeq2Seq'. Are this object's requirements defined correctly?"
         ],
         "updated": "2026-10-06T16:19:13+00:00",
         "compatibility_outcome": "BLOCKED_DEPENDENCY",
@@ -2185,7 +2185,7 @@
           "created": true
         },
         "notes": [
-          "ok_runs=0/1: \u001b[31mCalledProcessError\u001b[39m: Command '['optimum-cli', 'export', 'openvino', '--model', 'black-forest-labs/FLUX.1-Fill-dev', 'FLUX.1-Fill-dev/INT4', '--weight-format', 'int4', '--group-size', '64', '--ratio', '1.0']' returned non-zero exit status 1."
+          "ok_runs=0/1: CalledProcessError: Command '['optimum-cli', 'export', 'openvino', '--model', 'black-forest-labs/FLUX.1-Fill-dev', 'FLUX.1-Fill-dev/INT4', '--weight-format', 'int4', '--group-size', '64', '--ratio', '1.0']' returned non-zero exit status 1."
         ],
         "updated": "2026-10-06T16:50:49+00:00",
         "compatibility_outcome": "BLOCKED_DEPENDENCY",
@@ -2241,7 +2241,7 @@
           "created": false
         },
         "notes": [
-          "ok_runs=0/1: \u001b[31mCalledProcessError\u001b[39m: Command '['optimum-cli', 'export', 'openvino', '--model', 'black-forest-labs/FLUX.1-Kontext-dev', 'FLUX.1-Kontext-dev/INT4', '--weight-format', 'int4', '--group-size', '64', '--ratio', '1.0']' returned non-zero exit status 1."
+          "ok_runs=0/1: CalledProcessError: Command '['optimum-cli', 'export', 'openvino', '--model', 'black-forest-labs/FLUX.1-Kontext-dev', 'FLUX.1-Kontext-dev/INT4', '--weight-format', 'int4', '--group-size', '64', '--ratio', '1.0']' returned non-zero exit status 1."
         ],
         "updated": "2026-10-06T16:54:48+00:00",
         "compatibility_outcome": "BLOCKED_DEPENDENCY",
@@ -2269,7 +2269,7 @@
           "created": false
         },
         "notes": [
-          "ok_runs=0/1: \u001b[31mCalledProcessError\u001b[39m: Command '['optimum-cli', 'export', 'openvino', '--model', 'black-forest-labs/FLUX.2-klein-4B', 'FLUX.2-klein-4B/INT4', '--task', 'text-to-image', '--weight-format', 'int4', '--group-size', '64', '--ratio', '1.0']' returned non-zero exit status 1."
+          "ok_runs=0/1: CalledProcessError: Command '['optimum-cli', 'export', 'openvino', '--model', 'black-forest-labs/FLUX.2-klein-4B', 'FLUX.2-klein-4B/INT4', '--task', 'text-to-image', '--weight-format', 'int4', '--group-size', '64', '--ratio', '1.0']' returned non-zero exit status 1."
         ],
         "updated": "2026-10-06T16:55:08+00:00",
         "compatibility_outcome": "BLOCKED_DEPENDENCY",
@@ -2297,7 +2297,7 @@
           "created": true
         },
         "notes": [
-          "ok_runs=0/1: \u001b[31mCalledProcessError\u001b[39m: Command '['optimum-cli', 'export', 'openvino', '--model', 'GLM-4.1V-9B-Thinking', 'GLM-4.1V-9B-Thinking/INT4', '--task', 'image-text-to-text', '--weight-format', 'int4', '--group-size', '128', '--ratio', '0.8']' returned non-zero exit status 1."
+          "ok_runs=0/1: CalledProcessError: Command '['optimum-cli', 'export', 'openvino', '--model', 'GLM-4.1V-9B-Thinking', 'GLM-4.1V-9B-Thinking/INT4', '--task', 'image-text-to-text', '--weight-format', 'int4', '--group-size', '128', '--ratio', '0.8']' returned non-zero exit status 1."
         ],
         "updated": "2026-10-06T16:57:31+00:00",
         "compatibility_outcome": "BLOCKED_DEPENDENCY",
@@ -2325,7 +2325,7 @@
           "created": false
         },
         "notes": [
-          "ok_runs=0/1: \u001b[31mValueError\u001b[39m: Unexpected dependency in optimum-intel/setup.py: \"optimum@https://codeload.github.com/huggingface/optimum/tar.gz/HEAD\""
+          "ok_runs=0/1: ValueError: Unexpected dependency in optimum-intel/setup.py: \"optimum@https://codeload.github.com/huggingface/optimum/tar.gz/HEAD\""
         ],
         "updated": "2026-10-07T01:31:13+00:00",
         "historical_status": "FAILED",
@@ -2429,7 +2429,7 @@
           "created": true
         },
         "notes": [
-          "ok_runs=0/1: \u001b[31mConnectTimeout\u001b[39m: HTTPSConnectionPool(host='drive.google.com', port=443): Max retries exceeded with url: /uc?id=18wEUfMNohBJ4K3Ly5wpTejPfDzp-8fI8 (Caused by ConnectTimeoutError(<HTTPSConnection(host='drive.google.com', port=443) at 0x73bf26979e20>, 'Connection to drive.google.com timed out. "
+          "ok_runs=0/1: ConnectTimeout: HTTPSConnectionPool(host='drive.google.com', port=443): Max retries exceeded with url: /uc?id=18wEUfMNohBJ4K3Ly5wpTejPfDzp-8fI8 (Caused by ConnectTimeoutError(<HTTPSConnection(host='drive.google.com', port=443) at 0x73bf26979e20>, 'Connection to drive.google.com timed out. "
         ],
         "updated": "2026-10-06T17:17:02+00:00",
         "compatibility_outcome": "BLOCKED_NETWORK",
@@ -2627,7 +2627,7 @@
           "created": false
         },
         "notes": [
-          "ok_runs=0/1: \u001b[31mAttributeError\u001b[39m: MiniCPMOTokenizerFast has no attribute tokenizer",
+          "ok_runs=0/1: AttributeError: MiniCPMOTokenizerFast has no attribute tokenizer",
           "adjudicated (TRANSFORMERS_API_DRIFT): MiniCPMOTokenizerFast has no attribute tokenizer \u2014 transformers version drift versus the notebook's pinned stack; not a runtime compatibility issue.",
           "execution category corrected by comprehensive audit: PACKAGE_CONFLICT -> DEPENDENCY (transformers API drift, not a package conflict)"
         ],
@@ -2657,7 +2657,7 @@
           "created": true
         },
         "notes": [
-          "ok_runs=0/1: \u001b[31mFileNotFoundError\u001b[39m: No such file or directory: MiniCPM-o-2_6/ckpt/model-00001-of-00004.safetensors"
+          "ok_runs=0/1: FileNotFoundError: No such file or directory: MiniCPM-o-2_6/ckpt/model-00001-of-00004.safetensors"
         ],
         "updated": "2026-10-06T17:21:49+00:00",
         "compatibility_outcome": "BLOCKED_RESOURCE",
@@ -2832,7 +2832,7 @@
           "created": false
         },
         "notes": [
-          "ok_runs=0/1: \u001b[31mModuleNotFoundError\u001b[39m: Could not import module 'AutoProcessor'. Are this object's requirements defined correctly?"
+          "ok_runs=0/1: ModuleNotFoundError: Could not import module 'AutoProcessor'. Are this object's requirements defined correctly?"
         ],
         "updated": "2026-10-07T01:36:00+00:00",
         "historical_status": "FAILED",
@@ -2903,7 +2903,7 @@
           "created": false
         },
         "notes": [
-          "ok_runs=0/1: \u001b[31mModuleNotFoundError\u001b[39m: Could not import module 'AutoTokenizer'. Are this object's requirements defined correctly?"
+          "ok_runs=0/1: ModuleNotFoundError: Could not import module 'AutoTokenizer'. Are this object's requirements defined correctly?"
         ],
         "updated": "2026-10-07T01:37:03+00:00",
         "historical_status": "FAILED",
@@ -3009,7 +3009,7 @@
           "created": false
         },
         "notes": [
-          "ok_runs=0/1: \u001b[31mAttributeError\u001b[39m: type object 'openvino._pyopenvino.Type' has no attribute 'u2'"
+          "ok_runs=0/1: AttributeError: type object 'openvino._pyopenvino.Type' has no attribute 'u2'"
         ],
         "updated": "2026-10-06T18:39:28+00:00",
         "compatibility_outcome": "BLOCKED_DEPENDENCY",
@@ -3270,7 +3270,7 @@
           "created": true
         },
         "notes": [
-          "ok_runs=0/1: \u001b[31mFileNotFoundError\u001b[39m: [Errno 2] No such file or directory: 'nyc.jpg'",
+          "ok_runs=0/1: FileNotFoundError: [Errno 2] No such file or directory: 'nyc.jpg'",
           "adjudicated (HARNESS_NOTEBOOK_RELATIVE_ASSET): Notebook expects sibling asset nyc.jpg; the headless kernel cwd lacked notebook-dir data files (harness defect at validation time; fixed this closure \u2014 revalidation queued)."
         ],
         "updated": "2026-10-06T19:02:02+00:00",
@@ -3299,7 +3299,7 @@
           "created": false
         },
         "notes": [
-          "ok_runs=0/1: \u001b[31mException\u001b[39m: Connection timed out. If you access the internet through a proxy server, please make sure the proxy is set in the shell from where you launched Jupyter."
+          "ok_runs=0/1: Exception: Connection timed out. If you access the internet through a proxy server, please make sure the proxy is set in the shell from where you launched Jupyter."
         ],
         "updated": "2026-10-06T19:06:40+00:00",
         "compatibility_outcome": "BLOCKED_NETWORK",
@@ -3327,7 +3327,7 @@
           "created": true
         },
         "notes": [
-          "ok_runs=0/3: \u001b[31mNameError\u001b[39m: name 'point_data' is not defined",
+          "ok_runs=0/3: NameError: name 'point_data' is not defined",
           "adjudicated (UPSTREAM_NOTEBOOK_RERUN_SCOPING): point_data is assigned only inside `if not point_data_path.exists()`; with data/chair.pts cached from an earlier partial run the variable is undefined (NameError cell 11). Upstream notebook rerun bug, not an OpenVINO/AMD failure.",
           "execution category corrected by comprehensive audit: OPENVINO_ERROR -> DEPENDENCY (NameError from upstream rerun-scoping bug, not an OpenVINO runtime error)"
         ],
@@ -3420,7 +3420,7 @@
           "created": false
         },
         "notes": [
-          "ok_runs=0/3: \u001b[31mModuleNotFoundError\u001b[39m: Could not import module 'AutoModelForSequenceClassification'. Are this object's requirements defined correctly?"
+          "ok_runs=0/3: ModuleNotFoundError: Could not import module 'AutoModelForSequenceClassification'. Are this object's requirements defined correctly?"
         ],
         "updated": "2026-10-06T19:21:58+00:00",
         "compatibility_outcome": "BLOCKED_DEPENDENCY",
@@ -3881,7 +3881,7 @@
           "created": false
         },
         "notes": [
-          "ok_runs=0/3: \u001b[31mModuleNotFoundError\u001b[39m: No module named 'triton.backends'"
+          "ok_runs=0/3: ModuleNotFoundError: No module named 'triton.backends'"
         ],
         "updated": "2026-10-06T20:15:09+00:00",
         "compatibility_outcome": "BLOCKED_DEPENDENCY",
@@ -4223,7 +4223,7 @@
           "created": false
         },
         "notes": [
-          "ok_runs=0/3: \u001b[31mCalledProcessError\u001b[39m: Command '['optimum-cli', 'export', 'openvino', '--model', 'Tongyi-MAI/Z-Image-Turbo', 'Z-Image-Turbo/INT4', '--task', 'text-to-image', '--weight-format', 'int4', '--group-size', '64', '--ratio', '1.0']' returned non-zero exit status 1."
+          "ok_runs=0/3: CalledProcessError: Command '['optimum-cli', 'export', 'openvino', '--model', 'Tongyi-MAI/Z-Image-Turbo', 'Z-Image-Turbo/INT4', '--task', 'text-to-image', '--weight-format', 'int4', '--group-size', '64', '--ratio', '1.0']' returned non-zero exit status 1."
         ],
         "updated": "2026-10-06T21:15:11+00:00",
         "compatibility_outcome": "BLOCKED_DEPENDENCY",
@@ -4251,7 +4251,7 @@
           "created": true
         },
         "notes": [
-          "ok_runs=0/3: \u001b[31mKeyError\u001b[39m: 'blocks.0.attn1.to_q.weight'"
+          "ok_runs=0/3: KeyError: 'blocks.0.attn1.to_q.weight'"
         ],
         "updated": "2026-10-06T21:16:10+00:00",
         "compatibility_outcome": "BLOCKED_RESOURCE",
@@ -4400,7 +4400,7 @@
           "created": true
         },
         "notes": [
-          "ok_runs=0/1: \u001b[31mNameError\u001b[39m: name 'vocab_file_path' is not defined",
+          "ok_runs=0/1: NameError: name 'vocab_file_path' is not defined",
           "adjudicated (UPSTREAM_NOTEBOOK_RERUN_SCOPING): vocab_file_path is assigned only inside a conditional in the upstream notebook; with the data file already cached (resumable workdir) the variable is undefined. Upstream notebook bug, not an OpenVINO/AMD failure.",
           "execution category corrected by comprehensive audit: UNKNOWN -> DEPENDENCY (NameError from upstream rerun-scoping bug, not an OpenVINO runtime error)"
         ],
@@ -4527,7 +4527,8 @@
           "created": true
         },
         "notes": [
-          "ok_runs=0/1: \u001b[31mFileNotFoundError\u001b[39m: [Errno 2] No such file or directory: 'optimum-cli'"
+          "ok_runs=0/1: FileNotFoundError: [Errno 2] No such file or directory: 'optimum-cli'",
+          "notebook changed upstream after this attempt (pre-repin evidence; content sha differs from pinned snapshot); revalidation queued with failure-retry remediation"
         ],
         "updated": "2026-10-06T22:14:18+00:00",
         "compatibility_outcome": "BLOCKED_DEPENDENCY",
@@ -4632,7 +4633,9 @@
         "updated": "2026-10-06T22:15:31+00:00",
         "compatibility_outcome": "VERIFIED_WITH_LIMITATIONS",
         "outcome_reason": "",
-        "limitation_codes": []
+        "limitation_codes": [
+          "REPEATABILITY_NOT_ESTABLISHED"
+        ]
       }
     },
     "person-tracking": {
@@ -4656,7 +4659,7 @@
           "created": true
         },
         "notes": [
-          "ok_runs=0/1: \u001b[31mModuleNotFoundError\u001b[39m: No module named 'deepsort_utils'"
+          "ok_runs=0/1: ModuleNotFoundError: No module named 'deepsort_utils'"
         ],
         "updated": "2026-10-06T22:16:41+00:00",
         "compatibility_outcome": "BLOCKED_DEPENDENCY",
@@ -4755,7 +4758,8 @@
         },
         "notes": [
           "repeatability_not_established: fewer than 3 successful runs (resource-bounded policy)",
-          "CORE_INFERENCE_VERIFIED; INTERACTIVE_UI_NOT_TESTED (documented skip policy)"
+          "CORE_INFERENCE_VERIFIED; INTERACTIVE_UI_NOT_TESTED (documented skip policy)",
+          "notebook changed upstream after this attempt (pre-repin evidence; content sha differs from pinned snapshot); revalidation queued with failure-retry remediation"
         ],
         "updated": "2026-10-06T22:21:52+00:00",
         "compatibility_outcome": "VERIFIED_WITH_LIMITATIONS",
@@ -4795,7 +4799,9 @@
         "updated": "2026-10-06T22:26:02+00:00",
         "compatibility_outcome": "VERIFIED_WITH_LIMITATIONS",
         "outcome_reason": "",
-        "limitation_codes": []
+        "limitation_codes": [
+          "REPEATABILITY_NOT_ESTABLISHED"
+        ]
       }
     },
     "tflite-selfie-segmentation": {
@@ -4920,7 +4926,7 @@
           "created": true
         },
         "notes": [
-          "ok_runs=0/1: \u001b[31mRuntimeError\u001b[39m: PytorchStreamReader failed reading zip archive: failed finding central directory"
+          "ok_runs=0/1: RuntimeError: PytorchStreamReader failed reading zip archive: failed finding central directory"
         ],
         "updated": "2026-10-06T22:30:49+00:00",
         "compatibility_outcome": "BLOCKED_RESOURCE",
@@ -5277,7 +5283,8 @@
           "created": false
         },
         "notes": [
-          "ok_runs=0/1: \u001b[31mImportError\u001b[39m: Could not import optimum-intel python package. Please install it with: pip install -U 'optimum[openvino,nncf]'"
+          "ok_runs=0/1: ImportError: Could not import optimum-intel python package. Please install it with: pip install -U 'optimum[openvino,nncf]'",
+          "notebook changed upstream after this attempt (pre-repin evidence; content sha differs from pinned snapshot); revalidation queued with failure-retry remediation"
         ],
         "updated": "2026-10-06T22:39:56+00:00",
         "compatibility_outcome": "BLOCKED_DEPENDENCY",
@@ -5305,7 +5312,7 @@
           "created": false
         },
         "notes": [
-          "ok_runs=0/1: \u001b[31mCalledProcessError\u001b[39m: Command '['optimum-cli', 'export', 'openvino', '--model', 'TinyLlama/TinyLlama-1.1B-Chat-v1.0', 'tiny-llama-1b-chat/INT4_compressed_weights', '--task', 'text-generation-with-past', '--weight-format', 'int4', '--group-size', '128', '--ratio', '0.8']' returned non-zero ex"
+          "ok_runs=0/1: CalledProcessError: Command '['optimum-cli', 'export', 'openvino', '--model', 'TinyLlama/TinyLlama-1.1B-Chat-v1.0', 'tiny-llama-1b-chat/INT4_compressed_weights', '--task', 'text-generation-with-past', '--weight-format', 'int4', '--group-size', '128', '--ratio', '0.8']' returned non-zero ex"
         ],
         "updated": "2026-10-06T22:40:33+00:00",
         "compatibility_outcome": "BLOCKED_DEPENDENCY",
@@ -5338,7 +5345,7 @@
         ],
         "updated": "2026-10-06T22:49:54+00:00",
         "compatibility_outcome": "BLOCKED_DEPENDENCY",
-        "outcome_reason": "PACKAGE_RESOLUTION_CONFLICT"
+        "outcome_reason": "MISSING_OR_BROKEN_DEPENDENCY"
       }
     },
     "multimodal-rag-llamaindex": {
@@ -5362,7 +5369,7 @@
           "created": true
         },
         "notes": [
-          "ok_runs=0/1: Can not open file /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/multimodal-rag-llamaindex/workdir-cpu/distil-whisper-large-v3-int8-ov/openvino_decoder_model.bin for mapping. Ensure that file exists and has appropriate permissions."
+          "ok_runs=0/1: Can not open file results/multimodal-rag-llamaindex/workdir-cpu/distil-whisper-large-v3-int8-ov/openvino_decoder_model.bin for mapping. Ensure that file exists and has appropriate permissions."
         ],
         "updated": "2026-10-06T22:53:36+00:00",
         "compatibility_outcome": "BLOCKED_DEPENDENCY",
@@ -5657,7 +5664,7 @@
       "log_tail": "Collecting json5\n  Using cached json5-0.15.0-py3-none-any.whl.metadata (37 kB)\nUsing cached json5-0.15.0-py3-none-any.whl (36 kB)\nInstalling collected packages: json5\nSuccessfully installed json5-0.15.0\n"
     }
   ],
-  "last_checkpoint": "2026-10-07T09:24:25+00:00",
+  "last_checkpoint": "2026-10-07T09:28:11+00:00",
   "current_workload": "llm-agent-react-langchain",
   "env_repairs": [
     {

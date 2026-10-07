@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-07T09:24:29+00:00",
+  "generated": "2026-10-07T09:28:24+00:00",
   "upstream": {
     "fetch_method": "github git-blobs API (sha1-verified); tarball transport failed on this network",
     "files_ok": 572,
@@ -2152,7 +2152,8 @@
       "last_tested": "2026-10-06T22:39:56+00:00",
       "evidence": "results/llm-rag-langchain/20261006T223902Z-cpu",
       "notes": [
-        "ok_runs=0/1: ImportError: Could not import optimum-intel python package. Please install it with: pip install -U 'optimum[openvino,nncf]'"
+        "ok_runs=0/1: ImportError: Could not import optimum-intel python package. Please install it with: pip install -U 'optimum[openvino,nncf]'",
+        "notebook changed upstream after this attempt (pre-repin evidence; content sha differs from pinned snapshot); revalidation queued with failure-retry remediation"
       ]
     },
     {
@@ -2165,7 +2166,7 @@
       "cpu_status": "FAILED",
       "cpu_failure_category": "DEPENDENCY",
       "cpu_compatibility_outcome": "BLOCKED_DEPENDENCY",
-      "cpu_outcome_reason": "PACKAGE_RESOLUTION_CONFLICT",
+      "cpu_outcome_reason": "MISSING_OR_BROKEN_DEPENDENCY",
       "cpu_limitation_codes": [],
       "cpu_evidence": "results/llm-rag-llamaindex/20261006T224033Z-cpu",
       "cpu_validation_level": "",
@@ -2213,7 +2214,8 @@
       "last_tested": "2026-10-06T22:14:18+00:00",
       "evidence": "results/ltx-video/20261006T221001Z-cpu",
       "notes": [
-        "ok_runs=0/1: FileNotFoundError: [Errno 2] No such file or directory: 'optimum-cli'"
+        "ok_runs=0/1: FileNotFoundError: [Errno 2] No such file or directory: 'optimum-cli'",
+        "notebook changed upstream after this attempt (pre-repin evidence; content sha differs from pinned snapshot); revalidation queued with failure-retry remediation"
       ]
     },
     {
@@ -3238,7 +3240,9 @@
       "cpu_failure_category": "CORRECTNESS_ERROR",
       "cpu_compatibility_outcome": "VERIFIED_WITH_LIMITATIONS",
       "cpu_outcome_reason": "",
-      "cpu_limitation_codes": [],
+      "cpu_limitation_codes": [
+        "REPEATABILITY_NOT_ESTABLISHED"
+      ],
       "cpu_evidence": "results/person-counting/20261006T221456Z-cpu",
       "cpu_validation_level": "WORKLOAD_CORRECTNESS",
       "cpu_device_proof": "PROVEN_CPU",
@@ -3951,7 +3955,8 @@
       "evidence": "results/segment-anything-2-video/20261006T221933Z-cpu",
       "notes": [
         "repeatability_not_established: fewer than 3 successful runs (resource-bounded policy)",
-        "CORE_INFERENCE_VERIFIED; INTERACTIVE_UI_NOT_TESTED (documented skip policy)"
+        "CORE_INFERENCE_VERIFIED; INTERACTIVE_UI_NOT_TESTED (documented skip policy)",
+        "notebook changed upstream after this attempt (pre-repin evidence; content sha differs from pinned snapshot); revalidation queued with failure-retry remediation"
       ]
     },
     {
@@ -4285,7 +4290,9 @@
       "cpu_failure_category": "CORRECTNESS_ERROR",
       "cpu_compatibility_outcome": "VERIFIED_WITH_LIMITATIONS",
       "cpu_outcome_reason": "",
-      "cpu_limitation_codes": [],
+      "cpu_limitation_codes": [
+        "REPEATABILITY_NOT_ESTABLISHED"
+      ],
       "cpu_evidence": "results/stable-video-diffusion/20261006T222152Z-cpu",
       "cpu_validation_level": "WORKLOAD_CORRECTNESS",
       "cpu_device_proof": "PROVEN_CPU",

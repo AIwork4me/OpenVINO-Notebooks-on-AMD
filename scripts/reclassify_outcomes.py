@@ -142,7 +142,7 @@ CATEGORY_CORRECTIONS: dict[tuple[str, str], tuple[str, str]] = {
 }
 
 _LIMITATION_PATTERNS = [
-    (re.compile(r"repeatability_not_established|resource-bounded", re.I), "REPEATABILITY_NOT_ESTABLISHED"),
+    (re.compile(r"repeatability_not_established|resource-bounded|contract corrected by comprehensive audit", re.I), "REPEATABILITY_NOT_ESTABLISHED"),
     (re.compile(r"INTERACTIVE_UI_NOT_TESTED", re.I), "INTERACTIVE_UI_NOT_TESTED"),
     (re.compile(r"EXECUTION_ONLY", re.I), "EXECUTION_ONLY"),
     (re.compile(r"DEVICE_PROOF_INCOMPLETE|DEVICE_PROOF_NOT_OBSERVED", re.I), "DEVICE_PROOF_INCOMPLETE"),
