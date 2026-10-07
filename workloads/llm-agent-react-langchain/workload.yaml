@@ -1,0 +1,29 @@
+id: llm-agent-react-langchain
+title: Llm Agent React Langchain
+category: LLM
+upstream:
+  repository: openvinotoolkit/openvino_notebooks
+  branch: latest
+  commit: a8809170cc4fc6aa633fbb9c22214be67ac20b47
+  path: notebooks/llm-agent-react-langchain/llm-agent-react-langchain.ipynb
+  url: https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/llm-agent-react-langchain/llm-agent-react-langchain.ipynb
+model:
+  name: ''
+  source: ''
+  revision: ''
+  license: ''
+cpu:
+  runtime: openvino
+  status: VERIFIED_WITH_LIMITATIONS
+gpu:
+  runtime: ''
+  status: NOT_TESTED
+twin:
+  level: WORKLOAD_TWIN
+validation:
+  output_contains:
+  - temp_C
+  - weatherDesc
+  min_output_chars: 500
+patches: {}
+last_verified: '2026-10-06T06:20:43+00:00'

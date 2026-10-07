@@ -198,7 +198,12 @@ def install() -> None:
     if not any(isinstance(f, _OpenvinoWatchFinder) for f in sys.meta_path):
         sys.meta_path.insert(0, _OpenvinoWatchFinder())
     if not any(isinstance(f, _GenaiWatchFinder) for f in sys.meta_path):
-        sys.meta_path.append(_GenaiWatchFinder())
+        # must sit BEFORE the default PathFinder: meta_path finders are
+        # consulted in order and the first to return a spec wins, so an
+        # appended finder is never asked about openvino_genai (the probe
+        # stayed blind across the whole pass-2 genai revalidation because
+        # of exactly that ordering)
+        sys.meta_path.insert(0, _GenaiWatchFinder())
 
 
 install()
