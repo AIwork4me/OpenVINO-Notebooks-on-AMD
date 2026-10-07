@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-07T00:48:14+00:00",
+  "generated": "2026-10-07T01:18:25+00:00",
   "upstream": {
     "fetch_method": "github git-blobs API (sha1-verified); tarball transport failed on this network",
     "files_ok": 572,
@@ -555,13 +555,13 @@
       "cpu_device_proof": "NOT_INFERENCE",
       "gpu_status": "VERIFIED",
       "gpu_failure_category": "",
-      "gpu_evidence": "results/deepseek-r1/20261006T064540Z-gpu",
+      "gpu_evidence": "results/deepseek-r1/20261007T010103Z-gpu",
       "gpu_validation_level": "WORKLOAD_CORRECTNESS",
       "gpu_device_proof": "PROVEN_GPU",
       "twin_level": "WORKLOAD_TWIN",
       "device_used": "CPU",
       "last_tested": "2026-10-05T19:48:44+00:00",
-      "evidence": "results/deepseek-r1/20261006T064540Z-gpu",
+      "evidence": "results/deepseek-r1/20261007T010103Z-gpu",
       "notes": [
         "DEVICE_PROOF_NOT_OBSERVED: no OpenVINO compile_model call was captured by the probe (notebooks driving openvino_genai pipelines or conversion-only code bypass the Python Core API; positive device execution therefore unproven)",
         "CORE_INFERENCE_VERIFIED; INTERACTIVE_UI_NOT_TESTED (documented skip policy)"
@@ -1075,13 +1075,13 @@
       "cpu_device_proof": "PROVEN_CPU",
       "gpu_status": "VERIFIED",
       "gpu_failure_category": "",
-      "gpu_evidence": "results/hello-detection/20261006T040236Z-gpu",
+      "gpu_evidence": "results/hello-detection/20261007T005417Z-gpu",
       "gpu_validation_level": "WORKLOAD_CORRECTNESS",
       "gpu_device_proof": "PROVEN_GPU",
       "twin_level": "WORKLOAD_TWIN",
       "device_used": "CPU",
       "last_tested": "2026-10-05T19:43:49+00:00",
-      "evidence": "results/hello-detection/20261006T040236Z-gpu",
+      "evidence": "results/hello-detection/20261007T005417Z-gpu",
       "notes": []
     },
     {
@@ -1374,13 +1374,13 @@
       "cpu_device_proof": "NOT_INFERENCE",
       "gpu_status": "VERIFIED",
       "gpu_failure_category": "",
-      "gpu_evidence": "results/kokoro/20261007T004558Z-gpu",
+      "gpu_evidence": "results/kokoro/20261007T005721Z-gpu",
       "gpu_validation_level": "WORKLOAD_CORRECTNESS",
       "gpu_device_proof": "PROVEN_GPU",
       "twin_level": "WORKLOAD_TWIN",
       "device_used": "CPU",
       "last_tested": "2026-10-07T00:48:13+00:00",
-      "evidence": "results/kokoro/20261007T004558Z-gpu",
+      "evidence": "results/kokoro/20261007T005721Z-gpu",
       "notes": [
         "DEVICE_PROOF_NOT_OBSERVED: no OpenVINO compile_model call was captured by the probe (notebooks driving openvino_genai pipelines or conversion-only code bypass the Python Core API; positive device execution therefore unproven)",
         "CORE_INFERENCE_VERIFIED; INTERACTIVE_UI_NOT_TESTED (documented skip policy)",
@@ -3224,13 +3224,13 @@
       "cpu_device_proof": "UNKNOWN",
       "gpu_status": "VERIFIED",
       "gpu_failure_category": "",
-      "gpu_evidence": "results/smolvlm2/20261007T004651Z-gpu",
+      "gpu_evidence": "results/smolvlm2/20261007T005844Z-gpu",
       "gpu_validation_level": "WORKLOAD_CORRECTNESS",
       "gpu_device_proof": "PROVEN_GPU",
       "twin_level": "WORKLOAD_TWIN",
       "device_used": "AUTO",
       "last_tested": "2026-10-07T00:48:13+00:00",
-      "evidence": "results/smolvlm2/20261007T004651Z-gpu",
+      "evidence": "results/smolvlm2/20261007T005844Z-gpu",
       "notes": [
         "ok_runs=0/1: FileNotFoundError: [Errno 2] No such file or directory: 'optimum-cli'",
         "revalidation deferred: large/gated-model CPU workloads cannot complete on the secondary runner (throttled egress, gated model repos); queued for the reference Ryzen runner. GPU twins revalidated under the new pin where implemented."
@@ -3300,13 +3300,13 @@
       "cpu_device_proof": "",
       "gpu_status": "VERIFIED",
       "gpu_failure_category": "",
-      "gpu_evidence": "results/stable-diffusion-text-to-image/20261006T060313Z-gpu",
+      "gpu_evidence": "results/stable-diffusion-text-to-image/20261007T005940Z-gpu",
       "gpu_validation_level": "WORKLOAD_CORRECTNESS",
       "gpu_device_proof": "PROVEN_GPU",
       "twin_level": "WORKLOAD_TWIN",
       "device_used": "",
       "last_tested": "2026-10-01T16:46:16+00:00",
-      "evidence": "results/stable-diffusion-text-to-image/20261006T060313Z-gpu",
+      "evidence": "results/stable-diffusion-text-to-image/20261007T005940Z-gpu",
       "notes": [
         "ok_runs=0/3: FileNotFoundError: [Errno 2] No such file or directory: 'optimum-cli'"
       ]
@@ -3378,13 +3378,13 @@
       "cpu_device_proof": "",
       "gpu_status": "VERIFIED",
       "gpu_failure_category": "",
-      "gpu_evidence": "results/stable-diffusion-xl/20261006T061803Z-gpu",
+      "gpu_evidence": "results/stable-diffusion-xl/20261007T010006Z-gpu",
       "gpu_validation_level": "WORKLOAD_CORRECTNESS",
       "gpu_device_proof": "PROVEN_GPU",
       "twin_level": "WORKLOAD_TWIN",
       "device_used": "",
       "last_tested": "2026-10-01T16:47:11+00:00",
-      "evidence": "results/stable-diffusion-xl/20261006T061803Z-gpu",
+      "evidence": "results/stable-diffusion-xl/20261007T010006Z-gpu",
       "notes": [
         "ok_runs=0/3: FileNotFoundError: [Errno 2] No such file or directory: 'optimum-cli'"
       ]
@@ -3844,13 +3844,13 @@
       "cpu_device_proof": "NOT_INFERENCE",
       "gpu_status": "VERIFIED",
       "gpu_failure_category": "",
-      "gpu_evidence": "results/whisper-asr-genai/20261006T040624Z-gpu",
+      "gpu_evidence": "results/whisper-asr-genai/20261007T011710Z-gpu",
       "gpu_validation_level": "WORKLOAD_CORRECTNESS",
       "gpu_device_proof": "PROVEN_GPU",
       "twin_level": "WORKLOAD_TWIN",
       "device_used": "CPU",
       "last_tested": "2026-10-05T21:41:45+00:00",
-      "evidence": "results/whisper-asr-genai/20261006T040624Z-gpu",
+      "evidence": "results/whisper-asr-genai/20261007T011710Z-gpu",
       "notes": [
         "ok_runs=0/1: ConnectTimeout: HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /spaces/distil-whisper/whisper-vs-distil-whisper/resolve/main/assets/example_1.wav (Caused by ConnectTimeoutError(<HTTPSConnection(host='huggingface.co', port=443) at 0x7b9fc5a2da00>, 'Conn"
       ]
@@ -4228,13 +4228,13 @@
       "cpu_device_proof": "",
       "gpu_status": "VERIFIED",
       "gpu_failure_category": "",
-      "gpu_evidence": "results/qwen3/20261006T052020Z-gpu",
+      "gpu_evidence": "results/qwen3/20261007T005803Z-gpu",
       "gpu_validation_level": "WORKLOAD_CORRECTNESS",
       "gpu_device_proof": "PROVEN_GPU",
       "twin_level": "WORKLOAD_TWIN",
       "device_used": "",
       "last_tested": "2026-10-01T18:44:42+00:00",
-      "evidence": "results/qwen3/20261006T052020Z-gpu",
+      "evidence": "results/qwen3/20261007T005803Z-gpu",
       "notes": [
         "ok_runs=0/1: [GPU] clEnqueueMapBuffer, error code: -30 CL_INVALID_VALUE"
       ]

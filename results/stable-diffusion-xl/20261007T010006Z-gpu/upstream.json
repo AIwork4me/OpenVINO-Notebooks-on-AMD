@@ -1,0 +1,8 @@
+{
+  "schema_version": 2,
+  "repository": "openvinotoolkit/openvino_notebooks",
+  "branch": "latest",
+  "commit": "329562e6031d1a989017d08697b0fabe5a989492",
+  "path": "notebooks/stable-diffusion-xl/stable-diffusion-xl.ipynb",
+  "url": "https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/stable-diffusion-xl/stable-diffusion-xl.ipynb"
+}
