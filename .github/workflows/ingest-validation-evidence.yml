@@ -18,26 +18,48 @@ permissions:
 jobs:
   ingest:
     runs-on: [self-hosted, amd64, amd-cpu]
-    timeout-minutes: 30
+    timeout-minutes: 90
     steps:
       - uses: actions/checkout@v4
         with:
           # the ingest must land on top of the latest evidence
           ref: main
-      - name: Download artifacts
+      - name: Download artifacts (resumable)
         run: |
+          set -e
           mkdir -p /tmp/ingest && cd /tmp/ingest
-          gh run download "${{ github.event.inputs.run_id }}" -R "$GITHUB_REPOSITORY" -D .
-          find . -type f | head -20
+          RUN_ID="${{ github.event.inputs.run_id }}"
+          # small artifact via gh; big bundle via signed-blob curl with resume
+          # (single-shot 180MB transfers reset on flaky routes; Azure signed
+          # URLs honour Range, curl -C - resumes across retries)
+          for name in marathon-state cpu-evidence; do
+            AID=$(gh api "repos/$GITHUB_REPOSITORY/actions/runs/$RUN_ID/artifacts" --paginate --jq ".artifacts[] | select(.name==\"$name\") | .id" | head -1)
+            [ -z "$AID" ] && { echo "artifact $name not found"; continue; }
+            echo "artifact $name id=$AID"
+            for i in $(seq 1 12); do
+              LOC=$(gh api "repos/$GITHUB_REPOSITORY/actions/artifacts/$AID/zip" --include 2>/dev/null | awk 'tolower($1)=="location:"{print $2}' | tr -d '\r')
+              [ -z "$LOC" ] && { echo "no redirect (attempt $i)"; sleep 10; continue; }
+              curl -sSL -C - --max-time 900 --retry 3 -o "$name.zip" "$LOC" && break
+              echo "transfer interrupted (attempt $i), resuming"
+              sleep 10
+            done
+            ls -la "$name.zip" 2>/dev/null || true
+          done
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Overlay evidence
         run: |
           cd /tmp/ingest
+          for z in *.zip; do
+            [ -f "$z" ] || continue
+            d="${z%.zip}"; mkdir -p "$d" && python3 -c "import zipfile; zipfile.ZipFile('$z').extractall('$d')"
+          done
           if [ -f cpu-evidence/cpu-evidence.tgz ]; then
             tar -xzf cpu-evidence/cpu-evidence.tgz -C "$GITHUB_WORKSPACE"
           fi
-          if [ -f marathon-state/marathon-state.json ]; then
+          if [ -f marathon-state/marathon-state/marathon-state.json ]; then
+            cp marathon-state/marathon-state/marathon-state.json "$GITHUB_WORKSPACE/results/marathon-state.json"
+          elif [ -f marathon-state/marathon-state.json ]; then
             cp marathon-state/marathon-state.json "$GITHUB_WORKSPACE/results/marathon-state.json"
           fi
       - name: Regenerate reports
