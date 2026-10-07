@@ -53,8 +53,12 @@ twin comparison policy mechanically enforced (`WORKLOAD_TWIN` forbids speedup).
 **100% twin classification** with notebook-semantic reasoning recorded (three
 review rounds corrected 12 misclassifications).
 
-**Legacy v0.1 greens**: 24 records marked `REVALIDATION_REQUIRED` with
-`historical_status`/`historical_evidence` preserved; no history rewritten.
+**Legacy v0.1 greens**: 24 records were marked `REVALIDATION_REQUIRED` with
+`historical_status`/`historical_evidence` preserved at migration time (see
+`reports/revalidation-migration.md`); those fields were consumed as each
+record was revalidated during the marathon, so the current state file keeps
+only live records — the migration trail stays in git history and the
+migration report.
 
 **Self-hosted CI**: runner `ovamd-reference-runner` registered and online
 (systemd user service); CPU and ROCm workflows use a shared
@@ -101,6 +105,15 @@ NOT_TESTED rather than fake "revalidation"). Full matrix:
   mirror (recorded in engineering decisions).
 - Gated models (e.g. `stabilityai/stable-diffusion-3-medium-diffusers`) remain
   blocked by model access.
+- v0.1-migration `historical_*` fields were consumed on revalidation; the
+  trail lives in git history + `reports/revalidation-migration.md`.
+- Under the re-pin, `parler-tts` regressed red (OpenVINO resolved 2026.4.1 →
+  2025.3.0 in the rebuilt env; `BrgemmCPU` rejects f32×bf16) and two
+  pin-impacted workloads (`hunyuan-ocr`, `cosyvoice3-tts`) fail on
+  dependency/gated-model grounds — documented in
+  `reports/marathon-v2-root-causes.md`.
+- `vlm-chatbot-generate-api` references a notebook-dir image (`nyc.jpg`) the
+  headless kernel cwd cannot see — left FAILED rather than patched blindly.
 
 ### Release audit
 

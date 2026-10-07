@@ -178,3 +178,33 @@ git 考古完整还原字段生命周期：`0f0bb61`（schema v2 引入）向 st
 重算计数与所有公开产物一致；91 个绿行全部有完整 v2 证据目录；25 CPU ✅ 逐条具备 PROVEN_CPU + L3 契约 + 3-run 可重复（磁盘与 state 双向一致）；8 GPU ✅ 为 gfx1100 真跑且孪生身份三重印证；🟡 的每一项局限（EXECUTION_ONLY / NOT_OBSERVED / UNKNOWN / 1-run）均被机器 note 如实披露；speedup 禁令被实跑验证且 EXACT_TWIN 为 0；隔离、上游钉住、快照、迁移历史、CI 陈述均可溯源到原始工件；无凭证泄漏。缺陷 D1–D8 修复后发布更干净，但不构成阻止发布的信任问题。
 
 RELEASE PASS
+
+---
+
+## 复核记录（2026-10-07，针对修复提交 `edbc22b` "fix: release-audit WARN findings"）
+
+复核范围：D1/D3/D2 三项修复，只读验证。D4 与 4 条 INFO（D5–D8）维持原判。
+
+### 复核：D1 已修复验证 — PASS
+
+- `grep -rl a8809170 catalog/ workloads/` 命中 **0**；`329562e6031d` 覆盖 174 个文件。
+- 171/171 行（compatibility.json 全量）`upstream_url` 含新 pin、路径与 `notebooks.yaml` 的 `upstream_path` 一致、且该路径存在于 `.cache/upstream` 快照（抽 3：hello-world、pointpillars、deepseek-r1 + 全量校验 0 失败）。
+- 171 个 `workloads/*/workload.yaml` 语义 diff（70ba9c7 → edbc22b）：**非 upstream 字段 0 处改动**——validation 契约、patches、twin notes 完好；每个文件仅 `upstream.commit` 与 `upstream.url` 两行指针替换，`upstream.path` 不变。
+- `catalog/compatibility.md` 重生成后 171 个 `../results/` 链接 0 断链；证据目录 `upstream.json` 一字未动（CPU 绿行 18/65 新旧 pin 分布保留），权威溯源链无损。
+- 无功能回归：`workload.yaml` 的 `upstream.commit` 在 `ov_amd/`、`scripts/`、`tests/` 中无消费者（fetch/CI 用 `upstream/openvino-notebooks.json` 的 pin）。
+- 如实观察（语义变化，非缺陷）：65 个 carry-over 绿行（证据实在 a8809170 上跑）的目录/manifest URL 现统一指向仓库当前 pin 329562e6，与该行证据的实际运行 commit 不再逐行相同。真实 commit 仍由各证据 `upstream.json` 权威披露，且 pr-body 已注明 "passes 1–2 under pin a8809170, pass 3 under the re-pinned 329562e6031d"、pinned-baseline 保留 carry-over 政策说明——指针语义从"逐行运行版本"变为"当前 pin + 政策披露"，可溯源性成立。
+
+### 复核：D3 已修复验证 — PASS
+
+- `reports/v0.2-pinned-baseline.md`：91 个相对链接全部为 `../results/…` 前缀（`](results/` 旧式 0 个），从文件所在目录（reports/）解析 **0 断链**（抽 3 + 全量）。`scripts/v02_baseline_report.py` 同步更新。
+
+### 复核：D2 已修复验证 — PASS
+
+- pr-body "Marathon v2 results" 节对照 state 重算：attempted **171/171 (100%)**、✅ **25** / 🟡 **58** / 🔴 **87** / ➖ **1**、GPU ✅ **8** —— 与 `marathon-state.json` 逐项一致；"87 failures → 55 clusters" 与 root-causes 报告一致；并补充了 pass 1–2（a8809170）/ pass 3（329562e6）的 pin 出处披露。
+- 残留小瑕疵（D4 关联，不影响 D2 判定）：pr-body 56–57 行仍保留 "24 records … with historical_status/historical_evidence **preserved**; no history rewritten"——"preserved" 对当前 state 不成立（字段已随重验证清除，历史存于 git/310 个 legacy 目录/迁移报告，即原 D4 判定），且其 Known limitations 节尚未加入 D4 条目。建议将 56–57 行改为过去时并指向 `reports/revalidation-migration.md`，或在已知限制节补一句。此为 D4 处理未完全落地，非新失真。
+
+### 复核结论
+
+三项修复（D1/D3/D2）全部核实通过，D4 及 D5–D8 维持原判。审计报告本体在 `edbc22b` 中被一并提交入库，内容与本审计员写入版本一致（工作区 == HEAD，末行校验通过），无第三方改动。
+
+RELEASE PASS
