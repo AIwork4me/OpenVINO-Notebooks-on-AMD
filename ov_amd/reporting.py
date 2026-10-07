@@ -35,19 +35,16 @@ def _icon(status: str) -> str:
 
 
 def _rel(p: str | None) -> str | None:
-    """Repo-relative evidence path for public artifacts (no /home/... leaks).
+    """Repo-relative evidence path for public artifacts (no machine-local path
+    leaks). Central implementation: ov_amd.public_paths."""
 
-    Handles both current repo-relative refs and stale absolute refs written by
-    runners on other machines (state migration keeps those records historical).
-    """
+    from ov_amd.public_paths import sanitize_public_path
 
     if not p:
         return None
-    # strip any known runner-local repo prefix, then any absolute path that
-    # still points inside a checkout of this repository
-    for prefix in (f"{REPO_ROOT}/", "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/"):
-        if p.startswith(prefix):
-            return p[len(prefix):]
+    out = sanitize_public_path(p)
+    if out != p:
+        return out
     m = re.search(r"(?:^|/)(results/[\w./-]+)$", p)
     if m:  # absolute evidence path from any checkout of this repo
         return m.group(1)
@@ -59,11 +56,12 @@ _ANSI_RE = re.compile(r"\x1b\[[0-9;]*m")
 
 def _sanitize_note(text: str) -> str:
     """Public matrices must not leak local filesystem layout: strip ANSI codes
-    and reduce absolute repo paths to repo-relative ones (notes embed raw
-    stderr excerpts, which contain e.g. .venv-cpu/bin/python command lines)."""
+    and reduce machine-local repo paths to repo-relative ones (notes embed raw
+    stderr excerpts, which contain e.g. venv/bin/python command lines)."""
 
-    text = _ANSI_RE.sub("", text)
-    return text.replace(f"{REPO_ROOT}/", "").replace(str(REPO_ROOT), ".")
+    from ov_amd.public_paths import sanitize_public_text
+
+    return sanitize_public_text(text)
 
 
 def build_compatibility(
