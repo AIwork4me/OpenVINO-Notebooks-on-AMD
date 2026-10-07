@@ -20,6 +20,7 @@ from pathlib import Path
 REPO = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(REPO))
 
+from ov_amd.public_paths import sanitize_public_text  # noqa: E402
 from ov_amd.scheduler import load_state  # noqa: E402
 
 # category -> whether a failure here is plausibly an AMD/OpenVINO compatibility
@@ -51,7 +52,7 @@ PATTERNS: list[tuple[str, str]] = [
 
 
 def _norm_sig(text: str) -> str:
-    text = re.sub(r"\x1b\[[0-9;]*m", "", text or "")
+    text = sanitize_public_text(text or "")
     for pat, sig in PATTERNS:
         if re.search(pat, text, re.I):
             return sig

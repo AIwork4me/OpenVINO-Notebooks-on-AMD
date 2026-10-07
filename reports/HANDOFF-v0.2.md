@@ -2,7 +2,7 @@
 
 > 写于 2026-10-06 ~03:00 UTC。写给下一个执行者（新模型/新会话）：
 > 本文档假设你未读过历史对话，所有需要的上下文都在这里。
-> 项目根目录：`/home/amd/Desktop/OpenVINO-Notebooks-on-AMD`
+> 项目根目录：`.`
 > 远程：https://github.com/AIwork4me/OpenVINO-Notebooks-on-AMD （gh 已认证，账号 AIwork4me）
 
 ---
@@ -113,7 +113,7 @@ results/ 证据目录）。协作纪律：
 1. 确认 Pass 1 是否真的结束：`pgrep -f run_marathon`；还在跑就等。
 2. 结束后依次执行（就是 /tmp/post_pass1.sh 的内容）：
    ```bash
-   cd /home/amd/Desktop/OpenVINO-Notebooks-on-AMD
+   cd .
    python3 -m ov_amd report >/dev/null 2>&1
    python3 scripts/cluster_root_causes.py
    python3 - << 'PYEOF'
@@ -129,7 +129,7 @@ results/ 证据目录）。协作纪律：
        if r.get('status') == 'VERIFIED_WITH_LIMITATIONS' and any(
                'DEVICE_PROOF_NOT_OBSERVED' in n for n in (r.get('notes') or [])):
            r['historical_status'] = 'VERIFIED_WITH_LIMITATIONS'
-           r['historical_evidence'] = (r.get('evidence_dir') or '').replace('/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/', '')
+           r['historical_evidence'] = (r.get('evidence_dir') or '').replace('.', '')
            r['revalidation_reasons'] = ['device_probe_genai_upgrade']
            r['status'] = 'REVALIDATION_REQUIRED'
            r['updated'] = now
