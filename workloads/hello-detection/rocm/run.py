@@ -21,12 +21,15 @@ from twin_lib import PeakMemory, emit, fetch, setup
 MODEL = "yolov8n.pt"
 # Weight provenance chain: the official ultralytics release CDN first; on
 # runners whose egress blocks github release objects, the HF community mirror
-# (kadirnar/yolov8n-v8.0) serves the same architecture weights. The URL that
+# (kadirnar/yolov8n-v8.0) serves the same architecture weights; the probed
+# HF mirror endpoint is the last resort on networks where huggingface.co is
+# unreachable (the campaign's documented HF transport). The URL that
 # actually served the file and its sha256 are recorded in metrics — weights
 # provenance is part of the evidence, never silently swapped.
 WEIGHT_URLS = [
     "https://github.com/ultralytics/assets/releases/download/v8.4.0/yolov8n.pt",
     "https://huggingface.co/kadirnar/yolov8n-v8.0/resolve/main/yolov8n.pt",
+    "https://hf-mirror.com/kadirnar/yolov8n-v8.0/resolve/main/yolov8n.pt",
 ]
 IMG_URL = "https://user-images.githubusercontent.com/36741649/128489933-bf215a3f-06fa-4918-8833-cb0bf9fb1cc7.jpg"
 IMG_FALLBACK = "https://storage.openvinotoolkit.org/repositories/openvino_notebooks/data/data/image/intel_rnb.jpg"

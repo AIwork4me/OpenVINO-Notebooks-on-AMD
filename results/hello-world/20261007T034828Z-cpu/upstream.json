@@ -1,0 +1,9 @@
+{
+  "schema_version": 2,
+  "repository": "openvinotoolkit/openvino_notebooks",
+  "branch": "latest",
+  "commit": "329562e6031d1a989017d08697b0fabe5a989492",
+  "path": "notebooks/hello-world/hello-world.ipynb",
+  "url": "https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/hello-world/hello-world.ipynb",
+  "notebook_sha256": "074eac80827ac11c7ed220684772aaa254102d9d1c3ad4a729d954a55324b34c"
+}

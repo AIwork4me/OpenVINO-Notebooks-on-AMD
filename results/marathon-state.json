@@ -20,24 +20,25 @@
         "ok_runs": 3,
         "required_runs": 3,
         "durations_s": [
-          20.21,
-          2.12,
+          6.08,
+          1.92,
           1.97
         ],
         "device_used": "CPU",
         "device_proof": "PROVEN_CPU",
         "validation_level": "WORKLOAD_CORRECTNESS",
-        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/hello-world/20261005T170119Z-cpu",
+        "platform_id": "ryzen-ai-max-395-radeon-8060s-gfx1151",
+        "evidence_dir": "results/hello-world/20261007T034828Z-cpu",
         "env": {
           "backend": "cpu",
-          "env_key": "244e780d61b49309",
-          "python": ".venvs/cpu/244e780d61b49309/bin/python",
-          "fingerprint": "e316a2770355739071cbd0b2b6ecff836b6d8bbf7a1b9a91ad341932feb17664",
+          "env_key": "e25ee77e842b7d94",
+          "python": ".venvs/cpu/e25ee77e842b7d94/bin/python",
+          "fingerprint": "e90577c3f1e785b6e40f6b9c736daff8bf1d9b8e839583d5746c95bf74527d90",
           "reused": false,
           "created": true
         },
         "notes": [],
-        "updated": "2026-10-05T17:01:48+00:00"
+        "updated": "2026-10-07T03:48:40+00:00"
       }
     },
     "hello-detection": {
@@ -70,11 +71,11 @@
         "status": "VERIFIED",
         "failure_category": "",
         "notes": [],
-        "evidence_dir": "results/hello-detection/20261007T005417Z-gpu",
+        "evidence_dir": "results/hello-detection/20261007T035733Z-gpu",
         "device_proof": "PROVEN_GPU",
         "validation_level": "WORKLOAD_CORRECTNESS",
-        "platform_id": "amd-epyc-9334-32-core-processor-gfx1100",
-        "updated": "2026-10-07T00:56:43+00:00"
+        "platform_id": "ryzen-ai-max-395-radeon-8060s-gfx1151",
+        "updated": "2026-10-07T03:59:38+00:00"
       }
     },
     "hello-npu": {
@@ -4972,7 +4973,7 @@
       "log_tail": "Collecting json5\n  Using cached json5-0.15.0-py3-none-any.whl.metadata (37 kB)\nUsing cached json5-0.15.0-py3-none-any.whl (36 kB)\nInstalling collected packages: json5\nSuccessfully installed json5-0.15.0\n"
     }
   ],
-  "last_checkpoint": "2026-10-07T02:49:24+00:00",
+  "last_checkpoint": "2026-10-07T03:59:38+00:00",
   "current_workload": "llm-agent-react-langchain",
   "env_repairs": [
     {
