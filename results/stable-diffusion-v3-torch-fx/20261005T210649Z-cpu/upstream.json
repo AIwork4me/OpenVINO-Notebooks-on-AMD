@@ -1,0 +1,9 @@
+{
+  "schema_version": 2,
+  "repository": "openvinotoolkit/openvino_notebooks",
+  "branch": "latest",
+  "commit": "a8809170cc4fc6aa633fbb9c22214be67ac20b47",
+  "path": "notebooks/stable-diffusion-v3-torch-fx/stable-diffusion-v3-torch-fx.ipynb",
+  "url": "https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/stable-diffusion-v3-torch-fx/stable-diffusion-v3-torch-fx.ipynb",
+  "notebook_sha256": "2f4c2a850ddcd261b76a77dee34fce1eb5a3a6b40f478dba80acdb2401114ac6"
+}

@@ -1,0 +1,16 @@
+{
+  "python": "3.12.3",
+  "python_bin": ".venvs/cpu/14c79f40de9d556c/bin/python",
+  "openvino": {
+    "version": "2025.3.0-19807-44526285f24-releases/2025/3",
+    "devices": [
+      "CPU"
+    ]
+  },
+  "torch_rocm": {
+    "torch": "2.9.0+cpu",
+    "cuda_available": false,
+    "device": null
+  },
+  "rocm_dir": "/opt/rocm"
+}

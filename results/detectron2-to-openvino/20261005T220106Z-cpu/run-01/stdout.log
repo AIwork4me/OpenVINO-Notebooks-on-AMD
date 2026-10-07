@@ -1,0 +1,5 @@
+[cell 0 START +    0.4s]  # Convert Detectron2 Models to OpenVINO™ |  | [Detectron2](https://github
+[cell 1 START +    0.4s] ## Prerequisites | [back to top ⬆️](#Table-of-contents:) |  | Install requir
+[cell 2 START +    0.4s] import os | import requests | from pathlib import Path |  | os.environ["GIT_CL
+[cell 2 DONE  +  134.5s]
+NBEXEC_RESULT={"ok": false, "n_cells": 17, "n_skipped": 0, "n_substituted": 0, "stopped_after": null, "error_cell": null, "error_type": "CellExecutionError", "error_head": "\u001b[31mCalledProcessError\u001b[39m: Command '['/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/14c79f40de9d556c/bin/python', '-m', 'pip', 'install', '-q', 'git+https://github.com/facebookresearch/detectron2.git', '--extra-index-url', 'https://download.pytorch.org/whl/cpu', '--no-build-isolation']' returned non-zero exit status 1.", "duration_s": 134.74, "patch_notes": []}

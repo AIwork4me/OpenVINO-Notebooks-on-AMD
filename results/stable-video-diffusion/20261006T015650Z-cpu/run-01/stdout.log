@@ -1,0 +1,10 @@
+[cell 0 START +    0.6s] # Image to Video Generation with Stable Video Diffusion |  | Stable Video 
+[cell 1 START +    0.6s] ## Prerequisites | [back to top ⬆️](#Table-of-contents:)
+[cell 2 START +    0.6s] %pip install -q "torch>=2.1" "diffusers>=0.25" accelerate "peft>=0.15.
+[cell 2 DONE  +   47.1s]
+[cell 3 START +   47.1s] from pathlib import Path | import requests |  | if not Path("lcm_scheduler.p
+[cell 3 DONE  +   48.1s]
+[cell 4 START +   48.1s] ## Convert Model to OpenVINO Intermediate Representation | [back to top 
+[cell 5 START +   48.1s] # Read more about telemetry collection at https://github.com/openvinot
+[cell 5 DONE  +   54.6s]
+[cell 6 START +   54.6s] convert_stable_video_diffusion()

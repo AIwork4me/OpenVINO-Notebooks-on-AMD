@@ -1,0 +1,9 @@
+[IPKernelApp] WARNING | Kernel is running over TCP without encryption. All communication (including code and outputs) is sent in plain text and is susceptible to eavesdropping. Use IPC transport or launch with kernel manager-provisioned CurveZMQ keys to enable transport encryption.
+[33mWARNING: Retrying (Retry(total=4, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ReadTimeoutError("HTTPSConnectionPool(host='download.pytorch.org', port=443): Read timed out. (read timeout=15)")': /whl/cpu/tabulate/[0m[33m
+[0m[33mWARNING: Retrying (Retry(total=3, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NameResolutionError("HTTPSConnection(host='download.pytorch.org', port=443): Failed to resolve 'download.pytorch.org' ([Errno -3] Temporary failure in name resolution)")': /whl/cpu/tabulate/[0m[33m
+[0m[33mWARNING: Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NameResolutionError("HTTPSConnection(host='download.pytorch.org', port=443): Failed to resolve 'download.pytorch.org' ([Errno -3] Temporary failure in name resolution)")': /whl/cpu/tabulate/[0m[33m
+[0m[33mWARNING: Retrying (Retry(total=1, connect=None, read=None, redirect=None, status=None)) after connection broken by 'NameResolutionError("HTTPSConnection(host='download.pytorch.org', port=443): Failed to resolve 'download.pytorch.org' ([Errno -3] Temporary failure in name resolution)")': /whl/cpu/tabulate/[0m[33m
+[0m[31mERROR: pip's dependency resolver does not currently take into account all the packages that are installed. This behaviour is the source of the following dependency conflicts.
+gradio 6.29.1 requires huggingface-hub<3.0,>=1.16.0, but you have huggingface-hub 0.36.2 which is incompatible.
+gradio-client 2.7.2 requires huggingface-hub<3.0,>=1.16.0, but you have huggingface-hub 0.36.2 which is incompatible.[0m[31m
+[0m

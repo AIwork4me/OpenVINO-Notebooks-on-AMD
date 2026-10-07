@@ -1,0 +1,9 @@
+{
+  "schema_version": 2,
+  "repository": "openvinotoolkit/openvino_notebooks",
+  "branch": "latest",
+  "commit": "a8809170cc4fc6aa633fbb9c22214be67ac20b47",
+  "path": "notebooks/stable-video-diffusion/stable-video-diffusion.ipynb",
+  "url": "https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/stable-video-diffusion/stable-video-diffusion.ipynb",
+  "notebook_sha256": "f7f1b108e4eacd502b242ec735633a63115448fd8477d7e9657c87342a0ddd63"
+}

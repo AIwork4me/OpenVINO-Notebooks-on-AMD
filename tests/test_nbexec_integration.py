@@ -18,11 +18,16 @@ pytestmark = pytest.mark.skipif(not VENV_PY.exists(), reason="validation venv no
 
 def make_nb(path: Path, cells: list[str]) -> None:
     nb = {
-        "cells": [{"cell_type": "code", "metadata": {}, "execution_count": None,
-                   "outputs": [], "source": src} for src in cells],
-        "metadata": {"kernelspec": {"display_name": "Python 3", "language": "python", "name": "python3"},
-                     "language_info": {"name": "python", "version": "3"}},
-        "nbformat": 4, "nbformat_minor": 5,
+        "cells": [
+            {"cell_type": "code", "metadata": {}, "execution_count": None, "outputs": [], "source": src}
+            for src in cells
+        ],
+        "metadata": {
+            "kernelspec": {"display_name": "Python 3", "language": "python", "name": "python3"},
+            "language_info": {"name": "python", "version": "3"},
+        },
+        "nbformat": 4,
+        "nbformat_minor": 5,
     }
     path.write_text(json.dumps(nb))
 
@@ -30,7 +35,9 @@ def make_nb(path: Path, cells: list[str]) -> None:
 def run_nbexec(nb: Path, out: Path, *extra: str) -> subprocess.CompletedProcess:
     return subprocess.run(
         [str(VENV_PY), str(ROOT / "ov_amd" / "_nbexec.py"), str(nb), str(out), "60", *extra],
-        capture_output=True, text=True, timeout=180,
+        capture_output=True,
+        text=True,
+        timeout=180,
     )
 
 
@@ -63,12 +70,29 @@ def test_skip_re(tmp_path):
 def test_sub_patch(tmp_path):
     nb, out = tmp_path / "n.ipynb", tmp_path / "o.ipynb"
     make_nb(nb, ["device = 'AUTO'\nprint(device)"])
-    r = run_nbexec(nb, out, "--sub", "device\\s*=\\s*['\\\"]AUTO['\\\"]:device = 'CPU'")
+    subs = json.dumps([{"pattern": r"device\s*=\s*['\"]AUTO['\"]", "replacement": "device = 'CPU'"}])
+    r = run_nbexec(nb, out, "--subs-json", subs)
     assert r.returncode == 0, r.stderr
     executed = json.loads(out.read_text())
     src = executed["cells"][0]["source"]
     src = "".join(src) if isinstance(src, list) else src
     assert "device = 'CPU'" in src
+
+
+def test_sub_pattern_containing_url_is_not_corrupted(tmp_path):
+    """Defect A regression: a pattern containing ':' (e.g. an https URL) must
+    survive the harness -> executor boundary untouched."""
+
+    nb, out = tmp_path / "n.ipynb", tmp_path / "o.ipynb"
+    make_nb(nb, ["import urllib.request", "url = 'https://huggingface.co/foo'\nprint(url)"])
+    subs = json.dumps([{"pattern": r"https://huggingface\.co", "replacement": "https://hf-mirror.com"}])
+    r = run_nbexec(nb, out, "--subs-json", subs)
+    assert r.returncode == 0, r.stderr
+    executed = json.loads(out.read_text())
+    src = executed["cells"][1]["source"]
+    src = "".join(src) if isinstance(src, list) else src
+    assert "https://hf-mirror.com/foo" in src
+    assert "url = 'https://huggingface.co/foo'" not in src
 
 
 def test_stop_after(tmp_path):

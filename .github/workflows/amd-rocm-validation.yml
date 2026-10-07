@@ -1,25 +1,62 @@
 name: amd-rocm-validation
 
-# Self-hosted workflow: runs ROCm twins on the Radeon GPU. Requires a
-# self-hosted runner with ROCm + the GPU venv (.venv-gpu). Status claims must
-# come only from real executions of this workflow.
+# Self-hosted workflow: runs ROCm twins on a self-hosted runner labelled
+# [self-hosted, amd64, amd-gpu, rocm]. The GPU environment (ROCm PyTorch) is
+# provisioned by scripts/provision_gpu_env.py when the runner does not
+# already provide .venv-gpu. Status claims must come only from real
+# executions of this workflow.
 
 on:
   workflow_dispatch:
-  schedule:
-    - cron: "0 4 * * 1"
 
 jobs:
   gpu:
     runs-on: [self-hosted, amd64, amd-gpu, rocm]
+    timeout-minutes: 180
     steps:
       - uses: actions/checkout@v4
+      - name: Provision pinned upstream snapshot (pin-bound, runner-agnostic)
+        run: |
+          set -e
+          PIN=$(python3 -c "import json;print(json.load(open('upstream/openvino-notebooks.json'))['commit'])")
+          echo "repo pin: $PIN"
+          for REF in "$HOME/Desktop/OpenVINO-Notebooks-on-AMD" "$HOME/OpenVINO-Notebooks-on-AMD"; do
+            if [ -f "$REF/upstream/openvino-notebooks.json" ] && [ -d "$REF/.cache/upstream/notebooks" ]; then
+              WPIN=$(python3 -c "import json;print(json.load(open('$REF/upstream/openvino-notebooks.json'))['commit'])")
+              if [ "$WPIN" = "$PIN" ]; then
+                mkdir -p .cache && ln -s "$REF/.cache/upstream" .cache/upstream
+                echo "warm snapshot linked from $REF (pin verified)"; break
+              else
+                echo "warm snapshot at $REF is $WPIN != pin $PIN — not used"
+              fi
+            fi
+          done
+          if [ ! -d .cache/upstream ]; then
+            python3 scripts/fetch_upstream.py --blobs --commit "$PIN"
+          fi
+          test -d .cache/upstream/notebooks || { echo "upstream snapshot unavailable"; exit 1; }
+      - name: Provision ROCm GPU environment
+        run: |
+          for REF in "$HOME/Desktop/OpenVINO-Notebooks-on-AMD" "$HOME/OpenVINO-Notebooks-on-AMD"; do
+            if [ -x "$REF/.venv-gpu/bin/python" ]; then
+              ln -s "$REF/.venv-gpu" .venv-gpu
+              echo "warm GPU env linked from $REF"; break
+            fi
+          done
+          [ -x .venv-gpu/bin/python ] || python3 scripts/provision_gpu_env.py
       - name: Doctor
-        run: python -m ov_amd doctor
-      - name: GPU twins
-        run: python scripts/run_marathon.py --gpu-only --max-runtime 7200
+        run: python3 -m ov_amd doctor
+      - name: GPU twins (bounded)
+        run: python3 scripts/run_marathon.py --gpu-only --max-runtime 7200
       - uses: actions/upload-artifact@v4
         if: always()
         with:
           name: gpu-results
           path: results/
+
+# AMD reference platforms: CPU and GPU validation must never overlap. The
+# single-runner queue serializes jobs; the shared concurrency group is the
+# second guard.
+concurrency:
+  group: amd-reference-validation
+  cancel-in-progress: false

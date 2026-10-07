@@ -1,0 +1,9 @@
+{
+  "status": "VERIFIED",
+  "failure_category": "",
+  "notes": [],
+  "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/hello-detection/20261005T170351Z-gpu",
+  "device_proof": "PROVEN_GPU",
+  "validation_level": "DEVICE_VERIFIED",
+  "updated": "2026-10-05T17:08:59+00:00"
+}

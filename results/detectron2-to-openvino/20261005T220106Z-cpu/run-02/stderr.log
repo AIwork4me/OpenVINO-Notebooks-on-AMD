@@ -1,0 +1,115 @@
+[IPKernelApp] WARNING | Kernel is running over TCP without encryption. All communication (including code and outputs) is sent in plain text and is susceptible to eavesdropping. Use IPC transport or launch with kernel manager-provisioned CurveZMQ keys to enable transport encryption.
+  [1;31merror[0m: [1msubprocess-exited-with-error[0m
+  
+  [31m×[0m [32mgit clone --[0m[32mfilter[0m[32m=[0m[32mblob[0m[32m:none --quiet [0m[4;32mhttps://github.com/facebookresearch/detectron2.git[0m[32m [0m[32m/tmp/[0m[32mpip-req-build-n0evwz0o[0m did not run successfully.
+  [31m│[0m exit code: [1;36m128[0m
+  [31m╰─>[0m [31m[6 lines of output][0m
+  [31m   [0m fatal: unable to access 'https://github.com/facebookresearch/detectron2.git/': GnuTLS recv error (-110): The TLS connection was non-properly terminated.
+  [31m   [0m fatal: could not fetch 39b1b3d603ed0cf6b7f94c9c08067f148f35613f from promisor remote
+  [31m   [0m warning: Clone succeeded, but checkout failed.
+  [31m   [0m You can inspect what was checked out with 'git status'
+  [31m   [0m and retry with 'git restore --source=HEAD :/'
+  [31m   [0m 
+  [31m   [0m [31m[end of output][0m
+  
+  [1;35mnote[0m: This error originates from a subprocess, and is likely not a problem with pip.
+[31mERROR: Failed to build 'git+https://github.com/facebookresearch/detectron2.git' when git clone --filter=blob:none --quiet https://github.com/facebookresearch/detectron2.git /tmp/pip-req-build-n0evwz0o[0m[31m
+[0mTraceback (most recent call last):
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/ov_amd/_nbexec.py", line 144, in main
+    client.execute()
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/14c79f40de9d556c/lib/python3.12/site-packages/jupyter_core/utils/__init__.py", line 165, in wrapped
+    return loop.run_until_complete(inner)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/base_events.py", line 687, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/14c79f40de9d556c/lib/python3.12/site-packages/nbclient/client.py", line 709, in async_execute
+    await self.async_execute_cell(
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/14c79f40de9d556c/lib/python3.12/site-packages/nbclient/client.py", line 1062, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/14c79f40de9d556c/lib/python3.12/site-packages/nbclient/client.py", line 918, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+import os
+import requests
+from pathlib import Path
+
+os.environ["GIT_CLONE_PROTECTION_ACTIVE"] = "false"
+
+if not Path("notebook_utils.py").exists():
+    r = requests.get(
+        url="https://raw.githubusercontent.com/openvinotoolkit/openvino_notebooks/latest/utils/notebook_utils.py",
+    )
+    with open("notebook_utils.py", "w") as f:
+        f.write(r.text)
+
+if not Path("pip_helper.py").exists():
+    r = requests.get(
+        url="https://raw.githubusercontent.com/openvinotoolkit/openvino_notebooks/latest/utils/pip_helper.py",
+    )
+    open("pip_helper.py", "w").write(r.text)
+
+from pip_helper import pip_install
+
+pip_install("-qU", "torch==2.8", "torchvision", "opencv-python", "wheel", "setuptools<82", "--extra-index-url", "https://download.pytorch.org/whl/cpu")
+pip_install("-q", "git+https://github.com/facebookresearch/detectron2.git", "--extra-index-url", "https://download.pytorch.org/whl/cpu", "--no-build-isolation")
+pip_install("-q", "openvino>=2023.1.0")
+
+# Reload site to ensure newly installed packages (like pywin32 on Windows) are importable
+import site
+import importlib
+
+importlib.reload(site)
+
+# Read more about telemetry collection at https://github.com/openvinotoolkit/openvino_notebooks?tab=readme-ov-file#-telemetry
+from notebook_utils import collect_telemetry
+
+collect_telemetry("detectron2-to-openvino.ipynb")
+------------------
+
+----- stderr -----
+  [1;31merror[0m: [1msubprocess-exited-with-error[0m
+  
+  [31m×[0m [32mgit clone --[0m[32mfilter[0m[32m=[0m[32mblob[0m[32m:none --quiet [0m[4;32mhttps://github.com/facebookresearch/detectron2.git[0m[32m [0m[32m/tmp/[0m[32mpip-req-build-n0evwz0o[0m did not run successfully.
+  [31m│[0m exit code: [1;36m128[0m
+  [31m╰─>[0m [31m[6 lines of output][0m
+  [31m   [0m fatal: unable to access 'https://github.com/facebookresearch/detectron2.git/': GnuTLS recv error (-110): The TLS connection was non-properly terminated.
+  [31m   [0m fatal: could not fetch 39b1b3d603ed0cf6b7f94c9c08067f148f35613f from promisor remote
+  [31m   [0m warning: Clone succeeded, but checkout failed.
+  [31m   [0m You can inspect what was checked out with 'git status'
+  [31m   [0m and retry with 'git restore --source=HEAD :/'
+  [31m   [0m 
+  [31m   [0m [31m[end of output][0m
+  
+  [1;35mnote[0m: This error originates from a subprocess, and is likely not a problem with pip.
+[31mERROR: Failed to build 'git+https://github.com/facebookresearch/detectron2.git' when git clone --filter=blob:none --quiet https://github.com/facebookresearch/detectron2.git /tmp/pip-req-build-n0evwz0o[0m[31m
+[0m
+------------------
+
+[31m---------------------------------------------------------------------------[39m
+[31mCalledProcessError[39m                        Traceback (most recent call last)
+[36mCell[39m[36m [39m[32mIn[1][39m[32m, line 23[39m
+[32m     19[39m 
+[32m     20[39m [38;5;28;01mfrom[39;00m pip_helper [38;5;28;01mimport[39;00m pip_install
+[32m     21[39m 
+[32m     22[39m pip_install([33m"-qU"[39m, [33m"torch==2.8"[39m, [33m"torchvision"[39m, [33m"opencv-python"[39m, [33m"wheel"[39m, [33m"setuptools<82"[39m, [33m"--extra-index-url"[39m, [33m"https://download.pytorch.org/whl/cpu"[39m)
+[32m---> [39m[32m23[39m pip_install([33m"-q"[39m, [33m"git+https://github.com/facebookresearch/detectron2.git"[39m, [33m"--extra-index-url"[39m, [33m"https://download.pytorch.org/whl/cpu"[39m, [33m"--no-build-isolation"[39m)
+[32m     24[39m pip_install([33m"-q"[39m, [33m"openvino>=2023.1.0"[39m)
+[32m     25[39m 
+[32m     26[39m [38;5;66;03m# Reload site to ensure newly installed packages (like pywin32 on Windows) are importable[39;00m
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/results/detectron2-to-openvino/workdir-cpu/pip_helper.py:10[39m, in [36mpip_install[39m[34m(*args)[39m
+[32m      8[39m [38;5;28;01mfor[39;00m arg [38;5;129;01min[39;00m args:
+[32m      9[39m     cli_args.extend([38;5;28mstr[39m(arg).split([33m"[39m[33m [39m[33m"[39m))
+[32m---> [39m[32m10[39m [30;43msubprocess[39;49m[30;43m.[39;49m[30;43mrun[39;49m[30;43m([39;49m[30;43m[[39;49m[30;43msys[39;49m[30;43m.[39;49m[30;43mexecutable[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43m"[39;49m[30;43m-m[39;49m[30;43m"[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43m"[39;49m[30;43mpip[39;49m[30;43m"[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43m"[39;49m[30;43minstall[39;49m[30;43m"[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43m*[39;49m[30;43mcli_args[39;49m[30;43m][39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mcheck[39;49m[30;43m=[39;49m[30;43;01mTrue[39;49;00m[30;43m)[39;49m
+
+[36mFile [39m[32m/usr/lib/python3.12/subprocess.py:571[39m, in [36mrun[39m[34m(input, capture_output, timeout, check, *popenargs, **kwargs)[39m
+[32m    569[39m     retcode = process.poll()
+[32m    570[39m     [38;5;28;01mif[39;00m check [38;5;129;01mand[39;00m retcode:
+[32m--> [39m[32m571[39m         [38;5;28;01mraise[39;00m CalledProcessError(retcode, process.args,
+[32m    572[39m                                  output=stdout, stderr=stderr)
+[32m    573[39m [38;5;28;01mreturn[39;00m CompletedProcess(process.args, retcode, stdout, stderr)
+
+[31mCalledProcessError[39m: Command '['/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/14c79f40de9d556c/bin/python', '-m', 'pip', 'install', '-q', 'git+https://github.com/facebookresearch/detectron2.git', '--extra-index-url', 'https://download.pytorch.org/whl/cpu', '--no-build-isolation']' returned non-zero exit status 1.
+

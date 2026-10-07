@@ -1,0 +1,7 @@
+Traceback (most recent call last):
+  File "/workspace/workloads/kokoro/rocm/run.py", line 94, in <module>
+    raise SystemExit(main())
+                     ^^^^^^
+  File "/workspace/workloads/kokoro/rocm/run.py", line 33, in main
+    from kokoro import KPipeline
+ImportError: cannot import name 'KPipeline' from 'kokoro' (unknown location)

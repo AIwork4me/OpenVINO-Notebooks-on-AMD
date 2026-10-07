@@ -30,8 +30,10 @@ def cmd_doctor(args: argparse.Namespace) -> int:
         if exists:
             sw = hardware.collect_software(str(venv_python(backend)))
             print(f"  openvino: {sw['openvino']['version']} devices={sw['openvino']['devices']}")
-            print(f"  torch:    {sw['torch_rocm']['torch']} hip={sw['torch_rocm']['hip']} "
-                  f"cuda_available={sw['torch_rocm']['cuda_available']}")
+            print(
+                f"  torch:    {sw['torch_rocm']['torch']} hip={sw['torch_rocm']['hip']} "
+                f"cuda_available={sw['torch_rocm']['cuda_available']}"
+            )
     meta = load_upstream_meta()
     print(f"upstream:  {meta.get('repository', '?')} @ {meta.get('commit', '?')[:12]} ({meta.get('branch', '?')})")
     state = load_state()
@@ -60,8 +62,13 @@ def cmd_info(args: argparse.Namespace) -> int:
         return 1
     e = entries[0]
     state = load_state()
-    print(json.dumps({"entry": e.to_dict(), "attempts": state.get("attempts", {}).get(e.id, {}),
-                      "config": workload_config(e)}, indent=2, default=str))
+    print(
+        json.dumps(
+            {"entry": e.to_dict(), "attempts": state.get("attempts", {}).get(e.id, {}), "config": workload_config(e)},
+            indent=2,
+            default=str,
+        )
+    )
     return 0
 
 
@@ -78,9 +85,19 @@ def cmd_run(args: argparse.Namespace) -> int:
     state = load_state()
     if args.device == "cpu":
         out = run_workload_cpu(e, state)
-        print(json.dumps({"status": out.status.value, "failure": out.failure_category,
-                          "durations_s": out.durations, "device_used": out.device_used,
-                          "notes": out.notes, "evidence": str(out.evidence_dir)}, indent=2))
+        print(
+            json.dumps(
+                {
+                    "status": out.status.value,
+                    "failure": out.failure_category,
+                    "durations_s": out.durations,
+                    "device_used": out.device_used,
+                    "notes": out.notes,
+                    "evidence": str(out.evidence_dir),
+                },
+                indent=2,
+            )
+        )
         return 0 if out.status.value in ("VERIFIED", "VERIFIED_WITH_LIMITATIONS") else 2
     run_gpu_twin(e, state)
     save_state(state)
@@ -89,7 +106,7 @@ def cmd_run(args: argparse.Namespace) -> int:
 
 
 def cmd_compare(args: argparse.Namespace) -> int:
-    from ov_amd.benchmark import load_gpu_metrics, merge_cpu_metrics
+    from ov_amd.benchmark import comparison_policy, load_gpu_metrics, merge_cpu_metrics
     from ov_amd.reporting import build_compatibility
 
     compat = build_compatibility()
@@ -99,11 +116,25 @@ def cmd_compare(args: argparse.Namespace) -> int:
         return 1
     state = load_state()
     rec = state.get("attempts", {}).get(args.workload, {})
-    cpu = merge_cpu_metrics(args.workload, (rec.get("cpu") or {}).get("durations_s", []),
-                            (rec.get("cpu") or {}).get("device_used", ""))
+    cpu = merge_cpu_metrics(
+        args.workload, (rec.get("cpu") or {}).get("durations_s", []), (rec.get("cpu") or {}).get("device_used", "")
+    )
     gpu = load_gpu_metrics(args.workload)
-    print(json.dumps({"workload": args.workload, "cpu": cpu, "gpu": gpu,
-                      "statuses": {"cpu": row["cpu_status"], "gpu": row["gpu_status"]}}, indent=2))
+    policy = comparison_policy(row["twin_level"])
+    out = {
+        "workload": args.workload,
+        "twin_level": row["twin_level"],
+        "comparison_policy": policy,
+        "cpu": cpu,
+        "gpu": gpu,
+        "statuses": {"cpu": row["cpu_status"], "gpu": row["gpu_status"]},
+    }
+    if not policy["speedup_allowed"]:
+        out["speedup"] = None
+        out["speedup_note"] = (
+            f"not an EXACT_TWIN ({row['twin_level']}): direct speedup claims are not valid — {policy['requirement']}"
+        )
+    print(json.dumps(out, indent=2))
     return 0
 
 
@@ -129,6 +160,61 @@ def cmd_report(args: argparse.Namespace) -> int:
     write_progress()
     write_failures()
     print(json.dumps(compat["counts"], indent=2))
+    return 0
+
+
+def cmd_env(args: argparse.Namespace) -> int:
+    from ov_amd import env_manager
+
+    entries = [e for e in load_catalog() if e.id == args.workload]
+    if not entries:
+        print(f"unknown workload: {args.workload}", file=sys.stderr)
+        return 1
+    if args.action == "info":
+        print(json.dumps(env_manager.inspect_env(entries[0], backend=args.device), indent=2, default=str))
+        return 0
+    if args.action == "rebuild":
+        from ov_amd.environment import upstream_root
+
+        root = upstream_root()
+        nb_path = (root / entries[0].upstream_path) if root else None
+        if nb_path is None or not nb_path.exists():
+            print(json.dumps({"rebuilt": False, "error": "notebook not in upstream snapshot"}))
+            return 2
+        try:
+            # identity: a rebuild must produce EXACTLY what the marathon path
+            # would — same fingerprint inputs (incl. workload extra_deps) and
+            # same notebook-requirements install (gate finding: same key must
+            # mean same content)
+            from ov_amd.executor import workload_config
+
+            cfg = workload_config(entries[0])
+            extra = list((cfg.get("env") or {}).get("extra_deps") or [])
+            fp = env_manager.dependency_fingerprint(nb_path, extra_deps=extra)
+            commit = json.loads((REPO_ROOT / "upstream" / "openvino-notebooks.json").read_text()).get("commit", "")
+            info = env_manager.build_env(
+                args.device, fp, upstream_commit=commit, extra_deps=extra,
+                requirements=env_manager._requirements_next_to(nb_path),
+            )
+            print(json.dumps({"rebuilt": True, "env_key": info.env_key, "fingerprint": info.fingerprint}, indent=2))
+            return 0
+        except RuntimeError as e:
+            print(json.dumps({"rebuilt": False, "error": str(e)[:1000]}, indent=2))
+            return 2
+    print(f"unknown env action: {args.action}", file=sys.stderr)
+    return 1
+
+
+def cmd_env_gc(args: argparse.Namespace) -> int:
+    from ov_amd import env_manager
+
+    removed = env_manager.gc_envs(backend=args.device, dry_run=not args.apply)
+    print(
+        json.dumps(
+            {"mode": "dry-run (pass --apply to delete)" if not args.apply else "applied", "candidates": removed},
+            indent=2,
+        )
+    )
     return 0
 
 
@@ -165,6 +251,17 @@ def build_parser() -> argparse.ArgumentParser:
     sp.set_defaults(func=cmd_marathon)
 
     sub.add_parser("report").set_defaults(func=cmd_report)
+
+    sp = sub.add_parser("env")
+    sp.add_argument("action", choices=["info", "rebuild"])
+    sp.add_argument("workload")
+    sp.add_argument("--device", choices=["cpu", "gpu"], default="cpu")
+    sp.set_defaults(func=cmd_env)
+
+    sp = sub.add_parser("env-gc")
+    sp.add_argument("--device", choices=["cpu", "gpu"], default=None)
+    sp.add_argument("--apply", action="store_true", help="actually delete (default: dry run)")
+    sp.set_defaults(func=cmd_env_gc)
     return p
 
 

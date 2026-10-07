@@ -1,0 +1,15 @@
+[IPKernelApp] WARNING | Kernel is running over TCP without encryption. All communication (including code and outputs) is sent in plain text and is susceptible to eavesdropping. Use IPC transport or launch with kernel manager-provisioned CurveZMQ keys to enable transport encryption.
+[31mERROR: pip's dependency resolver does not currently take into account all the packages that are installed. This behaviour is the source of the following dependency conflicts.
+optimum-intel 2.3.0.dev0+348272d requires nncf>=3.3.0, but you have nncf 2.19.0 which is incompatible.
+optimum-intel 2.3.0.dev0+348272d requires openvino>=2026.0, but you have openvino 2025.3.0 which is incompatible.
+optimum-intel 2.3.0.dev0+348272d requires openvino-tokenizers>=2026.0, but you have openvino-tokenizers 2025.3.0.0 which is incompatible.[0m[31m
+[0m[31mERROR: pip's dependency resolver does not currently take into account all the packages that are installed. This behaviour is the source of the following dependency conflicts.
+llama-index-llms-huggingface 0.4.2 requires transformers[torch]<5.0.0,>=4.37.0, but you have transformers 5.17.0 which is incompatible.
+optimum-intel 2.3.0.dev0+348272d requires nncf>=3.3.0, but you have nncf 2.19.0 which is incompatible.
+optimum-intel 2.3.0.dev0+348272d requires openvino-tokenizers>=2026.0, but you have openvino-tokenizers 2025.3.0.0 which is incompatible.
+optimum-intel 2.3.0.dev0+348272d requires transformers<5.11,>=4.51, but you have transformers 5.17.0 which is incompatible.
+text-generation 0.7.0 requires huggingface-hub<1.0,>=0.12, but you have huggingface-hub 1.33.0 which is incompatible.
+llama-index-embeddings-openvino 0.8.0 requires llama-index-core<0.15,>=0.13.0, but you have llama-index-core 0.12.52.post1 which is incompatible.
+llama-index-embeddings-openvino 0.8.0 requires llama-index-embeddings-huggingface<0.7,>=0.6.0, but you have llama-index-embeddings-huggingface 0.4.0 which is incompatible.
+openvino-tokenizers 2025.3.0.0 requires openvino~=2025.3.0.dev, but you have openvino 2026.4.1 which is incompatible.[0m[31m
+[0m

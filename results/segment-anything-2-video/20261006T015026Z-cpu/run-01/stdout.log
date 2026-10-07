@@ -1,0 +1,86 @@
+[cell 0 START +    0.7s] # Object masks from prompts with SAM2 and OpenVINO |  | <div class="alert 
+[cell 1 START +    0.7s] Segmentation - identifying which image pixels belong to an object - is
+[cell 2 START +    0.7s] ## Prerequisites | [back to top ⬆️](#Table-of-contents:) | 
+[cell 3 START +    0.7s] %pip install -q "gradio>=4.13" "openvino>=2024.4.0" "nncf>=2.13" "torc
+[cell 3 DONE  +   37.4s]
+[cell 4 START +   37.4s] import requests | from pathlib import Path |  | if not Path("notebook_utils.
+[cell 4 DONE  +   37.5s]
+[cell 5 START +   37.5s] Clone and install segment-anything-2
+[cell 6 START +   37.5s] from cmd_helper import clone_repo |  | clone_repo("https://github.com/face
+[cell 6 DONE  +   48.3s]
+[cell 7 START +   48.3s] %env SAM2_BUILD_CUDA=0 | %cd sam2 | %pip install -q -e . | %cd ..
+[cell 7 DONE  +  192.6s]
+[cell 8 START +  192.6s] ov_sam2_helper_file_name = "ov_sam2_helper.py" |  | if not Path(ov_sam2_he
+[cell 8 DONE  +  192.6s]
+[cell 9 START +  192.6s] img_helper_file_name = "image_helper.py" |  | if not Path(ov_sam2_helper_f
+[cell 9 DONE  +  192.6s]
+[cell 10 START +  192.6s] ## Load the SAM2 PyTorch model | [back to top ⬆️](#Table-of-contents:) |  | 
+[cell 11 START +  192.6s] from sam2.sam2_video_predictor import SAM2VideoPredictor |  | predictor_vi
+[cell 11 DONE  +  250.4s]
+[cell 12 START +  250.4s] ## Convert Model to OpenVINO IR | [back to top ⬆️](#Table-of-contents:) | 
+[cell 13 START +  250.4s] import openvino as ov |  | core = ov.Core()
+[cell 13 DONE  +  250.5s]
+[cell 14 START +  250.5s] from notebook_utils import device_widget |  | device = device_widget(exclu
+[cell 14 DONE  +  250.7s]
+[cell 15 START +  250.7s] Load the parameters for model `sam2_hiera_large` from config. 
+[cell 16 START +  250.7s] ### Image Encoder Model | [back to top ⬆️](#Table-of-contents:) |  |  | The im
+[cell 17 START +  250.7s] from pathlib import Path | import warnings | import torch | from ov_sam2_hel
+[cell 17 DONE  +  272.6s]
+[cell 18 START +  272.6s] ov_video_frame_encoder_compl_model = core.compile_model(ov_video_frame
+[cell 18 DONE  +  280.9s]
+[cell 19 START +  280.9s] ### Mask Prediction Model | [back to top ⬆️](#Table-of-contents:) |  |  | Mask
+[cell 20 START +  280.9s] from ov_sam2_helper import SamVideoMaskPredictorModel |  | ov_video_mask_p
+[cell 20 DONE  +  284.9s]
+[cell 21 START +  284.9s] ov_video_mask_pred_compl_model = core.compile_model(ov_video_mask_pred
+[cell 21 DONE  +  285.1s]
+[cell 22 START +  285.1s] ### Memory Encoder Model | [back to top ⬆️](#Table-of-contents:) |  |  | Predi
+[cell 23 START +  285.1s] from ov_sam2_helper import SamVideoMemoryEncoderModel |  | ov_video_mem_en
+[cell 23 DONE  +  287.8s]
+[cell 24 START +  287.8s] ov_video_mem_encoder_compl_model = core.compile_model(ov_video_mem_enc
+[cell 24 DONE  +  287.8s]
+[cell 25 START +  287.8s] ### Memory Attention Model | [back to top ⬆️](#Table-of-contents:) |  |  | Mem
+[cell 26 START +  287.8s] import yaml |  | sam2_config = "./sam2/sam2_configs/sam2_hiera_l.yaml" |  | wi
+[cell 26 DONE  +  287.8s]
+[cell 27 START +  287.8s] Handling of complex tensors is supported only 2D rotations. So, let's 
+[cell 28 START +  287.8s] from ov_sam2_helper import get_rotation_matrices, matrix_rope_forward | 
+[cell 28 DONE  +  287.9s]
+[cell 29 START +  287.9s] from ov_sam2_helper import SamVideoMemoryAttentionModel |  | ov_memory_att
+[cell 29 DONE  +  292.2s]
+[cell 30 START +  292.2s] ov_memory_attention_comp_model = core.compile_model(ov_memory_attentio
+[cell 30 DONE  +  292.4s]
+[cell 31 START +  292.4s] ### Infer video prediction model in OpenVINO IR format | [back to top ⬆️
+[cell 32 START +  292.4s] memory_encoder_out_proj_weight_shape = None |  | if hasattr(predictor_vide
+[cell 32 DONE  +  292.4s]
+[cell 33 START +  292.4s] from ov_sam2_helper import OVSAM2VideoPredictor |  | ov_predictor_video = 
+[cell 33 DONE  +  292.5s]
+[cell 34 START +  292.5s] ## Prepare data | [back to top ⬆️](#Table-of-contents:)
+[cell 35 START +  292.5s] sample_path = Path("data") | sample_path.mkdir(parents=True, exist_ok=Tr
+[cell 35 DONE  +  296.1s]
+[cell 36 START +  296.1s] SAM 2 requires stateful inference for interactive video segmentation, 
+[cell 37 START +  296.1s] import shutil | import os | import cv2 | import numpy as np |  |  | class Segmente
+[cell 37 DONE  +  296.1s]
+[cell 38 START +  296.1s] ### Example with points | [back to top ⬆️](#Table-of-contents:)
+[cell 39 START +  296.1s] sample_path = Path("data") |  | segmenter_video = SegmenterVideo(ov_predic
+[cell 39 DONE  +  297.2s]
+[cell 40 START +  297.2s] from image_helper import show_points, show_mask | import matplotlib.pypl
+[cell 40 DONE  +  298.7s]
+[cell 41 START +  298.7s] res = segmenter_video.propagate_in_video()
+[cell 41 DONE  +  331.7s]
+[cell 42 START +  331.7s] video_out_path = segmenter_video.save_as_video("point_results.mp4")
+[cell 42 DONE  +  334.1s]
+[cell 43 START +  334.1s] import IPython |  | IPython.display.Video(filename=video_out_path, embed=T
+[cell 43 DONE  +  334.1s]
+[cell 44 START +  334.1s] ### Example with box | [back to top ⬆️](#Table-of-contents:)
+[cell 45 START +  334.1s] segmenter_video.set_video(sample_path / "coco.mp4")
+[cell 45 DONE  +  335.2s]
+[cell 46 START +  335.2s] from image_helper import show_box |  | input_box = np.array([385, 80, 525,
+[cell 46 DONE  +  335.4s]
+[cell 47 START +  335.4s] res = segmenter_video.propagate_in_video()
+[cell 47 DONE  +  368.7s]
+[cell 48 START +  368.7s] video_out_path = segmenter_video.save_as_video("box_results.mp4")
+[cell 48 DONE  +  371.1s]
+[cell 49 START +  371.1s] IPython.display.Video(filename=video_out_path, embed=True)
+[cell 49 DONE  +  371.1s]
+[cell 50 START +  371.1s] ### Run Interactive For Video Segmentation with Gradio | [back to top ⬆️
+[cell 51 START +  371.1s] if not Path("gradio_helper.py").exists(): |     r = requests.get(url="ht
+NBEXEC_RESULT={"ok": true, "n_cells": 34, "n_skipped": 1, "n_substituted": 0, "stopped_after": null, "error_cell": null, "error_type": null, "error_head": null, "duration_s": 374.28, "patch_notes": ["skipped cell 51: matched skip pattern"]}

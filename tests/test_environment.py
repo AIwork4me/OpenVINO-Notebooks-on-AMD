@@ -32,9 +32,7 @@ def test_upstream_root_from_meta(tmp_path, monkeypatch):
     (tmp_path / "upstream").mkdir()
     import json as _json
 
-    (tmp_path / "upstream" / "openvino-notebooks.json").write_text(
-        _json.dumps({"local_path": str(tmp_path / "snap")})
-    )
+    (tmp_path / "upstream" / "openvino-notebooks.json").write_text(_json.dumps({"local_path": str(tmp_path / "snap")}))
     monkeypatch.setattr(env, "REPO_ROOT", tmp_path)
     (tmp_path / "snap").mkdir()
     assert env.upstream_root() == tmp_path / "snap"

@@ -1,13 +1,13 @@
 {
+  "fetch_method": "codeload tarball (572 files kept, filter ('.ipynb', '.txt', '.py', '.json', '.csv', '.yaml', '.yml', '.xml', '.md', '.png', '.jpg', '.jpeg', '.gif')); blobs API fallback available",
+  "files_ok": 572,
+  "files_cached": 0,
+  "files_failed": 0,
   "repository": "openvinotoolkit/openvino_notebooks",
   "branch": "latest",
-  "commit": "a8809170cc4fc6aa633fbb9c22214be67ac20b47",
-  "commit_date": "2026-09-30T13:40:38Z",
-  "commit_subject": "Bump ipykernel from 6.31.0 to 7.3.0 in /.docker (#3704)",
-  "discovered_at": "2026-10-01T09:53:40Z",
-  "local_path": ".cache/upstream",
-  "fetch_method": "github git-blobs API (sha1-verified); git protocol throttled ~47KB/s, raw CDN stalls on this network",
-  "files_ok": 0,
-  "files_cached": 570,
-  "files_failed": 1
+  "commit": "329562e6031d1a989017d08697b0fabe5a989492",
+  "commit_date": "2026-10-05T16:50:18Z",
+  "commit_subject": "[CI] [GHA] Copy `notebook_utils.py` into notebook folders before tests start instead of downloading it at runtime (#3712)",
+  "discovered_at": "2026-10-07T00:49:51Z",
+  "local_path": ".cache/upstream"
 }

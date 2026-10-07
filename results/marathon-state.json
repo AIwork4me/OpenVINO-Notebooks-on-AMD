@@ -1,17 +1,16 @@
 {
   "started": "2026-10-01T09:40:27+00:00",
   "upstream": {
+    "fetch_method": "github git-blobs API (sha1-verified); tarball transport failed on this network",
+    "files_ok": 572,
+    "files_cached": 0,
+    "files_failed": 0,
     "repository": "openvinotoolkit/openvino_notebooks",
     "branch": "latest",
-    "commit": "a8809170cc4fc6aa633fbb9c22214be67ac20b47",
-    "commit_date": "2026-09-30T13:40:38Z",
-    "commit_subject": "Bump ipykernel from 6.31.0 to 7.3.0 in /.docker (#3704)",
-    "discovered_at": "2026-10-01T09:53:40Z",
-    "local_path": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.cache/upstream",
-    "fetch_method": "github git-blobs API (sha1-verified); git protocol throttled ~47KB/s, raw CDN stalls on this network",
-    "files_ok": 0,
-    "files_cached": 570,
-    "files_failed": 1
+    "commit": "329562e6031d1a989017d08697b0fabe5a989492",
+    "commit_date": "2026-10-05T16:50:18Z",
+    "commit_subject": "[CI] [GHA] Copy `notebook_utils.py` into notebook folders before tests start instead of downloading it at runtime (#3712)",
+    "discovered_at": "2026-10-07T00:37:36Z"
   },
   "attempts": {
     "hello-world": {
@@ -19,15 +18,26 @@
         "status": "VERIFIED",
         "failure_category": "",
         "ok_runs": 3,
+        "required_runs": 3,
         "durations_s": [
-          10.88,
-          12.34,
-          12.08
+          20.21,
+          2.12,
+          1.97
         ],
         "device_used": "CPU",
-        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/hello-world/20261001T101946Z-cpu",
+        "device_proof": "PROVEN_CPU",
+        "validation_level": "WORKLOAD_CORRECTNESS",
+        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/hello-world/20261005T170119Z-cpu",
+        "env": {
+          "backend": "cpu",
+          "env_key": "244e780d61b49309",
+          "python": ".venvs/cpu/244e780d61b49309/bin/python",
+          "fingerprint": "e316a2770355739071cbd0b2b6ecff836b6d8bbf7a1b9a91ad341932feb17664",
+          "reused": false,
+          "created": true
+        },
         "notes": [],
-        "updated": "2026-10-01T10:19:59+00:00"
+        "updated": "2026-10-05T17:01:48+00:00"
       }
     },
     "hello-detection": {
@@ -35,22 +45,36 @@
         "status": "VERIFIED",
         "failure_category": "",
         "ok_runs": 3,
+        "required_runs": 3,
         "durations_s": [
-          13.64,
-          2.12,
-          2.07
+          2.37,
+          2.22,
+          2.27
         ],
         "device_used": "CPU",
-        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/hello-detection/20261001T102156Z-cpu",
+        "device_proof": "PROVEN_CPU",
+        "validation_level": "WORKLOAD_CORRECTNESS",
+        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/hello-detection/20261005T194339Z-cpu",
+        "env": {
+          "backend": "cpu",
+          "env_key": "244e780d61b49309",
+          "python": ".venvs/cpu/244e780d61b49309/bin/python",
+          "fingerprint": "e316a2770355739071cbd0b2b6ecff836b6d8bbf7a1b9a91ad341932feb17664",
+          "reused": true,
+          "created": false
+        },
         "notes": [],
-        "updated": "2026-10-01T10:21:58+00:00"
+        "updated": "2026-10-05T19:43:49+00:00"
       },
       "gpu": {
         "status": "VERIFIED",
         "failure_category": "",
         "notes": [],
-        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/hello-detection/20261001T123904Z-gpu",
-        "updated": "2026-10-01T12:47:31+00:00"
+        "evidence_dir": "results/hello-detection/20261007T005417Z-gpu",
+        "device_proof": "PROVEN_GPU",
+        "validation_level": "WORKLOAD_CORRECTNESS",
+        "platform_id": "amd-epyc-9334-32-core-processor-gfx1100",
+        "updated": "2026-10-07T00:56:43+00:00"
       }
     },
     "hello-npu": {
@@ -72,15 +96,26 @@
         "status": "VERIFIED",
         "failure_category": "",
         "ok_runs": 3,
+        "required_runs": 3,
         "durations_s": [
-          10.18,
-          2.17,
-          2.12
+          2.42,
+          2.42,
+          2.42
         ],
         "device_used": "CPU",
-        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/hello-segmentation/20261001T102213Z-cpu",
+        "device_proof": "PROVEN_CPU",
+        "validation_level": "WORKLOAD_CORRECTNESS",
+        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/hello-segmentation/20261005T194349Z-cpu",
+        "env": {
+          "backend": "cpu",
+          "env_key": "244e780d61b49309",
+          "python": ".venvs/cpu/244e780d61b49309/bin/python",
+          "fingerprint": "e316a2770355739071cbd0b2b6ecff836b6d8bbf7a1b9a91ad341932feb17664",
+          "reused": true,
+          "created": false
+        },
         "notes": [],
-        "updated": "2026-10-01T10:22:15+00:00"
+        "updated": "2026-10-05T19:43:59+00:00"
       }
     },
     "openvino-api": {
@@ -144,15 +179,27 @@
         "status": "VERIFIED_WITH_LIMITATIONS",
         "failure_category": "",
         "ok_runs": 1,
+        "required_runs": 1,
         "durations_s": [
-          579.49
+          614.76
         ],
         "device_used": "",
-        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/animate-anyone/20261001T162311Z-cpu",
+        "device_proof": "PROVEN_CPU",
+        "validation_level": "WORKLOAD_CORRECTNESS",
+        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/animate-anyone/20261005T200805Z-cpu",
+        "env": {
+          "backend": "cpu",
+          "env_key": "6c802e9d4cd93fcc",
+          "python": ".venvs/cpu/6c802e9d4cd93fcc/bin/python",
+          "fingerprint": "a801bc380f8dc1c047e4b7b5e8612f72167bd5caaea3651fa4c4669ac70efdc6",
+          "reused": false,
+          "created": true
+        },
         "notes": [
-          "repeatability: single successful run (resource-bounded); 3-run policy not met"
+          "repeatability_not_established: fewer than 3 successful runs (resource-bounded policy)",
+          "CORE_INFERENCE_VERIFIED; INTERACTIVE_UI_NOT_TESTED (documented skip policy)"
         ],
-        "updated": "2026-10-01T16:32:50+00:00"
+        "updated": "2026-10-05T20:18:24+00:00"
       }
     },
     "bark-text-to-audio": {
@@ -199,16 +246,23 @@
     },
     "cosyvoice3-tts": {
       "cpu": {
-        "status": "FAILED",
+        "status": "REVALIDATION_REQUIRED",
         "failure_category": "UNKNOWN",
         "ok_runs": 0,
         "durations_s": [],
         "device_used": "",
         "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/cosyvoice3-tts/20261001T163759Z-cpu",
         "notes": [
-          "ok_runs=0/3: \u001b[31mCalledProcessError\u001b[39m: Command '['/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/bin/python', '-m', 'pip', 'install', '-q', '--extra-index-url', '//huggingface\\\\.co', ':https://hf-mirror.com://download.pytorch.org/whl/cpu', 'setuptools<82', 'nncf', 'openvino>=2025.4.0', 'gradio', 'hugg"
+          "ok_runs=0/3: \u001b[31mCalledProcessError\u001b[39m: Command '['/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/bin/python', '-m', 'pip', 'install', '-q', '--extra-index-url', '//huggingface\\\\.co', ':https://hf-mirror.com://download.pytorch.org/whl/cpu', 'setuptools<82', 'nncf', 'openvino>=2025.4.0', 'gradio', 'hugg",
+          "revalidation deferred: large/gated-model CPU workloads cannot complete on the secondary runner (throttled egress, gated model repos); queued for the reference Ryzen runner. GPU twins revalidated under the new pin where implemented."
         ],
-        "updated": "2026-10-01T16:38:01+00:00"
+        "updated": "2026-10-07T00:48:13+00:00",
+        "historical_status": "FAILED",
+        "historical_evidence": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/cosyvoice3-tts/20261001T163759Z-cpu",
+        "revalidation_reasons": [
+          "pin:a8809170cc4f->329562e6031d",
+          "upstream_notebook_changed"
+        ]
       }
     },
     "darkir-image-restoration": {
@@ -216,15 +270,27 @@
         "status": "VERIFIED_WITH_LIMITATIONS",
         "failure_category": "",
         "ok_runs": 1,
+        "required_runs": 1,
         "durations_s": [
-          119.34
+          138.1
         ],
         "device_used": "CPU",
-        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/darkir-image-restoration/20261001T163904Z-cpu",
+        "device_proof": "PROVEN_CPU",
+        "validation_level": "WORKLOAD_CORRECTNESS",
+        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/darkir-image-restoration/20261005T201826Z-cpu",
+        "env": {
+          "backend": "cpu",
+          "env_key": "797b80efc2b66641",
+          "python": ".venvs/cpu/797b80efc2b66641/bin/python",
+          "fingerprint": "bba24f7f689ad3de484ee7c9612afe557d21611c5455634f1e19402437ad2cff",
+          "reused": false,
+          "created": true
+        },
         "notes": [
-          "repeatability: single successful run (resource-bounded); 3-run policy not met"
+          "repeatability_not_established: fewer than 3 successful runs (resource-bounded policy)",
+          "CORE_INFERENCE_VERIFIED; INTERACTIVE_UI_NOT_TESTED (documented skip policy)"
         ],
-        "updated": "2026-10-01T16:41:04+00:00"
+        "updated": "2026-10-05T20:20:48+00:00"
       }
     },
     "deepseek-ocr": {
@@ -246,24 +312,39 @@
         "status": "VERIFIED_WITH_LIMITATIONS",
         "failure_category": "",
         "ok_runs": 3,
+        "required_runs": 3,
         "durations_s": [
-          5.08,
-          4.77,
-          4.72
+          103.01,
+          99.29,
+          76.72
         ],
         "device_used": "CPU",
-        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/deepseek-r1/20261001T164340Z-cpu",
+        "device_proof": "NOT_INFERENCE",
+        "validation_level": "WORKLOAD_CORRECTNESS",
+        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/deepseek-r1/20261005T194401Z-cpu",
+        "env": {
+          "backend": "cpu",
+          "env_key": "58520984250b98ea",
+          "python": ".venvs/cpu/58520984250b98ea/bin/python",
+          "fingerprint": "0e7c675fb89a55751f0d6006de79066a19764a81a4f01030fa4578eaa5d8ac79",
+          "reused": false,
+          "created": true
+        },
         "notes": [
-          "CORE_INFERENCE_VERIFIED; INTERACTIVE_UI_NOT_TESTED (cells skipped via documented patch)"
+          "DEVICE_PROOF_NOT_OBSERVED: no OpenVINO compile_model call was captured by the probe (notebooks driving openvino_genai pipelines or conversion-only code bypass the Python Core API; positive device execution therefore unproven)",
+          "CORE_INFERENCE_VERIFIED; INTERACTIVE_UI_NOT_TESTED (documented skip policy)"
         ],
-        "updated": "2026-10-01T16:43:45+00:00"
+        "updated": "2026-10-05T19:48:44+00:00"
       },
       "gpu": {
         "status": "VERIFIED",
         "failure_category": "",
         "notes": [],
-        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/deepseek-r1/20261001T132824Z-gpu",
-        "updated": "2026-10-01T13:46:46+00:00"
+        "evidence_dir": "results/deepseek-r1/20261007T010103Z-gpu",
+        "device_proof": "PROVEN_GPU",
+        "validation_level": "WORKLOAD_CORRECTNESS",
+        "platform_id": "amd-epyc-9334-32-core-processor-gfx1100",
+        "updated": "2026-10-07T01:02:31+00:00"
       }
     },
     "deepseek-vl2": {
@@ -327,8 +408,11 @@
         "status": "VERIFIED",
         "failure_category": "",
         "notes": [],
-        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/stable-diffusion-text-to-image/20261001T121520Z-gpu",
-        "updated": "2026-10-01T12:15:48+00:00"
+        "evidence_dir": "results/stable-diffusion-text-to-image/20261007T005940Z-gpu",
+        "device_proof": "PROVEN_GPU",
+        "validation_level": "WORKLOAD_CORRECTNESS",
+        "platform_id": "amd-epyc-9334-32-core-processor-gfx1100",
+        "updated": "2026-10-07T01:00:05+00:00"
       },
       "cpu": {
         "status": "FAILED",
@@ -348,22 +432,62 @@
         "status": "VERIFIED",
         "failure_category": "",
         "notes": [],
-        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/smolvlm2/20261001T120053Z-gpu",
-        "updated": "2026-10-01T12:01:10+00:00"
+        "evidence_dir": "results/smolvlm2/20261007T005844Z-gpu",
+        "device_proof": "PROVEN_GPU",
+        "validation_level": "WORKLOAD_CORRECTNESS",
+        "platform_id": "amd-epyc-9334-32-core-processor-gfx1100",
+        "updated": "2026-10-07T00:59:40+00:00"
+      },
+      "cpu": {
+        "status": "REVALIDATION_REQUIRED",
+        "failure_category": "UNKNOWN",
+        "ok_runs": 0,
+        "required_runs": 1,
+        "durations_s": [],
+        "device_used": "AUTO",
+        "device_proof": "UNKNOWN",
+        "validation_level": "",
+        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/smolvlm2/20261005T204227Z-cpu",
+        "env": {
+          "backend": "cpu",
+          "env_key": "f315d1533e8fc914",
+          "python": ".venvs/cpu/f315d1533e8fc914/bin/python",
+          "fingerprint": "de814ef951917778e153211402ff3809c9dd9ae3acb4a9ed8df52199a82931bc",
+          "reused": false,
+          "created": true
+        },
+        "notes": [
+          "ok_runs=0/1: \u001b[31mFileNotFoundError\u001b[39m: [Errno 2] No such file or directory: 'optimum-cli'",
+          "revalidation deferred: large/gated-model CPU workloads cannot complete on the secondary runner (throttled egress, gated model repos); queued for the reference Ryzen runner. GPU twins revalidated under the new pin where implemented."
+        ],
+        "updated": "2026-10-07T00:48:13+00:00",
+        "historical_status": "FAILED",
+        "historical_evidence": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/smolvlm2/20261005T204227Z-cpu",
+        "revalidation_reasons": [
+          "pin:a8809170cc4f->329562e6031d",
+          "upstream_notebook_changed"
+        ]
       }
     },
     "flex.2-image-generation": {
       "cpu": {
-        "status": "FAILED",
+        "status": "REVALIDATION_REQUIRED",
         "failure_category": "UNKNOWN",
         "ok_runs": 0,
         "durations_s": [],
         "device_used": "",
         "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/flex.2-image-generation/20261001T164618Z-cpu",
         "notes": [
-          "ok_runs=0/3: \u001b[31mInvalidSchema\u001b[39m: No connection adapters were found for '//huggingface\\\\.co :https://hf-mirror.com://huggingface.co/spaces/VIDraft/Flex-preview/resolve/main/pipeline.py'"
+          "ok_runs=0/3: \u001b[31mInvalidSchema\u001b[39m: No connection adapters were found for '//huggingface\\\\.co :https://hf-mirror.com://huggingface.co/spaces/VIDraft/Flex-preview/resolve/main/pipeline.py'",
+          "revalidation deferred: large/gated-model CPU workloads cannot complete on the secondary runner (throttled egress, gated model repos); queued for the reference Ryzen runner. GPU twins revalidated under the new pin where implemented."
         ],
-        "updated": "2026-10-01T16:46:20+00:00"
+        "updated": "2026-10-07T00:48:13+00:00",
+        "historical_status": "FAILED",
+        "historical_evidence": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/flex.2-image-generation/20261001T164618Z-cpu",
+        "revalidation_reasons": [
+          "pin:a8809170cc4f->329562e6031d",
+          "upstream_notebook_changed"
+        ]
       }
     },
     "qwen3": {
@@ -371,8 +495,11 @@
         "status": "VERIFIED",
         "failure_category": "",
         "notes": [],
-        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/qwen3/20261001T120459Z-gpu",
-        "updated": "2026-10-01T12:05:11+00:00"
+        "evidence_dir": "results/qwen3/20261007T005803Z-gpu",
+        "device_proof": "PROVEN_GPU",
+        "validation_level": "WORKLOAD_CORRECTNESS",
+        "platform_id": "amd-epyc-9334-32-core-processor-gfx1100",
+        "updated": "2026-10-07T00:58:43+00:00"
       },
       "cpu": {
         "status": "FAILED",
@@ -392,8 +519,34 @@
         "status": "VERIFIED",
         "failure_category": "",
         "notes": [],
-        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/whisper-asr-genai/20261001T120511Z-gpu",
-        "updated": "2026-10-01T12:05:27+00:00"
+        "evidence_dir": "results/whisper-asr-genai/20261007T011710Z-gpu",
+        "device_proof": "PROVEN_GPU",
+        "validation_level": "WORKLOAD_CORRECTNESS",
+        "platform_id": "amd-epyc-9334-32-core-processor-gfx1100",
+        "updated": "2026-10-07T01:17:57+00:00"
+      },
+      "cpu": {
+        "status": "FAILED",
+        "failure_category": "NETWORK",
+        "ok_runs": 0,
+        "required_runs": 1,
+        "durations_s": [],
+        "device_used": "CPU",
+        "device_proof": "NOT_INFERENCE",
+        "validation_level": "",
+        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/whisper-asr-genai/20261005T212758Z-cpu",
+        "env": {
+          "backend": "cpu",
+          "env_key": "13b4b0a0202d3794",
+          "python": ".venvs/cpu/13b4b0a0202d3794/bin/python",
+          "fingerprint": "99e44cf4c44620c4f2ab48b654a6fa2858b6e1e233f09a02e8041d31489a2946",
+          "reused": false,
+          "created": true
+        },
+        "notes": [
+          "ok_runs=0/1: \u001b[31mConnectTimeout\u001b[39m: HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /spaces/distil-whisper/whisper-vs-distil-whisper/resolve/main/assets/example_1.wav (Caused by ConnectTimeoutError(<HTTPSConnection(host='huggingface.co', port=443) at 0x7b9fc5a2da00>, 'Conn"
+        ],
+        "updated": "2026-10-05T21:41:45+00:00"
       }
     },
     "florence2": {
@@ -443,24 +596,46 @@
         "status": "VERIFIED",
         "failure_category": "",
         "notes": [],
-        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/kokoro/20261001T132808Z-gpu",
-        "updated": "2026-10-01T13:28:24+00:00"
+        "evidence_dir": "results/kokoro/20261007T005721Z-gpu",
+        "device_proof": "PROVEN_GPU",
+        "validation_level": "WORKLOAD_CORRECTNESS",
+        "platform_id": "amd-epyc-9334-32-core-processor-gfx1100",
+        "updated": "2026-10-07T00:58:03+00:00"
       },
       "cpu": {
-        "status": "VERIFIED_WITH_LIMITATIONS",
+        "status": "REVALIDATION_REQUIRED",
         "failure_category": "",
         "ok_runs": 3,
+        "required_runs": 3,
         "durations_s": [
-          5.07,
-          4.98,
-          5.18
+          11.14,
+          4.43,
+          4.52
         ],
         "device_used": "CPU",
-        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/kokoro/20261001T164651Z-cpu",
+        "device_proof": "NOT_INFERENCE",
+        "validation_level": "WORKLOAD_CORRECTNESS",
+        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/kokoro/20261005T194853Z-cpu",
+        "env": {
+          "backend": "cpu",
+          "env_key": "14c79f40de9d556c",
+          "python": ".venvs/cpu/14c79f40de9d556c/bin/python",
+          "fingerprint": "c8bafca28e36d870f0d76b624298fe6025c92926357ae331f19bce404767e7e4",
+          "reused": false,
+          "created": true
+        },
         "notes": [
-          "CORE_INFERENCE_VERIFIED; INTERACTIVE_UI_NOT_TESTED (cells skipped via documented patch)"
+          "DEVICE_PROOF_NOT_OBSERVED: no OpenVINO compile_model call was captured by the probe (notebooks driving openvino_genai pipelines or conversion-only code bypass the Python Core API; positive device execution therefore unproven)",
+          "CORE_INFERENCE_VERIFIED; INTERACTIVE_UI_NOT_TESTED (documented skip policy)",
+          "revalidation deferred: large/gated-model CPU workloads cannot complete on the secondary runner (throttled egress, gated model repos); queued for the reference Ryzen runner. GPU twins revalidated under the new pin where implemented."
         ],
-        "updated": "2026-10-01T16:46:56+00:00"
+        "updated": "2026-10-07T00:48:13+00:00",
+        "historical_status": "VERIFIED_WITH_LIMITATIONS",
+        "historical_evidence": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/kokoro/20261005T194853Z-cpu",
+        "revalidation_reasons": [
+          "pin:a8809170cc4f->329562e6031d",
+          "upstream_notebook_changed"
+        ]
       }
     },
     "glm-ocr": {
@@ -496,15 +671,26 @@
         "status": "VERIFIED",
         "failure_category": "",
         "ok_runs": 3,
+        "required_runs": 3,
         "durations_s": [
-          367.88,
-          2.17,
-          2.07
+          2.02,
+          1.92,
+          1.92
         ],
         "device_used": "CPU",
-        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/handwritten-ocr/20261001T130442Z-cpu",
+        "device_proof": "PROVEN_CPU",
+        "validation_level": "WORKLOAD_CORRECTNESS",
+        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/handwritten-ocr/20261005T194844Z-cpu",
+        "env": {
+          "backend": "cpu",
+          "env_key": "244e780d61b49309",
+          "python": ".venvs/cpu/244e780d61b49309/bin/python",
+          "fingerprint": "e316a2770355739071cbd0b2b6ecff836b6d8bbf7a1b9a91ad341932feb17664",
+          "reused": true,
+          "created": false
+        },
         "notes": [],
-        "updated": "2026-10-01T13:04:44+00:00"
+        "updated": "2026-10-05T19:48:53+00:00"
       }
     },
     "inpainting-genai": {
@@ -540,8 +726,11 @@
         "status": "VERIFIED",
         "failure_category": "",
         "notes": [],
-        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/stable-diffusion-xl/20261001T145247Z-gpu",
-        "updated": "2026-10-01T14:53:52+00:00"
+        "evidence_dir": "results/stable-diffusion-xl/20261007T010006Z-gpu",
+        "device_proof": "PROVEN_GPU",
+        "validation_level": "WORKLOAD_CORRECTNESS",
+        "platform_id": "amd-epyc-9334-32-core-processor-gfx1100",
+        "updated": "2026-10-07T01:01:02+00:00"
       },
       "cpu": {
         "status": "FAILED",
@@ -842,18 +1031,31 @@
     },
     "speculative-sampling": {
       "cpu": {
-        "status": "VERIFIED",
+        "status": "VERIFIED_WITH_LIMITATIONS",
         "failure_category": "",
         "ok_runs": 3,
+        "required_runs": 3,
         "durations_s": [
-          344.02,
-          339.43,
-          342.05
+          363.82,
+          339.42,
+          341.11
         ],
         "device_used": "CPU",
-        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/speculative-sampling/20261001T170548Z-cpu",
-        "notes": [],
-        "updated": "2026-10-01T17:11:30+00:00"
+        "device_proof": "NOT_INFERENCE",
+        "validation_level": "WORKLOAD_CORRECTNESS",
+        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/speculative-sampling/20261005T194918Z-cpu",
+        "env": {
+          "backend": "cpu",
+          "env_key": "34bc55673e23ed62",
+          "python": ".venvs/cpu/34bc55673e23ed62/bin/python",
+          "fingerprint": "dba4fa367450889022f5946f0aeb72fd19345808c905e32b1e308eaaf52e23dd",
+          "reused": false,
+          "created": true
+        },
+        "notes": [
+          "DEVICE_PROOF_NOT_OBSERVED: no OpenVINO compile_model call was captured by the probe (notebooks driving openvino_genai pipelines or conversion-only code bypass the Python Core API; positive device execution therefore unproven)"
+        ],
+        "updated": "2026-10-05T20:06:46+00:00"
       }
     },
     "text-to-image-genai": {
@@ -928,18 +1130,31 @@
     },
     "llm-lora": {
       "cpu": {
-        "status": "VERIFIED",
+        "status": "VERIFIED_WITH_LIMITATIONS",
         "failure_category": "",
         "ok_runs": 3,
+        "required_runs": 3,
         "durations_s": [
-          240.45,
-          12.14,
-          12.19
+          37.09,
+          17.81,
+          18.31
         ],
         "device_used": "CPU",
-        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/llm-lora/20261001T140838Z-cpu",
-        "notes": [],
-        "updated": "2026-10-01T14:08:50+00:00"
+        "device_proof": "NOT_INFERENCE",
+        "validation_level": "WORKLOAD_CORRECTNESS",
+        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/llm-lora/20261005T200648Z-cpu",
+        "env": {
+          "backend": "cpu",
+          "env_key": "d375b21c5bccf759",
+          "python": ".venvs/cpu/d375b21c5bccf759/bin/python",
+          "fingerprint": "8b8151c4e5ee45d01b99de6e18a838e85169c326b5552dbe9341766c0a66bf62",
+          "reused": false,
+          "created": true
+        },
+        "notes": [
+          "DEVICE_PROOF_NOT_OBSERVED: no OpenVINO compile_model call was captured by the probe (notebooks driving openvino_genai pipelines or conversion-only code bypass the Python Core API; positive device execution therefore unproven)"
+        ],
+        "updated": "2026-10-05T20:08:05+00:00"
       }
     },
     "mineru2.5": {
@@ -1084,16 +1299,23 @@
     },
     "hunyuan-ocr": {
       "cpu": {
-        "status": "FAILED",
+        "status": "REVALIDATION_REQUIRED",
         "failure_category": "NETWORK",
         "ok_runs": 0,
         "durations_s": [],
         "device_used": "",
         "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/hunyuan-ocr/20261001T191339Z-cpu",
         "notes": [
-          "ok_runs=0/1: \u001b[31mCalledProcessError\u001b[39m: Command '['/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/bin/python', '-m', 'pip', 'install', '-q', 'git+https://github.com/openvino-dev-samples/optimum-intel.git@hunyuan-ocr-support']' returned non-zero exit status 1."
+          "ok_runs=0/1: \u001b[31mCalledProcessError\u001b[39m: Command '['/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/bin/python', '-m', 'pip', 'install', '-q', 'git+https://github.com/openvino-dev-samples/optimum-intel.git@hunyuan-ocr-support']' returned non-zero exit status 1.",
+          "revalidation deferred: large/gated-model CPU workloads cannot complete on the secondary runner (throttled egress, gated model repos); queued for the reference Ryzen runner. GPU twins revalidated under the new pin where implemented."
         ],
-        "updated": "2026-10-01T19:15:58+00:00"
+        "updated": "2026-10-07T00:48:13+00:00",
+        "historical_status": "FAILED",
+        "historical_evidence": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/hunyuan-ocr/20261001T191339Z-cpu",
+        "revalidation_reasons": [
+          "pin:a8809170cc4f->329562e6031d",
+          "upstream_notebook_changed"
+        ]
       }
     },
     "hunyuan-translation": {
@@ -1101,15 +1323,28 @@
         "status": "VERIFIED_WITH_LIMITATIONS",
         "failure_category": "",
         "ok_runs": 1,
+        "required_runs": 1,
         "durations_s": [
-          69.89
+          99.41
         ],
         "device_used": "CPU",
-        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/hunyuan-translation/20261001T191559Z-cpu",
+        "device_proof": "NOT_INFERENCE",
+        "validation_level": "WORKLOAD_CORRECTNESS",
+        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/hunyuan-translation/20261005T202048Z-cpu",
+        "env": {
+          "backend": "cpu",
+          "env_key": "ab1de16c03727dab",
+          "python": ".venvs/cpu/ab1de16c03727dab/bin/python",
+          "fingerprint": "d14926c9b10f66ed7af583c91a1c2b28cade50acb6eb4f551caaa6bfa671f4e8",
+          "reused": false,
+          "created": true
+        },
         "notes": [
-          "repeatability: single successful run (resource-bounded); 3-run policy not met"
+          "DEVICE_PROOF_NOT_OBSERVED: no OpenVINO compile_model call was captured by the probe (notebooks driving openvino_genai pipelines or conversion-only code bypass the Python Core API; positive device execution therefore unproven)",
+          "repeatability_not_established: fewer than 3 successful runs (resource-bounded policy)",
+          "CORE_INFERENCE_VERIFIED; INTERACTIVE_UI_NOT_TESTED (documented skip policy)"
         ],
-        "updated": "2026-10-01T19:17:09+00:00"
+        "updated": "2026-10-05T20:22:31+00:00"
       }
     },
     "image-to-image-genai": {
@@ -1117,15 +1352,28 @@
         "status": "VERIFIED_WITH_LIMITATIONS",
         "failure_category": "",
         "ok_runs": 1,
+        "required_runs": 1,
         "durations_s": [
-          47.31
+          78.69
         ],
         "device_used": "CPU",
-        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/image-to-image-genai/20261001T191710Z-cpu",
+        "device_proof": "NOT_INFERENCE",
+        "validation_level": "WORKLOAD_CORRECTNESS",
+        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/image-to-image-genai/20261005T202231Z-cpu",
+        "env": {
+          "backend": "cpu",
+          "env_key": "72b537b71f8963ba",
+          "python": ".venvs/cpu/72b537b71f8963ba/bin/python",
+          "fingerprint": "ff492221351c71aff00c81afbdaa18c94456af60789010030e1445a2ff948c85",
+          "reused": false,
+          "created": true
+        },
         "notes": [
-          "repeatability: single successful run (resource-bounded); 3-run policy not met"
+          "DEVICE_PROOF_NOT_OBSERVED: no OpenVINO compile_model call was captured by the probe (notebooks driving openvino_genai pipelines or conversion-only code bypass the Python Core API; positive device execution therefore unproven)",
+          "repeatability_not_established: fewer than 3 successful runs (resource-bounded policy)",
+          "CORE_INFERENCE_VERIFIED; INTERACTIVE_UI_NOT_TESTED (documented skip policy)"
         ],
-        "updated": "2026-10-01T19:17:58+00:00"
+        "updated": "2026-10-05T20:23:54+00:00"
       }
     },
     "instant-id": {
@@ -1147,15 +1395,27 @@
         "status": "VERIFIED_WITH_LIMITATIONS",
         "failure_category": "",
         "ok_runs": 1,
+        "required_runs": 1,
         "durations_s": [
-          421.11
+          293.56
         ],
         "device_used": "CPU",
-        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/llm-agent-functioncall-qwen/20261001T193351Z-cpu",
+        "device_proof": "PROVEN_CPU",
+        "validation_level": "WORKLOAD_CORRECTNESS",
+        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/llm-agent-functioncall-qwen/20261005T202354Z-cpu",
+        "env": {
+          "backend": "cpu",
+          "env_key": "f35eb2b19f1ff708",
+          "python": ".venvs/cpu/f35eb2b19f1ff708/bin/python",
+          "fingerprint": "1265a4a342f5c555941c4ef982ba1ff8b9dfa22acd30045dac2c8c956d055709",
+          "reused": false,
+          "created": true
+        },
         "notes": [
-          "repeatability: single successful run (resource-bounded); 3-run policy not met"
+          "repeatability_not_established: fewer than 3 successful runs (resource-bounded policy)",
+          "CORE_INFERENCE_VERIFIED; INTERACTIVE_UI_NOT_TESTED (documented skip policy)"
         ],
-        "updated": "2026-10-01T19:40:52+00:00"
+        "updated": "2026-10-05T20:28:52+00:00"
       }
     },
     "llm-agent-rag-llamaindex": {
@@ -1163,15 +1423,26 @@
         "status": "VERIFIED_WITH_LIMITATIONS",
         "failure_category": "",
         "ok_runs": 1,
+        "required_runs": 1,
         "durations_s": [
-          521.18
+          117.29
         ],
         "device_used": "CPU",
-        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/llm-agent-rag-llamaindex/20261001T194156Z-cpu",
+        "device_proof": "PROVEN_CPU",
+        "validation_level": "WORKLOAD_CORRECTNESS",
+        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/llm-agent-rag-llamaindex/20261005T202852Z-cpu",
+        "env": {
+          "backend": "cpu",
+          "env_key": "14c79f40de9d556c",
+          "python": ".venvs/cpu/14c79f40de9d556c/bin/python",
+          "fingerprint": "c8bafca28e36d870f0d76b624298fe6025c92926357ae331f19bce404767e7e4",
+          "reused": true,
+          "created": false
+        },
         "notes": [
-          "repeatability: single successful run (resource-bounded); 3-run policy not met"
+          "repeatability_not_established: fewer than 3 successful runs (resource-bounded policy)"
         ],
-        "updated": "2026-10-01T19:50:37+00:00"
+        "updated": "2026-10-05T20:30:56+00:00"
       }
     },
     "llm-chatbot": {
@@ -1193,15 +1464,28 @@
         "status": "VERIFIED_WITH_LIMITATIONS",
         "failure_category": "",
         "ok_runs": 1,
+        "required_runs": 1,
         "durations_s": [
-          151.94
+          28.48
         ],
         "device_used": "CPU",
-        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/llm-question-answering/20261001T195822Z-cpu",
+        "device_proof": "NOT_INFERENCE",
+        "validation_level": "WORKLOAD_CORRECTNESS",
+        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/llm-question-answering/20261005T203056Z-cpu",
+        "env": {
+          "backend": "cpu",
+          "env_key": "14c79f40de9d556c",
+          "python": ".venvs/cpu/14c79f40de9d556c/bin/python",
+          "fingerprint": "c8bafca28e36d870f0d76b624298fe6025c92926357ae331f19bce404767e7e4",
+          "reused": true,
+          "created": false
+        },
         "notes": [
-          "repeatability: single successful run (resource-bounded); 3-run policy not met"
+          "DEVICE_PROOF_NOT_OBSERVED: no OpenVINO compile_model call was captured by the probe (notebooks driving openvino_genai pipelines or conversion-only code bypass the Python Core API; positive device execution therefore unproven)",
+          "repeatability_not_established: fewer than 3 successful runs (resource-bounded policy)",
+          "CORE_INFERENCE_VERIFIED; INTERACTIVE_UI_NOT_TESTED (documented skip policy)"
         ],
-        "updated": "2026-10-01T20:00:54+00:00"
+        "updated": "2026-10-05T20:31:33+00:00"
       }
     },
     "meter-reader": {
@@ -1209,15 +1493,26 @@
         "status": "VERIFIED_WITH_LIMITATIONS",
         "failure_category": "",
         "ok_runs": 1,
+        "required_runs": 1,
         "durations_s": [
-          5.53
+          4.52
         ],
         "device_used": "CPU",
-        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/meter-reader/20261001T200158Z-cpu",
+        "device_proof": "PROVEN_CPU",
+        "validation_level": "WORKLOAD_CORRECTNESS",
+        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/meter-reader/20261005T203133Z-cpu",
+        "env": {
+          "backend": "cpu",
+          "env_key": "244e780d61b49309",
+          "python": ".venvs/cpu/244e780d61b49309/bin/python",
+          "fingerprint": "e316a2770355739071cbd0b2b6ecff836b6d8bbf7a1b9a91ad341932feb17664",
+          "reused": true,
+          "created": false
+        },
         "notes": [
-          "repeatability: single successful run (resource-bounded); 3-run policy not met"
+          "repeatability_not_established: fewer than 3 successful runs (resource-bounded policy)"
         ],
-        "updated": "2026-10-01T20:02:04+00:00"
+        "updated": "2026-10-05T20:31:44+00:00"
       }
     },
     "minicpm-o-4.5": {
@@ -1264,16 +1559,23 @@
     },
     "ministral-3": {
       "cpu": {
-        "status": "FAILED",
+        "status": "REVALIDATION_REQUIRED",
         "failure_category": "UNKNOWN",
         "ok_runs": 0,
         "durations_s": [],
         "device_used": "",
         "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/ministral-3/20261001T203043Z-cpu",
         "notes": [
-          "ok_runs=0/1: \u001b[31mFileNotFoundError\u001b[39m: [Errno 2] No such file or directory: 'optimum-cli'"
+          "ok_runs=0/1: \u001b[31mFileNotFoundError\u001b[39m: [Errno 2] No such file or directory: 'optimum-cli'",
+          "revalidation deferred: large/gated-model CPU workloads cannot complete on the secondary runner (throttled egress, gated model repos); queued for the reference Ryzen runner. GPU twins revalidated under the new pin where implemented."
         ],
-        "updated": "2026-10-01T20:33:07+00:00"
+        "updated": "2026-10-07T00:48:13+00:00",
+        "historical_status": "FAILED",
+        "historical_evidence": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/ministral-3/20261001T203043Z-cpu",
+        "revalidation_reasons": [
+          "pin:a8809170cc4f->329562e6031d",
+          "upstream_notebook_changed"
+        ]
       }
     },
     "mllama-3.2": {
@@ -1306,16 +1608,23 @@
     },
     "olmocr-pdf-vlm": {
       "cpu": {
-        "status": "FAILED",
+        "status": "REVALIDATION_REQUIRED",
         "failure_category": "UNKNOWN",
         "ok_runs": 0,
         "durations_s": [],
         "device_used": "",
         "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/olmocr-pdf-vlm/20261001T180555Z-cpu",
         "notes": [
-          "ok_runs=0/1: \u001b[31mCalledProcessError\u001b[39m: Command '['/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/bin/python', '-m', 'pip', 'install', '-qU', '--pre', 'openvino>=2025.0.0', 'openvino-tokenizers>=2025.0.0', 'openvino-genai>=2025.0.0', 'nncf>=2.15.0', '--extra-index-url', '//huggingface\\\\.co', ':https://"
+          "ok_runs=0/1: \u001b[31mCalledProcessError\u001b[39m: Command '['/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/bin/python', '-m', 'pip', 'install', '-qU', '--pre', 'openvino>=2025.0.0', 'openvino-tokenizers>=2025.0.0', 'openvino-genai>=2025.0.0', 'nncf>=2.15.0', '--extra-index-url', '//huggingface\\\\.co', ':https://",
+          "revalidation deferred: large/gated-model CPU workloads cannot complete on the secondary runner (throttled egress, gated model repos); queued for the reference Ryzen runner. GPU twins revalidated under the new pin where implemented."
         ],
-        "updated": "2026-10-01T18:05:57+00:00"
+        "updated": "2026-10-07T00:48:13+00:00",
+        "historical_status": "FAILED",
+        "historical_evidence": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/olmocr-pdf-vlm/20261001T180555Z-cpu",
+        "revalidation_reasons": [
+          "pin:a8809170cc4f->329562e6031d",
+          "upstream_notebook_changed"
+        ]
       }
     },
     "openvoice": {
@@ -1334,16 +1643,23 @@
     },
     "openvoice2-and-melotts": {
       "cpu": {
-        "status": "FAILED",
+        "status": "REVALIDATION_REQUIRED",
         "failure_category": "UNKNOWN",
         "ok_runs": 0,
         "durations_s": [],
         "device_used": "",
         "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/openvoice2-and-melotts/20261001T180602Z-cpu",
         "notes": [
-          "ok_runs=0/1: \u001b[31mCalledProcessError\u001b[39m: Command '['git', 'clone', '//huggingface\\\\.co :https://hf-mirror.com://github.com/myshell-ai/OpenVoice']' returned non-zero exit status 128."
+          "ok_runs=0/1: \u001b[31mCalledProcessError\u001b[39m: Command '['git', 'clone', '//huggingface\\\\.co :https://hf-mirror.com://github.com/myshell-ai/OpenVoice']' returned non-zero exit status 128.",
+          "revalidation deferred: large/gated-model CPU workloads cannot complete on the secondary runner (throttled egress, gated model repos); queued for the reference Ryzen runner. GPU twins revalidated under the new pin where implemented."
         ],
-        "updated": "2026-10-01T18:06:04+00:00"
+        "updated": "2026-10-07T00:48:13+00:00",
+        "historical_status": "FAILED",
+        "historical_evidence": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/openvoice2-and-melotts/20261001T180602Z-cpu",
+        "revalidation_reasons": [
+          "pin:a8809170cc4f->329562e6031d",
+          "upstream_notebook_changed"
+        ]
       }
     },
     "paddle-ocr-webcam": {
@@ -1428,6 +1744,1055 @@
           "ok_runs=0/1: \u001b[31mCalledProcessError\u001b[39m: Command '['optimum-cli', 'export', 'openvino', '--model', 'Qwen/Qwen3-VL-Embedding-2B', 'Qwen3-VL-Embedding-2B/FP16', '--task', 'feature-extraction', '--weight-format', 'fp16']' returned non-zero exit status 1."
         ],
         "updated": "2026-10-01T18:27:05+00:00"
+      }
+    },
+    "qwen3-vl-reranker": {
+      "cpu": {
+        "status": "FAILED",
+        "failure_category": "UNKNOWN",
+        "ok_runs": 0,
+        "required_runs": 1,
+        "durations_s": [],
+        "device_used": "CPU",
+        "device_proof": "UNKNOWN",
+        "validation_level": "",
+        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/qwen3-vl-reranker/20261005T203147Z-cpu",
+        "env": {
+          "backend": "cpu",
+          "env_key": "4b2ebc5344e48aec",
+          "python": ".venvs/cpu/4b2ebc5344e48aec/bin/python",
+          "fingerprint": "ca625649e570ee0a336720031120a82ef9387b5048f7f970852ce908fa172736",
+          "reused": false,
+          "created": true
+        },
+        "notes": [
+          "ok_runs=0/1: \u001b[31mFileNotFoundError\u001b[39m: [Errno 2] No such file or directory: 'optimum-cli'"
+        ],
+        "updated": "2026-10-05T20:34:15+00:00"
+      }
+    },
+    "qwen3_agent": {
+      "cpu": {
+        "status": "FAILED",
+        "failure_category": "DEPENDENCY",
+        "ok_runs": 0,
+        "required_runs": 1,
+        "durations_s": [],
+        "device_used": "",
+        "device_proof": "NOT_INFERENCE",
+        "validation_level": "",
+        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/qwen3_agent/20261005T203416Z-cpu",
+        "env": {
+          "backend": "cpu",
+          "env_key": "7094cfb8fa0dad07",
+          "python": ".venvs/cpu/7094cfb8fa0dad07/bin/python",
+          "fingerprint": "07e7b970b1519199928949cac3224a75484cd54acc1cbba24e3f78b7cf2cb9bb",
+          "reused": false,
+          "created": true
+        },
+        "notes": [
+          "ok_runs=0/1: \u001b[31mModuleNotFoundError\u001b[39m: No module named 'smolagents'"
+        ],
+        "updated": "2026-10-05T20:42:25+00:00"
+      }
+    },
+    "stable-diffusion-v3": {
+      "cpu": {
+        "status": "VERIFIED_WITH_LIMITATIONS",
+        "failure_category": "",
+        "ok_runs": 1,
+        "required_runs": 1,
+        "durations_s": [
+          250.74
+        ],
+        "device_used": "CPU",
+        "device_proof": "NOT_INFERENCE",
+        "validation_level": "EXECUTION_ONLY",
+        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/stable-diffusion-v3/20261005T204451Z-cpu",
+        "env": {
+          "backend": "cpu",
+          "env_key": "b9c2d468cf5a1848",
+          "python": ".venvs/cpu/b9c2d468cf5a1848/bin/python",
+          "fingerprint": "26f66a7c62377b12a0922b362ecf51e39fbaf9558af2a44c732cbd728d2a464c",
+          "reused": false,
+          "created": true
+        },
+        "notes": [
+          "EXECUTION_ONLY: no workload correctness contract (validation: {})",
+          "DEVICE_PROOF_NOT_OBSERVED: no OpenVINO compile_model call was captured by the probe (notebooks driving openvino_genai pipelines or conversion-only code bypass the Python Core API; positive device execution therefore unproven)",
+          "repeatability_not_established: fewer than 3 successful runs (resource-bounded policy)",
+          "CORE_INFERENCE_VERIFIED; INTERACTIVE_UI_NOT_TESTED (documented skip policy)"
+        ],
+        "updated": "2026-10-05T21:06:49+00:00"
+      }
+    },
+    "stable-diffusion-v3-torch-fx": {
+      "cpu": {
+        "status": "FAILED",
+        "failure_category": "PACKAGE_CONFLICT",
+        "ok_runs": 0,
+        "required_runs": 1,
+        "durations_s": [],
+        "device_used": "AUTO",
+        "device_proof": "UNKNOWN",
+        "validation_level": "",
+        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/stable-diffusion-v3-torch-fx/20261005T210649Z-cpu",
+        "env": {
+          "backend": "cpu",
+          "env_key": "14c79f40de9d556c",
+          "python": ".venvs/cpu/14c79f40de9d556c/bin/python",
+          "fingerprint": "c8bafca28e36d870f0d76b624298fe6025c92926357ae331f19bce404767e7e4",
+          "reused": true,
+          "created": false
+        },
+        "notes": [
+          "ok_runs=0/1: Access to model stabilityai/stable-diffusion-3-medium-diffusers is restricted and you are not in the authorized list. Visit https://huggingface.co/stabilityai/stable-diffusion-3-medium-diffusers to ask for access."
+        ],
+        "updated": "2026-10-05T21:07:54+00:00"
+      }
+    },
+    "vlm-chatbot-generate-api": {
+      "cpu": {
+        "status": "FAILED",
+        "failure_category": "UNKNOWN",
+        "ok_runs": 0,
+        "required_runs": 1,
+        "durations_s": [],
+        "device_used": "CPU",
+        "device_proof": "NOT_INFERENCE",
+        "validation_level": "",
+        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/vlm-chatbot-generate-api/20261005T210756Z-cpu",
+        "env": {
+          "backend": "cpu",
+          "env_key": "82db528bbe929c5c",
+          "python": ".venvs/cpu/82db528bbe929c5c/bin/python",
+          "fingerprint": "976904370b56f01fe0222b6c45dd299b9c1b78eb25aa01b7fe38b26514a6f3f4",
+          "reused": false,
+          "created": true
+        },
+        "notes": [
+          "ok_runs=0/1: \u001b[31mFileNotFoundError\u001b[39m: [Errno 2] No such file or directory: 'nyc.jpg'"
+        ],
+        "updated": "2026-10-05T21:25:36+00:00"
+      }
+    },
+    "wav2lip": {
+      "cpu": {
+        "status": "FAILED",
+        "failure_category": "PACKAGE_CONFLICT",
+        "ok_runs": 0,
+        "required_runs": 1,
+        "durations_s": [],
+        "device_used": "AUTO",
+        "device_proof": "UNKNOWN",
+        "validation_level": "",
+        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/wav2lip/20261005T212536Z-cpu",
+        "env": {
+          "backend": "cpu",
+          "env_key": "14c79f40de9d556c",
+          "python": ".venvs/cpu/14c79f40de9d556c/bin/python",
+          "fingerprint": "c8bafca28e36d870f0d76b624298fe6025c92926357ae331f19bce404767e7e4",
+          "reused": true,
+          "created": false
+        },
+        "notes": [
+          "ok_runs=0/1: \u001b[31mCalledProcessError\u001b[39m: Command '['git', 'clone', 'https://github.com/Rudrabha/Wav2Lip.git']' returned non-zero exit status 128."
+        ],
+        "updated": "2026-10-05T21:27:56+00:00"
+      }
+    },
+    "3d-segmentation-point-clouds": {
+      "cpu": {
+        "status": "VERIFIED_WITH_LIMITATIONS",
+        "failure_category": "",
+        "ok_runs": 1,
+        "required_runs": 3,
+        "durations_s": [
+          10.98
+        ],
+        "device_used": "AUTO",
+        "device_proof": "NOT_INFERENCE",
+        "validation_level": "EXECUTION_ONLY",
+        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/3d-segmentation-point-clouds/20261005T214148Z-cpu",
+        "env": {
+          "backend": "cpu",
+          "env_key": "0f1b5e28b61ecbc9",
+          "python": ".venvs/cpu/0f1b5e28b61ecbc9/bin/python",
+          "fingerprint": "f3c3b16fb4c9761ded92506e670e4263ce9344680e4c338549002c1283a1c352",
+          "reused": false,
+          "created": true
+        },
+        "notes": [
+          "EXECUTION_ONLY: no workload correctness contract (validation: {})",
+          "DEVICE_PROOF_NOT_OBSERVED: no OpenVINO compile_model call was captured by the probe (notebooks driving openvino_genai pipelines or conversion-only code bypass the Python Core API; positive device execution therefore unproven)",
+          "repeatability_not_established: fewer than 3 successful runs (resource-bounded policy)"
+        ],
+        "updated": "2026-10-05T21:42:10+00:00"
+      }
+    },
+    "auto-device": {
+      "cpu": {
+        "status": "VERIFIED_WITH_LIMITATIONS",
+        "failure_category": "",
+        "ok_runs": 3,
+        "required_runs": 3,
+        "durations_s": [
+          159.85,
+          126.71,
+          126.4
+        ],
+        "device_used": "GPU",
+        "device_proof": "AUTO_UNRESOLVED",
+        "validation_level": "EXECUTION_ONLY",
+        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/auto-device/20261005T214211Z-cpu",
+        "env": {
+          "backend": "cpu",
+          "env_key": "2c94056e9179f8de",
+          "python": ".venvs/cpu/2c94056e9179f8de/bin/python",
+          "fingerprint": "60e9b39eafae06abafcf208bc915d29d9f500a8a7247992c27f560bf6d21ee87",
+          "reused": false,
+          "created": true
+        },
+        "notes": [
+          "EXECUTION_ONLY: no workload correctness contract (validation: {})",
+          "DEVICE_PROOF_INCOMPLETE: device proof state AUTO_UNRESOLVED"
+        ],
+        "updated": "2026-10-05T21:49:13+00:00"
+      }
+    },
+    "clip-zero-shot-classification": {
+      "cpu": {
+        "status": "VERIFIED_WITH_LIMITATIONS",
+        "failure_category": "",
+        "ok_runs": 3,
+        "required_runs": 3,
+        "durations_s": [
+          49.11,
+          24.81,
+          24.21
+        ],
+        "device_used": "CPU",
+        "device_proof": "UNKNOWN",
+        "validation_level": "EXECUTION_ONLY",
+        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/clip-zero-shot-classification/20261005T214914Z-cpu",
+        "env": {
+          "backend": "cpu",
+          "env_key": "ef3e3c48c9790e40",
+          "python": ".venvs/cpu/ef3e3c48c9790e40/bin/python",
+          "fingerprint": "f381f0f7fcb77132e46017a9d9c092d0bf181364afc644dcfacc426b23132a89",
+          "reused": false,
+          "created": true
+        },
+        "notes": [
+          "EXECUTION_ONLY: no workload correctness contract (validation: {})",
+          "DEVICE_PROOF_INCOMPLETE: device proof state UNKNOWN",
+          "CORE_INFERENCE_VERIFIED; INTERACTIVE_UI_NOT_TESTED (documented skip policy)"
+        ],
+        "updated": "2026-10-05T21:52:23+00:00"
+      }
+    },
+    "convert-to-openvino": {
+      "cpu": {
+        "status": "VERIFIED_WITH_LIMITATIONS",
+        "failure_category": "",
+        "ok_runs": 3,
+        "required_runs": 3,
+        "durations_s": [
+          84.15,
+          49.83,
+          47.62
+        ],
+        "device_used": "GPU",
+        "device_proof": "NOT_INFERENCE",
+        "validation_level": "EXECUTION_ONLY",
+        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/convert-to-openvino/20261005T215223Z-cpu",
+        "env": {
+          "backend": "cpu",
+          "env_key": "14c79f40de9d556c",
+          "python": ".venvs/cpu/14c79f40de9d556c/bin/python",
+          "fingerprint": "c8bafca28e36d870f0d76b624298fe6025c92926357ae331f19bce404767e7e4",
+          "reused": true,
+          "created": false
+        },
+        "notes": [
+          "EXECUTION_ONLY: no workload correctness contract (validation: {})",
+          "DEVICE_PROOF_NOT_OBSERVED: no OpenVINO compile_model call was captured by the probe (notebooks driving openvino_genai pipelines or conversion-only code bypass the Python Core API; positive device execution therefore unproven)"
+        ],
+        "updated": "2026-10-05T21:57:05+00:00"
+      }
+    },
+    "convnext-classification": {
+      "cpu": {
+        "status": "VERIFIED_WITH_LIMITATIONS",
+        "failure_category": "",
+        "ok_runs": 3,
+        "required_runs": 3,
+        "durations_s": [
+          21.72,
+          4.73,
+          4.68
+        ],
+        "device_used": "CPU",
+        "device_proof": "PROVEN_CPU",
+        "validation_level": "EXECUTION_ONLY",
+        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/convnext-classification/20261005T215707Z-cpu",
+        "env": {
+          "backend": "cpu",
+          "env_key": "032f222edf7020dd",
+          "python": ".venvs/cpu/032f222edf7020dd/bin/python",
+          "fingerprint": "025c2d7af778a0a994f59f870cbc04bb4bd2f9ddf09392c9575c8b9372a00ea2",
+          "reused": false,
+          "created": true
+        },
+        "notes": [
+          "EXECUTION_ONLY: no workload correctness contract (validation: {})"
+        ],
+        "updated": "2026-10-05T21:57:48+00:00"
+      }
+    },
+    "ct-segmentation-quantize-nncf": {
+      "cpu": {
+        "status": "FAILED",
+        "failure_category": "OPENVINO_ERROR",
+        "ok_runs": 0,
+        "required_runs": 3,
+        "durations_s": [],
+        "device_used": "GPU",
+        "device_proof": "AUTO_UNRESOLVED",
+        "validation_level": "",
+        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/ct-segmentation-quantize-nncf/20261005T215748Z-cpu",
+        "env": {
+          "backend": "cpu",
+          "env_key": "5c5ee483720f70f7",
+          "python": ".venvs/cpu/5c5ee483720f70f7/bin/python",
+          "fingerprint": "0cec2a1ad9bc1b80459173a5a48192320d2e6534b254b46ca9bf0389857ec801",
+          "reused": false,
+          "created": true
+        },
+        "notes": [
+          "ok_runs=0/3: nbclient.exceptions.DeadKernelError: Kernel died"
+        ],
+        "updated": "2026-10-05T22:01:06+00:00"
+      }
+    },
+    "detectron2-to-openvino": {
+      "cpu": {
+        "status": "VERIFIED_WITH_LIMITATIONS",
+        "failure_category": "",
+        "ok_runs": 3,
+        "required_runs": 3,
+        "durations_s": [
+          163.49,
+          15.65,
+          16.0
+        ],
+        "device_used": "CPU",
+        "device_proof": "PROVEN_CPU",
+        "validation_level": "EXECUTION_ONLY",
+        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/detectron2-to-openvino/20261005T220106Z-cpu",
+        "env": {
+          "backend": "cpu",
+          "env_key": "14c79f40de9d556c",
+          "python": ".venvs/cpu/14c79f40de9d556c/bin/python",
+          "fingerprint": "c8bafca28e36d870f0d76b624298fe6025c92926357ae331f19bce404767e7e4",
+          "reused": true,
+          "created": false
+        },
+        "notes": [
+          "EXECUTION_ONLY: no workload correctness contract (validation: {})"
+        ],
+        "updated": "2026-10-05T22:08:21+00:00"
+      }
+    },
+    "fast-segment-anything": {
+      "cpu": {
+        "status": "VERIFIED_WITH_LIMITATIONS",
+        "failure_category": "",
+        "ok_runs": 3,
+        "required_runs": 3,
+        "durations_s": [
+          219.95,
+          50.74,
+          51.63
+        ],
+        "device_used": "CPU",
+        "device_proof": "PROVEN_CPU",
+        "validation_level": "EXECUTION_ONLY",
+        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/fast-segment-anything/20261005T220823Z-cpu",
+        "env": {
+          "backend": "cpu",
+          "env_key": "07986470d67eefa9",
+          "python": ".venvs/cpu/07986470d67eefa9/bin/python",
+          "fingerprint": "826fd8e177f03c6866a16b5b0ef64ebcb7a3af8ca47eac24d0a6cc1c095d2790",
+          "reused": false,
+          "created": true
+        },
+        "notes": [
+          "EXECUTION_ONLY: no workload correctness contract (validation: {})",
+          "CORE_INFERENCE_VERIFIED; INTERACTIVE_UI_NOT_TESTED (documented skip policy)"
+        ],
+        "updated": "2026-10-05T22:13:56+00:00"
+      }
+    },
+    "hugging-face-hub": {
+      "cpu": {
+        "status": "VERIFIED_WITH_LIMITATIONS",
+        "failure_category": "",
+        "ok_runs": 3,
+        "required_runs": 3,
+        "durations_s": [
+          82.36,
+          41.49,
+          41.9
+        ],
+        "device_used": "CPU",
+        "device_proof": "PROVEN_CPU",
+        "validation_level": "EXECUTION_ONLY",
+        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/hugging-face-hub/20261005T221356Z-cpu",
+        "env": {
+          "backend": "cpu",
+          "env_key": "f2d5828d98298a2c",
+          "python": ".venvs/cpu/f2d5828d98298a2c/bin/python",
+          "fingerprint": "28f4142a3194116a39683e0e614e8af0ec0590c52a7750502c6954121ae217dc",
+          "reused": false,
+          "created": true
+        },
+        "notes": [
+          "EXECUTION_ONLY: no workload correctness contract (validation: {})"
+        ],
+        "updated": "2026-10-05T22:16:52+00:00"
+      }
+    },
+    "image-classification-quantization": {
+      "cpu": {
+        "status": "VERIFIED_WITH_LIMITATIONS",
+        "failure_category": "",
+        "ok_runs": 3,
+        "required_runs": 3,
+        "durations_s": [
+          100.96,
+          54.52,
+          55.73
+        ],
+        "device_used": "CPU",
+        "device_proof": "PROVEN_CPU",
+        "validation_level": "EXECUTION_ONLY",
+        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/image-classification-quantization/20261005T221652Z-cpu",
+        "env": {
+          "backend": "cpu",
+          "env_key": "50f46dbe06cd9ff2",
+          "python": ".venvs/cpu/50f46dbe06cd9ff2/bin/python",
+          "fingerprint": "cba12329548e9bf298b9a8c8ba6d7439436e6422dc7f606b0922fa2286cf3625",
+          "reused": false,
+          "created": true
+        },
+        "notes": [
+          "EXECUTION_ONLY: no workload correctness contract (validation: {})"
+        ],
+        "updated": "2026-10-05T22:20:32+00:00"
+      }
+    },
+    "jina-clip": {
+      "cpu": {
+        "status": "FAILED",
+        "failure_category": "TIMEOUT",
+        "ok_runs": 0,
+        "required_runs": 3,
+        "durations_s": [],
+        "device_used": "",
+        "device_proof": "PROVEN_CPU",
+        "validation_level": "",
+        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/jina-clip/20261005T222033Z-cpu",
+        "env": {
+          "backend": "cpu",
+          "env_key": "84e2f5d045209414",
+          "python": ".venvs/cpu/84e2f5d045209414/bin/python",
+          "fingerprint": "ef48bd88b592c3d24755b71930417c1d9fb5cae02ba2207d6e0d99997a21d0ba",
+          "reused": false,
+          "created": true
+        },
+        "notes": [
+          "ok_runs=0/3: "
+        ],
+        "updated": "2026-10-05T22:30:38+00:00"
+      }
+    },
+    "language-quantize-bert": {
+      "cpu": {
+        "status": "VERIFIED_WITH_LIMITATIONS",
+        "failure_category": "",
+        "ok_runs": 3,
+        "required_runs": 3,
+        "durations_s": [
+          260.48,
+          178.1,
+          178.0
+        ],
+        "device_used": "CPU",
+        "device_proof": "PROVEN_CPU",
+        "validation_level": "EXECUTION_ONLY",
+        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/language-quantize-bert/20261005T223039Z-cpu",
+        "env": {
+          "backend": "cpu",
+          "env_key": "7cfd6e157e5f01bc",
+          "python": ".venvs/cpu/7cfd6e157e5f01bc/bin/python",
+          "fingerprint": "f0933b29e75dde7fb1339fe053fd39a20310d20d79f2f3ed03910822d698b35f",
+          "reused": false,
+          "created": true
+        },
+        "notes": [
+          "EXECUTION_ONLY: no workload correctness contract (validation: {})"
+        ],
+        "updated": "2026-10-05T22:41:00+00:00"
+      }
+    },
+    "oneformer-segmentation": {
+      "cpu": {
+        "status": "VERIFIED_WITH_LIMITATIONS",
+        "failure_category": "",
+        "ok_runs": 3,
+        "required_runs": 3,
+        "durations_s": [
+          157.99,
+          18.41,
+          16.95
+        ],
+        "device_used": "CPU",
+        "device_proof": "PROVEN_CPU",
+        "validation_level": "EXECUTION_ONLY",
+        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/oneformer-segmentation/20261005T224104Z-cpu",
+        "env": {
+          "backend": "cpu",
+          "env_key": "6dc8847ac183942b",
+          "python": ".venvs/cpu/6dc8847ac183942b/bin/python",
+          "fingerprint": "e6770b640d7c23747314a5052455e43b443e8024cb48706650cfba79f1439da2",
+          "reused": false,
+          "created": true
+        },
+        "notes": [
+          "EXECUTION_ONLY: no workload correctness contract (validation: {})",
+          "CORE_INFERENCE_VERIFIED; INTERACTIVE_UI_NOT_TESTED (documented skip policy)"
+        ],
+        "updated": "2026-10-05T22:44:23+00:00"
+      }
+    },
+    "optical-character-recognition": {
+      "cpu": {
+        "status": "VERIFIED_WITH_LIMITATIONS",
+        "failure_category": "",
+        "ok_runs": 3,
+        "required_runs": 3,
+        "durations_s": [
+          20.6,
+          2.67,
+          2.62
+        ],
+        "device_used": "CPU",
+        "device_proof": "PROVEN_CPU",
+        "validation_level": "EXECUTION_ONLY",
+        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/optical-character-recognition/20261005T224423Z-cpu",
+        "env": {
+          "backend": "cpu",
+          "env_key": "4a8054455bd36d7a",
+          "python": ".venvs/cpu/4a8054455bd36d7a/bin/python",
+          "fingerprint": "d6b8023c5b7c28035dfc22681da4752a47f3bcfb24064a0ad540ef4e02f8e17f",
+          "reused": false,
+          "created": true
+        },
+        "notes": [
+          "EXECUTION_ONLY: no workload correctness contract (validation: {})"
+        ],
+        "updated": "2026-10-05T22:44:54+00:00"
+      }
+    },
+    "optimize-preprocessing": {
+      "cpu": {
+        "status": "VERIFIED_WITH_LIMITATIONS",
+        "failure_category": "",
+        "ok_runs": 3,
+        "required_runs": 3,
+        "durations_s": [
+          62.84,
+          31.68,
+          32.18
+        ],
+        "device_used": "CPU",
+        "device_proof": "PROVEN_CPU",
+        "validation_level": "EXECUTION_ONLY",
+        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/optimize-preprocessing/20261005T224454Z-cpu",
+        "env": {
+          "backend": "cpu",
+          "env_key": "01ebfe5b9c063d4c",
+          "python": ".venvs/cpu/01ebfe5b9c063d4c/bin/python",
+          "fingerprint": "229a79150cb45efeacc961289d78b1402f374db87fe8875b5d1c5b98d85d7a7c",
+          "reused": false,
+          "created": true
+        },
+        "notes": [
+          "EXECUTION_ONLY: no workload correctness contract (validation: {})"
+        ],
+        "updated": "2026-10-05T22:47:05+00:00"
+      }
+    },
+    "pointpillars": {
+      "cpu": {
+        "status": "REVALIDATION_REQUIRED",
+        "failure_category": "",
+        "ok_runs": 3,
+        "required_runs": 3,
+        "durations_s": [
+          136.35,
+          45.42,
+          45.02
+        ],
+        "device_used": "CPU",
+        "device_proof": "PROVEN_CPU",
+        "validation_level": "EXECUTION_ONLY",
+        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/pointpillars/20261005T224706Z-cpu",
+        "env": {
+          "backend": "cpu",
+          "env_key": "14c79f40de9d556c",
+          "python": ".venvs/cpu/14c79f40de9d556c/bin/python",
+          "fingerprint": "c8bafca28e36d870f0d76b624298fe6025c92926357ae331f19bce404767e7e4",
+          "reused": true,
+          "created": false
+        },
+        "notes": [
+          "EXECUTION_ONLY: no workload correctness contract (validation: {})",
+          "revalidation deferred: large/gated-model CPU workloads cannot complete on the secondary runner (throttled egress, gated model repos); queued for the reference Ryzen runner. GPU twins revalidated under the new pin where implemented."
+        ],
+        "updated": "2026-10-07T00:48:13+00:00",
+        "historical_status": "VERIFIED_WITH_LIMITATIONS",
+        "historical_evidence": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/pointpillars/20261005T224706Z-cpu",
+        "revalidation_reasons": [
+          "pin:a8809170cc4f->329562e6031d",
+          "upstream_notebook_changed"
+        ]
+      }
+    },
+    "pytorch-post-training-quantization-nncf": {
+      "cpu": {
+        "status": "VERIFIED_WITH_LIMITATIONS",
+        "failure_category": "",
+        "ok_runs": 3,
+        "required_runs": 3,
+        "durations_s": [
+          270.86,
+          214.88,
+          217.86
+        ],
+        "device_used": "CPU",
+        "device_proof": "PROVEN_CPU",
+        "validation_level": "EXECUTION_ONLY",
+        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/pytorch-post-training-quantization-nncf/20261005T225056Z-cpu",
+        "env": {
+          "backend": "cpu",
+          "env_key": "d04bee0bc8a9602f",
+          "python": ".venvs/cpu/d04bee0bc8a9602f/bin/python",
+          "fingerprint": "750331028b0d7b857db537f1b414118efb478fdb74f4b7d3ae6e4595ac8112f7",
+          "reused": false,
+          "created": true
+        },
+        "notes": [
+          "EXECUTION_ONLY: no workload correctness contract (validation: {})"
+        ],
+        "updated": "2026-10-05T23:02:45+00:00"
+      }
+    },
+    "pytorch-to-openvino": {
+      "cpu": {
+        "status": "VERIFIED_WITH_LIMITATIONS",
+        "failure_category": "",
+        "ok_runs": 3,
+        "required_runs": 3,
+        "durations_s": [
+          108.55,
+          93.01,
+          92.1
+        ],
+        "device_used": "CPU",
+        "device_proof": "PROVEN_CPU",
+        "validation_level": "EXECUTION_ONLY",
+        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/pytorch-to-openvino/20261005T230248Z-cpu",
+        "env": {
+          "backend": "cpu",
+          "env_key": "2f63e2f7fd6d7aea",
+          "python": ".venvs/cpu/2f63e2f7fd6d7aea/bin/python",
+          "fingerprint": "bbba4e2cb221ca4a7809d072da8d9da87ca1f6a8731684597843f14d3647c5b3",
+          "reused": false,
+          "created": true
+        },
+        "notes": [
+          "EXECUTION_ONLY: no workload correctness contract (validation: {})"
+        ],
+        "updated": "2026-10-05T23:07:46+00:00"
+      }
+    },
+    "rf-detr-object-detection": {
+      "cpu": {
+        "status": "VERIFIED_WITH_LIMITATIONS",
+        "failure_category": "",
+        "ok_runs": 3,
+        "required_runs": 3,
+        "durations_s": [
+          69.3,
+          9.29,
+          9.29
+        ],
+        "device_used": "CPU",
+        "device_proof": "PROVEN_CPU",
+        "validation_level": "EXECUTION_ONLY",
+        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/rf-detr-object-detection/20261005T230747Z-cpu",
+        "env": {
+          "backend": "cpu",
+          "env_key": "14c79f40de9d556c",
+          "python": ".venvs/cpu/14c79f40de9d556c/bin/python",
+          "fingerprint": "c8bafca28e36d870f0d76b624298fe6025c92926357ae331f19bce404767e7e4",
+          "reused": true,
+          "created": false
+        },
+        "notes": [
+          "EXECUTION_ONLY: no workload correctness contract (validation: {})",
+          "CORE_INFERENCE_VERIFIED; INTERACTIVE_UI_NOT_TESTED (documented skip policy)"
+        ],
+        "updated": "2026-10-05T23:09:17+00:00"
+      }
+    },
+    "segment-anything-2-image": {
+      "cpu": {
+        "status": "REVALIDATION_REQUIRED",
+        "failure_category": "UNKNOWN",
+        "ok_runs": 0,
+        "required_runs": 3,
+        "durations_s": [],
+        "device_used": "AUTO",
+        "device_proof": "UNKNOWN",
+        "validation_level": "",
+        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/segment-anything-2-image/20261005T230918Z-cpu",
+        "env": {
+          "backend": "cpu",
+          "env_key": "36ebdefdc4dfb6b7",
+          "python": ".venvs/cpu/36ebdefdc4dfb6b7/bin/python",
+          "fingerprint": "2feba595cf85785fa409818e902c6c8f8560b13ffff74c77cf332f366fbdf1e9",
+          "reused": false,
+          "created": true
+        },
+        "notes": [
+          "ok_runs=0/3: \u001b[31mCalledProcessError\u001b[39m: Command '['git', 'clone', 'https://github.com/facebookresearch/sam2.git']' returned non-zero exit status 128.",
+          "revalidation deferred: large/gated-model CPU workloads cannot complete on the secondary runner (throttled egress, gated model repos); queued for the reference Ryzen runner. GPU twins revalidated under the new pin where implemented."
+        ],
+        "updated": "2026-10-07T00:48:13+00:00",
+        "historical_status": "FAILED",
+        "historical_evidence": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/segment-anything-2-image/20261005T230918Z-cpu",
+        "revalidation_reasons": [
+          "pin:a8809170cc4f->329562e6031d",
+          "upstream_notebook_changed"
+        ]
+      }
+    },
+    "siglip-zero-shot-image-classification": {
+      "cpu": {
+        "status": "FAILED",
+        "failure_category": "MODEL_ACCESS",
+        "ok_runs": 0,
+        "required_runs": 3,
+        "durations_s": [],
+        "device_used": "AUTO",
+        "device_proof": "NOT_INFERENCE",
+        "validation_level": "",
+        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/siglip-zero-shot-image-classification/20261005T231131Z-cpu",
+        "env": {
+          "backend": "cpu",
+          "env_key": "f1ee1c60b6482f8c",
+          "python": ".venvs/cpu/f1ee1c60b6482f8c/bin/python",
+          "fingerprint": "f96fa77a6e28d4209b43c0ac6b066b88996d0c030d1913c6725078622a2c989d",
+          "reused": false,
+          "created": true
+        },
+        "notes": [
+          "ok_runs=0/3:  You can also provide TorchScript module that you obtained yourself, please refer to PyTorch documentation: https://pytorch.org/tutorials/beginner/Intro_to_TorchScript_tutorial.html."
+        ],
+        "updated": "2026-10-05T23:20:22+00:00"
+      }
+    },
+    "speech-recognition-quantization-wav2vec2": {
+      "cpu": {
+        "status": "VERIFIED_WITH_LIMITATIONS",
+        "failure_category": "",
+        "ok_runs": 3,
+        "required_runs": 3,
+        "durations_s": [
+          313.64,
+          245.16,
+          245.35
+        ],
+        "device_used": "CPU",
+        "device_proof": "PROVEN_CPU",
+        "validation_level": "EXECUTION_ONLY",
+        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/speech-recognition-quantization-wav2vec2/20261005T232023Z-cpu",
+        "env": {
+          "backend": "cpu",
+          "env_key": "b37ef61c629d67ee",
+          "python": ".venvs/cpu/b37ef61c629d67ee/bin/python",
+          "fingerprint": "e99c127b29c35b7ae8c8197c82a58369fccf82865585de37540d2cde9b94de99",
+          "reused": false,
+          "created": true
+        },
+        "notes": [
+          "EXECUTION_ONLY: no workload correctness contract (validation: {})"
+        ],
+        "updated": "2026-10-05T23:33:52+00:00"
+      }
+    },
+    "surya-line-level-text-detection": {
+      "cpu": {
+        "status": "VERIFIED_WITH_LIMITATIONS",
+        "failure_category": "",
+        "ok_runs": 3,
+        "required_runs": 3,
+        "durations_s": [
+          127.58,
+          70.87,
+          69.17
+        ],
+        "device_used": "CPU",
+        "device_proof": "PROVEN_CPU",
+        "validation_level": "EXECUTION_ONLY",
+        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/surya-line-level-text-detection/20261005T233354Z-cpu",
+        "env": {
+          "backend": "cpu",
+          "env_key": "58b2a8997e907f9b",
+          "python": ".venvs/cpu/58b2a8997e907f9b/bin/python",
+          "fingerprint": "61be676f47bf4a4536f455a71334390cd0cf03187efcd6b53764737bf6ad7a73",
+          "reused": false,
+          "created": true
+        },
+        "notes": [
+          "EXECUTION_ONLY: no workload correctness contract (validation: {})",
+          "CORE_INFERENCE_VERIFIED; INTERACTIVE_UI_NOT_TESTED (documented skip policy)"
+        ],
+        "updated": "2026-10-05T23:38:29+00:00"
+      }
+    },
+    "tensorflow-classification-to-openvino": {
+      "cpu": {
+        "status": "VERIFIED_WITH_LIMITATIONS",
+        "failure_category": "",
+        "ok_runs": 3,
+        "required_runs": 3,
+        "durations_s": [
+          38.79,
+          13.29,
+          13.54
+        ],
+        "device_used": "CPU",
+        "device_proof": "PROVEN_CPU",
+        "validation_level": "EXECUTION_ONLY",
+        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/tensorflow-classification-to-openvino/20261005T233829Z-cpu",
+        "env": {
+          "backend": "cpu",
+          "env_key": "650c4ac6500e29d7",
+          "python": ".venvs/cpu/650c4ac6500e29d7/bin/python",
+          "fingerprint": "44bd9f77687e92dc4ca34ca107ec5776c0da4f674fcd4ec399e4ca7243316bbb",
+          "reused": false,
+          "created": true
+        },
+        "notes": [
+          "EXECUTION_ONLY: no workload correctness contract (validation: {})"
+        ],
+        "updated": "2026-10-05T23:39:45+00:00"
+      }
+    },
+    "tensorflow-object-detection-api-with-openvino": {
+      "cpu": {
+        "status": "VERIFIED_WITH_LIMITATIONS",
+        "failure_category": "",
+        "ok_runs": 3,
+        "required_runs": 3,
+        "durations_s": [
+          70.21,
+          36.54,
+          36.99
+        ],
+        "device_used": "AUTO",
+        "device_proof": "PROVEN_CPU",
+        "validation_level": "EXECUTION_ONLY",
+        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/tensorflow-object-detection-api-with-openvino/20261005T233946Z-cpu",
+        "env": {
+          "backend": "cpu",
+          "env_key": "3df572dbcd6a58b1",
+          "python": ".venvs/cpu/3df572dbcd6a58b1/bin/python",
+          "fingerprint": "6672d96a2a2399125ef157bbb30c0531d0d0347b836a4b9aeef4b6d39a722aaf",
+          "reused": false,
+          "created": true
+        },
+        "notes": [
+          "EXECUTION_ONLY: no workload correctness contract (validation: {})"
+        ],
+        "updated": "2026-10-05T23:42:20+00:00"
+      }
+    },
+    "tflite-to-openvino": {
+      "cpu": {
+        "status": "VERIFIED_WITH_LIMITATIONS",
+        "failure_category": "",
+        "ok_runs": 3,
+        "required_runs": 3,
+        "durations_s": [
+          33.72,
+          22.04,
+          21.7
+        ],
+        "device_used": "AUTO",
+        "device_proof": "PROVEN_CPU",
+        "validation_level": "EXECUTION_ONLY",
+        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/tflite-to-openvino/20261005T234220Z-cpu",
+        "env": {
+          "backend": "cpu",
+          "env_key": "c53d24a5d095f8a5",
+          "python": ".venvs/cpu/c53d24a5d095f8a5/bin/python",
+          "fingerprint": "a93a2d91da41bfb4f0481ee8af4b0ec006002563bbdd9b34460d479b2ac82371",
+          "reused": false,
+          "created": true
+        },
+        "notes": [
+          "EXECUTION_ONLY: no workload correctness contract (validation: {})"
+        ],
+        "updated": "2026-10-05T23:43:45+00:00"
+      }
+    },
+    "vehicle-detection-and-recognition": {
+      "cpu": {
+        "status": "VERIFIED_WITH_LIMITATIONS",
+        "failure_category": "",
+        "ok_runs": 3,
+        "required_runs": 3,
+        "durations_s": [
+          16.95,
+          2.72,
+          2.77
+        ],
+        "device_used": "CPU",
+        "device_proof": "PROVEN_CPU",
+        "validation_level": "EXECUTION_ONLY",
+        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/vehicle-detection-and-recognition/20261005T234345Z-cpu",
+        "env": {
+          "backend": "cpu",
+          "env_key": "f0577d11335863e8",
+          "python": ".venvs/cpu/f0577d11335863e8/bin/python",
+          "fingerprint": "3a9cd579ea3cf48ce35ab056774da8e4e10f7253dd2609bb59bedc9016fa752c",
+          "reused": false,
+          "created": true
+        },
+        "notes": [
+          "EXECUTION_ONLY: no workload correctness contract (validation: {})"
+        ],
+        "updated": "2026-10-05T23:44:12+00:00"
+      }
+    },
+    "yolov11-quantization-with-accuracy-control": {
+      "cpu": {
+        "status": "FAILED",
+        "failure_category": "TIMEOUT",
+        "ok_runs": 0,
+        "required_runs": 3,
+        "durations_s": [],
+        "device_used": "",
+        "device_proof": "PROVEN_CPU",
+        "validation_level": "",
+        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/yolov11-quantization-with-accuracy-control/20261005T234414Z-cpu",
+        "env": {
+          "backend": "cpu",
+          "env_key": "f13303fad39b8aed",
+          "python": ".venvs/cpu/f13303fad39b8aed/bin/python",
+          "fingerprint": "1ac41ff3e99ed4676a0eb9127efd3e8dca9965cb6be3a7853cb0842bc5eda3b4",
+          "reused": false,
+          "created": true
+        },
+        "notes": [
+          "ok_runs=0/3: "
+        ],
+        "updated": "2026-10-05T23:54:19+00:00"
+      }
+    },
+    "yolov26-obb": {
+      "cpu": {
+        "status": "VERIFIED_WITH_LIMITATIONS",
+        "failure_category": "",
+        "ok_runs": 3,
+        "required_runs": 3,
+        "durations_s": [
+          416.32,
+          40.0,
+          40.13
+        ],
+        "device_used": "CPU",
+        "device_proof": "PROVEN_CPU",
+        "validation_level": "EXECUTION_ONLY",
+        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/yolov26-obb/20261005T235420Z-cpu",
+        "env": {
+          "backend": "cpu",
+          "env_key": "15aae4643f897cdd",
+          "python": ".venvs/cpu/15aae4643f897cdd/bin/python",
+          "fingerprint": "f2749790eca8f1d8e5bc9507493edd8be29e979731cc73340a0237ddecfc14c5",
+          "reused": false,
+          "created": true
+        },
+        "notes": [
+          "EXECUTION_ONLY: no workload correctness contract (validation: {})"
+        ],
+        "updated": "2026-10-06T00:02:41+00:00"
+      }
+    },
+    "z-image-turbo": {
+      "cpu": {
+        "status": "FAILED",
+        "failure_category": "TIMEOUT",
+        "ok_runs": 0,
+        "required_runs": 3,
+        "durations_s": [],
+        "device_used": "",
+        "device_proof": "UNKNOWN",
+        "validation_level": "",
+        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/z-image-turbo/20261006T000241Z-cpu",
+        "env": {
+          "backend": "cpu",
+          "env_key": "14c79f40de9d556c",
+          "python": ".venvs/cpu/14c79f40de9d556c/bin/python",
+          "fingerprint": "c8bafca28e36d870f0d76b624298fe6025c92926357ae331f19bce404767e7e4",
+          "reused": true,
+          "created": false
+        },
+        "notes": [
+          "ok_runs=0/3: "
+        ],
+        "updated": "2026-10-06T00:12:45+00:00"
+      }
+    },
+    "openvino-tokenizers": {
+      "cpu": {
+        "status": "FAILED",
+        "failure_category": "DEPENDENCY",
+        "ok_runs": 0,
+        "required_runs": 3,
+        "durations_s": [],
+        "device_used": "",
+        "device_proof": "NOT_INFERENCE",
+        "validation_level": "",
+        "platform_id": "amd-epyc-9334-32-core-processor-gfx1100",
+        "evidence_dir": "results/openvino-tokenizers/20261006T040612Z-cpu",
+        "env": {
+          "backend": "cpu",
+          "env_key": "2be7d33bf5454379",
+          "python": ".venvs/cpu/2be7d33bf5454379/bin/python",
+          "fingerprint": "abc3dceee99e5a50697e0b5cc589b46baba18ce9735f21abad3dc59441023927",
+          "reused": true,
+          "created": false
+        },
+        "notes": [
+          "ok_runs=0/3: \u001b[31mModuleNotFoundError\u001b[39m: Could not import module 'LlamaConfig'. Are this object's requirements defined correctly?"
+        ],
+        "updated": "2026-10-06T04:06:56+00:00"
       }
     }
   },
@@ -1575,10 +2940,40 @@
       "source": "huggingface_hub",
       "ok": true,
       "log_tail": "Requirement already satisfied: huggingface_hub in ./.venv-cpu/lib/python3.12/site-packages (0.36.2)\nRequirement already satisfied: filelock in ./.venv-cpu/lib/python3.12/site-packages (from huggingface_hub) (4.0.8)\nRequirement already satisfied: fsspec>=2023.5.0 in ./.venv-cpu/lib/python3.12/site-packages (from huggingface_hub) (2025.3.0)\nRequirement already satisfied: hf-xet<2.0.0,>=1.1.3 in ./.venv-cpu/lib/python3.12/site-packages (from huggingface_hub) (1.6.0)\nRequirement already satisfied: packaging>=20.9 in ./.venv-cpu/lib/python3.12/site-packages (from huggingface_hub) (26.3)\nRequirement already satisfied: pyyaml>=5.1 in ./.venv-cpu/lib/python3.12/site-packages (from huggingface_hub) (6.0.3)\nRequirement already satisfied: requests in ./.venv-cpu/lib/python3.12/site-packages (from huggingface_hub) (2.34.2)\nRequirement already satisfied: tqdm>=4.42.1 in ./.venv-cpu/lib/python3.12/site-packages (from huggingface_hub) (4.70.1)\nRequirement already satisfied: typing-extensions>=3.7.4.3 in ./.venv-cpu/lib/python3.12/site-packages (from huggingface_hub) (4.16.0)\nRequirement already satisfied: charset_normalizer<4,>=2 in ./.venv-cpu/lib/python3.12/site-packages (from requests->huggingface_hub) (3.5.2)\nRequirement already satisfied: idna<4,>=2.5 in ./.venv-cpu/lib/python3.12/site-packages (from requests->huggingface_hub) (3.20)\nRequirement already satisfied: urllib3<3,>=1.26 in ./.venv-cpu/lib/python3.12/site-packages (from requests->huggingface_hub) (2.8.0)\nRequirement already satisfied: certifi>=2023.5.7 in ./.venv-cpu/lib/python3.12/site-packages (from requests->huggingface_hub) (2026.7.22)\n"
+    },
+    {
+      "workload": "qwen3_agent",
+      "source": "uvicorn",
+      "ok": true,
+      "log_tail": "Collecting uvicorn\n  Using cached uvicorn-0.54.0-py3-none-any.whl.metadata (6.6 kB)\nCollecting click>=7.0 (from uvicorn)\n  Using cached click-8.5.0-py3-none-any.whl.metadata (2.6 kB)\nCollecting h11>=0.8 (from uvicorn)\n  Using cached h11-0.16.0-py3-none-any.whl.metadata (8.3 kB)\nUsing cached uvicorn-0.54.0-py3-none-any.whl (87 kB)\nUsing cached click-8.5.0-py3-none-any.whl (125 kB)\nUsing cached h11-0.16.0-py3-none-any.whl (37 kB)\nInstalling collected packages: h11, click, uvicorn\n\nSuccessfully installed click-8.5.0 h11-0.16.0 uvicorn-0.54.0\n"
+    },
+    {
+      "workload": "qwen3_agent",
+      "source": "fastapi",
+      "ok": true,
+      "log_tail": "tisfied: typing-extensions>=4.8.0 in ./.venvs/cpu/7094cfb8fa0dad07/lib/python3.12/site-packages (from fastapi) (4.16.0)\nCollecting typing-inspection>=0.4.2 (from fastapi)\n  Using cached typing_inspection-0.4.4-py3-none-any.whl.metadata (2.6 kB)\nCollecting annotated-doc>=0.0.2 (from fastapi)\n  Using cached annotated_doc-0.0.5-py3-none-any.whl.metadata (6.5 kB)\nCollecting opentelemetry-api>=1.44.0 (from fastapi)\n  Using cached opentelemetry_api-1.45.0-py3-none-any.whl.metadata (1.4 kB)\nCollecting annotated-types>=0.6.0 (from pydantic>=2.9.0->fastapi)\n  Using cached annotated_types-0.8.0-py3-none-any.whl.metadata (15 kB)\nCollecting pydantic-core==2.46.5 (from pydantic>=2.9.0->fastapi)\n  Using cached pydantic_core-2.46.5-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (6.6 kB)\nCollecting anyio<5,>=4.0.0 (from starlette>=0.46.0->fastapi)\n  Using cached anyio-4.15.1-py3-none-any.whl.metadata (4.7 kB)\nRequirement already satisfied: idna>=2.8 in ./.venvs/cpu/7094cfb8fa0dad07/lib/python3.12/site-packages (from anyio<5,>=4.0.0->starlette>=0.46.0->fastapi) (3.20)\nUsing cached fastapi-0.142.2-py3-none-any.whl (144 kB)\nUsing cached annotated_doc-0.0.5-py3-none-any.whl (5.3 kB)\nUsing cached opentelemetry_api-1.45.0-py3-none-any.whl (60 kB)\nUsing cached pydantic-2.13.5-py3-none-any.whl (472 kB)\nUsing cached pydantic_core-2.46.5-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (2.1 MB)\nUsing cached annotated_types-0.8.0-py3-none-any.whl (13 kB)\nUsing cached starlette-1.7.0-py3-none-any.whl (78 kB)\nUsing cached anyio-4.15.1-py3-none-any.whl (132 kB)\nUsing cached typing_inspection-0.4.4-py3-none-any.whl (14 kB)\nInstalling collected packages: typing-inspection, pydantic-core, opentelemetry-api, anyio, annotated-types, annotated-doc, starlette, pydantic, fastapi\n\nSuccessfully installed annotated-doc-0.0.5 annotated-types-0.8.0 anyio-4.15.1 fastapi-0.142.2 opentelemetry-api-1.45.0 pydantic-2.13.5 pydantic-core-2.46.5 starlette-1.7.0 typing-inspection-0.4.4\n"
+    },
+    {
+      "workload": "whisper-asr-genai",
+      "source": "librosa",
+      "ok": true,
+      "log_tail": "3b4b0a0202d3794/lib/python3.12/site-packages (from requests>=2.19.0->pooch>=1.7->librosa) (2026.7.22)\nRequirement already satisfied: narwhals>=2.0.1 in ./.venvs/cpu/13b4b0a0202d3794/lib/python3.12/site-packages (from scikit-learn>=1.6.0->librosa) (2.26.0)\nRequirement already satisfied: threadpoolctl>=3.5.0 in ./.venvs/cpu/13b4b0a0202d3794/lib/python3.12/site-packages (from scikit-learn>=1.6.0->librosa) (3.7.0)\nCollecting cffi>=1.0 (from soundfile>=0.12.1->librosa)\n  Using cached cffi-2.1.1-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (2.5 kB)\nRequirement already satisfied: typing-extensions in ./.venvs/cpu/13b4b0a0202d3794/lib/python3.12/site-packages (from soundfile>=0.12.1->librosa) (4.16.0)\nCollecting pycparser (from cffi>=1.0->soundfile>=0.12.1->librosa)\n  Using cached pycparser-3.0-py3-none-any.whl.metadata (8.2 kB)\nUsing cached librosa-1.0.0-py3-none-any.whl (294 kB)\nUsing cached decorator-5.3.1-py3-none-any.whl (10 kB)\nDownloading lazy_loader-0.6-py3-none-any.whl (8.8 kB)\nUsing cached msgpack-1.2.3-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (472 kB)\nUsing cached numba-0.68.0-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl (3.9 MB)\nUsing cached llvmlite-0.50.0-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl (59.7 MB)\nUsing cached pooch-1.9.0-py3-none-any.whl (67 kB)\nUsing cached soundfile-0.14.0-py2.py3-none-manylinux_2_28_x86_64.whl (1.3 MB)\nUsing cached cffi-2.1.1-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (221 kB)\nUsing cached soxr-1.1.0-cp312-abi3-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl (240 kB)\nUsing cached pycparser-3.0-py3-none-any.whl (48 kB)\nInstalling collected packages: soxr, pycparser, msgpack, llvmlite, lazy_loader, decorator, pooch, numba, cffi, soundfile, librosa\n\nSuccessfully installed cffi-2.1.1 decorator-5.3.1 lazy_loader-0.6 librosa-1.0.0 llvmlite-0.50.0 msgpack-1.2.3 numba-0.68.0 pooch-1.9.0 pycparser-3.0 soundfile-0.14.0 soxr-1.1.0\n"
+    },
+    {
+      "workload": "clip-zero-shot-classification",
+      "source": "matplotlib",
+      "ok": true,
+      "log_tail": "nylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata (3.8 kB)\nCollecting cycler>=0.10 (from matplotlib)\n  Using cached cycler-0.12.1-py3-none-any.whl.metadata (3.8 kB)\nCollecting fonttools>=4.28.2 (from matplotlib)\n  Using cached fonttools-4.66.1-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (130 kB)\nCollecting kiwisolver>=1.3.1 (from matplotlib)\n  Using cached kiwisolver-1.5.1-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (5.2 kB)\nRequirement already satisfied: numpy>=1.25 in ./.venvs/cpu/ef3e3c48c9790e40/lib/python3.12/site-packages (from matplotlib) (2.5.3)\nRequirement already satisfied: packaging>=20.0 in ./.venvs/cpu/ef3e3c48c9790e40/lib/python3.12/site-packages (from matplotlib) (26.3)\nRequirement already satisfied: pillow>=9 in ./.venvs/cpu/ef3e3c48c9790e40/lib/python3.12/site-packages (from matplotlib) (12.3.0)\nCollecting pyparsing>=3 (from matplotlib)\n  Using cached pyparsing-3.3.3-py3-none-any.whl.metadata (5.9 kB)\nRequirement already satisfied: python-dateutil>=2.7 in ./.venvs/cpu/ef3e3c48c9790e40/lib/python3.12/site-packages (from matplotlib) (2.9.0.post0)\nRequirement already satisfied: six>=1.5 in ./.venvs/cpu/ef3e3c48c9790e40/lib/python3.12/site-packages (from python-dateutil>=2.7->matplotlib) (1.17.0)\nUsing cached matplotlib-3.11.2-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (9.9 MB)\nUsing cached contourpy-1.4.0-cp312-cp312-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl (383 kB)\nUsing cached cycler-0.12.1-py3-none-any.whl (8.3 kB)\nUsing cached fonttools-4.66.1-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (5.4 MB)\nUsing cached kiwisolver-1.5.1-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (1.5 MB)\nUsing cached pyparsing-3.3.3-py3-none-any.whl (126 kB)\nInstalling collected packages: pyparsing, kiwisolver, fonttools, cycler, contourpy, matplotlib\n\nSuccessfully installed contourpy-1.4.0 cycler-0.12.1 fonttools-4.66.1 kiwisolver-1.5.1 matplotlib-3.11.2 pyparsing-3.3.3\n"
+    },
+    {
+      "workload": "convert-to-openvino",
+      "source": "soxr",
+      "ok": true,
+      "log_tail": "Collecting soxr\n  Using cached soxr-1.1.0-cp312-abi3-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl.metadata (5.8 kB)\nRequirement already satisfied: numpy in ./.venvs/cpu/14c79f40de9d556c/lib/python3.12/site-packages (from soxr) (2.1.3)\nUsing cached soxr-1.1.0-cp312-abi3-manylinux_2_27_x86_64.manylinux_2_28_x86_64.whl (240 kB)\nInstalling collected packages: soxr\nSuccessfully installed soxr-1.1.0\n"
     }
   ],
-  "last_checkpoint": "2026-10-01T20:33:49+00:00",
-  "current_workload": "qwen3-vl-reranker",
+  "last_checkpoint": "2026-10-07T01:17:57+00:00",
+  "current_workload": "bernini-r-image-video",
   "env_repairs": [
     {
       "problems": [

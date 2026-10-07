@@ -1,0 +1,43 @@
+{
+  "ok": true,
+  "hip": "7.14.60850",
+  "device": "AMD Radeon 8060S Graphics",
+  "gcn_arch": "gfx115",
+  "metrics": {
+    "model": "yolov8n.pt",
+    "task": "object detection (WORKLOAD_TWIN of hello-detection)",
+    "precision": "fp32 default",
+    "load_s": 298.34,
+    "runs": [
+      {
+        "latency_s": 0.0081
+      },
+      {
+        "latency_s": 0.0072
+      },
+      {
+        "latency_s": 0.0077
+      },
+      {
+        "latency_s": 0.0065
+      },
+      {
+        "latency_s": 0.0069
+      }
+    ],
+    "median_latency_s": 0.0072,
+    "fps": 138.9,
+    "detections": 5,
+    "class_ids": [
+      2,
+      16
+    ],
+    "conf_range": [
+      0.31,
+      0.936
+    ],
+    "device": "gfx1151 via torch.cuda",
+    "peak_vram_gb": 0.04,
+    "peak_rss_gb": 1.37
+  }
+}

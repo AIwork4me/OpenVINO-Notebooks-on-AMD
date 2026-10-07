@@ -1,0 +1,28 @@
+id: 3d-segmentation-point-clouds
+title: 3D Segmentation Point Clouds
+category: Vision
+upstream:
+  repository: openvinotoolkit/openvino_notebooks
+  branch: latest
+  commit: a8809170cc4fc6aa633fbb9c22214be67ac20b47
+  path: notebooks/3D-segmentation-point-clouds/3D-segmentation-point-clouds.ipynb
+  url: https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/3D-segmentation-point-clouds/3D-segmentation-point-clouds.ipynb
+model:
+  name: ''
+  source: ''
+  revision: ''
+  license: ''
+cpu:
+  runtime: openvino
+  status: VERIFIED_WITH_LIMITATIONS
+gpu:
+  runtime: ''
+  status: NOT_TESTED
+twin:
+  level: WORKLOAD_TWIN
+validation:
+  output_contains:
+  - 'input shape: \[1,3,\?\]'
+  - 'output shape: \[1,\?,4\]'
+patches: {}
+last_verified: '2026-10-05T21:42:10+00:00'

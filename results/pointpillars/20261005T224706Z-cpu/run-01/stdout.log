@@ -1,0 +1,165 @@
+[cell 0 START +    0.4s] # **PointPillar for 3D object detection** |  | PointPillar is a fast and e
+[cell 1 START +    0.4s] #### Table of contents: | 1. [Prerequisites](#prerequisites) | 2. [Install
+[cell 2 START +    0.4s] #### **Prerequisites:**
+[cell 3 START +    0.4s] ```bash | # Install the required packages specific to this notebook. | sud
+[cell 4 START +    0.4s] # Fetch `notebook_utils` module | import requests | from pathlib import Pa
+[cell 4 DONE  +    0.4s]
+[cell 5 START +    0.4s] from cmd_helper import clone_repo | from pip_helper import pip_install |  | 
+[cell 5 DONE  +    8.9s]
+[cell 6 START +    8.9s] [back to top ⬆️](#Table-of-contents:) |  | #### **Install python packages:
+[cell 7 START +    8.9s] # Install the required pip packages specific to this notebook | pip_inst
+[cell 7 DONE  +   90.3s]
+[cell 8 START +   90.3s] [back to top ⬆️](#Table-of-contents:) |  | #### **Build Extensions:**
+[cell 9 START +   90.3s] import os | import subprocess | import sys |  |  | def run(cmd, cwd=None, env=No
+-- The C compiler identification is GNU 13.3.0
+-- The CXX compiler identification is GNU 13.3.0
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: /usr/bin/cc - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /usr/bin/c++ - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD
+-- Performing Test CMAKE_HAVE_LIBC_PTHREAD - Success
+-- Found Threads: TRUE  
+-- Configuring done (0.3s)
+-- Generating done (0.0s)
+-- Build files have been written to: /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/pointpillars/workdir-cpu/openvino_contrib/modules/3d/pointPillars/ov_extensions/build
+[ 60%] [32mBuilding CXX object CMakeFiles/ov_pointpillars_extensions.dir/ov_pointpillars_ext.cpp.o[0m
+[ 60%] [32mBuilding CXX object CMakeFiles/ov_pointpillars_extensions.dir/iou3d_utils.cpp.o[0m
+[ 60%] [32mBuilding CXX object CMakeFiles/ov_pointpillars_extensions.dir/voxelization_op.cpp.o[0m
+[ 80%] [32mBuilding CXX object CMakeFiles/ov_pointpillars_extensions.dir/postprocessing_op.cpp.o[0m
+[100%] [32m[1mLinking CXX shared library libov_pointpillars_extensions.so[0m
+[100%] Built target ov_pointpillars_extensions
+✓ OpenVINO extensions built successfully
+  Library: /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/pointpillars/workdir-cpu/openvino_contrib/modules/3d/pointPillars/ov_extensions/build/libov_pointpillars_extensions.so
+CPU extension
+running build_ext
+building 'pointpillars.ops.voxel_op' extension
+creating /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/pointpillars/workdir-cpu/openvino_contrib/modules/3d/pointPillars/build/temp.linux-x86_64-cpython-312/pointpillars/ops/voxelization
+[1/2] c++ -MMD -MF /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/pointpillars/workdir-cpu/openvino_contrib/modules/3d/pointPillars/build/temp.linux-x86_64-cpython-312/pointpillars/ops/voxelization/voxelization.o.d -fno-strict-overflow -Wsign-compare -DNDEBUG -g -O2 -Wall -fPIC -I/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/14c79f40de9d556c/lib/python3.12/site-packages/torch/include -I/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/14c79f40de9d556c/lib/python3.12/site-packages/torch/include/torch/csrc/api/include -I/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/14c79f40de9d556c/include -I/usr/include/python3.12 -c -c /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/pointpillars/workdir-cpu/openvino_contrib/modules/3d/pointPillars/pointpillars/ops/voxelization/voxelization.cpp -o /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/pointpillars/workdir-cpu/openvino_contrib/modules/3d/pointPillars/build/temp.linux-x86_64-cpython-312/pointpillars/ops/voxelization/voxelization.o -DTORCH_API_INCLUDE_EXTENSION_H -DTORCH_EXTENSION_NAME=voxel_op -std=c++17
+[2/2] c++ -MMD -MF /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/pointpillars/workdir-cpu/openvino_contrib/modules/3d/pointPillars/build/temp.linux-x86_64-cpython-312/pointpillars/ops/voxelization/voxelization_cpu.o.d -fno-strict-overflow -Wsign-compare -DNDEBUG -g -O2 -Wall -fPIC -I/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/14c79f40de9d556c/lib/python3.12/site-packages/torch/include -I/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/14c79f40de9d556c/lib/python3.12/site-packages/torch/include/torch/csrc/api/include -I/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/14c79f40de9d556c/include -I/usr/include/python3.12 -c -c /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/pointpillars/workdir-cpu/openvino_contrib/modules/3d/pointPillars/pointpillars/ops/voxelization/voxelization_cpu.cpp -o /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/pointpillars/workdir-cpu/openvino_contrib/modules/3d/pointPillars/build/temp.linux-x86_64-cpython-312/pointpillars/ops/voxelization/voxelization_cpu.o -DTORCH_API_INCLUDE_EXTENSION_H -DTORCH_EXTENSION_NAME=voxel_op -std=c++17
+creating build/lib.linux-x86_64-cpython-312/pointpillars/ops
+x86_64-linux-gnu-g++ -fno-strict-overflow -Wsign-compare -DNDEBUG -g -O2 -Wall -shared -Wl,-O1 -Wl,-Bsymbolic-functions /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/pointpillars/workdir-cpu/openvino_contrib/modules/3d/pointPillars/build/temp.linux-x86_64-cpython-312/pointpillars/ops/voxelization/voxelization.o /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/pointpillars/workdir-cpu/openvino_contrib/modules/3d/pointPillars/build/temp.linux-x86_64-cpython-312/pointpillars/ops/voxelization/voxelization_cpu.o -L/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/14c79f40de9d556c/lib/python3.12/site-packages/torch/lib -L/usr/lib/x86_64-linux-gnu -lc10 -ltorch -ltorch_cpu -ltorch_python -o build/lib.linux-x86_64-cpython-312/pointpillars/ops/voxel_op.cpython-312-x86_64-linux-gnu.so
+building 'pointpillars.ops.iou3d_op' extension
+creating /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/pointpillars/workdir-cpu/openvino_contrib/modules/3d/pointPillars/build/temp.linux-x86_64-cpython-312/pointpillars/ops/iou3d
+[1/2] c++ -MMD -MF /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/pointpillars/workdir-cpu/openvino_contrib/modules/3d/pointPillars/build/temp.linux-x86_64-cpython-312/pointpillars/ops/iou3d/iou3d_kernel_cpu.o.d -fno-strict-overflow -Wsign-compare -DNDEBUG -g -O2 -Wall -fPIC -I/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/14c79f40de9d556c/lib/python3.12/site-packages/torch/include -I/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/14c79f40de9d556c/lib/python3.12/site-packages/torch/include/torch/csrc/api/include -I/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/14c79f40de9d556c/include -I/usr/include/python3.12 -c -c /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/pointpillars/workdir-cpu/openvino_contrib/modules/3d/pointPillars/pointpillars/ops/iou3d/iou3d_kernel_cpu.cpp -o /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/pointpillars/workdir-cpu/openvino_contrib/modules/3d/pointPillars/build/temp.linux-x86_64-cpython-312/pointpillars/ops/iou3d/iou3d_kernel_cpu.o -DTORCH_API_INCLUDE_EXTENSION_H -DTORCH_EXTENSION_NAME=iou3d_op -std=c++17
+[2/2] c++ -MMD -MF /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/pointpillars/workdir-cpu/openvino_contrib/modules/3d/pointPillars/build/temp.linux-x86_64-cpython-312/pointpillars/ops/iou3d/iou3d.o.d -fno-strict-overflow -Wsign-compare -DNDEBUG -g -O2 -Wall -fPIC -I/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/14c79f40de9d556c/lib/python3.12/site-packages/torch/include -I/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/14c79f40de9d556c/lib/python3.12/site-packages/torch/include/torch/csrc/api/include -I/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/14c79f40de9d556c/include -I/usr/include/python3.12 -c -c /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/pointpillars/workdir-cpu/openvino_contrib/modules/3d/pointPillars/pointpillars/ops/iou3d/iou3d.cpp -o /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/pointpillars/workdir-cpu/openvino_contrib/modules/3d/pointPillars/build/temp.linux-x86_64-cpython-312/pointpillars/ops/iou3d/iou3d.o -DTORCH_API_INCLUDE_EXTENSION_H -DTORCH_EXTENSION_NAME=iou3d_op -std=c++17
+/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/pointpillars/workdir-cpu/openvino_contrib/modules/3d/pointPillars/pointpillars/ops/iou3d/iou3d.cpp:30:1: warning: multi-line comment [-Wcomment]
+   30 | // #define CHECK_CUDA(x) \
+      | ^
+x86_64-linux-gnu-g++ -fno-strict-overflow -Wsign-compare -DNDEBUG -g -O2 -Wall -shared -Wl,-O1 -Wl,-Bsymbolic-functions /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/pointpillars/workdir-cpu/openvino_contrib/modules/3d/pointPillars/build/temp.linux-x86_64-cpython-312/pointpillars/ops/iou3d/iou3d.o /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/pointpillars/workdir-cpu/openvino_contrib/modules/3d/pointPillars/build/temp.linux-x86_64-cpython-312/pointpillars/ops/iou3d/iou3d_kernel_cpu.o -L/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/14c79f40de9d556c/lib/python3.12/site-packages/torch/lib -L/usr/lib/x86_64-linux-gnu -lc10 -ltorch -ltorch_cpu -ltorch_python -o build/lib.linux-x86_64-cpython-312/pointpillars/ops/iou3d_op.cpython-312-x86_64-linux-gnu.so
+copying build/lib.linux-x86_64-cpython-312/pointpillars/ops/voxel_op.cpython-312-x86_64-linux-gnu.so -> pointpillars/ops
+copying build/lib.linux-x86_64-cpython-312/pointpillars/ops/iou3d_op.cpython-312-x86_64-linux-gnu.so -> pointpillars/ops
+[cell 9 DONE  +  127.8s]
+[cell 10 START +  127.8s] [back to top ⬆️](#Table-of-contents:) | <div> | <style scoped> | pre[class*=
+[cell 11 START +  127.8s] # Export the PointPillars model to OpenVINO format | run( |     [ |         
+Loading PyTorch checkpoint: /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/pointpillars/workdir-cpu/openvino_contrib/modules/3d/pointPillars/pretrained/epoch_160.pth
+Exporting neural network (PillarEncoder + Backbone + Neck + Head)...
+✓ PyTorch model converted to OpenVINO IR directly
+✓ Neural network IR saved: /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/pointpillars/workdir-cpu/openvino_contrib/modules/3d/pointPillars/pretrained/pointpillars_ov_nn.xml
+Creating PillarLayer IR model with VoxelizationOp...
+✓ PillarLayer IR saved: /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/pointpillars/workdir-cpu/openvino_contrib/modules/3d/pointPillars/pretrained/pointpillars_ov_pillar_layer.xml
+Creating post-processing IR with PostProcessingOp extension...
+✓ Post-processing IR saved to: /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/pointpillars/workdir-cpu/openvino_contrib/modules/3d/pointPillars/pretrained/pointpillars_ov_postproc.xml
+  - Inputs: bbox_cls_pred, bbox_pred, bbox_dir_cls_pred (from NN head)
+  - Outputs: bboxes [k,7], labels [k], scores [k]
+  - NMS pre: 100, Score threshold: 0.1, NMS IoU threshold: 0.01, Max detections: 50
+✓ Configuration saved: /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/pointpillars/workdir-cpu/openvino_contrib/modules/3d/pointPillars/pretrained/pointpillars_ov_config.json
+
+======================================================================
+EXPORT COMPLETE - Full OpenVINO Pipeline
+======================================================================
+Components:
+  1. PillarLayer IR: /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/pointpillars/workdir-cpu/openvino_contrib/modules/3d/pointPillars/pretrained/pointpillars_ov_pillar_layer.xml
+  2. Neural Network IR: /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/pointpillars/workdir-cpu/openvino_contrib/modules/3d/pointPillars/pretrained/pointpillars_ov_nn.xml
+  3. Post-processing IR: /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/pointpillars/workdir-cpu/openvino_contrib/modules/3d/pointPillars/pretrained/pointpillars_ov_postproc.xml
+  4. Configuration: /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/pointpillars/workdir-cpu/openvino_contrib/modules/3d/pointPillars/pretrained/pointpillars_ov_config.json
+  5. Custom Extension: /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/pointpillars/workdir-cpu/openvino_contrib/modules/3d/pointPillars/ov_extensions/build/libov_pointpillars_extensions.so
+
+Model architecture:
+  - Pillar Layer (voxelization) → Custom OpenVINO Op
+  - PillarEncoder → OpenVINO IR
+  - Backbone → OpenVINO IR
+  - Neck → OpenVINO IR
+  - Head → OpenVINO IR
+  - Post-processing (Anchors + BBox Decode + Rotated NMS) → Custom OpenVINO Op
+
+Runtime usage:
+  core = ov.Core()
+  core.add_extension('/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/pointpillars/workdir-cpu/openvino_contrib/modules/3d/pointPillars/ov_extensions/build/libov_pointpillars_extensions.so')
+  pillar_layer_model = core.read_model('/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/pointpillars/workdir-cpu/openvino_contrib/modules/3d/pointPillars/pretrained/pointpillars_ov_pillar_layer.xml')
+  nn_model = core.read_model('/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/pointpillars/workdir-cpu/openvino_contrib/modules/3d/pointPillars/pretrained/pointpillars_ov_nn.xml')
+  postproc_model = core.read_model('/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/pointpillars/workdir-cpu/openvino_contrib/modules/3d/pointPillars/pretrained/pointpillars_ov_postproc.xml')
+======================================================================
+[cell 11 DONE  +  131.6s]
+[cell 12 START +  131.6s] [back to top ⬆️](#Table-of-contents:) | #### **Select inference device**
+[cell 13 START +  131.6s] from notebook_utils import device_widget |  | device = device_widget(defau
+[cell 13 DONE  +  132.0s]
+[cell 14 START +  132.0s] [back to top ⬆️](#Table-of-contents:) |  | #### **Inference with OpenVINO:
+[cell 15 START +  132.0s] # Run inference with OpenVINO | run( |     [ |         sys.executable, |      
+Initializing E2E OpenVINO backend on CPU...
+✓ OpenVINO models loaded:
+  - Voxelization (custom extension) in CPU
+  - Neural Network (OpenVINO IR) in CPU
+  - Post-processing (custom extension) in CPU
+
+✓ Point cloud loaded: 17078 points (after ROI filtering)
+
+Detection Results:
+Detected 7 objects:
+  Object 0: class=2, score=0.951
+  Object 1: class=2, score=0.813
+  Object 2: class=2, score=0.694
+  Object 3: class=2, score=0.688
+  Object 4: class=2, score=0.684
+  Object 5: class=2, score=0.617
+  Object 6: class=2, score=0.314
+[cell 15 DONE  +  132.3s]
+[cell 16 START +  132.3s] # Run test with OpenVINO for Kitti evaluation | run( |     [ |         sys.e
+
+============================================================
+PointPillars OpenVINO E2E Inference - Test
+============================================================
+
+Configuration:
+  device: CPU
+  config: /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/pointpillars/workdir-cpu/openvino_contrib/modules/3d/pointPillars/pretrained/pointpillars_ov_config.json
+  pc_path: /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/pointpillars/workdir-cpu/openvino_contrib/modules/3d/pointPillars/pointpillars/dataset/demo_data/test/000002.bin
+============================================================
+
+Initializing PointPillars OpenVINO inference...
+Initializing E2E OpenVINO backend on CPU...
+✓ OpenVINO models loaded:
+  - Voxelization (custom extension) in CPU
+  - Neural Network (OpenVINO IR) in CPU
+  - Post-processing (custom extension) in CPU
+
+✓ Point cloud loaded: 17078 points (after ROI filtering), shape: (17078, 4)
+
+Detection Results:
+Detected 7 objects:
+  Object 0: class=2, score=0.951
+  Object 1: class=2, score=0.813
+  Object 2: class=2, score=0.694
+  Object 3: class=2, score=0.688
+  Object 4: class=2, score=0.684
+  Object 5: class=2, score=0.617
+  Object 6: class=2, score=0.314
+[cell 16 DONE  +  133.2s]
+[cell 17 START +  133.2s] [back to top ⬆️](#Table-of-contents:) |  | #### **KITTI bin to PCD:** |  | To 
+[cell 18 START +  133.2s] # Convert single KITTI .bin file to .pcd | run([sys.executable, "pointpi
+Converting: pointpillars/dataset/demo_data/test/000002.bin -> pointpillars/dataset/demo_data/test/000002.pcd
+✓ Conversion complete
+
+Verifying...
+✓ Data matches: 17694 points, all values within tolerance
+  Intensity range: [0.0000, 0.9900]
+✓ Verification passed
+[cell 18 DONE  +  136.0s]
+[cell 19 START +  136.0s] [back to top ⬆️](#Table-of-contents:)
+NBEXEC_RESULT={"ok": true, "n_cells": 9, "n_skipped": 0, "n_substituted": 0, "stopped_after": null, "error_cell": null, "error_type": null, "error_head": null, "duration_s": 136.19, "patch_notes": []}

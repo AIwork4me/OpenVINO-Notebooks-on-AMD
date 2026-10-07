@@ -1,0 +1,9 @@
+{
+  "schema_version": 2,
+  "repository": "openvinotoolkit/openvino_notebooks",
+  "branch": "latest",
+  "commit": "a8809170cc4fc6aa633fbb9c22214be67ac20b47",
+  "path": "notebooks/torchvision-zoo-to-openvino/convnext-classification.ipynb",
+  "url": "https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/torchvision-zoo-to-openvino/convnext-classification.ipynb",
+  "notebook_sha256": "1c675adfadb7b187df337c1fb211921cbc1c06f66b7c4e6f6da43720f96c7650"
+}

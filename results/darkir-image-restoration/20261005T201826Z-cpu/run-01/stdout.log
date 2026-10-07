@@ -1,0 +1,59 @@
+[cell 0 START +    0.7s] # Low-Light Image Restoration with DarkIR model using OpenVINO™ |  | [Dark
+[cell 1 START +    0.7s] ## Prerequisites | [back to top ⬆️](#Table-of-contents:) |  | Install requir
+[cell 2 START +    0.7s] %pip install -q --extra-index-url https://download.pytorch.org/whl/cpu
+[cell 2 DONE  +   54.8s]
+[cell 3 START +   54.8s] ## Run PyTorch model inference | [back to top ⬆️](#Table-of-contents:)
+[cell 4 START +   54.8s] ### Prepare model | [back to top ⬆️](#Table-of-contents:) |  |  | At first, we
+[cell 5 START +   54.8s] from cmd_helper import clone_repo |  | clone_repo("https://github.com/cida
+[cell 5 DONE  +   54.8s]
+[cell 6 START +   54.8s] from pathlib import Path | from huggingface_hub import snapshot_download
+[cell 6 DONE  +   55.3s]
+[cell 7 START +   55.3s] import torch | from archs.DarkIR import DarkIR |  |  | def load_model(model, p
+[cell 7 DONE  +   57.6s]
+[cell 8 START +   57.6s] ### Prepare data | [back to top ⬆️](#Table-of-contents:) |  |  | To perform lo
+[cell 9 START +   57.6s] import cv2 |  | import numpy as np | import torch.nn.functional as F |  |  | def p
+[cell 9 DONE  +   57.6s]
+[cell 10 START +   57.6s] from pathlib import Path |  | demo_image_path = Path("./DarkIR/assets/qual
+[cell 10 DONE  +   57.6s]
+[cell 11 START +   57.6s] import matplotlib.pyplot as plt |  | plt.imshow(image) | plt.show()
+[cell 11 DONE  +   58.0s]
+[cell 12 START +   58.0s] ## Perform inference on image | [back to top ⬆️](#Table-of-contents:)
+[cell 13 START +   58.0s] tensor = prepare_input_data(image) |  | with torch.no_grad(): |     output =
+[cell 13 DONE  +   60.3s]
+[cell 14 START +   60.3s] import matplotlib.pyplot as plt |  | output_img = tune_output(output.cpu()
+[cell 14 DONE  +   60.4s]
+[cell 15 START +   60.4s] ## Run OpenVINO model | [back to top ⬆️](#Table-of-contents:)
+[cell 16 START +   60.4s] import openvino as ov |  | # create OpenVINO core object instance | core = o
+[cell 16 DONE  +   60.4s]
+[cell 17 START +   60.4s] ### Convert model | [back to top ⬆️](#Table-of-contents:) |  |  | Convert the 
+[cell 18 START +   60.4s] ov_model_path = Path("ov_model", "model.xml") |  | if not ov_model_path.ex
+[cell 18 DONE  +   60.4s]
+[cell 19 START +   60.4s] ### Select inference device | [back to top ⬆️](#Table-of-contents:) |  | Sel
+[cell 20 START +   60.4s] from notebook_utils import device_widget |  | device = device_widget(exclu
+[cell 20 DONE  +   60.6s]
+[cell 21 START +   60.6s] ### Compile model and perform inference on image | [back to top ⬆️](#Tab
+[cell 22 START +   60.6s] compiled_model = ov.compile_model(converted_model, device.value)
+[cell 22 DONE  +   61.0s]
+[cell 23 START +   61.0s] indut_data = [tensor, torch.tensor(0), torch.tensor(0)] |  | ov_res = comp
+[cell 23 DONE  +   62.8s]
+[cell 24 START +   62.8s] import numpy as np | import matplotlib.pyplot as plt |  | output_img = tune_
+[cell 24 DONE  +   62.9s]
+[cell 25 START +   62.9s] ### Perform inference on video | [back to top ⬆️](#Table-of-contents:)
+[cell 26 START +   62.9s] VIDEO_FILE = "./data/Videos/0066_hunyuan_421.mp4" |  | if not Path(VIDEO_F
+[cell 26 DONE  +   62.9s]
+[cell 27 START +   62.9s] # Number of seconds of input video to process. Set `NUM_SECONDS` to 0 
+[cell 27 DONE  +   62.9s]
+[cell 28 START +   62.9s] import time | from IPython.display import ( |     HTML, |     FileLink, |     
+[cell 28 DONE  +   62.9s]
+[cell 29 START +   62.9s] stacked_frame = process_video(compiled_model, VIDEO_FILE, result_video
+[cell 29 DONE  +  136.2s]
+[cell 30 START +  136.2s] def display_video(stacked_frame): |     video = Video(result_video_path,
+[cell 30 DONE  +  136.2s]
+[cell 31 START +  136.2s] display_video(stacked_frame)
+[cell 31 DONE  +  136.3s]
+[cell 32 START +  136.3s] ## Interactive demo | [back to top ⬆️](#Table-of-contents:)
+[cell 33 START +  136.3s] Now, it is your turn! You can provide your own image for low-light ima
+[cell 34 START +  136.3s] from PIL import Image |  |  | def process_img(image): |     img = np.array(ima
+[cell 34 DONE  +  136.3s]
+[cell 35 START +  136.3s] if not Path("gradio_helper.py").exists(): |     r = requests.get(url="ht
+NBEXEC_RESULT={"ok": true, "n_cells": 23, "n_skipped": 1, "n_substituted": 0, "stopped_after": null, "error_cell": null, "error_type": null, "error_head": null, "duration_s": 137.73, "patch_notes": ["skipped cell 35: matched skip pattern"]}

@@ -20,6 +20,9 @@ gpu:
   status: NOT_TESTED
 twin:
   level: WORKLOAD_TWIN
-validation: {}
+validation:
+  output_contains:
+  - hydrogen
+  min_output_chars: 40
 patches: {}
-last_verified: '2026-10-01T20:00:54+00:00'
+last_verified: '2026-10-05T20:31:33+00:00'

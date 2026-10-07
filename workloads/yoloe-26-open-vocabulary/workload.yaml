@@ -1,0 +1,25 @@
+id: yoloe-26-open-vocabulary
+title: Yoloe 26 Open Vocabulary
+category: Vision
+upstream:
+  repository: openvinotoolkit/openvino_notebooks
+  branch: latest
+  commit: a8809170cc4fc6aa633fbb9c22214be67ac20b47
+  path: notebooks/yolov26-optimization/yoloe-26-open-vocabulary.ipynb
+  url: https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/yolov26-optimization/yoloe-26-open-vocabulary.ipynb
+model:
+  name: ''
+  source: ''
+  revision: ''
+  license: ''
+cpu:
+  runtime: openvino
+  status: FAILED
+gpu:
+  runtime: ''
+  status: NOT_TESTED
+twin:
+  level: OPENVINO_SPECIFIC
+validation: {}
+patches: {}
+last_verified: ''

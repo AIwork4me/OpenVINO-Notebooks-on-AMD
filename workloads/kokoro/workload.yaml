@@ -21,6 +21,9 @@ gpu:
   wall_timeout_s: 3600
 twin:
   level: NOT_CLASSIFIED
-validation: {}
+validation:
+  output_contains:
+  - Generated \d+ samples at \d+ Hz
+  min_output_chars: 10
 patches: {}
-last_verified: '2026-10-01T16:46:56+00:00'
+last_verified: '2026-10-05T19:49:17+00:00'

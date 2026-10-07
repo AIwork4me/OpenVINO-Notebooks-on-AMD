@@ -1,0 +1,25 @@
+id: stable-diffusion-v3-torch-fx
+title: Stable Diffusion V3 Torch Fx
+category: Image Generation
+upstream:
+  repository: openvinotoolkit/openvino_notebooks
+  branch: latest
+  commit: a8809170cc4fc6aa633fbb9c22214be67ac20b47
+  path: notebooks/stable-diffusion-v3-torch-fx/stable-diffusion-v3-torch-fx.ipynb
+  url: https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/stable-diffusion-v3-torch-fx/stable-diffusion-v3-torch-fx.ipynb
+model:
+  name: ''
+  source: ''
+  revision: ''
+  license: ''
+cpu:
+  runtime: openvino
+  status: FAILED
+gpu:
+  runtime: ''
+  status: NOT_TESTED
+twin:
+  level: WORKLOAD_TWIN
+validation: {}
+patches: {}
+last_verified: ''

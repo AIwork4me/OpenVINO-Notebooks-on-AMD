@@ -1,0 +1,77 @@
+[IPKernelApp] WARNING | Kernel is running over TCP without encryption. All communication (including code and outputs) is sent in plain text and is susceptible to eavesdropping. Use IPC transport or launch with kernel manager-provisioned CurveZMQ keys to enable transport encryption.
+[31mERROR: pip's dependency resolver does not currently take into account all the packages that are installed. This behaviour is the source of the following dependency conflicts.
+tensorflow 2.19.1 requires protobuf!=4.21.0,!=4.21.1,!=4.21.2,!=4.21.3,!=4.21.4,!=4.21.5,<6.0.0dev,>=3.20.3, but you have protobuf 7.36.2 which is incompatible.
+optimum-intel 2.3.0.dev0+348272d requires nncf>=3.3.0, but you have nncf 2.19.0 which is incompatible.
+optimum-intel 2.3.0.dev0+348272d requires openvino-tokenizers>=2026.0, but you have openvino-tokenizers 2025.3.0.0 which is incompatible.
+openvino-tokenizers 2025.3.0.0 requires openvino~=2025.3.0.dev, but you have openvino 2026.4.1 which is incompatible.[0m[31m
+[0m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/14c79f40de9d556c/lib/python3.12/site-packages/transformers/processing_utils.py:36[39m
+[32m     34[39m [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01mtransformers[39;00m[34;01m.[39;00m[34;01mutils[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m is_torch_available
+[32m---> [39m[32m36[39m [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01m.[39;00m[34;01maudio_utils[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m load_audio
+[32m     37[39m [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01m.[39;00m[34;01mdynamic_module_utils[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m custom_object_save
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/14c79f40de9d556c/lib/python3.12/site-packages/transformers/audio_utils.py:45[39m
+[32m     44[39m     [38;5;66;03m# TODO: @eustlb, we actually don't need librosa but soxr is installed with librosa[39;00m
+[32m---> [39m[32m45[39m     [38;5;28;01mimport[39;00m[38;5;250m [39m[34;01msoxr[39;00m
+[32m     48[39m [38;5;28;01mdef[39;00m[38;5;250m [39m[34mload_audio[39m(audio: Union[[38;5;28mstr[39m, np.ndarray], sampling_rate=[32m16000[39m, timeout=[38;5;28;01mNone[39;00m) -> np.ndarray:
+
+[31mModuleNotFoundError[39m: No module named 'soxr'
+
+The above exception was the direct cause of the following exception:
+
+[31mModuleNotFoundError[39m                       Traceback (most recent call last)
+[36mCell[39m[36m [39m[32mIn[4][39m[32m, line 7[39m
+[32m      3[39m 
+[32m      4[39m ONNX_NLP_MODEL_PATH = MODEL_DIRECTORY_PATH / [33m"distilbert.onnx"[39m
+[32m      5[39m 
+[32m      6[39m [38;5;66;03m# download model[39;00m
+[32m----> [39m[32m7[39m hf_model = AutoModelForSequenceClassification.from_pretrained([33m"distilbert-base-uncased-finetuned-sst-2-english"[39m)
+[32m      8[39m [38;5;66;03m# initialize tokenizer[39;00m
+[32m      9[39m tokenizer = AutoTokenizer.from_pretrained([33m"distilbert-base-uncased-finetuned-sst-2-english"[39m)
+[32m     10[39m 
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/14c79f40de9d556c/lib/python3.12/site-packages/transformers/models/auto/auto_factory.py:597[39m, in [36m_BaseAutoModelClass.from_pretrained[39m[34m(cls, pretrained_model_name_or_path, *model_args, **kwargs)[39m
+[32m    593[39m     [38;5;28;01mreturn[39;00m model_class.from_pretrained(
+[32m    594[39m         pretrained_model_name_or_path, *model_args, config=config, **hub_kwargs, **kwargs
+[32m    595[39m     )
+[32m    596[39m [38;5;28;01melif[39;00m [38;5;28mtype[39m(config) [38;5;129;01min[39;00m [38;5;28mcls[39m._model_mapping:
+[32m--> [39m[32m597[39m     model_class = [30;43m_get_model_class[39;49m[30;43m([39;49m[30;43mconfig[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mcls[39;49m[30;43m.[39;49m[30;43m_model_mapping[39;49m[30;43m)[39;49m
+[32m    598[39m     [38;5;28;01mif[39;00m model_class.config_class == config.sub_configs.get([33m"[39m[33mtext_config[39m[33m"[39m, [38;5;28;01mNone[39;00m):
+[32m    599[39m         config = config.get_text_config()
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/14c79f40de9d556c/lib/python3.12/site-packages/transformers/models/auto/auto_factory.py:394[39m, in [36m_get_model_class[39m[34m(config, model_mapping)[39m
+[32m    393[39m [38;5;28;01mdef[39;00m[38;5;250m [39m[34m_get_model_class[39m(config, model_mapping):
+[32m--> [39m[32m394[39m     supported_models = [30;43mmodel_mapping[39;49m[30;43m[[39;49m[30;43mtype[39;49m[30;43m([39;49m[30;43mconfig[39;49m[30;43m)[39;49m[30;43m][39;49m
+[32m    395[39m     [38;5;28;01mif[39;00m [38;5;129;01mnot[39;00m [38;5;28misinstance[39m(supported_models, ([38;5;28mlist[39m, [38;5;28mtuple[39m)):
+[32m    396[39m         [38;5;28;01mreturn[39;00m supported_models
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/14c79f40de9d556c/lib/python3.12/site-packages/transformers/models/auto/auto_factory.py:803[39m, in [36m_LazyAutoMapping.__getitem__[39m[34m(self, key)[39m
+[32m    801[39m [38;5;28;01mif[39;00m model_type [38;5;129;01min[39;00m [38;5;28mself[39m._model_mapping:
+[32m    802[39m     model_name = [38;5;28mself[39m._model_mapping[model_type]
+[32m--> [39m[32m803[39m     [38;5;28;01mreturn[39;00m [30;43mself[39;49m[30;43m.[39;49m[30;43m_load_attr_from_module[39;49m[30;43m([39;49m[30;43mmodel_type[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mmodel_name[39;49m[30;43m)[39;49m
+[32m    805[39m [38;5;66;03m# Maybe there was several model types associated with this config.[39;00m
+[32m    806[39m model_types = [k [38;5;28;01mfor[39;00m k, v [38;5;129;01min[39;00m [38;5;28mself[39m._config_mapping.items() [38;5;28;01mif[39;00m v == key.[34m__name__[39m]
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/14c79f40de9d556c/lib/python3.12/site-packages/transformers/models/auto/auto_factory.py:817[39m, in [36m_LazyAutoMapping._load_attr_from_module[39m[34m(self, model_type, attr)[39m
+[32m    815[39m [38;5;28;01mif[39;00m module_name [38;5;129;01mnot[39;00m [38;5;129;01min[39;00m [38;5;28mself[39m._modules:
+[32m    816[39m     [38;5;28mself[39m._modules[module_name] = importlib.import_module([33mf[39m[33m"[39m[33m.[39m[38;5;132;01m{[39;00mmodule_name[38;5;132;01m}[39;00m[33m"[39m, [33m"[39m[33mtransformers.models[39m[33m"[39m)
+[32m--> [39m[32m817[39m [38;5;28;01mreturn[39;00m [30;43mgetattribute_from_module[39;49m[30;43m([39;49m[30;43mself[39;49m[30;43m.[39;49m[30;43m_modules[39;49m[30;43m[[39;49m[30;43mmodule_name[39;49m[30;43m][39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mattr[39;49m[30;43m)[39;49m
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/14c79f40de9d556c/lib/python3.12/site-packages/transformers/models/auto/auto_factory.py:729[39m, in [36mgetattribute_from_module[39m[34m(module, attr)[39m
+[32m    727[39m [38;5;28;01mif[39;00m [38;5;28misinstance[39m(attr, [38;5;28mtuple[39m):
+[32m    728[39m     [38;5;28;01mreturn[39;00m [38;5;28mtuple[39m(getattribute_from_module(module, a) [38;5;28;01mfor[39;00m a [38;5;129;01min[39;00m attr)
+[32m--> [39m[32m729[39m [38;5;28;01mif[39;00m [30;43mhasattr[39;49m[30;43m([39;49m[30;43mmodule[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mattr[39;49m[30;43m)[39;49m:
+[32m    730[39m     [38;5;28;01mreturn[39;00m [38;5;28mgetattr[39m(module, attr)
+[32m    731[39m [38;5;66;03m# Some of the mappings have entries model_type -> object of another model type. In that case we try to grab the[39;00m
+[32m    732[39m [38;5;66;03m# object at the top level.[39;00m
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/14c79f40de9d556c/lib/python3.12/site-packages/transformers/utils/import_utils.py:2295[39m, in [36m_LazyModule.__getattr__[39m[34m(self, name)[39m
+[32m   2293[39m         value = [38;5;28mgetattr[39m(module, name)
+[32m   2294[39m     [38;5;28;01mexcept[39;00m ([38;5;167;01mModuleNotFoundError[39;00m, [38;5;167;01mRuntimeError[39;00m) [38;5;28;01mas[39;00m e:
+[32m-> [39m[32m2295[39m         [38;5;28;01mraise[39;00m [38;5;167;01mModuleNotFoundError[39;00m(
+[32m   2296[39m             [33mf[39m[33m"[39m[33mCould not import module [39m[33m'[39m[38;5;132;01m{[39;00mname[38;5;132;01m}[39;00m[33m'[39m[33m. Are this object[39m[33m'[39m[33ms requirements defined correctly?[39m[33m"[39m
+[32m   2297[39m         ) [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01me[39;00m
+[32m   2299[39m [38;5;28;01melif[39;00m name [38;5;129;01min[39;00m [38;5;28mself[39m._modules:
+[32m   2300[39m     [38;5;28;01mtry[39;00m:
+
+[31mModuleNotFoundError[39m: Could not import module 'DistilBertForSequenceClassification'. Are this object's requirements defined correctly?
+

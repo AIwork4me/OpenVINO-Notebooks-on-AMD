@@ -1,0 +1,16 @@
+[IPKernelApp] WARNING | Kernel is running over TCP without encryption. All communication (including code and outputs) is sent in plain text and is susceptible to eavesdropping. Use IPC transport or launch with kernel manager-provisioned CurveZMQ keys to enable transport encryption.
+<inline asm>:1:2: error: unknown directive
+        .decl AA0 v_type=G type=ud num_elts=1
+        ^
+<inline asm>:2:1: error: unknown directive
+.decl AA1 v_type=G type=ud num_elts=1
+^
+<inline asm>:3:1: error: unknown directive
+.implicit_PSEUDO_INPUT AA0 offset=256 size=4
+^
+<inline asm>:4:1: error: unknown directive
+.implicit_PSEUDO_INPUT AA1 offset=256 size=4
+^
+<inline asm>:5:1: error: invalid instruction
+mov (M1_NM,1) AA0(0,0)<1> AA1(0,0)<0;1,0>
+^

@@ -1,0 +1,64 @@
+[cell 0 START +    0.7s] # Live Object Detection with OpenVINO™ |  | This notebook demonstrates liv
+[cell 1 START +    0.7s] ## Preparation | [back to top ⬆️](#Table-of-contents:) |  | ### Install requ
+[cell 2 START +    0.7s] %pip install -q "openvino>=2024.4.0" | %pip install -q "ultralytics==8.3
+[cell 2 DONE  +   11.1s]
+[cell 3 START +   11.1s] ### Imports | [back to top ⬆️](#Table-of-contents:) | 
+[cell 4 START +   11.1s] from pathlib import Path | import gc | import openvino as ov | from ultralyt
+[cell 4 DONE  +   12.1s]
+[cell 5 START +   12.1s] ## The Model | [back to top ⬆️](#Table-of-contents:) |  | ### Download and c
+[cell 6 START +   12.1s] # A directory where the model will be downloaded. |  | # The name of the m
+[cell 6 DONE  +   16.7s]
+[cell 7 START +   16.7s] ### Load the Model | [back to top ⬆️](#Table-of-contents:) |  | Only a few l
+[cell 8 START +   16.7s] core = ov.Core() |  | device = utils.device_widget() | device
+[cell 8 DONE  +   16.9s]
+[cell 9 START +   16.9s] core = ov.Core() |  |  | def load_model(det_model_path, device): |     compile
+[09:36:30.0823]D[plugin.cpp:289][AUTO] deviceNameWithID:CPU, defaultDeviceID:, uniqueName:CPU_
+[09:36:30.0824]I[plugin.cpp:479][AUTO] device:CPU, config:LOG_LEVEL=LOG_NONE
+[09:36:30.0824]I[plugin.cpp:479][AUTO] device:CPU, config:PERFORMANCE_HINT=LATENCY
+[09:36:30.0824]I[plugin.cpp:479][AUTO] device:CPU, config:PERFORMANCE_HINT_NUM_REQUESTS=0
+[09:36:30.0824]I[plugin.cpp:479][AUTO] device:CPU, config:PERF_COUNT=NO
+[09:36:30.0824]I[plugin.cpp:484][AUTO] device:CPU, priority:0
+[09:36:30.0824]I[plugin.cpp:510][AUTO] Original device list() size to load the model: 0
+[09:36:30.0824]I[schedule.cpp:17][AUTO] scheduler starting
+[09:36:30.0824]I[auto_schedule.cpp:163][AUTO] select device:CPU
+[09:36:30.0834]I[auto_schedule.cpp:284][AUTO] Only one device or multiple devices of the same type will use passthrough compiled model
+[09:36:30.1774]I[auto_schedule.cpp:341][AUTO] Device: [CPU]: Compile model took 93.919779 ms
+[09:36:30.1774]I[auto_schedule.cpp:118][AUTO] device:CPU compiling model finished
+[09:36:30.1775]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:SUPPORTED_PROPERTIES=SUPPORTED_PROPERTIES NETWORK_NAME OPTIMAL_NUMBER_OF_INFER_REQUESTS NUM_STREAMS INFERENCE_NUM_THREADS PERF_COUNT INFERENCE_PRECISION_HINT PERFORMANCE_HINT EXECUTION_MODE_HINT PERFORMANCE_HINT_NUM_REQUESTS ENABLE_
+[09:36:30.1775]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:NETWORK_NAME=Model0
+[09:36:30.1775]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:OPTIMAL_NUMBER_OF_INFER_REQUESTS=1
+[09:36:30.1775]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:NUM_STREAMS=1
+[09:36:30.1775]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:INFERENCE_NUM_THREADS=16
+[09:36:30.1775]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:PERF_COUNT=NO
+[09:36:30.1775]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:INFERENCE_PRECISION_HINT=bf16
+[09:36:30.1775]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:PERFORMANCE_HINT=LATENCY
+[09:36:30.1775]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:EXECUTION_MODE_HINT=PERFORMANCE
+[09:36:30.1775]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:PERFORMANCE_HINT_NUM_REQUESTS=0
+[09:36:30.1775]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:ENABLE_CPU_PINNING=YES
+[09:36:30.1775]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:ENABLE_CPU_RESERVATION=NO
+[09:36:30.1775]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:SCHEDULING_CORE_TYPE=ANY_CORE
+[09:36:30.1775]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:MODEL_DISTRIBUTION_POLICY=
+[09:36:30.1775]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:ENABLE_HYPER_THREADING=NO
+[09:36:30.1775]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:EXECUTION_DEVICES=CPU
+[09:36:30.1775]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:CPU_DENORMALS_OPTIMIZATION=NO
+[09:36:30.1775]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:LOG_LEVEL=LOG_NONE
+[09:36:30.1775]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:CPU_SPARSE_WEIGHTS_DECOMPRESSION_RATE=1
+[09:36:30.1775]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:ENABLE_TENSOR_PARALLEL=NO
+[09:36:30.1775]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:TBB_PARTITIONER=STATIC
+[09:36:30.1775]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:DYNAMIC_QUANTIZATION_GROUP_SIZE=32
+[09:36:30.1775]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:KV_CACHE_PRECISION=u8
+[09:36:30.1775]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:KEY_CACHE_PRECISION=u8
+[09:36:30.1775]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:VALUE_CACHE_PRECISION=u8
+[09:36:30.1775]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:KEY_CACHE_GROUP_SIZE=0
+[09:36:30.1775]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:VALUE_CACHE_GROUP_SIZE=0
+[09:36:30.1775]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:RUNTIME_REQUIREMENTS=meta=1.0;ov=2026.4.1;isa=Intel AVX-512 with Intel DL Boost and bfloat16 support
+[09:36:30.1776]I[plugin.cpp:534][AUTO] underlying hardware does not support hardware context
+[09:36:30.1798]I[schedule.cpp:312][AUTO] scheduler ending
+[cell 9 DONE  +   17.2s]
+[cell 10 START +   17.2s] ### Main Processing Function | [back to top ⬆️](#Table-of-contents:) |  | Ru
+[cell 11 START +   17.2s] from IPython import display | import cv2 | import numpy as np |  |  | # Main pro
+[cell 11 DONE  +   17.2s]
+[cell 12 START +   17.2s] ## Run | [back to top ⬆️](#Table-of-contents:) |  | ### Run Live Object Dete
+[cell 13 START +   17.2s] USE_WEBCAM = False |  | video_url = "https://storage.openvinotoolkit.org/r
+[cell 13 DONE  +   28.8s]
+NBEXEC_RESULT={"ok": true, "n_cells": 7, "n_skipped": 0, "n_substituted": 0, "stopped_after": null, "error_cell": null, "error_type": null, "error_head": null, "duration_s": 29.79, "patch_notes": []}

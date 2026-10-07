@@ -33,8 +33,11 @@ def main() -> int:
             if (rec.get("cpu") or {}).get("status") == "FAILED":
                 targets.append(wid)
     if args.smoke:
-        verified = [wid for wid, rec in state.get("attempts", {}).items()
-                    if (rec.get("cpu") or {}).get("status", "").startswith("VERIFIED")]
+        verified = [
+            wid
+            for wid, rec in state.get("attempts", {}).items()
+            if (rec.get("cpu") or {}).get("status", "").startswith("VERIFIED")
+        ]
         targets.extend(verified[: args.smoke])
 
     rc = 0

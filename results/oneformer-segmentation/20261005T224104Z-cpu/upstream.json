@@ -1,0 +1,9 @@
+{
+  "schema_version": 2,
+  "repository": "openvinotoolkit/openvino_notebooks",
+  "branch": "latest",
+  "commit": "a8809170cc4fc6aa633fbb9c22214be67ac20b47",
+  "path": "notebooks/oneformer-segmentation/oneformer-segmentation.ipynb",
+  "url": "https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/oneformer-segmentation/oneformer-segmentation.ipynb",
+  "notebook_sha256": "817c92e15f52cdd9a06578e578f09e5c35e7ed475dd48fa647149de566f9b76b"
+}

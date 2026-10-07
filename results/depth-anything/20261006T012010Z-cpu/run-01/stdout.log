@@ -1,0 +1,86 @@
+[cell 0 START +    0.7s] # Depth estimation with DepthAnything and OpenVINO |  | [Depth estimation]
+[cell 1 START +    0.7s] ## Prerequisites | [back to top ⬆️](#Table-of-contents:)
+[cell 2 START +    0.7s] import requests | from pathlib import Path |  | if not Path("cmd_helper.py")
+[cell 2 DONE  +    0.8s]
+[cell 3 START +    0.8s] %pip install -q "openvino>=2023.3.0" "datasets>=2.14.6,<4.0.0" "nncf" 
+[cell 3 DONE  +   30.7s]
+[cell 4 START +   30.7s] ## Load and run PyTorch model | [back to top ⬆️](#Table-of-contents:)
+[cell 5 START +   30.7s] We will use transformers library for executing models. `DepthAnythingF
+[cell 6 START +   30.7s] import ipywidgets as widgets |  | models = {"depth-anything": "LiheYoung/d
+[cell 6 DONE  +   30.7s]
+[cell 7 START +   30.7s] from transformers import AutoImageProcessor, AutoModelForDepthEstimati
+[cell 7 DONE  +   46.8s]
+[cell 8 START +   46.8s] ### Prepare input data | [back to top ⬆️](#Table-of-contents:)
+[cell 9 START +   46.8s] import cv2 | import torch |  | from notebook_utils import download_file, dev
+[cell 9 DONE  +   53.8s]
+[cell 10 START +   53.8s] ### Run model inference | [back to top ⬆️](#Table-of-contents:) |  | Preproc
+[cell 11 START +   53.8s] inputs_data = image_processor(images=image, return_tensors="pt") |  | with
+[cell 11 DONE  +   54.1s]
+[cell 12 START +   54.1s] After image processing finished, we can resize depth map into original
+[cell 13 START +   54.1s] import torch.nn.functional as F | import numpy as np |  | depth = F.interpol
+[cell 13 DONE  +   54.1s]
+[cell 14 START +   54.1s] from matplotlib import pyplot as plt |  | plt.imshow(depth_color[:, :, ::-
+[cell 14 DONE  +   54.6s]
+[cell 15 START +   54.6s] ## Convert Model to OpenVINO IR format | [back to top ⬆️](#Table-of-cont
+[cell 16 START +   54.6s] import openvino as ov |  | OV_DEPTH_ANYTHING_PATH = Path("ov_model", model
+[cell 16 DONE  +   57.9s]
+[cell 17 START +   57.9s] ## Run OpenVINO model inference | [back to top ⬆️](#Table-of-contents:) | 
+[cell 18 START +   57.9s] device = device_widget() | device
+[cell 18 DONE  +   58.1s]
+[cell 19 START +   58.1s] core = ov.Core() |  | # NPU requires static input shapes, but the image pr
+[cell 19 DONE  +   58.4s]
+[cell 20 START +   58.4s] ### Run inference on image | [back to top ⬆️](#Table-of-contents:)
+[cell 21 START +   58.4s] res = compiled_model(prep_pixel_values(inputs_data["pixel_values"]))[0
+[cell 21 DONE  +   58.6s]
+[cell 22 START +   58.6s] def get_depth_map(model_output): |     depth = model_output[0] |     depth
+[cell 22 DONE  +   58.6s]
+[cell 23 START +   58.6s] plt.imshow(depth_color[:, :, ::-1]);
+[cell 23 DONE  +   59.1s]
+[cell 24 START +   59.1s] ### Run inference on video | [back to top ⬆️](#Table-of-contents:)
+[cell 25 START +   59.1s] if not Path("Coco Walking in Berkeley.mp4").exists(): |     download_fil
+[cell 25 DONE  +   61.0s]
+[cell 26 START +   61.0s] cap = cv2.VideoCapture(str(VIDEO_FILE)) | ret, image = cap.read() | if not
+[cell 26 DONE  +   61.0s]
+[cell 27 START +   61.0s] def normalize_minmax(data): |     """Normalizes the values in `data` bet
+[cell 27 DONE  +   61.0s]
+[cell 28 START +   61.0s] import time | from IPython.display import ( |     HTML, |     FileLink, |     
+[cell 28 DONE  +   61.0s]
+[cell 29 START +   61.0s] stacked_frame = process_video(compiled_model, VIDEO_FILE, result_video
+[cell 29 DONE  +   67.8s]
+[cell 30 START +   67.8s] def display_video(stacked_frame): |     video = Video(result_video_path,
+[cell 30 DONE  +   67.8s]
+[cell 31 START +   67.8s] display_video(stacked_frame)
+[cell 31 DONE  +   67.8s]
+[cell 32 START +   67.8s] ## Quantization | [back to top ⬆️](#Table-of-contents:) |  | [NNCF](https://
+[cell 33 START +   67.8s] skip_for_device = "GPU" in device.value | to_quantize = quantization_wid
+[cell 33 DONE  +   67.8s]
+[cell 34 START +   67.8s] # Fetch `skip_kernel_extension` module | if not Path("skip_kernel_extens
+[cell 34 DONE  +   67.8s]
+[cell 35 START +   67.8s] ### Prepare calibration dataset | [back to top ⬆️](#Table-of-contents:) | 
+[cell 36 START +   67.8s] %%skip not $to_quantize.value |  | import datasets |  | if not OV_DEPTH_ANYTHI
+[cell 36 DONE  +  298.1s]
+[cell 37 START +  298.1s] ### Run quantization | [back to top ⬆️](#Table-of-contents:) |  | Create a q
+[cell 38 START +  298.1s] %%skip not $to_quantize.value |  | import nncf |  | if not OV_DEPTH_ANYTHING_I
+[cell 38 DONE  +  384.7s]
+[cell 39 START +  384.7s] Let us check predictions with the quantized model using the same input
+[cell 40 START +  384.7s] %%skip not $to_quantize.value |  | from PIL import Image |  | def visualize_re
+[cell 40 DONE  +  385.1s]
+[cell 41 START +  385.1s] %%skip not $to_quantize.value |  | image = cv2.cvtColor(cv2.imread('fursea
+[cell 41 DONE  +  385.8s]
+[cell 42 START +  385.8s] %%skip not $to_quantize.value |  | visualize_results(depth_color[:, :, ::-
+[cell 42 DONE  +  386.5s]
+[cell 43 START +  386.5s] %%skip not $to_quantize.value |  | int8_result_video_path = output_directo
+[cell 43 DONE  +  393.3s]
+[cell 44 START +  393.3s] #### Compare model file size | [back to top ⬆️](#Table-of-contents:)
+[cell 45 START +  393.3s] %%skip not $to_quantize.value |  | fp16_ir_model_size = OV_DEPTH_ANYTHING_
+[cell 45 DONE  +  393.3s]
+[cell 46 START +  393.3s] ### Compare inference time of the FP16 and INT8 models | [back to top ⬆️
+[cell 47 START +  393.3s] import re |  |  | def get_fps(benchmark_output: str): |     parsed_output = [l
+[cell 47 DONE  +  516.9s]
+[cell 48 START +  516.9s] ## Interactive demo | [back to top ⬆️](#Table-of-contents:) |  | You can app
+[cell 49 START +  516.9s] import ipywidgets as widgets |  | quantized_model_present = OV_DEPTH_ANYTH
+[cell 49 DONE  +  516.9s]
+[cell 50 START +  516.9s] import numpy as np | import cv2 | import tempfile |  | if use_quantized_model.
+[cell 50 DONE  +  517.3s]
+[cell 51 START +  517.3s] # Go back to the depth-anything notebook directory | if not Path("gradio
+NBEXEC_RESULT={"ok": true, "n_cells": 34, "n_skipped": 1, "n_substituted": 0, "stopped_after": null, "error_cell": null, "error_type": null, "error_head": null, "duration_s": 520.09, "patch_notes": ["skipped cell 51: matched skip pattern"]}

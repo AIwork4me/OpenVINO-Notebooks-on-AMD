@@ -1,0 +1,18 @@
+{
+  "schema_version": 2,
+  "state": "PROVEN_CPU",
+  "requested_backend": "cpu",
+  "compile_events": 1,
+  "execution_devices": [
+    [
+      "CPU"
+    ]
+  ],
+  "device_args": [
+    "CPU"
+  ],
+  "supporting_device_used": "CPU",
+  "probe_events": 2,
+  "probe_present": true,
+  "probe_installed": true
+}

@@ -1,0 +1,10 @@
+[cell 0 START +    0.7s] # Hello Image Classification |  | This basic introduction to OpenVINO™ sho
+[cell 1 START +    0.7s] # Install required packages | %pip install -q "openvino>=2023.1.0" openc
+[cell 1 DONE  +   10.5s]
+[cell 2 START +   10.5s] ## Imports | [back to top ⬆️](#Table-of-contents:) | 
+[cell 3 START +   10.5s] from pathlib import Path |  | import cv2 | import matplotlib.pyplot as plt | i
+[cell 3 DONE  +   11.0s]
+[cell 4 START +   11.0s] ## Download the Model and data samples | [back to top ⬆️](#Table-of-cont
+[cell 5 START +   11.0s] base_artifacts_dir = Path("./artifacts").expanduser() |  | model_name = "v
+[cell 5 DONE  +   12.9s]
+NBEXEC_RESULT={"ok": false, "n_cells": 9, "n_skipped": 0, "n_substituted": 0, "stopped_after": null, "error_cell": null, "error_type": "CellExecutionError", "error_head": "\u001b[31mImportError\u001b[39m: IProgress not found. Please update jupyter and ipywidgets. See https://ipywidgets.readthedocs.io/en/stable/user_install.html", "duration_s": 13.24, "patch_notes": []}

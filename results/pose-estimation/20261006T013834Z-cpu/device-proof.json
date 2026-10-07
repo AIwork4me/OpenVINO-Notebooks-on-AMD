@@ -1,0 +1,20 @@
+{
+  "schema_version": 2,
+  "state": "PROVEN_CPU",
+  "requested_backend": "cpu",
+  "compile_events": 1,
+  "genai_pipeline_events": 0,
+  "execution_devices": [
+    [
+      "CPU"
+    ]
+  ],
+  "device_args": [
+    "CPU"
+  ],
+  "genai_device_args": [],
+  "supporting_device_used": "CPU",
+  "probe_events": 2,
+  "probe_present": true,
+  "probe_installed": true
+}

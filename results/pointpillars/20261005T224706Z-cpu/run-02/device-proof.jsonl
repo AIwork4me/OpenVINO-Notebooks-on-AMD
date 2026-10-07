@@ -1,0 +1,11 @@
+{"t": "2026-10-05T22:49:25Z", "kind": "probe_installed", "openvino_version": "2025.3.0-19807-44526285f24-releases/2025/3"}
+{"t": "2026-10-05T22:50:02Z", "kind": "probe_installed", "openvino_version": "2025.3.0-19807-44526285f24-releases/2025/3"}
+{"t": "2026-10-05T22:50:05Z", "kind": "probe_installed", "openvino_version": "2025.3.0-19807-44526285f24-releases/2025/3"}
+{"t": "2026-10-05T22:50:05Z", "kind": "probe_installed", "openvino_version": "2025.3.0-19807-44526285f24-releases/2025/3"}
+{"t": "2026-10-05T22:50:05Z", "kind": "compile_model", "device_arg": "CPU", "execution_devices": ["CPU"], "openvino_version": "2025.3.0-19807-44526285f24-releases/2025/3"}
+{"t": "2026-10-05T22:50:05Z", "kind": "compile_model", "device_arg": "CPU", "execution_devices": ["CPU"], "openvino_version": "2025.3.0-19807-44526285f24-releases/2025/3"}
+{"t": "2026-10-05T22:50:06Z", "kind": "compile_model", "device_arg": "CPU", "execution_devices": ["CPU"], "openvino_version": "2025.3.0-19807-44526285f24-releases/2025/3"}
+{"t": "2026-10-05T22:50:06Z", "kind": "probe_installed", "openvino_version": "2025.3.0-19807-44526285f24-releases/2025/3"}
+{"t": "2026-10-05T22:50:06Z", "kind": "compile_model", "device_arg": "CPU", "execution_devices": ["CPU"], "openvino_version": "2025.3.0-19807-44526285f24-releases/2025/3"}
+{"t": "2026-10-05T22:50:06Z", "kind": "compile_model", "device_arg": "CPU", "execution_devices": ["CPU"], "openvino_version": "2025.3.0-19807-44526285f24-releases/2025/3"}
+{"t": "2026-10-05T22:50:06Z", "kind": "compile_model", "device_arg": "CPU", "execution_devices": ["CPU"], "openvino_version": "2025.3.0-19807-44526285f24-releases/2025/3"}

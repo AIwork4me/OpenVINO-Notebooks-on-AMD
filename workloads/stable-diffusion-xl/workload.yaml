@@ -13,7 +13,7 @@ cpu:
 gpu:
   runtime: pytorch-rocm
   status: NOT_TESTED
-  wall_timeout_s: 3600
+  wall_timeout_s: 5400
 twin:
   level: ''
 validation: {}

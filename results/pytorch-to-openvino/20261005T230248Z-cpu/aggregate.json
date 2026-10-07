@@ -1,0 +1,13 @@
+{
+  "schema_version": 2,
+  "successful_runs": 3,
+  "required_runs": 3,
+  "latencies_s": [
+    108.55,
+    93.01,
+    92.1
+  ],
+  "median_latency_s": 93.01,
+  "p95_latency_s": 108.55,
+  "repeatability_passed": true
+}

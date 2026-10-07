@@ -1,0 +1,7 @@
+[cell 0 START +    0.7s] # Create VLM-powered Chatbot using OpenVINO Generate API |  | In the rapid
+[cell 1 START +    0.7s] ## Prerequisites | [back to top ⬆️](#Table-of-contents:) |  | Install requir
+[cell 2 START +    0.7s] import os |  | os.environ["GIT_CLONE_PROTECTION_ACTIVE"] = "false" |  | %pip i
+[cell 2 DONE  +   81.3s]
+[cell 3 START +   81.3s] import os | from pathlib import Path | import requests | import shutil |  | # fe
+[cell 3 DONE  +  623.5s]
+NBEXEC_RESULT={"ok": false, "n_cells": 12, "n_skipped": 1, "n_substituted": 0, "stopped_after": null, "error_cell": null, "error_type": "CellExecutionError", "error_head": "\u001b[31mConnectTimeout\u001b[39m: HTTPSConnectionPool(host='raw.githubusercontent.com', port=443): Max retries exceeded with url: /openvinotoolkit/openvino_notebooks/latest/utils/llm_config.py (Caused by ConnectTimeoutError(<HTTPSConnection(host='raw.githubusercontent.com', port=443) at 0x7ca3500fec90>, 'Connection to raw.githubusercontent.com timed out. (connect timeout=None)'))", "duration_s": 623.69, "patch_notes": ["skipped cell 21: matched skip pattern"]}

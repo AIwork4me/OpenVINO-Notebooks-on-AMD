@@ -20,6 +20,9 @@ gpu:
   status: NOT_TESTED
 twin:
   level: WORKLOAD_TWIN
-validation: {}
+validation:
+  output_contains:
+  - "\u4EBA\u6709\u60B2\u6B22\u79BB\u5408"
+  min_output_chars: 10
 patches: {}
-last_verified: '2026-10-01T13:04:44+00:00'
+last_verified: '2026-10-05T19:48:53+00:00'

@@ -2,13 +2,20 @@
 
 Usage:
   python _nbexec.py <notebook.ipynb> <out.ipynb> <per_cell_timeout>
-      [--skip-re RE]... [--stop-after-re RE] [--sub PAT:REP]...
+      [--skip-re RE]... [--stop-after-re RE] [--subs-json JSON]
 
 Cell patching (all recorded in the result JSON):
   --skip-re RE       cells whose source matches RE are skipped (kept as raw, tagged)
   --stop-after RE    execution stops after the first cell matching RE
-  --sub PAT||REP     regex substitution PAT -> REP applied to every cell source
-                     (|| delimiter: PAT/REP may themselves contain ':')
+  --subs-json JSON   structured substitution rules:
+                     [{"pattern": "<regex>", "replacement": "<text>"}, ...]
+                     (v0.1 used delimiter-encoded strings; that encoding is
+                     gone — see ov_amd/substitution.py)
+
+This module runs inside validation venvs where the ov_amd package is not
+importable, so it must stay dependency-free beyond nbformat/nbclient; the
+tiny substitution application below mirrors ov_amd.substitution and is kept
+in sync by tests/test_nbexec_integration.py.
 """
 
 from __future__ import annotations
@@ -22,6 +29,27 @@ import traceback
 
 import nbformat
 from nbclient import NotebookClient
+
+
+def _apply_substitutions(source: str, subs: list[tuple[re.Pattern, str]]) -> tuple[str, int]:
+    n = 0
+    out = source
+    for pat, rep in subs:
+        out, k = pat.subn(rep, out)
+        n += k
+    return out, n
+
+
+def _parse_subs(raw: str) -> list[tuple[re.Pattern, str]]:
+    parsed = json.loads(raw)
+    if not isinstance(parsed, list):
+        raise ValueError("subs json must be a list of {pattern, replacement}")
+    subs: list[tuple[re.Pattern, str]] = []
+    for d in parsed:
+        if not isinstance(d, dict) or "pattern" not in d or "replacement" not in d:
+            raise ValueError(f"substitution needs 'pattern' and 'replacement': {d!r}")
+        subs.append((re.compile(str(d["pattern"])), str(d["replacement"])))
+    return subs
 
 
 def cell_source(cell) -> str:
@@ -38,7 +66,7 @@ def main() -> int:
     ap.add_argument("per_cell_timeout", type=int)
     ap.add_argument("--skip-re", action="append", default=[])
     ap.add_argument("--stop-after-re", default=None)
-    ap.add_argument("--sub", action="append", default=[])
+    ap.add_argument("--subs-json", dest="subs_json", default="[]")
     args = ap.parse_args()
 
     t0 = time.time()
@@ -61,12 +89,7 @@ def main() -> int:
 
     skip_res = [re.compile(p) for p in args.skip_re]
     stop_re = re.compile(args.stop_after_re) if args.stop_after_re else None
-    subs = []
-    for s in args.sub:
-        pat, sep, rep = s.partition("||")
-        if not sep:  # legacy ':' format kept for compat, discouraged
-            pat, _, rep = s.partition(":")
-        subs.append((re.compile(pat), rep, s))
+    subs = _parse_subs(args.subs_json)
 
     exec_idx = []
     for i, cell in enumerate(nb.cells):
@@ -80,11 +103,7 @@ def main() -> int:
             result["patch_notes"].append(f"skipped cell {i}: matched skip pattern")
             continue
         if subs:
-            new_src = src
-            n_subs = 0
-            for pat, rep, _ in subs:
-                new_src, n = pat.subn(rep, new_src)
-                n_subs += n
+            new_src, n_subs = _apply_substitutions(src, subs)
             if n_subs:
                 cell.source = new_src
                 result["n_substituted"] += 1

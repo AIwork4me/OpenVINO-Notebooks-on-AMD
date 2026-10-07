@@ -44,7 +44,7 @@ def main() -> int:
         snapshot_download(
             MS_ID, local_dir=str(local),
             allow_patterns=["model_index.json", "*/config.json", "*/tokenizer*", "*/scheduler_config.json",
-                            "*/diffusion_pytorch_model.safetensors", "*/diffusion_pytorch_model.fp16.safetensors",
+                            "*/diffusion_pytorch_model.safetensors", "*/diffusion_pytorch_model.fp16.safetensors", "*/model.safetensors",
                             "*/preprocessor_config.json", "*/vocab.json", "*/merges.txt", "*/special_tokens_map.json"],
         )
         source = f"{MS_ID} (ModelScope mirror; HF mirror 401 for stabilityai)"

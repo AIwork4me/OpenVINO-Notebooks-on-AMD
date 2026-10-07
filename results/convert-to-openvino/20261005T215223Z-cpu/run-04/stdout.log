@@ -1,0 +1,67 @@
+[cell 0 START +    0.4s] # OpenVINO™ Model conversion |  | This notebook shows how to convert a mod
+[cell 1 START +    0.4s] import requests | from pathlib import Path |  | if not Path("notebook_utils.
+[cell 1 DONE  +    5.7s]
+[cell 2 START +    5.7s] ## OpenVINO IR format | [back to top ⬆️](#Table-of-contents:) |  | OpenVINO 
+[cell 3 START +    5.7s] # OVC CLI tool parameters description |  | ! ovc --help
+[cell 3 DONE  +    9.0s]
+[cell 4 START +    9.0s] ## Fetching example models | [back to top ⬆️](#Table-of-contents:) |  | This
+[cell 5 START +    9.0s] from pathlib import Path |  | # create a directory for models files | MODEL_
+[cell 5 DONE  +    9.0s]
+[cell 6 START +    9.0s] Fetch [distilbert](https://huggingface.co/distilbert-base-uncased-fine
+[cell 7 START +    9.0s] from transformers import AutoModelForSequenceClassification, AutoToken
+[cell 7 DONE  +   15.0s]
+[cell 8 START +   15.0s] Fetch [Resnet50](https://pytorch.org/vision/stable/models/generated/to
+[cell 9 START +   15.0s] from torchvision.models import resnet50, ResNet50_Weights |  | # create mo
+[cell 9 DONE  +   15.2s]
+[cell 10 START +   15.2s] Convert PyTorch model to ONNX format:
+[cell 11 START +   15.2s] import torch | import warnings |  | ONNX_CV_MODEL_PATH = MODEL_DIRECTORY_PAT
+[cell 11 DONE  +   15.2s]
+[cell 12 START +   15.2s] ## Conversion | [back to top ⬆️](#Table-of-contents:) |  | To convert a mode
+[cell 13 START +   15.2s] import openvino as ov |  | # ov.convert_model returns openvino.Model objec
+[cell 13 DONE  +   16.1s]
+[cell 14 START +   16.1s] ! ovc model/distilbert.onnx --output_model model/distilbert.xml
+[cell 14 DONE  +   19.7s]
+[cell 15 START +   19.7s] #### Setting Input Shapes | [back to top ⬆️](#Table-of-contents:) |  | Model
+[cell 16 START +   19.7s] import openvino as ov |  | ov_model = ov.convert_model(ONNX_NLP_MODEL_PATH
+[cell 16 DONE  +   20.4s]
+[cell 17 START +   20.4s] ! ovc model/distilbert.onnx --input input_ids[1,128],attention_mask[1,
+[cell 17 DONE  +   24.0s]
+[cell 18 START +   24.0s] The `input` parameter allows overriding original input shapes if it is
+[cell 19 START +   24.0s] import openvino as ov |  | ov_model = ov.convert_model(ONNX_NLP_MODEL_PATH
+[cell 19 DONE  +   24.9s]
+[cell 20 START +   24.9s] ! ovc model/distilbert.onnx --input "input_ids[1,?],attention_mask[1,?
+[cell 20 DONE  +   28.5s]
+[cell 21 START +   28.5s] To optimize memory consumption for models with undefined dimensions in
+[cell 22 START +   28.5s] import openvino as ov |  | sequence_length_dim = ov.Dimension(10, 128) |  | ov
+[cell 22 DONE  +   29.2s]
+[cell 23 START +   29.2s] ! ovc model/distilbert.onnx --input input_ids[1,10..128],attention_mas
+[cell 23 DONE  +   32.9s]
+[cell 24 START +   32.9s] #### Compressing a Model to FP16 | [back to top ⬆️](#Table-of-contents:)
+[cell 25 START +   32.9s] import openvino as ov |  | ov_model = ov.convert_model(ONNX_NLP_MODEL_PATH
+[cell 25 DONE  +   33.9s]
+[cell 26 START +   33.9s] ! ovc model/distilbert.onnx --output_model model/distilbert.xml --comp
+[cell 26 DONE  +   37.5s]
+[cell 27 START +   37.5s] #### Convert Models from memory | [back to top ⬆️](#Table-of-contents:) | 
+[cell 28 START +   37.5s] import openvino as ov | import torch |  | example_input = torch.rand(1, 3, 2
+[cell 28 DONE  +   38.6s]
+[cell 29 START +   38.6s] import os |  | import openvino as ov | import tensorflow_hub as hub |  | os.envi
+[cell 29 DONE  +   44.6s]
+[cell 30 START +   44.6s] ## Migration from Legacy conversion API | [back to top ⬆️](#Table-of-con
+[cell 31 START +   44.6s] #### Specifying Layout | [back to top ⬆️](#Table-of-contents:) |  | Layout d
+[cell 32 START +   44.6s] # Converter API | import openvino as ov |  | ov_model = ov.convert_model(ONN
+[cell 32 DONE  +   44.7s]
+[cell 33 START +   44.7s] ```python | # Legacy Model Optimizer API | from openvino.tools import mo |  | 
+[cell 34 START +   44.7s] #### Changing Model Layout | [back to top ⬆️](#Table-of-contents:) |  | Tran
+[cell 35 START +   44.7s] # Converter API | import openvino as ov |  | ov_model = ov.convert_model(ONN
+[cell 35 DONE  +   44.7s]
+[cell 36 START +   44.7s] # Legacy Model Optimizer API | ```python | from openvino.tools import mo |  | 
+[cell 37 START +   44.7s] #### Specifying Mean and Scale Values | [back to top ⬆️](#Table-of-conte
+[cell 38 START +   44.7s] # Converter API | import openvino as ov |  | ov_model = ov.convert_model(ONN
+[cell 38 DONE  +   44.8s]
+[cell 39 START +   44.8s] ```python | # Legacy Model Optimizer API |  | from openvino.tools import mo | 
+[cell 40 START +   44.8s] #### Reversing Input Channels | [back to top ⬆️](#Table-of-contents:) |  | S
+[cell 41 START +   44.8s] # Converter API | import openvino as ov |  | ov_model = ov.convert_model(ONN
+[cell 41 DONE  +   44.8s]
+[cell 42 START +   44.8s] ```python | # Legacy Model Optimizer API | from openvino.tools import mo |  | 
+[cell 43 START +   44.8s] #### Cutting Off Parts of a Model | [back to top ⬆️](#Table-of-contents:
+NBEXEC_RESULT={"ok": true, "n_cells": 22, "n_skipped": 0, "n_substituted": 0, "stopped_after": null, "error_cell": null, "error_type": null, "error_head": null, "duration_s": 47.46, "patch_notes": []}

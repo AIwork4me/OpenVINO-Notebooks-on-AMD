@@ -1,0 +1,33 @@
+[cell 0 START +    0.7s] # Live 3D Human Pose Estimation with OpenVINO |  | This notebook demonstra
+[cell 1 START +    0.7s] ## Prerequisites | [back to top ⬆️](#Table-of-contents:) |  | **The `pythree
+[cell 2 START +    0.7s] %pip install pythreejs "openvino>=2024.4.0" "opencv-python" "torch==2.
+[cell 2 DONE  +   13.8s]
+[cell 3 START +   13.8s] ## Imports | [back to top ⬆️](#Table-of-contents:) | 
+[cell 4 START +   13.8s] import collections | import time | from pathlib import Path |  | import cv2 | im
+[cell 4 DONE  +   14.1s]
+[cell 5 START +   14.1s] ## The model | [back to top ⬆️](#Table-of-contents:) |  | ### Download the m
+[cell 6 START +   14.1s] from notebook_utils import download_file | import tarfile |  | # directory w
+[cell 6 DONE  +   17.7s]
+[cell 7 START +   17.7s] ### Convert Model to OpenVINO IR format | [back to top ⬆️](#Table-of-con
+[cell 8 START +   17.7s] import torch |  | ov_model_path = Path(base_model_dir) / "human-pose-estim
+[cell 8 DONE  +   19.7s]
+[cell 9 START +   19.7s] ### Select inference device | [back to top ⬆️](#Table-of-contents:) |  | sel
+[cell 10 START +   19.7s] device = utils.device_widget() |  | device
+[cell 10 DONE  +   19.9s]
+[cell 11 START +   19.9s] ### Load the model | [back to top ⬆️](#Table-of-contents:) |  | Converted mo
+[cell 12 START +   19.9s] # initialize inference engine | core = ov.Core() | # read the network and 
+[cell 12 DONE  +   20.0s]
+[cell 13 START +   20.0s] ## Processing | [back to top ⬆️](#Table-of-contents:) |  | ### Model Inferen
+[cell 14 START +   20.0s] def model_infer(scaled_img, stride): |     """ |     Run model inference o
+[cell 14 DONE  +   20.0s]
+[cell 15 START +   20.0s] ### Draw 2D Pose Overlays | [back to top ⬆️](#Table-of-contents:) |  | We ne
+[cell 16 START +   20.0s] # 3D edge index array | body_edges = np.array( |     [ |         [0, 1], |    
+[cell 16 DONE  +   20.0s]
+[cell 17 START +   20.0s] ### Main Processing Function | [back to top ⬆️](#Table-of-contents:) |  | Ru
+[cell 18 START +   20.0s] def run_pose_estimation(source=0, flip=False, use_popup=False, skip_fr
+[cell 18 DONE  +   20.0s]
+[cell 19 START +   20.0s] ## Run | [back to top ⬆️](#Table-of-contents:) |  | Run, using a webcam as t
+[cell 20 START +   20.0s] Using the following method, you can click and move your mouse over the
+[cell 21 START +   20.0s] from notebook_utils import download_file |  | USE_WEBCAM = False |  | cam_id =
+[cell 21 DONE  +   85.0s]
+NBEXEC_RESULT={"ok": true, "n_cells": 10, "n_skipped": 0, "n_substituted": 0, "stopped_after": null, "error_cell": null, "error_type": null, "error_head": null, "duration_s": 86.2, "patch_notes": []}

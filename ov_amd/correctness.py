@@ -2,6 +2,14 @@
 
 Checks are declared per workload in workloads/<id>/workload.yaml under
 `validation:` and evaluated against the executed notebook outputs.
+
+A non-empty validation block (any real check) constitutes the workload's
+correctness contract; its presence upgrades the attempt to
+L3 WORKLOAD_CORRECTNESS when it passes. An empty block means the run can
+never claim more than L1 EXECUTION_ONLY (ev2.decide_status enforces this).
+
+Named presets expand to parameterized checks for convenience; the expanded
+checks are recorded in validation.json so the contract stays auditable.
 """
 
 from __future__ import annotations
@@ -10,11 +18,75 @@ import math
 import re
 from typing import Any
 
+# Presets: necessary-condition bundles per workload family. They are explicit
+# contracts once declared (expanded into the recorded check list), tuned to
+# reject empty/garbage/crashed outputs while never asserting cross-backend
+# identity of stochastic outputs.
+PRESETS: dict[str, dict[str, Any]] = {
+    "text_generation": {
+        "min_output_chars": 60,
+        "output_not_contains": [r"Traceback \(most recent call last\)"],
+        "output_contains": [r"(?i)\b(token|prompt|response|answer|output|generate)"],
+    },
+    "classification": {
+        "output_finite_numbers": True,
+        "min_output_chars": 20,
+        "output_not_contains": [r"Traceback \(most recent call last\)"],
+    },
+    "detection": {
+        "output_finite_numbers": True,
+        "min_output_chars": 20,
+        "output_not_contains": [r"Traceback \(most recent call last\)"],
+    },
+    "embedding": {
+        "output_finite_numbers": True,
+        "min_output_chars": 20,
+        "output_not_contains": [r"Traceback \(most recent call last\)"],
+    },
+    "asr": {
+        "min_output_chars": 20,
+        "output_not_contains": [r"Traceback \(most recent call last\)"],
+    },
+    "tts": {
+        "min_output_chars": 10,
+        "output_not_contains": [r"Traceback \(most recent call last\)"],
+    },
+    "image_generation": {
+        "min_output_chars": 10,
+        "output_not_contains": [r"Traceback \(most recent call last\)"],
+    },
+    "rag_agent": {
+        "min_output_chars": 40,
+        "output_not_contains": [r"Traceback \(most recent call last\)"],
+    },
+}
+
+
+def expand_preset(expect: dict[str, Any]) -> dict[str, Any]:
+    """Merge a named preset into the declared checks (declared wins)."""
+
+    name = expect.get("preset")
+    if not name:
+        return expect
+    base = PRESETS.get(name, {}).copy()
+    merged = dict(base)
+    for k, v in expect.items():
+        if k == "preset":
+            continue
+        if isinstance(v, list) and isinstance(merged.get(k), list):
+            merged[k] = merged[k] + [x for x in v if x not in merged[k]]
+        else:
+            merged[k] = v
+    return merged
+
 
 def check_output_contains(text: str, patterns: list[str]) -> dict[str, Any]:
     results = {}
     for p in patterns:
-        found = re.search(p, text) is not None
+        try:
+            found = re.search(p, text) is not None
+        except re.error:
+            found = p in text
         results[p] = found
     return results
 
@@ -30,6 +102,7 @@ def check_finite_numbers(text: str) -> bool:
 def evaluate(expect: dict[str, Any], outputs_text: str, nbresult: dict) -> dict[str, Any]:
     """Evaluate a workload's `validation:` block. Returns {passed, checks, notes}."""
 
+    expect = expand_preset(expect)
     checks: dict[str, Any] = {}
     notes: list[str] = []
 
@@ -59,9 +132,6 @@ def evaluate(expect: dict[str, Any], outputs_text: str, nbresult: dict) -> dict[
         for k, v in checks.items()
         if k not in ("skipped_cells",)
     )
-    if expect.get("allow_skipped_cells", False) and n_skipped:
-        passed = passed  # skipped cells already excluded from pass criteria
-
     return {"passed": bool(passed), "checks": checks, "notes": notes}
 
 

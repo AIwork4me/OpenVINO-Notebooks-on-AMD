@@ -1,0 +1,72 @@
+[IPKernelApp] WARNING | Kernel is running over TCP without encryption. All communication (including code and outputs) is sent in plain text and is susceptible to eavesdropping. Use IPC transport or launch with kernel manager-provisioned CurveZMQ keys to enable transport encryption.
+rmer[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m AceStepTransformer1DModel
+[32m      6[39m     [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01m.[39;00m[34;01mauraflow_transformer_2d[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m AuraFlowTransformer2DModel
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/4888859e336d2e1b/lib/python3.12/site-packages/diffusers/models/transformers/ace_step_transformer.py:24[39m
+[32m     23[39m [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01m.[39;00m[34;01m.[39;00m[34;01m.[39;00m[34;01mconfiguration_utils[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m ConfigMixin, register_to_config
+[32m---> [39m[32m24[39m [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01m.[39;00m[34;01m.[39;00m[34;01m.[39;00m[34;01mloaders[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m PeftAdapterMixin
+[32m     25[39m [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01m.[39;00m[34;01m.[39;00m[34;01m.[39;00m[34;01mutils[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m apply_lora_scale, logging
+
+[36mFile [39m[32m<frozen importlib._bootstrap>:1412[39m, in [36m_handle_fromlist[39m[34m(module, fromlist, import_, recursive)[39m
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/4888859e336d2e1b/lib/python3.12/site-packages/diffusers/utils/import_utils.py:1005[39m, in [36m_LazyModule.__getattr__[39m[34m(self, name)[39m
+[32m   1004[39m [38;5;28;01melif[39;00m name [38;5;129;01min[39;00m [38;5;28mself[39m._class_to_module.keys():
+[32m-> [39m[32m1005[39m     module = [30;43mself[39;49m[30;43m.[39;49m[30;43m_get_module[39;49m[30;43m([39;49m[30;43mself[39;49m[30;43m.[39;49m[30;43m_class_to_module[39;49m[30;43m[[39;49m[30;43mname[39;49m[30;43m][39;49m[30;43m)[39;49m
+[32m   1006[39m     value = [38;5;28mgetattr[39m(module, name)
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/4888859e336d2e1b/lib/python3.12/site-packages/diffusers/utils/import_utils.py:1017[39m, in [36m_LazyModule._get_module[39m[34m(self, module_name)[39m
+[32m   1016[39m [38;5;28;01mexcept[39;00m [38;5;167;01mException[39;00m [38;5;28;01mas[39;00m e:
+[32m-> [39m[32m1017[39m     [38;5;28;01mraise[39;00m [38;5;167;01mRuntimeError[39;00m(
+[32m   1018[39m         [33mf[39m[33m"[39m[33mFailed to import [39m[38;5;132;01m{[39;00m[38;5;28mself[39m.[34m__name__[39m[38;5;132;01m}[39;00m[33m.[39m[38;5;132;01m{[39;00mmodule_name[38;5;132;01m}[39;00m[33m because of the following error (look up to see its[39m[33m"[39m
+[32m   1019[39m         [33mf[39m[33m"[39m[33m traceback):[39m[38;5;130;01m\n[39;00m[38;5;132;01m{[39;00me[38;5;132;01m}[39;00m[33m"[39m
+[32m   1020[39m     ) [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01me[39;00m
+
+[31mRuntimeError[39m: Failed to import diffusers.loaders.peft because of the following error (look up to see its traceback):
+huggingface-hub>=0.34.0,<1.0 is required for a normal functioning of this module, but found huggingface-hub==1.33.0.
+Try: `pip install transformers -U` or `pip install -e '.[dev]'` if you're working with git main
+
+The above exception was the direct cause of the following exception:
+
+[31mRuntimeError[39m                              Traceback (most recent call last)
+[36mCell[39m[36m [39m[32mIn[5][39m[32m, line 1[39m
+[32m----> [39m[32m1[39m [38;5;28;01mfrom[39;00m ov_wan_helper [38;5;28;01mimport[39;00m convert_pipeline
+[32m      2[39m 
+[32m      3[39m [38;5;66;03m# Uncomment the line to see model conversion code[39;00m
+[32m      4[39m [38;5;66;03m# ??convert_pipeline[39;00m
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/results/wan2.1-text-to-video/workdir-cpu/ov_wan_helper.py:5[39m
+[32m      2[39m [38;5;28;01mimport[39;00m[38;5;250m [39m[34;01mgc[39;00m
+[32m      4[39m [38;5;28;01mimport[39;00m[38;5;250m [39m[34;01mtorch[39;00m
+[32m----> [39m[32m5[39m [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01mdiffusers[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m AutoencoderKLWan, WanPipeline, DiffusionPipeline, UniPCMultistepScheduler
+[32m      6[39m [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01mdiffusers[39;00m[34;01m.[39;00m[34;01mvideo_processor[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m VideoProcessor
+[32m      7[39m [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01mtransformers[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m AutoTokenizer
+
+[36mFile [39m[32m<frozen importlib._bootstrap>:1412[39m, in [36m_handle_fromlist[39m[34m(module, fromlist, import_, recursive)[39m
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/4888859e336d2e1b/lib/python3.12/site-packages/diffusers/utils/import_utils.py:1006[39m, in [36m_LazyModule.__getattr__[39m[34m(self, name)[39m
+[32m   1004[39m [38;5;28;01melif[39;00m name [38;5;129;01min[39;00m [38;5;28mself[39m._class_to_module.keys():
+[32m   1005[39m     module = [38;5;28mself[39m._get_module([38;5;28mself[39m._class_to_module[name])
+[32m-> [39m[32m1006[39m     value = [30;43mgetattr[39;49m[30;43m([39;49m[30;43mmodule[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mname[39;49m[30;43m)[39;49m
+[32m   1007[39m [38;5;28;01melse[39;00m:
+[32m   1008[39m     [38;5;28;01mraise[39;00m [38;5;167;01mAttributeError[39;00m([33mf[39m[33m"[39m[33mmodule [39m[38;5;132;01m{[39;00m[38;5;28mself[39m.[34m__name__[39m[38;5;132;01m}[39;00m[33m has no attribute [39m[38;5;132;01m{[39;00mname[38;5;132;01m}[39;00m[33m"[39m)
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/4888859e336d2e1b/lib/python3.12/site-packages/diffusers/utils/import_utils.py:1005[39m, in [36m_LazyModule.__getattr__[39m[34m(self, name)[39m
+[32m   1003[39m     value = [38;5;28mself[39m._get_module(name)
+[32m   1004[39m [38;5;28;01melif[39;00m name [38;5;129;01min[39;00m [38;5;28mself[39m._class_to_module.keys():
+[32m-> [39m[32m1005[39m     module = [30;43mself[39;49m[30;43m.[39;49m[30;43m_get_module[39;49m[30;43m([39;49m[30;43mself[39;49m[30;43m.[39;49m[30;43m_class_to_module[39;49m[30;43m[[39;49m[30;43mname[39;49m[30;43m][39;49m[30;43m)[39;49m
+[32m   1006[39m     value = [38;5;28mgetattr[39m(module, name)
+[32m   1007[39m [38;5;28;01melse[39;00m:
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/4888859e336d2e1b/lib/python3.12/site-packages/diffusers/utils/import_utils.py:1017[39m, in [36m_LazyModule._get_module[39m[34m(self, module_name)[39m
+[32m   1015[39m     [38;5;28;01mreturn[39;00m importlib.import_module([33m"[39m[33m.[39m[33m"[39m + module_name, [38;5;28mself[39m.[34m__name__[39m)
+[32m   1016[39m [38;5;28;01mexcept[39;00m [38;5;167;01mException[39;00m [38;5;28;01mas[39;00m e:
+[32m-> [39m[32m1017[39m     [38;5;28;01mraise[39;00m [38;5;167;01mRuntimeError[39;00m(
+[32m   1018[39m         [33mf[39m[33m"[39m[33mFailed to import [39m[38;5;132;01m{[39;00m[38;5;28mself[39m.[34m__name__[39m[38;5;132;01m}[39;00m[33m.[39m[38;5;132;01m{[39;00mmodule_name[38;5;132;01m}[39;00m[33m because of the following error (look up to see its[39m[33m"[39m
+[32m   1019[39m         [33mf[39m[33m"[39m[33m traceback):[39m[38;5;130;01m\n[39;00m[38;5;132;01m{[39;00me[38;5;132;01m}[39;00m[33m"[39m
+[32m   1020[39m     ) [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01me[39;00m
+
+[31mRuntimeError[39m: Failed to import diffusers.models.autoencoders.autoencoder_kl_wan because of the following error (look up to see its traceback):
+Failed to import diffusers.loaders.peft because of the following error (look up to see its traceback):
+huggingface-hub>=0.34.0,<1.0 is required for a normal functioning of this module, but found huggingface-hub==1.33.0.
+Try: `pip install transformers -U` or `pip install -e '.[dev]'` if you're working with git main
+

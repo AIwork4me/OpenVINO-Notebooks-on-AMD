@@ -1,0 +1,42 @@
+[IPKernelApp] WARNING | Kernel is running over TCP without encryption. All communication (including code and outputs) is sent in plain text and is susceptible to eavesdropping. Use IPC transport or launch with kernel manager-provisioned CurveZMQ keys to enable transport encryption.
+Traceback (most recent call last):
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/ov_amd/_nbexec.py", line 144, in main
+    client.execute()
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/4888859e336d2e1b/lib/python3.12/site-packages/jupyter_core/utils/__init__.py", line 165, in wrapped
+    return loop.run_until_complete(inner)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/base_events.py", line 687, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/4888859e336d2e1b/lib/python3.12/site-packages/nbclient/client.py", line 709, in async_execute
+    await self.async_execute_cell(
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/4888859e336d2e1b/lib/python3.12/site-packages/nbclient/client.py", line 1062, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/4888859e336d2e1b/lib/python3.12/site-packages/nbclient/client.py", line 918, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+from ov_wan_helper import convert_pipeline
+
+# Uncomment the line to see model conversion code
+# ??convert_pipeline
+------------------
+
+
+[31m---------------------------------------------------------------------------[39m
+[31mModuleNotFoundError[39m                       Traceback (most recent call last)
+[36mCell[39m[36m [39m[32mIn[5][39m[32m, line 1[39m
+[32m----> [39m[32m1[39m [38;5;28;01mfrom[39;00m ov_wan_helper [38;5;28;01mimport[39;00m convert_pipeline
+[32m      2[39m 
+[32m      3[39m [38;5;66;03m# Uncomment the line to see model conversion code[39;00m
+[32m      4[39m [38;5;66;03m# ??convert_pipeline[39;00m
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/results/wan2.1-text-to-video/workdir-cpu/ov_wan_helper.py:5[39m
+[32m      2[39m [38;5;28;01mimport[39;00m[38;5;250m [39m[34;01mgc[39;00m
+[32m      4[39m [38;5;28;01mimport[39;00m[38;5;250m [39m[34;01mtorch[39;00m
+[32m----> [39m[32m5[39m [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01mdiffusers[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m AutoencoderKLWan, WanPipeline, DiffusionPipeline, UniPCMultistepScheduler
+[32m      6[39m [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01mdiffusers[39;00m[34;01m.[39;00m[34;01mvideo_processor[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m VideoProcessor
+[32m      7[39m [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01mtransformers[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m AutoTokenizer
+
+[31mModuleNotFoundError[39m: No module named 'diffusers'
+

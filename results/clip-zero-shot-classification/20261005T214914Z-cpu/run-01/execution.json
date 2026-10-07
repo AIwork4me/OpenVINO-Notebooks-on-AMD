@@ -1,0 +1,10 @@
+{
+  "schema_version": 2,
+  "start": "2026-10-05T21:49:19+00:00",
+  "end": "2026-10-05T21:50:38+00:00",
+  "duration_s": 79.11,
+  "exit_code": 1,
+  "retry_count": 0,
+  "status": "ERROR",
+  "failure_category": "DEPENDENCY"
+}

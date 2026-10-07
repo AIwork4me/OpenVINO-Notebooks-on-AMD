@@ -1,0 +1,11 @@
+[cell 0 START +    0.7s] # Unified image & video generation with Bernini-R-1.3B and OpenVINO |  | [
+[cell 1 START +    0.7s] ## Prerequisites | [back to top](#Table-of-contents:) |  | Bernini's referen
+[cell 2 START +    0.7s] %pip install -q "torch>=2.4.0" "torchvision" "diffusers==0.35.2" "tran
+[cell 2 DONE  +  827.7s]
+[cell 3 START +  827.7s] import requests | from pathlib import Path |  | if not Path("notebook_utils.
+[cell 3 DONE  +  827.8s]
+[cell 4 START +  827.8s] ## Download the model | [back to top](#Table-of-contents:) |  | Download the
+[cell 5 START +  827.8s] MS_MODEL_ID = "bytedance-community/Bernini-R-1.3B-Diffusers" | HF_MODEL_
+[cell 5 DONE  +  827.8s]
+[cell 6 START +  827.8s] from pathlib import Path |  | MODEL_DIR = Path("Bernini-R-1.3B-Diffusers")
+NBEXEC_RESULT={"ok": false, "n_cells": 15, "n_skipped": 1, "n_substituted": 0, "stopped_after": null, "error_cell": null, "error_type": "CellTimeoutError", "error_head": "-------------------", "duration_s": 1730.47, "patch_notes": ["skipped cell 28: matched skip pattern"]}

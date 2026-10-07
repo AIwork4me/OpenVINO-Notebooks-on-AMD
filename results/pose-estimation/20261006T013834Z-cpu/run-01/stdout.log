@@ -1,0 +1,36 @@
+[cell 0 START +    0.7s] # Live Human Pose Estimation with OpenVINO™ |  | This notebook demonstrate
+[cell 1 START +    0.7s] %pip install -q "openvino>=2023.1.0" opencv-python tqdm
+[cell 1 DONE  +    2.0s]
+[cell 2 START +    2.0s] ## Imports | [back to top ⬆️](#Table-of-contents:) | 
+[cell 3 START +    2.0s] import collections | import time | from pathlib import Path |  | import cv2 | im
+[cell 3 DONE  +    2.3s]
+[cell 4 START +    2.3s] ## The model | [back to top ⬆️](#Table-of-contents:) |  | ### Download the m
+[cell 5 START +    2.3s] # A directory where the model will be downloaded. | base_model_dir = Pat
+[cell 5 DONE  +    7.1s]
+[cell 6 START +    7.1s] ### Load the model | [back to top ⬆️](#Table-of-contents:) |  | Downloaded m
+[cell 7 START +    7.1s] device = utils.device_widget() |  | device
+[cell 7 DONE  +    7.3s]
+[cell 8 START +    7.3s] import openvino.properties.hint as hints |  | # Initialize OpenVINO Runtim
+[cell 8 DONE  +    7.5s]
+[cell 9 START +    7.5s] Input layer has the name of the input node and output layers contain n
+[cell 10 START +    7.5s] input_layer.any_name, [o.any_name for o in output_layers]
+[cell 10 DONE  +    7.5s]
+[cell 11 START +    7.5s] ### OpenPose Decoder | [back to top ⬆️](#Table-of-contents:) |  | To transfo
+[cell 12 START +    7.5s] # code from https://github.com/openvinotoolkit/open_model_zoo/blob/929
+[cell 12 DONE  +    7.5s]
+[cell 13 START +    7.5s] ## Processing | [back to top ⬆️](#Table-of-contents:)
+[cell 14 START +    7.5s] decoder = OpenPoseDecoder()
+[cell 14 DONE  +    7.5s]
+[cell 15 START +    7.5s] ### Process Results | [back to top ⬆️](#Table-of-contents:) |  | A bunch of 
+[cell 16 START +    7.5s] # 2D pooling in numpy (from: https://stackoverflow.com/a/54966908/1624
+[cell 16 DONE  +    7.5s]
+[cell 17 START +    7.5s] ### Draw Pose Overlays | [back to top ⬆️](#Table-of-contents:) |  | Draw pos
+[cell 18 START +    7.5s] colors = ( |     (255, 0, 0), |     (255, 0, 255), |     (170, 0, 255), |     
+[cell 18 DONE  +    7.5s]
+[cell 19 START +    7.5s] ### Main Processing Function | [back to top ⬆️](#Table-of-contents:) |  | Ru
+[cell 20 START +    7.5s] # Main processing function to run pose estimation. | def run_pose_estima
+[cell 20 DONE  +    7.6s]
+[cell 21 START +    7.6s] ## Run | [back to top ⬆️](#Table-of-contents:) |  | ### Run Live Pose Estima
+[cell 22 START +    7.6s] USE_WEBCAM = False | cam_id = 0 | video_file = Path("store-aisle-detection
+[cell 22 DONE  +   68.5s]
+NBEXEC_RESULT={"ok": true, "n_cells": 12, "n_skipped": 0, "n_substituted": 0, "stopped_after": null, "error_cell": null, "error_type": null, "error_head": null, "duration_s": 68.7, "patch_notes": []}

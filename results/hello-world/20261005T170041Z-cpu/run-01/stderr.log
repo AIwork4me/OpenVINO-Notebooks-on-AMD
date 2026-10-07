@@ -1,0 +1,82 @@
+[IPKernelApp] WARNING | Kernel is running over TCP without encryption. All communication (including code and outputs) is sent in plain text and is susceptible to eavesdropping. Use IPC transport or launch with kernel manager-provisioned CurveZMQ keys to enable transport encryption.
+Traceback (most recent call last):
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/ov_amd/_nbexec.py", line 144, in main
+    client.execute()
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/98cd7b5c7618078c/lib/python3.12/site-packages/jupyter_core/utils/__init__.py", line 165, in wrapped
+    return loop.run_until_complete(inner)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/base_events.py", line 687, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/98cd7b5c7618078c/lib/python3.12/site-packages/nbclient/client.py", line 709, in async_execute
+    await self.async_execute_cell(
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/98cd7b5c7618078c/lib/python3.12/site-packages/nbclient/client.py", line 1062, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/98cd7b5c7618078c/lib/python3.12/site-packages/nbclient/client.py", line 918, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+base_artifacts_dir = Path("./artifacts").expanduser()
+
+model_name = "v3-small_224_1.0_float"
+model_xml_name = f"{model_name}.xml"
+model_bin_name = f"{model_name}.bin"
+
+model_xml_path = base_artifacts_dir / model_xml_name
+
+base_url = "https://storage.openvinotoolkit.org/repositories/openvino_notebooks/models/mobelinet-v3-tf/FP32/"
+
+if not model_xml_path.exists():
+    download_file(base_url + model_xml_name, model_xml_name, base_artifacts_dir)
+    download_file(base_url + model_bin_name, model_bin_name, base_artifacts_dir)
+else:
+    print(f"{model_name} already downloaded to {base_artifacts_dir}")
+------------------
+
+
+[31m---------------------------------------------------------------------------[39m
+[31mImportError[39m                               Traceback (most recent call last)
+[36mCell[39m[36m [39m[32mIn[3][39m[32m, line 12[39m
+[32m      8[39m 
+[32m      9[39m base_url = [33m"https://storage.openvinotoolkit.org/repositories/openvino_notebooks/models/mobelinet-v3-tf/FP32/"[39m
+[32m     10[39m 
+[32m     11[39m [38;5;28;01mif[39;00m [38;5;28;01mnot[39;00m model_xml_path.exists():
+[32m---> [39m[32m12[39m     download_file(base_url + model_xml_name, model_xml_name, base_artifacts_dir)
+[32m     13[39m     download_file(base_url + model_bin_name, model_bin_name, base_artifacts_dir)
+[32m     14[39m [38;5;28;01melse[39;00m:
+[32m     15[39m     print(f"{model_name} already downloaded to {base_artifacts_dir}")
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/results/hello-world/workdir-cpu/notebook_utils.py:159[39m, in [36mdownload_file[39m[34m(url, filename, directory, show_progress)[39m
+[32m    157[39m filesize = [38;5;28mint[39m(response.headers.get([33m"[39m[33mContent-length[39m[33m"[39m, [32m0[39m))
+[32m    158[39m [38;5;28;01mif[39;00m [38;5;129;01mnot[39;00m filepath.exists():
+[32m--> [39m[32m159[39m     [38;5;28;01mwith[39;00m [30;43mtqdm_notebook[39;49m[30;43m([39;49m
+[32m    160[39m [30;43m        [39;49m[30;43mtotal[39;49m[30;43m=[39;49m[30;43mfilesize[39;49m[30;43m,[39;49m
+[32m    161[39m [30;43m        [39;49m[30;43munit[39;49m[30;43m=[39;49m[30;43m"[39;49m[30;43mB[39;49m[30;43m"[39;49m[30;43m,[39;49m
+[32m    162[39m [30;43m        [39;49m[30;43munit_scale[39;49m[30;43m=[39;49m[30;43;01mTrue[39;49;00m[30;43m,[39;49m
+[32m    163[39m [30;43m        [39;49m[30;43munit_divisor[39;49m[30;43m=[39;49m[30;43m1024[39;49m[30;43m,[39;49m
+[32m    164[39m [30;43m        [39;49m[30;43mdesc[39;49m[30;43m=[39;49m[30;43mstr[39;49m[30;43m([39;49m[30;43mfilename[39;49m[30;43m)[39;49m[30;43m,[39;49m
+[32m    165[39m [30;43m        [39;49m[30;43mdisable[39;49m[30;43m=[39;49m[30;43;01mnot[39;49;00m[30;43m [39;49m[30;43mshow_progress[39;49m[30;43m,[39;49m
+[32m    166[39m [30;43m    [39;49m[30;43m)[39;49m [38;5;28;01mas[39;00m progress_bar:
+[32m    167[39m         [38;5;28;01mwith[39;00m [38;5;28mopen[39m(filepath, [33m"[39m[33mwb[39m[33m"[39m) [38;5;28;01mas[39;00m file_object:
+[32m    168[39m             [38;5;28;01mfor[39;00m chunk [38;5;129;01min[39;00m response.iter_content(chunk_size):
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/98cd7b5c7618078c/lib/python3.12/site-packages/tqdm/notebook.py:236[39m, in [36mtqdm_notebook.__init__[39m[34m(self, *args, **kwargs)[39m
+[32m    234[39m unit_scale = [32m1[39m [38;5;28;01mif[39;00m [38;5;28mself[39m.unit_scale [38;5;129;01mis[39;00m [38;5;28;01mTrue[39;00m [38;5;28;01melse[39;00m [38;5;28mself[39m.unit_scale [38;5;129;01mor[39;00m [32m1[39m
+[32m    235[39m total = [38;5;28mself[39m.total * unit_scale [38;5;28;01mif[39;00m [38;5;28mself[39m.total [38;5;28;01melse[39;00m [38;5;28mself[39m.total
+[32m--> [39m[32m236[39m [38;5;28mself[39m.container = [30;43mself[39;49m[30;43m.[39;49m[30;43mstatus_printer[39;49m[30;43m([39;49m[30;43mself[39;49m[30;43m.[39;49m[30;43mfp[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mtotal[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mself[39;49m[30;43m.[39;49m[30;43mdesc[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mself[39;49m[30;43m.[39;49m[30;43mncols[39;49m[30;43m)[39;49m
+[32m    237[39m [38;5;28mself[39m.container.pbar = proxy([38;5;28mself[39m)
+[32m    238[39m [38;5;28mself[39m.displayed = [38;5;28;01mFalse[39;00m
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/98cd7b5c7618078c/lib/python3.12/site-packages/tqdm/notebook.py:110[39m, in [36mtqdm_notebook.status_printer[39m[34m(_, total, desc, ncols)[39m
+[32m    101[39m [38;5;66;03m# Fallback to text bar if there's no total[39;00m
+[32m    102[39m [38;5;66;03m# DEPRECATED: replaced with an 'info' style bar[39;00m
+[32m    103[39m [38;5;66;03m# if not total:[39;00m
+[32m   (...)[39m[32m    107[39m 
+[32m    108[39m [38;5;66;03m# Prepare IPython progress bar[39;00m
+[32m    109[39m [38;5;28;01mif[39;00m IProgress [38;5;129;01mis[39;00m [38;5;28;01mNone[39;00m:  [38;5;66;03m# #187 #451 #558 #872[39;00m
+[32m--> [39m[32m110[39m     [38;5;28;01mraise[39;00m [38;5;167;01mImportError[39;00m(WARN_NOIPYW)
+[32m    111[39m [38;5;28;01mif[39;00m total:
+[32m    112[39m     pbar = IProgress([38;5;28mmin[39m=[32m0[39m, [38;5;28mmax[39m=total)
+
+[31mImportError[39m: IProgress not found. Please update jupyter and ipywidgets. See https://ipywidgets.readthedocs.io/en/stable/user_install.html
+

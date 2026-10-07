@@ -1,0 +1,27 @@
+id: surya-line-level-text-detection
+title: Surya Line Level Text Detection
+category: Vision
+upstream:
+  repository: openvinotoolkit/openvino_notebooks
+  branch: latest
+  commit: a8809170cc4fc6aa633fbb9c22214be67ac20b47
+  path: notebooks/surya-line-level-text-detection/surya-line-level-text-detection.ipynb
+  url: https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/surya-line-level-text-detection/surya-line-level-text-detection.ipynb
+model:
+  name: ''
+  source: ''
+  revision: ''
+  license: ''
+cpu:
+  runtime: openvino
+  status: VERIFIED_WITH_LIMITATIONS
+gpu:
+  runtime: ''
+  status: NOT_TESTED
+twin:
+  level: WORKLOAD_TWIN
+validation:
+  output_contains:
+  - Detecting bboxes
+patches: {}
+last_verified: '2026-10-05T23:38:29+00:00'

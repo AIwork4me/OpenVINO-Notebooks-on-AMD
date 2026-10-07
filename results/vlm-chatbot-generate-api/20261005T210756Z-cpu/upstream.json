@@ -1,0 +1,9 @@
+{
+  "schema_version": 2,
+  "repository": "openvinotoolkit/openvino_notebooks",
+  "branch": "latest",
+  "commit": "a8809170cc4fc6aa633fbb9c22214be67ac20b47",
+  "path": "notebooks/vlm-chatbot/vlm-chatbot-generate-api.ipynb",
+  "url": "https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/vlm-chatbot/vlm-chatbot-generate-api.ipynb",
+  "notebook_sha256": "92fde37471ef58355262288256bea69e67e5a9e926379b5eb08afc2f8a86210c"
+}

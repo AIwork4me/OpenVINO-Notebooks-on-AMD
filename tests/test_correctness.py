@@ -10,7 +10,9 @@ def test_evaluate_pass_default():
 
 
 def test_evaluate_output_contains():
-    res = evaluate({"output_contains": [r"tiger cat", r"prob=\d"]}, "a tiger cat prob=0.42", {"ok": True, "n_skipped": 0})
+    res = evaluate(
+        {"output_contains": [r"tiger cat", r"prob=\d"]}, "a tiger cat prob=0.42", {"ok": True, "n_skipped": 0}
+    )
     assert res["passed"] is True
 
 

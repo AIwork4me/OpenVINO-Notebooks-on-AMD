@@ -1,0 +1,18 @@
+[cell 0 START +    0.4s] # Zero-shot Image Classification with SigLIP2 |  | [![Colab](https://colab
+[cell 1 START +    0.4s] ## Prerequisites | [back to top ⬆️](#Table-of-contents:)
+[cell 2 START +    0.4s] %pip install -q --extra-index-url https://download.pytorch.org/whl/cpu
+[cell 2 DONE  +  131.7s]
+[cell 3 START +  131.7s] ## Instantiate model | [back to top ⬆️](#Table-of-contents:) |  | The SigLIP
+[cell 4 START +  131.7s] import ipywidgets as widgets |  | supported_model_ids = [ |     # SigLIP2 |   
+[cell 4 DONE  +  131.7s]
+[cell 5 START +  131.7s] from transformers import AutoProcessor, AutoModel | import requests | from
+[cell 5 DONE  +  142.3s]
+[cell 6 START +  142.3s] ## Run PyTorch model inference | [back to top ⬆️](#Table-of-contents:) |  | 
+[cell 7 START +  142.3s] # Results visualization function | import matplotlib.pyplot as plt | impor
+[cell 7 DONE  +  142.7s]
+[cell 8 START +  142.7s] import requests | from pathlib import Path | import torch | from PIL import 
+[cell 8 DONE  +  143.0s]
+[cell 9 START +  143.0s] ## Convert model to OpenVINO Intermediate Representation (IR) format | [
+[cell 10 START +  143.0s] import openvino as ov |  | fp16_model_path = Path(model_id.split("/")[-1] 
+[cell 10 DONE  +  144.0s]
+NBEXEC_RESULT={"ok": false, "n_cells": 17, "n_skipped": 1, "n_substituted": 0, "stopped_after": null, "error_cell": null, "error_type": "CellExecutionError", "error_head": " You can also provide TorchScript module that you obtained yourself, please refer to PyTorch documentation: https://pytorch.org/tutorials/beginner/Intro_to_TorchScript_tutorial.html.", "duration_s": 145.88, "patch_notes": ["skipped cell 33: matched skip pattern"]}

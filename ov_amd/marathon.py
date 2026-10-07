@@ -6,6 +6,7 @@ import json
 import subprocess
 import time
 from datetime import datetime, timezone
+from pathlib import Path as _Path
 from typing import Any
 
 from ov_amd.environment import REPO_ROOT, kernel_env, venv_exists, venv_python
@@ -30,29 +31,55 @@ def _utcnow() -> str:
     return datetime.now(timezone.utc).isoformat(timespec="seconds")
 
 
-def _record_gpu(state: dict[str, Any], entry, status: Status, category: str = "", notes: list[str] | None = None,
-                evidence: str | None = None) -> None:
+def _record_gpu(
+    state: dict[str, Any],
+    entry,
+    status: Status,
+    category: str = "",
+    notes: list[str] | None = None,
+    evidence: str | None = None,
+    proof: str = "",
+    level: str = "",
+) -> None:
+    from ov_amd import hardware as _hw
+    from ov_amd.environment import REPO_ROOT as _ROOT
+
     rec = state.setdefault("attempts", {}).setdefault(entry.id, {})
+    evidence_ref = None
+    if evidence:
+        # repo-relative public reference (Defect C) — never machine-local paths
+        try:
+            evidence_ref = str(_Path(evidence).relative_to(_ROOT))
+        except ValueError:
+            evidence_ref = evidence
     rec["gpu"] = {
         "status": status.value,
         "failure_category": category,
         "notes": notes or [],
-        "evidence_dir": evidence,
+        "evidence_dir": evidence_ref,
+        "device_proof": proof,
+        "validation_level": level,
+        "platform_id": _hw.platform_id(),
         "updated": _utcnow(),
     }
     save_state(state)
 
 
 def run_gpu_twin(entry, state: dict[str, Any]) -> None:
-    """Run workloads/<id>/rocm/run.py with the ROCm venv if it exists."""
+    """Run workloads/<id>/rocm/run.py with the ROCm venv; Evidence Schema v2."""
 
     script = REPO_ROOT / "workloads" / entry.id / "rocm" / "run.py"
     if not script.exists():
         _record_gpu(state, entry, Status.NOT_TESTED, notes=["no ROCm twin implementation yet"])
         return
     if not venv_exists("gpu"):
-        _record_gpu(state, entry, Status.BLOCKED, FailureCategory.ROCM_UNAVAILABLE.value,
-                    notes=["ROCm torch venv not provisioned"])
+        _record_gpu(
+            state,
+            entry,
+            Status.BLOCKED,
+            FailureCategory.ROCM_UNAVAILABLE.value,
+            notes=["ROCm torch venv not provisioned"],
+        )
         return
 
     ts = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
@@ -70,10 +97,10 @@ def run_gpu_twin(entry, state: dict[str, Any]) -> None:
             pass
     cmd = [str(venv_python("gpu")), str(script), "--evidence-dir", str(ev)]
     t0 = time.time()
+    start_ts = datetime.now(timezone.utc).isoformat(timespec="seconds")
     timed_out = False
     with open(ev / "stdout.log", "w") as so, open(ev / "stderr.log", "w") as se:
-        proc = subprocess.Popen(cmd, stdout=so, stderr=se, env=kernel_env("gpu"), start_new_session=True,
-                                cwd=str(ev))
+        proc = subprocess.Popen(cmd, stdout=so, stderr=se, env=kernel_env("gpu"), start_new_session=True, cwd=str(ev))
         try:
             ret = proc.wait(timeout=wall)
         except subprocess.TimeoutExpired:
@@ -81,6 +108,7 @@ def run_gpu_twin(entry, state: dict[str, Any]) -> None:
             try:
                 import os
                 import signal
+
                 os.killpg(os.getpgid(proc.pid), signal.SIGKILL)
             except OSError:
                 proc.kill()
@@ -94,41 +122,149 @@ def run_gpu_twin(entry, state: dict[str, Any]) -> None:
     for line in reversed(stdout.splitlines()):
         if line.startswith("TWIN_RESULT="):
             try:
-                twin_result = json.loads(line[len("TWIN_RESULT="):])
+                twin_result = json.loads(line[len("TWIN_RESULT=") :])
             except json.JSONDecodeError:
                 pass
             break
 
-    hip_ok = "hip" in stderr.lower() or twin_result.get("hip") or "torch.version.hip" in stdout
-    # structured GPU evidence: full twin result (ok/hip/device/gcn_arch/metrics)
-    # plus hardware/software snapshots and an execution record
+    # structured v2 GPU evidence: hardware/software snapshots from the actual
+    # ROCm python, upstream/model records, execution + device proof
+    from ov_amd import ev2 as _ev2
     from ov_amd import hardware as _hw
+    from ov_amd.executor import load_upstream_meta as _meta
 
+    meta = _meta()
     _hw.snapshot(ev, str(venv_python("gpu")))
-    (ev / "metrics.json").write_text(json.dumps(twin_result, indent=2, default=str))
-    (ev / "execution.json").write_text(json.dumps({
-        "start": datetime.now(timezone.utc).isoformat(timespec="seconds"),
-        "end": datetime.now(timezone.utc).isoformat(timespec="seconds"),
-        "duration_s": round(duration, 2),
-        "exit_code": ret,
-        "retry_count": 0,
-        "status": "OK" if (twin_result.get("ok") and twin_result.get("hip")) else "ERROR",
-        "failure_category": "" if twin_result.get("ok") else "CORRECTNESS_ERROR",
-    }, indent=2))
+    _ev2.write_json(
+        ev / "upstream.json",
+        {
+            "repository": meta.get("repository"),
+            "branch": meta.get("branch"),
+            "commit": meta.get("commit"),
+            "path": entry.upstream_path,
+            # url binds to the pin actually in force, not the catalog-time one
+            "url": f"https://github.com/{meta.get('repository')}/blob/{meta.get('commit')}/{entry.upstream_path}",
+        },
+    )
+    _ev2.write_json(
+        ev / "model.json", {"declared": (yaml.safe_load(wf.read_text()) or {}).get("model", {}) if wf.exists() else {}}
+    )
+    _ev2.write_json(
+        ev / "execution.json",
+        {
+            "start": start_ts,
+            "end": datetime.now(timezone.utc).isoformat(timespec="seconds"),
+            "duration_s": round(duration, 2),
+            "exit_code": ret,
+            "retry_count": 0,
+            "status": "OK" if (twin_result.get("ok") and twin_result.get("hip")) else "ERROR",
+            "failure_category": "" if twin_result.get("ok") else "CORRECTNESS_ERROR",
+        },
+    )
+    # twin runs carry latency_s (vision) or total_s (generation) — normalize
+    run_latencies = [
+        float(r[k])
+        for r in (twin_result.get("metrics", {}).get("runs") or [])
+        if isinstance(r, dict)
+        for k in ("latency_s", "total_s")
+        if isinstance(r.get(k), (int, float))
+    ]
+    _ev2.write_json(
+        ev / "device-proof.json",
+        {
+            "state": "PROVEN_GPU" if (twin_result.get("ok") and twin_result.get("hip")) else "UNKNOWN",
+            "requested_backend": "gpu",
+            "hip": twin_result.get("hip"),
+            "device": twin_result.get("device"),
+            "gcn_arch": twin_result.get("gcn_arch"),
+        },
+    )
+    _ev2.write_json(
+        ev / "aggregate.json",
+        _ev2.aggregate_repeatability(run_latencies, 3),
+    )
+    # validation.json: the twin's ok flag embodies its workload-correctness
+    # checks (>=1 detection / deterministic generation / finite audio ...);
+    # record them explicitly for the v2 contract
+    twin_ok = bool(twin_result.get("ok") and twin_result.get("hip"))
+    _ev2.write_json(
+        ev / "validation.json",
+        {
+            "passed": twin_ok,
+            "level": _ev2.ValidationLevel.WORKLOAD_CORRECTNESS.value if twin_ok else _ev2.ValidationLevel.EXECUTION_ONLY.value,
+            "contract_present": True,
+            "contract": "twin self-check (workload-specific checks in workloads/"
+            f"{entry.id}/rocm/run.py; ok flag is their conjunction)",
+            "checks": [
+                {"name": "twin_self_check", "passed": bool(twin_result.get("ok"))},
+                {"name": "hip_available", "passed": bool(twin_result.get("hip"))},
+                {"name": "amd_device_visible", "passed": bool(twin_result.get("device"))},
+            ],
+            "runs_ok": len(run_latencies),
+            "aggregate_ref": "aggregate.json",
+        },
+    )
+    _ev2.write_json(
+        ev / "metrics.json",
+        {
+            "twin_result": twin_result,
+            "duration_s": round(duration, 2),
+            "exit_code": ret,
+        },
+    )
+    (ev / "summary.md").write_text(
+        f"# {entry.id} — ROCm twin (evidence schema v2)\n\n"
+        f"- hip: {twin_result.get('hip')}\n- device: {twin_result.get('device')}\n"
+        f"- gcn_arch: {twin_result.get('gcn_arch')}\n- duration: {round(duration, 2)}s\n"
+    )
+    runs_ok = len(run_latencies)
     if twin_result.get("ok") and twin_result.get("hip"):
-        _record_gpu(state, entry, Status.VERIFIED, evidence=str(ev))
+        # the twin's own ok embodies its workload correctness checks (e.g.
+        # >=1 detection with valid bounded confidences), so a green twin is
+        # L3 WORKLOAD_CORRECTNESS with PROVEN_GPU device proof. The same
+        # repeatability gate as the CPU path applies (gate finding, dual
+        # review): ok+hip with fewer than 3 measured runs degrades honestly
+        # instead of rendering full green.
+        if runs_ok >= _ev2.REPEATABILITY_MIN_RUNS and _ev2.aggregate_repeatability(run_latencies, 3)[
+            "repeatability_passed"
+        ]:
+            _record_gpu(
+                state,
+                entry,
+                Status.VERIFIED,
+                evidence=str(ev),
+                proof="PROVEN_GPU",
+                level="WORKLOAD_CORRECTNESS",
+            )
+        else:
+            _record_gpu(
+                state,
+                entry,
+                Status.VERIFIED_WITH_LIMITATIONS,
+                notes=[f"repeatability_not_established: {runs_ok} measured run(s) < 3"],
+                evidence=str(ev),
+                proof="PROVEN_GPU",
+                level="WORKLOAD_CORRECTNESS",
+            )
     elif twin_result:
         # script ran to completion and self-reported failure of its own checks;
         # log-grep classification would misread earlier fallback logs (e.g. a
         # recovered hub 401) as the failure cause
-        _record_gpu(state, entry, Status.FAILED, FailureCategory.CORRECTNESS_ERROR.value,
-                    notes=[f"twin self-check failed; metrics={json.dumps(twin_result.get('metrics', {}))[:400]}"],
-                    evidence=str(ev))
+        _record_gpu(
+            state,
+            entry,
+            Status.FAILED,
+            FailureCategory.CORRECTNESS_ERROR.value,
+            notes=[f"twin self-check failed; metrics={json.dumps(twin_result.get('metrics', {}))[:400]}"],
+            evidence=str(ev),
+        )
     else:
         cat = classify_failure(stderr, stdout, timed_out)
-        notes = [f"exit={ret} duration={duration:.0f}s", stderr.strip().splitlines()[-1][:300] if stderr.strip() else ""]
+        notes = [
+            f"exit={ret} duration={duration:.0f}s",
+            stderr.strip().splitlines()[-1][:300] if stderr.strip() else "",
+        ]
         _record_gpu(state, entry, Status.FAILED, cat.value, notes=notes, evidence=str(ev))
-    _ = hip_ok
 
 
 def run_marathon(
@@ -178,8 +314,11 @@ def run_marathon(
             freed = prune_cache_if_needed()
             checkpoint(state, entry.id)
             write_progress(state, entry.id)
-            print(f"[marathon/cpu {i + 1}/{len(runnable)}] {entry.id} (p{entry.priority}/{entry.est_weight})"
-                  + (f" [cache pruned: {freed}]" if freed else ""), flush=True)
+            print(
+                f"[marathon/cpu {i + 1}/{len(runnable)}] {entry.id} (p{entry.priority}/{entry.est_weight})"
+                + (f" [cache pruned: {freed}]" if freed else ""),
+                flush=True,
+            )
             out = run_workload_cpu(entry, state)
             summary["cpu_attempted"] += 1
             if out.status == Status.VERIFIED:

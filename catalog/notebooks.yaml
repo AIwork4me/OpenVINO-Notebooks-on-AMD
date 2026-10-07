@@ -12,8 +12,10 @@ notebooks:
   est_weight: small
   cpu_meaningful: true
   gpu_meaningful: false
-  twin_level: NOT_CLASSIFIED
-  notes: ''
+  twin_level: WORKLOAD_TWIN
+  notes: 'twin: 3D object detection from LiDAR point clouds with PointPillars, a task and architecture
+    readily available in the PyTorch ecosystem (OpenPCDet/mmdet3d) on ROCm, even though this notebook
+    drives openvino_contrib''s custom-op export and OV e2e inference.'
 - id: 3d-pose-estimation
   title: 3D Pose Estimation
   category: Vision
@@ -25,8 +27,10 @@ notebooks:
   est_weight: large
   cpu_meaningful: true
   gpu_meaningful: false
-  twin_level: NOT_CLASSIFIED
-  notes: ''
+  twin_level: WORKLOAD_TWIN
+  notes: 'twin: 3D human pose estimation with the OMZ human-pose-estimation-3d-0001 model (converted from
+    its PyTorch checkpoint) has comparable PyTorch implementations (e.g. MMPose) runnable on Radeon, and
+    the webcam loop is just an input source for real inference.'
 - id: 3d-segmentation-point-clouds
   title: 3D Segmentation Point Clouds
   category: Vision
@@ -51,8 +55,10 @@ notebooks:
   est_weight: small
   cpu_meaningful: true
   gpu_meaningful: false
-  twin_level: NOT_CLASSIFIED
-  notes: ''
+  twin_level: WORKLOAD_TWIN
+  notes: 'twin: Text-to-music generation and audio editing with the ACE-Step pipeline, whose PyTorch implementation
+    is exercised directly in the notebook and is runnable on ROCm before the NNCF-compressed OpenVINO
+    path.'
 - id: action-recognition-webcam
   title: Action Recognition Webcam
   category: Video
@@ -64,8 +70,10 @@ notebooks:
   est_weight: large
   cpu_meaningful: true
   gpu_meaningful: false
-  twin_level: NOT_CLASSIFIED
-  notes: ''
+  twin_level: WORKLOAD_TWIN
+  notes: 'twin: Video action recognition with the OMZ action-recognition-0001 encoder-decoder is a standard
+    video-classification task with comparable PyTorch models runnable on ROCm, with the webcam feed only
+    supplying frames.'
 - id: aloha-act
   title: Aloha Act
   category: LLM
@@ -77,8 +85,10 @@ notebooks:
   est_weight: small
   cpu_meaningful: true
   gpu_meaningful: false
-  twin_level: NOT_CLASSIFIED
-  notes: ''
+  twin_level: WORKLOAD_TWIN
+  notes: 'twin: ACT robot-policy imitation learning from tonyzhaozh/act is native PyTorch (training/eval
+    invoked with an explicit --device), so policy conversion and evaluation twin directly on ROCm despite
+    the Intel embodied-SDK sample checkpoint.'
 - id: animate-anyone
   title: Animate Anyone
   category: Image Generation
@@ -90,8 +100,9 @@ notebooks:
   est_weight: large
   cpu_meaningful: true
   gpu_meaningful: false
-  twin_level: NOT_CLASSIFIED
-  notes: ''
+  twin_level: WORKLOAD_TWIN
+  notes: 'twin: Pose-driven human video generation with the Moore-AnimateAnyone PyTorch repo (SD-1.5-based
+    UNets, pose guider, CLIP encoder), whose models and task run in PyTorch on ROCm.'
 - id: async-api
   title: Async Api
   category: API
@@ -116,8 +127,10 @@ notebooks:
   est_weight: small
   cpu_meaningful: true
   gpu_meaningful: false
-  twin_level: NOT_CLASSIFIED
-  notes: ''
+  twin_level: OPENVINO_SPECIFIC
+  notes: 'twin: The notebook is a guided tour of OpenVINO''s AUTO device selection, available_devices
+    queries, compile-on-demand and log-level properties with no AI task beyond exercising the API itself,
+    so a ROCm twin is not applicable.'
 - id: bark-text-to-audio
   title: Bark Text To Audio
   category: TTS
@@ -129,8 +142,9 @@ notebooks:
   est_weight: small
   cpu_meaningful: true
   gpu_meaningful: false
-  twin_level: NOT_CLASSIFIED
-  notes: ''
+  twin_level: WORKLOAD_TWIN
+  notes: 'twin: Bark text-to-audio generation where the notebook itself loads the PyTorch Bark models
+    from a bark fork and converts them, and the same torch models run on ROCm.'
 - id: bernini-r-image-video
   title: Bernini R Image Video
   category: Video
@@ -142,8 +156,10 @@ notebooks:
   est_weight: medium
   cpu_meaningful: true
   gpu_meaningful: false
-  twin_level: NOT_CLASSIFIED
-  notes: ''
+  twin_level: WORKLOAD_TWIN
+  notes: 'twin: Unified text-to-image and text-to-video generation with ByteDance Bernini-R, a diffusers-format
+    model that runs in PyTorch on ROCm, with NNCF INT8/INT4 compression only an option on the OpenVINO
+    path.'
 - id: blip-visual-language-processing
   title: Blip Visual Language Processing
   category: VLM
@@ -168,8 +184,9 @@ notebooks:
   est_weight: small
   cpu_meaningful: true
   gpu_meaningful: false
-  twin_level: NOT_CLASSIFIED
-  notes: ''
+  twin_level: WORKLOAD_TWIN
+  notes: 'twin: Virtual try-on image generation with CatVTON, a PyTorch repo whose VAE/UNet/automasker
+    pipeline (and equivalents in diffusers) runs on ROCm.'
 - id: clip-zero-shot-classification
   title: Clip Zero Shot Classification
   category: Vision
@@ -232,9 +249,10 @@ notebooks:
   workload_type: vision
   est_weight: small
   cpu_meaningful: true
-  gpu_meaningful: false
-  twin_level: OPENVINO_SPECIFIC
-  notes: ''
+  gpu_meaningful: true
+  twin_level: WORKLOAD_TWIN
+  notes: 'twin correction: notebook runs real PyTorch task inference (baseline) before OpenVINO conversion
+    -> task notebook (WORKLOAD_TWIN)'
 - id: darkir-image-restoration
   title: Darkir Image Restoration
   category: Image Generation
@@ -246,8 +264,10 @@ notebooks:
   est_weight: large
   cpu_meaningful: true
   gpu_meaningful: false
-  twin_level: NOT_CLASSIFIED
-  notes: ''
+  twin_level: WORKLOAD_TWIN
+  notes: 'twin: Low-light/blind image restoration with DarkIR, a standard PyTorch model loaded from HF
+    weights and run in torch inside the notebook before ov.convert_model, so the same task and weights
+    run on ROCm.'
 - id: deepseek-ocr
   title: Deepseek Ocr
   category: OCR
@@ -272,8 +292,10 @@ notebooks:
   est_weight: small
   cpu_meaningful: true
   gpu_meaningful: false
-  twin_level: NOT_CLASSIFIED
-  notes: ''
+  twin_level: WORKLOAD_TWIN
+  notes: 'twin: LLM chat with DeepSeek-R1 distill checkpoints pulled from HF, the same public revisions
+    of which run in PyTorch/vLLM on ROCm; optimum conversion and weight compression are just the serving
+    path.'
 - id: deepseek-vl2
   title: Deepseek Vl2
   category: LLM
@@ -285,8 +307,9 @@ notebooks:
   est_weight: small
   cpu_meaningful: true
   gpu_meaningful: false
-  twin_level: NOT_CLASSIFIED
-  notes: ''
+  twin_level: WORKLOAD_TWIN
+  notes: 'twin: Multimodal VLM chat with DeepSeek-VL2-tiny/small, whose PyTorch implementation from HF
+    runs on ROCm, with the OV conversion and INT4/INT8 compression being only the inference path.'
 - id: depth-anything
   title: Depth Anything
   category: Vision
@@ -298,8 +321,9 @@ notebooks:
   est_weight: large
   cpu_meaningful: true
   gpu_meaningful: false
-  twin_level: NOT_CLASSIFIED
-  notes: ''
+  twin_level: WORKLOAD_TWIN
+  notes: 'twin: Monocular depth estimation with HF Depth-Anything/Depth-Anything-V2 checkpoints that the
+    notebook runs directly in PyTorch before converting, and the same models are runnable on ROCm.'
 - id: detectron2-to-openvino
   title: Detectron2 To Openvino
   category: Conversion
@@ -311,8 +335,10 @@ notebooks:
   est_weight: small
   cpu_meaningful: true
   gpu_meaningful: false
-  twin_level: NOT_CLASSIFIED
-  notes: ''
+  twin_level: WORKLOAD_TWIN
+  notes: 'twin: Object detection/instance segmentation with Detectron2 model-zoo models; detectron2 is
+    PyTorch-native and ROCm-installable, and the conversion focus here is on concrete task models like
+    the paddle/tensorflow-to-openvino precedents rather than teaching the OV API generically.'
 - id: ernie-image
   title: Ernie Image
   category: Image Generation
@@ -324,8 +350,9 @@ notebooks:
   est_weight: small
   cpu_meaningful: true
   gpu_meaningful: false
-  twin_level: NOT_CLASSIFIED
-  notes: ''
+  twin_level: WORKLOAD_TWIN
+  notes: 'twin: Text-to-image generation with Baidu ERNIE-Image-Turbo, a diffusers-compatible HF model
+    exportable via optimum and runnable in PyTorch on ROCm.'
 - id: fast-segment-anything
   title: Fast Segment Anything
   category: Vision
@@ -337,8 +364,10 @@ notebooks:
   est_weight: small
   cpu_meaningful: true
   gpu_meaningful: false
-  twin_level: NOT_CLASSIFIED
-  notes: ''
+  twin_level: WORKLOAD_TWIN
+  notes: 'twin: FastSAM promptable instance segmentation demoed end-to-end in ultralytics/PyTorch, which
+    runs natively on ROCm; the OV export and optional NNCF PTQ section accelerate the task rather than
+    being the notebook''s subject.'
 - id: fireredtts2
   title: Fireredtts2
   category: TTS
@@ -376,8 +405,9 @@ notebooks:
   est_weight: small
   cpu_meaningful: true
   gpu_meaningful: false
-  twin_level: NOT_CLASSIFIED
-  notes: ''
+  twin_level: WORKLOAD_TWIN
+  notes: 'twin: Florence-2 VLM for detection, grounding, OCR and captioning with the HF PyTorch implementation
+    (trust_remote_code) runnable on ROCm, converted here per-model to OpenVINO IR.'
 - id: flux-fill
   title: Flux Fill
   category: Image Generation
@@ -389,8 +419,9 @@ notebooks:
   est_weight: large
   cpu_meaningful: true
   gpu_meaningful: false
-  twin_level: NOT_CLASSIFIED
-  notes: ''
+  twin_level: WORKLOAD_TWIN
+  notes: 'twin: Inpainting with FLUX.1-Fill-dev from diffusers via optimum export, and the same published
+    HF model runs in PyTorch/diffusers on ROCm.'
 - id: flux.1-image-generation
   title: Flux.1 Image Generation
   category: Image Generation
@@ -415,8 +446,9 @@ notebooks:
   est_weight: large
   cpu_meaningful: true
   gpu_meaningful: false
-  twin_level: NOT_CLASSIFIED
-  notes: ''
+  twin_level: WORKLOAD_TWIN
+  notes: 'twin: Instruction-based image editing with FLUX.1-Kontext-dev, a diffusers pipeline model runnable
+    in PyTorch on ROCm with the OV/INT4 path only serving inference.'
 - id: flux.2-klein
   title: Flux.2 Klein
   category: Image Generation
@@ -428,8 +460,9 @@ notebooks:
   est_weight: large
   cpu_meaningful: true
   gpu_meaningful: false
-  twin_level: NOT_CLASSIFIED
-  notes: ''
+  twin_level: WORKLOAD_TWIN
+  notes: 'twin: Text-to-image generation with FLUX.2-klein 4B/9B diffusers models that run in PyTorch
+    on ROCm, exported to OpenVINO with optional INT4 compression.'
 - id: freevc-voice-conversion
   title: Freevc Voice Conversion
   category: TTS
@@ -441,8 +474,9 @@ notebooks:
   est_weight: small
   cpu_meaningful: true
   gpu_meaningful: false
-  twin_level: NOT_CLASSIFIED
-  notes: ''
+  twin_level: WORKLOAD_TWIN
+  notes: 'twin: Speaker voice conversion with FreeVC, a PyTorch repo (SynthesizerTrn + WavLM + speaker
+    encoder) whose same checkpoints run on ROCm, converted component-wise to OpenVINO IR.'
 - id: funasr-nano
   title: Funasr Nano
   category: ASR
@@ -467,8 +501,10 @@ notebooks:
   est_weight: huge
   cpu_meaningful: true
   gpu_meaningful: false
-  twin_level: NOT_CLASSIFIED
-  notes: ''
+  twin_level: WORKLOAD_TWIN
+  notes: 'twin: Chat/text-and-image understanding with Google Gemma-4 HF checkpoints (image-text-to-text),
+    which run in PyTorch/transformers on ROCm; optimum export and preconverted OV weights are just the
+    serving path.'
 - id: glm-ocr
   title: Glm Ocr
   category: OCR
@@ -493,8 +529,10 @@ notebooks:
   est_weight: large
   cpu_meaningful: true
   gpu_meaningful: false
-  twin_level: NOT_CLASSIFIED
-  notes: ''
+  twin_level: WORKLOAD_TWIN
+  notes: 'twin: VLM chat task notebook that converts GLM-4.1V-9B-Thinking via optimum-cli to INT4 OV IR
+    and serves a Gradio assistant; the same zai-org HF model runs directly in transformers on ROCm, so
+    a PyTorch twin of the vision-language-assistant workload is straightforward.'
 - id: gpu-device
   title: Gpu Device
   category: API
@@ -506,8 +544,10 @@ notebooks:
   est_weight: large
   cpu_meaningful: true
   gpu_meaningful: false
-  twin_level: NOT_CLASSIFIED
-  notes: ''
+  twin_level: OPENVINO_SPECIFIC
+  notes: 'twin: The notebook is a tutorial on OpenVINO runtime APIs itself (core.available_devices/get_property
+    device queries, compile_model options, model caching, performance hints, benchmark_app, MULTI/AUTO
+    and AsyncInferQueue), so there is no ROCm-PyTorch counterpart and the GPU twin is not applicable.'
 - id: grounded-segment-anything
   title: Grounded Segment Anything
   category: VLM
@@ -519,8 +559,10 @@ notebooks:
   est_weight: small
   cpu_meaningful: true
   gpu_meaningful: false
-  twin_level: NOT_CLASSIFIED
-  notes: ''
+  twin_level: WORKLOAD_TWIN
+  notes: 'twin: Text-prompted detection and segmentation task built from GroundingDINO and SAM/EfficientSAM
+    torch checkpoints that the notebook itself traces to OpenVINO; the identical PyTorch models run on
+    ROCm, making the same workload fully reproducible in torch.'
 - id: handwritten-ocr
   title: Handwritten Ocr
   category: OCR
@@ -558,8 +600,10 @@ notebooks:
   est_weight: small
   cpu_meaningful: true
   gpu_meaningful: false
-  twin_level: NOT_CLASSIFIED
-  notes: ''
+  twin_level: OPENVINO_SPECIFIC
+  notes: 'twin: The notebook teaches OpenVINO device APIs on the Intel NPU (available_devices/get_property
+    queries, UMD and OpenVINO model caching, performance hints, benchmark_app NPU vs CPU), which is OpenVINO/Intel-hardware
+    tooling with no meaningful ROCm twin.'
 - id: hello-segmentation
   title: Hello Segmentation
   category: Vision
@@ -584,8 +628,10 @@ notebooks:
   est_weight: small
   cpu_meaningful: true
   gpu_meaningful: false
-  twin_level: NOT_CLASSIFIED
-  notes: ''
+  twin_level: WORKLOAD_TWIN
+  notes: 'twin: Minimal image-classification task (pre-converted TF MobileNetV3 IR, load/infer/argmax
+    on one image) with the same shape as the already-WORKLOAD_TWIN hello-detection and hello-segmentation
+    notebooks; torchvision MobileNetV3 on ROCm covers the same task.'
 - id: hugging-face-hub
   title: Hugging Face Hub
   category: API
@@ -596,9 +642,12 @@ notebooks:
   workload_type: api
   est_weight: small
   cpu_meaningful: true
-  gpu_meaningful: false
-  twin_level: NOT_CLASSIFIED
-  notes: ''
+  gpu_meaningful: true
+  twin_level: WORKLOAD_TWIN
+  notes: 'twin: The lesson is OpenVINO conversion tooling itself - ov.convert_model/ov.save_model of an
+    HF model, optimum-intel OVModel auto-export and optimum-cli export - so on ROCm where you would simply
+    run the HF model in PyTorch, the notebook''s content has no twin.; twin correction: notebook runs
+    real PyTorch task inference (baseline) before OpenVINO conversion -> task notebook (WORKLOAD_TWIN)'
 - id: hunyuan-ocr
   title: Hunyuan Ocr
   category: OCR
@@ -623,8 +672,10 @@ notebooks:
   est_weight: large
   cpu_meaningful: true
   gpu_meaningful: false
-  twin_level: NOT_CLASSIFIED
-  notes: ''
+  twin_level: WORKLOAD_TWIN
+  notes: 'twin: Machine-translation task with tencent Hy-MT/HY-MT LLMs exported via optimum-cli and run
+    through openvino_genai.LLMPipeline; the same HF translation models run in transformers/vLLM on ROCm,
+    giving a comparable same-model PyTorch path.'
 - id: image-classification-quantization
   title: Image Classification Quantization
   category: Optimization
@@ -649,8 +700,10 @@ notebooks:
   est_weight: large
   cpu_meaningful: true
   gpu_meaningful: false
-  twin_level: NOT_CLASSIFIED
-  notes: ''
+  twin_level: WORKLOAD_TWIN
+  notes: 'twin: Stable Diffusion v1.5 image-to-image generation via openvino_genai.Image2ImagePipeline
+    on an INT8 OV export; the identical diffusers img2img pipeline with the same SD1.5 weights runs on
+    ROCm (mirrors the WORKLOAD_TWIN inpainting-genai convention).'
 - id: inpainting-genai
   title: Inpainting Genai
   category: Image Generation
@@ -675,8 +728,10 @@ notebooks:
   est_weight: large
   cpu_meaningful: true
   gpu_meaningful: false
-  twin_level: NOT_CLASSIFIED
-  notes: ''
+  twin_level: WORKLOAD_TWIN
+  notes: 'twin: Zero-shot identity-preserving image generation with InstantID (SDXL + InstantX ControlNet
+    + IP-Adapter + antelopev2 face models) whose components the notebook traces to OV IR and quantizes
+    with NNCF; InstantID is a torch/diffusers project that runs natively on ROCm.'
 - id: jina-clip
   title: Jina Clip
   category: Vision
@@ -701,8 +756,10 @@ notebooks:
   est_weight: small
   cpu_meaningful: true
   gpu_meaningful: false
-  twin_level: NOT_CLASSIFIED
-  notes: ''
+  twin_level: WORKLOAD_TWIN
+  notes: 'twin: Text-to-speech task with hexgrad/Kokoro-82M run via openvino_genai.Text2SpeechPipeline
+    on pre-converted FP16/INT8/INT4 exports; Kokoro is a torch model with an official pip package, so
+    the same TTS workload runs on ROCm in PyTorch.'
 - id: language-quantize-bert
   title: Language Quantize Bert
   category: Optimization
@@ -714,8 +771,11 @@ notebooks:
   est_weight: small
   cpu_meaningful: true
   gpu_meaningful: false
-  twin_level: NOT_CLASSIFIED
-  notes: ''
+  twin_level: OPENVINO_SPECIFIC
+  notes: 'twin: The notebook is an NNCF post-training quantization tutorial (torch.export, ov.convert_model,
+    nncf.quantize with ModelType.TRANSFORMER, F1 and benchmark_app comparisons of FP32 vs INT8 IR), teaching
+    OpenVINO/NNCF optimization tooling like the OPENVINO_SPECIFIC pytorch-post-training-quantization-nncf
+    notebook.'
 - id: latent-consistency-models-image-generation
   title: Latent Consistency Models Image Generation
   category: Image Generation
@@ -909,8 +969,10 @@ notebooks:
   est_weight: large
   cpu_meaningful: true
   gpu_meaningful: false
-  twin_level: NOT_CLASSIFIED
-  notes: ''
+  twin_level: WORKLOAD_TWIN
+  notes: 'twin: Text-to-video generation with Lightricks/LTX-Video exported via optimum-cli and run through
+    openvino_genai.Text2VideoPipeline; LTX-Video is a diffusers model that runs in PyTorch on ROCm, so
+    the video-generation task has a direct torch twin.'
 - id: medasr-medical-asr
   title: Medasr Medical Asr
   category: ASR
@@ -935,8 +997,11 @@ notebooks:
   est_weight: large
   cpu_meaningful: true
   gpu_meaningful: false
-  twin_level: NOT_CLASSIFIED
-  notes: ''
+  twin_level: WORKLOAD_TWIN
+  notes: 'twin: Industrial analog-meter reading task combining Paddle detection and segmentation models
+    plus geometric pointer decoding; the same detect-segment-read task is implementable with comparable
+    torch-ecosystem detection/segmentation models on ROCm (consistent with other Paddle-based task notebooks
+    classified WORKLOAD_TWIN).'
 - id: mineru2.5
   title: Mineru2.5
   category: OCR
@@ -948,8 +1013,10 @@ notebooks:
   est_weight: medium
   cpu_meaningful: true
   gpu_meaningful: false
-  twin_level: NOT_CLASSIFIED
-  notes: ''
+  twin_level: WORKLOAD_TWIN
+  notes: 'twin: PDF document-parsing (layout blocks plus Markdown) with the opendatalab MinerU2.5 VLM
+    exported via optimum-cli; the same HF transformers model runs in PyTorch on ROCm, like the other OCR-VLM
+    notebooks already classified WORKLOAD_TWIN.'
 - id: minicpm-o-4.5
   title: Minicpm O 4.5
   category: VLM
@@ -961,8 +1028,10 @@ notebooks:
   est_weight: large
   cpu_meaningful: true
   gpu_meaningful: false
-  twin_level: NOT_CLASSIFIED
-  notes: ''
+  twin_level: WORKLOAD_TWIN
+  notes: 'twin: Omni-modal chatbot task (image chat, ASR, speaker/scene analysis, streaming speech conversation,
+    TTS) with openbmb/MiniCPM-o-4_5 converted to stateful OV models; the same HF model provides the PyTorch
+    path on ROCm, matching the WORKLOAD_TWIN minicpm-o-omnimodal-chatbot convention.'
 - id: minicpm-o-omnimodal-chatbot
   title: Minicpm O Omnimodal Chatbot
   category: VLM
@@ -987,8 +1056,10 @@ notebooks:
   est_weight: large
   cpu_meaningful: true
   gpu_meaningful: false
-  twin_level: NOT_CLASSIFIED
-  notes: ''
+  twin_level: WORKLOAD_TWIN
+  notes: 'twin: Vision-language assistant task with openbmb/MiniCPM-V-4.6 (image and video understanding)
+    exported via optimum-cli and run with OVModelForVisualCausalLM; the identical HF model runs in transformers
+    on ROCm.'
 - id: minicpm-v-multimodal-chatbot
   title: Minicpm V Multimodal Chatbot
   category: VLM
@@ -1013,8 +1084,10 @@ notebooks:
   est_weight: large
   cpu_meaningful: true
   gpu_meaningful: false
-  twin_level: NOT_CLASSIFIED
-  notes: ''
+  twin_level: WORKLOAD_TWIN
+  notes: 'twin: Vision-language chat/reasoning task with mistralai Ministral-3 checkpoints (3B/8B) exported
+    via optimum-cli and run with OVModelForVisualCausalLM; the same published HF models run in transformers/vLLM
+    on ROCm, so a comparable PyTorch twin exists.'
 - id: mllama-3.2
   title: Mllama 3.2
   category: LLM
@@ -1065,8 +1138,10 @@ notebooks:
   est_weight: medium
   cpu_meaningful: true
   gpu_meaningful: false
-  twin_level: NOT_CLASSIFIED
-  notes: ''
+  twin_level: OPENVINO_SPECIFIC
+  notes: 'twin: The notebook''s lesson is OpenVINO conversion workflows for ModelScope models - ov.convert_model
+    of a classification net, optimum-intel OVModel auto-export, and optimum-cli LLM export into openvino-genai
+    - i.e. conversion tooling itself, so the GPU twin is not applicable.'
 - id: multilora-image-generation
   title: Multilora Image Generation
   category: Image Generation
@@ -1104,8 +1179,10 @@ notebooks:
   est_weight: huge
   cpu_meaningful: true
   gpu_meaningful: false
-  twin_level: NOT_CLASSIFIED
-  notes: ''
+  twin_level: WORKLOAD_TWIN
+  notes: 'twin: Multimodal-reasoning task (image/video understanding and image-conditioned code generation)
+    with the Muse-Glimmer-30B VLM run via openvino_genai.VLMPipeline on compressed weights; the same HF
+    VLM runs in transformers on ROCm, making the VLM workload twin-able.'
 - id: music-generation
   title: Music Generation
   category: TTS
@@ -1117,8 +1194,11 @@ notebooks:
   est_weight: small
   cpu_meaningful: true
   gpu_meaningful: false
-  twin_level: NOT_CLASSIFIED
-  notes: ''
+  twin_level: WORKLOAD_TWIN
+  notes: 'twin: Controllable text-to-music generation with facebook/musicgen-small whose T5 encoder, decoder
+    and EnCodec the notebook converts to OV IR and plugs back into the HF generate loop; MusicGen runs
+    natively in transformers/PyTorch on ROCm, so the same music-generation workload has a direct torch
+    path.'
 - id: nuextract-structure-extraction
   title: Nuextract Structure Extraction
   category: LLM
@@ -1130,8 +1210,10 @@ notebooks:
   est_weight: huge
   cpu_meaningful: true
   gpu_meaningful: false
-  twin_level: NOT_CLASSIFIED
-  notes: ''
+  twin_level: WORKLOAD_TWIN
+  notes: 'twin: Schema-guided structured-information-extraction task with numind NuExtract models exported
+    via optimum-cli and run through openvino_genai.LLMPipeline; the same HF models run in PyTorch on ROCm
+    for an equivalent workload.'
 - id: object-detection
   title: Object Detection
   category: Vision
@@ -1169,8 +1251,10 @@ notebooks:
   est_weight: small
   cpu_meaningful: true
   gpu_meaningful: false
-  twin_level: NOT_CLASSIFIED
-  notes: ''
+  twin_level: WORKLOAD_TWIN
+  notes: 'twin: Screen/UI parsing task combining a YOLO icon detector (ultralytics export), a Florence-2
+    region captioner and EasyOCR - all torch-ecosystem models that run on ROCm - so the OmniParser workload
+    is reproducible in PyTorch.'
 - id: omnivoice
   title: Omnivoice
   category: ASR
@@ -1182,8 +1266,10 @@ notebooks:
   est_weight: small
   cpu_meaningful: true
   gpu_meaningful: false
-  twin_level: NOT_CLASSIFIED
-  notes: ''
+  twin_level: WORKLOAD_TWIN
+  notes: 'twin: Text-to-speech, voice design and voice-cloning task with k2-fsa/OmniVoice converted via
+    a helper (with NNCF INT8 LLM weights) plus a pre-converted Whisper for auto-transcription; OmniVoice
+    is a PyTorch model, so the same speech-synthesis workload runs on ROCm.'
 - id: oneformer-segmentation
   title: Oneformer Segmentation
   category: Vision
@@ -1221,8 +1307,10 @@ notebooks:
   est_weight: medium
   cpu_meaningful: true
   gpu_meaningful: false
-  twin_level: NOT_CLASSIFIED
-  notes: ''
+  twin_level: OPENVINO_SPECIFIC
+  notes: 'twin: The notebook teaches the openvino-tokenizers library itself (convert_tokenizer CLI/Python
+    API, saving and compiling tokenizer/detokenizer models, EOS rt_info, openvino-genai Tokenizer integration
+    and connect_models merging), which is explicitly OpenVINO-specific tooling with no ROCm counterpart.'
 - id: openvoice
   title: Openvoice
   category: TTS
@@ -1234,8 +1322,10 @@ notebooks:
   est_weight: large
   cpu_meaningful: true
   gpu_meaningful: false
-  twin_level: NOT_CLASSIFIED
-  notes: ''
+  twin_level: WORKLOAD_TWIN
+  notes: 'twin: Task notebook for TTS plus tone-color voice conversion that loads OpenVoice PyTorch checkpoints
+    from HF, converts them to OpenVINO IR with NNCF compression and runs a Gradio demo; the same TTS/voice-cloning
+    workload runs in PyTorch on ROCm (matches openvoice2-and-melotts = WORKLOAD_TWIN convention).'
 - id: openvoice2-and-melotts
   title: Openvoice2 And Melotts
   category: TTS
@@ -1260,8 +1350,10 @@ notebooks:
   est_weight: small
   cpu_meaningful: true
   gpu_meaningful: false
-  twin_level: NOT_CLASSIFIED
-  notes: ''
+  twin_level: WORKLOAD_TWIN
+  notes: 'twin: OCR task pipeline over pre-converted Open Model Zoo IRs (horizontal-text-detection-0001
+    + text-recognition-0014); text detection+recognition is readily done in the PyTorch/ROCm ecosystem
+    (EasyOCR, TrOCR, PaddleOCR), so like hello-detection it is a workload twin, not an exact one.'
 - id: optimize-preprocessing
   title: Optimize Preprocessing
   category: API
@@ -1273,8 +1365,10 @@ notebooks:
   est_weight: small
   cpu_meaningful: true
   gpu_meaningful: false
-  twin_level: NOT_CLASSIFIED
-  notes: ''
+  twin_level: OPENVINO_SPECIFIC
+  notes: 'twin: The notebook exists to teach the OpenVINO Preprocessing API (PrePostProcessor layouts,
+    element types, resize/mean/scale fused into the model) and benchmarks it against manual preprocessing,
+    so it is OpenVINO tooling instruction with no meaningful ROCm twin.'
 - id: paddle-ocr-webcam
   title: Paddle Ocr Webcam
   category: OCR
@@ -1338,8 +1432,10 @@ notebooks:
   est_weight: large
   cpu_meaningful: true
   gpu_meaningful: false
-  twin_level: NOT_CLASSIFIED
-  notes: ''
+  twin_level: WORKLOAD_TWIN
+  notes: 'twin: Person detection and line-crossing counting on a video file (webcam optional) using YOLOv8n
+    exported from ultralytics to OpenVINO; the identical workload runs in PyTorch/ultralytics on ROCm
+    (same model family as hello-detection/yolov8n = WORKLOAD_TWIN).'
 - id: person-tracking
   title: Person Tracking
   category: Video
@@ -1351,8 +1447,10 @@ notebooks:
   est_weight: large
   cpu_meaningful: true
   gpu_meaningful: false
-  twin_level: NOT_CLASSIFIED
-  notes: ''
+  twin_level: WORKLOAD_TWIN
+  notes: 'twin: Person detection plus re-identification tracking (DeepSORT) on video using pre-converted
+    OMZ IRs; the detect-and-track workload maps to PyTorch/ROCm equivalents (YOLO detection + torchreid/BoxMOT),
+    so it is a workload twin rather than exact.'
 - id: phi-3-vision
   title: Phi 3 Vision
   category: LLM
@@ -1364,8 +1462,11 @@ notebooks:
   est_weight: small
   cpu_meaningful: true
   gpu_meaningful: false
-  twin_level: NOT_CLASSIFIED
-  notes: ''
+  twin_level: WORKLOAD_TWIN
+  notes: 'twin: Phi-3.5-vision-instruct is exported via optimum-cli to OpenVINO IR and served with the
+    openvino_genai VLMPipeline for image QA, an LLM/VLM chat task whose same HF model runs in PyTorch
+    on ROCm; the notebook never runs the PyTorch model directly, so it is a workload twin (like phi3_chatbot_demo
+    and mllama-3.2).'
 - id: phi-4-multimodal
   title: Phi 4 Multimodal
   category: VLM
@@ -1377,8 +1478,10 @@ notebooks:
   est_weight: small
   cpu_meaningful: true
   gpu_meaningful: false
-  twin_level: NOT_CLASSIFIED
-  notes: ''
+  twin_level: WORKLOAD_TWIN
+  notes: 'twin: Text/image/audio chat with microsoft/phi-4-multimodal-instruct converted via optimum-cli
+    and run through OVModelForVisualCausalLM; the VLM task is directly runnable in PyTorch/transformers
+    on ROCm, making this a workload twin.'
 - id: physical-ai-robotics
   title: Physical Ai Robotics
   category: LLM
@@ -1390,8 +1493,10 @@ notebooks:
   est_weight: small
   cpu_meaningful: true
   gpu_meaningful: false
-  twin_level: NOT_CLASSIFIED
-  notes: ''
+  twin_level: CONCEPT_MAPPING
+  notes: 'twin: The notebook contains no code at all - it is a pointer to the openvinotoolkit/physicalai
+    tutorial repo whose workflows require a physical robot arm, teleoperation data collection and an OpenVINO-supported
+    Intel platform, so a real ROCm twin is implausible and only the concept maps.'
 - id: pose-estimation
   title: Pose Estimation
   category: Vision
@@ -1403,8 +1508,10 @@ notebooks:
   est_weight: large
   cpu_meaningful: true
   gpu_meaningful: false
-  twin_level: NOT_CLASSIFIED
-  notes: ''
+  twin_level: WORKLOAD_TWIN
+  notes: 'twin: Human pose estimation on a video file using the OMZ human-pose-estimation-0001 IR with
+    a numpy OpenPose decoder; 2D human pose estimation is a standard task in the PyTorch/ROCm ecosystem
+    (MMPose, openpifpaf, YOLO-pose), so it is a workload twin.'
 - id: pytorch-post-training-quantization-nncf
   title: Pytorch Post Training Quantization Nncf
   category: Conversion
@@ -1415,9 +1522,10 @@ notebooks:
   workload_type: conversion
   est_weight: small
   cpu_meaningful: true
-  gpu_meaningful: false
-  twin_level: OPENVINO_SPECIFIC
-  notes: ''
+  gpu_meaningful: true
+  twin_level: WORKLOAD_TWIN
+  notes: 'twin correction: notebook runs real PyTorch task inference (baseline) before OpenVINO conversion
+    -> task notebook (WORKLOAD_TWIN)'
 - id: pytorch-to-openvino
   title: Pytorch To Openvino
   category: Conversion
@@ -1428,9 +1536,10 @@ notebooks:
   workload_type: conversion
   est_weight: small
   cpu_meaningful: true
-  gpu_meaningful: false
-  twin_level: OPENVINO_SPECIFIC
-  notes: ''
+  gpu_meaningful: true
+  twin_level: WORKLOAD_TWIN
+  notes: 'twin correction: notebook runs real PyTorch task inference (baseline) before OpenVINO conversion
+    -> task notebook (WORKLOAD_TWIN)'
 - id: qwen-image
   title: Qwen Image
   category: LLM
@@ -1598,8 +1707,11 @@ notebooks:
   est_weight: small
   cpu_meaningful: true
   gpu_meaningful: false
-  twin_level: NOT_CLASSIFIED
-  notes: ''
+  twin_level: WORKLOAD_TWIN
+  notes: 'twin: Background removal with briaai/RMBG-1.4: the notebook runs the HF PyTorch model once and
+    converts the same object via ov.convert_model, but following the established convention for identical
+    torch-inference-then-convert notebooks (clip-zero-shot = WORKLOAD_TWIN) it is a workload twin for
+    the segmentation task, which rembg/torch run on ROCm.'
 - id: segment-anything-2-image
   title: Segment Anything 2 Image
   category: Vision
@@ -1663,8 +1775,10 @@ notebooks:
   est_weight: small
   cpu_meaningful: true
   gpu_meaningful: false
-  twin_level: NOT_CLASSIFIED
-  notes: ''
+  twin_level: WORKLOAD_TWIN
+  notes: 'twin: Document image to structured DoclingDocument conversion with ds4sd/SmolDocling-256M-preview
+    exported via optimum-cli and run through OVModelForVisualCausalLM; the VLM document-parsing task runs
+    in PyTorch/transformers on ROCm, so it is a workload twin.'
 - id: smolvlm2
   title: Smolvlm2
   category: VLM
@@ -1689,8 +1803,11 @@ notebooks:
   est_weight: small
   cpu_meaningful: true
   gpu_meaningful: false
-  twin_level: NOT_CLASSIFIED
-  notes: ''
+  twin_level: WORKLOAD_TWIN
+  notes: 'twin: LLM text/code generation on pre-converted Phi-3/Phi-4 OV IRs benchmarking autoregressive
+    vs openvino_genai speculative decoding; the generation workload (including speculative decoding via
+    HF assisted generation or vLLM) maps to PyTorch on ROCm, matching the qwen3.8-mtp = WORKLOAD_TWIN
+    precedent for the same baseline-vs-speculative notebook shape.'
 - id: speech-recognition-quantization-wav2vec2
   title: Speech Recognition Quantization Wav2Vec2
   category: Optimization
@@ -1767,8 +1884,10 @@ notebooks:
   est_weight: large
   cpu_meaningful: true
   gpu_meaningful: false
-  twin_level: NOT_CLASSIFIED
-  notes: ''
+  twin_level: WORKLOAD_TWIN
+  notes: 'twin: Image-to-video generation with diffusers Stable Video Diffusion converted to an OV pipeline
+    with optional NNCF INT8 quantization; the same SVD model runs in diffusers/PyTorch on ROCm, so the
+    video-generation task is a workload twin.'
 - id: surya-line-level-text-detection
   title: Surya Line Level Text Detection
   category: Vision
@@ -1819,8 +1938,11 @@ notebooks:
   est_weight: small
   cpu_meaningful: true
   gpu_meaningful: false
-  twin_level: NOT_CLASSIFIED
-  notes: ''
+  twin_level: WORKLOAD_TWIN
+  notes: 'twin: Text-to-image generation with dreamlike-anime-1.0 exported via optimum-cli and served
+    through openvino_genai.Text2ImagePipeline including LoRA adapter loading; the same SD-family model
+    and LoRA workflow run in diffusers on ROCm (stable-diffusion-text-to-image and multilora = WORKLOAD_TWIN
+    convention).'
 - id: text-to-speech-genai
   title: Text To Speech Genai
   category: TTS
@@ -1858,8 +1980,11 @@ notebooks:
   est_weight: small
   cpu_meaningful: true
   gpu_meaningful: false
-  twin_level: NOT_CLASSIFIED
-  notes: ''
+  twin_level: WORKLOAD_TWIN
+  notes: 'twin: Converts a TFLite EfficientNet-Lite0 to OpenVINO IR and then demos ImageNet classification
+    inference and benchmark_app; per the repo convention for framework-conversion-plus-task notebooks
+    (tensorflow-classification-to-openvino = WORKLOAD_TWIN) the classification workload maps to PyTorch/timm
+    on ROCm, and it never runs the source model so it is not an exact twin.'
 - id: convnext-classification
   title: Convnext Classification
   category: Vision
@@ -1910,8 +2035,10 @@ notebooks:
   est_weight: small
   cpu_meaningful: true
   gpu_meaningful: false
-  twin_level: NOT_CLASSIFIED
-  notes: ''
+  twin_level: WORKLOAD_TWIN
+  notes: 'twin: Salient-object background removal by loading U2NET PyTorch weights, converting via ov.convert_model
+    and running OpenVINO inference with background replacement; the U2NET model and task run directly
+    in PyTorch on ROCm, so it is a workload twin.'
 - id: vision-monodepth
   title: Vision Monodepth
   category: Vision
@@ -1923,8 +2050,10 @@ notebooks:
   est_weight: large
   cpu_meaningful: true
   gpu_meaningful: false
-  twin_level: NOT_CLASSIFIED
-  notes: ''
+  twin_level: WORKLOAD_TWIN
+  notes: 'twin: Monocular depth estimation on an image and a video using the pre-converted MiDaS_small
+    IR (with OV model caching as a side feature); MiDaS and equivalent depth models (Depth Anything) run
+    in PyTorch on ROCm, so the depth-estimation task is a workload twin.'
 - id: vlm-chatbot-generate-api
   title: Vlm Chatbot Generate Api
   category: VLM
@@ -1962,8 +2091,10 @@ notebooks:
   est_weight: medium
   cpu_meaningful: true
   gpu_meaningful: false
-  twin_level: NOT_CLASSIFIED
-  notes: ''
+  twin_level: WORKLOAD_TWIN
+  notes: 'twin: Text-to-video generation with Wan-AI/Wan2.1-T2V-1.3B-Diffusers converted from the diffusers
+    pipeline to OpenVINO with NNCF INT4/INT8 options; the same diffusers model runs on ROCm, so the video-generation
+    task is a workload twin.'
 - id: wan2.2-text-image-to-video
   title: Wan2.2 Text Image To Video
   category: Video
@@ -1975,8 +2106,10 @@ notebooks:
   est_weight: large
   cpu_meaningful: true
   gpu_meaningful: false
-  twin_level: NOT_CLASSIFIED
-  notes: ''
+  twin_level: WORKLOAD_TWIN
+  notes: 'twin: Text+image-to-video generation with Wan-AI/Wan2.2-TI2V-5B-Diffusers converted to an OpenVINO
+    pipeline with NNCF compression; the identical diffusers model runs in PyTorch on ROCm, making it a
+    workload twin.'
 - id: wav2lip
   title: Wav2Lip
   category: Image Generation
@@ -1988,8 +2121,10 @@ notebooks:
   est_weight: large
   cpu_meaningful: true
   gpu_meaningful: false
-  twin_level: NOT_CLASSIFIED
-  notes: ''
+  twin_level: WORKLOAD_TWIN
+  notes: 'twin: Audio-driven lip-sync (talking face) video generation using the Rudrabha/Wav2Lip PyTorch
+    repo''s models converted to OpenVINO with a face-detection model; the original Wav2Lip pipeline is
+    PyTorch and runs on ROCm, so the task is a workload twin.'
 - id: whisper-asr-genai
   title: Whisper Asr Genai
   category: ASR
@@ -2013,9 +2148,10 @@ notebooks:
   workload_type: vision
   est_weight: large
   cpu_meaningful: true
-  gpu_meaningful: false
-  twin_level: OPENVINO_SPECIFIC
-  notes: ''
+  gpu_meaningful: true
+  twin_level: WORKLOAD_TWIN
+  notes: 'twin correction: notebook runs real Ultralytics PyTorch inference before OpenVINO export ->
+    task notebook (WORKLOAD_TWIN)'
 - id: yolov11-keypoint-detection
   title: Yolov11 Keypoint Detection
   category: Vision
@@ -2026,9 +2162,10 @@ notebooks:
   workload_type: vision
   est_weight: large
   cpu_meaningful: true
-  gpu_meaningful: false
-  twin_level: OPENVINO_SPECIFIC
-  notes: ''
+  gpu_meaningful: true
+  twin_level: WORKLOAD_TWIN
+  notes: 'twin correction: notebook runs real Ultralytics PyTorch inference before OpenVINO export ->
+    task notebook (WORKLOAD_TWIN)'
 - id: yolov11-object-detection
   title: Yolov11 Object Detection
   category: Vision
@@ -2039,9 +2176,10 @@ notebooks:
   workload_type: vision
   est_weight: large
   cpu_meaningful: true
-  gpu_meaningful: false
-  twin_level: OPENVINO_SPECIFIC
-  notes: ''
+  gpu_meaningful: true
+  twin_level: WORKLOAD_TWIN
+  notes: 'twin correction: notebook runs real Ultralytics PyTorch inference before OpenVINO export ->
+    task notebook (WORKLOAD_TWIN)'
 - id: yolov11-quantization-with-accuracy-control
   title: Yolov11 Quantization With Accuracy Control
   category: Optimization
@@ -2065,9 +2203,10 @@ notebooks:
   workload_type: vision
   est_weight: large
   cpu_meaningful: true
-  gpu_meaningful: false
-  twin_level: OPENVINO_SPECIFIC
-  notes: ''
+  gpu_meaningful: true
+  twin_level: WORKLOAD_TWIN
+  notes: 'twin correction: notebook runs real Ultralytics PyTorch inference before OpenVINO export ->
+    task notebook (WORKLOAD_TWIN)'
 - id: yolov26-instance-segmentation
   title: Yolov26 Instance Segmentation
   category: Vision
@@ -2078,9 +2217,10 @@ notebooks:
   workload_type: vision
   est_weight: large
   cpu_meaningful: true
-  gpu_meaningful: false
-  twin_level: OPENVINO_SPECIFIC
-  notes: ''
+  gpu_meaningful: true
+  twin_level: WORKLOAD_TWIN
+  notes: 'twin correction: notebook runs real Ultralytics PyTorch inference before OpenVINO export ->
+    task notebook (WORKLOAD_TWIN)'
 - id: yolov26-keypoint-detection
   title: Yolov26 Keypoint Detection
   category: Vision
@@ -2091,9 +2231,10 @@ notebooks:
   workload_type: vision
   est_weight: large
   cpu_meaningful: true
-  gpu_meaningful: false
-  twin_level: OPENVINO_SPECIFIC
-  notes: ''
+  gpu_meaningful: true
+  twin_level: WORKLOAD_TWIN
+  notes: 'twin correction: notebook runs real Ultralytics PyTorch inference before OpenVINO export ->
+    task notebook (WORKLOAD_TWIN)'
 - id: yolov26-obb
   title: Yolov26 Obb
   category: Vision
@@ -2104,9 +2245,10 @@ notebooks:
   workload_type: vision
   est_weight: small
   cpu_meaningful: true
-  gpu_meaningful: false
-  twin_level: OPENVINO_SPECIFIC
-  notes: ''
+  gpu_meaningful: true
+  twin_level: WORKLOAD_TWIN
+  notes: 'twin correction: notebook runs real Ultralytics PyTorch inference before OpenVINO export ->
+    task notebook (WORKLOAD_TWIN)'
 - id: yolov26-object-detection
   title: Yolov26 Object Detection
   category: Vision
@@ -2117,9 +2259,10 @@ notebooks:
   workload_type: vision
   est_weight: large
   cpu_meaningful: true
-  gpu_meaningful: false
-  twin_level: OPENVINO_SPECIFIC
-  notes: ''
+  gpu_meaningful: true
+  twin_level: WORKLOAD_TWIN
+  notes: 'twin correction: notebook runs real Ultralytics PyTorch inference before OpenVINO export ->
+    task notebook (WORKLOAD_TWIN)'
 - id: z-image-turbo
   title: Z Image Turbo
   category: Other
@@ -2131,8 +2274,10 @@ notebooks:
   est_weight: small
   cpu_meaningful: true
   gpu_meaningful: false
-  twin_level: NOT_CLASSIFIED
-  notes: ''
+  twin_level: WORKLOAD_TWIN
+  notes: 'twin: Text-to-image generation with Tongyi-MAI/Z-Image-Turbo exported via optimum-cli and run
+    through OVZImagePipeline; the same diffusers-based model runs in PyTorch on ROCm, so it is a workload
+    twin for the image-generation task.'
 - id: zeroscope-text2video
   title: Zeroscope Text2Video
   category: Video
@@ -2144,8 +2289,10 @@ notebooks:
   est_weight: large
   cpu_meaningful: true
   gpu_meaningful: false
-  twin_level: NOT_CLASSIFIED
-  notes: ''
+  twin_level: WORKLOAD_TWIN
+  notes: 'twin: Text-to-video generation with the cerspense/zeroscope_v2_576w diffusers pipeline whose
+    UNet/VAE/text-encoder are converted via ov.convert_model and reassembled in an OV pipeline; the same
+    diffusers model runs in PyTorch on ROCm, so the task is a workload twin.'
 - id: 001-whisper-evaluation
   title: 001 Whisper Evaluation
   category: ASR
@@ -2170,8 +2317,10 @@ notebooks:
   est_weight: large
   cpu_meaningful: true
   gpu_meaningful: false
-  twin_level: NOT_CLASSIFIED
-  notes: ''
+  twin_level: WORKLOAD_TWIN
+  notes: 'twin: DeepSeek-R1-Distill-Llama-8B chat with openvino_genai speculative decoding using the OpenVINO
+    FastDraft draft model, benchmarking AR vs SD speedup; the LLM generation workload (with speculative
+    decoding available in vLLM/HF on ROCm) maps to PyTorch, matching the qwen3.8-mtp = WORKLOAD_TWIN precedent.'
 - id: phi3_chatbot_demo
   title: Phi3 Chatbot Demo
   category: LLM

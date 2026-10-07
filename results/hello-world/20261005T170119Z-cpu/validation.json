@@ -1,0 +1,17 @@
+{
+  "schema_version": 2,
+  "passed": true,
+  "checks": {
+    "output_contains": {
+      "flat-coated retriever": true
+    },
+    "output_finite_numbers": true,
+    "min_output_chars": true,
+    "no_cell_error": true,
+    "skipped_cells": 0
+  },
+  "notes": [],
+  "level": "WORKLOAD_CORRECTNESS",
+  "contract_present": true,
+  "aggregate_ref": "aggregate.json"
+}

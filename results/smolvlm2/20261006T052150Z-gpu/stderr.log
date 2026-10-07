@@ -1,0 +1,9 @@
+Traceback (most recent call last):
+  File "/workspace/workloads/smolvlm2/rocm/run.py", line 86, in <module>
+    raise SystemExit(main())
+                     ^^^^^^
+  File "/workspace/workloads/smolvlm2/rocm/run.py", line 34, in main
+    fetch(IMG_URL, img_path)
+  File "/workspace/ov_amd/twin_lib.py", line 156, in fetch
+    raise RuntimeError(f"download failed (last: {last_err})")
+RuntimeError: download failed (last: https://storage.openvinotoolkit.org/repositories/openvino_notebooks/data/data/image/coco.jpg: curl 22)

@@ -19,7 +19,31 @@ import time
 from twin_lib import PeakMemory, emit, fetch, setup
 
 MODEL = "yolov8n.pt"
-IMG_URL = "https://storage.openvinotoolkit.org/repositories/openvino_notebooks/data/data/image/coco.jpg"
+# Weight provenance chain: the official ultralytics release CDN first; on
+# runners whose egress blocks github release objects, the HF community mirror
+# (kadirnar/yolov8n-v8.0) serves the same architecture weights. The URL that
+# actually served the file and its sha256 are recorded in metrics — weights
+# provenance is part of the evidence, never silently swapped.
+WEIGHT_URLS = [
+    "https://github.com/ultralytics/assets/releases/download/v8.4.0/yolov8n.pt",
+    "https://huggingface.co/kadirnar/yolov8n-v8.0/resolve/main/yolov8n.pt",
+]
+IMG_URL = "https://user-images.githubusercontent.com/36741649/128489933-bf215a3f-06fa-4918-8833-cb0bf9fb1cc7.jpg"
+IMG_FALLBACK = "https://storage.openvinotoolkit.org/repositories/openvino_notebooks/data/data/image/intel_rnb.jpg"
+
+
+def _fetch_first(urls: list[str], dest: _Path) -> str:
+    import subprocess
+
+    last = ""
+    for u in urls:
+        r = subprocess.run(
+            ["curl", "-sSfL", "--max-time", "300", u, "-o", str(dest)], capture_output=True
+        )
+        if r.returncode == 0 and dest.exists() and dest.stat().st_size > 0:
+            return u
+        last = f"{u}: curl {r.returncode}"
+    raise RuntimeError(f"all weight sources failed (last: {last})")
 
 
 def main() -> int:
@@ -27,14 +51,34 @@ def main() -> int:
     args = ap.parse_args()
     evidence = _Path(args.evidence_dir)
     evidence.mkdir(parents=True, exist_ok=True)
-    img = evidence / "coco.jpg"
-    fetch(IMG_URL, img)
+    img = evidence / "intel_rnb.jpg"
+    fetch(IMG_URL, img, fallbacks=[IMG_FALLBACK])
+    weights = evidence / MODEL
+    weight_source = _fetch_first(WEIGHT_URLS, weights)
+
+    import hashlib
 
     import torch
     from ultralytics import YOLO
 
+    # vendor torchvision on this stack lacks the HIP build of the nms kernel
+    # (CPU build only): delegate NMS post-processing to CPU tensors. Model
+    # inference stays on the GPU; the post-processing location is recorded in
+    # metrics so the benchmark reading is honest.
+    import torchvision.ops as _tvo
+
+    _orig_nms = _tvo.nms
+
+    def _nms_via_cpu(boxes, scores, iou_threshold):
+        if boxes.is_cuda:
+            return _orig_nms(boxes.detach().to("cpu"), scores.detach().to("cpu"), iou_threshold).to(boxes.device)
+        return _orig_nms(boxes, scores, iou_threshold)
+
+    _tvo.nms = _nms_via_cpu
+    nms_on_cpu = not getattr(torch.cuda.get_device_properties(0), "name", "").startswith("NONE")
+
     t0 = time.time()
-    model = YOLO(MODEL)  # auto-downloads from ultralytics github release (fast CDN)
+    model = YOLO(str(weights))  # local file: no auto-download path involved
     model.to("cuda:0")
     load_s = time.time() - t0
 
@@ -55,18 +99,25 @@ def main() -> int:
     n_boxes = int(len(det.boxes.cls))
     classes = sorted({int(c) for c in det.boxes.cls})
     confs = [float(c) for c in det.boxes.conf]
+    from twin_lib import gpu_ready
+
+    gpu = gpu_ready()
     metrics = {
         "model": MODEL,
         "task": "object detection (WORKLOAD_TWIN of hello-detection)",
         "precision": "fp32 default",
+        "weights_source": weight_source,
+        "weights_sha256": hashlib.sha256(weights.read_bytes()).hexdigest(),
+        "input_image": str(img.name),
+        "input_sha256": hashlib.sha256(img.read_bytes()).hexdigest()[:16],
         "load_s": round(load_s, 2),
         "runs": runs,
-        "median_latency_s": sorted(r["latency_s"] for r in runs)[2],
-        "fps": round(1 / sorted(r["latency_s"] for r in runs)[2], 1),
+        "median_latency_s": sorted(r["latency_s"] for r in runs)[len(runs) // 2],
         "detections": n_boxes,
         "class_ids": classes,
         "conf_range": [round(min(confs), 3), round(max(confs), 3)] if confs else [],
-        "device": "gfx1151 via torch.cuda",
+        "device": f"{gpu['gcn_arch']} via torch.cuda" if gpu["gcn_arch"] else gpu["device"],
+        "nms_postprocessing": "cpu (vendor torchvision lacks HIP nms kernel)" if nms_on_cpu else "gpu",
         "peak_vram_gb": round(pm.peak_vram_gb, 2),
         "peak_rss_gb": round(pm.peak_rss_gb, 2),
     }

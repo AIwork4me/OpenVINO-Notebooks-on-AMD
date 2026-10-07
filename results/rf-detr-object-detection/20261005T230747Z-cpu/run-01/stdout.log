@@ -1,0 +1,20 @@
+[cell 0 START +    0.4s] # RF-DETR Object Detection with OpenVINO |  | RF-DETR is a real-time trans
+[cell 1 START +    0.4s] ## Prerequisites | [back to top](#Table-of-contents) |  | Install the offici
+[cell 2 START +    0.4s] from pathlib import Path |  | import requests |  | for helper_name in ("notebo
+[cell 2 DONE  +   31.0s]
+[cell 3 START +   31.0s] from importlib.metadata import version |  | from notebook_utils import dev
+[cell 3 DONE  +   32.8s]
+[cell 4 START +   32.8s] ## Select a model | [back to top](#Table-of-contents) |  | The official RF-D
+[cell 5 START +   32.8s] import ipywidgets as widgets | from IPython.display import display |  | MODE
+[cell 5 DONE  +   33.1s]
+[cell 6 START +   33.1s] ## Convert the model | [back to top](#Table-of-contents) |  | `rfdetr` loads
+[cell 7 START +   33.1s] import gc |  | import openvino as ov | from rfdetr import RFDETRBase, RFDETR
+[cell 7 DONE  +   65.6s]
+[cell 8 START +   65.6s] ## Run object detection | [back to top](#Table-of-contents) |  | Preprocessi
+[cell 9 START +   65.6s] confidence_threshold = widgets.FloatSlider( |     value=0.4, |     min=0.0
+[cell 9 DONE  +   65.6s]
+[cell 10 START +   65.6s] from gradio_helper import run_object_detection | from PIL import Image |  | 
+[cell 10 DONE  +   66.3s]
+[cell 11 START +   66.3s] ## Interactive demo | [back to top](#Table-of-contents) |  | Upload an image
+[cell 12 START +   66.3s] from gradio_helper import make_demo |  | demo = make_demo(ov_model, IMAGE_
+NBEXEC_RESULT={"ok": true, "n_cells": 7, "n_skipped": 1, "n_substituted": 0, "stopped_after": null, "error_cell": null, "error_type": null, "error_head": null, "duration_s": 69.09, "patch_notes": ["skipped cell 12: matched skip pattern"]}

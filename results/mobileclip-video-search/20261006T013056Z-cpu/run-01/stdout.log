@@ -1,0 +1,59 @@
+[cell 0 START +    0.6s] # Visual Content Search using MobileCLIP and OpenVINO |  | Semantic visual
+[cell 1 START +    0.6s] ## Prerequisites | [back to top ⬆️](#Table-of-contents:)
+[cell 2 START +    0.6s] from pathlib import Path | import requests |  | if not Path("notebook_utils.
+[cell 2 DONE  +    0.7s]
+[cell 3 START +    0.7s] from cmd_helper import clone_repo |  | clone_repo("https://github.com/appl
+[cell 3 DONE  +    3.2s]
+[cell 4 START +    3.2s] %pip install -q "./ml-mobileclip" --no-deps |  | %pip install -q "clip-ben
+[cell 4 DONE  +   71.6s]
+[cell 5 START +   71.6s] %pip install -q  "openvino>=2024.5.0" | %pip install -q "git+https://git
+[cell 5 DONE  +  214.8s]
+[cell 6 START +  214.8s] ## Select model | [back to top ⬆️](#Table-of-contents:) |  | For starting wo
+[cell 7 START +  214.8s] from pathlib import Path |  | import ipywidgets as widgets |  | model_dir = Pa
+[cell 7 DONE  +  214.9s]
+[cell 8 START +  214.9s] available_models = supported_models[model_type.value] |  | model_checkpoin
+[cell 8 DONE  +  214.9s]
+[cell 9 START +  214.9s] from notebook_utils import download_file, device_widget |  | model_config 
+[cell 9 DONE  +  214.9s]
+[cell 10 START +  214.9s] ## Run model inference | [back to top ⬆️](#Table-of-contents:) |  | Now, let
+[cell 11 START +  214.9s] ### Prepare image gallery | [back to top ⬆️](#Table-of-contents:)
+[cell 12 START +  214.9s] import matplotlib.pyplot as plt | import numpy as np | from PIL import Ima
+[cell 12 DONE  +  222.9s]
+[cell 13 START +  222.9s] ### Prepare model | [back to top ⬆️](#Table-of-contents:) |  | The code bell
+[cell 14 START +  222.9s] import torch |  |  | class Blip2Model(torch.nn.Module): |     def __init__(sel
+[cell 14 DONE  +  223.4s]
+[cell 15 START +  223.4s] import torch | import time | import mobileclip | import open_clip |  | # instant
+[cell 15 DONE  +  240.3s]
+[cell 16 START +  240.3s] ### Perform search | [back to top ⬆️](#Table-of-contents:)
+[cell 17 START +  240.3s] image_tensor = torch.stack([preprocess(image) for image in images]) | te
+[cell 17 DONE  +  240.6s]
+[cell 18 START +  240.6s] ## Convert Model to OpenVINO Intermediate Representation format | [back 
+[cell 19 START +  240.6s] import types | import torch.nn.functional as F |  |  | def se_block_forward(se
+[cell 19 DONE  +  240.6s]
+[cell 20 START +  240.6s] import openvino as ov | import gc |  | ov_models_dir = Path("ov_models") | ov_
+[cell 20 DONE  +  244.5s]
+[cell 21 START +  244.5s] ## Run OpenVINO model inference | [back to top ⬆️](#Table-of-contents:) | 
+[cell 22 START +  244.5s] core = ov.Core() |  | device = device_widget(exclude=["NPU"]) |  | device
+[cell 22 DONE  +  244.7s]
+[cell 23 START +  244.7s] ov_compiled_image_encoder = core.compile_model(image_encoder_path, dev
+[cell 23 DONE  +  244.8s]
+[cell 24 START +  244.8s] ### Select device for text encoder | [back to top ⬆️](#Table-of-contents
+[cell 25 START +  244.8s] device
+[cell 25 DONE  +  244.9s]
+[cell 26 START +  244.9s] ov_compiled_text_encoder = core.compile_model(text_encoder_path, devic
+[cell 26 DONE  +  244.9s]
+[cell 27 START +  244.9s] ### Perform search | [back to top ⬆️](#Table-of-contents:)
+[cell 28 START +  244.9s] image_encoding_start = time.perf_counter() | image_features = torch.from
+[cell 28 DONE  +  245.2s]
+[cell 29 START +  245.2s] ### (optional) Translation model  |  | Since all text embedding models in 
+[cell 30 START +  245.2s] from pathlib import Path |  | cn2en_trans_model_path = "ov_models/cn2en_tr
+[cell 30 DONE  +  297.7s]
+[cell 31 START +  297.7s] from transformers import AutoTokenizer | from optimum.intel import OVMod
+[cell 31 DONE  +  298.7s]
+[cell 32 START +  298.7s] ## Interactive Demo | [back to top ⬆️](#Table-of-contents:) |  | In this par
+[cell 33 START +  298.7s] import altair as alt | import cv2 | import pandas as pd | import torch | from 
+[cell 33 DONE  +  303.4s]
+[cell 34 START +  303.4s] if not Path("gradio_helper.py").exists(): |     r = requests.get(url="ht
+[cell 35 START +  303.4s] # Cleanup | # %pip uninstall -y -q pycocoevalcap pycocotools clip_benchm
+[cell 35 DONE  +  303.4s]
+NBEXEC_RESULT={"ok": true, "n_cells": 23, "n_skipped": 1, "n_substituted": 0, "stopped_after": null, "error_cell": null, "error_type": null, "error_head": null, "duration_s": 306.24, "patch_notes": ["skipped cell 34: matched skip pattern"]}
