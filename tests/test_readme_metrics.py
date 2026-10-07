@@ -6,8 +6,6 @@ test fails rather than shipping stale marketing numbers.
 
 from __future__ import annotations
 
-import re
-
 from ov_amd.environment import REPO_ROOT
 from ov_amd.reporting import README, README_BEGIN, README_END, build_compatibility
 
