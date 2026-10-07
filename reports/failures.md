@@ -8,7 +8,7 @@ Total non-green attempts: 85
 
 - **whisper-asr-genai** — ok_runs=0/1: ConnectTimeout: HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /spaces/distil-whisper/whisper-vs-distil-whisper/resolve/main/assets/example_1.wav (Caused by Co (evidence: results/whisper-asr-genai/20261006T190640Z-cpu)
 - **llm-agent-mcp** — ok_runs=0/3: ConnectTimeout: HTTPSConnectionPool(host='cdn-avatars.huggingface.co', port=443): Max retries exceeded with url: /v1/production/uploads/1671615670447-6346651be2dcb5422bcd13dd.png (Caused by Connect (evidence: results/llm-agent-mcp/20261006T113948Z-cpu)
-- **vision-background-removal** — adjudicated (EXTERNAL_HOST_UNREACHABLE): model host drive.google.com unreachable from the reference network (run-01 ConnectTimeout); run-02 EOFError is the truncated gdown download of the same unreachable artifact. (evidence: results/vision-background-removal/20261006T143506Z-cpu)
+- **vision-background-removal** — execution category corrected by comprehensive audit: UNKNOWN -> NETWORK (host unreachable; original UNKNOWN hid the network cause) (evidence: results/vision-background-removal/20261006T143506Z-cpu)
 - **instant-id** — ok_runs=0/1: ConnectTimeout: HTTPSConnectionPool(host='drive.google.com', port=443): Max retries exceeded with url: /uc?id=18wEUfMNohBJ4K3Ly5wpTejPfDzp-8fI8 (Caused by ConnectTimeoutError(<HTTPSConnection(host= (evidence: results/instant-id/20261006T170232Z-cpu)
 - **qwen3_agent** — ok_runs=0/1: Connection error. (evidence: results/qwen3_agent/20261006T185231Z-cpu)
 
@@ -29,7 +29,7 @@ Total non-green attempts: 85
 - **glm-ocr** — ok_runs=0/3: CalledProcessError: Command '['optimum-cli', 'export', 'openvino', '--model', 'zai-org/GLM-OCR', 'GLM-OCR/INT4', '--task', 'image-text-to-text', '--weight-format', 'int4', '--group-size', '128', '- (evidence: results/glm-ocr/20261006T110628Z-cpu)
 - **latent-consistency-models-image-generation** — ok_runs=0/3: CalledProcessError: Command '['optimum-cli', 'export', 'openvino', '--model', 'SimianLuo/LCM_Dreamshaper_v7', 'LCM_Dreamshaper_v7_ov', '--weight-format', 'fp16']' returned non-zero exit status 1. (evidence: results/latent-consistency-models-image-generation/20261006T113723Z-cpu)
 - **llm-rag-langchain-eval** — ok_runs=0/3: ModuleNotFoundError: Could not import module 'OVModelForCausalLM'. Are this object's requirements defined correctly? (evidence: results/llm-rag-langchain-eval/20261006T115949Z-cpu)
-- **phi3_chatbot_demo** — ok_runs=0/3: cannot import name 'runtime_version' from 'google.protobuf' (.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages/google/protobuf/__init__.py) (evidence: results/phi3_chatbot_demo/20261006T131146Z-cpu)
+- **phi3_chatbot_demo** — execution category corrected by comprehensive audit: LICENSE_RESTRICTION -> DEPENDENCY (protobuf API drift, not a license restriction) (evidence: results/phi3_chatbot_demo/20261006T131146Z-cpu)
 - **qwen-image** — ok_runs=0/3: CalledProcessError: Command '['optimum-cli', 'export', 'openvino', '--model', 'Qwen/Qwen-Image-2512', 'Qwen-Image-2512/INT8', '--weight-format', 'int8']' returned non-zero exit status 1. (evidence: results/qwen-image/20261006T131310Z-cpu)
 - **text-to-speech-genai** — ok_runs=0/3: CalledProcessError: Command '['optimum-cli', 'export', 'openvino', '--model', 'microsoft/speecht5_tts', 'speecht5_tts', '--model-kwargs', '{"vocoder":"microsoft/speecht5_hifigan"}']' returned non-z (evidence: results/text-to-speech-genai/20261006T142245Z-cpu)
 - **qwen3-asr** — ok_runs=0/3: ModuleNotFoundError: Could not import module 'OVModelForSpeechSeq2Seq'. Are this object's requirements defined correctly? (evidence: results/qwen3-asr/20261006T161620Z-cpu)
@@ -60,7 +60,7 @@ Total non-green attempts: 85
 
 - **funasr-nano** — ok_runs=0/3: cannot import name 'Qwen3VLForConditionalGeneration' from 'transformers' (.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages/transformers/__init__.py) (evidence: results/funasr-nano/20261006T110542Z-cpu)
 - **omniparser** — ok_runs=0/3: Exception: Connection timed out. If you access the internet through a proxy server, please make sure the proxy is set in the shell from where you launched Jupyter. (evidence: results/omniparser/20261006T122239Z-cpu)
-- **llm-rag-llamaindex** — ok_runs=0/1: ********************************************************************** (evidence: results/llm-rag-llamaindex/20261006T224033Z-cpu)
+- **llm-rag-llamaindex** — execution category corrected by comprehensive audit: PACKAGE_CONFLICT -> DEPENDENCY (missing NLTK data resource, not a package conflict) (evidence: results/llm-rag-llamaindex/20261006T224033Z-cpu)
 
 ## 📦 cpu · BLOCKED_DEPENDENCY · HARNESS_NOTEBOOK_RELATIVE_ASSET — harness notebook relative asset — 2 workload(s)
 
@@ -69,8 +69,8 @@ Total non-green attempts: 85
 
 ## 📦 cpu · BLOCKED_DEPENDENCY · UPSTREAM_NOTEBOOK_RERUN_SCOPING — upstream notebook rerun scoping — 2 workload(s)
 
-- **3d-segmentation-point-clouds** — adjudicated (UPSTREAM_NOTEBOOK_RERUN_SCOPING): point_data is assigned only inside `if not point_data_path.exists()`; with data/chair.pts cached from an earlier partial run the variable is undefined (NameError cell 11). U (evidence: results/3d-segmentation-point-clouds/20261006T191359Z-cpu)
-- **action-recognition-webcam** — adjudicated (UPSTREAM_NOTEBOOK_RERUN_SCOPING): vocab_file_path is assigned only inside a conditional in the upstream notebook; with the data file already cached (resumable workdir) the variable is undefined. Upstream not (evidence: results/action-recognition-webcam/20261006T220552Z-cpu)
+- **3d-segmentation-point-clouds** — execution category corrected by comprehensive audit: OPENVINO_ERROR -> DEPENDENCY (NameError from upstream rerun-scoping bug, not an OpenVINO runtime error) (evidence: results/3d-segmentation-point-clouds/20261006T191359Z-cpu)
+- **action-recognition-webcam** — execution category corrected by comprehensive audit: UNKNOWN -> DEPENDENCY (NameError from upstream rerun-scoping bug, not an OpenVINO runtime error) (evidence: results/action-recognition-webcam/20261006T220552Z-cpu)
 
 ## 📦 cpu · BLOCKED_DEPENDENCY · INTERACTIVE_UI_TEARDOWN_AFTER_SKIP — interactive ui teardown after skip — 1 workload(s)
 
@@ -78,11 +78,11 @@ Total non-green attempts: 85
 
 ## 📦 cpu · BLOCKED_DEPENDENCY · DATASETS_API_DRIFT — datasets api drift — 1 workload(s)
 
-- **phi3_rag_on_client** — adjudicated (DATASETS_API_DRIFT): AttributeError 'Column' object has no attribute 'dtype' — datasets library API drift versus the notebook's pinned stack; misclassified as MODEL_ACCESS by the log rules. (evidence: results/phi3_rag_on_client/20261006T131159Z-cpu)
+- **phi3_rag_on_client** — execution category corrected by comprehensive audit: MODEL_ACCESS -> DEPENDENCY (datasets API drift, not model access) (evidence: results/phi3_rag_on_client/20261006T131159Z-cpu)
 
 ## 📦 cpu · BLOCKED_DEPENDENCY · TRANSFORMERS_API_DRIFT — transformers api drift — 1 workload(s)
 
-- **minicpm-o-4.5** — adjudicated (TRANSFORMERS_API_DRIFT): MiniCPMOTokenizerFast has no attribute tokenizer — transformers version drift versus the notebook's pinned stack; not a runtime compatibility issue. (evidence: results/minicpm-o-4.5/20261006T171910Z-cpu)
+- **minicpm-o-4.5** — execution category corrected by comprehensive audit: PACKAGE_CONFLICT -> DEPENDENCY (transformers API drift, not a package conflict) (evidence: results/minicpm-o-4.5/20261006T171910Z-cpu)
 
 ## ⏱️ cpu · BLOCKED_TIMEOUT · TIMEOUT_INFERENCE — timeout inference — 10 workload(s)
 
@@ -133,7 +133,7 @@ Total non-green attempts: 85
 
 ## 💾 cpu · BLOCKED_RESOURCE · MODEL_ARTIFACT_MISSING_DIR — model artifact missing dir — 1 workload(s)
 
-- **fastdraft_deepseek** — adjudicated (MODEL_ARTIFACT_MISSING_DIR): Could not find a model in the directory 'DeepSeek-R1-Distill-Llama-8B-int4-ov' — the converted model directory was absent at load time (incomplete export), not a plugin failure. (evidence: results/fastdraft_deepseek/20261006T164655Z-cpu)
+- **fastdraft_deepseek** — execution category corrected by comprehensive audit: OPENVINO_ERROR -> MODEL_ACCESS (model artifact absent at load time, not a runtime error) (evidence: results/fastdraft_deepseek/20261006T164655Z-cpu)
 
 ## 🧩 cpu · FAILED_COMPATIBILITY · OPENVINO_RUNTIME — openvino runtime — 2 workload(s)
 
@@ -142,7 +142,7 @@ Total non-green attempts: 85
 
 ## 🧩 cpu · FAILED_COMPATIBILITY · OPENVINO_RUNTIME_CL_MAP — openvino runtime cl map — 1 workload(s)
 
-- **qwen3** — adjudicated (OPENVINO_RUNTIME_CL_MAP): clEnqueueMapBuffer CL_INVALID_VALUE (-30) raised by the OpenVINO runtime; genuine runtime failure — RCA candidate (see reports/upstream/). (evidence: results/qwen3/20261006T183929Z-cpu)
+- **qwen3** — execution category corrected by comprehensive audit: UNKNOWN -> OPENVINO_ERROR (OpenVINO runtime CL error, not UNKNOWN) (evidence: results/qwen3/20261006T183929Z-cpu)
 
 ## 🧩 cpu · FAILED_COMPATIBILITY · KERNEL_DEATH_UNDIAGNOSED — kernel death undiagnosed — 1 workload(s)
 

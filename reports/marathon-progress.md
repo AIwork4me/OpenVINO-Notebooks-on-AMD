@@ -1,6 +1,6 @@
 # Marathon Progress (generated)
 
-Updated: 2026-10-07T09:17:12+00:00
+Updated: 2026-10-07T09:24:29+00:00
 
 - Catalog discovered: 171
 - CPU attempted: 171 (100.0% of catalog; attempt records only, NOT_TESTED excluded)
@@ -29,13 +29,12 @@ Updated: 2026-10-07T09:17:12+00:00
 
 ## Top recurring CPU failure categories (execution taxonomy)
 
+- DEPENDENCY: 23
 - TIMEOUT: 22
-- DEPENDENCY: 17
-- UNKNOWN: 14
-- PACKAGE_CONFLICT: 10
+- UNKNOWN: 11
+- PACKAGE_CONFLICT: 8
 - MODEL_ACCESS: 8
-- OPENVINO_ERROR: 7
-- NETWORK: 5
+- OPENVINO_ERROR: 6
+- NETWORK: 6
 - CORRECTNESS_ERROR: 2
 - CONVERSION_ERROR: 1
-- LICENSE_RESTRICTION: 1

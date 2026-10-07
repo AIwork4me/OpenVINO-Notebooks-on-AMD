@@ -34,7 +34,7 @@ STATE = REPO / "results" / "marathon-state.json"
 # (workload, backend) -> (outcome, reason, justification)
 # Every entry was manually adjudicated against the recorded evidence during the
 # comprehensive verification closure (see reports/full-171-integrity-audit.md).
-ADJUDICATIONS: dict[tuple[str, str], tuple[str, str, str]] = {
+ADJUDICATIONS: dict[tuple[str, str], tuple[str, str, str, str]] = {
     ("action-recognition-webcam", "cpu"): (
         "BLOCKED_DEPENDENCY",
         "UPSTREAM_NOTEBOOK_RERUN_SCOPING",
@@ -125,6 +125,22 @@ CONTRACT_CORRECTIONS: dict[str, dict] = {
     },
 }
 
+# execution-category corrections for adjudicated rows: the raw log-classifier
+# label contradicts the adjudicated root cause (e.g. NameError from an upstream
+# rerun bug is not an OPENVINO_ERROR). Correcting the execution category keeps
+# the raw dimension honest too; the note preserves the original label.
+CATEGORY_CORRECTIONS: dict[tuple[str, str], tuple[str, str]] = {
+    ("action-recognition-webcam", "cpu"): ("DEPENDENCY", "NameError from upstream rerun-scoping bug, not an OpenVINO runtime error"),
+    ("3d-segmentation-point-clouds", "cpu"): ("DEPENDENCY", "NameError from upstream rerun-scoping bug, not an OpenVINO runtime error"),
+    ("phi3_rag_on_client", "cpu"): ("DEPENDENCY", "datasets API drift, not model access"),
+    ("minicpm-o-4.5", "cpu"): ("DEPENDENCY", "transformers API drift, not a package conflict"),
+    ("fastdraft_deepseek", "cpu"): ("MODEL_ACCESS", "model artifact absent at load time, not a runtime error"),
+    ("vision-background-removal", "cpu"): ("NETWORK", "host unreachable; original UNKNOWN hid the network cause"),
+    ("qwen3", "cpu"): ("OPENVINO_ERROR", "OpenVINO runtime CL error, not UNKNOWN"),
+    ("phi3_chatbot_demo", "cpu"): ("DEPENDENCY", "protobuf API drift, not a license restriction"),
+    ("llm-rag-llamaindex", "cpu"): ("DEPENDENCY", "missing NLTK data resource, not a package conflict"),
+}
+
 _LIMITATION_PATTERNS = [
     (re.compile(r"repeatability_not_established|resource-bounded", re.I), "REPEATABILITY_NOT_ESTABLISHED"),
     (re.compile(r"INTERACTIVE_UI_NOT_TESTED", re.I), "INTERACTIVE_UI_NOT_TESTED"),
@@ -196,6 +212,15 @@ def main() -> int:
                     stage = classify_timeout_stage(stdout, ev_text)
             notes_text = "\n".join(r.get("notes") or []) + "\n" + ev_text
             outcome, reason = derive_outcome(status, cat, notes_text, timeout_stage=stage)
+            catfix = CATEGORY_CORRECTIONS.get((wid, backend))
+            if catfix and r.get("failure_category") != catfix[0]:
+                old_cat = r.get("failure_category")
+                r["failure_category"] = catfix[0]
+                if not any(n.startswith("execution category corrected") for n in r.get("notes") or []):
+                    r.setdefault("notes", []).append(
+                        f"execution category corrected by comprehensive audit: {old_cat} -> {catfix[0]} ({catfix[1]})"
+                    )
+                cat = catfix[0]
             adj = ADJUDICATIONS.get((wid, backend))
             if adj:
                 outcome_s, reason, why = adj

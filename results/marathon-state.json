@@ -591,7 +591,7 @@
     "fastdraft_deepseek": {
       "cpu": {
         "status": "FAILED",
-        "failure_category": "OPENVINO_ERROR",
+        "failure_category": "MODEL_ACCESS",
         "ok_runs": 0,
         "required_runs": 1,
         "durations_s": [],
@@ -610,7 +610,8 @@
         },
         "notes": [
           "ok_runs=0/1: Could not find a model in the directory '\"DeepSeek-R1-Distill-Llama-8B-int4-ov\"'",
-          "adjudicated (MODEL_ARTIFACT_MISSING_DIR): Could not find a model in the directory 'DeepSeek-R1-Distill-Llama-8B-int4-ov' \u2014 the converted model directory was absent at load time (incomplete export), not a plugin failure."
+          "adjudicated (MODEL_ARTIFACT_MISSING_DIR): Could not find a model in the directory 'DeepSeek-R1-Distill-Llama-8B-int4-ov' \u2014 the converted model directory was absent at load time (incomplete export), not a plugin failure.",
+          "execution category corrected by comprehensive audit: OPENVINO_ERROR -> MODEL_ACCESS (model artifact absent at load time, not a runtime error)"
         ],
         "updated": "2026-10-06T16:48:28+00:00",
         "compatibility_outcome": "BLOCKED_RESOURCE",
@@ -806,7 +807,7 @@
       },
       "cpu": {
         "status": "FAILED",
-        "failure_category": "UNKNOWN",
+        "failure_category": "OPENVINO_ERROR",
         "ok_runs": 0,
         "required_runs": 1,
         "durations_s": [],
@@ -825,7 +826,8 @@
         },
         "notes": [
           "ok_runs=0/1: [GPU] clEnqueueMapBuffer, error code: -30 CL_INVALID_VALUE",
-          "adjudicated (OPENVINO_RUNTIME_CL_MAP): clEnqueueMapBuffer CL_INVALID_VALUE (-30) raised by the OpenVINO runtime; genuine runtime failure \u2014 RCA candidate (see reports/upstream/)."
+          "adjudicated (OPENVINO_RUNTIME_CL_MAP): clEnqueueMapBuffer CL_INVALID_VALUE (-30) raised by the OpenVINO runtime; genuine runtime failure \u2014 RCA candidate (see reports/upstream/).",
+          "execution category corrected by comprehensive audit: UNKNOWN -> OPENVINO_ERROR (OpenVINO runtime CL error, not UNKNOWN)"
         ],
         "updated": "2026-10-06T18:39:35+00:00",
         "compatibility_outcome": "FAILED_COMPATIBILITY",
@@ -1582,7 +1584,7 @@
     "phi3_chatbot_demo": {
       "cpu": {
         "status": "FAILED",
-        "failure_category": "LICENSE_RESTRICTION",
+        "failure_category": "DEPENDENCY",
         "ok_runs": 0,
         "required_runs": 3,
         "durations_s": [],
@@ -1600,7 +1602,8 @@
           "created": false
         },
         "notes": [
-          "ok_runs=0/3: cannot import name 'runtime_version' from 'google.protobuf' (/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages/google/protobuf/__init__.py)"
+          "ok_runs=0/3: cannot import name 'runtime_version' from 'google.protobuf' (/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages/google/protobuf/__init__.py)",
+          "execution category corrected by comprehensive audit: LICENSE_RESTRICTION -> DEPENDENCY (protobuf API drift, not a license restriction)"
         ],
         "updated": "2026-10-06T13:11:59+00:00",
         "compatibility_outcome": "BLOCKED_DEPENDENCY",
@@ -1610,7 +1613,7 @@
     "phi3_rag_on_client": {
       "cpu": {
         "status": "FAILED",
-        "failure_category": "MODEL_ACCESS",
+        "failure_category": "DEPENDENCY",
         "ok_runs": 0,
         "required_runs": 3,
         "durations_s": [],
@@ -1629,7 +1632,8 @@
         },
         "notes": [
           "ok_runs=0/3: \u001b[31mAttributeError\u001b[39m: 'Column' object has no attribute 'dtype'",
-          "adjudicated (DATASETS_API_DRIFT): AttributeError 'Column' object has no attribute 'dtype' \u2014 datasets library API drift versus the notebook's pinned stack; misclassified as MODEL_ACCESS by the log rules."
+          "adjudicated (DATASETS_API_DRIFT): AttributeError 'Column' object has no attribute 'dtype' \u2014 datasets library API drift versus the notebook's pinned stack; misclassified as MODEL_ACCESS by the log rules.",
+          "execution category corrected by comprehensive audit: MODEL_ACCESS -> DEPENDENCY (datasets API drift, not model access)"
         ],
         "updated": "2026-10-06T13:13:10+00:00",
         "compatibility_outcome": "BLOCKED_DEPENDENCY",
@@ -1905,7 +1909,7 @@
     "vision-background-removal": {
       "cpu": {
         "status": "FAILED",
-        "failure_category": "UNKNOWN",
+        "failure_category": "NETWORK",
         "ok_runs": 0,
         "required_runs": 3,
         "durations_s": [],
@@ -1924,7 +1928,8 @@
         },
         "notes": [
           "ok_runs=0/3: \u001b[31mEOFError\u001b[39m:",
-          "adjudicated (EXTERNAL_HOST_UNREACHABLE): model host drive.google.com unreachable from the reference network (run-01 ConnectTimeout); run-02 EOFError is the truncated gdown download of the same unreachable artifact."
+          "adjudicated (EXTERNAL_HOST_UNREACHABLE): model host drive.google.com unreachable from the reference network (run-01 ConnectTimeout); run-02 EOFError is the truncated gdown download of the same unreachable artifact.",
+          "execution category corrected by comprehensive audit: UNKNOWN -> NETWORK (host unreachable; original UNKNOWN hid the network cause)"
         ],
         "updated": "2026-10-06T14:40:07+00:00",
         "compatibility_outcome": "BLOCKED_NETWORK",
@@ -2604,7 +2609,7 @@
     "minicpm-o-4.5": {
       "cpu": {
         "status": "FAILED",
-        "failure_category": "PACKAGE_CONFLICT",
+        "failure_category": "DEPENDENCY",
         "ok_runs": 0,
         "required_runs": 1,
         "durations_s": [],
@@ -2623,7 +2628,8 @@
         },
         "notes": [
           "ok_runs=0/1: \u001b[31mAttributeError\u001b[39m: MiniCPMOTokenizerFast has no attribute tokenizer",
-          "adjudicated (TRANSFORMERS_API_DRIFT): MiniCPMOTokenizerFast has no attribute tokenizer \u2014 transformers version drift versus the notebook's pinned stack; not a runtime compatibility issue."
+          "adjudicated (TRANSFORMERS_API_DRIFT): MiniCPMOTokenizerFast has no attribute tokenizer \u2014 transformers version drift versus the notebook's pinned stack; not a runtime compatibility issue.",
+          "execution category corrected by comprehensive audit: PACKAGE_CONFLICT -> DEPENDENCY (transformers API drift, not a package conflict)"
         ],
         "updated": "2026-10-06T17:19:38+00:00",
         "compatibility_outcome": "BLOCKED_DEPENDENCY",
@@ -3303,7 +3309,7 @@
     "3d-segmentation-point-clouds": {
       "cpu": {
         "status": "FAILED",
-        "failure_category": "OPENVINO_ERROR",
+        "failure_category": "DEPENDENCY",
         "ok_runs": 0,
         "required_runs": 3,
         "durations_s": [],
@@ -3322,7 +3328,8 @@
         },
         "notes": [
           "ok_runs=0/3: \u001b[31mNameError\u001b[39m: name 'point_data' is not defined",
-          "adjudicated (UPSTREAM_NOTEBOOK_RERUN_SCOPING): point_data is assigned only inside `if not point_data_path.exists()`; with data/chair.pts cached from an earlier partial run the variable is undefined (NameError cell 11). Upstream notebook rerun bug, not an OpenVINO/AMD failure."
+          "adjudicated (UPSTREAM_NOTEBOOK_RERUN_SCOPING): point_data is assigned only inside `if not point_data_path.exists()`; with data/chair.pts cached from an earlier partial run the variable is undefined (NameError cell 11). Upstream notebook rerun bug, not an OpenVINO/AMD failure.",
+          "execution category corrected by comprehensive audit: OPENVINO_ERROR -> DEPENDENCY (NameError from upstream rerun-scoping bug, not an OpenVINO runtime error)"
         ],
         "updated": "2026-10-06T19:14:06+00:00",
         "compatibility_outcome": "BLOCKED_DEPENDENCY",
@@ -4375,7 +4382,7 @@
     "action-recognition-webcam": {
       "cpu": {
         "status": "FAILED",
-        "failure_category": "UNKNOWN",
+        "failure_category": "DEPENDENCY",
         "ok_runs": 0,
         "required_runs": 1,
         "durations_s": [],
@@ -4394,7 +4401,8 @@
         },
         "notes": [
           "ok_runs=0/1: \u001b[31mNameError\u001b[39m: name 'vocab_file_path' is not defined",
-          "adjudicated (UPSTREAM_NOTEBOOK_RERUN_SCOPING): vocab_file_path is assigned only inside a conditional in the upstream notebook; with the data file already cached (resumable workdir) the variable is undefined. Upstream notebook bug, not an OpenVINO/AMD failure."
+          "adjudicated (UPSTREAM_NOTEBOOK_RERUN_SCOPING): vocab_file_path is assigned only inside a conditional in the upstream notebook; with the data file already cached (resumable workdir) the variable is undefined. Upstream notebook bug, not an OpenVINO/AMD failure.",
+          "execution category corrected by comprehensive audit: UNKNOWN -> DEPENDENCY (NameError from upstream rerun-scoping bug, not an OpenVINO runtime error)"
         ],
         "updated": "2026-10-06T22:05:57+00:00",
         "compatibility_outcome": "BLOCKED_DEPENDENCY",
@@ -5307,7 +5315,7 @@
     "llm-rag-llamaindex": {
       "cpu": {
         "status": "FAILED",
-        "failure_category": "PACKAGE_CONFLICT",
+        "failure_category": "DEPENDENCY",
         "ok_runs": 0,
         "required_runs": 1,
         "durations_s": [],
@@ -5325,7 +5333,8 @@
           "created": false
         },
         "notes": [
-          "ok_runs=0/1: **********************************************************************"
+          "ok_runs=0/1: **********************************************************************",
+          "execution category corrected by comprehensive audit: PACKAGE_CONFLICT -> DEPENDENCY (missing NLTK data resource, not a package conflict)"
         ],
         "updated": "2026-10-06T22:49:54+00:00",
         "compatibility_outcome": "BLOCKED_DEPENDENCY",
@@ -5648,7 +5657,7 @@
       "log_tail": "Collecting json5\n  Using cached json5-0.15.0-py3-none-any.whl.metadata (37 kB)\nUsing cached json5-0.15.0-py3-none-any.whl (36 kB)\nInstalling collected packages: json5\nSuccessfully installed json5-0.15.0\n"
     }
   ],
-  "last_checkpoint": "2026-10-07T09:17:11+00:00",
+  "last_checkpoint": "2026-10-07T09:24:25+00:00",
   "current_workload": "llm-agent-react-langchain",
   "env_repairs": [
     {

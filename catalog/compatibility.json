@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-07T09:17:12+00:00",
+  "generated": "2026-10-07T09:24:29+00:00",
   "upstream": {
     "fetch_method": "github git-blobs API (sha1-verified); tarball transport failed on this network",
     "files_ok": 572,
@@ -128,7 +128,7 @@
       "upstream_url": "https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/3D-segmentation-point-clouds/3D-segmentation-point-clouds.ipynb",
       "priority": 2,
       "cpu_status": "FAILED",
-      "cpu_failure_category": "OPENVINO_ERROR",
+      "cpu_failure_category": "DEPENDENCY",
       "cpu_compatibility_outcome": "BLOCKED_DEPENDENCY",
       "cpu_outcome_reason": "UPSTREAM_NOTEBOOK_RERUN_SCOPING",
       "cpu_limitation_codes": [],
@@ -148,7 +148,8 @@
       "evidence": "results/3d-segmentation-point-clouds/20261006T191359Z-cpu",
       "notes": [
         "ok_runs=0/3: NameError: name 'point_data' is not defined",
-        "adjudicated (UPSTREAM_NOTEBOOK_RERUN_SCOPING): point_data is assigned only inside `if not point_data_path.exists()`; with data/chair.pts cached from an earlier partial run the variable is undefined (NameError cell 11). Upstream notebook rerun bug, not an OpenVINO/AMD failure."
+        "adjudicated (UPSTREAM_NOTEBOOK_RERUN_SCOPING): point_data is assigned only inside `if not point_data_path.exists()`; with data/chair.pts cached from an earlier partial run the variable is undefined (NameError cell 11). Upstream notebook rerun bug, not an OpenVINO/AMD failure.",
+        "execution category corrected by comprehensive audit: OPENVINO_ERROR -> DEPENDENCY (NameError from upstream rerun-scoping bug, not an OpenVINO runtime error)"
       ]
     },
     {
@@ -191,7 +192,7 @@
       "upstream_url": "https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/action-recognition-webcam/action-recognition-webcam.ipynb",
       "priority": 3,
       "cpu_status": "FAILED",
-      "cpu_failure_category": "UNKNOWN",
+      "cpu_failure_category": "DEPENDENCY",
       "cpu_compatibility_outcome": "BLOCKED_DEPENDENCY",
       "cpu_outcome_reason": "UPSTREAM_NOTEBOOK_RERUN_SCOPING",
       "cpu_limitation_codes": [],
@@ -211,7 +212,8 @@
       "evidence": "results/action-recognition-webcam/20261006T220552Z-cpu",
       "notes": [
         "ok_runs=0/1: NameError: name 'vocab_file_path' is not defined",
-        "adjudicated (UPSTREAM_NOTEBOOK_RERUN_SCOPING): vocab_file_path is assigned only inside a conditional in the upstream notebook; with the data file already cached (resumable workdir) the variable is undefined. Upstream notebook bug, not an OpenVINO/AMD failure."
+        "adjudicated (UPSTREAM_NOTEBOOK_RERUN_SCOPING): vocab_file_path is assigned only inside a conditional in the upstream notebook; with the data file already cached (resumable workdir) the variable is undefined. Upstream notebook bug, not an OpenVINO/AMD failure.",
+        "execution category corrected by comprehensive audit: UNKNOWN -> DEPENDENCY (NameError from upstream rerun-scoping bug, not an OpenVINO runtime error)"
       ]
     },
     {
@@ -2161,7 +2163,7 @@
       "upstream_url": "https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/llm-rag-llamaindex/llm-rag-llamaindex.ipynb",
       "priority": 4,
       "cpu_status": "FAILED",
-      "cpu_failure_category": "PACKAGE_CONFLICT",
+      "cpu_failure_category": "DEPENDENCY",
       "cpu_compatibility_outcome": "BLOCKED_DEPENDENCY",
       "cpu_outcome_reason": "PACKAGE_RESOLUTION_CONFLICT",
       "cpu_limitation_codes": [],
@@ -2180,7 +2182,8 @@
       "last_tested": "2026-10-06T22:49:54+00:00",
       "evidence": "results/llm-rag-llamaindex/20261006T224033Z-cpu",
       "notes": [
-        "ok_runs=0/1: **********************************************************************"
+        "ok_runs=0/1: **********************************************************************",
+        "execution category corrected by comprehensive audit: PACKAGE_CONFLICT -> DEPENDENCY (missing NLTK data resource, not a package conflict)"
       ]
     },
     {
@@ -2319,7 +2322,7 @@
       "upstream_url": "https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/minicpm-o-4.5/minicpm-o-4.5.ipynb",
       "priority": 1,
       "cpu_status": "FAILED",
-      "cpu_failure_category": "PACKAGE_CONFLICT",
+      "cpu_failure_category": "DEPENDENCY",
       "cpu_compatibility_outcome": "BLOCKED_DEPENDENCY",
       "cpu_outcome_reason": "TRANSFORMERS_API_DRIFT",
       "cpu_limitation_codes": [],
@@ -2339,7 +2342,8 @@
       "evidence": "results/minicpm-o-4.5/20261006T171910Z-cpu",
       "notes": [
         "ok_runs=0/1: AttributeError: MiniCPMOTokenizerFast has no attribute tokenizer",
-        "adjudicated (TRANSFORMERS_API_DRIFT): MiniCPMOTokenizerFast has no attribute tokenizer \u2014 transformers version drift versus the notebook's pinned stack; not a runtime compatibility issue."
+        "adjudicated (TRANSFORMERS_API_DRIFT): MiniCPMOTokenizerFast has no attribute tokenizer \u2014 transformers version drift versus the notebook's pinned stack; not a runtime compatibility issue.",
+        "execution category corrected by comprehensive audit: PACKAGE_CONFLICT -> DEPENDENCY (transformers API drift, not a package conflict)"
       ]
     },
     {
@@ -4603,7 +4607,7 @@
       "upstream_url": "https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/vision-background-removal/vision-background-removal.ipynb",
       "priority": 1,
       "cpu_status": "FAILED",
-      "cpu_failure_category": "UNKNOWN",
+      "cpu_failure_category": "NETWORK",
       "cpu_compatibility_outcome": "BLOCKED_NETWORK",
       "cpu_outcome_reason": "EXTERNAL_HOST_UNREACHABLE",
       "cpu_limitation_codes": [],
@@ -4623,7 +4627,8 @@
       "evidence": "results/vision-background-removal/20261006T143506Z-cpu",
       "notes": [
         "ok_runs=0/3: EOFError:",
-        "adjudicated (EXTERNAL_HOST_UNREACHABLE): model host drive.google.com unreachable from the reference network (run-01 ConnectTimeout); run-02 EOFError is the truncated gdown download of the same unreachable artifact."
+        "adjudicated (EXTERNAL_HOST_UNREACHABLE): model host drive.google.com unreachable from the reference network (run-01 ConnectTimeout); run-02 EOFError is the truncated gdown download of the same unreachable artifact.",
+        "execution category corrected by comprehensive audit: UNKNOWN -> NETWORK (host unreachable; original UNKNOWN hid the network cause)"
       ]
     },
     {
@@ -5232,7 +5237,7 @@
       "upstream_url": "https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/supplementary_materials/notebooks/fastdraft-deepseek/fastdraft_deepseek.ipynb",
       "priority": 1,
       "cpu_status": "FAILED",
-      "cpu_failure_category": "OPENVINO_ERROR",
+      "cpu_failure_category": "MODEL_ACCESS",
       "cpu_compatibility_outcome": "BLOCKED_RESOURCE",
       "cpu_outcome_reason": "MODEL_ARTIFACT_MISSING_DIR",
       "cpu_limitation_codes": [],
@@ -5252,7 +5257,8 @@
       "evidence": "results/fastdraft_deepseek/20261006T164655Z-cpu",
       "notes": [
         "ok_runs=0/1: Could not find a model in the directory '\"DeepSeek-R1-Distill-Llama-8B-int4-ov\"'",
-        "adjudicated (MODEL_ARTIFACT_MISSING_DIR): Could not find a model in the directory 'DeepSeek-R1-Distill-Llama-8B-int4-ov' \u2014 the converted model directory was absent at load time (incomplete export), not a plugin failure."
+        "adjudicated (MODEL_ARTIFACT_MISSING_DIR): Could not find a model in the directory 'DeepSeek-R1-Distill-Llama-8B-int4-ov' \u2014 the converted model directory was absent at load time (incomplete export), not a plugin failure.",
+        "execution category corrected by comprehensive audit: OPENVINO_ERROR -> MODEL_ACCESS (model artifact absent at load time, not a runtime error)"
       ]
     },
     {
@@ -5263,7 +5269,7 @@
       "upstream_url": "https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/supplementary_materials/notebooks/phi3_chatbot_demo.ipynb",
       "priority": 1,
       "cpu_status": "FAILED",
-      "cpu_failure_category": "LICENSE_RESTRICTION",
+      "cpu_failure_category": "DEPENDENCY",
       "cpu_compatibility_outcome": "BLOCKED_DEPENDENCY",
       "cpu_outcome_reason": "OPTIMUM_CLI_MISSING_OR_BROKEN",
       "cpu_limitation_codes": [],
@@ -5282,7 +5288,8 @@
       "last_tested": "2026-10-06T13:11:59+00:00",
       "evidence": "results/phi3_chatbot_demo/20261006T131146Z-cpu",
       "notes": [
-        "ok_runs=0/3: cannot import name 'runtime_version' from 'google.protobuf' (.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages/google/protobuf/__init__.py)"
+        "ok_runs=0/3: cannot import name 'runtime_version' from 'google.protobuf' (.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages/google/protobuf/__init__.py)",
+        "execution category corrected by comprehensive audit: LICENSE_RESTRICTION -> DEPENDENCY (protobuf API drift, not a license restriction)"
       ]
     },
     {
@@ -5293,7 +5300,7 @@
       "upstream_url": "https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/supplementary_materials/notebooks/phi3_rag_on_client.ipynb",
       "priority": 1,
       "cpu_status": "FAILED",
-      "cpu_failure_category": "MODEL_ACCESS",
+      "cpu_failure_category": "DEPENDENCY",
       "cpu_compatibility_outcome": "BLOCKED_DEPENDENCY",
       "cpu_outcome_reason": "DATASETS_API_DRIFT",
       "cpu_limitation_codes": [],
@@ -5313,7 +5320,8 @@
       "evidence": "results/phi3_rag_on_client/20261006T131159Z-cpu",
       "notes": [
         "ok_runs=0/3: AttributeError: 'Column' object has no attribute 'dtype'",
-        "adjudicated (DATASETS_API_DRIFT): AttributeError 'Column' object has no attribute 'dtype' \u2014 datasets library API drift versus the notebook's pinned stack; misclassified as MODEL_ACCESS by the log rules."
+        "adjudicated (DATASETS_API_DRIFT): AttributeError 'Column' object has no attribute 'dtype' \u2014 datasets library API drift versus the notebook's pinned stack; misclassified as MODEL_ACCESS by the log rules.",
+        "execution category corrected by comprehensive audit: MODEL_ACCESS -> DEPENDENCY (datasets API drift, not model access)"
       ]
     },
     {
@@ -5324,7 +5332,7 @@
       "upstream_url": "https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/supplementary_materials/notebooks/qwen-3/qwen3.ipynb",
       "priority": 1,
       "cpu_status": "FAILED",
-      "cpu_failure_category": "UNKNOWN",
+      "cpu_failure_category": "OPENVINO_ERROR",
       "cpu_compatibility_outcome": "FAILED_COMPATIBILITY",
       "cpu_outcome_reason": "OPENVINO_RUNTIME_CL_MAP",
       "cpu_limitation_codes": [],
@@ -5344,7 +5352,8 @@
       "evidence": "results/qwen3/20261007T005803Z-gpu",
       "notes": [
         "ok_runs=0/1: [GPU] clEnqueueMapBuffer, error code: -30 CL_INVALID_VALUE",
-        "adjudicated (OPENVINO_RUNTIME_CL_MAP): clEnqueueMapBuffer CL_INVALID_VALUE (-30) raised by the OpenVINO runtime; genuine runtime failure \u2014 RCA candidate (see reports/upstream/)."
+        "adjudicated (OPENVINO_RUNTIME_CL_MAP): clEnqueueMapBuffer CL_INVALID_VALUE (-30) raised by the OpenVINO runtime; genuine runtime failure \u2014 RCA candidate (see reports/upstream/).",
+        "execution category corrected by comprehensive audit: UNKNOWN -> OPENVINO_ERROR (OpenVINO runtime CL error, not UNKNOWN)"
       ]
     },
     {
