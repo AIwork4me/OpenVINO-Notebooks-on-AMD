@@ -120,7 +120,7 @@ def main() -> int:
     only = set(sys.argv[1:])
     state = load_state()
     rebuilt = []
-    for wid in sorted((p.name for p in RESULTS.iterdir() if p.is_dir())):
+    for wid in sorted(p.name for p in RESULTS.iterdir() if p.is_dir()):
         if only and wid not in only:
             continue
         for backend in ("cpu", "gpu"):
