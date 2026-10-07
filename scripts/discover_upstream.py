@@ -250,7 +250,6 @@ def main() -> int:
     # only classify genuinely new entries. A pin switch must never silently
     # reset 171 audited rows back to NOT_CLASSIFIED.
     prior: dict[str, dict] = {}
-    retired: list[str] = []
     if CATALOG.exists():
         try:
             prev = yaml.safe_load(CATALOG.read_text()) or {}

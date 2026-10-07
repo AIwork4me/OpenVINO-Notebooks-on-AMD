@@ -22,6 +22,7 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
+import pytest
 import yaml
 
 from ov_amd.environment import REPO_ROOT
@@ -118,8 +119,8 @@ def test_gpu_device_notebook_is_gpu_purpose_by_construction() -> None:
     the dataset with provenance."""
 
     nb_path = REPO / ".cache" / "upstream" / "notebooks" / "gpu-device" / "gpu-device.ipynb"
-    if not nb_path.exists():  # snapshot not fetched in this environment
-        return
+    if not nb_path.exists():
+        pytest.skip("pinned upstream snapshot not fetched in this environment")
     nb = json.loads(nb_path.read_text())
     code = "\n".join(
         "".join(c["source"]) for c in nb["cells"] if c.get("cell_type") == "code"
@@ -201,10 +202,10 @@ def test_pinned_snapshot_contains_atomic_download_fix() -> None:
 
     nu = REPO / ".cache" / "upstream" / "utils" / "notebook_utils.py"
     if not nu.exists():
-        return
+        pytest.skip("pinned upstream snapshot not fetched in this environment")
     text = nu.read_text()
     assert 'enforce_content_length = True' in text
-    assert '".part"' in text or ".part" in text
+    assert '".part"' in text  # atomic temp-file suffix in download_file()
 
 
 def test_recovery_cluster_rows_are_evidence_derived() -> None:
@@ -284,3 +285,29 @@ def test_freshness_line_without_record_is_honest(tmp_path, monkeypatch) -> None:
     monkeypatch.setattr(reporting, "REPO_ROOT", tmp_path)
     line = reporting._freshness_line("5f0b2b5f")
     assert "UNKNOWN" in line
+
+
+def test_guard_helper_notebook_utils_fetch_transforms_upstream_helpers() -> None:
+    """The preseed's sibling-guard transformation pins the exact surgery applied
+    to upstream helpers that refetch notebook_utils.py unconditionally."""
+
+    from ov_amd.notebook_runner import _guard_helper_notebook_utils_fetch
+
+    src = (
+        "import requests\n\n"
+        "r = requests.get(\n"
+        '    url="https://raw.githubusercontent.com/openvinotoolkit/openvino_notebooks/latest/utils/notebook_utils.py",\n'
+        "    timeout=30,\n"
+        ")\n"
+        'open("notebook_utils.py", "w").write(r.text)\n'
+        "from notebook_utils import segmentation_map_to_overlay\n"
+    )
+    out = _guard_helper_notebook_utils_fetch(src)
+    assert out is not None
+    assert 'if not Path("notebook_utils.py").exists():' in out
+    assert "from pathlib import Path" in out
+    # the fetch + write lines are indented under the guard
+    assert '    r = requests.get(' in out
+    assert '    open("notebook_utils.py", "w").write(r.text)' in out
+    # guarded/foreign sources pass through untouched
+    assert _guard_helper_notebook_utils_fetch("import requests\nprint('hi')\n") is None

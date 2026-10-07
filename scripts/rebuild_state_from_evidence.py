@@ -71,8 +71,6 @@ def _rebuild(wid: str, backend: str, ev: Path) -> dict | None:
     status = _STATUS_BY_EXEC.get(execj.get("status", "ERROR"), "FAILED")
     if status == "VERIFIED" and ok_runs < 3:
         status = "VERIFIED_WITH_LIMITATIONS"
-    elif status == "VERIFIED":
-        status = "VERIFIED"
     notes = [f"ok_runs={ok_runs}: reconstructed from evidence by v0.2.2 index rebuild"]
     if status == "VERIFIED_WITH_LIMITATIONS" and ok_runs < 3:
         notes.append("repeatability_not_established: fewer than 3 successful runs")

@@ -197,5 +197,5 @@ silently rewritten.
   `historical_status` + `historical_evidence` and are
   `REVALIDATION_REQUIRED` until revalidated under schema v2.
 - Evidence is validated at the recorded upstream pin; a pin move marks changed
-  notebooks for revalidation (see `reports/current-upstream-delta.md`) —
+  notebooks for revalidation (see `reports/v0.2.2-upstream-delta.md (current) and reports/current-upstream-delta.md (pre-repin historical record)`) —
   rows are never invalidated retroactively while the pin is unchanged.

@@ -188,8 +188,6 @@ def _uv_env() -> dict[str, str]:
 
     import os
 
-    from ov_amd.environment import resolve_uv_index
-
     env = os.environ.copy()
     idx = resolve_uv_index()
     if idx.get("uv_index"):

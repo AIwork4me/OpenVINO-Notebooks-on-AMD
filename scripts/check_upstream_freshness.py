@@ -85,7 +85,7 @@ def main() -> int:
                 rec["status"] = "REVALIDATION_REQUIRED"
                 rec.setdefault("notes", []).append(
                     f"upstream freshness check {time.strftime('%Y-%m-%d')}: notebook changed upstream "
-                    f"({path[:7]}…{latest[:12]}); revalidation required"
+                    f"({path}; latest {latest[:12]}); revalidation required"
                 )
                 marked.append(wid)
         if marked:
