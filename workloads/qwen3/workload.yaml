@@ -15,11 +15,30 @@ model:
 cpu:
   runtime: openvino
   status: FAILED
+  wall_timeout_s: 7200
+  per_cell_timeout_s: 2700
 gpu:
   runtime: ''
   status: VERIFIED
 twin:
   level: WORKLOAD_TWIN
-validation: {}
-patches: {}
+validation:
+  min_output_chars: 200
+  output_not_contains:
+  - Traceback \(most recent call last\)
+patches:
+  cell_subs:
+  - pattern: ^device = "GPU"$
+    replacement: device = "CPU"
+  - pattern: ^draft_device = "GPU"$
+    replacement: draft_device = "CPU"
+  notes: "CPU device attribution fix (v0.2.2): the upstream notebook hardcodes device=\"\
+    GPU\" and draft_device=\"GPU\" (cells 8/14/22), so the old \"CPU\" attempt actually\
+    \ compiled on the OpenVINO GPU plugin and failed in ocl_memory.cpp (clEnqueueMapBuffer\
+    \ CL_INVALID_VALUE) \u2014 a GPU-plugin-on-Radeon defect recorded as a CPU compatibility\
+    \ failure (see RCA-003). This minimal, documented pin forces device=\"CPU\"/draft_device=\"\
+    CPU\" so the AMD Ryzen CPU path is genuinely exercised; the GPU-plugin finding\
+    \ is retained separately as a device-specific compatibility finding. v0.2.2: per-cell/wall\
+    \ overrides for throttled-network installs and large model downloads; default\
+    \ 900s cell cap kills legitimate install cells"
 last_verified: ''

@@ -50,4 +50,49 @@ def test_current_dataset_manifests_agree_with_state() -> None:
 
 def test_sync_manifests_is_idempotent() -> None:
     changed = sync_manifests(load_catalog(), load_state())
-    assert changed == {"status": 0, "twin": 0, "manifests": 0}, f"sync should be a no-op on a clean dataset: {changed}"
+    assert changed == {"status": 0, "twin": 0, "pin": 0, "manifests": 0}, (
+        f"sync should be a no-op on a clean dataset: {changed}"
+    )
+
+
+def test_sync_manifests_repin_on_upstream_change(tmp_path, monkeypatch) -> None:
+    """Regression (v0.2.2): a pin switch must refresh manifest upstream pins.
+
+    The 171 manifests recorded pin 329562e…; after fetching 5f0b2b5… every
+    manifest mirror must carry the new pin (content-verified snapshot), else
+    manifests contradict the catalog/state sources of truth.
+    """
+
+
+    import ov_amd.manifest_sync as ms
+
+    ms.WORKLOADS_DIR = tmp_path
+    wf = tmp_path / "wl" / "workload.yaml"
+    wf.parent.mkdir(parents=True)
+    wf.write_text(
+        yaml.safe_dump(
+            {
+                "id": "wl",
+                "upstream": {
+                    "repository": "openvinotoolkit/openvino_notebooks",
+                    "commit": "329562e6031d1a989017d08697b0fabe5a989492",
+                    "path": "notebooks/old/nb.ipynb",
+                    "url": "https://github.com/openvinotoolkit/openvino_notebooks/blob/old/nb.ipynb",
+                },
+                "cpu": {"status": "NOT_TESTED"},
+                "twin": {"level": "WORKLOAD_TWIN"},
+            }
+        )
+    )
+    entry = type("E", (), {})()
+    entry.id = "wl"
+    entry.twin_level = "WORKLOAD_TWIN"
+    entry.upstream_path = "notebooks/new/nb.ipynb"
+    entry.upstream_url = "https://github.com/openvinotoolkit/openvino_notebooks/blob/5f0b2b5f/notebooks/new/nb.ipynb"
+    state = {"attempts": {}, "upstream": {"commit": "5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b"}}
+    changed = sync_manifests([entry], state)
+    assert changed["pin"] == 1
+    cfg = yaml.safe_load(wf.read_text())
+    assert cfg["upstream"]["commit"] == "5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b"
+    assert cfg["upstream"]["path"] == "notebooks/new/nb.ipynb"
+    assert cfg["upstream"]["url"].endswith("notebooks/new/nb.ipynb")

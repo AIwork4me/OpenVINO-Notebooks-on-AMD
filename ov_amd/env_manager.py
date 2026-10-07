@@ -38,7 +38,7 @@ from dataclasses import dataclass
 from pathlib import Path
 from typing import Any
 
-from ov_amd.environment import REPO_ROOT
+from ov_amd.environment import REPO_ROOT, resolve_uv_index
 
 VENV_ROOT = REPO_ROOT / ".venvs"
 
@@ -183,12 +183,26 @@ def _write_probe_hooks(env_dir: Path) -> None:
         (site / "ov_amd_net_fix.pth").write_text("import ov_amd_ipv4_first\n")
 
 
+def _uv_env() -> dict[str, str]:
+    """Subprocess environment for uv with the resolved index (pip/uv parity)."""
+
+    import os
+
+    from ov_amd.environment import resolve_uv_index
+
+    env = os.environ.copy()
+    idx = resolve_uv_index()
+    if idx.get("uv_index"):
+        env.setdefault("UV_INDEX_URL", str(idx["uv_index"]))
+    return env
+
+
 def _uv_install(python: Path, packages: list[str], timeout: int = 1800) -> tuple[bool, str]:
     cmd = [_uv_bin(), "pip", "install", "--python", str(python), *packages]
     last = ""
     for attempt in range(3):
         try:
-            r = subprocess.run(cmd, capture_output=True, text=True, timeout=timeout)
+            r = subprocess.run(cmd, capture_output=True, text=True, timeout=timeout, env=_uv_env())
             last = (r.stdout or "") + (r.stderr or "")
             if r.returncode == 0:
                 return True, last
@@ -269,6 +283,7 @@ def build_env(
         capture_output=True,
         text=True,
         timeout=600,
+        env=_uv_env(),
     )
     if r.returncode != 0 or not python.exists():
         raise RuntimeError(f"uv venv failed for {target}: {r.stderr[-2000:]}")
@@ -304,6 +319,7 @@ def build_env(
                 "extra_deps": extra_deps or [],
                 "notebook_requirements": str(requirements) if requirements else None,
                 "notebook_requirements_status": requirements_status,
+                "uv_index": resolve_uv_index(),
                 "created_at": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
             },
             indent=2,

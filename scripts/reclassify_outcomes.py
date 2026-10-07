@@ -238,7 +238,9 @@ def main() -> int:
                 if cat == "TIMEOUT":
                     stage = classify_timeout_stage(stdout, ev_text)
             notes_text = "\n".join(r.get("notes") or []) + "\n" + ev_text
-            outcome, reason = derive_outcome(status, cat, notes_text, timeout_stage=stage)
+            outcome, reason = derive_outcome(
+                status, cat, notes_text, timeout_stage=stage, device_proof=r.get("device_proof", ""), backend=backend
+            )
             adj = ADJUDICATIONS.get((wid, backend))
             if adj:
                 outcome_s, reason, why = adj

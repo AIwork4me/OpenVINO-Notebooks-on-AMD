@@ -170,9 +170,20 @@ def derive_outcome(
     failure_category: str = "",
     notes: str = "",
     timeout_stage: str = "",
+    device_proof: str = "",
+    backend: str = "cpu",
 ) -> tuple[CompatibilityOutcome, str]:
     """Map (execution_status, failure_category, evidence text) to the
-    developer-facing outcome plus a machine-readable reason."""
+    developer-facing outcome plus a machine-readable reason.
+
+    Device attribution guard (v0.2.2): a *cpu-backend* attempt whose device
+    proof says the code actually executed on the OpenVINO GPU plugin
+    (PROVEN_GPU) can never yield an AMD-CPU compatibility verdict — positive
+    or negative. Such failures (e.g. clEnqueueMapBuffer CL_INVALID_VALUE on a
+    Radeon) are recorded as NOT_TESTED with a DEVICE_ATTRIBUTION_INVALID
+    reason and revalidation with CPU forced is required; the GPU-plugin
+    finding itself is kept in the separate OpenVINO-GPU-plugin findings
+    record, never in the CPU matrix."""
 
     if execution_status == "VERIFIED":
         return CompatibilityOutcome.VERIFIED, ""
@@ -191,18 +202,27 @@ def derive_outcome(
     # a datasets API drift, or PACKAGE_CONFLICT rows with empty model weights).
     text = _ANSI_RE.sub("", notes or "")
     if failure_category != "TIMEOUT":
-        for pat, outcome, reason in _SIGNATURES:
-            if re.search(pat, text):
-                return outcome, reason
+        hit = next((s for s in _SIGNATURES if re.search(s[0], text)), None)
+        outcome, reason = (hit[1], hit[2]) if hit else (None, "")
     else:
-        for pat, outcome, reason in _SIGNATURES:
-            if re.search(pat, text) and outcome is CompatibilityOutcome.BLOCKED_TIMEOUT:
-                return outcome, reason
-        stage = timeout_stage or "UNKNOWN_STAGE"
-        return CompatibilityOutcome.BLOCKED_TIMEOUT, f"TIMEOUT_{stage}"
+        hit = next(
+            (s for s in _SIGNATURES if re.search(s[0], text) and s[1] is CompatibilityOutcome.BLOCKED_TIMEOUT),
+            None,
+        )
+        if hit is None:
+            stage = timeout_stage or "UNKNOWN_STAGE"
+            return CompatibilityOutcome.BLOCKED_TIMEOUT, f"TIMEOUT_{stage}"
+        outcome, reason = hit[1], hit[2]
+    if outcome is not None:
+        if backend == "cpu" and device_proof == "PROVEN_GPU" and outcome is CompatibilityOutcome.FAILED_COMPATIBILITY:
+            return CompatibilityOutcome.NOT_TESTED, "DEVICE_ATTRIBUTION_INVALID_GPU_PLUGIN"
+        return outcome, reason
     mapped = _CATEGORY_OUTCOME.get(failure_category)
     if mapped:
-        return mapped
+        outcome, reason = mapped
+        if backend == "cpu" and device_proof == "PROVEN_GPU" and outcome is CompatibilityOutcome.FAILED_COMPATIBILITY:
+            return CompatibilityOutcome.NOT_TESTED, "DEVICE_ATTRIBUTION_INVALID_GPU_PLUGIN"
+        return outcome, reason
     if failure_category in ("ROCM_UNAVAILABLE", "ROCM_UNSUPPORTED", "GPU_ARCH"):
         return CompatibilityOutcome.BLOCKED_RESOURCE, failure_category
     # UNKNOWN with no matching signature: adjudication required — surfaced as

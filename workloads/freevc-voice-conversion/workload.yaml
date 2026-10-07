@@ -15,13 +15,16 @@ model:
 cpu:
   runtime: openvino
   status: FAILED
-  wall_timeout_s: 1800
+  wall_timeout_s: 5400
   repeats: 1
+  per_cell_timeout_s: 2700
 gpu:
   runtime: ''
   status: NOT_TESTED
 twin:
   level: WORKLOAD_TWIN
 validation: {}
-patches: {}
+patches:
+  notes: 'v0.2.2: per-cell/wall overrides for throttled-network installs and large
+    model downloads; default 900s cell cap kills legitimate install cells'
 last_verified: ''

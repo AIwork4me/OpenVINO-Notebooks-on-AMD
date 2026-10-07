@@ -198,7 +198,7 @@ def main() -> int:
                         + ("<br>".join(problems + warnings) if (problems or warnings) else "") + " |")
 
     lines = [
-        "# Full 171-Entry Integrity Audit (generated)",
+        f"# Full {len(catalog)}-Entry Integrity Audit (generated)",
         "",
         f"Generated: {datetime.now(timezone.utc).isoformat(timespec='seconds')} · pin `{PIN[:12]}`",
         "",
@@ -226,7 +226,7 @@ def main() -> int:
         "for VERIFIED rows, limitation codes for yellow rows, failure category for FAILED rows, note",
         "sanitization, timestamp parseability, and GPU v2 evidence for GPU-verified rows.",
     ]
-    (REPO / "reports" / "full-171-integrity-audit.md").write_text("\n".join(lines) + "\n")
+    (REPO / "reports" / f"full-{len(catalog)}-integrity-audit.md").write_text("\n".join(lines) + "\n")
     print(f"verdicts={dict(verdicts)} critical={len(critical)} warnings={len(warn)}")
     return 1 if critical else 0
 

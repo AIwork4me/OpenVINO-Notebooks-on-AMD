@@ -1,0 +1,74 @@
+[IPKernelApp] WARNING | Kernel is running over TCP without encryption. All communication (including code and outputs) is sent in plain text and is susceptible to eavesdropping. Use IPC transport or launch with kernel manager-provisioned CurveZMQ keys to enable transport encryption.
+0;43mtoken[39;49m[30;43m=[39;49m[30;43mtoken[39;49m[30;43m,[39;49m
+[32m     90[39m [30;43m    [39;49m[30;43m)[39;49m
+[32m     91[39m [38;5;28;01mexcept[39;00m HfHubHTTPError:
+[32m     92[39m     asset_file_name: [38;5;28mstr[39m = asset_file.name [38;5;28;01mif[39;00m [38;5;28misinstance[39m(asset_file, AssetFileName) [38;5;28;01melse[39;00m asset_file
+
+[36mFile [39m[32m/workspace/.venvs/cpu/c68196fae127adbe/lib/python3.12/site-packages/huggingface_hub/utils/_validators.py:89[39m, in [36mvalidate_hf_hub_args.<locals>._inner_fn[39m[34m(*args, **kwargs)[39m
+[32m     85[39m         validate_repo_id(arg_value)
+[32m     87[39m kwargs = smoothly_deprecate_legacy_arguments(fn_name=fn.[34m__name__[39m, kwargs=kwargs)
+[32m---> [39m[32m89[39m [38;5;28;01mreturn[39;00m [30;43mfn[39;49m[30;43m([39;49m[30;43m*[39;49m[30;43margs[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43m*[39;49m[30;43m*[39;49m[30;43mkwargs[39;49m[30;43m)[39;49m
+
+[36mFile [39m[32m/workspace/.venvs/cpu/c68196fae127adbe/lib/python3.12/site-packages/huggingface_hub/utils/_http.py:276[39m, in [36mflag_as_download_call.<locals>._inner[39m[34m(*args, **kwargs)[39m
+[32m    274[39m token = _IS_DOWNLOAD_CALL.set([38;5;28;01mTrue[39;00m)
+[32m    275[39m [38;5;28;01mtry[39;00m:
+[32m--> [39m[32m276[39m     [38;5;28;01mreturn[39;00m [30;43mfn[39;49m[30;43m([39;49m[30;43m*[39;49m[30;43margs[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43m*[39;49m[30;43m*[39;49m[30;43mkwargs[39;49m[30;43m)[39;49m
+[32m    277[39m [38;5;28;01mfinally[39;00m:
+[32m    278[39m     _IS_DOWNLOAD_CALL.reset(token)
+
+[36mFile [39m[32m/workspace/.venvs/cpu/c68196fae127adbe/lib/python3.12/site-packages/huggingface_hub/file_download.py:1047[39m, in [36mhf_hub_download[39m[34m(repo_id, filename, subfolder, repo_type, revision, library_name, library_version, cache_dir, local_dir, user_agent, force_download, etag_timeout, token, local_files_only, headers, endpoint, tqdm_class, dry_run)[39m
+[32m   1026[39m     [38;5;28;01mreturn[39;00m _hf_hub_download_to_local_dir(
+[32m   1027[39m         [38;5;66;03m# Destination[39;00m
+[32m   1028[39m         local_dir=local_dir,
+[32m   (...)[39m[32m   1044[39m         dry_run=dry_run,
+[32m   1045[39m     )
+[32m   1046[39m [38;5;28;01melse[39;00m:
+[32m-> [39m[32m1047[39m     [38;5;28;01mreturn[39;00m [30;43m_hf_hub_download_to_cache_dir[39;49m[30;43m([39;49m
+[32m   1048[39m [30;43m        [39;49m[30;43;03m# Destination[39;49;00m
+[32m   1049[39m [30;43m        [39;49m[30;43mcache_dir[39;49m[30;43m=[39;49m[30;43mcache_dir[39;49m[30;43m,[39;49m
+[32m   1050[39m [30;43m        [39;49m[30;43;03m# File info[39;49;00m
+[32m   1051[39m [30;43m        [39;49m[30;43mrepo_id[39;49m[30;43m=[39;49m[30;43mrepo_id[39;49m[30;43m,[39;49m
+[32m   1052[39m [30;43m        [39;49m[30;43mfilename[39;49m[30;43m=[39;49m[30;43mfilename[39;49m[30;43m,[39;49m
+[32m   1053[39m [30;43m        [39;49m[30;43mrepo_type[39;49m[30;43m=[39;49m[30;43mrepo_type[39;49m[30;43m,[39;49m
+[32m   1054[39m [30;43m        [39;49m[30;43mrevision[39;49m[30;43m=[39;49m[30;43mrevision[39;49m[30;43m,[39;49m
+[32m   1055[39m [30;43m        [39;49m[30;43;03m# HTTP info[39;49;00m
+[32m   1056[39m [30;43m        [39;49m[30;43mendpoint[39;49m[30;43m=[39;49m[30;43mendpoint[39;49m[30;43m,[39;49m
+[32m   1057[39m [30;43m        [39;49m[30;43metag_timeout[39;49m[30;43m=[39;49m[30;43metag_timeout[39;49m[30;43m,[39;49m
+[32m   1058[39m [30;43m        [39;49m[30;43mheaders[39;49m[30;43m=[39;49m[30;43mhf_headers[39;49m[30;43m,[39;49m
+[32m   1059[39m [30;43m        [39;49m[30;43mtoken[39;49m[30;43m=[39;49m[30;43mtoken[39;49m[30;43m,[39;49m
+[32m   1060[39m [30;43m        [39;49m[30;43;03m# Additional options[39;49;00m
+[32m   1061[39m [30;43m        [39;49m[30;43mlocal_files_only[39;49m[30;43m=[39;49m[30;43mlocal_files_only[39;49m[30;43m,[39;49m
+[32m   1062[39m [30;43m        [39;49m[30;43mforce_download[39;49m[30;43m=[39;49m[30;43mforce_download[39;49m[30;43m,[39;49m
+[32m   1063[39m [30;43m        [39;49m[30;43mtqdm_class[39;49m[30;43m=[39;49m[30;43mtqdm_class[39;49m[30;43m,[39;49m
+[32m   1064[39m [30;43m        [39;49m[30;43mdry_run[39;49m[30;43m=[39;49m[30;43mdry_run[39;49m[30;43m,[39;49m
+[32m   1065[39m [30;43m    [39;49m[30;43m)[39;49m
+
+[36mFile [39m[32m/workspace/.venvs/cpu/c68196fae127adbe/lib/python3.12/site-packages/huggingface_hub/file_download.py:1194[39m, in [36m_hf_hub_download_to_cache_dir[39m[34m(cache_dir, repo_id, filename, repo_type, revision, endpoint, etag_timeout, headers, token, local_files_only, force_download, tqdm_class, dry_run)[39m
+[32m   1192[39m     [38;5;66;03m# If still error, raise[39;00m
+[32m   1193[39m     [38;5;28;01mif[39;00m head_call_error [38;5;129;01mis[39;00m [38;5;129;01mnot[39;00m [38;5;28;01mNone[39;00m:
+[32m-> [39m[32m1194[39m         [30;43m_raise_on_head_call_error[39;49m[30;43m([39;49m[30;43mhead_call_error[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mforce_download[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mlocal_files_only[39;49m[30;43m)[39;49m
+[32m   1196[39m [38;5;66;03m# From now on, etag, commit_hash and url are not None.[39;00m
+[32m   1197[39m [38;5;28;01massert[39;00m etag [38;5;129;01mis[39;00m [38;5;129;01mnot[39;00m [38;5;28;01mNone[39;00m, [33m"[39m[33metag must have been retrieved from server[39m[33m"[39m
+
+[36mFile [39m[32m/workspace/.venvs/cpu/c68196fae127adbe/lib/python3.12/site-packages/huggingface_hub/file_download.py:1953[39m, in [36m_raise_on_head_call_error[39m[34m(head_call_error, force_download, local_files_only)[39m
+[32m   1944[39m     [38;5;28;01mraise[39;00m LocalEntryNotFoundError(
+[32m   1945[39m         [33m"[39m[33mCannot find the requested files in the disk cache and outgoing traffic has been disabled. To enable[39m[33m"[39m
+[32m   1946[39m         [33m"[39m[33m hf.co look-ups and downloads online, set [39m[33m'[39m[33mlocal_files_only[39m[33m'[39m[33m to False.[39m[33m"[39m
+[32m   1947[39m     )
+[32m   1948[39m [38;5;28;01melif[39;00m [38;5;28misinstance[39m(head_call_error, (RepositoryNotFoundError, GatedRepoError)) [38;5;129;01mor[39;00m (
+[32m   1949[39m     [38;5;28misinstance[39m(head_call_error, HfHubHTTPError) [38;5;129;01mand[39;00m head_call_error.response.status_code == [32m401[39m
+[32m   1950[39m ):
+[32m   1951[39m     [38;5;66;03m# Repo not found or gated => let's raise the actual error[39;00m
+[32m   1952[39m     [38;5;66;03m# Unauthorized => likely a token issue => let's raise the actual error[39;00m
+[32m-> [39m[32m1953[39m     [38;5;28;01mraise[39;00m head_call_error
+[32m   1954[39m [38;5;28;01melif[39;00m [38;5;28misinstance[39m(head_call_error, FileMetadataError):
+[32m   1955[39m     [38;5;66;03m# The call succeeded but the response lacked the metadata we need => a configuration issue, not connectivity.[39;00m
+[32m   1956[39m     [38;5;28;01mraise[39;00m LocalEntryNotFoundError(
+[32m   1957[39m         [33mf[39m[33m"[39m[38;5;132;01m{[39;00mhead_call_error[38;5;132;01m}[39;00m[33m We also cannot find the requested files in the local cache.[39m[33m"[39m
+[32m   1958[39m     ) [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01mhead_call_error[39;00m
+
+[31mGatedRepoError[39m: 403 Client Error. (Request ID: Root=1-6ac66333-1de87dcf734a20fc49d1c23e;2b01682f-71a6-40c8-9a60-8b05944fff84)
+
+Cannot access gated repo for url https://hf-mirror.com/pyannote/speaker-diarization-community-1/resolve/main/config.yaml.
+Access to model pyannote/speaker-diarization-community-1 is restricted and you are not in the authorized list. Visit https://huggingface.co/pyannote/speaker-diarization-community-1 to ask for access.
+

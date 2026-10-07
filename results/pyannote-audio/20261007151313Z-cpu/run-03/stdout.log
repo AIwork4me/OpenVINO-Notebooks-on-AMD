@@ -1,0 +1,11 @@
+[cell 0 START +    0.5s] # Speaker Diarization with pyannote and OpenVINO |  | Speaker diarization 
+[cell 1 START +    0.5s] ## Prerequisites | [back to top ⬆️](#Table-of-contents:) |  | Install the re
+[cell 2 START +    0.5s] %pip install -q "openvino>=2025.1.0" | %pip install -q "pyannote.audio>=
+[cell 2 DONE  +    1.9s]
+[cell 3 START +    1.9s] ## Hugging Face access | [back to top ⬆️](#Table-of-contents:) |  | `pyannot
+[cell 4 START +    1.9s] from huggingface_hub import get_token, notebook_login |  | if get_token() 
+[cell 4 DONE  +  307.6s]
+[cell 5 START +  307.6s] ## Load the diarization pipeline | [back to top ⬆️](#Table-of-contents:)
+[cell 6 START +  307.6s] import torch | from pyannote.audio import Pipeline |  | PIPELINE_ID = "pyann
+[cell 6 DONE  +  311.3s]
+NBEXEC_RESULT={"ok": false, "n_cells": 14, "n_skipped": 0, "n_substituted": 0, "stopped_after": null, "error_cell": null, "error_type": "CellExecutionError", "error_head": "Access to model pyannote/speaker-diarization-community-1 is restricted and you are not in the authorized list. Visit https://huggingface.co/pyannote/speaker-diarization-community-1 to ask for access.", "duration_s": 312.32, "patch_notes": []}

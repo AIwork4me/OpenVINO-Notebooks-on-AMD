@@ -4304,29 +4304,29 @@
     "openvino-tokenizers": {
       "cpu": {
         "status": "FAILED",
-        "failure_category": "OPENVINO_ERROR",
+        "failure_category": "TIMEOUT",
+        "compatibility_outcome": "BLOCKED_TIMEOUT",
+        "outcome_reason": "TIMEOUT_UNKNOWN_STAGE",
         "ok_runs": 0,
         "required_runs": 3,
         "durations_s": [],
-        "device_used": "CPU",
-        "device_proof": "PROVEN_CPU",
+        "device_used": "",
+        "device_proof": "UNKNOWN",
         "validation_level": "",
-        "platform_id": "ryzen-ai-max-395-radeon-8060s-gfx1151",
-        "evidence_dir": "results/openvino-tokenizers/20261006T211720Z-cpu",
+        "platform_id": "amd-epyc-9334-32-core-processor-gfx1100",
+        "evidence_dir": "results/openvino-tokenizers/20261007160518Z-cpu",
         "env": {
           "backend": "cpu",
-          "env_key": "92e9a50310945715",
-          "python": ".venvs/cpu/92e9a50310945715/bin/python",
-          "fingerprint": "abc3dceee99e5a50697e0b5cc589b46baba18ce9735f21abad3dc59441023927",
+          "env_key": "ec74fa9a5736664e",
+          "python": ".venvs/cpu/ec74fa9a5736664e/bin/python",
+          "fingerprint": "52d24f0a9850e1cd07c9554fe11d9b90ae935890de9a21c75c141ca0c4b5e8d6",
           "reused": false,
           "created": true
         },
         "notes": [
-          "ok_runs=0/3: ReadValue node with name 'ReadValue_5627'  doesn't have sibling output"
+          "ok_runs=0/3: -------------------"
         ],
-        "updated": "2026-10-06T21:18:05+00:00",
-        "compatibility_outcome": "FAILED_COMPATIBILITY",
-        "outcome_reason": "OPENVINO_RUNTIME"
+        "updated": "2026-10-07T16:21:25+00:00"
       }
     },
     "wan2.1-text-to-video": {
@@ -5482,6 +5482,62 @@
         "compatibility_outcome": "BLOCKED_RESOURCE",
         "outcome_reason": "MODEL_ARTIFACT_INCOMPLETE_OR_CORRUPT"
       }
+    },
+    "pyannote-audio": {
+      "cpu": {
+        "status": "FAILED",
+        "failure_category": "MODEL_ACCESS",
+        "compatibility_outcome": "BLOCKED_MODEL_ACCESS",
+        "outcome_reason": "GATED_OR_RESTRICTED_MODEL",
+        "ok_runs": 0,
+        "required_runs": 3,
+        "durations_s": [],
+        "device_used": "",
+        "device_proof": "NOT_INFERENCE",
+        "validation_level": "",
+        "platform_id": "amd-epyc-9334-32-core-processor-gfx1100",
+        "evidence_dir": "results/pyannote-audio/20261007151313Z-cpu",
+        "env": {
+          "backend": "cpu",
+          "env_key": "c68196fae127adbe",
+          "python": ".venvs/cpu/c68196fae127adbe/bin/python",
+          "fingerprint": "5c9e89a3c344b447eba20f2d7ac941a444b4456497d0c653f6294cc94aa17f74",
+          "reused": false,
+          "created": true
+        },
+        "notes": [
+          "ok_runs=0/3: Access to model pyannote/speaker-diarization-community-1 is restricted and you are not in the authorized list. Visit https://huggingface.co/pyannote/speaker-diarization-community-1 to ask for access."
+        ],
+        "updated": "2026-10-07T15:30:47+00:00"
+      }
+    },
+    "pyannote-embedding": {
+      "cpu": {
+        "status": "FAILED",
+        "failure_category": "MODEL_ACCESS",
+        "compatibility_outcome": "BLOCKED_MODEL_ACCESS",
+        "outcome_reason": "GATED_OR_RESTRICTED_MODEL",
+        "ok_runs": 0,
+        "required_runs": 3,
+        "durations_s": [],
+        "device_used": "",
+        "device_proof": "NOT_INFERENCE",
+        "validation_level": "",
+        "platform_id": "amd-epyc-9334-32-core-processor-gfx1100",
+        "evidence_dir": "results/pyannote-embedding/20261007154612Z-cpu",
+        "env": {
+          "backend": "cpu",
+          "env_key": "29026fb3d02c84d8",
+          "python": ".venvs/cpu/29026fb3d02c84d8/bin/python",
+          "fingerprint": "1e5c0dfe29dae891ef401c895fd981bfb58bc9d9232f7aa520019c0031c05cd9",
+          "reused": false,
+          "created": true
+        },
+        "notes": [
+          "ok_runs=0/3: Access to model pyannote/embedding is restricted and you are not in the authorized list. Visit https://huggingface.co/pyannote/embedding to ask for access."
+        ],
+        "updated": "2026-10-07T16:04:03+00:00"
+      }
     }
   },
   "installed_extras": [
@@ -5678,7 +5734,7 @@
       "log_tail": "Collecting json5\n  Using cached json5-0.15.0-py3-none-any.whl.metadata (37 kB)\nUsing cached json5-0.15.0-py3-none-any.whl (36 kB)\nInstalling collected packages: json5\nSuccessfully installed json5-0.15.0\n"
     }
   ],
-  "last_checkpoint": "2026-10-07T14:59:27+00:00",
+  "last_checkpoint": "2026-10-07T16:21:25+00:00",
   "current_workload": "llm-agent-react-langchain",
   "env_repairs": [
     {
