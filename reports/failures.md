@@ -126,9 +126,8 @@ Total non-green attempts: 83
 - **unlimited-ocr** — ok_runs=0/3: (evidence: results/unlimited-ocr/20261006T142458Z-cpu)
 - **voxcpm2-tts** — ok_runs=0/3: (evidence: results/voxcpm2-tts/20261006T144007Z-cpu)
 
-## 💾 cpu · BLOCKED_RESOURCE · MODEL_ARTIFACT_INCOMPLETE_OR_CORRUPT — model artifact incomplete or corrupt — 3 workload(s)
+## 💾 cpu · BLOCKED_RESOURCE · MODEL_ARTIFACT_INCOMPLETE_OR_CORRUPT — model artifact incomplete or corrupt — 2 workload(s)
 
-- **minicpm-o-omnimodal-chatbot** — v0.2.2 signature-gap correction: basic_ios::clear iostream error raised from core.read_model(model_dir/llm_path) — IR file read failure (artifact integrity), not an inference-time runtime defect; classifier signature add (evidence: results/minicpm-o-omnimodal-chatbot/20261007204800Z-cpu)
 - **bernini-r-image-video** — ok_runs=0/3: KeyError: 'blocks.0.attn1.to_q.weight' (evidence: results/bernini-r-image-video/20261006T211512Z-cpu)
 - **multimodal-rag-llamaindex** — ok_runs=0/1: Can not open file results/multimodal-rag-llamaindex/workdir-cpu/distil-whisper-large-v3-int8-ov/openvino_decoder_model.bin for mapping. Ensure that file exists and has appropriate permissions. (evidence: results/multimodal-rag-llamaindex/20261006T224956Z-cpu)
 
@@ -139,6 +138,10 @@ Total non-green attempts: 83
 ## 💾 cpu · BLOCKED_RESOURCE · MODEL_ARTIFACT_MISSING_DIR — model artifact missing dir — 1 workload(s)
 
 - **fastdraft_deepseek** — execution category corrected by comprehensive audit: OPENVINO_ERROR -> MODEL_ACCESS (model artifact absent at load time, not a runtime error) (evidence: results/fastdraft_deepseek/20261006T164655Z-cpu)
+
+## 💾 cpu · BLOCKED_RESOURCE · MODEL_FILE_IO_FAILURE_SAVE_OR_LOAD — model file io failure save or load — 1 workload(s)
+
+- **minicpm-o-omnimodal-chatbot** — v0.2.2 Gate-5-corrected adjudication: the basic_ios::clear iostream error was raised from ov.save_model(...) (IR WRITE path) after core.read_model and nncf.compress_weights had succeeded on the freshly downloaded ~17.4GB (evidence: results/minicpm-o-omnimodal-chatbot/20261007204800Z-cpu)
 
 ## 🧩 cpu · FAILED_COMPATIBILITY · OPENVINO_RUNTIME — openvino runtime — 1 workload(s)
 

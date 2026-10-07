@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-07T20:55:58+00:00",
+  "generated": "2026-10-07T21:01:46+00:00",
   "upstream": {
     "fetch_method": "github git-blobs API (sha1-verified); tarball transport failed on this network",
     "files_ok": 14,
@@ -2374,7 +2374,7 @@
       "cpu_status": "FAILED",
       "cpu_failure_category": "OPENVINO_ERROR",
       "cpu_compatibility_outcome": "BLOCKED_RESOURCE",
-      "cpu_outcome_reason": "MODEL_ARTIFACT_INCOMPLETE_OR_CORRUPT",
+      "cpu_outcome_reason": "MODEL_FILE_IO_FAILURE_SAVE_OR_LOAD",
       "cpu_limitation_codes": [],
       "cpu_evidence": "results/minicpm-o-omnimodal-chatbot/20261007204800Z-cpu",
       "cpu_validation_level": "",
@@ -2392,7 +2392,7 @@
       "evidence": "results/minicpm-o-omnimodal-chatbot/20261007204800Z-cpu",
       "notes": [
         "ok_runs=0/1: RuntimeError: basic_ios::clear: iostream error",
-        "v0.2.2 signature-gap correction: basic_ios::clear iostream error raised from core.read_model(model_dir/llm_path) \u2014 IR file read failure (artifact integrity), not an inference-time runtime defect; classifier signature added so the class derives correctly from evidence text"
+        "v0.2.2 Gate-5-corrected adjudication: the basic_ios::clear iostream error was raised from ov.save_model(...) (IR WRITE path) after core.read_model and nncf.compress_weights had succeeded on the freshly downloaded ~17.4GB model \u2014 the notebook's PT->OV copy pattern needs the source and exported copies simultaneously (~35GB workdir); this validation runner's disk budget was exhausted during the export (the 19:55Z sibling attempt died at copy_llm_files with ENOSPC). Resource blocker, not an inference-time compatibility defect and not artifact corruption."
       ]
     },
     {

@@ -69,8 +69,11 @@ qwen3.8-mtp               row blocks at storage.openvinotoolkit.org sample fetch
 freevc-voice-conversion   row blocks at storage.openvinotoolkit.org checkpoint fetch
                           (proxy-refused host) → BLOCKED_NETWORK
 muse-glimmer              re-run with snapshot-asset preseeding (nyc.jpg) — see matrix
-minicpm-o-omnimodal-      re-attempted under current pin — see matrix
-chatbot
+minicpm-o-omnimodal-      fresh ~17.4GB download succeeded (old missing-shard failure gone);
+chatbot                   the run then hit an IR WRITE failure at ov.save_model (basic_ios iostream
+                          error; read_model + compress had succeeded) — the PT->OV copy pattern needs
+                          ~35GB workdir and exhausted this runner's disk budget → BLOCKED_RESOURCE /
+                          MODEL_FILE_IO_FAILURE_SAVE_OR_LOAD (Gate-5-corrected attribution)
 yoloe-26-open-vocabulary  re-attempted under current pin — see matrix
 ```
 

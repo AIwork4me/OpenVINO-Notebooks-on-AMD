@@ -1,6 +1,6 @@
 # Compatibility Matrix (generated)
 
-Generated: 2026-10-07T20:55:58+00:00 — do not edit by hand; run `python -m ov_amd report`.
+Generated: 2026-10-07T21:01:46+00:00 — do not edit by hand; run `python -m ov_amd report`.
 
 Total notebooks: **173** — AMD CPU catalog coverage **173/173** (100.0%). Coverage means every notebook has an AMD CPU validation outcome; it does not mean every notebook passed.
 
@@ -115,7 +115,7 @@ Successful-execution coverage (VERIFIED + VERIFIED_WITH_LIMITATIONS over eligibl
 | [meter-reader](https://github.com/openvinotoolkit/openvino_notebooks/blob/5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b/notebooks/meter-reader/meter-reader.ipynb) | OCR | 🟡 VERIFIED_WITH_LIMITATIONS | WORKLOAD_CORRECTNESS | - | ⏳ NOT_TESTED | WORKLOAD_TWIN | 2026-10-05 | [link](../results/meter-reader/20261005T203133Z-cpu) |
 | [mineru2.5](https://github.com/openvinotoolkit/openvino_notebooks/blob/5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b/notebooks/mineru2.5/mineru2.5.ipynb) | OCR | 🟡 VERIFIED_WITH_LIMITATIONS | EXECUTION_ONLY | - | ⏳ NOT_TESTED | WORKLOAD_TWIN | 2026-10-06 | [link](../results/mineru2.5/20261006T152459Z-cpu) |
 | [minicpm-o-4.5](https://github.com/openvinotoolkit/openvino_notebooks/blob/5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b/notebooks/minicpm-o-4.5/minicpm-o-4.5.ipynb) | VLM | 📦 BLOCKED_DEPENDENCY | - | TRANSFORMERS_API_DRIFT | ⏳ NOT_TESTED | WORKLOAD_TWIN | 2026-10-06 | [link](../results/minicpm-o-4.5/20261006T171910Z-cpu) |
-| [minicpm-o-omnimodal-chatbot](https://github.com/openvinotoolkit/openvino_notebooks/blob/5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b/notebooks/minicpm-o-omnimodal-chatbot/minicpm-o-omnimodal-chatbot.ipynb) | VLM | 💾 BLOCKED_RESOURCE | - | MODEL_ARTIFACT_INCOMPLETE_OR_CORRUPT | ⏳ NOT_TESTED | WORKLOAD_TWIN | 2026-10-07 | [link](../results/minicpm-o-omnimodal-chatbot/20261007204800Z-cpu) |
+| [minicpm-o-omnimodal-chatbot](https://github.com/openvinotoolkit/openvino_notebooks/blob/5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b/notebooks/minicpm-o-omnimodal-chatbot/minicpm-o-omnimodal-chatbot.ipynb) | VLM | 💾 BLOCKED_RESOURCE | - | MODEL_FILE_IO_FAILURE_SAVE_OR_LOAD | ⏳ NOT_TESTED | WORKLOAD_TWIN | 2026-10-07 | [link](../results/minicpm-o-omnimodal-chatbot/20261007204800Z-cpu) |
 | [minicpm-v-4.6](https://github.com/openvinotoolkit/openvino_notebooks/blob/5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b/notebooks/minicpm-v-4.6/minicpm-v-4.6.ipynb) | VLM | 🟡 VERIFIED_WITH_LIMITATIONS | EXECUTION_ONLY | - | ⏳ NOT_TESTED | WORKLOAD_TWIN | 2026-10-06 | [link](../results/minicpm-v-4.6/20261006T172150Z-cpu) |
 | [minicpm-v-multimodal-chatbot](https://github.com/openvinotoolkit/openvino_notebooks/blob/5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b/notebooks/minicpm-v-multimodal-chatbot/minicpm-v-multimodal-chatbot.ipynb) | VLM | ⏱️ BLOCKED_TIMEOUT | - | TIMEOUT_INFERENCE | ⏳ NOT_TESTED | WORKLOAD_TWIN | 2026-10-06 | [link](../results/minicpm-v-multimodal-chatbot/20261006T120232Z-cpu) |
 | [ministral-3](https://github.com/openvinotoolkit/openvino_notebooks/blob/5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b/notebooks/ministral-3/ministral-3.ipynb) | LLM | 🟡 VERIFIED_WITH_LIMITATIONS | EXECUTION_ONLY | - | ⏳ NOT_TESTED | WORKLOAD_TWIN | 2026-10-07 | [link](../results/ministral-3/20261007T013114Z-cpu) |

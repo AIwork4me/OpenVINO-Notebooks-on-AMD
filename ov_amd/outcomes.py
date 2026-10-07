@@ -102,10 +102,19 @@ _SIGNATURES: list[tuple[str, CompatibilityOutcome, str]] = [
         r"Empty weights data in bin file|PytorchStreamReader failed reading zip archive|"
         r"Can not open file [^\n]*\.(bin|xml)|"
         r"No such file or directory[^\n]*\.safetensors|"
-        r"KeyError: '(blocks|model)\.[^\n]*weight'|"
-        r"basic_ios::clear: iostream error",
+        r"KeyError: '(blocks|model)\.[^\n]*weight'",
         CompatibilityOutcome.BLOCKED_RESOURCE,
         "MODEL_ARTIFACT_INCOMPLETE_OR_CORRUPT",
+    ),
+    (
+        # IR file I/O failure at save/load (basic_ios from ov.save_model /
+        # read_model): resource-class file-stream failure, commonly disk
+        # exhaustion during the PT->OV copy pattern — not an inference-time
+        # runtime defect. Stage attribution (read vs write) is adjudicated
+        # from the traceback evidence.
+        r"basic_ios::clear: iostream error",
+        CompatibilityOutcome.BLOCKED_RESOURCE,
+        "MODEL_FILE_IO_FAILURE_SAVE_OR_LOAD",
     ),
     (
         r"drive\.google\.com|ConnectTimeout|Connection error\.|getaddrinfo failed|"

@@ -2673,7 +2673,7 @@
         "status": "FAILED",
         "failure_category": "OPENVINO_ERROR",
         "compatibility_outcome": "BLOCKED_RESOURCE",
-        "outcome_reason": "MODEL_ARTIFACT_INCOMPLETE_OR_CORRUPT",
+        "outcome_reason": "MODEL_FILE_IO_FAILURE_SAVE_OR_LOAD",
         "ok_runs": 0,
         "required_runs": 1,
         "durations_s": [],
@@ -2692,7 +2692,7 @@
         },
         "notes": [
           "ok_runs=0/1: RuntimeError: basic_ios::clear: iostream error",
-          "v0.2.2 signature-gap correction: basic_ios::clear iostream error raised from core.read_model(model_dir/llm_path) \u2014 IR file read failure (artifact integrity), not an inference-time runtime defect; classifier signature added so the class derives correctly from evidence text"
+          "v0.2.2 Gate-5-corrected adjudication: the basic_ios::clear iostream error was raised from ov.save_model(...) (IR WRITE path) after core.read_model and nncf.compress_weights had succeeded on the freshly downloaded ~17.4GB model \u2014 the notebook's PT->OV copy pattern needs the source and exported copies simultaneously (~35GB workdir); this validation runner's disk budget was exhausted during the export (the 19:55Z sibling attempt died at copy_llm_files with ENOSPC). Resource blocker, not an inference-time compatibility defect and not artifact corruption."
         ],
         "updated": "2026-10-07T20:52:54+00:00"
       }
@@ -5754,7 +5754,7 @@
       "log_tail": "Collecting json5\n  Using cached json5-0.15.0-py3-none-any.whl.metadata (37 kB)\nUsing cached json5-0.15.0-py3-none-any.whl (36 kB)\nInstalling collected packages: json5\nSuccessfully installed json5-0.15.0\n"
     }
   ],
-  "last_checkpoint": "2026-10-07T20:55:50+00:00",
+  "last_checkpoint": "2026-10-07T21:01:41+00:00",
   "current_workload": "llm-agent-react-langchain",
   "env_repairs": [
     {
