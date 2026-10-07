@@ -51,10 +51,16 @@ def main() -> int:
             fail_cats[c["failure_category"]] += 1
         for backend, r in (("cpu", c), ("gpu", g)):
             if r.get("status") in GREENS:
-                ev = (r.get("evidence_dir") or "").replace(f"{REPO}/", "")
+                # repo-relative public link, robust to absolute refs written by
+                # any runner (Defect C: public artifacts never carry machine
+                # paths) — reuse the matrix normalizer
+                from ov_amd.reporting import _rel
+
+                ev = _rel(r.get("evidence_dir"))
+                plat = r.get("platform_id") or "ryzen-ai-max-395-radeon-8060s"
                 green_rows.append(
                     f"| {e.id} | {backend.upper()} | {r['status']} | {r.get('device_proof', '')} | "
-                    f"{r.get('validation_level', '')} | {r.get('ok_runs', '-')} | "
+                    f"{r.get('validation_level', '')} | {r.get('ok_runs', '-')} | {plat} | "
                     f"[evidence]({ev}/summary.md) |"
                 )
 
@@ -77,12 +83,20 @@ def main() -> int:
         "- evidence schema: v2 (per-workload isolated environments, positive device proof,",
         "  validation levels, auditable repeatability aggregates)",
         "",
-        "## Reference platform",
+        "## Reference platforms",
         "",
-        "- CPU: AMD Ryzen AI Max+ PRO 395 (16C/32T) — OpenVINO CPU plugin",
-        "- GPU: AMD Radeon 8060S (gfx1151) — PyTorch ROCm twins",
-        "- RAM: 94 GiB shared domain; OS Ubuntu 24.04, kernel 6.17",
-        "- Python 3.12.3; OpenVINO 2026.4.x; PyTorch 2.14.1+rocm7.14; ROCm 7.2.1",
+        "The v0.2 campaign spans two AMD validation platforms (every evidence",
+        "directory records the exact hardware that produced it):",
+        "",
+        "- **ryzen-ai-max-395-radeon-8060s** (primary reference): AMD Ryzen AI Max+",
+        "  PRO 395 (16C/32T), Radeon 8060S (gfx1151), 94 GiB shared RAM,",
+        "  Ubuntu 24.04/kernel 6.17 — CPU OpenVINO validation + earlier pass-1",
+        "- **amd-epyc-9334-…-gfx1100** (secondary): EPYC 9334 (128 threads),",
+        "  Radeon gfx1100 dGPU, ROCm 7.2 torch 2.9.1+hip — ROCm twin",
+        "  revalidation under Evidence Schema v2",
+        "- Software baselines: Python 3.12.3; OpenVINO 2026.4.x",
+        "  (reference) — PyTorch 2.14.1+rocm7.14 (reference) / 2.9.1+hip7.2",
+        "  (secondary)",
         "",
         "## Catalog: 171 notebooks",
         "",
@@ -96,8 +110,8 @@ def main() -> int:
         "",
         "## Green records (all evidence-backed, clickable)",
         "",
-        "| Workload | Backend | Status | Device proof | Validation level | Runs ok | Evidence |",
-        "|---|---|---|---|---|---|---|",
+        "| Workload | Backend | Status | Device proof | Validation level | Runs ok | Platform | Evidence |",
+        "|---|---|---|---|---|---|---|---|",
         *green_rows,
         "",
         "Legacy v0.1 greens are excluded from the counts above until revalidated",
