@@ -88,7 +88,6 @@ _SIGNATURES: list[tuple[str, CompatibilityOutcome, str]] = [
     (
         r"FileNotFoundError[^\n]*'(optimum-cli|ovc)'|"
         r"Could not import optimum(-intel)?|ImportError: Could not import optimum-intel|"
-        r"optimum-cli\.export[^\n]*returned non-zero|"
         r"Unexpected dependency in optimum-intel/setup\.py",
         CompatibilityOutcome.BLOCKED_DEPENDENCY,
         "OPTIMUM_CLI_MISSING_OR_BROKEN",

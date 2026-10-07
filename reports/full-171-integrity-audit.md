@@ -1,6 +1,6 @@
 # Full 171-Entry Integrity Audit (generated)
 
-Generated: 2026-10-07T12:28:44+00:00 · pin `329562e6031d`
+Generated: 2026-10-07T13:55:10+00:00 · pin `329562e6031d`
 
 Verdicts: {'OK': 168, 'WARN': 3}
 
@@ -55,7 +55,7 @@ Verdicts: {'OK': 168, 'WARN': 3}
 | funasr-nano | FAILED | BLOCKED_DEPENDENCY | OK |  |
 | gemma4 | FAILED | BLOCKED_RESOURCE | OK |  |
 | glm-ocr | FAILED | BLOCKED_DEPENDENCY | OK |  |
-| glm4.1-v-thinking | FAILED | FAILED_COMPATIBILITY | OK |  |
+| glm4.1-v-thinking | FAILED | BLOCKED_DEPENDENCY | OK |  |
 | gpu-device | FAILED | FAILED_COMPATIBILITY | OK |  |
 | grounded-segment-anything | FAILED | BLOCKED_TIMEOUT | OK |  |
 | handwritten-ocr | VERIFIED | VERIFIED | OK |  |

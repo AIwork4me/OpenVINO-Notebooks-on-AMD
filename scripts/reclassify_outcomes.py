@@ -35,6 +35,15 @@ STATE = REPO / "results" / "marathon-state.json"
 # Every entry was manually adjudicated against the recorded evidence during the
 # comprehensive verification closure (see reports/full-171-integrity-audit.md).
 ADJUDICATIONS: dict[tuple[str, str], tuple[str, str, str]] = {
+    ("glm4.1-v-thinking", "cpu"): (
+        "BLOCKED_DEPENDENCY",
+        "OPTIMUM_EXPORT_FAILED_ROOT_CAUSE_NOT_CAPTURED",
+        "optimum-cli was present and ran; the export subprocess failed (exit 1) with its "
+        "stderr swallowed by cmd_helper's capture_output (upstream helper limitation, fixed "
+        "upstream after our pin). Most probable cause is model download inside the export on "
+        "the throttled reference network; unproven — queued for retry with the optimum health "
+        "contract recording the export environment.",
+    ),
     ("action-recognition-webcam", "cpu"): (
         "BLOCKED_DEPENDENCY",
         "UPSTREAM_NOTEBOOK_RERUN_SCOPING",
@@ -130,6 +139,15 @@ CONTRACT_CORRECTIONS: dict[str, dict] = {
 # rerun bug is not an OPENVINO_ERROR). Correcting the execution category keeps
 # the raw dimension honest too; the note preserves the original label.
 CATEGORY_CORRECTIONS: dict[tuple[str, str], tuple[str, str]] = {
+    ("glm4.1-v-thinking", "cpu"): (
+        "BLOCKED_DEPENDENCY",
+        "OPTIMUM_EXPORT_FAILED_ROOT_CAUSE_NOT_CAPTURED",
+        "optimum-cli was present and ran; the export subprocess failed (exit 1) with its "
+        "stderr swallowed by cmd_helper's capture_output (upstream helper limitation, fixed "
+        "upstream after our pin). Most probable cause is model download inside the export on "
+        "the throttled reference network; unproven — queued for retry with the optimum health "
+        "contract recording the export environment.",
+    ),
     ("action-recognition-webcam", "cpu"): ("DEPENDENCY", "NameError from upstream rerun-scoping bug, not an OpenVINO runtime error"),
     ("3d-segmentation-point-clouds", "cpu"): ("DEPENDENCY", "NameError from upstream rerun-scoping bug, not an OpenVINO runtime error"),
     ("phi3_rag_on_client", "cpu"): ("DEPENDENCY", "datasets API drift, not model access"),

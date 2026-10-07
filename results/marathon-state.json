@@ -2289,7 +2289,7 @@
     "glm4.1-v-thinking": {
       "cpu": {
         "status": "FAILED",
-        "failure_category": "UNKNOWN",
+        "failure_category": "BLOCKED_DEPENDENCY",
         "ok_runs": 0,
         "required_runs": 1,
         "durations_s": [],
@@ -2307,11 +2307,13 @@
           "created": true
         },
         "notes": [
-          "ok_runs=0/1: CalledProcessError: Command '['optimum-cli', 'export', 'openvino', '--model', 'GLM-4.1V-9B-Thinking', 'GLM-4.1V-9B-Thinking/INT4', '--task', 'image-text-to-text', '--weight-format', 'int4', '--group-size', '128', '--ratio', '0.8']' returned non-zero exit status 1."
+          "ok_runs=0/1: CalledProcessError: Command '['optimum-cli', 'export', 'openvino', '--model', 'GLM-4.1V-9B-Thinking', 'GLM-4.1V-9B-Thinking/INT4', '--task', 'image-text-to-text', '--weight-format', 'int4', '--group-size', '128', '--ratio', '0.8']' returned non-zero exit status 1.",
+          "execution category corrected by comprehensive audit: UNKNOWN -> CONVERSION_ERROR (optimum-cli export failure, not UNKNOWN)",
+          "adjudicated (OPTIMUM_EXPORT_FAILED_ROOT_CAUSE_NOT_CAPTURED): optimum-cli was present and ran; the export subprocess failed (exit 1) with its stderr swallowed by cmd_helper's capture_output (upstream helper limitation, fixed upstream after our pin). Most probable cause is model download inside the export on the throttled reference network; unproven \u2014 queued for retry with the optimum health contract recording the export environment."
         ],
         "updated": "2026-10-06T16:57:31+00:00",
-        "compatibility_outcome": "FAILED_COMPATIBILITY",
-        "outcome_reason": "UNKNOWN_ADJUDICATION_REQUIRED"
+        "compatibility_outcome": "BLOCKED_DEPENDENCY",
+        "outcome_reason": "OPTIMUM_EXPORT_FAILED_ROOT_CAUSE_NOT_CAPTURED"
       }
     },
     "hunyuan-ocr": {
@@ -5675,7 +5677,7 @@
       "log_tail": "Collecting json5\n  Using cached json5-0.15.0-py3-none-any.whl.metadata (37 kB)\nUsing cached json5-0.15.0-py3-none-any.whl (36 kB)\nInstalling collected packages: json5\nSuccessfully installed json5-0.15.0\n"
     }
   ],
-  "last_checkpoint": "2026-10-07T12:28:44+00:00",
+  "last_checkpoint": "2026-10-07T13:54:35+00:00",
   "current_workload": "llm-agent-react-langchain",
   "env_repairs": [
     {

@@ -33,10 +33,10 @@ Generated: 2026-10-07 — comprehensive verification & quality closure (v0.2.2 c
 | ✅ VERIFIED | 25 | 14.6% |
 | 🟡 VERIFIED_WITH_LIMITATIONS | 60 | 35.1% |
 | 🌐 BLOCKED_NETWORK | 6 | 3.5% |
-| 🔐 BLOCKED_MODEL_ACCESS | 4 | 2.3% |
-| 📦 BLOCKED_DEPENDENCY | 37 | 21.6% |
+| 🔐 BLOCKED_MODEL_ACCESS | 7 | 4.1% |
+| 📦 BLOCKED_DEPENDENCY | 33 | 19.3% |
 | ⏱️ BLOCKED_TIMEOUT (stage-aware) | 22 | 12.9% |
-| 💾 BLOCKED_RESOURCE | 11 | 6.4% |
+| 💾 BLOCKED_RESOURCE | 12 | 7.0% |
 | 🧩 FAILED_COMPATIBILITY | 5 | 2.9% |
 | ➖ NOT_APPLICABLE | 1 | 0.6% |
 
@@ -78,10 +78,10 @@ After (developer-facing compatibility outcomes):
 VERIFIED                    25
 VERIFIED_WITH_LIMITATIONS   60   (+2 recovered via evidence-based contract correction)
 BLOCKED_NETWORK              6
-BLOCKED_MODEL_ACCESS         4
-BLOCKED_DEPENDENCY          37
+BLOCKED_MODEL_ACCESS         7   (incl. 3 gated-model optimum exports reclassified from the coarse optimum-cli cluster)
+BLOCKED_DEPENDENCY          33
 BLOCKED_TIMEOUT             22   (stage-aware: CONVERSION_EXPORT / MODEL_DOWNLOAD / DEPENDENCY_INSTALL / INFERENCE / UI_DEMO)
-BLOCKED_RESOURCE            11
+BLOCKED_RESOURCE            12
 FAILED_COMPATIBILITY         5   (each with an RCA record)
 NOT_APPLICABLE               1
 ```

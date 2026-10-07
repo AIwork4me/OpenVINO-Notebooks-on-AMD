@@ -1,6 +1,6 @@
 # Marathon Progress (generated)
 
-Updated: 2026-10-07T12:27:43+00:00
+Updated: 2026-10-07T13:54:36+00:00
 
 - Catalog discovered: 171
 - CPU attempted: 171 (100.0% of catalog; attempt records only, NOT_TESTED excluded)
@@ -18,23 +18,24 @@ Updated: 2026-10-07T12:27:43+00:00
 ## CPU compatibility outcomes (developer-facing)
 
 - VERIFIED_WITH_LIMITATIONS: 60
-- BLOCKED_DEPENDENCY: 37
+- BLOCKED_DEPENDENCY: 33
 - VERIFIED: 25
 - BLOCKED_TIMEOUT: 22
-- BLOCKED_RESOURCE: 11
+- BLOCKED_RESOURCE: 12
+- BLOCKED_MODEL_ACCESS: 7
 - BLOCKED_NETWORK: 6
 - FAILED_COMPATIBILITY: 5
-- BLOCKED_MODEL_ACCESS: 4
 - NOT_APPLICABLE: 1
 
 ## Top recurring CPU failure categories (execution taxonomy)
 
 - DEPENDENCY: 23
 - TIMEOUT: 22
-- UNKNOWN: 11
+- UNKNOWN: 10
 - PACKAGE_CONFLICT: 8
 - MODEL_ACCESS: 8
 - OPENVINO_ERROR: 6
 - NETWORK: 6
 - CORRECTNESS_ERROR: 2
 - CONVERSION_ERROR: 1
+- BLOCKED_DEPENDENCY: 1
