@@ -24,6 +24,16 @@ twin:
   level: WORKLOAD_TWIN
 validation: {}
 patches:
-  notes: 'v0.2.2: per-cell/wall overrides for throttled-network installs and large
-    model downloads; default 900s cell cap kills legitimate install cells'
+  cell_subs:
+  - pattern: device_list = \["MULTI:CPU,GPU" if "GPU" in core\.available_devices else
+      "AUTO"\]
+    replacement: device_list = ["CPU"]
+  notes: "CPU device attribution fix (v0.2.2): upstream cell 29 passes device_list[0]=\"\
+    MULTI:CPU,GPU\" explicitly to device_widget when a GPU is enumerated, overriding\
+    \ the harness CPU default; the old attempt died in the OpenVINO GPU plugin (Intel\
+    \ ISA inline-asm compile errors in stderr \u2014 kernel death during NNCF quantization),\
+    \ recorded as KERNEL_DEATH_UNDIAGNOSED. This minimal documented pin forces device_list=[\"\
+    CPU\"] so the AMD Ryzen CPU path is genuinely exercised. The GPU-plugin crash\
+    \ on Radeon is recorded separately in reports/openvino-gpu-plugin-radeon-findings.md\
+    \ (Finding OVG-002)."
 last_verified: ''

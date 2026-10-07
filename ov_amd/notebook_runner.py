@@ -269,6 +269,27 @@ def _preseed_helpers(cwd: Path, nb_path: Path | None = None) -> list[str]:
             dst = cwd / py.name
             if not dst.exists():
                 _copy_patched(py, dst)
+        # notebooks in notebooks/<folder>/ reach helpers as ../../utils/<mod>.py
+        # (e.g. llm-chatbot's llm_config.py copy-or-update cell). The kernel
+        # cwd is the workdir, not the notebook dir, so that relative layout
+        # must exist too — otherwise the notebook's "update" branch falls
+        # back to raw.githubusercontent.com and dies on egress-restricted
+        # runners (v0.2.2 llm-chatbot SSLError). Bounded: only when ../../
+        # resolves inside RESULTS_DIR (no writes outside the results tree).
+        try:
+            shared_utils = (cwd / ".." / ".." / "utils").resolve()
+            results_root = (Path(__file__).resolve().parent.parent / "results").resolve()
+            if str(shared_utils).startswith(str(results_root) + os.sep):
+                shared_utils.mkdir(parents=True, exist_ok=True)
+                for py in utils.glob("*.py"):
+                    dst = shared_utils / py.name
+                    if not dst.exists():
+                        _copy_patched(py, dst)
+                patches.append(
+                    "preseeded ../../utils helper layout (notebooks resolve helpers relative to their folder; kernel cwd is the workdir)"
+                )
+        except OSError:
+            pass
 
     if nb_path is not None and nb_path.parent != root:
         for sibling in sorted(nb_path.parent.iterdir()):

@@ -1,0 +1,8 @@
+[cell 0 START +    0.8s] # Accelerate Qwen3-8B with Speculative Decoding and Efficient Draft Mo
+[cell 1 START +    0.8s] #### Table of contents: |  | - [Prerequisites](#Prerequisites) | - [Generati
+[cell 2 START +    0.8s] ## Prerequisites |  | > Note: we recommend running this notebook in a virt
+[cell 3 START +    0.8s] !pip install -q -r ./smolagents/requirements.txt
+[cell 3 DONE  +    1.8s]
+[cell 4 START +    1.8s] ## Generation with OpenVINO GenAI | We can simply run generation with th
+[cell 5 START +    1.8s] ### Prepare Model |  | First we will download Qwen3-8B model converted to 
+[cell 6 START +    1.8s] from pathlib import Path | import huggingface_hub as hf_hub |  | model_id = 

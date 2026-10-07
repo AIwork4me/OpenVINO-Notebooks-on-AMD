@@ -1,0 +1,32 @@
+{
+  "python": "/workspace/.venvs/cpu/ec74fa9a5736664e/bin/python",
+  "packages": {
+    "openvino": {
+      "installed": true,
+      "version": "2026.4.1"
+    },
+    "optimum": {
+      "installed": true,
+      "version": "2.3.0"
+    },
+    "optimum-intel": {
+      "installed": true,
+      "version": "2.2.0"
+    },
+    "transformers": {
+      "installed": true,
+      "version": "5.5.4"
+    },
+    "huggingface_hub": {
+      "installed": true,
+      "version": "1.21.0"
+    }
+  },
+  "cli": {
+    "path": "/workspace/.venvs/cpu/ec74fa9a5736664e/bin/optimum-cli",
+    "help_exit_code": 0,
+    "help_ok": true
+  },
+  "diagnosis": "HEALTHY",
+  "remediation": null
+}

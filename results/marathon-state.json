@@ -1246,39 +1246,30 @@
     },
     "llm-chatbot-generate-api": {
       "cpu": {
-        "status": "VERIFIED_WITH_LIMITATIONS",
-        "failure_category": "",
-        "ok_runs": 3,
+        "status": "FAILED",
+        "failure_category": "NETWORK",
+        "compatibility_outcome": "BLOCKED_NETWORK",
+        "outcome_reason": "NETWORK_UNREACHABLE",
+        "ok_runs": 0,
         "required_runs": 3,
-        "durations_s": [
-          77.61,
-          8.1,
-          8.29
-        ],
+        "durations_s": [],
         "device_used": "CPU",
-        "device_proof": "PROVEN_CPU",
-        "validation_level": "EXECUTION_ONLY",
-        "platform_id": "ryzen-ai-max-395-radeon-8060s-gfx1151",
-        "evidence_dir": "results/llm-chatbot-generate-api/20261007T011130Z-cpu",
+        "device_proof": "UNKNOWN",
+        "validation_level": "",
+        "platform_id": "amd-epyc-9334-32-core-processor-gfx1100",
+        "evidence_dir": "results/llm-chatbot-generate-api/20261007163856Z-cpu",
         "env": {
           "backend": "cpu",
-          "env_key": "451ae2a7fe7e4a3c",
-          "python": ".venvs/cpu/451ae2a7fe7e4a3c/bin/python",
+          "env_key": "86135eb109a7a4dc",
+          "python": ".venvs/cpu/86135eb109a7a4dc/bin/python",
           "fingerprint": "8b964d3727f166018304bae9dd554ce090c8054f16131d99a2d8e80b36d4ea7a",
           "reused": false,
           "created": true
         },
         "notes": [
-          "EXECUTION_ONLY: no workload correctness contract (validation: {})",
-          "CORE_INFERENCE_VERIFIED; INTERACTIVE_UI_NOT_TESTED (documented skip policy)"
+          "ok_runs=0/3: SSLError: HTTPSConnectionPool(host='raw.githubusercontent.com', port=443): Max retries exceeded with url: /openvinotoolkit/openvino_notebooks/latest/utils/llm_config.py (Caused by SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:100"
         ],
-        "updated": "2026-10-07T01:13:06+00:00",
-        "compatibility_outcome": "VERIFIED_WITH_LIMITATIONS",
-        "outcome_reason": "",
-        "limitation_codes": [
-          "INTERACTIVE_UI_NOT_TESTED",
-          "EXECUTION_ONLY"
-        ]
+        "updated": "2026-10-07T16:43:17+00:00"
       }
     },
     "llm-rag-langchain-eval": {
@@ -2517,39 +2508,30 @@
     },
     "llm-chatbot": {
       "cpu": {
-        "status": "VERIFIED_WITH_LIMITATIONS",
-        "failure_category": "",
-        "ok_runs": 1,
+        "status": "FAILED",
+        "failure_category": "NETWORK",
+        "compatibility_outcome": "BLOCKED_NETWORK",
+        "outcome_reason": "NETWORK_UNREACHABLE",
+        "ok_runs": 0,
         "required_runs": 1,
-        "durations_s": [
-          99.85
-        ],
+        "durations_s": [],
         "device_used": "CPU",
-        "device_proof": "PROVEN_CPU",
-        "validation_level": "EXECUTION_ONLY",
-        "platform_id": "ryzen-ai-max-395-radeon-8060s-gfx1151",
-        "evidence_dir": "results/llm-chatbot/20261006T171704Z-cpu",
+        "device_proof": "UNKNOWN",
+        "validation_level": "",
+        "platform_id": "amd-epyc-9334-32-core-processor-gfx1100",
+        "evidence_dir": "results/llm-chatbot/20261007163304Z-cpu",
         "env": {
           "backend": "cpu",
-          "env_key": "c135cee494e9bc65",
-          "python": ".venvs/cpu/c135cee494e9bc65/bin/python",
+          "env_key": "ae7be98adce5db71",
+          "python": ".venvs/cpu/ae7be98adce5db71/bin/python",
           "fingerprint": "b2f78534378eea889a283f922b653ff6afc29cdb4868116c26440d5d4571b46d",
-          "reused": false,
-          "created": true
+          "reused": true,
+          "created": false
         },
         "notes": [
-          "EXECUTION_ONLY: no workload correctness contract (validation: {})",
-          "repeatability_not_established: fewer than 3 successful runs (resource-bounded policy)",
-          "CORE_INFERENCE_VERIFIED; INTERACTIVE_UI_NOT_TESTED (documented skip policy)"
+          "ok_runs=0/1: SSLError: HTTPSConnectionPool(host='raw.githubusercontent.com', port=443): Max retries exceeded with url: /openvinotoolkit/openvino_notebooks/latest/utils/llm_config.py (Caused by SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:100"
         ],
-        "updated": "2026-10-06T17:18:46+00:00",
-        "compatibility_outcome": "VERIFIED_WITH_LIMITATIONS",
-        "outcome_reason": "",
-        "limitation_codes": [
-          "REPEATABILITY_NOT_ESTABLISHED",
-          "INTERACTIVE_UI_NOT_TESTED",
-          "EXECUTION_ONLY"
-        ]
+        "updated": "2026-10-07T16:37:41+00:00"
       }
     },
     "llm-question-answering": {
@@ -4304,29 +4286,29 @@
     "openvino-tokenizers": {
       "cpu": {
         "status": "FAILED",
-        "failure_category": "TIMEOUT",
-        "compatibility_outcome": "BLOCKED_TIMEOUT",
-        "outcome_reason": "TIMEOUT_UNKNOWN_STAGE",
+        "failure_category": "OPENVINO_ERROR",
+        "compatibility_outcome": "FAILED_COMPATIBILITY",
+        "outcome_reason": "OPENVINO_RUNTIME",
         "ok_runs": 0,
         "required_runs": 3,
         "durations_s": [],
-        "device_used": "",
-        "device_proof": "UNKNOWN",
+        "device_used": "CPU",
+        "device_proof": "PROVEN_CPU",
         "validation_level": "",
         "platform_id": "amd-epyc-9334-32-core-processor-gfx1100",
-        "evidence_dir": "results/openvino-tokenizers/20261007160518Z-cpu",
+        "evidence_dir": "results/openvino-tokenizers/20261007162645Z-cpu",
         "env": {
           "backend": "cpu",
           "env_key": "ec74fa9a5736664e",
           "python": ".venvs/cpu/ec74fa9a5736664e/bin/python",
           "fingerprint": "52d24f0a9850e1cd07c9554fe11d9b90ae935890de9a21c75c141ca0c4b5e8d6",
-          "reused": false,
-          "created": true
+          "reused": true,
+          "created": false
         },
         "notes": [
-          "ok_runs=0/3: -------------------"
+          "ok_runs=0/3: ReadValue node with name 'ReadValue_5627'  doesn't have sibling output"
         ],
-        "updated": "2026-10-07T16:21:25+00:00"
+        "updated": "2026-10-07T16:31:41+00:00"
       }
     },
     "wan2.1-text-to-video": {
@@ -5734,7 +5716,7 @@
       "log_tail": "Collecting json5\n  Using cached json5-0.15.0-py3-none-any.whl.metadata (37 kB)\nUsing cached json5-0.15.0-py3-none-any.whl (36 kB)\nInstalling collected packages: json5\nSuccessfully installed json5-0.15.0\n"
     }
   ],
-  "last_checkpoint": "2026-10-07T16:21:25+00:00",
+  "last_checkpoint": "2026-10-07T16:43:17+00:00",
   "current_workload": "llm-agent-react-langchain",
   "env_repairs": [
     {

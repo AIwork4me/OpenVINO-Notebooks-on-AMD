@@ -47,6 +47,47 @@ Exception from src/plugins/intel_gpu/src/runtime/ocl/ocl_memory.cpp:74:
   independently VERIFIED (`PROVEN_GPU`, workload-correct, repeatable) — the
   PyTorch/ROCm stack runs the same model family fine on the same GPU.
 
+## Finding OVG-002 — GPU-plugin inline-asm compile crash during NNCF quantization (kernel death)
+
+- **Workload:** `ct-segmentation-quantize-nncf`
+- **Runtime:** OpenVINO CPU+GPU (`MULTI:CPU,GPU`) compile during NNCF int8 quantization
+- **Device:** AMD Radeon via the OpenVINO GPU (OpenCL) plugin
+- **Error (run stderr tail):**
+
+```text
+<inline asm>:4:1: error: unknown directive
+.implicit_PSEUDO_INPUT AA1 offset=256 size=4
+<inline asm>:5:1: error: invalid instruction
+mov (M1_NM,1) AA0(0,0)<1> AA1(0,0)<0>;1,0>
+nbclient.exceptions.DeadKernelError: Kernel died
+```
+
+- **Evidence:** `results/ct-segmentation-quantize-nncf/20261006T192227Z-cpu/run-01/`
+  (device_used GPU, proof AUTO_UNRESOLVED; recorded pre-attribution-fix)
+- **Interpretation:** the OpenVINO GPU plugin's kernel codegen emitted Intel-GPU ISA
+  assembly that the assembler rejected, crashing the Python kernel — a hard
+  GPU-plugin failure on Radeon, not an OOM and not a CPU-plugin defect.
+- **Impact on the CPU row:** the v0.2.1 `KERNEL_DEATH_UNDIAGNOSED` compatibility
+  failure was device-misattributed; v0.2.2 re-runs the notebook with
+  `device_list=["CPU"]` (documented pin) for a genuine CPU verdict.
+
+## Finding OVG-003 — GPU-plugin inline-asm compile crash in the gpu-device notebook (kernel death)
+
+- **Workload:** `gpu-device`
+- **Runtime:** OpenVINO GPU plugin property walkthrough / model compile (`device = "GPU"` hardcoded)
+- **Device:** AMD Radeon (gfx1151 reference runner) via the OpenCL plugin
+- **Error (run stderr):** same class as OVG-002 — Intel-GPU ISA `.decl`/`.implicit_PSEUDO_INPUT`
+  inline-asm directives rejected by the assembler, then `DeadKernelError`.
+- **Evidence:** `results/gpu-device/20261006T220955Z-cpu/run-01/`
+- **Interpretation:** identical GPU-plugin codegen crash family as OVG-002,
+  triggered from the gpu-device walkthrough notebook.
+- **CPU applicability adjudication (v0.2.2):** the notebook is GPU-purpose by
+  construction (hardcoded `device = "GPU"` for property queries, compilation,
+  cache/throughput experiments; only `core.available_devices` is
+  backend-agnostic). There is no meaningful AMD CPU validation path — the CPU
+  outcome is `NOT_APPLICABLE` with provenance, and this GPU-plugin behavior is
+  the recorded result for the GPU dimension instead.
+
 ## Upstream-documented GPU-plugin constraints (informational)
 
 - `gpt-oss-20b` is documented upstream as not supported with the OpenVINO GPU

@@ -1,0 +1,11 @@
+{
+  "schema_version": 2,
+  "start": "2026-10-07T16:42:04+00:00",
+  "end": "2026-10-07T16:42:37+00:00",
+  "duration_s": 32.96,
+  "exit_code": 1,
+  "retry_count": 1,
+  "status": "ERROR",
+  "failure_category": "NETWORK",
+  "stage": ""
+}
