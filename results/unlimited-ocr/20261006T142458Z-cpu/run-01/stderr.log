@@ -1,0 +1,14 @@
+[IPKernelApp] WARNING | Kernel is running over TCP without encryption. All communication (including code and outputs) is sent in plain text and is susceptible to eavesdropping. Use IPC transport or launch with kernel manager-provisioned CurveZMQ keys to enable transport encryption.
+[31mERROR: pip's dependency resolver does not currently take into account all the packages that are installed. This behaviour is the source of the following dependency conflicts.
+easyocr 1.7.2 requires opencv-python-headless, which is not installed.
+parler-tts 0.2.2 requires transformers<=4.46.1,>=4.46.1, but you have transformers 4.46.3 which is incompatible.
+ace-step 0.2.0 requires accelerate==1.6.0, but you have accelerate 1.15.0 which is incompatible.
+ace-step 0.2.0 requires datasets==3.4.1, but you have datasets 3.6.0 which is incompatible.
+ace-step 0.2.0 requires librosa==0.11.0, but you have librosa 1.0.0 which is incompatible.
+ace-step 0.2.0 requires soundfile==0.13.1, but you have soundfile 0.14.0 which is incompatible.
+ace-step 0.2.0 requires transformers==4.50.0, but you have transformers 4.46.3 which is incompatible.
+hf-gradio 0.4.1 requires gradio-client<3.0,>=2.0, but you have gradio-client 1.14.0 which is incompatible.
+descript-audiotools 0.7.4 requires protobuf!=4.24.0,<5.0.0,>=3.19.6, but you have protobuf 7.36.2 which is incompatible.
+omnivoice 0.2.1 requires transformers>=5.3.0, but you have transformers 4.46.3 which is incompatible.
+optimum-intel 2.3.0.dev0 requires transformers<5.11,>=4.51, but you have transformers 4.46.3 which is incompatible.[0m[31m
+[0m[IPKernelApp] WARNING | Parent appears to have exited, shutting down.

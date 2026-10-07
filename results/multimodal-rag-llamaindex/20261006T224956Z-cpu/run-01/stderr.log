@@ -1,0 +1,91 @@
+[IPKernelApp] WARNING | Kernel is running over TCP without encryption. All communication (including code and outputs) is sent in plain text and is susceptible to eavesdropping. Use IPC transport or launch with kernel manager-provisioned CurveZMQ keys to enable transport encryption.
+t, decode_content, enforce_content_length)[39m
+[32m    539[39m [38;5;28;01mtry[39;00m:
+[32m--> [39m[32m540[39m     response = [30;43mconn[39;49m[30;43m.[39;49m[30;43mgetresponse[39;49m[30;43m([39;49m[30;43m)[39;49m
+[32m    541[39m [38;5;28;01mexcept[39;00m (BaseSSLError, [38;5;167;01mOSError[39;00m) [38;5;28;01mas[39;00m e:
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/efa5ad3f4648b242/lib/python3.12/site-packages/urllib3/connection.py:638[39m, in [36mHTTPConnection.getresponse[39m[34m(self)[39m
+[32m    637[39m [38;5;66;03m# Get the response from http.client.HTTPConnection[39;00m
+[32m--> [39m[32m638[39m httplib_response = [30;43msuper[39;49m[30;43m([39;49m[30;43m)[39;49m[30;43m.[39;49m[30;43mgetresponse[39;49m[30;43m([39;49m[30;43m)[39;49m
+[32m    640[39m [38;5;28;01mtry[39;00m:
+
+[36mFile [39m[32m/usr/lib/python3.12/http/client.py:1457[39m, in [36mHTTPConnection.getresponse[39m[34m(self)[39m
+[32m   1456[39m [38;5;28;01mtry[39;00m:
+[32m-> [39m[32m1457[39m     [30;43mresponse[39;49m[30;43m.[39;49m[30;43mbegin[39;49m[30;43m([39;49m[30;43m)[39;49m
+[32m   1458[39m [38;5;28;01mexcept[39;00m [38;5;167;01mConnectionError[39;00m:
+
+[36mFile [39m[32m/usr/lib/python3.12/http/client.py:336[39m, in [36mHTTPResponse.begin[39m[34m(self)[39m
+[32m    335[39m [38;5;28;01mwhile[39;00m [38;5;28;01mTrue[39;00m:
+[32m--> [39m[32m336[39m     version, status, reason = [30;43mself[39;49m[30;43m.[39;49m[30;43m_read_status[39;49m[30;43m([39;49m[30;43m)[39;49m
+[32m    337[39m     [38;5;28;01mif[39;00m status != CONTINUE:
+
+[36mFile [39m[32m/usr/lib/python3.12/http/client.py:305[39m, in [36mHTTPResponse._read_status[39m[34m(self)[39m
+[32m    302[39m [38;5;28;01mif[39;00m [38;5;129;01mnot[39;00m line:
+[32m    303[39m     [38;5;66;03m# Presumably, the server closed the connection before[39;00m
+[32m    304[39m     [38;5;66;03m# sending a valid response.[39;00m
+[32m--> [39m[32m305[39m     [38;5;28;01mraise[39;00m RemoteDisconnected([33m"[39m[33mRemote end closed connection without[39m[33m"[39m
+[32m    306[39m                              [33m"[39m[33m response[39m[33m"[39m)
+[32m    307[39m [38;5;28;01mtry[39;00m:
+
+[31mProtocolError[39m: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+
+During handling of the above exception, another exception occurred:
+
+[31mConnectionError[39m                           Traceback (most recent call last)
+[36mCell[39m[36m [39m[32mIn[7][39m[32m, line 11[39m
+[32m      7[39m example_path.parent.mkdir(parents=[38;5;28;01mTrue[39;00m, exist_ok=[38;5;28;01mTrue[39;00m)
+[32m      8[39m Path(output_folder).mkdir(parents=[38;5;28;01mTrue[39;00m, exist_ok=[38;5;28;01mTrue[39;00m)
+[32m      9[39m 
+[32m     10[39m [38;5;28;01mif[39;00m [38;5;28;01mnot[39;00m example_path.exists():
+[32m---> [39m[32m11[39m     r = requests.get(video_url)
+[32m     12[39m     [38;5;28;01mwith[39;00m example_path.open([33m"wb"[39m) [38;5;28;01mas[39;00m f:
+[32m     13[39m         f.write(r.content)
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/efa5ad3f4648b242/lib/python3.12/site-packages/requests/api.py:87[39m, in [36mget[39m[34m(url, params, **kwargs)[39m
+[32m     74[39m [38;5;28;01mdef[39;00m[38;5;250m [39m[34mget[39m(
+[32m     75[39m     url: _t.UriType, params: _t.ParamsType = [38;5;28;01mNone[39;00m, **kwargs: Unpack[_t.GetKwargs]
+[32m     76[39m ) -> Response:
+[32m     77[39m [38;5;250m    [39m[33mr[39m[33;03m"""Sends a GET request.[39;00m
+[32m     78[39m 
+[32m     79[39m [33;03m    :param url: URL for the new :class:`Request` object.[39;00m
+[32m   (...)[39m[32m     84[39m [33;03m    :rtype: requests.Response[39;00m
+[32m     85[39m [33;03m    """[39;00m
+[32m---> [39m[32m87[39m     [38;5;28;01mreturn[39;00m [30;43mrequest[39;49m[30;43m([39;49m[30;43m"[39;49m[30;43mget[39;49m[30;43m"[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43murl[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mparams[39;49m[30;43m=[39;49m[30;43mparams[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43m*[39;49m[30;43m*[39;49m[30;43mkwargs[39;49m[30;43m)[39;49m
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/efa5ad3f4648b242/lib/python3.12/site-packages/requests/api.py:71[39m, in [36mrequest[39m[34m(method, url, **kwargs)[39m
+[32m     67[39m [38;5;66;03m# By using the 'with' statement we are sure the session is closed, thus we[39;00m
+[32m     68[39m [38;5;66;03m# avoid leaving sockets open which can trigger a ResourceWarning in some[39;00m
+[32m     69[39m [38;5;66;03m# cases, and look like a memory leak in others.[39;00m
+[32m     70[39m [38;5;28;01mwith[39;00m sessions.Session() [38;5;28;01mas[39;00m session:
+[32m---> [39m[32m71[39m     [38;5;28;01mreturn[39;00m [30;43msession[39;49m[30;43m.[39;49m[30;43mrequest[39;49m[30;43m([39;49m[30;43mmethod[39;49m[30;43m=[39;49m[30;43mmethod[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43murl[39;49m[30;43m=[39;49m[30;43murl[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43m*[39;49m[30;43m*[39;49m[30;43mkwargs[39;49m[30;43m)[39;49m
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/efa5ad3f4648b242/lib/python3.12/site-packages/requests/sessions.py:651[39m, in [36mSession.request[39m[34m(self, method, url, params, data, headers, cookies, files, auth, timeout, allow_redirects, proxies, hooks, stream, verify, cert, json)[39m
+[32m    646[39m send_kwargs = {
+[32m    647[39m     [33m"[39m[33mtimeout[39m[33m"[39m: timeout,
+[32m    648[39m     [33m"[39m[33mallow_redirects[39m[33m"[39m: allow_redirects,
+[32m    649[39m }
+[32m    650[39m send_kwargs.update(settings)
+[32m--> [39m[32m651[39m resp = [30;43mself[39;49m[30;43m.[39;49m[30;43msend[39;49m[30;43m([39;49m[30;43mprep[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43m*[39;49m[30;43m*[39;49m[30;43msend_kwargs[39;49m[30;43m)[39;49m
+[32m    653[39m [38;5;28;01mreturn[39;00m resp
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/efa5ad3f4648b242/lib/python3.12/site-packages/requests/sessions.py:784[39m, in [36mSession.send[39m[34m(self, request, **kwargs)[39m
+[32m    781[39m start = preferred_clock()
+[32m    783[39m [38;5;66;03m# Send the request[39;00m
+[32m--> [39m[32m784[39m r = [30;43madapter[39;49m[30;43m.[39;49m[30;43msend[39;49m[30;43m([39;49m[30;43mrequest[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43m*[39;49m[30;43m*[39;49m[30;43mkwargs[39;49m[30;43m)[39;49m
+[32m    786[39m [38;5;66;03m# Total elapsed time of the request (approximately)[39;00m
+[32m    787[39m elapsed = preferred_clock() - start
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/efa5ad3f4648b242/lib/python3.12/site-packages/requests/adapters.py:711[39m, in [36mHTTPAdapter.send[39m[34m(self, request, stream, timeout, verify, cert, proxies)[39m
+[32m    696[39m     resp = conn.urlopen(
+[32m    697[39m         method=request.method,
+[32m    698[39m         url=url,
+[32m   (...)[39m[32m    707[39m         chunked=chunked,
+[32m    708[39m     )
+[32m    710[39m [38;5;28;01mexcept[39;00m (ProtocolError, [38;5;167;01mOSError[39;00m) [38;5;28;01mas[39;00m err:
+[32m--> [39m[32m711[39m     [38;5;28;01mraise[39;00m [38;5;167;01mConnectionError[39;00m(err, request=request)
+[32m    713[39m [38;5;28;01mexcept[39;00m MaxRetryError [38;5;28;01mas[39;00m e:
+[32m    714[39m     [38;5;28;01mif[39;00m [38;5;28misinstance[39m(e.reason, ConnectTimeoutError):
+[32m    715[39m         [38;5;66;03m# TODO: Remove this in 3.0.0: see #2811[39;00m
+
+[31mConnectionError[39m: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+

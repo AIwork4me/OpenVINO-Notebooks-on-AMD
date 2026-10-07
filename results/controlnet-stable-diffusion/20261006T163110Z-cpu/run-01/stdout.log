@@ -1,0 +1,15 @@
+[cell 0 START +    0.4s] # Text-to-Image Generation with ControlNet Conditioning |  | Diffusion mod
+[cell 1 START +    0.4s] ## Prerequisites | [back to top ⬆️](#Table-of-contents:) | 
+[cell 2 START +    0.4s] import requests | from pathlib import Path |  | utility_files = ["notebook_u
+Collecting controlnet-aux>=0.0.6
+  Downloading controlnet_aux-0.0.10-py3-none-any.whl.metadata (7.1 kB)
+Downloading controlnet_aux-0.0.10-py3-none-any.whl (290 kB)
+Installing collected packages: controlnet-aux
+Successfully installed controlnet-aux-0.0.10
+Requirement already satisfied: openvino>=2023.1.0 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (2026.5.0b1)
+Requirement already satisfied: numpy<2.6.0,>=1.16.6 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (from openvino>=2023.1.0) (2.4.6)
+Requirement already satisfied: openvino-telemetry>=2023.2.1 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (from openvino>=2023.1.0) (2025.2.0)
+[cell 2 DONE  +   34.7s]
+[cell 3 START +   34.7s] ## Instantiating Generation Pipeline | [back to top ⬆️](#Table-of-conten
+[cell 4 START +   34.7s] import torch | from diffusers import StableDiffusionControlNetPipeline, 
+NBEXEC_RESULT={"ok": false, "n_cells": 35, "n_skipped": 1, "n_substituted": 0, "stopped_after": null, "error_cell": null, "error_type": "CellTimeoutError", "error_head": "-------------------", "duration_s": 937.33, "patch_notes": ["skipped cell 59: matched skip pattern"]}

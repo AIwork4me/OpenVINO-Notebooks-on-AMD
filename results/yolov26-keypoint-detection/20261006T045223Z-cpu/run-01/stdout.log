@@ -1,0 +1,11 @@
+[cell 0 START +    0.4s] # Convert and Optimize YOLO26 keypoint detection model with OpenVINO™ | 
+[cell 1 START +    0.4s] ## Get PyTorch model | [back to top ⬆️](#Table-of-contents:) |  | Generally,
+[cell 2 START +    0.4s] #### Prerequisites | [back to top ⬆️](#Table-of-contents:) |  | Install nece
+[cell 3 START +    0.4s] %pip install -qU "openvino>=2026.0.0" "nncf>=3.0.0" | %pip install -q "t
+[cell 3 DONE  +    1.5s]
+[cell 4 START +    1.5s] Import required utility functions. | The lower cell will download the `n
+[cell 5 START +    1.5s] from pathlib import Path | import requests |  | if not Path("notebook_utils.
+[cell 5 DONE  +    1.6s]
+[cell 6 START +    1.6s] # Download a test sample | IMAGE_PATH = Path("./data/bus.jpg") |  | if not I
+[cell 6 DONE  +   36.7s]
+NBEXEC_RESULT={"ok": false, "n_cells": 21, "n_skipped": 0, "n_substituted": 0, "stopped_after": null, "error_cell": null, "error_type": "CellExecutionError", "error_head": "\u001b[31mException\u001b[39m: Connection timed out. If you access the internet through a proxy server, please make sure the proxy is set in the shell from where you launched Jupyter.", "duration_s": 36.87, "patch_notes": []}

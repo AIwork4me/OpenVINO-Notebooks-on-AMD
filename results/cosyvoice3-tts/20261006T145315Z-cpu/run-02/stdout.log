@@ -1,0 +1,6 @@
+[cell 0 START +    0.5s] #  Text-to-Speech (TTS) system with Fun-CosyVoice 3.0 and OpenVINO |  | Fu
+[cell 1 START +    0.5s] ## Prerequisites | [back to top ⬆️](#Table-of-contents:)
+[cell 2 START +    0.5s] # Fetch `notebook_utils` module | import requests | from pathlib import Pa
+[cell 2 DONE  +    0.6s]
+[cell 3 START +    0.6s] from cmd_helper import clone_repo | from pip_helper import pip_install | i
+NBEXEC_RESULT={"ok": false, "n_cells": 13, "n_skipped": 1, "n_substituted": 0, "stopped_after": null, "error_cell": null, "error_type": "CellTimeoutError", "error_head": "-------------------", "duration_s": 900.94, "patch_notes": ["skipped cell 22: matched skip pattern"]}

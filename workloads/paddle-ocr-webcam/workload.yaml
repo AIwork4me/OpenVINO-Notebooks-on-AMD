@@ -4,9 +4,9 @@ category: OCR
 upstream:
   repository: openvinotoolkit/openvino_notebooks
   branch: latest
-  commit: a8809170cc4fc6aa633fbb9c22214be67ac20b47
+  commit: 329562e6031d1a989017d08697b0fabe5a989492
   path: notebooks/paddle-ocr-webcam/paddle-ocr-webcam.ipynb
-  url: https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/paddle-ocr-webcam/paddle-ocr-webcam.ipynb
+  url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/paddle-ocr-webcam/paddle-ocr-webcam.ipynb
 model:
   name: ''
   source: ''
@@ -14,7 +14,7 @@ model:
   license: ''
 cpu:
   runtime: openvino
-  status: FAILED
+  status: VERIFIED_WITH_LIMITATIONS
 gpu:
   runtime: ''
   status: NOT_TESTED
@@ -22,4 +22,4 @@ twin:
   level: WORKLOAD_TWIN
 validation: {}
 patches: {}
-last_verified: ''
+last_verified: '2026-10-06T18:20:02+00:00'

@@ -46,7 +46,7 @@ PATTERNS: list[tuple[str, str]] = [
     (r"Cannot allocate memory|MemoryError|std::bad_alloc", "out of memory"),
     (r"No module named", "missing python package (targeted install should remediate)"),
     (r"Failed to convert|Conversion|convert_model|ovc ", "OpenVINO model conversion failure"),
-    (r"FULL_DEVICE_NAME|NPU", "NPU-specific API surface"),
+    (r"FULL_DEVICE_NAME|\bNPU\b", "NPU-specific API surface"),  # word-boundary: bare NPU substring matched the word "input")
 ]
 
 

@@ -1,0 +1,14 @@
+{
+  "schema_version": 2,
+  "state": "UNKNOWN",
+  "requested_backend": "cpu",
+  "compile_events": 0,
+  "genai_pipeline_events": 0,
+  "execution_devices": [],
+  "device_args": [],
+  "genai_device_args": [],
+  "supporting_device_used": "",
+  "probe_events": 0,
+  "probe_present": false,
+  "probe_installed": false
+}

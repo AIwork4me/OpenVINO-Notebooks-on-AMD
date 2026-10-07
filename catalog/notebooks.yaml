@@ -1,11 +1,11 @@
 generated: '2026-10-01T09:53:40Z'
-upstream_commit: a8809170cc4fc6aa633fbb9c22214be67ac20b47
+upstream_commit: 329562e6031d1a989017d08697b0fabe5a989492
 notebooks:
 - id: pointpillars
   title: Pointpillars
   category: Vision
   upstream_path: notebooks/3D-point-pillars/pointpillars.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/3D-point-pillars/pointpillars.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/3D-point-pillars/pointpillars.ipynb
   requirements_path: null
   priority: 2
   workload_type: vision
@@ -20,7 +20,7 @@ notebooks:
   title: 3D Pose Estimation
   category: Vision
   upstream_path: notebooks/3D-pose-estimation-webcam/3D-pose-estimation.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/3D-pose-estimation-webcam/3D-pose-estimation.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/3D-pose-estimation-webcam/3D-pose-estimation.ipynb
   requirements_path: null
   priority: 3
   workload_type: vision
@@ -35,7 +35,7 @@ notebooks:
   title: 3D Segmentation Point Clouds
   category: Vision
   upstream_path: notebooks/3D-segmentation-point-clouds/3D-segmentation-point-clouds.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/3D-segmentation-point-clouds/3D-segmentation-point-clouds.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/3D-segmentation-point-clouds/3D-segmentation-point-clouds.ipynb
   requirements_path: null
   priority: 2
   workload_type: vision
@@ -48,7 +48,7 @@ notebooks:
   title: Ace Step Music Generation
   category: TTS
   upstream_path: notebooks/ace-step-music-generation/ace-step-music-generation.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/ace-step-music-generation/ace-step-music-generation.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/ace-step-music-generation/ace-step-music-generation.ipynb
   requirements_path: null
   priority: 1
   workload_type: tts
@@ -63,7 +63,7 @@ notebooks:
   title: Action Recognition Webcam
   category: Video
   upstream_path: notebooks/action-recognition-webcam/action-recognition-webcam.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/action-recognition-webcam/action-recognition-webcam.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/action-recognition-webcam/action-recognition-webcam.ipynb
   requirements_path: null
   priority: 3
   workload_type: video
@@ -78,7 +78,7 @@ notebooks:
   title: Aloha Act
   category: LLM
   upstream_path: notebooks/aloha-act/aloha-act.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/aloha-act/aloha-act.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/aloha-act/aloha-act.ipynb
   requirements_path: null
   priority: 1
   workload_type: llm
@@ -93,7 +93,7 @@ notebooks:
   title: Animate Anyone
   category: Image Generation
   upstream_path: notebooks/animate-anyone/animate-anyone.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/animate-anyone/animate-anyone.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/animate-anyone/animate-anyone.ipynb
   requirements_path: null
   priority: 1
   workload_type: image-generation
@@ -107,7 +107,7 @@ notebooks:
   title: Async Api
   category: API
   upstream_path: notebooks/async-api/async-api.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/async-api/async-api.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/async-api/async-api.ipynb
   requirements_path: null
   priority: 3
   workload_type: api
@@ -120,7 +120,7 @@ notebooks:
   title: Auto Device
   category: API
   upstream_path: notebooks/auto-device/auto-device.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/auto-device/auto-device.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/auto-device/auto-device.ipynb
   requirements_path: null
   priority: 2
   workload_type: api
@@ -135,7 +135,7 @@ notebooks:
   title: Bark Text To Audio
   category: TTS
   upstream_path: notebooks/bark-text-to-audio/bark-text-to-audio.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/bark-text-to-audio/bark-text-to-audio.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/bark-text-to-audio/bark-text-to-audio.ipynb
   requirements_path: null
   priority: 1
   workload_type: tts
@@ -149,7 +149,7 @@ notebooks:
   title: Bernini R Image Video
   category: Video
   upstream_path: notebooks/bernini-r-image-video/bernini-r-image-video.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/bernini-r-image-video/bernini-r-image-video.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/bernini-r-image-video/bernini-r-image-video.ipynb
   requirements_path: null
   priority: 2
   workload_type: video
@@ -164,7 +164,7 @@ notebooks:
   title: Blip Visual Language Processing
   category: VLM
   upstream_path: notebooks/blip-visual-language-processing/blip-visual-language-processing.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/blip-visual-language-processing/blip-visual-language-processing.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/blip-visual-language-processing/blip-visual-language-processing.ipynb
   requirements_path: null
   priority: 1
   workload_type: vlm
@@ -177,7 +177,7 @@ notebooks:
   title: Catvton
   category: Image Generation
   upstream_path: notebooks/catvton/catvton.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/catvton/catvton.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/catvton/catvton.ipynb
   requirements_path: null
   priority: 1
   workload_type: image-generation
@@ -191,7 +191,7 @@ notebooks:
   title: Clip Zero Shot Classification
   category: Vision
   upstream_path: notebooks/clip-zero-shot-image-classification/clip-zero-shot-classification.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/clip-zero-shot-image-classification/clip-zero-shot-classification.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/clip-zero-shot-image-classification/clip-zero-shot-classification.ipynb
   requirements_path: null
   priority: 2
   workload_type: vision
@@ -204,7 +204,7 @@ notebooks:
   title: Controlnet Stable Diffusion
   category: Image Generation
   upstream_path: notebooks/controlnet-stable-diffusion/controlnet-stable-diffusion.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/controlnet-stable-diffusion/controlnet-stable-diffusion.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/controlnet-stable-diffusion/controlnet-stable-diffusion.ipynb
   requirements_path: null
   priority: 1
   workload_type: image-generation
@@ -217,7 +217,7 @@ notebooks:
   title: Convert To Openvino
   category: Conversion
   upstream_path: notebooks/convert-to-openvino/convert-to-openvino.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/convert-to-openvino/convert-to-openvino.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/convert-to-openvino/convert-to-openvino.ipynb
   requirements_path: null
   priority: 2
   workload_type: conversion
@@ -230,7 +230,7 @@ notebooks:
   title: Cosyvoice3 Tts
   category: TTS
   upstream_path: notebooks/cosyvoice3-tts/cosyvoice3-tts.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/cosyvoice3-tts/cosyvoice3-tts.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/cosyvoice3-tts/cosyvoice3-tts.ipynb
   requirements_path: null
   priority: 1
   workload_type: tts
@@ -243,7 +243,7 @@ notebooks:
   title: Ct Segmentation Quantize Nncf
   category: Vision
   upstream_path: notebooks/ct-segmentation-quantize/ct-segmentation-quantize-nncf.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/ct-segmentation-quantize/ct-segmentation-quantize-nncf.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/ct-segmentation-quantize/ct-segmentation-quantize-nncf.ipynb
   requirements_path: null
   priority: 2
   workload_type: vision
@@ -257,7 +257,7 @@ notebooks:
   title: Darkir Image Restoration
   category: Image Generation
   upstream_path: notebooks/darkir-image-restoration/darkir-image-restoration.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/darkir-image-restoration/darkir-image-restoration.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/darkir-image-restoration/darkir-image-restoration.ipynb
   requirements_path: null
   priority: 1
   workload_type: image-generation
@@ -272,7 +272,7 @@ notebooks:
   title: Deepseek Ocr
   category: OCR
   upstream_path: notebooks/deepseek-ocr/deepseek-ocr.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/deepseek-ocr/deepseek-ocr.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/deepseek-ocr/deepseek-ocr.ipynb
   requirements_path: null
   priority: 1
   workload_type: ocr
@@ -285,7 +285,7 @@ notebooks:
   title: Deepseek R1
   category: LLM
   upstream_path: notebooks/deepseek-r1/deepseek-r1.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/deepseek-r1/deepseek-r1.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/deepseek-r1/deepseek-r1.ipynb
   requirements_path: null
   priority: 1
   workload_type: llm
@@ -300,7 +300,7 @@ notebooks:
   title: Deepseek Vl2
   category: LLM
   upstream_path: notebooks/deepseek-vl2/deepseek-vl2.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/deepseek-vl2/deepseek-vl2.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/deepseek-vl2/deepseek-vl2.ipynb
   requirements_path: null
   priority: 1
   workload_type: llm
@@ -314,7 +314,7 @@ notebooks:
   title: Depth Anything
   category: Vision
   upstream_path: notebooks/depth-anything/depth-anything.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/depth-anything/depth-anything.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/depth-anything/depth-anything.ipynb
   requirements_path: null
   priority: 3
   workload_type: vision
@@ -328,7 +328,7 @@ notebooks:
   title: Detectron2 To Openvino
   category: Conversion
   upstream_path: notebooks/detectron2-to-openvino/detectron2-to-openvino.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/detectron2-to-openvino/detectron2-to-openvino.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/detectron2-to-openvino/detectron2-to-openvino.ipynb
   requirements_path: null
   priority: 2
   workload_type: conversion
@@ -343,7 +343,7 @@ notebooks:
   title: Ernie Image
   category: Image Generation
   upstream_path: notebooks/ernie-image/ernie-image.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/ernie-image/ernie-image.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/ernie-image/ernie-image.ipynb
   requirements_path: null
   priority: 1
   workload_type: image-generation
@@ -357,7 +357,7 @@ notebooks:
   title: Fast Segment Anything
   category: Vision
   upstream_path: notebooks/fast-segment-anything/fast-segment-anything.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/fast-segment-anything/fast-segment-anything.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/fast-segment-anything/fast-segment-anything.ipynb
   requirements_path: null
   priority: 2
   workload_type: vision
@@ -372,7 +372,7 @@ notebooks:
   title: Fireredtts2
   category: TTS
   upstream_path: notebooks/fireredtts2/fireredtts2.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/fireredtts2/fireredtts2.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/fireredtts2/fireredtts2.ipynb
   requirements_path: null
   priority: 1
   workload_type: tts
@@ -385,7 +385,7 @@ notebooks:
   title: Flex.2 Image Generation
   category: Image Generation
   upstream_path: notebooks/flex.2-image-generation/flex.2-image-generation.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/flex.2-image-generation/flex.2-image-generation.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/flex.2-image-generation/flex.2-image-generation.ipynb
   requirements_path: null
   priority: 1
   workload_type: image-generation
@@ -398,7 +398,7 @@ notebooks:
   title: Florence2
   category: VLM
   upstream_path: notebooks/florence2/florence2.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/florence2/florence2.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/florence2/florence2.ipynb
   requirements_path: null
   priority: 1
   workload_type: vlm
@@ -412,7 +412,7 @@ notebooks:
   title: Flux Fill
   category: Image Generation
   upstream_path: notebooks/flux-fill/flux-fill.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/flux-fill/flux-fill.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/flux-fill/flux-fill.ipynb
   requirements_path: null
   priority: 1
   workload_type: image-generation
@@ -426,7 +426,7 @@ notebooks:
   title: Flux.1 Image Generation
   category: Image Generation
   upstream_path: notebooks/flux.1-image-generation/flux.1-image-generation.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/flux.1-image-generation/flux.1-image-generation.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/flux.1-image-generation/flux.1-image-generation.ipynb
   requirements_path: null
   priority: 1
   workload_type: image-generation
@@ -439,7 +439,7 @@ notebooks:
   title: Flux.1 Kontext
   category: Image Generation
   upstream_path: notebooks/flux.1-kontext/flux.1-kontext.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/flux.1-kontext/flux.1-kontext.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/flux.1-kontext/flux.1-kontext.ipynb
   requirements_path: null
   priority: 1
   workload_type: image-generation
@@ -453,7 +453,7 @@ notebooks:
   title: Flux.2 Klein
   category: Image Generation
   upstream_path: notebooks/flux.2-klein/flux.2-klein.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/flux.2-klein/flux.2-klein.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/flux.2-klein/flux.2-klein.ipynb
   requirements_path: null
   priority: 1
   workload_type: image-generation
@@ -467,7 +467,7 @@ notebooks:
   title: Freevc Voice Conversion
   category: TTS
   upstream_path: notebooks/freevc-voice-conversion/freevc-voice-conversion.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/freevc-voice-conversion/freevc-voice-conversion.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/freevc-voice-conversion/freevc-voice-conversion.ipynb
   requirements_path: null
   priority: 1
   workload_type: tts
@@ -481,7 +481,7 @@ notebooks:
   title: Funasr Nano
   category: ASR
   upstream_path: notebooks/funasr-nano/funasr-nano.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/funasr-nano/funasr-nano.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/funasr-nano/funasr-nano.ipynb
   requirements_path: null
   priority: 1
   workload_type: asr
@@ -494,7 +494,7 @@ notebooks:
   title: Gemma4
   category: LLM
   upstream_path: notebooks/gemma4/gemma4.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/gemma4/gemma4.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/gemma4/gemma4.ipynb
   requirements_path: null
   priority: 4
   workload_type: llm
@@ -509,7 +509,7 @@ notebooks:
   title: Glm Ocr
   category: OCR
   upstream_path: notebooks/glm-ocr/glm-ocr.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/glm-ocr/glm-ocr.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/glm-ocr/glm-ocr.ipynb
   requirements_path: null
   priority: 1
   workload_type: ocr
@@ -522,7 +522,7 @@ notebooks:
   title: Glm4.1 V Thinking
   category: VLM
   upstream_path: notebooks/glm4.1-v-thinking/glm4.1-v-thinking.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/glm4.1-v-thinking/glm4.1-v-thinking.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/glm4.1-v-thinking/glm4.1-v-thinking.ipynb
   requirements_path: null
   priority: 1
   workload_type: vlm
@@ -537,7 +537,7 @@ notebooks:
   title: Gpu Device
   category: API
   upstream_path: notebooks/gpu-device/gpu-device.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/gpu-device/gpu-device.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/gpu-device/gpu-device.ipynb
   requirements_path: null
   priority: 3
   workload_type: api
@@ -552,7 +552,7 @@ notebooks:
   title: Grounded Segment Anything
   category: VLM
   upstream_path: notebooks/grounded-segment-anything/grounded-segment-anything.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/grounded-segment-anything/grounded-segment-anything.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/grounded-segment-anything/grounded-segment-anything.ipynb
   requirements_path: null
   priority: 1
   workload_type: vlm
@@ -567,7 +567,7 @@ notebooks:
   title: Handwritten Ocr
   category: OCR
   upstream_path: notebooks/handwritten-ocr/handwritten-ocr.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/handwritten-ocr/handwritten-ocr.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/handwritten-ocr/handwritten-ocr.ipynb
   requirements_path: null
   priority: 1
   workload_type: ocr
@@ -580,7 +580,7 @@ notebooks:
   title: Hello Detection
   category: Vision
   upstream_path: notebooks/hello-detection/hello-detection.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/hello-detection/hello-detection.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/hello-detection/hello-detection.ipynb
   requirements_path: null
   priority: 0
   workload_type: vision
@@ -593,7 +593,7 @@ notebooks:
   title: Hello Npu
   category: API
   upstream_path: notebooks/hello-npu/hello-npu.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/hello-npu/hello-npu.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/hello-npu/hello-npu.ipynb
   requirements_path: null
   priority: 0
   workload_type: api
@@ -608,7 +608,7 @@ notebooks:
   title: Hello Segmentation
   category: Vision
   upstream_path: notebooks/hello-segmentation/hello-segmentation.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/hello-segmentation/hello-segmentation.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/hello-segmentation/hello-segmentation.ipynb
   requirements_path: null
   priority: 0
   workload_type: vision
@@ -621,7 +621,7 @@ notebooks:
   title: Hello World
   category: API
   upstream_path: notebooks/hello-world/hello-world.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/hello-world/hello-world.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/hello-world/hello-world.ipynb
   requirements_path: null
   priority: 0
   workload_type: api
@@ -636,7 +636,7 @@ notebooks:
   title: Hugging Face Hub
   category: API
   upstream_path: notebooks/hugging-face-hub/hugging-face-hub.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/hugging-face-hub/hugging-face-hub.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/hugging-face-hub/hugging-face-hub.ipynb
   requirements_path: null
   priority: 2
   workload_type: api
@@ -652,7 +652,7 @@ notebooks:
   title: Hunyuan Ocr
   category: OCR
   upstream_path: notebooks/hunyuan-ocr/hunyuan-ocr.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/hunyuan-ocr/hunyuan-ocr.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/hunyuan-ocr/hunyuan-ocr.ipynb
   requirements_path: null
   priority: 1
   workload_type: ocr
@@ -665,7 +665,7 @@ notebooks:
   title: Hunyuan Translation
   category: LLM
   upstream_path: notebooks/hunyuan-translation/hunyuan-translation.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/hunyuan-translation/hunyuan-translation.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/hunyuan-translation/hunyuan-translation.ipynb
   requirements_path: null
   priority: 1
   workload_type: llm
@@ -680,7 +680,7 @@ notebooks:
   title: Image Classification Quantization
   category: Optimization
   upstream_path: notebooks/image-classification-quantization/image-classification-quantization.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/image-classification-quantization/image-classification-quantization.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/image-classification-quantization/image-classification-quantization.ipynb
   requirements_path: null
   priority: 2
   workload_type: optimization
@@ -693,7 +693,7 @@ notebooks:
   title: Image To Image Genai
   category: Image Generation
   upstream_path: notebooks/image-to-image-genai/image-to-image-genai.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/image-to-image-genai/image-to-image-genai.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/image-to-image-genai/image-to-image-genai.ipynb
   requirements_path: null
   priority: 1
   workload_type: image-generation
@@ -708,7 +708,7 @@ notebooks:
   title: Inpainting Genai
   category: Image Generation
   upstream_path: notebooks/inpainting-genai/inpainting-genai.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/inpainting-genai/inpainting-genai.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/inpainting-genai/inpainting-genai.ipynb
   requirements_path: null
   priority: 1
   workload_type: image-generation
@@ -721,7 +721,7 @@ notebooks:
   title: Instant Id
   category: Image Generation
   upstream_path: notebooks/instant-id/instant-id.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/instant-id/instant-id.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/instant-id/instant-id.ipynb
   requirements_path: null
   priority: 1
   workload_type: image-generation
@@ -736,7 +736,7 @@ notebooks:
   title: Jina Clip
   category: Vision
   upstream_path: notebooks/jina-clip/jina-clip.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/jina-clip/jina-clip.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/jina-clip/jina-clip.ipynb
   requirements_path: null
   priority: 2
   workload_type: vision
@@ -749,7 +749,7 @@ notebooks:
   title: Kokoro
   category: TTS
   upstream_path: notebooks/kokoro/kokoro.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/kokoro/kokoro.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/kokoro/kokoro.ipynb
   requirements_path: null
   priority: 1
   workload_type: tts
@@ -764,7 +764,7 @@ notebooks:
   title: Language Quantize Bert
   category: Optimization
   upstream_path: notebooks/language-quantize-bert/language-quantize-bert.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/language-quantize-bert/language-quantize-bert.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/language-quantize-bert/language-quantize-bert.ipynb
   requirements_path: null
   priority: 2
   workload_type: optimization
@@ -780,7 +780,7 @@ notebooks:
   title: Latent Consistency Models Image Generation
   category: Image Generation
   upstream_path: notebooks/latent-consistency-models-image-generation/latent-consistency-models-image-generation.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/latent-consistency-models-image-generation/latent-consistency-models-image-generation.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/latent-consistency-models-image-generation/latent-consistency-models-image-generation.ipynb
   requirements_path: null
   priority: 1
   workload_type: image-generation
@@ -793,7 +793,7 @@ notebooks:
   title: Llm Agent Functioncall Qwen
   category: LLM
   upstream_path: notebooks/llm-agent-functioncall/llm-agent-functioncall-qwen.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/llm-agent-functioncall/llm-agent-functioncall-qwen.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/llm-agent-functioncall/llm-agent-functioncall-qwen.ipynb
   requirements_path: null
   priority: 1
   workload_type: llm
@@ -806,7 +806,7 @@ notebooks:
   title: Llm Agent Mcp
   category: LLM
   upstream_path: notebooks/llm-agent-mcp/llm-agent-mcp.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/llm-agent-mcp/llm-agent-mcp.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/llm-agent-mcp/llm-agent-mcp.ipynb
   requirements_path: null
   priority: 1
   workload_type: llm
@@ -819,7 +819,7 @@ notebooks:
   title: Llm Agent Rag Llamaindex
   category: LLM
   upstream_path: notebooks/llm-agent-rag-llamaindex/llm-agent-rag-llamaindex.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/llm-agent-rag-llamaindex/llm-agent-rag-llamaindex.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/llm-agent-rag-llamaindex/llm-agent-rag-llamaindex.ipynb
   requirements_path: null
   priority: 1
   workload_type: llm
@@ -832,7 +832,7 @@ notebooks:
   title: Llm Agent React Langchain
   category: LLM
   upstream_path: notebooks/llm-agent-react-langchain/llm-agent-react-langchain.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/llm-agent-react-langchain/llm-agent-react-langchain.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/llm-agent-react-langchain/llm-agent-react-langchain.ipynb
   requirements_path: null
   priority: 4
   workload_type: llm
@@ -845,7 +845,7 @@ notebooks:
   title: Llm Chatbot Generate Api
   category: LLM
   upstream_path: notebooks/llm-chatbot/llm-chatbot-generate-api.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/llm-chatbot/llm-chatbot-generate-api.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/llm-chatbot/llm-chatbot-generate-api.ipynb
   requirements_path: null
   priority: 1
   workload_type: llm
@@ -858,7 +858,7 @@ notebooks:
   title: Llm Chatbot
   category: LLM
   upstream_path: notebooks/llm-chatbot/llm-chatbot.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/llm-chatbot/llm-chatbot.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/llm-chatbot/llm-chatbot.ipynb
   requirements_path: null
   priority: 1
   workload_type: llm
@@ -871,7 +871,7 @@ notebooks:
   title: Llm Code Assistant
   category: LLM
   upstream_path: notebooks/llm-code-assistant/llm-code-assistant.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/llm-code-assistant/llm-code-assistant.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/llm-code-assistant/llm-code-assistant.ipynb
   requirements_path: null
   priority: 4
   workload_type: llm
@@ -884,7 +884,7 @@ notebooks:
   title: Llm Lora
   category: LLM
   upstream_path: notebooks/llm-lora/llm-lora.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/llm-lora/llm-lora.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/llm-lora/llm-lora.ipynb
   requirements_path: null
   priority: 1
   workload_type: llm
@@ -897,7 +897,7 @@ notebooks:
   title: Llm Question Answering
   category: LLM
   upstream_path: notebooks/llm-question-answering/llm-question-answering.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/llm-question-answering/llm-question-answering.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/llm-question-answering/llm-question-answering.ipynb
   requirements_path: null
   priority: 1
   workload_type: llm
@@ -910,7 +910,7 @@ notebooks:
   title: Llm Rag Langchain Eval
   category: LLM
   upstream_path: notebooks/llm-rag-langchain/llm-rag-langchain-eval.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/llm-rag-langchain/llm-rag-langchain-eval.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/llm-rag-langchain/llm-rag-langchain-eval.ipynb
   requirements_path: null
   priority: 1
   workload_type: llm
@@ -923,7 +923,7 @@ notebooks:
   title: Llm Rag Langchain Genai
   category: LLM
   upstream_path: notebooks/llm-rag-langchain/llm-rag-langchain-genai.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/llm-rag-langchain/llm-rag-langchain-genai.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/llm-rag-langchain/llm-rag-langchain-genai.ipynb
   requirements_path: null
   priority: 4
   workload_type: llm
@@ -936,7 +936,7 @@ notebooks:
   title: Llm Rag Langchain
   category: LLM
   upstream_path: notebooks/llm-rag-langchain/llm-rag-langchain.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/llm-rag-langchain/llm-rag-langchain.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/llm-rag-langchain/llm-rag-langchain.ipynb
   requirements_path: null
   priority: 4
   workload_type: llm
@@ -949,7 +949,7 @@ notebooks:
   title: Llm Rag Llamaindex
   category: LLM
   upstream_path: notebooks/llm-rag-llamaindex/llm-rag-llamaindex.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/llm-rag-llamaindex/llm-rag-llamaindex.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/llm-rag-llamaindex/llm-rag-llamaindex.ipynb
   requirements_path: null
   priority: 4
   workload_type: llm
@@ -962,7 +962,7 @@ notebooks:
   title: Ltx Video
   category: Video
   upstream_path: notebooks/ltx-video/ltx-video.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/ltx-video/ltx-video.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/ltx-video/ltx-video.ipynb
   requirements_path: null
   priority: 3
   workload_type: video
@@ -977,7 +977,7 @@ notebooks:
   title: Medasr Medical Asr
   category: ASR
   upstream_path: notebooks/medasr-medical-asr/medasr-medical-asr.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/medasr-medical-asr/medasr-medical-asr.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/medasr-medical-asr/medasr-medical-asr.ipynb
   requirements_path: null
   priority: 1
   workload_type: asr
@@ -990,7 +990,7 @@ notebooks:
   title: Meter Reader
   category: OCR
   upstream_path: notebooks/meter-reader/meter-reader.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/meter-reader/meter-reader.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/meter-reader/meter-reader.ipynb
   requirements_path: null
   priority: 1
   workload_type: ocr
@@ -1006,7 +1006,7 @@ notebooks:
   title: Mineru2.5
   category: OCR
   upstream_path: notebooks/mineru2.5/mineru2.5.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/mineru2.5/mineru2.5.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/mineru2.5/mineru2.5.ipynb
   requirements_path: null
   priority: 1
   workload_type: ocr
@@ -1021,7 +1021,7 @@ notebooks:
   title: Minicpm O 4.5
   category: VLM
   upstream_path: notebooks/minicpm-o-4.5/minicpm-o-4.5.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/minicpm-o-4.5/minicpm-o-4.5.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/minicpm-o-4.5/minicpm-o-4.5.ipynb
   requirements_path: null
   priority: 1
   workload_type: vlm
@@ -1036,7 +1036,7 @@ notebooks:
   title: Minicpm O Omnimodal Chatbot
   category: VLM
   upstream_path: notebooks/minicpm-o-omnimodal-chatbot/minicpm-o-omnimodal-chatbot.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/minicpm-o-omnimodal-chatbot/minicpm-o-omnimodal-chatbot.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/minicpm-o-omnimodal-chatbot/minicpm-o-omnimodal-chatbot.ipynb
   requirements_path: null
   priority: 1
   workload_type: vlm
@@ -1049,7 +1049,7 @@ notebooks:
   title: Minicpm V 4.6
   category: VLM
   upstream_path: notebooks/minicpm-v-4.6/minicpm-v-4.6.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/minicpm-v-4.6/minicpm-v-4.6.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/minicpm-v-4.6/minicpm-v-4.6.ipynb
   requirements_path: null
   priority: 1
   workload_type: vlm
@@ -1064,7 +1064,7 @@ notebooks:
   title: Minicpm V Multimodal Chatbot
   category: VLM
   upstream_path: notebooks/minicpm-v-multimodal-chatbot/minicpm-v-multimodal-chatbot.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/minicpm-v-multimodal-chatbot/minicpm-v-multimodal-chatbot.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/minicpm-v-multimodal-chatbot/minicpm-v-multimodal-chatbot.ipynb
   requirements_path: null
   priority: 1
   workload_type: vlm
@@ -1077,7 +1077,7 @@ notebooks:
   title: Ministral 3
   category: LLM
   upstream_path: notebooks/ministral-3/ministral-3.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/ministral-3/ministral-3.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/ministral-3/ministral-3.ipynb
   requirements_path: null
   priority: 1
   workload_type: llm
@@ -1092,7 +1092,7 @@ notebooks:
   title: Mllama 3.2
   category: LLM
   upstream_path: notebooks/mllama-3.2/mllama-3.2.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/mllama-3.2/mllama-3.2.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/mllama-3.2/mllama-3.2.ipynb
   requirements_path: null
   priority: 1
   workload_type: llm
@@ -1105,7 +1105,7 @@ notebooks:
   title: Mms Massively Multilingual Speech
   category: ASR
   upstream_path: notebooks/mms-massively-multilingual-speech/mms-massively-multilingual-speech.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/mms-massively-multilingual-speech/mms-massively-multilingual-speech.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/mms-massively-multilingual-speech/mms-massively-multilingual-speech.ipynb
   requirements_path: null
   priority: 1
   workload_type: asr
@@ -1118,7 +1118,7 @@ notebooks:
   title: Mobileclip Video Search
   category: Vision
   upstream_path: notebooks/mobileclip-video-search/mobileclip-video-search.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/mobileclip-video-search/mobileclip-video-search.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/mobileclip-video-search/mobileclip-video-search.ipynb
   requirements_path: null
   priority: 3
   workload_type: vision
@@ -1131,7 +1131,7 @@ notebooks:
   title: Modelscope To Openvino
   category: Conversion
   upstream_path: notebooks/modelscope-to-openvino/modelscope-to-openvino.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/modelscope-to-openvino/modelscope-to-openvino.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/modelscope-to-openvino/modelscope-to-openvino.ipynb
   requirements_path: null
   priority: 2
   workload_type: conversion
@@ -1146,7 +1146,7 @@ notebooks:
   title: Multilora Image Generation
   category: Image Generation
   upstream_path: notebooks/multilora-image-generation/multilora-image-generation.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/multilora-image-generation/multilora-image-generation.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/multilora-image-generation/multilora-image-generation.ipynb
   requirements_path: null
   priority: 1
   workload_type: image-generation
@@ -1159,7 +1159,7 @@ notebooks:
   title: Multimodal Rag Llamaindex
   category: VLM
   upstream_path: notebooks/multimodal-rag/multimodal-rag-llamaindex.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/multimodal-rag/multimodal-rag-llamaindex.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/multimodal-rag/multimodal-rag-llamaindex.ipynb
   requirements_path: null
   priority: 4
   workload_type: vlm
@@ -1172,7 +1172,7 @@ notebooks:
   title: Muse Glimmer
   category: Image Generation
   upstream_path: notebooks/muse-glimmer/muse-glimmer.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/muse-glimmer/muse-glimmer.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/muse-glimmer/muse-glimmer.ipynb
   requirements_path: null
   priority: 4
   workload_type: image-generation
@@ -1187,7 +1187,7 @@ notebooks:
   title: Music Generation
   category: TTS
   upstream_path: notebooks/music-generation/music-generation.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/music-generation/music-generation.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/music-generation/music-generation.ipynb
   requirements_path: null
   priority: 1
   workload_type: tts
@@ -1203,7 +1203,7 @@ notebooks:
   title: Nuextract Structure Extraction
   category: LLM
   upstream_path: notebooks/nuextract-structure-extraction/nuextract-structure-extraction.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/nuextract-structure-extraction/nuextract-structure-extraction.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/nuextract-structure-extraction/nuextract-structure-extraction.ipynb
   requirements_path: null
   priority: 4
   workload_type: llm
@@ -1218,7 +1218,7 @@ notebooks:
   title: Object Detection
   category: Vision
   upstream_path: notebooks/object-detection-webcam/object-detection.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/object-detection-webcam/object-detection.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/object-detection-webcam/object-detection.ipynb
   requirements_path: null
   priority: 3
   workload_type: vision
@@ -1231,7 +1231,7 @@ notebooks:
   title: Olmocr Pdf Vlm
   category: VLM
   upstream_path: notebooks/olmocr-pdf-vlm/olmocr-pdf-vlm.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/olmocr-pdf-vlm/olmocr-pdf-vlm.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/olmocr-pdf-vlm/olmocr-pdf-vlm.ipynb
   requirements_path: null
   priority: 1
   workload_type: vlm
@@ -1244,7 +1244,7 @@ notebooks:
   title: Omniparser
   category: OCR
   upstream_path: notebooks/omniparser/omniparser.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/omniparser/omniparser.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/omniparser/omniparser.ipynb
   requirements_path: null
   priority: 1
   workload_type: ocr
@@ -1259,7 +1259,7 @@ notebooks:
   title: Omnivoice
   category: ASR
   upstream_path: notebooks/omnivoice/omnivoice.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/omnivoice/omnivoice.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/omnivoice/omnivoice.ipynb
   requirements_path: null
   priority: 1
   workload_type: asr
@@ -1274,7 +1274,7 @@ notebooks:
   title: Oneformer Segmentation
   category: Vision
   upstream_path: notebooks/oneformer-segmentation/oneformer-segmentation.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/oneformer-segmentation/oneformer-segmentation.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/oneformer-segmentation/oneformer-segmentation.ipynb
   requirements_path: null
   priority: 2
   workload_type: vision
@@ -1287,7 +1287,7 @@ notebooks:
   title: Openvino Api
   category: API
   upstream_path: notebooks/openvino-api/openvino-api.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/openvino-api/openvino-api.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/openvino-api/openvino-api.ipynb
   requirements_path: null
   priority: 0
   workload_type: api
@@ -1300,7 +1300,7 @@ notebooks:
   title: Openvino Tokenizers
   category: API
   upstream_path: notebooks/openvino-tokenizers/openvino-tokenizers.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/openvino-tokenizers/openvino-tokenizers.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/openvino-tokenizers/openvino-tokenizers.ipynb
   requirements_path: null
   priority: 2
   workload_type: api
@@ -1315,7 +1315,7 @@ notebooks:
   title: Openvoice
   category: TTS
   upstream_path: notebooks/openvoice/openvoice.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/openvoice/openvoice.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/openvoice/openvoice.ipynb
   requirements_path: null
   priority: 1
   workload_type: tts
@@ -1330,7 +1330,7 @@ notebooks:
   title: Openvoice2 And Melotts
   category: TTS
   upstream_path: notebooks/openvoice2-and-melotts/openvoice2-and-melotts.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/openvoice2-and-melotts/openvoice2-and-melotts.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/openvoice2-and-melotts/openvoice2-and-melotts.ipynb
   requirements_path: null
   priority: 1
   workload_type: tts
@@ -1343,7 +1343,7 @@ notebooks:
   title: Optical Character Recognition
   category: Other
   upstream_path: notebooks/optical-character-recognition/optical-character-recognition.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/optical-character-recognition/optical-character-recognition.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/optical-character-recognition/optical-character-recognition.ipynb
   requirements_path: null
   priority: 2
   workload_type: other
@@ -1358,7 +1358,7 @@ notebooks:
   title: Optimize Preprocessing
   category: API
   upstream_path: notebooks/optimize-preprocessing/optimize-preprocessing.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/optimize-preprocessing/optimize-preprocessing.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/optimize-preprocessing/optimize-preprocessing.ipynb
   requirements_path: null
   priority: 2
   workload_type: api
@@ -1373,7 +1373,7 @@ notebooks:
   title: Paddle Ocr Webcam
   category: OCR
   upstream_path: notebooks/paddle-ocr-webcam/paddle-ocr-webcam.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/paddle-ocr-webcam/paddle-ocr-webcam.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/paddle-ocr-webcam/paddle-ocr-webcam.ipynb
   requirements_path: null
   priority: 1
   workload_type: ocr
@@ -1386,7 +1386,7 @@ notebooks:
   title: Paddle To Openvino Classification
   category: OCR
   upstream_path: notebooks/paddle-to-openvino/paddle-to-openvino-classification.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/paddle-to-openvino/paddle-to-openvino-classification.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/paddle-to-openvino/paddle-to-openvino-classification.ipynb
   requirements_path: null
   priority: 1
   workload_type: ocr
@@ -1399,7 +1399,7 @@ notebooks:
   title: Paddleocr Vl
   category: OCR
   upstream_path: notebooks/paddleocr_vl/paddleocr_vl.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/paddleocr_vl/paddleocr_vl.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/paddleocr_vl/paddleocr_vl.ipynb
   requirements_path: null
   priority: 1
   workload_type: ocr
@@ -1412,7 +1412,7 @@ notebooks:
   title: Parler Tts Text To Speech
   category: TTS
   upstream_path: notebooks/parler-tts-text-to-speech/parler-tts-text-to-speech.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/parler-tts-text-to-speech/parler-tts-text-to-speech.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/parler-tts-text-to-speech/parler-tts-text-to-speech.ipynb
   requirements_path: null
   priority: 1
   workload_type: tts
@@ -1425,7 +1425,7 @@ notebooks:
   title: Person Counting
   category: Vision
   upstream_path: notebooks/person-counting-webcam/person-counting.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/person-counting-webcam/person-counting.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/person-counting-webcam/person-counting.ipynb
   requirements_path: null
   priority: 3
   workload_type: vision
@@ -1440,7 +1440,7 @@ notebooks:
   title: Person Tracking
   category: Video
   upstream_path: notebooks/person-tracking-webcam/person-tracking.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/person-tracking-webcam/person-tracking.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/person-tracking-webcam/person-tracking.ipynb
   requirements_path: null
   priority: 3
   workload_type: video
@@ -1455,7 +1455,7 @@ notebooks:
   title: Phi 3 Vision
   category: LLM
   upstream_path: notebooks/phi-3-vision/phi-3-vision.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/phi-3-vision/phi-3-vision.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/phi-3-vision/phi-3-vision.ipynb
   requirements_path: null
   priority: 1
   workload_type: llm
@@ -1471,7 +1471,7 @@ notebooks:
   title: Phi 4 Multimodal
   category: VLM
   upstream_path: notebooks/phi-4-multimodal/phi-4-multimodal.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/phi-4-multimodal/phi-4-multimodal.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/phi-4-multimodal/phi-4-multimodal.ipynb
   requirements_path: null
   priority: 1
   workload_type: vlm
@@ -1486,7 +1486,7 @@ notebooks:
   title: Physical Ai Robotics
   category: LLM
   upstream_path: notebooks/physical-ai-robotics/physical-ai-robotics.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/physical-ai-robotics/physical-ai-robotics.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/physical-ai-robotics/physical-ai-robotics.ipynb
   requirements_path: null
   priority: 1
   workload_type: llm
@@ -1501,7 +1501,7 @@ notebooks:
   title: Pose Estimation
   category: Vision
   upstream_path: notebooks/pose-estimation-webcam/pose-estimation.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/pose-estimation-webcam/pose-estimation.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/pose-estimation-webcam/pose-estimation.ipynb
   requirements_path: null
   priority: 3
   workload_type: vision
@@ -1516,7 +1516,7 @@ notebooks:
   title: Pytorch Post Training Quantization Nncf
   category: Conversion
   upstream_path: notebooks/pytorch-post-training-quantization-nncf/pytorch-post-training-quantization-nncf.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/pytorch-post-training-quantization-nncf/pytorch-post-training-quantization-nncf.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/pytorch-post-training-quantization-nncf/pytorch-post-training-quantization-nncf.ipynb
   requirements_path: null
   priority: 2
   workload_type: conversion
@@ -1530,7 +1530,7 @@ notebooks:
   title: Pytorch To Openvino
   category: Conversion
   upstream_path: notebooks/pytorch-to-openvino/pytorch-to-openvino.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/pytorch-to-openvino/pytorch-to-openvino.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/pytorch-to-openvino/pytorch-to-openvino.ipynb
   requirements_path: null
   priority: 2
   workload_type: conversion
@@ -1544,7 +1544,7 @@ notebooks:
   title: Qwen Image
   category: LLM
   upstream_path: notebooks/qwen-image/qwen-image.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/qwen-image/qwen-image.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/qwen-image/qwen-image.ipynb
   requirements_path: null
   priority: 1
   workload_type: llm
@@ -1557,7 +1557,7 @@ notebooks:
   title: Qwen Image 2.1
   category: LLM
   upstream_path: notebooks/qwen-image-2.1/qwen-image-2.1.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/qwen-image-2.1/qwen-image-2.1.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/qwen-image-2.1/qwen-image-2.1.ipynb
   requirements_path: null
   priority: 1
   workload_type: llm
@@ -1570,7 +1570,7 @@ notebooks:
   title: Qwen2 Audio
   category: LLM
   upstream_path: notebooks/qwen2-audio/qwen2-audio.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/qwen2-audio/qwen2-audio.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/qwen2-audio/qwen2-audio.ipynb
   requirements_path: null
   priority: 1
   workload_type: llm
@@ -1583,7 +1583,7 @@ notebooks:
   title: Qwen2.5 Omni Chatbot
   category: LLM
   upstream_path: notebooks/qwen2.5-omni-chatbot/qwen2.5-omni-chatbot.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/qwen2.5-omni-chatbot/qwen2.5-omni-chatbot.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/qwen2.5-omni-chatbot/qwen2.5-omni-chatbot.ipynb
   requirements_path: null
   priority: 1
   workload_type: llm
@@ -1596,7 +1596,7 @@ notebooks:
   title: Qwen3 Asr
   category: ASR
   upstream_path: notebooks/qwen3-asr/qwen3-asr.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/qwen3-asr/qwen3-asr.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/qwen3-asr/qwen3-asr.ipynb
   requirements_path: null
   priority: 1
   workload_type: asr
@@ -1609,7 +1609,7 @@ notebooks:
   title: Qwen3 Embedding
   category: LLM
   upstream_path: notebooks/qwen3-embedding/qwen3-embedding.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/qwen3-embedding/qwen3-embedding.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/qwen3-embedding/qwen3-embedding.ipynb
   requirements_path: null
   priority: 1
   workload_type: llm
@@ -1622,7 +1622,7 @@ notebooks:
   title: Qwen3 Reranker
   category: LLM
   upstream_path: notebooks/qwen3-embedding/qwen3-reranker.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/qwen3-embedding/qwen3-reranker.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/qwen3-embedding/qwen3-reranker.ipynb
   requirements_path: null
   priority: 1
   workload_type: llm
@@ -1635,7 +1635,7 @@ notebooks:
   title: Qwen3 Tts
   category: TTS
   upstream_path: notebooks/qwen3-tts/qwen3-tts.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/qwen3-tts/qwen3-tts.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/qwen3-tts/qwen3-tts.ipynb
   requirements_path: null
   priority: 1
   workload_type: tts
@@ -1648,7 +1648,7 @@ notebooks:
   title: Qwen3 Vl Embedding
   category: LLM
   upstream_path: notebooks/qwen3-vl-embedding/qwen3-vl-embedding.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/qwen3-vl-embedding/qwen3-vl-embedding.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/qwen3-vl-embedding/qwen3-vl-embedding.ipynb
   requirements_path: null
   priority: 1
   workload_type: llm
@@ -1661,7 +1661,7 @@ notebooks:
   title: Qwen3 Vl Reranker
   category: LLM
   upstream_path: notebooks/qwen3-vl-embedding/qwen3-vl-reranker.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/qwen3-vl-embedding/qwen3-vl-reranker.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/qwen3-vl-embedding/qwen3-vl-reranker.ipynb
   requirements_path: null
   priority: 1
   workload_type: llm
@@ -1674,7 +1674,7 @@ notebooks:
   title: Qwen3.8 Mtp
   category: LLM
   upstream_path: notebooks/qwen3.8-mtp/qwen3.8-mtp.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/qwen3.8-mtp/qwen3.8-mtp.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/qwen3.8-mtp/qwen3.8-mtp.ipynb
   requirements_path: null
   priority: 4
   workload_type: llm
@@ -1687,7 +1687,7 @@ notebooks:
   title: Rf Detr Object Detection
   category: Vision
   upstream_path: notebooks/rf-detr-object-detection/rf-detr-object-detection.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/rf-detr-object-detection/rf-detr-object-detection.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/rf-detr-object-detection/rf-detr-object-detection.ipynb
   requirements_path: null
   priority: 2
   workload_type: vision
@@ -1700,7 +1700,7 @@ notebooks:
   title: Rmbg Background Removal
   category: Image Generation
   upstream_path: notebooks/rmbg-background-removal/rmbg-background-removal.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/rmbg-background-removal/rmbg-background-removal.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/rmbg-background-removal/rmbg-background-removal.ipynb
   requirements_path: null
   priority: 1
   workload_type: image-generation
@@ -1716,7 +1716,7 @@ notebooks:
   title: Segment Anything 2 Image
   category: Vision
   upstream_path: notebooks/sam2-image-segmentation/segment-anything-2-image.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/sam2-image-segmentation/segment-anything-2-image.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/sam2-image-segmentation/segment-anything-2-image.ipynb
   requirements_path: null
   priority: 2
   workload_type: vision
@@ -1729,7 +1729,7 @@ notebooks:
   title: Segment Anything 2 Video
   category: Vision
   upstream_path: notebooks/sam2-video-segmentation/segment-anything-2-video.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/sam2-video-segmentation/segment-anything-2-video.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/sam2-video-segmentation/segment-anything-2-video.ipynb
   requirements_path: null
   priority: 3
   workload_type: vision
@@ -1742,7 +1742,7 @@ notebooks:
   title: Sam3 Segmentation
   category: Vision
   upstream_path: notebooks/sam3/sam3-segmentation.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/sam3/sam3-segmentation.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/sam3/sam3-segmentation.ipynb
   requirements_path: null
   priority: 3
   workload_type: vision
@@ -1755,7 +1755,7 @@ notebooks:
   title: Siglip Zero Shot Image Classification
   category: Vision
   upstream_path: notebooks/siglip-zero-shot-image-classification/siglip-zero-shot-image-classification.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/siglip-zero-shot-image-classification/siglip-zero-shot-image-classification.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/siglip-zero-shot-image-classification/siglip-zero-shot-image-classification.ipynb
   requirements_path: null
   priority: 2
   workload_type: vision
@@ -1768,7 +1768,7 @@ notebooks:
   title: Smoldocling
   category: OCR
   upstream_path: notebooks/smoldocling/smoldocling.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/smoldocling/smoldocling.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/smoldocling/smoldocling.ipynb
   requirements_path: null
   priority: 1
   workload_type: ocr
@@ -1783,7 +1783,7 @@ notebooks:
   title: Smolvlm2
   category: VLM
   upstream_path: notebooks/smolvlm2/smolvlm2.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/smolvlm2/smolvlm2.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/smolvlm2/smolvlm2.ipynb
   requirements_path: null
   priority: 1
   workload_type: vlm
@@ -1796,7 +1796,7 @@ notebooks:
   title: Speculative Sampling
   category: LLM
   upstream_path: notebooks/speculative-sampling/speculative-sampling.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/speculative-sampling/speculative-sampling.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/speculative-sampling/speculative-sampling.ipynb
   requirements_path: null
   priority: 1
   workload_type: llm
@@ -1812,7 +1812,7 @@ notebooks:
   title: Speech Recognition Quantization Wav2Vec2
   category: Optimization
   upstream_path: notebooks/speech-recognition-quantization/speech-recognition-quantization-wav2vec2.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/speech-recognition-quantization/speech-recognition-quantization-wav2vec2.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/speech-recognition-quantization/speech-recognition-quantization-wav2vec2.ipynb
   requirements_path: null
   priority: 2
   workload_type: optimization
@@ -1825,7 +1825,7 @@ notebooks:
   title: Stable Diffusion Text To Image
   category: Image Generation
   upstream_path: notebooks/stable-diffusion-text-to-image/stable-diffusion-text-to-image.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/stable-diffusion-text-to-image/stable-diffusion-text-to-image.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/stable-diffusion-text-to-image/stable-diffusion-text-to-image.ipynb
   requirements_path: null
   priority: 1
   workload_type: image-generation
@@ -1838,7 +1838,7 @@ notebooks:
   title: Stable Diffusion V3
   category: Image Generation
   upstream_path: notebooks/stable-diffusion-v3/stable-diffusion-v3.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/stable-diffusion-v3/stable-diffusion-v3.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/stable-diffusion-v3/stable-diffusion-v3.ipynb
   requirements_path: null
   priority: 1
   workload_type: image-generation
@@ -1851,7 +1851,7 @@ notebooks:
   title: Stable Diffusion V3 Torch Fx
   category: Image Generation
   upstream_path: notebooks/stable-diffusion-v3-torch-fx/stable-diffusion-v3-torch-fx.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/stable-diffusion-v3-torch-fx/stable-diffusion-v3-torch-fx.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/stable-diffusion-v3-torch-fx/stable-diffusion-v3-torch-fx.ipynb
   requirements_path: null
   priority: 1
   workload_type: image-generation
@@ -1864,7 +1864,7 @@ notebooks:
   title: Stable Diffusion Xl
   category: Image Generation
   upstream_path: notebooks/stable-diffusion-xl/stable-diffusion-xl.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/stable-diffusion-xl/stable-diffusion-xl.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/stable-diffusion-xl/stable-diffusion-xl.ipynb
   requirements_path: null
   priority: 1
   workload_type: image-generation
@@ -1877,7 +1877,7 @@ notebooks:
   title: Stable Video Diffusion
   category: Video
   upstream_path: notebooks/stable-video-diffusion/stable-video-diffusion.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/stable-video-diffusion/stable-video-diffusion.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/stable-video-diffusion/stable-video-diffusion.ipynb
   requirements_path: null
   priority: 3
   workload_type: video
@@ -1892,7 +1892,7 @@ notebooks:
   title: Surya Line Level Text Detection
   category: Vision
   upstream_path: notebooks/surya-line-level-text-detection/surya-line-level-text-detection.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/surya-line-level-text-detection/surya-line-level-text-detection.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/surya-line-level-text-detection/surya-line-level-text-detection.ipynb
   requirements_path: null
   priority: 2
   workload_type: vision
@@ -1905,7 +1905,7 @@ notebooks:
   title: Tensorflow Classification To Openvino
   category: Conversion
   upstream_path: notebooks/tensorflow-classification-to-openvino/tensorflow-classification-to-openvino.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/tensorflow-classification-to-openvino/tensorflow-classification-to-openvino.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/tensorflow-classification-to-openvino/tensorflow-classification-to-openvino.ipynb
   requirements_path: null
   priority: 2
   workload_type: conversion
@@ -1918,7 +1918,7 @@ notebooks:
   title: Tensorflow Object Detection Api With Openvino
   category: Conversion
   upstream_path: notebooks/tensorflow-object-detection-to-openvino/tensorflow-object-detection-api-with-openvino.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/tensorflow-object-detection-to-openvino/tensorflow-object-detection-api-with-openvino.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/tensorflow-object-detection-to-openvino/tensorflow-object-detection-api-with-openvino.ipynb
   requirements_path: null
   priority: 2
   workload_type: conversion
@@ -1931,7 +1931,7 @@ notebooks:
   title: Text To Image Genai
   category: Image Generation
   upstream_path: notebooks/text-to-image-genai/text-to-image-genai.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/text-to-image-genai/text-to-image-genai.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/text-to-image-genai/text-to-image-genai.ipynb
   requirements_path: null
   priority: 1
   workload_type: image-generation
@@ -1947,7 +1947,7 @@ notebooks:
   title: Text To Speech Genai
   category: TTS
   upstream_path: notebooks/text-to-speech-genai/text-to-speech-genai.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/text-to-speech-genai/text-to-speech-genai.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/text-to-speech-genai/text-to-speech-genai.ipynb
   requirements_path: null
   priority: 1
   workload_type: tts
@@ -1960,7 +1960,7 @@ notebooks:
   title: Tflite Selfie Segmentation
   category: Conversion
   upstream_path: notebooks/tflite-selfie-segmentation/tflite-selfie-segmentation.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/tflite-selfie-segmentation/tflite-selfie-segmentation.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/tflite-selfie-segmentation/tflite-selfie-segmentation.ipynb
   requirements_path: null
   priority: 3
   workload_type: conversion
@@ -1973,7 +1973,7 @@ notebooks:
   title: Tflite To Openvino
   category: Conversion
   upstream_path: notebooks/tflite-to-openvino/tflite-to-openvino.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/tflite-to-openvino/tflite-to-openvino.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/tflite-to-openvino/tflite-to-openvino.ipynb
   requirements_path: null
   priority: 2
   workload_type: conversion
@@ -1989,7 +1989,7 @@ notebooks:
   title: Convnext Classification
   category: Vision
   upstream_path: notebooks/torchvision-zoo-to-openvino/convnext-classification.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/torchvision-zoo-to-openvino/convnext-classification.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/torchvision-zoo-to-openvino/convnext-classification.ipynb
   requirements_path: null
   priority: 2
   workload_type: vision
@@ -2002,7 +2002,7 @@ notebooks:
   title: Unlimited Ocr
   category: OCR
   upstream_path: notebooks/unlimited-ocr/unlimited-ocr.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/unlimited-ocr/unlimited-ocr.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/unlimited-ocr/unlimited-ocr.ipynb
   requirements_path: null
   priority: 1
   workload_type: ocr
@@ -2015,7 +2015,7 @@ notebooks:
   title: Vehicle Detection And Recognition
   category: Vision
   upstream_path: notebooks/vehicle-detection-and-recognition/vehicle-detection-and-recognition.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/vehicle-detection-and-recognition/vehicle-detection-and-recognition.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/vehicle-detection-and-recognition/vehicle-detection-and-recognition.ipynb
   requirements_path: null
   priority: 2
   workload_type: vision
@@ -2028,7 +2028,7 @@ notebooks:
   title: Vision Background Removal
   category: Image Generation
   upstream_path: notebooks/vision-background-removal/vision-background-removal.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/vision-background-removal/vision-background-removal.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/vision-background-removal/vision-background-removal.ipynb
   requirements_path: null
   priority: 1
   workload_type: image-generation
@@ -2043,7 +2043,7 @@ notebooks:
   title: Vision Monodepth
   category: Vision
   upstream_path: notebooks/vision-monodepth/vision-monodepth.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/vision-monodepth/vision-monodepth.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/vision-monodepth/vision-monodepth.ipynb
   requirements_path: null
   priority: 3
   workload_type: vision
@@ -2058,7 +2058,7 @@ notebooks:
   title: Vlm Chatbot Generate Api
   category: VLM
   upstream_path: notebooks/vlm-chatbot/vlm-chatbot-generate-api.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/vlm-chatbot/vlm-chatbot-generate-api.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/vlm-chatbot/vlm-chatbot-generate-api.ipynb
   requirements_path: null
   priority: 1
   workload_type: vlm
@@ -2071,7 +2071,7 @@ notebooks:
   title: Voxcpm2 Tts
   category: TTS
   upstream_path: notebooks/voxcpm2-tts/voxcpm2-tts.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/voxcpm2-tts/voxcpm2-tts.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/voxcpm2-tts/voxcpm2-tts.ipynb
   requirements_path: null
   priority: 1
   workload_type: tts
@@ -2084,7 +2084,7 @@ notebooks:
   title: Wan2.1 Text To Video
   category: Video
   upstream_path: notebooks/wan2.1-text-to-video/wan2.1-text-to-video.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/wan2.1-text-to-video/wan2.1-text-to-video.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/wan2.1-text-to-video/wan2.1-text-to-video.ipynb
   requirements_path: null
   priority: 2
   workload_type: video
@@ -2099,7 +2099,7 @@ notebooks:
   title: Wan2.2 Text Image To Video
   category: Video
   upstream_path: notebooks/wan2.2-text-image-to-video/wan2.2-text-image-to-video.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/wan2.2-text-image-to-video/wan2.2-text-image-to-video.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/wan2.2-text-image-to-video/wan2.2-text-image-to-video.ipynb
   requirements_path: null
   priority: 3
   workload_type: video
@@ -2114,7 +2114,7 @@ notebooks:
   title: Wav2Lip
   category: Image Generation
   upstream_path: notebooks/wav2lip/wav2lip.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/wav2lip/wav2lip.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/wav2lip/wav2lip.ipynb
   requirements_path: null
   priority: 1
   workload_type: image-generation
@@ -2129,7 +2129,7 @@ notebooks:
   title: Whisper Asr Genai
   category: ASR
   upstream_path: notebooks/whisper-asr-genai/whisper-asr-genai.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/whisper-asr-genai/whisper-asr-genai.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/whisper-asr-genai/whisper-asr-genai.ipynb
   requirements_path: null
   priority: 1
   workload_type: asr
@@ -2142,7 +2142,7 @@ notebooks:
   title: Yolov11 Instance Segmentation
   category: Vision
   upstream_path: notebooks/yolov11-optimization/yolov11-instance-segmentation.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/yolov11-optimization/yolov11-instance-segmentation.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/yolov11-optimization/yolov11-instance-segmentation.ipynb
   requirements_path: null
   priority: 3
   workload_type: vision
@@ -2156,7 +2156,7 @@ notebooks:
   title: Yolov11 Keypoint Detection
   category: Vision
   upstream_path: notebooks/yolov11-optimization/yolov11-keypoint-detection.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/yolov11-optimization/yolov11-keypoint-detection.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/yolov11-optimization/yolov11-keypoint-detection.ipynb
   requirements_path: null
   priority: 3
   workload_type: vision
@@ -2170,7 +2170,7 @@ notebooks:
   title: Yolov11 Object Detection
   category: Vision
   upstream_path: notebooks/yolov11-optimization/yolov11-object-detection.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/yolov11-optimization/yolov11-object-detection.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/yolov11-optimization/yolov11-object-detection.ipynb
   requirements_path: null
   priority: 3
   workload_type: vision
@@ -2184,7 +2184,7 @@ notebooks:
   title: Yolov11 Quantization With Accuracy Control
   category: Optimization
   upstream_path: notebooks/yolov11-quantization-with-accuracy-control/yolov11-quantization-with-accuracy-control.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/yolov11-quantization-with-accuracy-control/yolov11-quantization-with-accuracy-control.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/yolov11-quantization-with-accuracy-control/yolov11-quantization-with-accuracy-control.ipynb
   requirements_path: null
   priority: 2
   workload_type: optimization
@@ -2197,7 +2197,7 @@ notebooks:
   title: Yoloe 26 Open Vocabulary
   category: Vision
   upstream_path: notebooks/yolov26-optimization/yoloe-26-open-vocabulary.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/yolov26-optimization/yoloe-26-open-vocabulary.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/yolov26-optimization/yoloe-26-open-vocabulary.ipynb
   requirements_path: null
   priority: 3
   workload_type: vision
@@ -2211,7 +2211,7 @@ notebooks:
   title: Yolov26 Instance Segmentation
   category: Vision
   upstream_path: notebooks/yolov26-optimization/yolov26-instance-segmentation.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/yolov26-optimization/yolov26-instance-segmentation.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/yolov26-optimization/yolov26-instance-segmentation.ipynb
   requirements_path: null
   priority: 3
   workload_type: vision
@@ -2225,7 +2225,7 @@ notebooks:
   title: Yolov26 Keypoint Detection
   category: Vision
   upstream_path: notebooks/yolov26-optimization/yolov26-keypoint-detection.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/yolov26-optimization/yolov26-keypoint-detection.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/yolov26-optimization/yolov26-keypoint-detection.ipynb
   requirements_path: null
   priority: 3
   workload_type: vision
@@ -2239,7 +2239,7 @@ notebooks:
   title: Yolov26 Obb
   category: Vision
   upstream_path: notebooks/yolov26-optimization/yolov26-obb.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/yolov26-optimization/yolov26-obb.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/yolov26-optimization/yolov26-obb.ipynb
   requirements_path: null
   priority: 2
   workload_type: vision
@@ -2253,7 +2253,7 @@ notebooks:
   title: Yolov26 Object Detection
   category: Vision
   upstream_path: notebooks/yolov26-optimization/yolov26-object-detection.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/yolov26-optimization/yolov26-object-detection.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/yolov26-optimization/yolov26-object-detection.ipynb
   requirements_path: null
   priority: 3
   workload_type: vision
@@ -2267,7 +2267,7 @@ notebooks:
   title: Z Image Turbo
   category: Other
   upstream_path: notebooks/z-image-turbo/z-image-turbo.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/z-image-turbo/z-image-turbo.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/z-image-turbo/z-image-turbo.ipynb
   requirements_path: null
   priority: 2
   workload_type: other
@@ -2282,7 +2282,7 @@ notebooks:
   title: Zeroscope Text2Video
   category: Video
   upstream_path: notebooks/zeroscope-text2video/zeroscope-text2video.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/zeroscope-text2video/zeroscope-text2video.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/zeroscope-text2video/zeroscope-text2video.ipynb
   requirements_path: null
   priority: 3
   workload_type: video
@@ -2297,7 +2297,7 @@ notebooks:
   title: 001 Whisper Evaluation
   category: ASR
   upstream_path: supplementary_materials/notebooks/001-whisper-evaluation/001-whisper-evaluation.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/supplementary_materials/notebooks/001-whisper-evaluation/001-whisper-evaluation.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/supplementary_materials/notebooks/001-whisper-evaluation/001-whisper-evaluation.ipynb
   requirements_path: null
   priority: 1
   workload_type: asr
@@ -2310,7 +2310,7 @@ notebooks:
   title: Fastdraft Deepseek
   category: LLM
   upstream_path: supplementary_materials/notebooks/fastdraft-deepseek/fastdraft_deepseek.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/supplementary_materials/notebooks/fastdraft-deepseek/fastdraft_deepseek.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/supplementary_materials/notebooks/fastdraft-deepseek/fastdraft_deepseek.ipynb
   requirements_path: null
   priority: 1
   workload_type: llm
@@ -2325,7 +2325,7 @@ notebooks:
   title: Phi3 Chatbot Demo
   category: LLM
   upstream_path: supplementary_materials/notebooks/phi3_chatbot_demo.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/supplementary_materials/notebooks/phi3_chatbot_demo.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/supplementary_materials/notebooks/phi3_chatbot_demo.ipynb
   requirements_path: null
   priority: 1
   workload_type: llm
@@ -2338,7 +2338,7 @@ notebooks:
   title: Phi3 Rag On Client
   category: LLM
   upstream_path: supplementary_materials/notebooks/phi3_rag_on_client.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/supplementary_materials/notebooks/phi3_rag_on_client.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/supplementary_materials/notebooks/phi3_rag_on_client.ipynb
   requirements_path: null
   priority: 1
   workload_type: llm
@@ -2351,7 +2351,7 @@ notebooks:
   title: Qwen3
   category: LLM
   upstream_path: supplementary_materials/notebooks/qwen-3/qwen3.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/supplementary_materials/notebooks/qwen-3/qwen3.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/supplementary_materials/notebooks/qwen-3/qwen3.ipynb
   requirements_path: null
   priority: 1
   workload_type: llm
@@ -2364,7 +2364,7 @@ notebooks:
   title: Qwen3 Agent
   category: LLM
   upstream_path: supplementary_materials/notebooks/qwen-3/smolagents/qwen3_agent.ipynb
-  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/supplementary_materials/notebooks/qwen-3/smolagents/qwen3_agent.ipynb
+  upstream_url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/supplementary_materials/notebooks/qwen-3/smolagents/qwen3_agent.ipynb
   requirements_path: supplementary_materials/notebooks/qwen-3/smolagents/requirements.txt
   priority: 1
   workload_type: llm

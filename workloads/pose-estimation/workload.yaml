@@ -4,9 +4,9 @@ category: Vision
 upstream:
   repository: openvinotoolkit/openvino_notebooks
   branch: latest
-  commit: a8809170cc4fc6aa633fbb9c22214be67ac20b47
+  commit: 329562e6031d1a989017d08697b0fabe5a989492
   path: notebooks/pose-estimation-webcam/pose-estimation.ipynb
-  url: https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/pose-estimation-webcam/pose-estimation.ipynb
+  url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/pose-estimation-webcam/pose-estimation.ipynb
 model:
   name: ''
   source: ''
@@ -25,4 +25,4 @@ validation:
   - Mconv7_stage2_L2
   - Source ended
 patches: {}
-last_verified: '2026-10-06T01:39:50+00:00'
+last_verified: '2026-10-06T22:17:46+00:00'

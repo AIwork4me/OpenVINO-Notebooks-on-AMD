@@ -1,0 +1,9 @@
+{
+  "schema_version": 2,
+  "repository": "openvinotoolkit/openvino_notebooks",
+  "branch": "latest",
+  "commit": "a8809170cc4fc6aa633fbb9c22214be67ac20b47",
+  "path": "notebooks/vision-monodepth/vision-monodepth.ipynb",
+  "url": "https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/vision-monodepth/vision-monodepth.ipynb",
+  "notebook_sha256": "cf3625cf3e5fef2860bb6a4f1e427f561ffb69f62f8999d02b9971c7c8bfac26"
+}

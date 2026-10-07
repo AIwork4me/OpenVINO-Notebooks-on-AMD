@@ -1,0 +1,10 @@
+[cell 0 START +    0.7s] # Image generation with Latent Consistency Model and OpenVINO |  | LCMs: T
+[cell 1 START +    0.7s] ## Prerequisites | [back to top ⬆️](#Table-of-contents:) | 
+[cell 2 START +    0.7s] # to avoid conflicts between versions | %pip uninstall -q -y optimum opt
+[cell 2 DONE  +   84.5s]
+[cell 3 START +   84.5s] from pathlib import Path | import requests |  | utility_files = [Path("noteb
+[cell 3 DONE  +   84.6s]
+[cell 4 START +   84.6s] ## Convert models to OpenVINO format | [back to top ⬆️](#Table-of-conten
+[cell 5 START +   84.6s] from cmd_helper import optimum_cli |  | model_id = "SimianLuo/LCM_Dreamsha
+[cell 5 DONE  +   89.7s]
+NBEXEC_RESULT={"ok": false, "n_cells": 24, "n_skipped": 1, "n_substituted": 1, "stopped_after": null, "error_cell": null, "error_type": "CellExecutionError", "error_head": "\u001b[31mCalledProcessError\u001b[39m: Command '['optimum-cli', 'export', 'openvino', '--model', 'SimianLuo/LCM_Dreamshaper_v7', 'LCM_Dreamshaper_v7_ov', '--weight-format', 'fp16']' returned non-zero exit status 1.", "duration_s": 89.82, "patch_notes": ["substituted 1 occurrence(s) in cell 2", "skipped cell 40: matched skip pattern"]}

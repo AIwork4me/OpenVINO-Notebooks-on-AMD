@@ -1,0 +1,13 @@
+[cell 0 START +    0.4s] # Voice tone cloning with OpenVoice2 and MeloTTS for Text-to-Speech by
+[cell 1 START +    0.4s] OpenVoice2 is a versatile system for instant voice tone transferring a
+[cell 2 START +    0.4s] ## Clone repository and install requirements | [back to top ⬆️](#Table-o
+[cell 3 START +    0.4s] # Fetch `notebook_utils` module | import requests | from pathlib import Pa
+[cell 3 DONE  +    0.4s]
+[cell 4 START +    0.4s] from pathlib import Path |  | from cmd_helper import clone_repo | from pip_h
+[cell 4 DONE  +   45.1s]
+[cell 5 START +   45.1s] # remove Japanese-related module in MeloTTS to fix dependencies issue | 
+[cell 5 DONE  +   45.2s]
+[cell 6 START +   45.2s] ## Download checkpoints and load PyTorch model | [back to top ⬆️](#Table
+[cell 7 START +   45.2s] import os | import torch | import openvino as ov | import ipywidgets as widg
+[cell 7 DONE  +   50.1s]
+NBEXEC_RESULT={"ok": false, "n_cells": 30, "n_skipped": 1, "n_substituted": 0, "stopped_after": null, "error_cell": null, "error_type": "CellExecutionError", "error_head": "\u001b[31mModuleNotFoundError\u001b[39m: Could not import module 'AutoTokenizer'. Are this object's requirements defined correctly?", "duration_s": 53.09, "patch_notes": ["skipped cell 49: matched skip pattern"]}

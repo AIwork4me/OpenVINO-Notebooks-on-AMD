@@ -1,0 +1,119 @@
+[IPKernelApp] WARNING | Kernel is running over TCP without encryption. All communication (including code and outputs) is sent in plain text and is susceptible to eavesdropping. Use IPC transport or launch with kernel manager-provisioned CurveZMQ keys to enable transport encryption.
+[31mERROR: pip's dependency resolver does not currently take into account all the packages that are installed. This behaviour is the source of the following dependency conflicts.
+olmocr 0.4.27 requires bleach, which is not installed.
+olmocr 0.4.27 requires markdownify, which is not installed.
+rfdetr 1.11.0 requires transformers<6.0.0,>=5.1.0, but you have transformers 4.57.6 which is incompatible.
+parler-tts 0.2.2 requires transformers<=4.46.1,>=4.46.1, but you have transformers 4.57.6 which is incompatible.
+ace-step 0.2.0 requires accelerate==1.6.0, but you have accelerate 1.15.0 which is incompatible.
+ace-step 0.2.0 requires datasets==3.4.1, but you have datasets 3.6.0 which is incompatible.
+ace-step 0.2.0 requires librosa==0.11.0, but you have librosa 0.9.2 which is incompatible.
+ace-step 0.2.0 requires loguru==0.7.3, but you have loguru 0.7.2 which is incompatible.
+ace-step 0.2.0 requires matplotlib==3.10.1, but you have matplotlib 3.11.2 which is incompatible.
+ace-step 0.2.0 requires num2words==0.5.14, but you have num2words 0.5.12 which is incompatible.
+ace-step 0.2.0 requires pypinyin==0.53.0, but you have pypinyin 0.50.0 which is incompatible.
+ace-step 0.2.0 requires soundfile==0.13.1, but you have soundfile 0.12.1 which is incompatible.
+ace-step 0.2.0 requires transformers==4.50.0, but you have transformers 4.57.6 which is incompatible.
+descript-audiotools 0.7.4 requires protobuf!=4.24.0,<5.0.0,>=3.19.6, but you have protobuf 7.36.2 which is incompatible.
+torchaudio 2.10.0+cpu requires torch==2.10.0, but you have torch 2.8.0+cpu which is incompatible.
+omnivoice 0.2.1 requires transformers>=5.3.0, but you have transformers 4.57.6 which is incompatible.
+unstructured-client 0.42.12 requires pypdf>=6.2.0, but you have pypdf 5.9.0 which is incompatible.[0m[31m
+[0m2026-10-07 06:47:10.281164: I tensorflow/core/util/port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2026-10-07 06:47:10.281905: I external/local_xla/xla/tsl/cuda/cudart_stub.cc:32] Could not find cuda drivers on your machine, GPU will not be used.
+2026-10-07 06:47:10.284740: I external/local_xla/xla/tsl/cuda/cudart_stub.cc:32] Could not find cuda drivers on your machine, GPU will not be used.
+2026-10-07 06:47:10.290022: E external/local_xla/xla/stream_executor/cuda/cuda_fft.cc:467] Unable to register cuFFT factory: Attempting to register factory for plugin cuFFT when one has already been registered
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+E0000 00:00:1791326830.298425  333758 cuda_dnn.cc:8579] Unable to register cuDNN factory: Attempting to register factory for plugin cuDNN when one has already been registered
+E0000 00:00:1791326830.300813  333758 cuda_blas.cc:1407] Unable to register cuBLAS factory: Attempting to register factory for plugin cuBLAS when one has already been registered
+W0000 00:00:1791326830.308498  333758 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1791326830.308506  333758 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1791326830.308507  333758 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+W0000 00:00:1791326830.308507  333758 computation_placer.cc:177] computation placer already registered. Please check linkage and avoid linking the same target more than once.
+2026-10-07 06:47:10.310991: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX512F AVX512_VNNI AVX512_BF16 AVX_VNNI FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+e-packages/llama_index/core/node_parser/text/sentence.py:191[39m, in [36mSentenceSplitter._split_text[39m[34m(self, text, chunk_size)[39m
+[32m    186[39m     [38;5;28;01mreturn[39;00m [text]
+[32m    188[39m [38;5;28;01mwith[39;00m [38;5;28mself[39m.callback_manager.event(
+[32m    189[39m     CBEventType.CHUNKING, payload={EventPayload.CHUNKS: [text]}
+[32m    190[39m ) [38;5;28;01mas[39;00m event:
+[32m--> [39m[32m191[39m     splits = [30;43mself[39;49m[30;43m.[39;49m[30;43m_split[39;49m[30;43m([39;49m[30;43mtext[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mchunk_size[39;49m[30;43m)[39;49m
+[32m    192[39m     chunks = [38;5;28mself[39m._merge(splits, chunk_size)
+[32m    194[39m     event.on_end(payload={EventPayload.CHUNKS: chunks})
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages/llama_index/core/node_parser/text/sentence.py:213[39m, in [36mSentenceSplitter._split[39m[34m(self, text, chunk_size)[39m
+[32m    210[39m [38;5;28;01mif[39;00m token_size <= chunk_size:
+[32m    211[39m     [38;5;28;01mreturn[39;00m [_Split(text, is_sentence=[38;5;28;01mTrue[39;00m, token_size=token_size)]
+[32m--> [39m[32m213[39m text_splits_by_fns, is_sentence = [30;43mself[39;49m[30;43m.[39;49m[30;43m_get_splits_by_fns[39;49m[30;43m([39;49m[30;43mtext[39;49m[30;43m)[39;49m
+[32m    215[39m text_splits = []
+[32m    216[39m [38;5;28;01mfor[39;00m text_split_by_fns [38;5;129;01min[39;00m text_splits_by_fns:
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages/llama_index/core/node_parser/text/sentence.py:316[39m, in [36mSentenceSplitter._get_splits_by_fns[39m[34m(self, text)[39m
+[32m    314[39m [38;5;28;01mdef[39;00m[38;5;250m [39m[34m_get_splits_by_fns[39m([38;5;28mself[39m, text: [38;5;28mstr[39m) -> Tuple[List[[38;5;28mstr[39m], [38;5;28mbool[39m]:
+[32m    315[39m     [38;5;28;01mfor[39;00m split_fn [38;5;129;01min[39;00m [38;5;28mself[39m._split_fns:
+[32m--> [39m[32m316[39m         splits = [30;43msplit_fn[39;49m[30;43m([39;49m[30;43mtext[39;49m[30;43m)[39;49m
+[32m    317[39m         [38;5;28;01mif[39;00m [38;5;28mlen[39m(splits) > [32m1[39m:
+[32m    318[39m             [38;5;28;01mreturn[39;00m splits, [38;5;28;01mTrue[39;00m
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages/llama_index/core/node_parser/text/utils.py:93[39m, in [36msplit_by_sentence_tokenizer.<locals>.<lambda>[39m[34m(text)[39m
+[32m     91[39m [38;5;28;01mdef[39;00m[38;5;250m [39m[34msplit_by_sentence_tokenizer[39m() -> Callable[[[38;5;28mstr[39m], List[[38;5;28mstr[39m]]:
+[32m     92[39m     [38;5;28;01mreturn[39;00m [38;5;28;01mlambda[39;00m text: split_by_sentence_tokenizer_internal(
+[32m---> [39m[32m93[39m         text, [30;43mglobals_helper[39;49m[30;43m.[39;49m[30;43mpunkt_tokenizer[39;49m
+[32m     94[39m     )
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages/llama_index/core/utils.py:118[39m, in [36mGlobalsHelper.punkt_tokenizer[39m[34m(self)[39m
+[32m    115[39m     [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01mnltk[39;00m[34;01m.[39;00m[34;01mtokenize[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m PunktSentenceTokenizer
+[32m    117[39m     [38;5;28mself[39m._punkt_tokenizer = PunktSentenceTokenizer()
+[32m--> [39m[32m118[39m     [38;5;28mself[39m._stopwords = [30;43mstopwords[39;49m[30;43m.[39;49m[30;43mwords[39;49m([33m"[39m[33menglish[39m[33m"[39m)
+[32m    120[39m [38;5;28;01mreturn[39;00m [38;5;28mself[39m._punkt_tokenizer
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages/nltk/corpus/util.py:120[39m, in [36mLazyCorpusLoader.__getattr__[39m[34m(self, attr)[39m
+[32m    117[39m [38;5;28;01mif[39;00m attr == [33m"[39m[33m__bases__[39m[33m"[39m:
+[32m    118[39m     [38;5;28;01mraise[39;00m [38;5;167;01mAttributeError[39;00m([33m"[39m[33mLazyCorpusLoader object has no attribute [39m[33m'[39m[33m__bases__[39m[33m'[39m[33m"[39m)
+[32m--> [39m[32m120[39m [30;43mself[39;49m[30;43m.[39;49m[30;43m__load[39;49m[30;43m([39;49m[30;43m)[39;49m
+[32m    121[39m [38;5;66;03m# This looks circular, but its not, since __load() changes our[39;00m
+[32m    122[39m [38;5;66;03m# __class__ to something new:[39;00m
+[32m    123[39m [38;5;28;01mreturn[39;00m [38;5;28mgetattr[39m([38;5;28mself[39m, attr)
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages/nltk/corpus/util.py:86[39m, in [36mLazyCorpusLoader.__load[39m[34m(self)[39m
+[32m     84[39m             root = nltk.data.find([33mf[39m[33m"[39m[38;5;132;01m{[39;00m[38;5;28mself[39m.subdir[38;5;132;01m}[39;00m[33m/[39m[38;5;132;01m{[39;00mzip_name[38;5;132;01m}[39;00m[33m"[39m)
+[32m     85[39m         [38;5;28;01mexcept[39;00m [38;5;167;01mLookupError[39;00m:
+[32m---> [39m[32m86[39m             [38;5;28;01mraise[39;00m e
+[32m     88[39m [38;5;66;03m# Load the corpus.[39;00m
+[32m     89[39m corpus = [38;5;28mself[39m.__reader_cls(root, *[38;5;28mself[39m.__args, **[38;5;28mself[39m.__kwargs)
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages/nltk/corpus/util.py:81[39m, in [36mLazyCorpusLoader.__load[39m[34m(self)[39m
+[32m     79[39m [38;5;28;01melse[39;00m:
+[32m     80[39m     [38;5;28;01mtry[39;00m:
+[32m---> [39m[32m81[39m         root = [30;43mnltk[39;49m[30;43m.[39;49m[30;43mdata[39;49m[30;43m.[39;49m[30;43mfind[39;49m[30;43m([39;49m[30;43mf[39;49m[30;43m"[39;49m[30;43;01m{[39;49;00m[30;43mself[39;49m[30;43m.[39;49m[30;43msubdir[39;49m[30;43;01m}[39;49;00m[30;43m/[39;49m[30;43;01m{[39;49;00m[30;43mself[39;49m[30;43m.[39;49m[30;43m__name[39;49m[30;43;01m}[39;49;00m[30;43m"[39;49m[30;43m)[39;49m
+[32m     82[39m     [38;5;28;01mexcept[39;00m [38;5;167;01mLookupError[39;00m [38;5;28;01mas[39;00m e:
+[32m     83[39m         [38;5;28;01mtry[39;00m:
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages/nltk/data.py:579[39m, in [36mfind[39m[34m(resource_name, paths)[39m
+[32m    577[39m sep = [33m"[39m[33m*[39m[33m"[39m * [32m70[39m
+[32m    578[39m resource_not_found = [33mf[39m[33m"[39m[38;5;130;01m\n[39;00m[38;5;132;01m{[39;00msep[38;5;132;01m}[39;00m[38;5;130;01m\n[39;00m[38;5;132;01m{[39;00mmsg[38;5;132;01m}[39;00m[38;5;130;01m\n[39;00m[38;5;132;01m{[39;00msep[38;5;132;01m}[39;00m[38;5;130;01m\n[39;00m[33m"[39m
+[32m--> [39m[32m579[39m [38;5;28;01mraise[39;00m [38;5;167;01mLookupError[39;00m(resource_not_found)
+
+[31mLookupError[39m: 
+**********************************************************************
+  Resource [93mstopwords[0m not found.
+  Please use the NLTK Downloader to obtain the resource:
+
+  [31m>>> import nltk
+  >>> nltk.download('stopwords')
+  [0m
+  For more information see: https://www.nltk.org/data.html
+
+  Attempted to load [93mcorpora/stopwords[0m
+
+  Searched in:
+    - '/home/amd/nltk_data'
+    - '/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/nltk_data'
+    - '/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/share/nltk_data'
+    - '/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/nltk_data'
+    - '/usr/share/nltk_data'
+    - '/usr/local/share/nltk_data'
+    - '/usr/lib/nltk_data'
+    - '/usr/local/lib/nltk_data'
+    - '/home/amd/.cache/llama_index/_static/nltk_cache'
+**********************************************************************
+
+

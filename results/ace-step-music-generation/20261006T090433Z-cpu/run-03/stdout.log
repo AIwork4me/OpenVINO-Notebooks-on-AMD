@@ -1,0 +1,110 @@
+[cell 0 START +    0.4s] # Music generation using ACE Step and OpenVINO |  | [ACE-Step](https://ace
+[cell 1 START +    0.4s] ## Prerequisites | [back to top ⬆️](#Table-of-contents:) |  | **Note:** FFmp
+[cell 2 START +    0.4s] import requests | from pathlib import Path |  | if not Path("ov_ace_helper.p
+Requirement already satisfied: gradio>=4.19 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (6.17.3)
+Requirement already satisfied: anyio<5.0,>=3.0 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (from gradio>=4.19) (4.15.1)
+Requirement already satisfied: brotli>=1.1.0 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (from gradio>=4.19) (1.2.0)
+Requirement already satisfied: fastapi<1.0,>=0.115.2 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (from gradio>=4.19) (0.142.2)
+Requirement already satisfied: gradio-client==2.5.0 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (from gradio>=4.19) (2.5.0)
+Requirement already satisfied: groovy~=0.1 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (from gradio>=4.19) (0.1.2)
+Requirement already satisfied: hf-gradio<1.0,>=0.4.1 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (from gradio>=4.19) (0.4.1)
+Requirement already satisfied: httpx<1.0,>=0.24.1 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (from gradio>=4.19) (0.28.1)
+Requirement already satisfied: huggingface-hub<2.0,>=0.33.5 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (from gradio>=4.19) (0.36.2)
+Requirement already satisfied: jinja2<4.0 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (from gradio>=4.19) (3.1.6)
+Requirement already satisfied: markupsafe<4.0,>=2.0 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (from gradio>=4.19) (3.0.4)
+Requirement already satisfied: numpy<3.0,>=1.0 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (from gradio>=4.19) (2.4.6)
+Requirement already satisfied: orjson~=3.0 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (from gradio>=4.19) (3.12.0)
+Requirement already satisfied: packaging in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (from gradio>=4.19) (26.3)
+Requirement already satisfied: pandas<4.0,>=1.0 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (from gradio>=4.19) (3.0.6)
+Requirement already satisfied: pillow<13.0,>=8.0 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (from gradio>=4.19) (12.3.0)
+Requirement already satisfied: pydantic<=3.0,>=2.0 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (from gradio>=4.19) (2.13.5)
+Requirement already satisfied: pydub<1.0 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (from gradio>=4.19) (0.25.1)
+Requirement already satisfied: python-multipart<1.0,>=0.0.18 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (from gradio>=4.19) (0.0.32)
+Requirement already satisfied: pytz>=2017.2 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (from gradio>=4.19) (2026.5)
+Requirement already satisfied: pyyaml<7.0,>=5.0 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (from gradio>=4.19) (6.0.3)
+Requirement already satisfied: safehttpx<0.2.0,>=0.1.7 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (from gradio>=4.19) (0.1.7)
+Requirement already satisfied: semantic-version~=2.0 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (from gradio>=4.19) (2.10.0)
+Requirement already satisfied: starlette<2.0,>=1.0.1 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (from gradio>=4.19) (1.7.0)
+Requirement already satisfied: tomlkit<0.15.0,>=0.12.0 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (from gradio>=4.19) (0.14.0)
+Requirement already satisfied: typer<1.0,>=0.12 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (from gradio>=4.19) (0.27.2)
+Requirement already satisfied: typing-extensions~=4.0 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (from gradio>=4.19) (4.16.0)
+Requirement already satisfied: uvicorn>=0.14.0 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (from gradio>=4.19) (0.54.0)
+Requirement already satisfied: fsspec in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (from gradio-client==2.5.0->gradio>=4.19) (2024.12.0)
+Requirement already satisfied: idna>=2.8 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (from anyio<5.0,>=3.0->gradio>=4.19) (3.20)
+Requirement already satisfied: typing-inspection>=0.4.2 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (from fastapi<1.0,>=0.115.2->gradio>=4.19) (0.4.4)
+Requirement already satisfied: annotated-doc>=0.0.2 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (from fastapi<1.0,>=0.115.2->gradio>=4.19) (0.0.5)
+Requirement already satisfied: opentelemetry-api>=1.44.0 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (from fastapi<1.0,>=0.115.2->gradio>=4.19) (1.45.0)
+Requirement already satisfied: certifi in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (from httpx<1.0,>=0.24.1->gradio>=4.19) (2026.7.22)
+Requirement already satisfied: httpcore==1.* in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (from httpx<1.0,>=0.24.1->gradio>=4.19) (1.0.9)
+Requirement already satisfied: h11>=0.16 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (from httpcore==1.*->httpx<1.0,>=0.24.1->gradio>=4.19) (0.16.0)
+Requirement already satisfied: filelock in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (from huggingface-hub<2.0,>=0.33.5->gradio>=4.19) (4.0.12)
+Requirement already satisfied: hf-xet<2.0.0,>=1.1.3 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (from huggingface-hub<2.0,>=0.33.5->gradio>=4.19) (1.6.0)
+Requirement already satisfied: requests in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (from huggingface-hub<2.0,>=0.33.5->gradio>=4.19) (2.34.2)
+Requirement already satisfied: tqdm>=4.42.1 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (from huggingface-hub<2.0,>=0.33.5->gradio>=4.19) (4.70.1)
+Requirement already satisfied: python-dateutil>=2.8.2 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (from pandas<4.0,>=1.0->gradio>=4.19) (2.9.0.post0)
+Requirement already satisfied: annotated-types>=0.6.0 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (from pydantic<=3.0,>=2.0->gradio>=4.19) (0.8.0)
+Requirement already satisfied: pydantic-core==2.46.5 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (from pydantic<=3.0,>=2.0->gradio>=4.19) (2.46.5)
+Requirement already satisfied: shellingham>=1.3.0 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (from typer<1.0,>=0.12->gradio>=4.19) (1.5.4)
+Requirement already satisfied: rich>=13.8.0 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (from typer<1.0,>=0.12->gradio>=4.19) (15.0.0)
+Requirement already satisfied: six>=1.5 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (from python-dateutil>=2.8.2->pandas<4.0,>=1.0->gradio>=4.19) (1.17.0)
+Requirement already satisfied: markdown-it-py>=2.2.0 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (from rich>=13.8.0->typer<1.0,>=0.12->gradio>=4.19) (4.2.0)
+Requirement already satisfied: pygments<3.0.0,>=2.13.0 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (from rich>=13.8.0->typer<1.0,>=0.12->gradio>=4.19) (2.21.0)
+Requirement already satisfied: mdurl~=0.1 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (from markdown-it-py>=2.2.0->rich>=13.8.0->typer<1.0,>=0.12->gradio>=4.19) (0.1.2)
+Requirement already satisfied: click>=7.0 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (from uvicorn>=0.14.0->gradio>=4.19) (8.5.0)
+Requirement already satisfied: charset_normalizer<4,>=2 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (from requests->huggingface-hub<2.0,>=0.33.5->gradio>=4.19) (3.5.2)
+Requirement already satisfied: urllib3<3,>=1.26 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (from requests->huggingface-hub<2.0,>=0.33.5->gradio>=4.19) (2.8.0)
+[cell 2 DONE  +    6.4s]
+[cell 3 START +    6.4s] ## Music generation with ACE Step Pipeline via PyTorch | [back to top ⬆️
+[cell 4 START +    6.4s] ### Download checkpoints and load PyTorch models | [back to top ⬆️](#Tab
+[cell 5 START +    6.4s] from acestep.pipeline_ace_step import ACEStepPipeline |  | checkpoint_dir 
+[cell 5 DONE  +    8.1s]
+[cell 6 START +    8.1s] ### Configure parameters and generate audio | [back to top ⬆️](#Table-of
+[cell 7 START +    8.1s] import os |  | inputs = { |     "prompt": "country rock, folk rock, southern
+[cell 7 DONE  +    8.1s]
+[cell 8 START +    8.1s] import IPython.display as ipd |  | result = pipeline(**inputs) |  | output_pat
+[cell 8 DONE  +   50.9s]
+[cell 9 START +   50.9s] ### Update audio | [back to top ⬆️](#Table-of-contents:) |  | ACE Step provi
+[cell 10 START +   50.9s] import copy |  | inputs_update_audio = copy.deepcopy(inputs) | inputs_update
+[cell 10 DONE  +   50.9s]
+[cell 11 START +   50.9s] result = pipeline(**inputs_update_audio) |  | display(ipd.Audio(result[0])
+[cell 11 DONE  +   94.2s]
+[cell 12 START +   94.2s] ## Music Generation with ACE Step via OpenVINO | [back to top ⬆️](#Table
+[cell 13 START +   94.2s] ### Convert model to OpenVINO | [back to top ⬆️](#Table-of-contents:) |  | O
+[cell 14 START +   94.2s] from gradio_helper import get_model_compression_format_widgets |  | model_
+[cell 14 DONE  +   94.8s]
+[cell 15 START +   94.8s] import nncf | from ov_ace_helper import convert_models |  | ov_converted_mod
+[cell 15 DONE  +   94.8s]
+[cell 16 START +   94.8s] ### Select inference device | [back to top ⬆️](#Table-of-contents:) |  | Sel
+[cell 17 START +   94.8s] from notebook_utils import device_widget |  | device = device_widget(exclu
+[cell 17 DONE  +   95.0s]
+[cell 18 START +   95.0s] ### Create pipeline, read and compile models | [back to top ⬆️](#Table-o
+[cell 19 START +   95.0s] from ov_ace_helper import OVACEStepPipeline |  | ov_pipeline = OVACEStepPi
+[cell 19 DONE  +   97.1s]
+[cell 20 START +   97.1s] ### Generate audio | [back to top ⬆️](#Table-of-contents:)
+[cell 21 START +   97.1s] import IPython.display as ipd |  | ov_result = ov_pipeline(**inputs) |  | ov_o
+[cell 21 DONE  +  109.8s]
+[cell 22 START +  109.8s] ### Update audio | [back to top ⬆️](#Table-of-contents:)
+[cell 23 START +  109.8s] from gradio_helper import update_audio_widget |  | update_audio_type = upd
+[cell 23 DONE  +  109.8s]
+[cell 24 START +  109.8s] from gradio_helper import setup_update_audio_widgets |  | setup_update_aud
+[cell 24 DONE  +  109.8s]
+[cell 25 START +  109.8s] from gradio_helper import get_inputs_base_on_setup_widget |  | inputs_upda
+[cell 25 DONE  +  109.8s]
+[cell 26 START +  109.8s] ov_update_result = ov_pipeline(**inputs_update_audio) |  | display(ipd.Aud
+[cell 26 DONE  +  113.8s]
+[cell 27 START +  113.8s] ## ACE Step with LoRA | [back to top ⬆️](#Table-of-contents:) |  |  | LoRA is 
+[cell 28 START +  113.8s] ### Load LoRA and apply for Transformer models for ACE Step pipeline | [
+[cell 29 START +  113.8s] pipeline.load_lora("ACE-Step/ACE-Step-v1-chinese-rap-LoRA", 1)
+[cell 29 DONE  +  114.9s]
+[cell 30 START +  114.9s] ### Convert models with LoRA and load to OpenVINO pipeline | [back to to
+[cell 31 START +  114.9s] from ov_ace_helper import convert_transformer_models |  | ov_models_lora =
+[cell 31 DONE  +  116.4s]
+[cell 32 START +  116.4s] ### Run Inference with LoRA   | [back to top ⬆️](#Table-of-contents:)
+[cell 33 START +  116.4s] import IPython.display as ipd |  | inputs["prompt"] = "chopper rap, female
+[cell 33 DONE  +  128.9s]
+[cell 34 START +  128.9s] ### Deactivate LoRA | [back to top ⬆️](#Table-of-contents:) |  | To unload L
+[cell 35 START +  128.9s] ov_pipeline.load_lora("none")
+[cell 35 DONE  +  128.9s]
+[cell 36 START +  128.9s] ## Interactive demo | [back to top ⬆️](#Table-of-contents:) | 
+[cell 37 START +  128.9s] from gradio_helper import make_demo | from acestep.data_sampler import D
+NBEXEC_RESULT={"ok": true, "n_cells": 20, "n_skipped": 1, "n_substituted": 1, "stopped_after": null, "error_cell": null, "error_type": null, "error_head": null, "duration_s": 132.32, "patch_notes": ["substituted 1 occurrence(s) in cell 2", "skipped cell 37: matched skip pattern"]}

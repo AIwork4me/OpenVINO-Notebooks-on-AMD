@@ -8,3 +8,4 @@
 [cell 5 START +   48.1s] # Read more about telemetry collection at https://github.com/openvinot
 [cell 5 DONE  +   54.6s]
 [cell 6 START +   54.6s] convert_stable_video_diffusion()
+NBEXEC_RESULT={"ok": false, "n_cells": 25, "n_skipped": 1, "n_substituted": 2, "stopped_after": null, "error_cell": null, "error_type": "CellTimeoutError", "error_head": "-------------------", "duration_s": 957.22, "patch_notes": ["substituted 1 occurrence(s) in cell 3", "substituted 1 occurrence(s) in cell 11", "skipped cell 38: matched skip pattern"]}

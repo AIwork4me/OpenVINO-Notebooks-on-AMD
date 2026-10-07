@@ -1,0 +1,20 @@
+[cell 0 START +    0.6s] # Muse Glimmer-30B multimodal reasoning with OpenVINO™ |  | [Muse Glimmer-
+[cell 1 START +    0.6s] ## Prerequisites | [back to top ⬆️](#Table-of-contents:) |  | Install the re
+[cell 2 START +    0.6s] import os |  | os.environ["GIT_CLONE_PROTECTION_ACTIVE"] = "false" |  | %pip i
+[cell 2 DONE  +   63.5s]
+[cell 3 START +   63.5s] import os | import shutil | from pathlib import Path |  | import requests |  | # R
+[cell 3 DONE  +   63.6s]
+[cell 4 START +   63.6s] ## Model capabilities | [back to top ⬆️](#Table-of-contents:) |  | Muse Glim
+[cell 5 START +   63.6s] ## Select compression and reasoning strength | [back to top ⬆️](#Table-o
+[cell 6 START +   63.6s] import ipywidgets as widgets | from IPython.display import display |  | from
+[cell 6 DONE  +   63.7s]
+[cell 7 START +   63.7s] ## Convert and compress the model | [back to top ⬆️](#Table-of-contents:
+[cell 8 START +   63.7s] from llm_config import compare_model_size, convert_and_compress_vlm |  | m
+[cell 8 DONE  +   63.7s]
+[cell 9 START +   63.7s] ## Select inference device | [back to top ⬆️](#Table-of-contents:) |  | This
+[cell 10 START +   63.7s] from notebook_utils import device_widget |  | device = device_widget(defau
+[cell 10 DONE  +   63.9s]
+[cell 11 START +   63.9s] ## Create the OpenVINO GenAI pipeline | [back to top ⬆️](#Table-of-conte
+[cell 12 START +   63.9s] import time |  | import numpy as np | import openvino as ov | import openvino_
+[cell 12 DONE  +   64.1s]
+NBEXEC_RESULT={"ok": false, "n_cells": 12, "n_skipped": 1, "n_substituted": 1, "stopped_after": null, "error_cell": null, "error_type": "CellExecutionError", "error_head": "Empty weights data in bin file or bin file cannot be found!", "duration_s": 64.39, "patch_notes": ["substituted 1 occurrence(s) in cell 2", "skipped cell 24: matched skip pattern"]}

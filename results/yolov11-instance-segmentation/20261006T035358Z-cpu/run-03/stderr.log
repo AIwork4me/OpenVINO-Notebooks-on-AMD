@@ -1,0 +1,104 @@
+[IPKernelApp] WARNING | Kernel is running over TCP without encryption. All communication (including code and outputs) is sent in plain text and is susceptible to eavesdropping. Use IPC transport or launch with kernel manager-provisioned CurveZMQ keys to enable transport encryption.
+wait self.async_execute_cell(
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/12e02bc65a37bd74/lib/python3.12/site-packages/nbclient/client.py", line 1062, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/12e02bc65a37bd74/lib/python3.12/site-packages/nbclient/client.py", line 918, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+%%skip not $to_quantize.value
+
+
+import nncf
+
+from zipfile import ZipFile
+
+from notebook_utils import use_local_ultralytics_datasets
+from ultralytics.utils import DEFAULT_CFG
+from ultralytics.cfg import get_cfg
+from ultralytics.data.converter import coco80_to_coco91_class
+from ultralytics.data.utils import check_det_dataset
+from ultralytics.utils import ops
+
+
+if not int8_model_seg_path.exists():
+    DATA_URL = "http://images.cocodataset.org/zips/val2017.zip"
+    LABELS_URL = "https://github.com/ultralytics/yolov5/releases/download/v1.0/coco2017labels-segments.zip"
+    CFG_URL = "https://raw.githubusercontent.com/ultralytics/ultralytics/v8.1.0/ultralytics/cfg/datasets/coco.yaml"
+
+    OUT_DIR = use_local_ultralytics_datasets()
+
+    DATA_PATH = OUT_DIR / "val2017.zip"
+    LABELS_PATH = OUT_DIR / "coco2017labels-segments.zip"
+    CFG_PATH = OUT_DIR / "coco.yaml"
+
+    if not (OUT_DIR / "coco/labels/val2017").exists():
+        download_file(DATA_URL, DATA_PATH.name, DATA_PATH.parent)
+        download_file(LABELS_URL, LABELS_PATH.name, LABELS_PATH.parent)
+        download_file(CFG_URL, CFG_PATH.name, CFG_PATH.parent)
+        with ZipFile(LABELS_PATH, "r") as zip_ref:
+            zip_ref.extractall(OUT_DIR)
+        with ZipFile(DATA_PATH, "r") as zip_ref:
+            zip_ref.extractall(OUT_DIR / "coco/images")
+
+    args = get_cfg(cfg=DEFAULT_CFG)
+    args.data = str(CFG_PATH)
+    seg_validator = seg_model.task_map[seg_model.task]["validator"](args=args)
+    seg_validator.data = check_det_dataset(args.data)
+    seg_validator.stride = 32
+    seg_data_loader = seg_validator.get_dataloader(OUT_DIR / "coco/", 1)
+
+    seg_validator.is_coco = True
+    seg_validator.class_map = coco80_to_coco91_class()
+    seg_validator.names = label_map
+    seg_validator.metrics.names = seg_validator.names
+    seg_validator.nc = 80
+    seg_validator.nm = 32
+    seg_validator.process = ops.process_mask
+    seg_validator.plot_masks = []
+
+    def transform_fn(data_item: dict):
+        """
+        Quantization transform function. Extracts and preprocess input data from dataloader item for quantization.
+        Parameters:
+           data_item: Dict with data item produced by DataLoader during iteration
+        Returns:
+            input_tensor: Input data for quantization
+        """
+        input_tensor = seg_validator.preprocess(data_item)["img"].numpy()
+        return input_tensor
+
+    quantization_dataset = nncf.Dataset(seg_data_loader, transform_fn)
+------------------
+
+
+[31m---------------------------------------------------------------------------[39m
+[31mBadZipFile[39m                                Traceback (most recent call last)
+[36mCell[39m[36m [39m[32mIn[12][39m[32m, line 1[39m
+[32m----> [39m[32m1[39m get_ipython().run_cell_magic([33m'skip'[39m, [33m'not $to_quantize.value'[39m, [33m'\n\nimport nncf\n\nfrom zipfile import ZipFile\n\nfrom notebook_utils import use_local_ultralytics_datasets\nfrom ultralytics.utils import DEFAULT_CFG\nfrom ultralytics.cfg import get_cfg\nfrom ultralytics.data.converter import coco80_to_coco91_class\nfrom ultralytics.data.utils import check_det_dataset\nfrom ultralytics.utils import ops\n\n\nif not int8_model_seg_path.exists():\n    DATA_URL = "http://images.cocodataset.org/zips/val2017.zip"\n    LABELS_URL = "https://github.com/ultralytics/yolov5/releases/download/v1.0/coco2017labels-segments.zip"\n    CFG_URL = "https://raw.githubusercontent.com/ultralytics/ultralytics/v8.1.0/ultralytics/cfg/datasets/coco.yaml"\n\n    OUT_DIR = use_local_ultralytics_datasets()\n\n    DATA_PATH = OUT_DIR / "val2017.zip"\n    LABELS_PATH = OUT_DIR / "coco2017labels-segments.zip"\n    CFG_PATH = OUT_DIR / "coco.yaml"\n\n    if not (OUT_DIR / "coco/labels/val2017").exists():\n        download_file(DATA_URL, DATA_PATH.name, DATA_PATH.parent)\n        download_file(LABELS_URL, LABELS_PATH.name, LABELS_PATH.parent)\n        download_file(CFG_URL, CFG_PATH.name, CFG_PATH.parent)\n        with ZipFile(LABELS_PATH, "r") as zip_ref:\n            zip_ref.extractall(OUT_DIR)\n        with ZipFile(DATA_PATH, "r") as zip_ref:\n            zip_ref.extractall(OUT_DIR / "coco/images")\n\n    args = get_cfg(cfg=DEFAULT_CFG)\n    args.data = str(CFG_PATH)\n    seg_validator = seg_model.task_map[seg_model.task]["validator"](args=args)\n    seg_validator.data = check_det_dataset(args.data)\n    seg_validator.stride = 32\n    seg_data_loader = seg_validator.get_dataloader(OUT_DIR / "coco/", 1)\n\n    seg_validator.is_coco = True\n    seg_validator.class_map = coco80_to_coco91_class()\n    seg_validator.names = label_map\n    seg_validator.metrics.names = seg_validator.names\n    seg_validator.nc = 80\n    seg_validator.nm = 32\n    seg_validator.process = ops.process_mask\n    seg_validator.plot_masks = []\n\n    def transform_fn(data_item: dict):\n        """\n        Quantization transform function. Extracts and preprocess input data from dataloader item for quantization.\n        Parameters:\n           data_item: Dict with data item produced by DataLoader during iteration\n        Returns:\n            input_tensor: Input data for quantization\n        """\n        input_tensor = seg_validator.preprocess(data_item)["img"].numpy()\n        return input_tensor\n\n    quantization_dataset = nncf.Dataset(seg_data_loader, transform_fn)\n'[39m)
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/results/yolov11-instance-segmentation/workdir-cpu/skip_kernel_extension.py:9[39m, in [36mskip[39m[34m(line, cell)[39m
+[32m      6[39m [38;5;28;01mif[39;00m [38;5;28meval[39m(line):
+[32m      7[39m     [38;5;28;01mreturn[39;00m
+[32m----> [39m[32m9[39m [30;43mget_ipython[39;49m[30;43m([39;49m[30;43m)[39;49m[30;43m.[39;49m[30;43mex[39;49m[30;43m([39;49m[30;43mcell[39;49m[30;43m)[39;49m
+
+[36mFile [39m[32m<string>:30[39m
+
+[36mFile [39m[32m/usr/lib/python3.12/zipfile/__init__.py:1365[39m, in [36mZipFile.__init__[39m[34m(self, file, mode, compression, allowZip64, compresslevel, strict_timestamps, metadata_encoding)[39m
+[32m   1363[39m [38;5;28;01mtry[39;00m:
+[32m   1364[39m     [38;5;28;01mif[39;00m mode == [33m'[39m[33mr[39m[33m'[39m:
+[32m-> [39m[32m1365[39m         [30;43mself[39;49m[30;43m.[39;49m[30;43m_RealGetContents[39;49m[30;43m([39;49m[30;43m)[39;49m
+[32m   1366[39m     [38;5;28;01melif[39;00m mode [38;5;129;01min[39;00m ([33m'[39m[33mw[39m[33m'[39m, [33m'[39m[33mx[39m[33m'[39m):
+[32m   1367[39m         [38;5;66;03m# set the modified flag so central directory gets written[39;00m
+[32m   1368[39m         [38;5;66;03m# even if no files are added to the archive[39;00m
+[32m   1369[39m         [38;5;28mself[39m._didModify = [38;5;28;01mTrue[39;00m
+
+[36mFile [39m[32m/usr/lib/python3.12/zipfile/__init__.py:1432[39m, in [36mZipFile._RealGetContents[39m[34m(self)[39m
+[32m   1430[39m     [38;5;28;01mraise[39;00m BadZipFile([33m"[39m[33mFile is not a zip file[39m[33m"[39m)
+[32m   1431[39m [38;5;28;01mif[39;00m [38;5;129;01mnot[39;00m endrec:
+[32m-> [39m[32m1432[39m     [38;5;28;01mraise[39;00m BadZipFile([33m"[39m[33mFile is not a zip file[39m[33m"[39m)
+[32m   1433[39m [38;5;28;01mif[39;00m [38;5;28mself[39m.debug > [32m1[39m:
+[32m   1434[39m     [38;5;28mprint[39m(endrec)
+
+[31mBadZipFile[39m: File is not a zip file
+

@@ -1,0 +1,10 @@
+{
+  "schema_version": 2,
+  "start": "2026-10-06T10:05:33+00:00",
+  "end": "2026-10-06T10:06:39+00:00",
+  "duration_s": 66.13,
+  "exit_code": 0,
+  "retry_count": 0,
+  "status": "OK",
+  "failure_category": ""
+}

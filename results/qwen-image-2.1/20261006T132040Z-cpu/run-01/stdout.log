@@ -1,0 +1,6 @@
+[cell 0 START +    0.4s] # Qwen-Image 2.1 image generation with OpenVINO |  | Qwen-Image 2.1 is a u
+[cell 1 START +    0.4s] ## Prerequisites | [back to top ⬆️](#Table-of-contents:) |  | This notebook 
+[cell 2 START +    0.4s] import os | import requests | from pathlib import Path |  | import ipywidgets 
+[cell 2 DONE  +   19.3s]
+[cell 3 START +   19.3s] ### Installation | [back to top ⬆️](#Table-of-contents:) |  | Install the re
+[cell 4 START +   19.3s] pip_install( |     "-qU", |     "https://codeload.github.com/huggingface/d

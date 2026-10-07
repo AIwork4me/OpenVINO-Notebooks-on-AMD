@@ -1,108 +1,121 @@
 # Failures (generated)
 
-Total failed attempts: 83
+Total failed attempts: 87
 
-## cpu:UNKNOWN — 41 workload(s)
+## cpu:TIMEOUT — 20 workload(s)
 
-- **ace-step-music-generation** — ok_runs=0/3: CalledProcessError: Command '['/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/bin/python', '-m', 'pip', 'install', '-q', 'git+//huggingface\\.co', ':https://hf-mirror.com://github.com/ace-st
-- **aloha-act** — ok_runs=0/3: InvalidSchema: No connection adapters were found for '//huggingface\\.co :https://hf-mirror.com://eci.intel.com/embodied-sdk-docs/_downloads/sim_insertion_scripted.zip'
-- **deepseek-ocr** — ok_runs=0/3: CalledProcessError: Command '['/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/bin/python', '-m', 'pip', 'install', '-Uq', '--pre', 'openvino', '--extra-index-url', '//huggingface\\.co', ':ht
-- **deepseek-vl2** — ok_runs=0/3: CalledProcessError: Command '['/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/bin/python', '-m', 'pip', 'install', '-q', 'torch==2.8', 'torchvision', 'gradio>=4.19', 'einops', 'transformers=
-- **fireredtts2** — ok_runs=0/3: CalledProcessError: Command '['/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/bin/python', '-m', 'pip', 'install', '-q', '--extra-index-url', '//huggingface\\.co', ':https://hf-mirror.com://
-- **stable-diffusion-text-to-image** — ok_runs=0/3: FileNotFoundError: [Errno 2] No such file or directory: 'optimum-cli'
+- **aloha-act** — ok_runs=0/3: 
+- **bark-text-to-audio** — ok_runs=0/3: 
+- **blip-visual-language-processing** — ok_runs=0/3: 
+- **deepseek-vl2** — ok_runs=0/3: 
+- **fireredtts2** — ok_runs=0/3: 
+- **stable-diffusion-text-to-image** — ok_runs=0/3: 
+- **grounded-segment-anything** — ok_runs=0/3: 
+- **inpainting-genai** — ok_runs=0/3: 
+- **minicpm-v-multimodal-chatbot** — ok_runs=0/3: 
+- **music-generation** — ok_runs=0/3: 
+- **omnivoice** — ok_runs=0/3: 
+- **phi-3-vision** — ok_runs=0/3: 
+- **phi-4-multimodal** — ok_runs=0/3: 
+- **qwen-image-2.1** — ok_runs=0/3: 
+- **text-to-image-genai** — ok_runs=0/3: 
+- **unlimited-ocr** — ok_runs=0/3: 
+- **voxcpm2-tts** — ok_runs=0/3: 
+- **jina-clip** — ok_runs=0/3: 
+- **siglip-zero-shot-image-classification** — ok_runs=0/3: 
+- **yolov11-quantization-with-accuracy-control** — ok_runs=0/3: 
+
+## cpu:DEPENDENCY — 17 workload(s)
+
+- **001-whisper-evaluation** — ok_runs=0/3: Please note that you may need to restart your runtime after installation.
+- **catvton** — ok_runs=0/3: ImportError: cannot import name 'resolve_revision' from 'huggingface_hub' (.venvs/cpu/2c24bba1924a9c98/lib/python3.12/site-packages/huggingface_hub/__ini
+- **glm-ocr** — ok_runs=0/3: CalledProcessError: Command '['optimum-cli', 'export', 'openvino', '--model', 'zai-org/GLM-OCR', 'GLM-OCR/INT4', '--task', 'image-text-to-text', '--weight-format', 'int4', '--group-size', '128', '-
+- **llm-rag-langchain-eval** — ok_runs=0/3: ModuleNotFoundError: Could not import module 'OVModelForCausalLM'. Are this object's requirements defined correctly?
+- **qwen3-asr** — ok_runs=0/3: ModuleNotFoundError: Could not import module 'OVModelForSpeechSeq2Seq'. Are this object's requirements defined correctly?
+- **hunyuan-ocr** — ok_runs=0/1: ValueError: Unexpected dependency in optimum-intel/setup.py: "optimum@https://codeload.github.com/huggingface/optimum/tar.gz/HEAD"
+- **olmocr-pdf-vlm** — ok_runs=0/1: ModuleNotFoundError: Could not import module 'AutoProcessor'. Are this object's requirements defined correctly?
+- **openvoice2-and-melotts** — ok_runs=0/1: ModuleNotFoundError: Could not import module 'AutoTokenizer'. Are this object's requirements defined correctly?
+- **qwen2.5-omni-chatbot** — ok_runs=0/1: AttributeError: type object 'openvino._pyopenvino.Type' has no attribute 'u2'
+- **clip-zero-shot-classification** — ok_runs=0/3: Please note that you may need to restart your runtime after installation.
+- **convert-to-openvino** — ok_runs=0/3: ModuleNotFoundError: Could not import module 'AutoModelForSequenceClassification'. Are this object's requirements defined correctly?
+- **rf-detr-object-detection** — ok_runs=0/3: ModuleNotFoundError: No module named 'triton.backends'
+- **z-image-turbo** — ok_runs=0/3: CalledProcessError: Command '['optimum-cli', 'export', 'openvino', '--model', 'Tongyi-MAI/Z-Image-Turbo', 'Z-Image-Turbo/INT4', '--task', 'text-to-image', '--weight-format', 'int4', '--group-size',
+- **ltx-video** — ok_runs=0/1: FileNotFoundError: [Errno 2] No such file or directory: 'optimum-cli'
+- **person-tracking** — ok_runs=0/1: ModuleNotFoundError: No module named 'deepsort_utils'
+- **llm-rag-langchain** — ok_runs=0/1: ImportError: Could not import optimum-intel python package. Please install it with: pip install -U 'optimum[openvino,nncf]'
+- **llm-rag-langchain-genai** — ok_runs=0/1: CalledProcessError: Command '['optimum-cli', 'export', 'openvino', '--model', 'TinyLlama/TinyLlama-1.1B-Chat-v1.0', 'tiny-llama-1b-chat/INT4_compressed_weights', '--task', 'text-generation-with-pas
+
+## cpu:UNKNOWN — 14 workload(s)
+
+- **cosyvoice3-tts** — ok_runs=0/3: HTTPError: Authentication token does not exist,
 - **qwen3** — ok_runs=0/1: [GPU] clEnqueueMapBuffer, error code: -30 CL_INVALID_VALUE
-- **florence2** — ok_runs=0/3: InvalidSchema: No connection adapters were found for '//huggingface\\.co :https://hf-mirror.com://huggingface.co/datasets/huggingface/documentation-images/resolve/main/transformers/tasks/car.jpg?do
-- **funasr-nano** — ok_runs=0/3: CalledProcessError: Command '['/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/bin/python', '-m', 'pip', 'install', '-q', '--extra-index-url', '//huggingface\\.co', ':https://hf-mirror.com://
-- **grounded-segment-anything** — ok_runs=0/3: CalledProcessError: Command '['git', 'clone', '//huggingface\\.co :https://hf-mirror.com://github.com/wenyi5608/GroundingDINO.git']' returned non-zero exit status 128.
-- **inpainting-genai** — ok_runs=0/3: FileNotFoundError: [Errno 2] No such file or directory: 'optimum-cli'
-- **latent-consistency-models-image-generation** — ok_runs=0/3: FileNotFoundError: [Errno 2] No such file or directory: 'optimum-cli'
-- **stable-diffusion-xl** — ok_runs=0/3: FileNotFoundError: [Errno 2] No such file or directory: 'optimum-cli'
-- **llm-agent-mcp** — ok_runs=0/3: InvalidSchema: No connection adapters were found for '//huggingface\\.co :https://hf-mirror.com://cdn-avatars.huggingface.co/v1/production/uploads/1671615670447-6346651be2dcb5422bcd13dd.png'
-- **llm-chatbot-generate-api** — ok_runs=0/3: InvalidSchema: No connection adapters were found for '//huggingface\\.co :https://hf-mirror.com://raw.githubusercontent.com/openvinotoolkit/openvino_notebooks/latest/utils/llm_config.py'
-- **llm-rag-langchain-eval** — ok_runs=0/3: InvalidSchema: No connection adapters were found for '//huggingface\\.co :https://hf-mirror.com://github.com/openvinotoolkit/openvino_notebooks/files/15039728/Platform.Brief_Intel.vPro.with.Intel.C
-- **minicpm-v-multimodal-chatbot** — ok_runs=0/3: FileNotFoundError: [Errno 2] No such file or directory: 'optimum-cli'
-- **omniparser** — ok_runs=0/3: CalledProcessError: Command '['/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/bin/python', '-m', 'pip', 'install', 'torch>=2.1', 'torchvision', 'accelerate', 'transformers>=4.45,<4.52', 'tim
-- **omnivoice** — ok_runs=0/3: CalledProcessError: Command '['/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/bin/python', '-m', 'pip', 'install', '-q', '--extra-index-url', '//huggingface\\.co', ':https://hf-mirror.com://
-- **paddleocr_vl** — ok_runs=0/3: CalledProcessError: Command '['/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/bin/python', '-m', 'pip', 'install', '-q', '-U', '--index-url', '//huggingface\\.co', ':https://hf-mirror.com://
-- **phi-3-vision** — ok_runs=0/3: FileNotFoundError: [Errno 2] No such file or directory: 'optimum-cli'
-- **phi-4-multimodal** — ok_runs=0/3: FileNotFoundError: [Errno 2] No such file or directory: 'optimum-cli'
-- **qwen-image-2.1** — ok_runs=0/3: CalledProcessError: Command '['/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/bin/python', '-m', 'pip', 'install', '-qU', 'gradio', 'torch', 'accelerate', 'nncf', 'numpy', 'pillow', 'ipywidg
-- **smoldocling** — ok_runs=0/3: FileNotFoundError: [Errno 2] No such file or directory: 'optimum-cli'
-- **text-to-speech-genai** — ok_runs=0/3: CalledProcessError: Command '['/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/bin/python', '-m', 'pip', 'install', '-U', 'transformers[sentencepiece]>=4.45', 'soundfile', 'torch==2.11.*', 't
-- **unlimited-ocr** — ok_runs=0/3: CalledProcessError: Command '['/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/bin/python', '-m', 'pip', 'install', '-Uq', '--pre', 'openvino', '--extra-index-url', '//huggingface\\.co', ':ht
-- **voxcpm2-tts** — ok_runs=0/3: CalledProcessError: Command '['/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/bin/python', '-m', 'pip', 'install', '-q', '--extra-index-url', '//huggingface\\.co', ':https://hf-mirror.com://
-- **mineru2.5** — ok_runs=0/3: FileNotFoundError: [Errno 2] No such file or directory: 'optimum-cli'
-- **qwen3-asr** — ok_runs=0/3: CalledProcessError: Command '['/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/bin/python', '-m', 'pip', 'install', '-q', '--extra-index-url', '//huggingface\\.co', ':https://hf-mirror.com://
-- **controlnet-stable-diffusion** — ok_runs=0/1: CalledProcessError: Command '['/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/bin/python', '-m', 'pip', 'install', '-qU', 'torch==2.8', 'torchvision', '--extra-index-url', '//huggingface\\.c
-- **flux-fill** — ok_runs=0/1: FileNotFoundError: [Errno 2] No such file or directory: 'optimum-cli'
+- **stable-diffusion-xl** — ok_runs=0/3: NameError: name 'demo' is not defined
+- **vision-background-removal** — ok_runs=0/3: EOFError:
 - **flux.1-image-generation** — ok_runs=0/1: Empty weights data in bin file or bin file cannot be found!
-- **flux.2-klein** — ok_runs=0/1: CalledProcessError: Command '['/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/bin/python', '-m', 'pip', 'install', '-q', 'git+//huggingface\\.co', ':https://hf-mirror.com://github.com/huggin
-- **minicpm-o-4.5** — ok_runs=0/1: AttributeError: MiniCPMOTokenizerFast has no attribute tokenizer
-- **minicpm-o-omnimodal-chatbot** — ok_runs=0/1: FileNotFoundError: No such file or directory: MiniCPM-o-2_6/ckpt/model-00001-of-00004.safetensors
-- **minicpm-v-4.6** — ok_runs=0/1: FileNotFoundError: [Errno 2] No such file or directory: 'optimum-cli'
-- **openvoice** — ok_runs=0/1: CalledProcessError: Command '['git', 'clone', '//huggingface\\.co :https://hf-mirror.com://github.com/myshell-ai/OpenVoice']' returned non-zero exit status 128.
-- **qwen2.5-omni-chatbot** — ok_runs=0/1: CalledProcessError: Command '['/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/bin/python', '-m', 'pip', 'install', 'transformers==4.52.3', 'torch==2.8', 'torchvision==0.23.0', 'accelerate', 
-- **qwen3-embedding** — ok_runs=0/1: FileNotFoundError: [Errno 2] No such file or directory: 'optimum-cli'
-- **qwen3-vl-reranker** — ok_runs=0/1: FileNotFoundError: [Errno 2] No such file or directory: 'optimum-cli'
-- **vlm-chatbot-generate-api** — ok_runs=0/1: FileNotFoundError: [Errno 2] No such file or directory: 'nyc.jpg'
-
-## cpu:DEPENDENCY — 24 workload(s)
-
-- **001-whisper-evaluation** — ok_runs=0/3: ImportError: cannot import name 'hf_cache_home' from 'huggingface_hub.constants' (/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/huggingface_hub/constants.py)
-- **catvton** — ok_runs=0/3: ImportError: cannot import name 'cached_download' from 'huggingface_hub' (/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/huggingface_hub/__init__.py)
-- **ernie-image** — ok_runs=0/3: CalledProcessError: Command '['/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/bin/python', '-m', 'pip', 'install', '-q', 'gradio>=4.19,<6', 'torch>=2.8', 'nncf>=2.15.0', 'accelerate', '--ext
-- **glm-ocr** — ok_runs=0/3: CalledProcessError: Command '['/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/bin/python', '-m', 'pip', 'install', '-q', 'torch>=2.8', 'torchvision', '--extra-index-url', '//huggingface\\.co
-- **medasr-medical-asr** — ok_runs=0/3: ImportError: /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/torch/lib/libtorch_cuda.so: undefined symbol: ncclCommResume
-- **music-generation** — ok_runs=0/3: ImportError: /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/torch/lib/libtorch_cuda.so: undefined symbol: ncclCommResume
-- **parler-tts-text-to-speech** — ok_runs=0/3: CalledProcessError: Command '['/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/bin/python', '-m', 'pip', 'install', '-q', 'openvino>=2024.2.0', 'torch', '--extra-index-url', '//huggingface\\.
-- **phi3_chatbot_demo** — ok_runs=0/3: ImportError: /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/torch/lib/libtorch_cuda.so: undefined symbol: ncclCommResume
-- **phi3_rag_on_client** — ok_runs=0/3: ImportError: Could not import sentence_transformers python package. Please install it with `pip install sentence-transformers`.
-- **qwen-image** — ok_runs=0/3: CalledProcessError: Command '['/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/bin/python', '-m', 'pip', 'install', '-q', 'gradio>=4.19,<6', 'torch>=2.1,<2.9', 'transformers>=4.45,<4.58', 'nn
-- **rmbg-background-removal** — ok_runs=0/3: ImportError: /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/torch/lib/libtorch_cuda.so: undefined symbol: ncclCommResume
-- **text-to-image-genai** — ok_runs=0/3: CalledProcessError: Command '['/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/bin/python', '-m', 'pip', 'install', '-q', '-U', '--pre', 'openvino>=2025.4', '--extra-index-url', '//huggingfac
-- **vision-background-removal** — ok_runs=0/3: ImportError: /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/torch/lib/libtorch_cuda.so: undefined symbol: ncclCommResume
-- **mms-massively-multilingual-speech** — ok_runs=0/3: ImportError: /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/torch/lib/libtorch_cuda.so: undefined symbol: ncclCommResume
-- **qwen3-tts** — ok_runs=0/3: CalledProcessError: Command '['/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/bin/python', '-m', 'pip', 'install', '-q', '--extra-index-url', '//huggingface\\.co', ':https://hf-mirror.com://
-- **flux.1-kontext** — ok_runs=0/1: CalledProcessError: Command '['/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/bin/python', '-m', 'pip', 'install', '-q', 'gradio>=4.19,<6', 'torch==2.8', 'transformers==4.55.4', 'nncf==3.2.0
 - **glm4.1-v-thinking** — ok_runs=0/1: CalledProcessError: Command '['optimum-cli', 'export', 'openvino', '--model', 'GLM-4.1V-9B-Thinking', 'GLM-4.1V-9B-Thinking/INT4', '--task', 'image-text-to-text', '--weight-format', 'int4', '--grou
-- **llm-chatbot** — ok_runs=0/1: No module named 'transformers.masking_utils'
-- **multilora-image-generation** — ok_runs=0/1: ImportError: /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/torch/lib/libtorch_cuda.so: undefined symbol: ncclCommResume
-- **qwen2-audio** — ok_runs=0/1: ImportError: /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venv-cpu/lib/python3.12/site-packages/torch/lib/libtorch_cuda.so: undefined symbol: ncclCommResume
-- **qwen3-reranker** — ok_runs=0/1: CalledProcessError: Command '['optimum-cli', 'export', 'openvino', '--model', 'Qwen/Qwen3-Reranker-0.6B', 'Qwen3-Reranker-0.6B/FP16', '--task', 'text-generation', '--weight-format', 'fp16']' return
-- **qwen3-vl-embedding** — ok_runs=0/1: CalledProcessError: Command '['optimum-cli', 'export', 'openvino', '--model', 'Qwen/Qwen3-VL-Embedding-2B', 'Qwen3-VL-Embedding-2B/FP16', '--task', 'feature-extraction', '--weight-format', 'fp16']'
-- **qwen3_agent** — ok_runs=0/1: ModuleNotFoundError: No module named 'smolagents'
-- **openvino-tokenizers** — ok_runs=0/3: ModuleNotFoundError: Could not import module 'LlamaConfig'. Are this object's requirements defined correctly?
+- **minicpm-o-omnimodal-chatbot** — ok_runs=0/1: FileNotFoundError: No such file or directory: MiniCPM-o-2_6/ckpt/model-00001-of-00004.safetensors
+- **vlm-chatbot-generate-api** — ok_runs=0/1: FileNotFoundError: [Errno 2] No such file or directory: 'nyc.jpg'
+- **bernini-r-image-video** — ok_runs=0/3: KeyError: 'blocks.0.attn1.to_q.weight'
+- **action-recognition-webcam** — ok_runs=0/1: NameError: name 'vocab_file_path' is not defined
+- **yoloe-26-open-vocabulary** — ok_runs=0/1: RuntimeError: PytorchStreamReader failed reading zip archive: failed finding central directory
+- **gemma4** — ok_runs=0/1: ;
+- **muse-glimmer** — ok_runs=0/1: Empty weights data in bin file or bin file cannot be found!
+- **qwen3.8-mtp** — ok_runs=0/1: Empty weights data in bin file or bin file cannot be found!
 
-## cpu:NETWORK — 5 workload(s)
+## cpu:PACKAGE_CONFLICT — 11 workload(s)
 
-- **whisper-asr-genai** — ok_runs=0/1: ConnectTimeout: HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /spaces/distil-whisper/whisper-vs-distil-whisper/resolve/main/assets/example_1.wav (Caused by Co
-- **freevc-voice-conversion** — ok_runs=0/3: Exception: File downloading failed with error: No connection adapters were found for '//huggingface\\.co :https://hf-mirror.com://huggingface.co/spaces/OlaWod/FreeVC/resolve/main/p225_001.wav'
-- **paddle-to-openvino-classification** — ok_runs=0/3: Exception: File downloading failed with error: No connection adapters were found for '//huggingface\\.co :https://hf-mirror.com://storage.openvinotoolkit.org/repositories/openvino_notebooks/data/da
-- **instant-id** — ok_runs=0/1: ConnectTimeout: HTTPSConnectionPool(host='drive.google.com', port=443): Max retries exceeded with url: /uc?id=18wEUfMNohBJ4K3Ly5wpTejPfDzp-8fI8 (Caused by ConnectTimeoutError(<HTTPSConnection(host=
-- **paddle-ocr-webcam** — ok_runs=0/1: Exception: File downloading failed with error: No connection adapters were found for '//huggingface\\.co :https://hf-mirror.com://huggingface.co/PaddlePaddle/PP-OCRv6_tiny_det_onnx/resolve/main/inf
+- **ernie-image** — ok_runs=0/3: CalledProcessError: Command '['optimum-cli', 'export', 'openvino', '--model', 'baidu/ERNIE-Image-Turbo', 'ERNIE-Image-Turbo/INT4', '--task', 'text-to-image', '--weight-format', 'int4', '--ratio', '
+- **funasr-nano** — ok_runs=0/3: cannot import name 'Qwen3VLForConditionalGeneration' from 'transformers' (.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages/transformers/__init__.py)
+- **omniparser** — ok_runs=0/3: Exception: Connection timed out. If you access the internet through a proxy server, please make sure the proxy is set in the shell from where you launched Jupyter.
+- **paddleocr_vl** — ok_runs=0/3: FileNotFoundError: [Errno 2] No such file or directory: 'results/paddleocr_vl/workdir-cpu/test.png'
+- **qwen-image** — ok_runs=0/3: CalledProcessError: Command '['optimum-cli', 'export', 'openvino', '--model', 'Qwen/Qwen-Image-2512', 'Qwen-Image-2512/INT8', '--weight-format', 'int8']' returned non-zero exit status 1.
+- **text-to-speech-genai** — ok_runs=0/3: CalledProcessError: Command '['optimum-cli', 'export', 'openvino', '--model', 'microsoft/speecht5_tts', 'speecht5_tts', '--model-kwargs', '{"vocoder":"microsoft/speecht5_hifigan"}']' returned non-z
+- **controlnet-stable-diffusion** — ok_runs=0/1: -------------------
+- **flux.2-klein** — ok_runs=0/1: CalledProcessError: Command '['optimum-cli', 'export', 'openvino', '--model', 'black-forest-labs/FLUX.2-klein-4B', 'FLUX.2-klein-4B/INT4', '--task', 'text-to-image', '--weight-format', 'int4', '--g
+- **minicpm-o-4.5** — ok_runs=0/1: AttributeError: MiniCPMOTokenizerFast has no attribute tokenizer
+- **llm-code-assistant** — ok_runs=0/1: Empty weights data in bin file or bin file cannot be found!
+- **llm-rag-llamaindex** — ok_runs=0/1: **********************************************************************
 
-## cpu:OPENVINO_ERROR — 4 workload(s)
+## cpu:MODEL_ACCESS — 8 workload(s)
+
+- **latent-consistency-models-image-generation** — ok_runs=0/3: CalledProcessError: Command '['optimum-cli', 'export', 'openvino', '--model', 'SimianLuo/LCM_Dreamshaper_v7', 'LCM_Dreamshaper_v7_ov', '--weight-format', 'fp16']' returned non-zero exit status 1.
+- **medasr-medical-asr** — ok_runs=0/3: Access to model google/medasr is restricted and you are not in the authorized list. Visit https://huggingface.co/google/medasr to ask for access.
+- **phi3_rag_on_client** — ok_runs=0/3: AttributeError: 'Column' object has no attribute 'dtype'
+- **flux-fill** — ok_runs=0/1: CalledProcessError: Command '['optimum-cli', 'export', 'openvino', '--model', 'black-forest-labs/FLUX.1-Fill-dev', 'FLUX.1-Fill-dev/INT4', '--weight-format', 'int4', '--group-size', '64', '--ratio'
+- **flux.1-kontext** — ok_runs=0/1: CalledProcessError: Command '['optimum-cli', 'export', 'openvino', '--model', 'black-forest-labs/FLUX.1-Kontext-dev', 'FLUX.1-Kontext-dev/INT4', '--weight-format', 'int4', '--group-size', '64', '--
+- **mllama-3.2** — ok_runs=0/1: Access to model meta-llama/Llama-3.2-11B-Vision-Instruct is restricted and you are not in the authorized list. Visit https://huggingface.co/meta-llama/Llama-3.2-11B-Vision-Instruct to ask for access.
+- **stable-diffusion-v3-torch-fx** — ok_runs=0/1: Access to model stabilityai/stable-diffusion-3-medium-diffusers is restricted and you are not in the authorized list. Visit https://huggingface.co/stabilityai/stable-diffusion-3-medium-diffusers to ask for a
+- **multimodal-rag-llamaindex** — ok_runs=0/1: Can not open file results/multimodal-rag-llamaindex/workdir-cpu/distil-whisper-large-v3-int8-ov/openvino_decoder_model.bin for mapping. Ensure that file exists and
+
+## cpu:OPENVINO_ERROR — 7 workload(s)
 
 - **hello-npu** — ok_runs=0/3: Unsupported configuration key: FULL_DEVICE_NAME
-- **blip-visual-language-processing** — ok_runs=0/3: InvalidSchema: No connection adapters were found for '//huggingface\\.co :https://hf-mirror.com://raw.githubusercontent.com/openvinotoolkit/openvino_notebooks/latest/utils/skip_kernel_extension.py'
 - **fastdraft_deepseek** — ok_runs=0/1: Could not find a model in the directory '"DeepSeek-R1-Distill-Llama-8B-int4-ov"'
+- **parler-tts-text-to-speech** — ok_runs=0/3: BrgemmCPU node has incompatible input element types: f32 and bf16
+- **3d-segmentation-point-clouds** — ok_runs=0/3: NameError: name 'point_data' is not defined
 - **ct-segmentation-quantize-nncf** — ok_runs=0/3: nbclient.exceptions.DeadKernelError: Kernel died
+- **openvino-tokenizers** — ok_runs=0/3: ReadValue node with name 'ReadValue_5627'  doesn't have sibling output
+- **gpu-device** — ok_runs=0/1: nbclient.exceptions.DeadKernelError: Kernel died
 
-## cpu:TIMEOUT — 4 workload(s)
+## cpu:NETWORK — 6 workload(s)
 
-- **openvino-api** — ok_runs=0/3: 
-- **jina-clip** — ok_runs=0/3: 
-- **yolov11-quantization-with-accuracy-control** — ok_runs=0/3: 
-- **z-image-turbo** — ok_runs=0/3: 
+- **whisper-asr-genai** — ok_runs=0/1: ConnectTimeout: HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /spaces/distil-whisper/whisper-vs-distil-whisper/resolve/main/assets/example_1.wav (Caused by Co
+- **llm-agent-mcp** — ok_runs=0/3: ConnectTimeout: HTTPSConnectionPool(host='cdn-avatars.huggingface.co', port=443): Max retries exceeded with url: /v1/production/uploads/1671615670447-6346651be2dcb5422bcd13dd.png (Caused by Connect
+- **instant-id** — ok_runs=0/1: ConnectTimeout: HTTPSConnectionPool(host='drive.google.com', port=443): Max retries exceeded with url: /uc?id=18wEUfMNohBJ4K3Ly5wpTejPfDzp-8fI8 (Caused by ConnectTimeoutError(<HTTPSConnection(host=
+- **qwen3_agent** — ok_runs=0/1: Connection error.
+- **wav2lip** — ok_runs=0/1: Exception: Connection timed out. If you access the internet through a proxy server, please make sure the proxy is set in the shell from where you launched Jupyter.
+- **wan2.1-text-to-video** — ok_runs=0/3: -------------------
 
-## cpu:MODEL_ACCESS — 3 workload(s)
+## cpu:CORRECTNESS_ERROR — 2 workload(s)
 
-- **bark-text-to-audio** — ok_runs=0/3: OSError: libcudart.so.13: cannot open shared object file: No such file or directory
-- **mllama-3.2** — ok_runs=0/1: Access to model meta-llama/Llama-3.2-11B-Vision-Instruct is restricted and you are not in the authorized list. Visit https://huggingface.co/meta-llama/Llama-3.2-11B-Vision-Instruct to ask for access.
-- **siglip-zero-shot-image-classification** — ok_runs=0/3:  You can also provide TorchScript module that you obtained yourself, please refer to PyTorch documentation: https://pytorch.org/tutorials/beginner/Intro_to_TorchScript_tutorial.html.
+- **person-counting** — {"output_contains": {"processing has been successfully completed": true, "yolov8n_openvino_model": false}, "no_cell_error": true, "skipped_cells": 0}
+- **stable-video-diffusion** — {"output_contains": {"successfully converted to IR and saved to model/": false, "compression rate: \\d+\\.\\d+": true, "Running on local URL": true}, "no_cell_error": true, "skipped_cells": 1}
 
-## cpu:PACKAGE_CONFLICT — 2 workload(s)
+## cpu:CONVERSION_ERROR — 1 workload(s)
 
-- **stable-diffusion-v3-torch-fx** — ok_runs=0/1: Access to model stabilityai/stable-diffusion-3-medium-diffusers is restricted and you are not in the authorized list. Visit https://huggingface.co/stabilityai/stable-diffusion-3-medium-diffusers to ask for a
-- **wav2lip** — ok_runs=0/1: CalledProcessError: Command '['git', 'clone', 'https://github.com/Rudrabha/Wav2Lip.git']' returned non-zero exit status 128.
+- **freevc-voice-conversion** — ok_runs=0/3: RuntimeError: PytorchStreamReader failed reading zip archive: failed finding central directory
+
+## cpu:LICENSE_RESTRICTION — 1 workload(s)
+
+- **phi3_chatbot_demo** — ok_runs=0/3: cannot import name 'runtime_version' from 'google.protobuf' (.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages/google/protobuf/__init__.py)
 

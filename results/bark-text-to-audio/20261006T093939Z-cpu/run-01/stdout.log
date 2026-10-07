@@ -1,0 +1,22 @@
+[cell 0 START +    0.7s] # Text-to-speech generation using Bark and OpenVINO |  | 🐶 Bark is a trans
+[cell 1 START +    0.7s] ## Prerequisites | [back to top ⬆️](#Table-of-contents:) | 
+[cell 2 START +    0.7s] %pip install -qU "torch==2.10" "torchvision" "torchaudio==2.10" --extr
+[cell 2 DONE  +  149.6s]
+[cell 3 START +  149.6s] import requests | from pathlib import Path |  | if not Path("notebook_utils.
+[cell 3 DONE  +  149.7s]
+[cell 4 START +  149.7s] ## Download and Convert models | [back to top ⬆️](#Table-of-contents:) | 
+[cell 5 START +  149.7s] from pathlib import Path | from bark.generation import load_model, codec
+[cell 5 DONE  +  151.2s]
+[cell 6 START +  151.2s] ### Text Encoder | [back to top ⬆️](#Table-of-contents:) |  | Text encoder i
+[cell 7 START +  151.2s] text_use_small = True |  | text_encoder = load_model(model_type="text", us
+[cell 7 DONE  +  321.9s]
+[cell 8 START +  321.9s] import torch | import openvino as ov |  | text_model_suffix = "_small" if te
+[cell 8 DONE  +  322.0s]
+[cell 9 START +  322.0s] class TextEncoderModel(torch.nn.Module): |     def __init__(self, encode
+[cell 9 DONE  +  326.1s]
+[cell 10 START +  326.1s] ### Coarse encoder | [back to top ⬆️](#Table-of-contents:) |  | Coarse encod
+[cell 11 START +  326.1s] coarse_use_small = True |  | coarse_model = load_model( |     model_type="co
+[cell 11 DONE  +  473.3s]
+[cell 12 START +  473.3s] import types |  |  | class CoarseEncoderModel(torch.nn.Module): |     def __in
+[cell 12 DONE  +  476.5s]
+[cell 13 START +  476.5s] fine_use_small = False |  | fine_model = load_model(model_type="fine", use

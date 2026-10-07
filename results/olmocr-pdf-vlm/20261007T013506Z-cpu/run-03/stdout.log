@@ -1,0 +1,8 @@
+[cell 0 START +    0.4s] # PDF converting with olmOCR model and OpenVINO |  |  | PDF documents offer 
+[cell 1 START +    0.4s] ## Prerequisites | [back to top ⬆️](#Table-of-contents:)
+[cell 2 START +    0.4s] from pathlib import Path | import requests |  | if not Path("notebook_utils.
+[cell 2 DONE  +    6.2s]
+[cell 3 START +    6.2s] ## The original model inference | [back to top ⬆️](#Table-of-contents:) | 
+[cell 4 START +    6.2s] import torch | import base64 | import urllib.request | import shutil |  | from i
+[cell 4 DONE  +    9.9s]
+NBEXEC_RESULT={"ok": false, "n_cells": 14, "n_skipped": 1, "n_substituted": 1, "stopped_after": null, "error_cell": null, "error_type": "CellExecutionError", "error_head": "\u001b[31mModuleNotFoundError\u001b[39m: Could not import module 'AutoProcessor'. Are this object's requirements defined correctly?", "duration_s": 11.45, "patch_notes": ["substituted 1 occurrence(s) in cell 2", "skipped cell 25: matched skip pattern"]}

@@ -1,0 +1,2 @@
+{"t": "2026-10-06T18:52:37Z", "kind": "probe_installed", "openvino_version": "2025.2.0-19140-c01cd93e24d-releases/2025/2"}
+{"t": "2026-10-06T18:52:42Z", "kind": "genai_pipeline", "pipeline": "LLMPipeline", "device_arg": "GPU"}

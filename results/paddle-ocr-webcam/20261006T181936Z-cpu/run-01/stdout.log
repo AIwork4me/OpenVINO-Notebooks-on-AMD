@@ -1,0 +1,49 @@
+[cell 0 START +    0.6s] # PaddleOCR with OpenVINO™ |  | This demo shows how to run a PP-OCRv6 ONNX
+[cell 1 START +    0.6s] %pip install -q "openvino>=2023.1.0" | %pip install -q "pyclipper>=1.2.1
+[cell 1 DONE  +    3.0s]
+[cell 2 START +    3.0s] ## Imports | [back to top ⬆️](#Table-of-contents:) | 
+[cell 3 START +    3.0s] import cv2 | import numpy as np | import math | import time | import collectio
+[cell 3 DONE  +    3.1s]
+[cell 4 START +    3.1s] # Import local modules |  | if not Path("./notebook_utils.py").exists(): |  
+[cell 4 DONE  +    3.2s]
+[cell 5 START +    3.2s] ### Select inference device | [back to top ⬆️](#Table-of-contents:) |  | sel
+[cell 6 START +    3.2s] device = utils.device_widget() |  | device
+[cell 6 DONE  +    3.4s]
+[cell 7 START +    3.4s] ### Models for PaddleOCR | [back to top ⬆️](#Table-of-contents:) |  | Paddle
+[cell 8 START +    3.4s] # Define the function to download text detection and recognition model
+[cell 8 DONE  +    3.4s]
+[cell 9 START +    3.4s] #### Download the Model for Text **Detection** | [back to top ⬆️](#Table
+[cell 10 START +    3.4s] # A directory where the model will be downloaded. |  | det_model_file_path
+[cell 10 DONE  +    7.1s]
+[cell 11 START +    7.1s] #### Load the Model for Text **Detection** | [back to top ⬆️](#Table-of-
+[cell 12 START +    7.1s] # Initialize OpenVINO Runtime for text detection. | core = ov.Core() | use
+[cell 12 DONE  +    7.2s]
+[cell 13 START +    7.2s] #### Download the Model for Text **Recognition** | [back to top ⬆️](#Tab
+[cell 14 START +    7.2s] rec_model_file_path = Path("model/PP-OCRv6_tiny_rec_onnx/inference.onn
+[cell 14 DONE  +   11.4s]
+[cell 15 START +   11.4s] #### Load the Model for Text **Recognition** with Dynamic Shape | [back 
+[cell 16 START +   11.4s] Input to the text recognition model refers to detected bounding boxes 
+[cell 17 START +   11.4s] # Read the model from a file. | rec_model = core.read_model(model=rec_mo
+[cell 17 DONE  +   11.5s]
+[cell 18 START +   11.5s] ### Preprocessing Image Functions for Text Detection and Recognition | [
+[cell 19 START +   11.5s] Define preprocessing functions for text detection and recognition: | 1. 
+[cell 20 START +   11.5s] # Preprocess for text detection. | def image_preprocess(input_image, siz
+[cell 20 DONE  +   11.5s]
+[cell 21 START +   11.5s] # Preprocess for text recognition. | def resize_norm_img(img, max_wh_rat
+[cell 21 DONE  +   11.5s]
+[cell 22 START +   11.5s] ### Postprocessing Image for Text Detection | [back to top ⬆️](#Table-of
+[cell 23 START +   11.5s] def post_processing_detection(frame, det_results): |     """ |     Postpro
+[cell 23 DONE  +   11.5s]
+[cell 24 START +   11.5s] ### Main Processing Function for PaddleOCR | [back to top ⬆️](#Table-of-
+[cell 25 START +   11.5s] Run `paddleOCR` function in different operations, either a webcam or a
+[cell 26 START +   11.5s] # Download font and a character dictionary for printing OCR results. | f
+[cell 26 DONE  +   13.8s]
+[cell 27 START +   13.8s] def run_paddle_ocr(source=0, flip=False, use_popup=False, skip_first_f
+[cell 27 DONE  +   13.8s]
+[cell 28 START +   13.8s] ## Run Live PaddleOCR with OpenVINO | [back to top ⬆️](#Table-of-content
+[cell 29 START +   13.8s] Use a webcam as the video input. By default, the primary webcam is set
+[cell 30 START +   13.8s] USE_WEBCAM = False |  | cam_id = 0 | video_file = Path("test.mp4") |  | if not U
+[cell 30 DONE  +   24.1s]
+[cell 31 START +   24.1s] # Cleanup
+[cell 31 DONE  +   24.1s]
+NBEXEC_RESULT={"ok": true, "n_cells": 16, "n_skipped": 0, "n_substituted": 2, "stopped_after": null, "error_cell": null, "error_type": null, "error_head": null, "duration_s": 24.34, "patch_notes": ["substituted 2 occurrence(s) in cell 10", "substituted 2 occurrence(s) in cell 14"]}

@@ -1,0 +1,25 @@
+[cell 0 START +    0.4s] # Document Parsing using PaddleOCR-VL/PaddleOCR-VL-1.5/PaddleOCR-VL-1.
+[cell 1 START +    0.4s] ## Prerequisites |  | [back to top ⬆️](#Table-of-content:)
+[cell 2 START +    0.4s] import requests | from pathlib import Path |  | utility_files = ["cmd_helper
+[cell 2 DONE  +    0.5s]
+[cell 3 START +    0.5s] from pip_helper import pip_install |  | # Upgrade pip | pip_install("-q", "-
+[cell 3 DONE  +   26.9s]
+[cell 4 START +   26.9s] # Select which PaddleOCR-VL model to download and convert. | # PaddleOCR
+[cell 4 DONE  +   27.0s]
+[cell 5 START +   27.0s] import os | import shutil | from pathlib import Path |  | NOTEBOOK_DIR = Path.
+[cell 5 DONE  +   27.0s]
+[cell 6 START +   27.0s] def download_pretrained_model(model_id: str, cache_dir: Path) -> Path:
+[cell 6 DONE  +  136.4s]
+[cell 7 START +  136.4s] # Patch the downloaded model's modeling file so that trust_remote_code
+[cell 7 DONE  +  136.4s]
+[cell 8 START +  136.4s] ## Compress model | [back to top ⬆️](#Table-of-content:) |  | To **reduce me
+[cell 9 START +  136.4s] # Convert to OpenVINO IR (inline) |  | LLM_INT4_COMPRESS = False | LLM_INT8_
+[cell 9 DONE  +  136.4s]
+[cell 10 START +  136.4s] # Convert to OpenVINO IR using the local exporter implementation. | # Th
+[cell 10 DONE  +  190.4s]
+[cell 11 START +  190.4s] ## Run model inference |  | [back to top ⬆️](#Table-of-content:)
+[cell 12 START +  190.4s] import openvino as ov | from ov_paddleocr_vl import OVPaddleOCRVLForCaus
+[cell 12 DONE  +  191.7s]
+[cell 13 START +  191.7s] # Validate the end-to-end OpenVINO pipeline (inline implementation) | # 
+[cell 13 DONE  +  191.9s]
+NBEXEC_RESULT={"ok": false, "n_cells": 11, "n_skipped": 1, "n_substituted": 0, "stopped_after": null, "error_cell": null, "error_type": "CellExecutionError", "error_head": "\u001b[31mFileNotFoundError\u001b[39m: [Errno 2] No such file or directory: '/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/paddleocr_vl/workdir-cpu/test.png'", "duration_s": 195.14, "patch_notes": ["skipped cell 15: matched skip pattern"]}

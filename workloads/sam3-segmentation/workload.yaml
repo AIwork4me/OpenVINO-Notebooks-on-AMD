@@ -4,9 +4,9 @@ category: Vision
 upstream:
   repository: openvinotoolkit/openvino_notebooks
   branch: latest
-  commit: a8809170cc4fc6aa633fbb9c22214be67ac20b47
+  commit: 329562e6031d1a989017d08697b0fabe5a989492
   path: notebooks/sam3/sam3-segmentation.ipynb
-  url: https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/sam3/sam3-segmentation.ipynb
+  url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/sam3/sam3-segmentation.ipynb
 model:
   name: ''
   source: ''
@@ -25,4 +25,4 @@ validation:
   - 'Speedup: \d+\.\d+x'
   - 'OpenVINO \(CPU\): \d+\.\d+s'
 patches: {}
-last_verified: '2026-10-06T01:50:25+00:00'
+last_verified: '2026-10-06T22:19:33+00:00'

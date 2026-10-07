@@ -1,0 +1,129 @@
+[cell 0 START +    0.7s] # OpenVINO™ Runtime API Tutorial |  | This notebook explains the basics of
+[cell 1 START +    0.7s] # Required imports. Please execute this cell first. | %pip install -q "o
+[cell 1 DONE  +    1.8s]
+[cell 2 START +    1.8s] ## Loading OpenVINO Runtime and Showing Info | [back to top ⬆️](#Table-o
+[cell 3 START +    1.8s] import openvino as ov |  | core = ov.Core()
+[cell 3 DONE  +    1.9s]
+[cell 4 START +    1.9s] OpenVINO Runtime can load a network on a device. A device in this cont
+[cell 5 START +    1.9s] import openvino.properties as props |  | devices = core.available_devices | 
+[cell 5 DONE  +    2.0s]
+[cell 6 START +    2.0s] ### Select device for inference |  | You can specify which device from ava
+[cell 7 START +    2.0s] device = device_widget(exclude=["NPU"]) |  | device
+[cell 7 DONE  +    2.0s]
+[cell 8 START +    2.0s] ## Loading a Model | [back to top ⬆️](#Table-of-contents:) |  | After initia
+[cell 9 START +    2.0s] ir_model_url = "https://storage.openvinotoolkit.org/repositories/openv
+[cell 9 DONE  +    2.0s]
+[cell 10 START +    2.0s] import openvino as ov |  | core = ov.Core() | classification_model_xml = "mo
+[cell 10 DONE  +    2.1s]
+[cell 11 START +    2.1s] ### ONNX Model | [back to top ⬆️](#Table-of-contents:) |  | [ONNX](https://o
+[cell 12 START +    2.1s] onnx_model_url = "https://storage.openvinotoolkit.org/repositories/ope
+[cell 12 DONE  +    2.1s]
+[cell 13 START +    2.1s] import openvino as ov |  | core = ov.Core() | onnx_model_path = "model/segme
+[cell 13 DONE  +    2.3s]
+[cell 14 START +    2.3s] The ONNX model can be exported to OpenVINO IR with `save_model()`:
+[cell 15 START +    2.3s] ov.save_model(model_onnx, output_model="model/exported_onnx_model.xml"
+[cell 15 DONE  +    2.3s]
+[cell 16 START +    2.3s] ### PaddlePaddle Model | [back to top ⬆️](#Table-of-contents:) |  | [PaddleP
+[cell 17 START +    2.3s] paddle_model_url = "https://storage.openvinotoolkit.org/repositories/o
+[cell 17 DONE  +    2.3s]
+[cell 18 START +    2.3s] import openvino as ov |  | core = ov.Core() | paddle_model_path = "model/inf
+[cell 18 DONE  +    2.4s]
+[cell 19 START +    2.4s] ov.save_model(model_paddle, output_model="model/exported_paddle_model.
+[cell 19 DONE  +    2.4s]
+[cell 20 START +    2.4s] ### TensorFlow Model | [back to top ⬆️](#Table-of-contents:) |  | TensorFlow
+[cell 21 START +    2.4s] pb_model_url = "https://storage.openvinotoolkit.org/repositories/openv
+[cell 21 DONE  +    2.4s]
+[cell 22 START +    2.4s] import openvino as ov |  | core = ov.Core() | tf_model_path = "model/classif
+[cell 22 DONE  +    2.6s]
+[cell 23 START +    2.6s] ov.save_model(model_tf, output_model="model/exported_tf_model.xml")
+[cell 23 DONE  +    2.6s]
+[cell 24 START +    2.6s] ### TensorFlow Lite Model | [back to top ⬆️](#Table-of-contents:) |  | [TFLi
+[cell 25 START +    2.6s] %pip install -q kagglehub
+[cell 25 DONE  +    3.5s]
+[cell 26 START +    3.5s] from pathlib import Path | import kagglehub |  | tflite_model_dir = kagglehu
+[cell 26 DONE  +    5.3s]
+[cell 27 START +    5.3s] import openvino as ov |  | core = ov.Core() |  | model_tflite = core.read_mode
+[cell 27 DONE  +    9.6s]
+[cell 28 START +    9.6s] ov.save_model(model_tflite, output_model="model/exported_tflite_model.
+[cell 28 DONE  +    9.6s]
+[cell 29 START +    9.6s] ### PyTorch Model | [back to top ⬆️](#Table-of-contents:) |  | [PyTorch](htt
+[cell 30 START +    9.6s] %pip install -q "torch>=2.1" torchvision --extra-index-url https://dow
+[cell 30 DONE  +   27.3s]
+[cell 31 START +   27.3s] import openvino as ov | import torch | from torchvision.models import resn
+[cell 31 DONE  +   44.9s]
+[cell 32 START +   44.9s] ## Getting Information about a Model | [back to top ⬆️](#Table-of-conten
+[cell 33 START +   44.9s] ir_model_url = "https://storage.openvinotoolkit.org/repositories/openv
+[cell 33 DONE  +   44.9s]
+[cell 34 START +   44.9s] ### Model Inputs | [back to top ⬆️](#Table-of-contents:) |  | Information ab
+[cell 35 START +   44.9s] import openvino as ov |  | core = ov.Core() | classification_model_xml = "mo
+[cell 35 DONE  +   44.9s]
+[cell 36 START +   44.9s] The cell above shows that the loaded model expects one input with the 
+[cell 37 START +   44.9s] input_layer = model.input(0)
+[cell 37 DONE  +   44.9s]
+[cell 38 START +   44.9s] It is often useful to have a reference to the name of the first input 
+[cell 39 START +   44.9s] input_layer.any_name
+[cell 39 DONE  +   44.9s]
+[cell 40 START +   44.9s] The next cell prints the input layout, precision and shape.
+[cell 41 START +   44.9s] print(f"input precision: {input_layer.element_type}") | print(f"input sh
+[cell 41 DONE  +   44.9s]
+[cell 42 START +   44.9s] This cell shows that the model expects inputs with a shape of [1,3,224
+[cell 43 START +   44.9s] ### Model Outputs | [back to top ⬆️](#Table-of-contents:) | 
+[cell 44 START +   44.9s] import openvino as ov |  | core = ov.Core() | classification_model_xml = "mo
+[cell 44 DONE  +   44.9s]
+[cell 45 START +   44.9s] Model output info is stored in `model.outputs`. The cell above shows t
+[cell 46 START +   44.9s] output_layer = model.output(0) | output_layer.any_name
+[cell 46 DONE  +   44.9s]
+[cell 47 START +   44.9s] Getting the output precision and shape is similar to getting the input
+[cell 48 START +   44.9s] print(f"output precision: {output_layer.element_type}") | print(f"output
+[cell 48 DONE  +   44.9s]
+[cell 49 START +   44.9s] This cell shows that the model returns outputs with a shape of [1, 100
+[cell 50 START +   44.9s] ## Doing Inference on a Model | [back to top ⬆️](#Table-of-contents:) |  | >
+[cell 51 START +   44.9s] # Install opencv package for image handling | %pip install -q opencv-pyt
+[cell 51 DONE  +   46.3s]
+[cell 52 START +   46.3s] **Load the network**
+[cell 53 START +   46.3s] ir_model_url = "https://storage.openvinotoolkit.org/repositories/openv
+[cell 53 DONE  +   46.3s]
+[cell 54 START +   46.3s] import openvino as ov |  | core = ov.Core() | classification_model_xml = "mo
+[cell 54 DONE  +   46.4s]
+[cell 55 START +   46.4s] **Load an image and convert to the input shape** |  | To propagate an imag
+[cell 56 START +   46.4s] import cv2 |  | image_filename = Path("data/coco_hollywood.jpg") | if not im
+[cell 56 DONE  +   49.9s]
+[cell 57 START +   49.9s] The image has a shape of (663,994,3). It is 663 pixels in height, 994 
+[cell 58 START +   49.9s] # N,C,H,W = batch size, number of channels, height, width. | N, C, H, W 
+[cell 58 DONE  +   49.9s]
+[cell 59 START +   49.9s] Now, the image has the width and height that the network expects. This
+[cell 60 START +   49.9s] import numpy as np |  | input_data = np.expand_dims(np.transpose(resized_i
+[cell 60 DONE  +   49.9s]
+[cell 61 START +   49.9s] **Do inference** |  | Now that the input data is in the right shape, run i
+[cell 62 START +   49.9s] # for single input models only | result = compiled_model(input_data)[out
+[cell 62 DONE  +   49.9s]
+[cell 63 START +   49.9s] You can also create `InferRequest` and run `infer` method on request.
+[cell 64 START +   49.9s] request = compiled_model.create_infer_request() | request.infer(inputs={
+[cell 64 DONE  +   49.9s]
+[cell 65 START +   49.9s] The `.infer()` function sets output tensor, that can be reached, using
+[cell 66 START +   49.9s] result.shape
+[cell 66 DONE  +   49.9s]
+[cell 67 START +   49.9s] The output shape is (1,1001), which is the expected output shape. This
+[cell 68 START +   49.9s] ## Reshaping and Resizing | [back to top ⬆️](#Table-of-contents:) |  | ### C
+[cell 69 START +   49.9s] Instead of reshaping the image to fit the model, it is also possible t
+[cell 70 START +   49.9s] ir_model_url = "https://storage.openvinotoolkit.org/repositories/openv
+[cell 70 DONE  +   57.5s]
+[cell 71 START +   57.5s] import openvino as ov |  | core = ov.Core() | segmentation_model_xml = "mode
+[cell 71 DONE  +   58.2s]
+[cell 72 START +   58.2s] The input shape for the segmentation network is [1,3,512,512], with th
+[cell 73 START +   58.2s] ### Change Batch Size | [back to top ⬆️](#Table-of-contents:) | 
+[cell 74 START +   58.2s] Use the `.reshape()` method to set the batch size, by increasing the f
+[cell 75 START +   58.2s] import openvino as ov |  | segmentation_model_xml = "model/segmentation.xm
+[cell 75 DONE  +   58.8s]
+[cell 76 START +   58.8s] The output shows that by setting the batch size to 2, the first elemen
+[cell 77 START +   58.8s] import numpy as np | import openvino as ov |  | core = ov.Core() | segmentatio
+[cell 77 DONE  +   59.4s]
+[cell 78 START +   59.4s] ## Caching a Model | [back to top ⬆️](#Table-of-contents:) |  | For some dev
+[cell 79 START +   59.4s] ir_model_url = "https://storage.openvinotoolkit.org/repositories/openv
+[cell 79 DONE  +   59.4s]
+[cell 80 START +   59.4s] import time | from pathlib import Path |  | import openvino as ov |  | core = ov
+[cell 80 DONE  +   59.5s]
+[cell 81 START +   59.5s] After running the previous cell, we know the model exists in the cache
+[cell 82 START +   59.5s] del compiled_model | start_time = time.perf_counter() | compiled_model = c
+[cell 82 DONE  +   59.5s]
+NBEXEC_RESULT={"ok": true, "n_cells": 45, "n_skipped": 0, "n_substituted": 0, "stopped_after": null, "error_cell": null, "error_type": null, "error_head": null, "duration_s": 62.18, "patch_notes": []}

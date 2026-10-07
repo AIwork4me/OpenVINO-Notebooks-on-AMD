@@ -1,0 +1,90 @@
+[IPKernelApp] WARNING | Kernel is running over TCP without encryption. All communication (including code and outputs) is sent in plain text and is susceptible to eavesdropping. Use IPC transport or launch with kernel manager-provisioned CurveZMQ keys to enable transport encryption.
+[31mERROR: pip's dependency resolver does not currently take into account all the packages that are installed. This behaviour is the source of the following dependency conflicts.
+easyocr 1.7.2 requires opencv-python-headless, which is not installed.
+controlnet-aux 0.0.10 requires opencv-python-headless, which is not installed.
+parler-tts 0.2.2 requires transformers<=4.46.1,>=4.46.1, but you have transformers 4.52.3 which is incompatible.
+qwen-tts 0.0.4 requires transformers==4.57.3, but you have transformers 4.52.3 which is incompatible.
+ace-step 0.2.0 requires accelerate==1.6.0, but you have accelerate 1.12.0 which is incompatible.
+ace-step 0.2.0 requires datasets==3.4.1, but you have datasets 3.6.0 which is incompatible.
+ace-step 0.2.0 requires librosa==0.11.0, but you have librosa 0.9.1 which is incompatible.
+ace-step 0.2.0 requires loguru==0.7.3, but you have loguru 0.7.2 which is incompatible.
+ace-step 0.2.0 requires matplotlib==3.10.1, but you have matplotlib 3.11.2 which is incompatible.
+ace-step 0.2.0 requires num2words==0.5.14, but you have num2words 0.5.12 which is incompatible.
+ace-step 0.2.0 requires pypinyin==0.53.0, but you have pypinyin 0.50.0 which is incompatible.
+ace-step 0.2.0 requires soundfile==0.13.1, but you have soundfile 0.12.1 which is incompatible.
+ace-step 0.2.0 requires transformers==4.50.0, but you have transformers 4.52.3 which is incompatible.
+descript-audiotools 0.7.4 requires protobuf!=4.24.0,<5.0.0,>=3.19.6, but you have protobuf 6.33.5 which is incompatible.
+torchaudio 2.10.0+cpu requires torch==2.10.0, but you have torch 2.8.0+cpu which is incompatible.
+omnivoice 0.2.1 requires transformers>=5.3.0, but you have transformers 4.52.3 which is incompatible.[0m[31m
+[0m[31mERROR: pip's dependency resolver does not currently take into account all the packages that are installed. This behaviour is the source of the following dependency conflicts.
+openvino-tokenizers 2026.5.0.0b1 requires openvino~=2026.5.0.dev, but you have openvino 2025.1.0 which is incompatible.
+optimum-intel 2.3.0.dev0 requires openvino>=2026.0, but you have openvino 2025.1.0 which is incompatible.[0m[31m
+[0m-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages/nncf/quantization/algorithms/hyperparameter_tuner/algorithm.py:22[39m
+[32m     20[39m [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01mnncf[39;00m[34;01m.[39;00m[34;01mcommon[39;00m[34;01m.[39;00m[34;01mgraph[39;00m[34;01m.[39;00m[34;01mgraph[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m NNCFGraph
+[32m     21[39m [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01mnncf[39;00m[34;01m.[39;00m[34;01mcommon[39;00m[34;01m.[39;00m[34;01mlogging[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m nncf_logger
+[32m---> [39m[32m22[39m [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01mnncf[39;00m[34;01m.[39;00m[34;01mcommon[39;00m[34;01m.[39;00m[34;01mtensor_statistics[39;00m[34;01m.[39;00m[34;01mstatistic_point[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m StatisticPointsContainer
+[32m     23[39m [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01mnncf[39;00m[34;01m.[39;00m[34;01mcommon[39;00m[34;01m.[39;00m[34;01mutils[39;00m[34;01m.[39;00m[34;01mbackend[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m get_backend
+[32m     24[39m [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01mnncf[39;00m[34;01m.[39;00m[34;01mcommon[39;00m[34;01m.[39;00m[34;01mutils[39;00m[34;01m.[39;00m[34;01mtimer[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m timer
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages/nncf/common/tensor_statistics/statistic_point.py:16[39m
+[32m     13[39m [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01mtyping[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m Callable, Generator
+[32m     15[39m [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01mnncf[39;00m[34;01m.[39;00m[34;01mcommon[39;00m[34;01m.[39;00m[34;01mgraph[39;00m[34;01m.[39;00m[34;01mtransformations[39;00m[34;01m.[39;00m[34;01mcommands[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m TargetPoint
+[32m---> [39m[32m16[39m [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01mnncf[39;00m[34;01m.[39;00m[34;01mcommon[39;00m[34;01m.[39;00m[34;01mtensor_statistics[39;00m[34;01m.[39;00m[34;01mcollectors[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m TensorCollector
+[32m     19[39m [38;5;28;01mclass[39;00m[38;5;250m [39m[34;01mStatisticPoint[39;00m:
+[32m     20[39m [38;5;250m    [39m[33;03m"""[39;00m
+[32m     21[39m [33;03m    StatisticPoint stores information is necessary for statistics collection process:[39;00m
+[32m     22[39m [33;03m    target_point from which statistics is collected: node_name and target_type determines the node edge.[39;00m
+[32m     23[39m [33;03m    tensor_collector determines how to aggregate statistics in target_point[39;00m
+[32m     24[39m [33;03m    algorithm implies on what algorithm needed this statistics.[39;00m
+[32m     25[39m [33;03m    """[39;00m
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages/nncf/common/tensor_statistics/collectors.py:24[39m
+[32m     21[39m [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01mtyping[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m Any, TypeVar, cast
+[32m     23[39m [38;5;28;01mimport[39;00m[38;5;250m [39m[34;01mnncf[39;00m[34;01m.[39;00m[34;01mtensor[39;00m
+[32m---> [39m[32m24[39m [38;5;28;01mimport[39;00m[38;5;250m [39m[34;01mnncf[39;00m[34;01m.[39;00m[34;01mtensor[39;00m[34;01m.[39;00m[34;01mfunctions[39;00m[38;5;250m [39m[38;5;28;01mas[39;00m[38;5;250m [39m[34;01mfns[39;00m
+[32m     25[39m [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01mnncf[39;00m[34;01m.[39;00m[34;01mcommon[39;00m[34;01m.[39;00m[34;01mtensor_statistics[39;00m[34;01m.[39;00m[34;01mstatistical_functions[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m mean_per_channel
+[32m     26[39m [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01mnncf[39;00m[34;01m.[39;00m[34;01mcommon[39;00m[34;01m.[39;00m[34;01mtensor_statistics[39;00m[34;01m.[39;00m[34;01mstatistics[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m MedianMADTensorStatistic
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages/nncf/tensor/functions/__init__.py:96[39m
+[32m     92[39m     [38;5;28;01mwith[39;00m contextlib.suppress([38;5;167;01mImportError[39;00m):
+[32m     93[39m         [38;5;28;01mimport[39;00m[38;5;250m [39m[34;01mnncf[39;00m[34;01m.[39;00m[34;01mtensor[39;00m[34;01m.[39;00m[34;01mfunctions[39;00m[34;01m.[39;00m[34;01mopenvino_numeric[39;00m  [38;5;66;03m# noqa: F401[39;00m
+[32m---> [39m[32m96[39m [30;43m_initialize_backends[39;49m[30;43m([39;49m[30;43m)[39;49m
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages/nncf/tensor/functions/__init__.py:93[39m, in [36m_initialize_backends[39m[34m()[39m
+[32m     90[39m     [38;5;28;01mimport[39;00m[38;5;250m [39m[34;01mnncf[39;00m[34;01m.[39;00m[34;01mtensor[39;00m[34;01m.[39;00m[34;01mfunctions[39;00m[34;01m.[39;00m[34;01mtorch_numeric[39;00m  [38;5;66;03m# noqa F401[39;00m
+[32m     92[39m [38;5;28;01mwith[39;00m contextlib.suppress([38;5;167;01mImportError[39;00m):
+[32m---> [39m[32m93[39m     [38;5;28;01mimport[39;00m[38;5;250m [39m[34;01mnncf[39;00m[34;01m.[39;00m[34;01mtensor[39;00m[34;01m.[39;00m[34;01mfunctions[39;00m[34;01m.[39;00m[34;01mopenvino_numeric[39;00m
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages/nncf/tensor/functions/openvino_numeric.py:25[39m
+[32m     21[39m [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01mnncf[39;00m[34;01m.[39;00m[34;01mtensor[39;00m[34;01m.[39;00m[34;01mfunctions[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m numeric
+[32m     22[39m [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01mnncf[39;00m[34;01m.[39;00m[34;01mtensor[39;00m[34;01m.[39;00m[34;01mfunctions[39;00m[34;01m.[39;00m[34;01mnumpy_numeric[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m DTYPE_MAP_REV [38;5;28;01mas[39;00m DTYPE_MAP_REV_NUMPY
+[32m     24[39m DTYPE_MAP: [38;5;28mdict[39m[TensorDataType, ov.Type] = {
+[32m---> [39m[32m25[39m     TensorDataType.int2: [30;43mov[39;49m[30;43m.[39;49m[30;43mType[39;49m[30;43m.[39;49m[30;43mu2[39;49m,
+[32m     26[39m     TensorDataType.int3: ov.Type.u3,
+[32m     27[39m     TensorDataType.nf4: ov.Type.nf4,
+[32m     28[39m     TensorDataType.f4e2m1: ov.Type.f4e2m1,
+[32m     29[39m     TensorDataType.f8e8m0: ov.Type.f8e8m0,
+[32m     30[39m     TensorDataType.f8e4m3: ov.Type.f8e4m3,
+[32m     31[39m     TensorDataType.f8e5m2: ov.Type.f8e5m2,
+[32m     32[39m     TensorDataType.float16: ov.Type.f16,
+[32m     33[39m     TensorDataType.bfloat16: ov.Type.bf16,
+[32m     34[39m     TensorDataType.float32: ov.Type.f32,
+[32m     35[39m     TensorDataType.float64: ov.Type.f64,
+[32m     36[39m     TensorDataType.int8: ov.Type.i8,
+[32m     37[39m     TensorDataType.int32: ov.Type.i32,
+[32m     38[39m     TensorDataType.int64: ov.Type.i64,
+[32m     39[39m     TensorDataType.uint16: ov.Type.u16,
+[32m     40[39m     TensorDataType.uint32: ov.Type.u32,
+[32m     41[39m     TensorDataType.uint8: ov.Type.u8,
+[32m     42[39m     TensorDataType.uint4: ov.Type.u4,
+[32m     43[39m     TensorDataType.int4: ov.Type.i4,
+[32m     44[39m }
+[32m     46[39m NATIVE_OV_CAST_DTYPES = [
+[32m     47[39m     TensorDataType.bfloat16,
+[32m     48[39m     TensorDataType.int2,
+[32m   (...)[39m[32m     56[39m     TensorDataType.f8e5m2,
+[32m     57[39m ]
+[32m     59[39m DTYPE_MAP_REV = {v: k [38;5;28;01mfor[39;00m k, v [38;5;129;01min[39;00m DTYPE_MAP.items()}
+
+[31mAttributeError[39m: type object 'openvino._pyopenvino.Type' has no attribute 'u2'
+

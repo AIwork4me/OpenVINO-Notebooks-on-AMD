@@ -1,0 +1,24 @@
+[cell 0 START +    0.7s] # High-Quality Text-Free One-Shot Voice Conversion with FreeVC and Ope
+[cell 1 START +    0.7s]  | #### Table of contents: |  | - [Pre-requisites](#Pre-requisites) | - [Impor
+[cell 2 START +    0.7s] ## Pre-requisites | [back to top ⬆️](#Table-of-contents:) |  | This steps ca
+[cell 3 START +    0.7s] Install extra requirements
+[cell 4 START +    0.7s] %pip install -q "setuptools<82" "openvino>=2023.3.0" "librosa>=0.8.1" 
+[cell 4 DONE  +   41.7s]
+[cell 5 START +   41.7s] # Fetch `notebook_utils` module | import requests | from pathlib import Pa
+[cell 5 DONE  +   41.8s]
+[cell 6 START +   41.8s] from pathlib import Path |  | from huggingface_hub import hf_hub_download | 
+[cell 6 DONE  +   41.9s]
+[cell 7 START +   41.9s] freevc_chpt_dir = Path("checkpoints") | freevc_chpt_name = "freevc.pth" | 
+[cell 7 DONE  +   41.9s]
+[cell 8 START +   41.9s] audio1_name = "p225_001.wav" | audio1_url = f"https://hf-mirror.com/spac
+[cell 8 DONE  +   44.9s]
+[cell 9 START +   44.9s] ## Imports and settings | [back to top ⬆️](#Table-of-contents:) | 
+[cell 10 START +   44.9s] import logging | import os | import time |  | import librosa | import numpy as n
+[cell 10 DONE  +   46.6s]
+[cell 11 START +   46.6s] Redefine function `get_model` from `utils` to exclude CUDA
+[cell 12 START +   46.6s] def get_cmodel(): |     checkpoint = torch.load(wavlm_large_path) |     cf
+[cell 12 DONE  +   46.6s]
+[cell 13 START +   46.6s] Models initialization
+[cell 14 START +   46.6s] hps = utils.get_hparams_from_file("FreeVC/configs/freevc.json") | os.mak
+[cell 14 DONE  +   46.9s]
+NBEXEC_RESULT={"ok": false, "n_cells": 28, "n_skipped": 1, "n_substituted": 1, "stopped_after": null, "error_cell": null, "error_type": "CellExecutionError", "error_head": "\u001b[31mRuntimeError\u001b[39m: PytorchStreamReader failed reading zip archive: failed finding central directory", "duration_s": 47.72, "patch_notes": ["substituted 2 occurrence(s) in cell 8", "skipped cell 53: matched skip pattern"]}

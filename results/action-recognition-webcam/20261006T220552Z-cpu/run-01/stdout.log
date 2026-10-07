@@ -1,0 +1,13 @@
+[cell 0 START +    0.7s] # Human Action Recognition with OpenVINO™ |  | This notebook demonstrates 
+[cell 1 START +    0.7s] %pip install -q "openvino>=2024.0.0" "opencv-python" "tqdm"
+[cell 1 DONE  +    2.6s]
+[cell 2 START +    2.6s] ## Imports | [back to top ⬆️](#Table-of-contents:) | 
+[cell 3 START +    2.6s] import collections | import os | import time |  | from pathlib import Path |  | im
+[cell 3 DONE  +    2.8s]
+[cell 4 START +    2.8s] ## The models | [back to top ⬆️](#Table-of-contents:) |  | ### Download the 
+[cell 5 START +    2.8s] # A directory where the model will be downloaded. | base_model_dir = "mo
+[cell 5 DONE  +    2.8s]
+[cell 6 START +    2.8s] ### Load your labels | [back to top ⬆️](#Table-of-contents:) |  | This tutor
+[cell 7 START +    2.8s] # Download the text from the openvino_notebooks storage |  | if not (Path(
+[cell 7 DONE  +    2.8s]
+NBEXEC_RESULT={"ok": false, "n_cells": 11, "n_skipped": 0, "n_substituted": 1, "stopped_after": null, "error_cell": null, "error_type": "CellExecutionError", "error_head": "\u001b[31mNameError\u001b[39m: name 'vocab_file_path' is not defined", "duration_s": 2.95, "patch_notes": ["substituted 1 occurrence(s) in cell 22"]}

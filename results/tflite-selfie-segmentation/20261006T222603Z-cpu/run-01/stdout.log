@@ -1,0 +1,51 @@
+[cell 0 START +    0.6s] # Selfie Segmentation using TFLite and OpenVINO |  | The Selfie segmentati
+[cell 1 START +    0.6s]  | #### Table of contents: |  | - [Prerequisites](#Prerequisites) |     - [Ins
+[cell 2 START +    0.6s] ## Prerequisites | [back to top ⬆️](#Table-of-contents:) | 
+[cell 3 START +    0.6s] ### Install required dependencies | [back to top ⬆️](#Table-of-contents:
+[cell 4 START +    0.6s] %pip install -q "openvino>=2023.1.0" "opencv-python" "tqdm" | %pip insta
+[cell 4 DONE  +    3.7s]
+[cell 5 START +    3.7s] import requests | from pathlib import Path |  | if not Path("notebook_utils.
+[cell 5 DONE  +    3.8s]
+[cell 6 START +    3.8s] ### Download pretrained model and test image | [back to top ⬆️](#Table-o
+[cell 7 START +    3.8s] from notebook_utils import download_file, device_widget |  | tflite_model_
+[cell 7 DONE  +    3.8s]
+[cell 8 START +    3.8s] ## Convert Tensorflow Lite model to OpenVINO IR format | [back to top ⬆️
+[cell 9 START +    3.8s] import openvino as ov |  | core = ov.Core() |  | ir_model_path = tflite_model_
+[cell 9 DONE  +    3.9s]
+[cell 10 START +    3.9s] print(f"Model input info: {ov_model.inputs}")
+[cell 10 DONE  +    3.9s]
+[cell 11 START +    3.9s] Model input is a floating point tensor with shape [1, 256, 256, 3] in 
+[cell 12 START +    3.9s] print(f"Model output info: {ov_model.outputs}")
+[cell 12 DONE  +    3.9s]
+[cell 13 START +    3.9s] Model output is a floating point tensor with the similar format and sh
+[cell 14 START +    3.9s] ## Run OpenVINO model inference on image | [back to top ⬆️](#Table-of-co
+[cell 15 START +    3.9s] ### Load model | [back to top ⬆️](#Table-of-contents:) | 
+[cell 16 START +    3.9s] device = device_widget() |  | device
+[cell 16 DONE  +    4.0s]
+[cell 17 START +    4.0s] compiled_model = core.compile_model(ov_model, device.value)
+[cell 17 DONE  +    4.1s]
+[cell 18 START +    4.1s] ### Prepare input image | [back to top ⬆️](#Table-of-contents:) |  | The mod
+[cell 19 START +    4.1s] import cv2 | import numpy as np | from notebook_utils import load_image |  | #
+[cell 19 DONE  +    4.2s]
+[cell 20 START +    4.2s] ### Run model inference | [back to top ⬆️](#Table-of-contents:) | 
+[cell 21 START +    4.2s] out = compiled_model(normalized_img)[0]
+[cell 21 DONE  +    4.2s]
+[cell 22 START +    4.2s] ### Postprocess and visualize inference results | [back to top ⬆️](#Tabl
+[cell 23 START +    4.2s] from notebook_utils import segmentation_map_to_image, SegmentationMap,
+[cell 23 DONE  +    4.3s]
+[cell 24 START +    4.3s] Visualize obtained result
+[cell 25 START +    4.3s] import matplotlib.pyplot as plt |  | titles = ["Original image", "Portrait
+[cell 25 DONE  +    5.5s]
+[cell 26 START +    5.5s] ## Interactive background blurring demo on video | [back to top ⬆️](#Tab
+[cell 27 START +    5.5s] import collections | import time | from IPython import display | from typing
+[cell 27 DONE  +    5.5s]
+[cell 28 START +    5.5s] ### Run Live Background Blurring | [back to top ⬆️](#Table-of-contents:)
+[cell 29 START +    5.5s] from notebook_utils import download_file |  | WEBCAM_INFERENCE = False |  | if
+[cell 29 DONE  +    5.5s]
+[cell 30 START +    5.5s] Select device for inference:
+[cell 31 START +    5.5s] device
+[cell 31 DONE  +    5.5s]
+[cell 32 START +    5.5s] Run:
+[cell 33 START +    5.5s] run_background_blurring( |     source=VIDEO_SOURCE, |     device=device.va
+[cell 33 DONE  +   46.8s]
+NBEXEC_RESULT={"ok": true, "n_cells": 16, "n_skipped": 0, "n_substituted": 0, "stopped_after": null, "error_cell": null, "error_type": null, "error_head": null, "duration_s": 47.16, "patch_notes": []}

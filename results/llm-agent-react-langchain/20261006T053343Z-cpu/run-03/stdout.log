@@ -1,0 +1,58 @@
+[cell 0 START +    0.4s] # Create ReAct Agent using OpenVINO and LangChain |  | LLM are limited to 
+[cell 1 START +    0.4s] ## Prerequisites |  | [back to top ⬆️](#Table-of-contents:) | 
+[cell 2 START +    0.4s] import requests | from pathlib import Path |  | if not Path("notebook_utils.
+[cell 2 DONE  +    0.5s]
+[cell 3 START +    0.5s] import os |  | os.environ["GIT_CLONE_PROTECTION_ACTIVE"] = "false" |  | %pip i
+[cell 3 DONE  +  321.0s]
+[cell 4 START +  321.0s] ## Create a tools |  | [back to top ⬆️](#Table-of-contents:) |  | First, we ne
+[cell 5 START +  321.0s] from langchain_core.tools import tool |  |  | @tool | def multiply(first_int: 
+[cell 5 DONE  +  321.3s]
+[cell 6 START +  321.3s] print(f"name of `multiply` tool: {multiply.name}") | print(f"description
+[cell 6 DONE  +  321.3s]
+[cell 7 START +  321.3s] Tools are interfaces that an agent, chain, or LLM can use to interact 
+[cell 8 START +  321.3s] Now that we have created all of them, and we can create a list of tool
+[cell 9 START +  321.3s] tools = [multiply, add, exponentiate]
+[cell 9 DONE  +  321.3s]
+[cell 10 START +  321.3s] ## Create prompt template |  | [back to top ⬆️](#Table-of-contents:) |  | A pr
+[cell 11 START +  321.3s] PREFIX = """Respond to the human as helpfully and accurately as possib
+[cell 11 DONE  +  321.3s]
+[cell 12 START +  321.3s] ## Create LLM |  | [back to top ⬆️](#Table-of-contents:) |  | Large Language M
+[cell 13 START +  321.3s] import ipywidgets as widgets |  | llm_model_ids = ["Qwen/Qwen2.5-7B-Instru
+[cell 13 DONE  +  321.3s]
+[cell 14 START +  321.3s] from cmd_helper import optimum_cli |  | llm_model_path = llm_model_id.valu
+[cell 14 DONE  +  321.3s]
+[cell 15 START +  321.3s] ### Select inference device for LLM |  | [back to top ⬆️](#Table-of-conten
+[cell 16 START +  321.3s] from notebook_utils import device_widget |  | device = device_widget("CPU"
+[cell 16 DONE  +  321.5s]
+[cell 17 START +  321.5s] OpenVINO models can be run locally through the `HuggingFacePipeline` c
+[cell 18 START +  321.5s] from langchain_huggingface import HuggingFacePipeline | from transformer
+[cell 18 DONE  +  325.6s]
+[cell 19 START +  325.6s] from langchain_huggingface import ChatHuggingFace |  | ov_chat = ChatHuggi
+[cell 19 DONE  +  325.8s]
+[cell 20 START +  325.8s] You can get additional inference speed improvement with [Dynamic Quant
+[cell 21 START +  325.8s] ov_config = { |     "KV_CACHE_PRECISION": "u8", |     "DYNAMIC_QUANTIZATIO
+[cell 21 DONE  +  325.8s]
+[cell 22 START +  325.8s] ## Create agent |  | [back to top ⬆️](#Table-of-contents:) |  | Now that we ha
+[cell 23 START +  325.8s] from langchain.agents import AgentExecutor, StructuredChatAgent |  | agent
+[cell 23 DONE  +  326.0s]
+[cell 24 START +  326.0s] ## Run the agent |  | [back to top ⬆️](#Table-of-contents:) |  | We can now ru
+[cell 25 START +  326.0s] agent_executor.invoke({"input": "Take 3 to the fifth power and multipl
+[cell 25 DONE  +  354.5s]
+[cell 26 START +  354.5s] ## Interactive Demo |  | [back to top ⬆️](#Table-of-contents:) |  | Let's crea
+[cell 27 START +  354.5s] ### Use built-in tools |  | [back to top ⬆️](#Table-of-contents:) |  | LangCha
+[cell 28 START +  354.5s] from langchain_community.tools import WikipediaQueryRun | from langchain
+[cell 28 DONE  +  354.5s]
+[cell 29 START +  354.5s] wikipedia.invoke({"text": "OpenVINO"})
+[cell 29 DONE  +  625.7s]
+[cell 30 START +  625.7s] ### Create customized tools |  | [back to top ⬆️](#Table-of-contents:) |  | In
+[cell 31 START +  625.7s] import urllib.parse | import json5 |  |  | @tool | def painting(prompt: str) -> 
+[cell 31 DONE  +  625.7s]
+[cell 32 START +  625.7s] @tool | def weather( |     city_name: str, | ) -> str: |     """ |     Get the c
+[cell 32 DONE  +  627.1s]
+[cell 33 START +  627.1s] ### Create AI agent demo with Gradio UI |  | [back to top ⬆️](#Table-of-co
+[cell 34 START +  627.1s] tools = [wikipedia, painting, weather] |  | agent = StructuredChatAgent.fr
+[cell 34 DONE  +  627.1s]
+[cell 35 START +  627.1s] def partial_text_processor(partial_text, new_text): |     """ |     helper
+[cell 35 DONE  +  627.1s]
+[cell 36 START +  627.1s] if not Path("gradio_helper.py").exists(): |     r = requests.get(url="ht
+NBEXEC_RESULT={"ok": true, "n_cells": 21, "n_skipped": 1, "n_substituted": 0, "stopped_after": null, "error_cell": null, "error_type": null, "error_head": null, "duration_s": 630.54, "patch_notes": ["skipped cell 36: matched skip pattern"]}

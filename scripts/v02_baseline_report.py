@@ -57,6 +57,8 @@ def main() -> int:
                 from ov_amd.reporting import _rel
 
                 ev = _rel(r.get("evidence_dir"))
+                if ev and not ev.startswith("../"):
+                    ev = f"../{ev}"  # report lives in reports/: resolve like catalog/ does
                 plat = r.get("platform_id") or "ryzen-ai-max-395-radeon-8060s"
                 green_rows.append(
                     f"| {e.id} | {backend.upper()} | {r['status']} | {r.get('device_proof', '')} | "

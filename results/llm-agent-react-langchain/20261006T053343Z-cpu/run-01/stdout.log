@@ -1,0 +1,23 @@
+[cell 0 START +    0.6s] # Create ReAct Agent using OpenVINO and LangChain |  | LLM are limited to 
+[cell 1 START +    0.6s] ## Prerequisites |  | [back to top ⬆️](#Table-of-contents:) | 
+[cell 2 START +    0.6s] import requests | from pathlib import Path |  | if not Path("notebook_utils.
+[cell 2 DONE  +    0.7s]
+[cell 3 START +    0.7s] import os |  | os.environ["GIT_CLONE_PROTECTION_ACTIVE"] = "false" |  | %pip i
+[cell 3 DONE  +  335.1s]
+[cell 4 START +  335.1s] ## Create a tools |  | [back to top ⬆️](#Table-of-contents:) |  | First, we ne
+[cell 5 START +  335.1s] from langchain_core.tools import tool |  |  | @tool | def multiply(first_int: 
+[cell 5 DONE  +  335.3s]
+[cell 6 START +  335.3s] print(f"name of `multiply` tool: {multiply.name}") | print(f"description
+[cell 6 DONE  +  335.3s]
+[cell 7 START +  335.3s] Tools are interfaces that an agent, chain, or LLM can use to interact 
+[cell 8 START +  335.3s] Now that we have created all of them, and we can create a list of tool
+[cell 9 START +  335.3s] tools = [multiply, add, exponentiate]
+[cell 9 DONE  +  335.3s]
+[cell 10 START +  335.3s] ## Create prompt template |  | [back to top ⬆️](#Table-of-contents:) |  | A pr
+[cell 11 START +  335.3s] PREFIX = """Respond to the human as helpfully and accurately as possib
+[cell 11 DONE  +  335.3s]
+[cell 12 START +  335.3s] ## Create LLM |  | [back to top ⬆️](#Table-of-contents:) |  | Large Language M
+[cell 13 START +  335.3s] import ipywidgets as widgets |  | llm_model_ids = ["Qwen/Qwen2.5-7B-Instru
+[cell 13 DONE  +  335.4s]
+[cell 14 START +  335.4s] from cmd_helper import optimum_cli |  | llm_model_path = llm_model_id.valu
+NBEXEC_RESULT={"ok": false, "n_cells": 21, "n_skipped": 1, "n_substituted": 0, "stopped_after": null, "error_cell": null, "error_type": "CellTimeoutError", "error_head": "-------------------", "duration_s": 1235.96, "patch_notes": ["skipped cell 36: matched skip pattern"]}

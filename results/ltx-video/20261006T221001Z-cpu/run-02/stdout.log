@@ -1,0 +1,12 @@
+[cell 0 START +    0.4s] # LTX Video and OpenVINO™ |  | [LTX-Video](https://github.com/Lightricks/L
+[cell 1 START +    0.4s] ## Prerequisites | [back to top ⬆️](#Table-of-contents:)
+[cell 2 START +    0.4s] %pip uninstall -q -y optimum optimum-intel optimum-onnx | %pip install -
+[cell 2 DONE  +   53.2s]
+[cell 3 START +   53.2s] from pathlib import Path | import requests |  | if not Path("notebook_utils.
+[cell 3 DONE  +   53.2s]
+[cell 4 START +   53.2s] ## Convert the model to OpenVINO IR | [back to top ⬆️](#Table-of-content
+[cell 5 START +   53.2s] import ipywidgets as widgets |  | weight_format = widgets.Dropdown( |     op
+[cell 5 DONE  +   53.3s]
+[cell 6 START +   53.3s] from cmd_helper import optimum_cli |  | model_id = "Lightricks/LTX-Video" | 
+[cell 6 DONE  +   53.4s]
+NBEXEC_RESULT={"ok": false, "n_cells": 9, "n_skipped": 1, "n_substituted": 1, "stopped_after": null, "error_cell": null, "error_type": "CellExecutionError", "error_head": "\u001b[31mFileNotFoundError\u001b[39m: [Errno 2] No such file or directory: 'optimum-cli'", "duration_s": 53.56, "patch_notes": ["substituted 1 occurrence(s) in cell 2", "skipped cell 15: matched skip pattern"]}

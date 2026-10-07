@@ -1,0 +1,70 @@
+[IPKernelApp] WARNING | Kernel is running over TCP without encryption. All communication (including code and outputs) is sent in plain text and is susceptible to eavesdropping. Use IPC transport or launch with kernel manager-provisioned CurveZMQ keys to enable transport encryption.
+nfiguration_auto.py:397[39m, in [36mAutoConfig.from_pretrained[39m[34m(cls, pretrained_model_name_or_path, **kwargs)[39m
+[32m    388[39m [38;5;66;03m# Resolve the revision once, so the config and the remote code below come from the same repository state.[39;00m
+[32m    389[39m kwargs[[33m"[39m[33mrevision[39m[33m"[39m] = resolve_revision(
+[32m    390[39m     pretrained_model_name_or_path,
+[32m    391[39m     kwargs.get([33m"[39m[33mrevision[39m[33m"[39m),
+[32m   (...)[39m[32m    394[39m     cache_dir=kwargs.get([33m"[39m[33mcache_dir[39m[33m"[39m),
+[32m    395[39m )
+[32m--> [39m[32m397[39m config_dict, unused_kwargs = [30;43mPreTrainedConfig[39;49m[30;43m.[39;49m[30;43mget_config_dict[39;49m[30;43m([39;49m[30;43mpretrained_model_name_or_path[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43m*[39;49m[30;43m*[39;49m[30;43mkwargs[39;49m[30;43m)[39;49m
+[32m    398[39m has_remote_code = [33m"[39m[33mauto_map[39m[33m"[39m [38;5;129;01min[39;00m config_dict [38;5;129;01mand[39;00m [33m"[39m[33mAutoConfig[39m[33m"[39m [38;5;129;01min[39;00m config_dict[[33m"[39m[33mauto_map[39m[33m"[39m]
+[32m    399[39m has_local_code = [33m"[39m[33mmodel_type[39m[33m"[39m [38;5;129;01min[39;00m config_dict [38;5;129;01mand[39;00m config_dict[[33m"[39m[33mmodel_type[39m[33m"[39m] [38;5;129;01min[39;00m CONFIG_MAPPING
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/312a23e0a5e35d1e/lib/python3.12/site-packages/transformers/configuration_utils.py:792[39m, in [36mPreTrainedConfig.get_config_dict[39m[34m(cls, pretrained_model_name_or_path, **kwargs)[39m
+[32m    790[39m original_kwargs = copy.deepcopy(kwargs)
+[32m    791[39m [38;5;66;03m# Get config dict associated with the base config file[39;00m
+[32m--> [39m[32m792[39m config_dict, kwargs = [30;43mcls[39;49m[30;43m.[39;49m[30;43m_get_config_dict[39;49m[30;43m([39;49m[30;43mpretrained_model_name_or_path[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43m*[39;49m[30;43m*[39;49m[30;43mkwargs[39;49m[30;43m)[39;49m
+[32m    793[39m [38;5;28;01mif[39;00m config_dict [38;5;129;01mis[39;00m [38;5;28;01mNone[39;00m:
+[32m    794[39m     [38;5;28;01mreturn[39;00m {}, kwargs
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/312a23e0a5e35d1e/lib/python3.12/site-packages/transformers/configuration_utils.py:844[39m, in [36mPreTrainedConfig._get_config_dict[39m[34m(cls, pretrained_model_name_or_path, **kwargs)[39m
+[32m    840[39m configuration_file = kwargs.pop([33m"[39m[33m_configuration_file[39m[33m"[39m, CONFIG_NAME) [38;5;28;01mif[39;00m gguf_file [38;5;129;01mis[39;00m [38;5;28;01mNone[39;00m [38;5;28;01melse[39;00m gguf_file
+[32m    842[39m [38;5;28;01mtry[39;00m:
+[32m    843[39m     [38;5;66;03m# Load from local folder or from cache or download from model Hub and cache[39;00m
+[32m--> [39m[32m844[39m     resolved_config_file = [30;43mcached_file[39;49m[30;43m([39;49m
+[32m    845[39m [30;43m        [39;49m[30;43mpretrained_model_name_or_path[39;49m[30;43m,[39;49m
+[32m    846[39m [30;43m        [39;49m[30;43mconfiguration_file[39;49m[30;43m,[39;49m
+[32m    847[39m [30;43m        [39;49m[30;43mcache_dir[39;49m[30;43m=[39;49m[30;43mcache_dir[39;49m[30;43m,[39;49m
+[32m    848[39m [30;43m        [39;49m[30;43mforce_download[39;49m[30;43m=[39;49m[30;43mforce_download[39;49m[30;43m,[39;49m
+[32m    849[39m [30;43m        [39;49m[30;43mproxies[39;49m[30;43m=[39;49m[30;43mproxies[39;49m[30;43m,[39;49m
+[32m    850[39m [30;43m        [39;49m[30;43mlocal_files_only[39;49m[30;43m=[39;49m[30;43mlocal_files_only[39;49m[30;43m,[39;49m
+[32m    851[39m [30;43m        [39;49m[30;43mtoken[39;49m[30;43m=[39;49m[30;43mtoken[39;49m[30;43m,[39;49m
+[32m    852[39m [30;43m        [39;49m[30;43muser_agent[39;49m[30;43m=[39;49m[30;43muser_agent[39;49m[30;43m,[39;49m
+[32m    853[39m [30;43m        [39;49m[30;43mrevision[39;49m[30;43m=[39;49m[30;43mrevision[39;49m[30;43m,[39;49m
+[32m    854[39m [30;43m        [39;49m[30;43msubfolder[39;49m[30;43m=[39;49m[30;43msubfolder[39;49m[30;43m,[39;49m
+[32m    855[39m [30;43m    [39;49m[30;43m)[39;49m
+[32m    856[39m     [38;5;28;01mif[39;00m resolved_config_file [38;5;129;01mis[39;00m [38;5;28;01mNone[39;00m:
+[32m    857[39m         [38;5;28;01mreturn[39;00m [38;5;28;01mNone[39;00m, kwargs
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/312a23e0a5e35d1e/lib/python3.12/site-packages/transformers/utils/hub.py:370[39m, in [36mcached_file[39m[34m(path_or_repo_id, filename, **kwargs)[39m
+[32m    315[39m [38;5;28;01mdef[39;00m[38;5;250m [39m[34mcached_file[39m(
+[32m    316[39m     path_or_repo_id: [38;5;28mstr[39m | os.PathLike,
+[32m    317[39m     filename: [38;5;28mstr[39m,
+[32m    318[39m     **kwargs,
+[32m    319[39m ) -> [38;5;28mstr[39m | [38;5;28;01mNone[39;00m:
+[32m    320[39m [38;5;250m    [39m[33;03m"""[39;00m
+[32m    321[39m [33;03m    Tries to locate a file in a local folder and repo, downloads and cache it if necessary.[39;00m
+[32m    322[39m 
+[32m   (...)[39m[32m    368[39m [33;03m    ```[39;00m
+[32m    369[39m [33;03m    """[39;00m
+[32m--> [39m[32m370[39m     file = [30;43mcached_files[39;49m[30;43m([39;49m[30;43mpath_or_repo_id[39;49m[30;43m=[39;49m[30;43mpath_or_repo_id[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mfilenames[39;49m[30;43m=[39;49m[30;43m[[39;49m[30;43mfilename[39;49m[30;43m][39;49m[30;43m,[39;49m[30;43m [39;49m[30;43m*[39;49m[30;43m*[39;49m[30;43mkwargs[39;49m[30;43m)[39;49m
+[32m    371[39m     file = file[[32m0[39m] [38;5;28;01mif[39;00m file [38;5;129;01mis[39;00m [38;5;129;01mnot[39;00m [38;5;28;01mNone[39;00m [38;5;28;01melse[39;00m file
+[32m    372[39m     [38;5;28;01mreturn[39;00m file
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/312a23e0a5e35d1e/lib/python3.12/site-packages/transformers/utils/hub.py:610[39m, in [36mcached_files[39m[34m(path_or_repo_id, filenames, cache_dir, force_download, proxies, token, revision, local_files_only, subfolder, repo_type, user_agent, _raise_exceptions_for_gated_repo, _raise_exceptions_for_missing_entries, _raise_exceptions_for_connection_errors, tqdm_class, **deprecated_kwargs)[39m
+[32m    608[39m     [38;5;28;01mif[39;00m [38;5;129;01mnot[39;00m _raise_exceptions_for_gated_repo:
+[32m    609[39m         [38;5;28;01mreturn[39;00m [38;5;28;01mNone[39;00m
+[32m--> [39m[32m610[39m     [38;5;28;01mraise[39;00m [38;5;167;01mOSError[39;00m(
+[32m    611[39m         [33m"[39m[33mYou are trying to access a gated repo.[39m[38;5;130;01m\n[39;00m[33mMake sure to have access to it at [39m[33m"[39m
+[32m    612[39m         [33mf[39m[33m"[39m[33mhttps://huggingface.co/[39m[38;5;132;01m{[39;00mpath_or_repo_id[38;5;132;01m}[39;00m[33m.[39m[38;5;130;01m\n[39;00m[38;5;132;01m{[39;00m[38;5;28mstr[39m(e)[38;5;132;01m}[39;00m[33m"[39m
+[32m    613[39m     ) [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01me[39;00m
+[32m    614[39m [38;5;28;01melif[39;00m [38;5;28misinstance[39m(e, LocalEntryNotFoundError):
+[32m    615[39m     [38;5;28;01mif[39;00m [38;5;129;01mnot[39;00m _raise_exceptions_for_connection_errors:
+
+[31mOSError[39m: You are trying to access a gated repo.
+Make sure to have access to it at https://huggingface.co/google/medasr.
+403 Client Error. (Request ID: Root=1-6ac4e354-0cc764643d45d424119718dc;79887631-63e5-438f-b004-84611ae09643)
+
+Cannot access gated repo for url https://hf-mirror.com/google/medasr/resolve/ae1e4845b4b07479735d93e1e591e566435b7104/config.json.
+Access to model google/medasr is restricted and you are not in the authorized list. Visit https://huggingface.co/google/medasr to ask for access.
+

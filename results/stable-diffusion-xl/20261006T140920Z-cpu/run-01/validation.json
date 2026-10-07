@@ -1,0 +1,13 @@
+{
+  "schema_version": 2,
+  "passed": false,
+  "checks": {
+    "no_cell_error": false,
+    "skipped_cells": 2
+  },
+  "notes": [
+    "2 cell(s) skipped via documented patch (interactive/UI-only code)"
+  ],
+  "level": "EXECUTION_ONLY",
+  "contract_present": false
+}

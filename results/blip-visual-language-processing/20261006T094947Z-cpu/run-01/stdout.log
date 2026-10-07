@@ -1,0 +1,54 @@
+[cell 0 START +    0.8s] # Visual Question Answering and Image Captioning using BLIP and OpenVI
+[cell 1 START +    0.8s]  | #### Table of contents: |  | - [Background](#Background) |     - [Image Cap
+[cell 2 START +    0.8s] ## Background | [back to top ⬆️](#Table-of-contents:) |  | Visual language p
+[cell 3 START +    0.8s] ## Instantiate Model | [back to top ⬆️](#Table-of-contents:) |  | The BLIP m
+[cell 4 START +    0.8s] %pip install -q --extra-index-url https://download.pytorch.org/whl/cpu
+[cell 4 DONE  +   59.5s]
+[cell 5 START +   59.5s] import time | from PIL import Image | from transformers import BlipProcess
+[cell 5 DONE  +   67.5s]
+[cell 6 START +   67.5s] print(f"Processing time: {end:.4f} s")
+[cell 6 DONE  +   67.5s]
+[cell 7 START +   67.5s] from pathlib import Path |  | if not Path("./utils.py").exists(): |     down
+[cell 7 DONE  +   68.0s]
+[cell 8 START +   68.0s] ## Convert Models to OpenVINO IR | [back to top ⬆️](#Table-of-contents:)
+[cell 9 START +   68.0s] ### Vision Model | [back to top ⬆️](#Table-of-contents:) |  | The vision mod
+[cell 10 START +   68.0s] import torch | from pathlib import Path | import openvino as ov |  | VISION_MO
+[cell 10 DONE  +   68.4s]
+[cell 11 START +   68.4s] ### Text Encoder | [back to top ⬆️](#Table-of-contents:) |  | The text encod
+[cell 12 START +   68.4s] TEXT_ENCODER_OV = Path("blip_text_encoder.xml") |  |  | text_encoder = model
+[cell 12 DONE  +   68.4s]
+[cell 13 START +   68.4s] ### Text Decoder | [back to top ⬆️](#Table-of-contents:) |  | The text decod
+[cell 14 START +   68.4s] text_decoder = model.text_decoder | text_decoder.eval() |  | TEXT_DECODER_OV
+[cell 14 DONE  +   68.5s]
+[cell 15 START +   68.5s] ## Run OpenVINO Model | [back to top ⬆️](#Table-of-contents:) |  | ### Prepa
+[cell 16 START +   68.5s] # create OpenVINO Core object instance | core = ov.Core()
+[cell 16 DONE  +   68.5s]
+[cell 17 START +   68.5s] ### Select inference device | [back to top ⬆️](#Table-of-contents:) |  | sel
+[cell 18 START +   68.5s] device = device_widget(exclude=["NPU"]) |  | device
+[cell 18 DONE  +   68.7s]
+[cell 19 START +   68.7s] # load models on device | ov_vision_model = core.compile_model(VISION_MO
+[cell 19 DONE  +   69.4s]
+[cell 20 START +   69.4s] from functools import partial | from blip_model import text_decoder_forw
+[cell 20 DONE  +   69.4s]
+[cell 21 START +   69.4s] The model helper class has two methods for generation: **generate_answ
+[cell 22 START +   69.4s] if not Path("./blip_model.py").exists(): |     download_file(url="https:
+[cell 22 DONE  +   69.8s]
+[cell 23 START +   69.8s] Now, the model is ready for generation.
+[cell 24 START +   69.8s] ### Image Captioning | [back to top ⬆️](#Table-of-contents:) | 
+[cell 25 START +   69.8s] out = ov_model.generate_caption(inputs["pixel_values"], max_length=20)
+[cell 25 DONE  +   70.1s]
+[cell 26 START +   70.1s] ### Question Answering | [back to top ⬆️](#Table-of-contents:) | 
+[cell 27 START +   70.1s] start = time.perf_counter() | out = ov_model.generate_answer(**inputs, m
+[cell 27 DONE  +   70.4s]
+[cell 28 START +   70.4s] print(f"Processing time: {end:.4f}")
+[cell 28 DONE  +   70.4s]
+[cell 29 START +   70.4s] ## Optimize model using NNCF |  | [back to top ⬆️](#Table-of-contents:) |  | [
+[cell 30 START +   70.4s] to_quantize = quantization_widget() |  | to_quantize
+[cell 30 DONE  +   70.4s]
+[cell 31 START +   70.4s] VISION_MODEL_OV_INT8 = Path(str(VISION_MODEL_OV).replace(".xml", "_int
+[cell 31 DONE  +   70.9s]
+[cell 32 START +   70.9s] ### Prepare dataset | [back to top ⬆️](#Table-of-contents:) |  | The [`VQAv2
+[cell 33 START +   70.9s] %%skip not $to_quantize.value |  | import aiohttp |  | import numpy as np | from
+[cell 33 DONE  +   71.0s]
+[cell 34 START +   71.0s] Loading and processing the dataset in streaming mode may take a long t
+[cell 35 START +   71.0s] %%skip not $to_quantize.value |  | import nncf | import gc |  | if not VISION_MO

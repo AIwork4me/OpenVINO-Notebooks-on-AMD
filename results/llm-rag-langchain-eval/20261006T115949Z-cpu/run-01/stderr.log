@@ -1,0 +1,90 @@
+[IPKernelApp] WARNING | Kernel is running over TCP without encryption. All communication (including code and outputs) is sent in plain text and is susceptible to eavesdropping. Use IPC transport or launch with kernel manager-provisioned CurveZMQ keys to enable transport encryption.
+[31mERROR: pip's dependency resolver does not currently take into account all the packages that are installed. This behaviour is the source of the following dependency conflicts.
+torchvision 0.29.1+cpu requires torch>=2.14.0, but you have torch 2.8.0+cpu which is incompatible.
+ace-step 0.2.0 requires transformers==4.50.0, but you have transformers 4.57.6 which is incompatible.[0m[31m
+[0mm     )
+
+[31mRuntimeError[39m: operator torchvision::nms does not exist
+
+The above exception was the direct cause of the following exception:
+
+[31mModuleNotFoundError[39m                       Traceback (most recent call last)
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages/transformers/utils/import_utils.py:2317[39m, in [36m_LazyModule.__getattr__[39m[34m(self, name)[39m
+[32m   2316[39m [38;5;28;01mtry[39;00m:
+[32m-> [39m[32m2317[39m     module = [30;43mself[39;49m[30;43m.[39;49m[30;43m_get_module[39;49m[30;43m([39;49m[30;43mself[39;49m[30;43m.[39;49m[30;43m_class_to_module[39;49m[30;43m[[39;49m[30;43mname[39;49m[30;43m][39;49m[30;43m)[39;49m
+[32m   2318[39m     value = [38;5;28mgetattr[39m(module, name)
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages/transformers/utils/import_utils.py:2347[39m, in [36m_LazyModule._get_module[39m[34m(self, module_name)[39m
+[32m   2346[39m [38;5;28;01mexcept[39;00m [38;5;167;01mException[39;00m [38;5;28;01mas[39;00m e:
+[32m-> [39m[32m2347[39m     [38;5;28;01mraise[39;00m e
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages/transformers/utils/import_utils.py:2345[39m, in [36m_LazyModule._get_module[39m[34m(self, module_name)[39m
+[32m   2344[39m [38;5;28;01mtry[39;00m:
+[32m-> [39m[32m2345[39m     [38;5;28;01mreturn[39;00m [30;43mimportlib[39;49m[30;43m.[39;49m[30;43mimport_module[39;49m[30;43m([39;49m[30;43m"[39;49m[30;43m.[39;49m[30;43m"[39;49m[30;43m [39;49m[30;43m+[39;49m[30;43m [39;49m[30;43mmodule_name[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mself[39;49m[30;43m.[39;49m[30;43m__name__[39;49m[30;43m)[39;49m
+[32m   2346[39m [38;5;28;01mexcept[39;00m [38;5;167;01mException[39;00m [38;5;28;01mas[39;00m e:
+
+[36mFile [39m[32m/usr/lib/python3.12/importlib/__init__.py:90[39m, in [36mimport_module[39m[34m(name, package)[39m
+[32m     89[39m         level += [32m1[39m
+[32m---> [39m[32m90[39m [38;5;28;01mreturn[39;00m [30;43m_bootstrap[39;49m[30;43m.[39;49m[30;43m_gcd_import[39;49m[30;43m([39;49m[30;43mname[39;49m[30;43m[[39;49m[30;43mlevel[39;49m[30;43m:[39;49m[30;43m][39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mpackage[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mlevel[39;49m[30;43m)[39;49m
+
+[36mFile [39m[32m<frozen importlib._bootstrap>:1387[39m, in [36m_gcd_import[39m[34m(name, package, level)[39m
+
+[36mFile [39m[32m<frozen importlib._bootstrap>:1360[39m, in [36m_find_and_load[39m[34m(name, import_)[39m
+
+[36mFile [39m[32m<frozen importlib._bootstrap>:1334[39m, in [36m_find_and_load_unlocked[39m[34m(name, import_)[39m
+
+[36mFile [39m[32m<frozen importlib._bootstrap>:950[39m, in [36m_load_unlocked[39m[34m(spec)[39m
+
+[36mFile [39m[32m<frozen importlib._bootstrap_external>:995[39m, in [36m_LoaderBasics.exec_module[39m[34m(self, module)[39m
+
+[36mFile [39m[32m<frozen importlib._bootstrap>:488[39m, in [36m_call_with_frames_removed[39m[34m(f, *args, **kwds)[39m
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages/optimum/intel/openvino/__init__.py:65[39m
+[32m     61[39m         logger.warning(
+[32m     62[39m             [33m"[39m[33mNNCF version 2.19 or higher is required to use NNCF-based quantization. [39m[33m"[39m
+[32m     63[39m             [33mf[39m[33m"[39m[33mPlease upgrade your NNCF installation. The current version of NNCF is [39m[38;5;132;01m{[39;00mnncf.__version__[38;5;132;01m}[39;00m[33m.[39m[33m"[39m
+[32m     64[39m         )
+[32m---> [39m[32m65[39m     [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01m.[39;00m[34;01mquantization[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m OVCalibrationDataset, OVQuantizer
+[32m     68[39m [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01m.[39;00m[34;01mmodeling[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m (
+[32m     69[39m     OVModelForAudioClassification,
+[32m     70[39m     OVModelForAudioFrameClassification,
+[32m   (...)[39m[32m     80[39m     OVModelForZeroShotImageClassification,
+[32m     81[39m )
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages/optimum/intel/openvino/quantization.py:36[39m
+[32m     35[39m [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01mtqdm[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m tqdm
+[32m---> [39m[32m36[39m [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01mtransformers[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m AutoProcessor, AutoTokenizer, DataCollator, default_data_collator
+[32m     38[39m [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01moptimum[39;00m[34;01m.[39;00m[34;01mquantization_base[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m OptimumQuantizer
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages/transformers/utils/import_utils.py:2320[39m, in [36m_LazyModule.__getattr__[39m[34m(self, name)[39m
+[32m   2319[39m     [38;5;28;01mexcept[39;00m ([38;5;167;01mModuleNotFoundError[39;00m, [38;5;167;01mRuntimeError[39;00m) [38;5;28;01mas[39;00m e:
+[32m-> [39m[32m2320[39m         [38;5;28;01mraise[39;00m [38;5;167;01mModuleNotFoundError[39;00m(
+[32m   2321[39m             [33mf[39m[33m"[39m[33mCould not import module [39m[33m'[39m[38;5;132;01m{[39;00mname[38;5;132;01m}[39;00m[33m'[39m[33m. Are this object[39m[33m'[39m[33ms requirements defined correctly?[39m[33m"[39m
+[32m   2322[39m         ) [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01me[39;00m
+[32m   2324[39m [38;5;28;01melif[39;00m name [38;5;129;01min[39;00m [38;5;28mself[39m._modules:
+
+[31mModuleNotFoundError[39m: Could not import module 'AutoProcessor'. Are this object's requirements defined correctly?
+
+The above exception was the direct cause of the following exception:
+
+[31mModuleNotFoundError[39m                       Traceback (most recent call last)
+[36mCell[39m[36m [39m[32mIn[3][39m[32m, line 4[39m
+[32m      1[39m [38;5;28;01mimport[39;00m warnings
+[32m      2[39m 
+[32m      3[39m warnings.filterwarnings([33m"ignore"[39m)
+[32m----> [39m[32m4[39m [38;5;28;01mfrom[39;00m optimum.intel [38;5;28;01mimport[39;00m OVModelForCausalLM
+[32m      5[39m [38;5;28;01mfrom[39;00m transformers [38;5;28;01mimport[39;00m AutoTokenizer, pipeline
+[32m      6[39m [38;5;28;01mfrom[39;00m langchain_huggingface [38;5;28;01mimport[39;00m HuggingFacePipeline
+[32m      7[39m 
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages/transformers/utils/import_utils.py:2320[39m, in [36m_LazyModule.__getattr__[39m[34m(self, name)[39m
+[32m   2318[39m         value = [38;5;28mgetattr[39m(module, name)
+[32m   2319[39m     [38;5;28;01mexcept[39;00m ([38;5;167;01mModuleNotFoundError[39;00m, [38;5;167;01mRuntimeError[39;00m) [38;5;28;01mas[39;00m e:
+[32m-> [39m[32m2320[39m         [38;5;28;01mraise[39;00m [38;5;167;01mModuleNotFoundError[39;00m(
+[32m   2321[39m             [33mf[39m[33m"[39m[33mCould not import module [39m[33m'[39m[38;5;132;01m{[39;00mname[38;5;132;01m}[39;00m[33m'[39m[33m. Are this object[39m[33m'[39m[33ms requirements defined correctly?[39m[33m"[39m
+[32m   2322[39m         ) [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01me[39;00m
+[32m   2324[39m [38;5;28;01melif[39;00m name [38;5;129;01min[39;00m [38;5;28mself[39m._modules:
+[32m   2325[39m     [38;5;28;01mtry[39;00m:
+
+[31mModuleNotFoundError[39m: Could not import module 'OVModelForCausalLM'. Are this object's requirements defined correctly?
+

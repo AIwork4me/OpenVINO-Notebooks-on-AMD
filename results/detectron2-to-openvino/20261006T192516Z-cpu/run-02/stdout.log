@@ -1,0 +1,51 @@
+[cell 0 START +    0.4s]  # Convert Detectron2 Models to OpenVINO™ |  | [Detectron2](https://github
+[cell 1 START +    0.4s] ## Prerequisites | [back to top ⬆️](#Table-of-contents:) |  | Install requir
+[cell 2 START +    0.4s] import os | import requests | from pathlib import Path |  | os.environ["GIT_CL
+[cell 2 DONE  +    5.1s]
+[cell 3 START +    5.1s] ### Define helpers for PyTorch model initialization and conversion | [ba
+[cell 4 START +    5.1s] import detectron2.model_zoo as detectron_zoo |  |  | def get_model_and_confi
+[cell 4 DONE  +    6.5s]
+[cell 5 START +    6.5s] Detectron2 library is based on PyTorch. Starting from 2023.0 release O
+[cell 6 START +    6.5s] from detectron2.modeling import GeneralizedRCNN | from detectron2.export
+[cell 6 DONE  +    6.5s]
+[cell 7 START +    6.5s] ### Prepare input data | [back to top ⬆️](#Table-of-contents:) |  | For runn
+[cell 8 START +    6.5s] import requests | from pathlib import Path | from PIL import Image |  | MODEL_
+[cell 8 DONE  +    6.6s]
+[cell 9 START +    6.6s] import detectron2.data.transforms as T | from detectron2.data import det
+[cell 9 DONE  +    6.6s]
+[cell 10 START +    6.6s] Now, when all components required for model conversion are prepared, w
+[cell 11 START +    6.6s] ### Download PyTorch Detection model | [back to top ⬆️](#Table-of-conten
+[cell 12 START +    6.6s] model_name = "COCO-Detection/faster_rcnn_R_50_FPN_1x" | model, cfg = get
+[cell 12 DONE  +    6.8s]
+[cell 13 START +    6.8s] ### Convert Detection Model to OpenVINO Intermediate Representation | [b
+[cell 14 START +    6.8s] model_xml_path = MODEL_DIR / (model_name.split("/")[-1] + ".xml") | if n
+[cell 14 DONE  +    6.8s]
+[cell 15 START +    6.8s] ### Select inference device | [back to top ⬆️](#Table-of-contents:) |  | sel
+[cell 16 START +    6.8s] from notebook_utils import device_widget |  | core = ov.Core() |  | device = d
+[cell 16 DONE  +    7.0s]
+[cell 17 START +    7.0s] ### Run Detection model inference | [back to top ⬆️](#Table-of-contents:
+[cell 18 START +    7.0s] compiled_model = core.compile_model(ov_model, device.value)
+[cell 18 DONE  +    7.4s]
+[cell 19 START +    7.4s] results = compiled_model(sample_input[0]["image"])
+[cell 19 DONE  +    7.5s]
+[cell 20 START +    7.5s] Tracing adapter simplifies model input and output format. After conver
+[cell 21 START +    7.5s] from detectron2.structures import Instances, Boxes | from detectron2.mod
+[cell 21 DONE  +    7.8s]
+[cell 22 START +    7.8s] results = postprocess_detection_result(results, sample_input[0]["heigh
+[cell 22 DONE  +    7.9s]
+[cell 23 START +    7.9s] ## Instance Segmentation | [back to top ⬆️](#Table-of-contents:) |  | As it 
+[cell 24 START +    7.9s] ### Download Instance Segmentation PyTorch model | [back to top ⬆️](#Tab
+[cell 25 START +    7.9s] model_name = "COCO-InstanceSegmentation/mask_rcnn_R_101_FPN_3x" | model,
+[cell 25 DONE  +    8.2s]
+[cell 26 START +    8.2s] ### Convert Instance Segmentation Model to OpenVINO Intermediate Repre
+[cell 27 START +    8.2s] model_xml_path = MODEL_DIR / (model_name.split("/")[-1] + ".xml") |  | if 
+[cell 27 DONE  +    8.2s]
+[cell 28 START +    8.2s] ### Select inference device | [back to top ⬆️](#Table-of-contents:) |  | sel
+[cell 29 START +    8.2s] device
+[cell 29 DONE  +    8.2s]
+[cell 30 START +    8.2s] ### Run Instance Segmentation model inference | [back to top ⬆️](#Table-
+[cell 31 START +    8.2s] compiled_model = core.compile_model(ov_model, device.value)
+[cell 31 DONE  +    8.7s]
+[cell 32 START +    8.7s] results = compiled_model(sample_input[0]["image"]) | results = postproce
+[cell 32 DONE  +    9.1s]
+NBEXEC_RESULT={"ok": true, "n_cells": 17, "n_skipped": 0, "n_substituted": 1, "stopped_after": null, "error_cell": null, "error_type": null, "error_head": null, "duration_s": 10.13, "patch_notes": ["substituted 1 occurrence(s) in cell 2"]}

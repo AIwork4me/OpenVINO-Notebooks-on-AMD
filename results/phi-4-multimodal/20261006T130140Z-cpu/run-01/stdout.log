@@ -1,0 +1,12 @@
+[cell 0 START +    0.7s] # Multimodal assistant with Phi-4-multimodal and OpenVINO |  | Phi-4-multi
+[cell 1 START +    0.7s] ## Prerequisites | [back to top ⬆️](#Table-of-contents:)
+[cell 2 START +    0.7s] %pip uninstall -q -y optimum optimum-intel optimum-onnx | %pip -q instal
+[cell 2 DONE  +   70.2s]
+[cell 3 START +   70.2s] import requests | from pathlib import Path |  | if not Path("gradio_helper.p
+[cell 3 DONE  +   70.3s]
+[cell 4 START +   70.3s] ## Convert model to OpenVINO Intermediate Representation | [back to top 
+[cell 5 START +   70.3s] from pathlib import Path |  | model_id = "microsoft/phi-4-multimodal-instr
+[cell 5 DONE  +   70.3s]
+[cell 6 START +   70.3s] import ipywidgets as widgets |  | to_compress = widgets.Checkbox(value=Tru
+[cell 6 DONE  +   70.4s]
+[cell 7 START +   70.4s] from cmd_helper import optimum_cli |  | additional_args = {"trust-remote-c

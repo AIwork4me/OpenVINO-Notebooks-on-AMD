@@ -1,0 +1,26 @@
+[cell 0 START +    0.4s] # Text Rerank with Qwen3 and OpenVINO |  | The Qwen3 Embedding model serie
+[cell 1 START +    0.4s] ## Prerequisites | [back to top ⬆️](#Table-of-contents:)
+[cell 2 START +    0.4s] %pip uninstall -q -y optimum optimum-intel optimum-onnx | %pip install "
+[cell 2 DONE  +    5.0s]
+[cell 3 START +    5.0s] import requests | from pathlib import Path |  | if not Path("cmd_helper.py")
+[cell 3 DONE  +    5.0s]
+[cell 4 START +    5.0s] ## Select model | [back to top ⬆️](#Table-of-contents:) |  | Qwen3 Reranker 
+[cell 5 START +    5.0s] import ipywidgets as widgets |  | model_ids = ["Qwen/Qwen3-Reranker-0.6B",
+[cell 5 DONE  +    5.0s]
+[cell 6 START +    5.0s] ## Convert model using Optimum Intel | [back to top ⬆️](#Table-of-conten
+[cell 7 START +    5.0s] to_compress = widgets.Checkbox( |     value=False, |     description="Weig
+[cell 7 DONE  +    5.0s]
+[cell 8 START +    5.0s] The Qwen3-embedding model can be exported by `text-generation` task wi
+[cell 9 START +    5.0s] from pathlib import Path |  | model_id = model_selector.value |  | model_base_
+[cell 9 DONE  +    5.0s]
+[cell 10 START +    5.0s] from cmd_helper import optimum_cli |  | if not model_dir.exists(): |     opt
+[cell 10 DONE  +  103.3s]
+[cell 11 START +  103.3s] ## Run OpenVINO model inference with Optimum-intel | [back to top ⬆️](#T
+[cell 12 START +  103.3s] from notebook_utils import device_widget |  | device = device_widget(defau
+[cell 12 DONE  +  103.6s]
+[cell 13 START +  103.6s] The Qwen3-embedding model can be exported by class `OVModelForCausalLM
+[cell 14 START +  103.6s] from optimum.intel import OVModelForCausalLM |  | model = OVModelForCausal
+[cell 14 DONE  +  106.6s]
+[cell 15 START +  106.6s] import torch | from transformers import AutoTokenizer |  |  | def format_instr
+[cell 15 DONE  +  107.0s]
+NBEXEC_RESULT={"ok": true, "n_cells": 9, "n_skipped": 0, "n_substituted": 1, "stopped_after": null, "error_cell": null, "error_type": null, "error_head": null, "duration_s": 108.48, "patch_notes": ["substituted 1 occurrence(s) in cell 2"]}

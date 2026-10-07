@@ -1,0 +1,67 @@
+[cell 0 START +    0.6s] # Convert and Optimize YOLOv11 real-time object detection with OpenVIN
+[cell 1 START +    0.6s] ## Get PyTorch model | [back to top ⬆️](#Table-of-contents:) |  | Generally,
+[cell 2 START +    0.6s] #### Prerequisites | [back to top ⬆️](#Table-of-contents:) |  | Install nece
+[cell 3 START +    0.6s] %pip install -q "openvino>=2025.1.0" "nncf>=2.16.0" | %pip install -q "t
+[cell 3 DONE  +   27.9s]
+[cell 4 START +   27.9s] Import required utility functions. | The lower cell will download the `n
+[cell 5 START +   27.9s] from pathlib import Path | import requests |  | if not Path("notebook_utils.
+[cell 5 DONE  +   28.0s]
+[cell 6 START +   28.0s] # Download a test sample | IMAGE_PATH = Path("./data/coco_bike.jpg") |  | if
+[cell 6 DONE  +   28.0s]
+[cell 7 START +   28.0s] ## Instantiate model | [back to top ⬆️](#Table-of-contents:) |  | There are 
+[cell 8 START +   28.0s] import ipywidgets as widgets |  | model_id = ["yolo11n", "yolo11s", "yolo1
+[cell 8 DONE  +   28.0s]
+[cell 9 START +   28.0s] Making prediction, the model accepts a path to input image and returns
+[cell 10 START +   28.0s] from PIL import Image | from ultralytics import YOLO |  | DET_MODEL_NAME = m
+[cell 10 DONE  +   29.7s]
+[cell 11 START +   29.7s] ### Convert model to OpenVINO IR | [back to top ⬆️](#Table-of-contents:)
+[cell 12 START +   29.7s] # object detection model | det_model_path = Path(f"{DET_MODEL_NAME}_open
+[cell 12 DONE  +   29.7s]
+[cell 13 START +   29.7s] ### Verify model inference | [back to top ⬆️](#Table-of-contents:) |  | We c
+[cell 14 START +   29.7s] ### Select inference device | [back to top ⬆️](#Table-of-contents:) |  | Sel
+[cell 15 START +   29.7s] device = device_widget() |  | device
+[cell 15 DONE  +   29.9s]
+[cell 16 START +   29.9s] ### Test on single image | [back to top ⬆️](#Table-of-contents:) |  | Now, o
+[cell 17 START +   29.9s] det_model = YOLO(det_model_path.parent, task="detect") |  | res = det_mode
+[cell 17 DONE  +   30.1s]
+[cell 18 START +   30.1s] ## Optimize model using NNCF Post-training Quantization API | [back to t
+[cell 19 START +   30.1s] Please select below whether you would like to run quantization to impr
+[cell 20 START +   30.1s] int8_model_det_path = Path(f"{DET_MODEL_NAME}_openvino_model_int8/{DET
+[cell 20 DONE  +   30.1s]
+[cell 21 START +   30.1s] Let's load `skip magic` extension to skip quantization if `to_quantize
+[cell 22 START +   30.1s] if not Path("skip_kernel_extension.py").exists(): |     r = requests.get
+[cell 22 DONE  +   30.1s]
+[cell 23 START +   30.1s] %%skip not $to_quantize.value |  | from ultralytics.utils import DEFAULT_C
+[cell 23 DONE  +  116.9s]
+[cell 24 START +  116.9s] Reuse validation dataloader in accuracy testing for quantization.  | For
+[cell 25 START +  116.9s] %%skip not $to_quantize.value |  | import nncf |  |  | if not int8_model_det_pat
+[cell 25 DONE  +  117.1s]
+[cell 26 START +  117.1s] The `nncf.quantize` function provides an interface for model quantizat
+[cell 27 START +  117.1s] %%skip not $to_quantize.value |  | import shutil | import openvino as ov |  | co
+[cell 27 DONE  +  132.0s]
+[cell 28 START +  132.0s] ### Validate Quantized model inference | [back to top ⬆️](#Table-of-cont
+[cell 29 START +  132.0s] %%skip not $to_quantize.value |  | display(device)
+[cell 29 DONE  +  132.0s]
+[cell 30 START +  132.0s] %%skip not $to_quantize.value |  | det_model = YOLO(int8_model_det_path.pa
+[cell 30 DONE  +  132.4s]
+[cell 31 START +  132.4s] ## Compare the Original and Quantized Models | [back to top ⬆️](#Table-o
+[cell 32 START +  132.4s] ### Compare performance object detection models | [back to top ⬆️](#Tabl
+[cell 33 START +  132.4s] %%skip not $to_quantize.value |  | display(device)
+[cell 33 DONE  +  132.4s]
+[cell 34 START +  132.4s] if int8_model_det_path.exists(): |     # Inference FP32 model (OpenVINO 
+[cell 34 DONE  +  148.0s]
+[cell 35 START +  148.0s] if int8_model_det_path.exists(): |     # Inference INT8 model (OpenVINO 
+[cell 35 DONE  +  163.8s]
+[cell 36 START +  163.8s] ## Next steps | [back to top ⬆️](#Table-of-contents:) | This section conta
+[cell 37 START +  163.8s] ### Async inference pipeline | [back to top ⬆️](#Table-of-contents:) | The
+[cell 38 START +  163.8s] ## Live demo | [back to top ⬆️](#Table-of-contents:) |  | The following code
+[cell 39 START +  163.8s] import collections | import time | from IPython import display | import cv2 | 
+[cell 39 DONE  +  163.8s]
+[cell 40 START +  163.8s] ### Run Live Object Detection | [back to top ⬆️](#Table-of-contents:) |  | U
+[cell 41 START +  163.8s] WEBCAM_INFERENCE = False |  | if WEBCAM_INFERENCE: |     VIDEO_SOURCE = 0  #
+[cell 41 DONE  +  166.3s]
+[cell 42 START +  166.3s] device
+[cell 42 DONE  +  166.3s]
+[cell 43 START +  166.3s] run_object_detection( |     source=VIDEO_SOURCE, |     flip=True, |     use_
+[cell 43 DONE  +  176.8s]
+NBEXEC_RESULT={"ok": true, "n_cells": 22, "n_skipped": 0, "n_substituted": 0, "stopped_after": null, "error_cell": null, "error_type": null, "error_head": null, "duration_s": 179.42, "patch_notes": []}

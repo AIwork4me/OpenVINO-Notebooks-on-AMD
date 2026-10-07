@@ -1,0 +1,27 @@
+[cell 0 START +    0.4s] # Create MCP Agent using OpenVINO and Qwen-Agent |  | MCP is an open proto
+[cell 1 START +    0.4s] ## Prerequisites |  | [back to top ⬆️](#Table-of-contents:) | 
+[cell 2 START +    0.4s] import os | from pathlib import Path | import requests |  | os.environ["GIT_CL
+[cell 2 DONE  +   22.7s]
+[cell 3 START +   22.7s] from cmd_helper import clone_repo |  | clone_repo("https://github.com/open
+[cell 3 DONE  +   25.0s]
+[cell 4 START +   25.0s] ## Select device for inference | [back to top ⬆️](#Table-of-contents:)
+[cell 5 START +   25.0s] from notebook_utils import device_widget |  | device = device_widget(defau
+[cell 5 DONE  +   25.2s]
+[cell 6 START +   25.2s] ## Select model for inference | [back to top ⬆️](#Table-of-contents:) |  | L
+[cell 7 START +   25.2s] from llm_config import get_llm_selection_widget |  | form, lang, model_id_
+[cell 7 DONE  +   25.2s]
+[cell 8 START +   25.2s] model_configuration = model_id_widget.value | model_id = model_id_widget
+[cell 8 DONE  +   25.2s]
+[cell 9 START +   25.2s] ## Convert model using Optimum-CLI tool | [back to top ⬆️](#Table-of-con
+[cell 10 START +   25.2s] from llm_config import convert_and_compress_model |  | model_dir = convert
+[cell 10 DONE  +   25.2s]
+[cell 11 START +   25.2s] ## Configure MCP servers |  | [back to top ⬆️](#Table-of-contents:) |  | MCP s
+[cell 12 START +   25.2s] ## Create An agent |  | [back to top ⬆️](#Table-of-contents:) |  | Function ca
+[cell 13 START +   25.2s] %%writefile mcp_test.py |  | import argparse | import openvino.properties as
+[cell 13 DONE  +   25.2s]
+[cell 14 START +   25.2s] !python mcp_test.py --model_dir {str(model_dir)} --device {device.valu
+[cell 14 DONE  +   26.1s]
+[cell 15 START +   26.1s] ## Interactive Demo |  | [back to top ⬆️](#Table-of-contents:) |  | Let's crea
+[cell 16 START +   26.1s] from pathlib import Path | from PIL import Image | import requests |  | openvi
+[cell 16 DONE  +  162.9s]
+NBEXEC_RESULT={"ok": false, "n_cells": 11, "n_skipped": 0, "n_substituted": 1, "stopped_after": null, "error_cell": null, "error_type": "CellExecutionError", "error_head": "\u001b[31mConnectTimeout\u001b[39m: HTTPSConnectionPool(host='cdn-avatars.huggingface.co', port=443): Max retries exceeded with url: /v1/production/uploads/1671615670447-6346651be2dcb5422bcd13dd.png (Caused by ConnectTimeoutError(<HTTPSConnection(host='cdn-avatars.huggingface.co', port=443) at 0x73d8c4de6360>, 'Connection to cdn-avatars.huggingface.co timed out. (connect timeout=None)'))", "duration_s": 163.14, "patch_notes": ["substituted 1 occurrence(s) in cell 2"]}

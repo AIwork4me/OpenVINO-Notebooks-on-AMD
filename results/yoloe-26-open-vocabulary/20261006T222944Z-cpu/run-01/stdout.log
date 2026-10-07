@@ -1,0 +1,19 @@
+[cell 0 START +    0.7s] # YOLOE-26 Open-Vocabulary Detection and Segmentation with OpenVINO™ |  | 
+[cell 1 START +    0.7s] ## Prerequisites | [back to top ⬆️](#Table-of-contents:) |  | Install necess
+[cell 2 START +    0.7s] %pip install -qU "openvino>=2026.0.0" "nncf>=3.0.0" | %pip install -q "t
+[cell 2 DONE  +   23.5s]
+[cell 3 START +   23.5s] Import required utility functions.
+[cell 4 START +   23.5s] from pathlib import Path | import requests |  | if not Path("notebook_utils.
+[cell 4 DONE  +   23.6s]
+[cell 5 START +   23.6s] # Download test images | IMAGE_PATH = Path("./data/coco_bike.jpg") |  | if n
+[cell 5 DONE  +   23.6s]
+[cell 6 START +   23.6s] ## Text Prompt Detection and Segmentation | [back to top ⬆️](#Table-of-c
+[cell 7 START +   23.6s] ### Load YOLOE-26 Model | [back to top ⬆️](#Table-of-contents:) |  | YOLOE-2
+[cell 8 START +   23.6s] import ipywidgets as widgets |  | model_id = ["yoloe-26s-seg", "yoloe-26n-
+[cell 8 DONE  +   23.7s]
+[cell 9 START +   23.7s] from ultralytics import YOLOE |  | MODEL_NAME = model_name.value |  | model = 
+[cell 9 DONE  +   25.1s]
+[cell 10 START +   25.1s] ### Set Text Prompts and Run Inference | [back to top ⬆️](#Table-of-cont
+[cell 11 START +   25.1s] # Define the classes you want to detect | CLASSES = ["person", "bicycle"
+[cell 11 DONE  +   61.8s]
+NBEXEC_RESULT={"ok": false, "n_cells": 26, "n_skipped": 0, "n_substituted": 0, "stopped_after": null, "error_cell": null, "error_type": "CellExecutionError", "error_head": "\u001b[31mRuntimeError\u001b[39m: PytorchStreamReader failed reading zip archive: failed finding central directory", "duration_s": 62.7, "patch_notes": []}

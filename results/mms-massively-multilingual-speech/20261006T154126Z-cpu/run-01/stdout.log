@@ -1,0 +1,48 @@
+[cell 0 START +    0.6s] # MMS: Scaling Speech Technology to 1000+ languages with OpenVINO™ |  | Th
+[cell 1 START +    0.6s]  | #### Table of contents: |  | - [Prerequisites](#Prerequisites) | - [Prepare
+[cell 2 START +    0.6s] ## Prerequisites | [back to top ⬆️](#Table-of-contents:) | 
+[cell 3 START +    0.6s] %pip install -q --upgrade pip | %pip install -q  "openvino>=2023.1.0" "n
+[cell 3 DONE  +   73.2s]
+[cell 4 START +   73.2s] from pathlib import Path |  | import torch |  | import openvino as ov |  | import 
+[cell 4 DONE  +   73.9s]
+[cell 5 START +   73.9s] ## Prepare an example audio | [back to top ⬆️](#Table-of-contents:) |  | Rea
+[cell 6 START +   73.9s] import ipywidgets as widgets |  | SAMPLE_LANG = widgets.Dropdown( |     opti
+[cell 6 DONE  +   74.0s]
+[cell 7 START +   74.0s] Specify `streaming=True` to not download the entire dataset.
+[cell 8 START +   74.0s] from datasets import load_dataset |  | mls_dataset = load_dataset("faceboo
+[cell 8 DONE  +  162.6s]
+[cell 9 START +  162.6s] Example has a dictionary structure. It contains an audio data and a te
+[cell 10 START +  162.6s] print(example)  # look at structure
+[cell 10 DONE  +  162.6s]
+[cell 11 START +  162.6s] import IPython.display as ipd |  | print(example["transcript"]) | ipd.Audio(
+[cell 11 DONE  +  162.7s]
+[cell 12 START +  162.7s] ## Language Identification (LID)  | [back to top ⬆️](#Table-of-contents:
+[cell 13 START +  162.7s] ### Download pretrained model and processor | [back to top ⬆️](#Table-of
+[cell 14 START +  162.7s] from transformers import Wav2Vec2ForSequenceClassification, AutoFeatur
+[cell 14 DONE  +  166.4s]
+[cell 15 START +  166.4s] ### Use the original model to run an inference | [back to top ⬆️](#Table
+[cell 16 START +  166.4s] inputs = lid_processor(example["audio"]["array"], sampling_rate=16_000
+[cell 16 DONE  +  170.0s]
+[cell 17 START +  170.0s] ### Convert to OpenVINO IR model and run an inference | [back to top ⬆️]
+[cell 18 START +  170.0s] Select device from dropdown list for running inference using OpenVINO
+[cell 19 START +  170.0s] from notebook_utils import device_widget |  | core = ov.Core() |  | device = d
+[cell 19 DONE  +  170.2s]
+[cell 20 START +  170.2s] Convert model to OpenVINO format and compile it
+[cell 21 START +  170.2s] MAX_SEQ_LENGTH = 30480 |  | lid_model_xml_path = Path("models/ov_lid_model
+[cell 21 DONE  +  177.6s]
+[cell 22 START +  177.6s] Now it is possible to run an inference. 
+[cell 23 START +  177.6s] def detect_language(compiled_model, audio_data): |     inputs = lid_proc
+[cell 23 DONE  +  177.6s]
+[cell 24 START +  177.6s] detect_language(compiled_lid_model, example["audio"]["array"])
+[cell 24 DONE  +  178.4s]
+[cell 25 START +  178.4s] Let's check another language.
+[cell 26 START +  178.4s] SAMPLE_LANG = widgets.Dropdown( |     options=["german", "dutch", "frenc
+[cell 26 DONE  +  178.4s]
+[cell 27 START +  178.4s] mls_dataset = load_dataset("facebook/multilingual_librispeech", SAMPLE
+[cell 27 DONE  +  225.8s]
+[cell 28 START +  225.8s] language_id = detect_language(compiled_lid_model, example["audio"]["ar
+[cell 28 DONE  +  226.4s]
+[cell 29 START +  226.4s] ## Automatic Speech Recognition (ASR) | [back to top ⬆️](#Table-of-conte
+[cell 30 START +  226.4s] ### Download pretrained model and processor | [back to top ⬆️](#Table-of
+[cell 31 START +  226.4s] from transformers import Wav2Vec2ForCTC, AutoProcessor |  | model_id = "fa
+NBEXEC_RESULT={"ok": false, "n_cells": 34, "n_skipped": 1, "n_substituted": 0, "stopped_after": null, "error_cell": null, "error_type": "CellTimeoutError", "error_head": "-------------------", "duration_s": 1129.13, "patch_notes": ["skipped cell 66: matched skip pattern"]}

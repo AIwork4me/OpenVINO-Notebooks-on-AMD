@@ -53,8 +53,12 @@ twin comparison policy mechanically enforced (`WORKLOAD_TWIN` forbids speedup).
 **100% twin classification** with notebook-semantic reasoning recorded (three
 review rounds corrected 12 misclassifications).
 
-**Legacy v0.1 greens**: 24 records marked `REVALIDATION_REQUIRED` with
-`historical_status`/`historical_evidence` preserved; no history rewritten.
+**Legacy v0.1 greens**: 24 records were marked `REVALIDATION_REQUIRED` with
+`historical_status`/`historical_evidence` preserved at migration time (see
+`reports/revalidation-migration.md`); those fields were consumed as each
+record was revalidated during the marathon, so the current state file keeps
+only live records — the migration trail stays in git history and the
+migration report.
 
 **Self-hosted CI**: runner `ovamd-reference-runner` registered and online
 (systemd user service); CPU and ROCm workflows use a shared
@@ -64,12 +68,12 @@ fully evidence-backed `hello-world` VERIFIED from a cold checkout.
 
 ### Marathon v2 results (final counts, recomputed from raw state)
 
-CPU (OpenVINO on Ryzen, pinned a8809170 baseline): attempted **133/171**
-(77.8%) — ✅ 4 VERIFIED (L3, PROVEN_CPU, 3-run repeatability) · 🟡 35
-VERIFIED_WITH_LIMITATIONS (explicit machine-readable limits) · 🔴 83 FAILED ·
-🔵 10 REVALIDATION_REQUIRED (upstream re-pin migration set) · ➖ 1 N/A · ⏳ 38
-NOT_TESTED. Failure taxonomy: `reports/marathon-v2-root-causes.md` (83
-failures → 32 clusters, compat vs environment separated).
+CPU (OpenVINO on Ryzen; passes 1–2 under pin a8809170, pass 3 under the
+re-pinned 329562e6031d): attempted **171/171** (100%) — ✅ 25 VERIFIED
+(L3 contract + PROVEN_CPU + ≥3-run repeatability) · 🟡 58
+VERIFIED_WITH_LIMITATIONS (explicit machine-readable limits) · 🔴 87
+FAILED · ➖ 1 N/A. Failure taxonomy: `reports/marathon-v2-root-causes.md`
+(87 failures → 55 clusters, compat vs environment separated).
 
 GPU (ROCm twins, **all 8 revalidated under Evidence Schema v2 on gfx1100**,
 pin 329562e6031d): ✅ 8 VERIFIED (PROVEN_GPU via hip 7.2.53211 + authoritative
@@ -101,6 +105,15 @@ NOT_TESTED rather than fake "revalidation"). Full matrix:
   mirror (recorded in engineering decisions).
 - Gated models (e.g. `stabilityai/stable-diffusion-3-medium-diffusers`) remain
   blocked by model access.
+- v0.1-migration `historical_*` fields were consumed on revalidation; the
+  trail lives in git history + `reports/revalidation-migration.md`.
+- Under the re-pin, `parler-tts` regressed red (OpenVINO resolved 2026.4.1 →
+  2025.3.0 in the rebuilt env; `BrgemmCPU` rejects f32×bf16) and two
+  pin-impacted workloads (`hunyuan-ocr`, `cosyvoice3-tts`) fail on
+  dependency/gated-model grounds — documented in
+  `reports/marathon-v2-root-causes.md`.
+- `vlm-chatbot-generate-api` references a notebook-dir image (`nyc.jpg`) the
+  headless kernel cwd cannot see — left FAILED rather than patched blindly.
 
 ### Release audit
 

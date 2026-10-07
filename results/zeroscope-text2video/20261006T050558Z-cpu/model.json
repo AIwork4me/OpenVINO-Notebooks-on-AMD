@@ -1,0 +1,8 @@
+{
+  "schema_version": 2,
+  "declared": {},
+  "detected_hf_refs": [
+    "damo/text-to-video-synthesis"
+  ],
+  "notebook": "zeroscope-text2video.ipynb"
+}

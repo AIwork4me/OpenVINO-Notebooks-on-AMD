@@ -1,0 +1,9 @@
+{
+  "schema_version": 2,
+  "repository": "openvinotoolkit/openvino_notebooks",
+  "branch": "latest",
+  "commit": "a8809170cc4fc6aa633fbb9c22214be67ac20b47",
+  "path": "notebooks/paddle-ocr-webcam/paddle-ocr-webcam.ipynb",
+  "url": "https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/paddle-ocr-webcam/paddle-ocr-webcam.ipynb",
+  "notebook_sha256": "79c6770cd2872b234a316d337b24f03d985be235acae0e37caa3d61f2f91df0f"
+}

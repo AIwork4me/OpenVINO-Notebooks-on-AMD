@@ -1,0 +1,31 @@
+[cell 0 START +    0.6s] # Multimodal Reranker with Qwen3-VL and OpenVINO |  | The [Qwen3-VL-Rerank
+[cell 1 START +    0.6s] ## Prerequisites | [back to top ⬆️](#Table-of-contents:)
+[cell 2 START +    0.6s] %pip uninstall -q -y optimum optimum-intel optimum-onnx | %pip install -
+[cell 2 DONE  +   57.3s]
+[cell 3 START +   57.3s] import requests | from pathlib import Path |  | if not Path("cmd_helper.py")
+[cell 3 DONE  +   57.4s]
+[cell 4 START +   57.4s] ## Select model | [back to top ⬆️](#Table-of-contents:) |  | Qwen3-VL Rerank
+[cell 5 START +   57.4s] import ipywidgets as widgets |  | model_ids = ["Qwen/Qwen3-VL-Reranker-2B"
+[cell 5 DONE  +   57.5s]
+[cell 6 START +   57.5s] ## Convert model using Optimum Intel | [back to top ⬆️](#Table-of-conten
+[cell 7 START +   57.5s] to_compress = widgets.Checkbox( |     value=False, |     description="Weig
+[cell 7 DONE  +   57.5s]
+[cell 8 START +   57.5s] The Qwen3-VL-Reranker model can be exported by `image-text-to-text` ta
+[cell 9 START +   57.5s] from pathlib import Path |  | model_id = model_selector.value |  | model_base_
+[cell 9 DONE  +   57.5s]
+[cell 10 START +   57.5s] from cmd_helper import optimum_cli |  | if not model_dir.exists(): |     opt
+[cell 10 DONE  +  116.5s]
+[cell 11 START +  116.5s] ## Run OpenVINO model inference with Optimum-intel | [back to top ⬆️](#T
+[cell 12 START +  116.5s] from notebook_utils import device_widget |  | device = device_widget(defau
+[cell 12 DONE  +  116.7s]
+[cell 13 START +  116.7s] The Qwen3-VL-Reranker model can be loaded by class `OVModelForVisualCa
+[cell 14 START +  116.7s] from optimum.intel import OVModelForVisualCausalLM |  | model = OVModelFor
+[cell 14 DONE  +  120.7s]
+[cell 15 START +  120.7s] import torch | from transformers import AutoProcessor | from qwen_vl_utils
+[cell 15 DONE  +  138.8s]
+[cell 16 START +  138.8s] ### Compare with original PyTorch model (optional) | [back to top ⬆️](#T
+[cell 17 START +  138.8s] import ipywidgets as widgets |  | run_pt_compare_widget = widgets.Checkbox
+[cell 17 DONE  +  138.8s]
+[cell 18 START +  138.8s] if not run_pt_compare_widget.value: |     print("Skipping PyTorch compar
+[cell 18 DONE  +  138.8s]
+NBEXEC_RESULT={"ok": true, "n_cells": 11, "n_skipped": 0, "n_substituted": 2, "stopped_after": null, "error_cell": null, "error_type": null, "error_head": null, "duration_s": 141.19, "patch_notes": ["substituted 1 occurrence(s) in cell 2", "substituted 1 occurrence(s) in cell 15"]}

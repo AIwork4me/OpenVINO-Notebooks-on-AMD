@@ -1,0 +1,60 @@
+[cell 0 START +    0.4s] # Convert and Optimize YOLO26 instance segmentation model with OpenVIN
+[cell 1 START +    0.4s] ## Get PyTorch model | [back to top ⬆️](#Table-of-contents:) |  | Generally,
+[cell 2 START +    0.4s] #### Prerequisites | [back to top ⬆️](#Table-of-contents:) |  | Install nece
+[cell 3 START +    0.4s] %pip install -qU "openvino>=2026.0.0" "nncf>=3.0.0" | %pip install -q "t
+[cell 3 DONE  +    1.9s]
+[cell 4 START +    1.9s] Import required utility functions. | The lower cell will download the `n
+[cell 5 START +    1.9s] from pathlib import Path | import requests |  | if not Path("notebook_utils.
+[cell 5 DONE  +    1.9s]
+[cell 6 START +    1.9s] # Download a test sample | IMAGE_PATH = Path("./data/coco_bike.jpg") |  | if
+[cell 6 DONE  +    4.6s]
+[cell 7 START +    4.6s] ## Instantiate model | [back to top ⬆️](#Table-of-contents:) |  | For loadin
+[cell 8 START +    4.6s] import ipywidgets as widgets |  | model_id = ["yolo26n-seg", "yolo26s-seg"
+[cell 8 DONE  +    4.6s]
+[cell 9 START +    4.6s] from PIL import Image | from ultralytics import YOLO |  | SEG_MODEL_NAME = m
+[cell 9 DONE  +   76.7s]
+[cell 10 START +   76.7s] ### Convert model to OpenVINO IR | [back to top ⬆️](#Table-of-contents:)
+[cell 11 START +   76.7s] # segmentation model | seg_model_path = Path(f"{SEG_MODEL_NAME}_openvino
+[cell 11 DONE  +   78.6s]
+[cell 12 START +   78.6s] ### Verify model inference | [back to top ⬆️](#Table-of-contents:) |  | We c
+[cell 13 START +   78.6s] ### Select inference device | [back to top ⬆️](#Table-of-contents:) |  | Sel
+[cell 14 START +   78.6s] device = device_widget() |  | device
+[cell 14 DONE  +   78.8s]
+[cell 15 START +   78.8s] ### Test on single image | [back to top ⬆️](#Table-of-contents:)
+[cell 16 START +   78.8s] seg_model = YOLO(seg_model_path.parent, task="segment") |  | res = seg_mod
+[cell 16 DONE  +   79.1s]
+[cell 17 START +   79.1s] ## Optimize model using NNCF Post-training Quantization API | [back to t
+[cell 18 START +   79.1s] Please select below whether you would like to run quantization to impr
+[cell 19 START +   79.1s] int8_model_seg_path = Path(f"{SEG_MODEL_NAME}_openvino_model_int8/{SEG
+[cell 19 DONE  +   79.1s]
+[cell 20 START +   79.1s] Let's load `skip magic` extension to skip quantization if `to_quantize
+[cell 21 START +   79.1s] if not Path("skip_kernel_extension.py").exists(): |     r = requests.get
+[cell 21 DONE  +   79.1s]
+[cell 22 START +   79.1s] Prepare calibration dataset for quantization. We download a small data
+[cell 23 START +   79.1s] %%skip not $to_quantize.value |  | import cv2 | import numpy as np | from zipf
+[cell 23 DONE  +  150.7s]
+[cell 24 START +  150.7s] The `nncf.quantize` function provides an interface for model quantizat
+[cell 25 START +  150.7s] %%skip not $to_quantize.value |  | import nncf | import openvino as ov | impor
+[cell 25 DONE  +  171.9s]
+[cell 26 START +  171.9s] ### Validate Quantized model inference | [back to top ⬆️](#Table-of-cont
+[cell 27 START +  171.9s] %%skip not $to_quantize.value |  | seg_model = YOLO(int8_model_seg_path.pa
+[cell 27 DONE  +  172.4s]
+[cell 28 START +  172.4s] ## Compare performance of the Original and Quantized Models | [back to t
+[cell 29 START +  172.4s] device
+[cell 29 DONE  +  172.4s]
+[cell 30 START +  172.4s] # Inference FP16 model (OpenVINO IR) | !benchmark_app -m $seg_model_path
+[cell 30 DONE  +  188.1s]
+[cell 31 START +  188.1s] if int8_model_seg_path.exists(): |     !benchmark_app -m $int8_model_seg
+[cell 31 DONE  +  204.0s]
+[cell 32 START +  204.0s] ## Other ways to optimize model | [back to top ⬆️](#Table-of-contents:) | 
+[cell 33 START +  204.0s] ## Live demo | [back to top ⬆️](#Table-of-contents:) |  | The following code
+[cell 34 START +  204.0s] ### Run Live Object Detection and Segmentation | [back to top ⬆️](#Table
+[cell 35 START +  204.0s] import collections | import time | from IPython import display | import cv2 | 
+[cell 35 DONE  +  204.0s]
+[cell 36 START +  204.0s] WEBCAM_INFERENCE = False |  | if WEBCAM_INFERENCE: |     VIDEO_SOURCE = 0  #
+[cell 36 DONE  +  209.1s]
+[cell 37 START +  209.1s] device
+[cell 37 DONE  +  209.1s]
+[cell 38 START +  209.1s] run_instance_segmentation( |     source=VIDEO_SOURCE, |     flip=True, |    
+[cell 38 DONE  +  219.4s]
+NBEXEC_RESULT={"ok": true, "n_cells": 20, "n_skipped": 0, "n_substituted": 0, "stopped_after": null, "error_cell": null, "error_type": null, "error_head": null, "duration_s": 220.58, "patch_notes": []}

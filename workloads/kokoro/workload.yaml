@@ -4,9 +4,9 @@ category: TTS
 upstream:
   repository: openvinotoolkit/openvino_notebooks
   branch: latest
-  commit: a8809170cc4fc6aa633fbb9c22214be67ac20b47
+  commit: 329562e6031d1a989017d08697b0fabe5a989492
   path: notebooks/kokoro/kokoro.ipynb
-  url: https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/kokoro/kokoro.ipynb
+  url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/kokoro/kokoro.ipynb
 model:
   name: ''
   source: ''
@@ -26,4 +26,4 @@ validation:
   - Generated \d+ samples at \d+ Hz
   min_output_chars: 10
 patches: {}
-last_verified: '2026-10-05T19:49:17+00:00'
+last_verified: '2026-10-07T01:11:30+00:00'

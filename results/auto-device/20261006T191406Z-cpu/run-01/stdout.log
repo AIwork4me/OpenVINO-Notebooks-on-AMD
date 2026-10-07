@@ -1,0 +1,60 @@
+[cell 0 START +    0.6s] # Automatic Device Selection with OpenVINO™ |  | The [Auto device](https:/
+[cell 1 START +    0.6s] ## Import modules and create Core | [back to top ⬆️](#Table-of-contents:
+[cell 2 START +    0.6s] # Install required packages | %pip install -q "openvino>=2023.1.0" "matp
+[cell 2 DONE  +   17.1s]
+[cell 3 START +   17.1s] import time | import sys |  | import openvino as ov |  | from IPython.display im
+[cell 3 DONE  +   17.3s]
+[cell 4 START +   17.3s] ## Convert the model to OpenVINO IR format | [back to top ⬆️](#Table-of-
+[cell 5 START +   17.3s] import torchvision | from pathlib import Path |  | base_model_dir = Path("./
+[cell 5 DONE  +   18.4s]
+[cell 6 START +   18.4s] ## (1) Simplify selection logic | [back to top ⬆️](#Table-of-contents:) | 
+[cell 7 START +   18.4s] import openvino.properties.log as log |  | # Set LOG_LEVEL to LOG_INFO. | co
+[03:14:25.6669]I[plugin.cpp:479][AUTO] device:CPU, config:LOG_LEVEL=LOG_INFO
+[03:14:25.6669]I[plugin.cpp:479][AUTO] device:CPU, config:PERFORMANCE_HINT=LATENCY
+[03:14:25.6669]I[plugin.cpp:479][AUTO] device:CPU, config:PERFORMANCE_HINT_NUM_REQUESTS=0
+[03:14:25.6669]I[plugin.cpp:479][AUTO] device:CPU, config:PERF_COUNT=NO
+[03:14:25.6669]I[plugin.cpp:484][AUTO] device:CPU, priority:0
+[03:14:25.6669]I[plugin.cpp:510][AUTO] Original device list() size to load the model: 0
+[03:14:25.6669]I[schedule.cpp:17][AUTO] scheduler starting
+[03:14:25.6669]I[auto_schedule.cpp:163][AUTO] select device:CPU
+[03:14:25.6674]I[auto_schedule.cpp:284][AUTO] Only one device or multiple devices of the same type will use passthrough compiled model
+[03:14:25.7529]I[auto_schedule.cpp:341][AUTO] Device: [CPU]: Compile model took 85.496674 ms
+[03:14:25.7531]I[auto_schedule.cpp:118][AUTO] device:CPU compiling model finished
+[03:14:25.7532]I[plugin.cpp:534][AUTO] underlying hardware does not support hardware context
+[cell 7 DONE  +   18.5s]
+[cell 8 START +   18.5s] # Deleted model will wait until compiling on the selected device is co
+[03:14:25.7577]I[schedule.cpp:312][AUTO] scheduler ending
+[cell 8 DONE  +   18.5s]
+[cell 9 START +   18.5s] ### Explicitly pass AUTO as device_name to Core::compile_model API | [ba
+[cell 10 START +   18.5s] # Set LOG_LEVEL to LOG_NONE. | core.set_property("AUTO", {log.level(): l
+[cell 10 DONE  +   18.5s]
+[cell 11 START +   18.5s] # Deleted model will wait until compiling on the selected device is co
+[cell 11 DONE  +   18.5s]
+[cell 12 START +   18.5s] ## (2) Improve the first inference latency | [back to top ⬆️](#Table-of-
+[cell 13 START +   18.5s] # Fetch `notebook_utils` module | import requests |  | if not Path("notebook
+[cell 13 DONE  +   18.6s]
+[cell 14 START +   18.6s] from PIL import Image |  | image_filename = Path("data/coco.jpg") |  | if not 
+[cell 14 DONE  +   18.7s]
+[cell 15 START +   18.7s] ### Load the model to GPU device and perform inference | [back to top ⬆️
+[cell 16 START +   18.7s] if not any("GPU" in device for device in core.available_devices): |     
+[cell 16 DONE  +   19.2s]
+[cell 17 START +   19.2s] ### Load the model using AUTO device and do inference | [back to top ⬆️]
+[cell 18 START +   19.2s] # Start time. | auto_load_start_time = time.perf_counter() | compiled_mode
+[cell 18 DONE  +   19.2s]
+[cell 19 START +   19.2s] # Deleted model will wait for compiling on the selected device to comp
+[cell 19 DONE  +   19.2s]
+[cell 20 START +   19.2s] ## (3) Achieve different performance for different targets | [back to to
+[cell 21 START +   19.2s] class PerformanceMetrics: |     """ |     Record the latest performance me
+[cell 21 DONE  +   19.2s]
+[cell 22 START +   19.2s] ### Inference with THROUGHPUT hint | [back to top ⬆️](#Table-of-contents
+[cell 23 START +   19.2s] import openvino.properties.hint as hints |  | THROUGHPUT_hint_context = In
+[cell 23 DONE  +   79.3s]
+[cell 24 START +   79.3s] ### Inference with LATENCY hint | [back to top ⬆️](#Table-of-contents:) | 
+[cell 25 START +   79.3s] LATENCY_hint_context = InferContext(metrics_update_interval, metrics_u
+[cell 25 DONE  +  139.3s]
+[cell 26 START +  139.3s] ### Difference in FPS and latency | [back to top ⬆️](#Table-of-contents:
+[cell 27 START +  139.3s] import matplotlib.pyplot as plt |  | TPUT = 0 | LAT = 1 | labels = ["THROUGHPU
+[cell 27 DONE  +  139.6s]
+[cell 28 START +  139.6s] # Output the difference. | width = 0.4 | fontsize = 14 |  | plt.rc("font", siz
+[cell 28 DONE  +  139.7s]
+NBEXEC_RESULT={"ok": true, "n_cells": 17, "n_skipped": 0, "n_substituted": 0, "stopped_after": null, "error_cell": null, "error_type": null, "error_head": null, "duration_s": 140.52, "patch_notes": []}

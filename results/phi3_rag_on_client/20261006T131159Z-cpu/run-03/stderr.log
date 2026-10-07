@@ -1,0 +1,115 @@
+[IPKernelApp] WARNING | Kernel is running over TCP without encryption. All communication (including code and outputs) is sent in plain text and is susceptible to eavesdropping. Use IPC transport or launch with kernel manager-provisioned CurveZMQ keys to enable transport encryption.
+lf._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages/nbclient/client.py", line 918, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+from datasets import load_dataset
+from nltk.tokenize import sent_tokenize
+from functools import reduce
+import pandas as pd
+import os
+
+from langchain_community.embeddings.sentence_transformer import SentenceTransformerEmbeddings
+from langchain_community.vectorstores import Chroma
+from langchain_core.documents.base import Document
+
+
+def articles_to_passages(articles, sent_count_per_passage=3):
+    """Split a list of articles to a list of passages"""
+
+    def map(text):
+        sents = sent_tokenize(text)
+        sentence_df = pd.DataFrame(sents, columns=["sentence"]).reset_index()
+        sentence_df["batch"] = sentence_df["index"] // sent_count_per_passage
+        passages = list(sentence_df.groupby("batch")["sentence"].apply(lambda x: " ".join(x)))
+        return passages
+
+    return reduce(lambda l1, l2: l1 + l2, [map(p) for p in articles], [])
+
+
+embedding_function = SentenceTransformerEmbeddings(model_name="BAAI/bge-small-en-v1.5")
+
+chroma_db_path = "./chroma_db"
+if os.path.exists(chroma_db_path):
+    database = Chroma(persist_directory=chroma_db_path, embedding_function=embedding_function)
+    print("Loaded dataset from disk")
+else:
+    dataset = load_dataset("RealTimeData/bbc_latest", split="train", revision="2024-03-18")
+    # Filter only sports arctiles
+    sports_articles = dataset.filter(lambda e: "sport" in e["link"])["content"]
+    sports_articles = pd.DataFrame(sports_articles).drop_duplicates()[0].to_list()
+    # Split documents to passages
+    sport_passages = articles_to_passages(sports_articles)
+    database = Chroma.from_documents([Document(page_content=doc) for doc in sport_passages], embedding_function, persist_directory=chroma_db_path)
+    print(f"Number of sports arcticles found: {len(sports_articles)}\nNumber of embedded passages: {len(sport_passages)}")
+------------------
+
+----- stderr -----
+/tmp/ipykernel_217995/2476150379.py:25: LangChainDeprecationWarning: The class `HuggingFaceEmbeddings` was deprecated in LangChain 0.2.2 and will be removed in 1.0. An updated version of the class exists in the :class:`~langchain-huggingface package and should be used instead. To use it run `pip install -U :class:`~langchain-huggingface` and import as `from :class:`~langchain_huggingface import HuggingFaceEmbeddings``.
+  embedding_function = SentenceTransformerEmbeddings(model_name="BAAI/bge-small-en-v1.5")
+----- stderr -----
+WARNING:torchao.kernel.intmm:Warning: Detected no triton, on systems without Triton certain kernels will not work
+------------------
+
+[31m---------------------------------------------------------------------------[39m
+[31mAttributeError[39m                            Traceback (most recent call last)
+[36mCell[39m[36m [39m[32mIn[2][39m[32m, line 35[39m
+[32m     31[39m [38;5;28;01melse[39;00m:
+[32m     32[39m     dataset = load_dataset([33m"RealTimeData/bbc_latest"[39m, split=[33m"train"[39m, revision=[33m"2024-03-18"[39m)
+[32m     33[39m     [38;5;66;03m# Filter only sports arctiles[39;00m
+[32m     34[39m     sports_articles = dataset.filter([38;5;28;01mlambda[39;00m e: [33m"sport"[39m [38;5;28;01min[39;00m e[[33m"link"[39m])[[33m"content"[39m]
+[32m---> [39m[32m35[39m     sports_articles = pd.DataFrame(sports_articles).drop_duplicates()[[32m0[39m].to_list()
+[32m     36[39m     [38;5;66;03m# Split documents to passages[39;00m
+[32m     37[39m     sport_passages = articles_to_passages(sports_articles)
+[32m     38[39m     database = Chroma.from_documents([Document(page_content=doc) [38;5;28;01mfor[39;00m doc [38;5;28;01min[39;00m sport_passages], embedding_function, persist_directory=chroma_db_path)
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages/pandas/core/frame.py:871[39m, in [36mDataFrame.__init__[39m[34m(self, data, index, columns, dtype, copy)[39m
+[32m    867[39m                         dtype=dtype,
+[32m    868[39m                         typ=manager,
+[32m    869[39m                     )
+[32m    870[39m                 [38;5;28;01melse[39;00m:
+[32m--> [39m[32m871[39m                     mgr = ndarray_to_mgr(
+[32m    872[39m                         data,
+[32m    873[39m                         index,
+[32m    874[39m                         columns,
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages/pandas/core/internals/construction.py:319[39m, in [36mndarray_to_mgr[39m[34m(values, index, columns, dtype, copy, typ)[39m
+[32m    314[39m     values = _ensure_2d(values)
+[32m    316[39m [38;5;28;01melse[39;00m:
+[32m    317[39m     [38;5;66;03m# by definition an array here[39;00m
+[32m    318[39m     [38;5;66;03m# the dtypes will be coerced to a single dtype[39;00m
+[32m--> [39m[32m319[39m     values = [30;43m_prep_ndarraylike[39;49m[30;43m([39;49m[30;43mvalues[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mcopy[39;49m[30;43m=[39;49m[30;43mcopy_on_sanitize[39;49m[30;43m)[39;49m
+[32m    321[39m [38;5;28;01mif[39;00m dtype [38;5;129;01mis[39;00m [38;5;129;01mnot[39;00m [38;5;28;01mNone[39;00m [38;5;129;01mand[39;00m values.dtype != dtype:
+[32m    322[39m     [38;5;66;03m# GH#40110 see similar check inside sanitize_array[39;00m
+[32m    323[39m     values = sanitize_array(
+[32m    324[39m         values,
+[32m    325[39m         [38;5;28;01mNone[39;00m,
+[32m   (...)[39m[32m    328[39m         allow_2d=[38;5;28;01mTrue[39;00m,
+[32m    329[39m     )
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages/pandas/core/internals/construction.py:580[39m, in [36m_prep_ndarraylike[39m[34m(values, copy)[39m
+[32m    578[39m     values = np.array([convert(v) [38;5;28;01mfor[39;00m v [38;5;129;01min[39;00m values])
+[32m    579[39m [38;5;28;01melse[39;00m:
+[32m--> [39m[32m580[39m     values = [30;43mconvert[39;49m[30;43m([39;49m[30;43mvalues[39;49m[30;43m)[39;49m
+[32m    582[39m [38;5;28;01mreturn[39;00m _ensure_2d(values)
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages/pandas/core/internals/construction.py:564[39m, in [36m_prep_ndarraylike.<locals>.convert[39m[34m(v)[39m
+[32m    561[39m     [38;5;28;01mreturn[39;00m v
+[32m    563[39m v = extract_array(v, extract_numpy=[38;5;28;01mTrue[39;00m)
+[32m--> [39m[32m564[39m res = [30;43mmaybe_convert_platform[39;49m[30;43m([39;49m[30;43mv[39;49m[30;43m)[39;49m
+[32m    565[39m [38;5;66;03m# We don't do maybe_infer_to_datetimelike here bc we will end up doing[39;00m
+[32m    566[39m [38;5;66;03m#  it column-by-column in ndarray_to_mgr[39;00m
+[32m    567[39m [38;5;28;01mreturn[39;00m res
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages/pandas/core/dtypes/cast.py:136[39m, in [36mmaybe_convert_platform[39m[34m(values)[39m
+[32m    131[39m [38;5;28;01melse[39;00m:
+[32m    132[39m     [38;5;66;03m# The caller is responsible for ensuring that we have np.ndarray[39;00m
+[32m    133[39m     [38;5;66;03m#  or ExtensionArray here.[39;00m
+[32m    134[39m     arr = values
+[32m--> [39m[32m136[39m [38;5;28;01mif[39;00m [30;43marr[39;49m[30;43m.[39;49m[30;43mdtype[39;49m == _dtype_obj:
+[32m    137[39m     arr = cast(np.ndarray, arr)
+[32m    138[39m     arr = lib.maybe_convert_objects(arr)
+
+[31mAttributeError[39m: 'Column' object has no attribute 'dtype'
+

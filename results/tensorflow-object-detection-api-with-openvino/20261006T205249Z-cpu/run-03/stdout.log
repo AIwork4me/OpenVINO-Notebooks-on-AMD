@@ -1,0 +1,169 @@
+[cell 0 START +    0.4s] # Using TensorFlow Object Detection API with OpenVINO™ |  | [TensorFlow](h
+[cell 1 START +    0.4s] ## Prerequisites | [back to top ⬆️](#Table-of-contents:) |  | Install requir
+[cell 2 START +    0.4s] %pip install -q "openvino>=2023.1.0" "numpy>=1.21.0" "opencv-python" "
+[cell 2 DONE  +    1.4s]
+[cell 3 START +    1.4s] The notebook uses utility functions. | The cell below will download the 
+[cell 4 START +    1.4s] # Fetch the notebook utils script from the openvino_notebooks repo | imp
+[cell 4 DONE  +    1.6s]
+[cell 5 START +    1.6s] ## Imports | [back to top ⬆️](#Table-of-contents:) | 
+[cell 6 START +    1.6s] # Standard python modules | from pathlib import Path |  | # External modules
+[cell 6 DONE  +    1.9s]
+[cell 7 START +    1.9s] ## Prepare input data | [back to top ⬆️](#Table-of-contents:) |  | Load and 
+[cell 8 START +    1.9s] image_path = Path("./data/coco_bike.jpg") |  | if not image_path.exists():
+[cell 8 DONE  +    1.9s]
+[cell 9 START +    1.9s] Read the image, resize and convert it to the input shape of the networ
+[cell 10 START +    1.9s] # Read the image | image = cv2.imread(filename=str(image_path)) |  | # The n
+[cell 10 DONE  +    2.1s]
+[cell 11 START +    2.1s] Import functions which help to visualize results.
+[cell 12 START +    2.1s] if not Path("visualization_helper.py").exists(): |     r = requests.get(
+[cell 12 DONE  +    2.1s]
+[cell 13 START +    2.1s] TensorFlow Object Detection model ([faster_rcnn_resnet50_v1_640x640](h
+[cell 14 START +    2.1s] coco_labels_file_path = Path("./data/coco_91cl.txt") |  | if not coco_labe
+[cell 14 DONE  +    2.1s]
+[cell 15 START +    2.1s] Then we need to create dictionary `coco_labels_map` with mappings betw
+[cell 16 START +    2.1s] with open(coco_labels_file_path, "r") as file: |     coco_labels = file.
+[cell 16 DONE  +    2.1s]
+[cell 17 START +    2.1s] Now let's move on to looking at the models and how they work with Open
+[cell 18 START +    2.1s] ## Object Detection | [back to top ⬆️](#Table-of-contents:) |  | Define mode
+[cell 19 START +    2.1s] # Create directories for models files | model_dir = Path("od-model") | mod
+[cell 19 DONE  +    2.1s]
+[cell 20 START +    2.1s] ### Download Model from TensorFlow Hub | [back to top ⬆️](#Table-of-cont
+[cell 21 START +    2.1s] download_file(url=tf_model_url, filename=tf_model_archive_filename, di
+[cell 21 DONE  +    2.1s]
+[cell 22 START +    2.1s] Extract TensorFlow Object Detection model from the downloaded archive:
+[cell 23 START +    2.1s] import tarfile |  | with tarfile.open(tf_model_dir / tf_model_archive_file
+[cell 23 DONE  +    2.5s]
+[cell 24 START +    2.5s] ### Convert Model to OpenVINO IR | [back to top ⬆️](#Table-of-contents:)
+[cell 25 START +    2.5s] ov_model = ov.convert_model(tf_model_dir) |  | # Save converted OpenVINO I
+[cell 25 DONE  +    7.0s]
+[cell 26 START +    7.0s] ### Select inference device | [back to top ⬆️](#Table-of-contents:) |  | sel
+[cell 27 START +    7.0s] core = ov.Core() | device = device_widget() |  | device
+[cell 27 DONE  +    7.2s]
+[cell 28 START +    7.2s] ### Load the Model | [back to top ⬆️](#Table-of-contents:) | 
+[cell 29 START +    7.2s] core = ov.Core() | openvino_ir_model = core.read_model(openvino_ir_path)
+[04:53:55.0035]D[plugin.cpp:289][AUTO] deviceNameWithID:CPU, defaultDeviceID:, uniqueName:CPU_
+[04:53:55.0036]I[plugin.cpp:479][AUTO] device:CPU, config:LOG_LEVEL=LOG_NONE
+[04:53:55.0036]I[plugin.cpp:479][AUTO] device:CPU, config:PERFORMANCE_HINT=LATENCY
+[04:53:55.0036]I[plugin.cpp:479][AUTO] device:CPU, config:PERFORMANCE_HINT_NUM_REQUESTS=0
+[04:53:55.0036]I[plugin.cpp:479][AUTO] device:CPU, config:PERF_COUNT=NO
+[04:53:55.0036]I[plugin.cpp:484][AUTO] device:CPU, priority:0
+[04:53:55.0037]I[plugin.cpp:510][AUTO] Original device list() size to load the model: 0
+[04:53:55.0037]I[schedule.cpp:17][AUTO] scheduler starting
+[04:53:55.0037]I[auto_schedule.cpp:163][AUTO] select device:CPU
+[04:53:55.0234]I[auto_schedule.cpp:284][AUTO] Only one device or multiple devices of the same type will use passthrough compiled model
+[04:53:56.2846]I[auto_schedule.cpp:341][AUTO] Device: [CPU]: Compile model took 1261.141471 ms
+[04:53:56.2852]I[auto_schedule.cpp:118][AUTO] device:CPU compiling model finished
+[04:53:56.2853]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:SUPPORTED_PROPERTIES=SUPPORTED_PROPERTIES NETWORK_NAME OPTIMAL_NUMBER_OF_INFER_REQUESTS NUM_STREAMS INFERENCE_NUM_THREADS PERF_COUNT INFERENCE_PRECISION_HINT PERFORMANCE_HINT EXECUTION_MODE_HINT PERFORMANCE_HINT_NUM_REQUESTS ENABLE_
+[04:53:56.2853]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:NETWORK_NAME=TensorFlow_Frontend_IR
+[04:53:56.2853]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:OPTIMAL_NUMBER_OF_INFER_REQUESTS=1
+[04:53:56.2853]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:NUM_STREAMS=1
+[04:53:56.2853]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:INFERENCE_NUM_THREADS=16
+[04:53:56.2853]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:PERF_COUNT=NO
+[04:53:56.2853]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:INFERENCE_PRECISION_HINT=bf16
+[04:53:56.2853]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:PERFORMANCE_HINT=LATENCY
+[04:53:56.2853]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:EXECUTION_MODE_HINT=PERFORMANCE
+[04:53:56.2853]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:PERFORMANCE_HINT_NUM_REQUESTS=0
+[04:53:56.2853]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:ENABLE_CPU_PINNING=YES
+[04:53:56.2853]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:ENABLE_CPU_RESERVATION=NO
+[04:53:56.2853]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:SCHEDULING_CORE_TYPE=ANY_CORE
+[04:53:56.2853]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:MODEL_DISTRIBUTION_POLICY=
+[04:53:56.2853]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:ENABLE_HYPER_THREADING=NO
+[04:53:56.2853]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:EXECUTION_DEVICES=CPU
+[04:53:56.2853]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:CPU_DENORMALS_OPTIMIZATION=NO
+[04:53:56.2853]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:LOG_LEVEL=LOG_NONE
+[04:53:56.2853]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:CPU_SPARSE_WEIGHTS_DECOMPRESSION_RATE=1
+[04:53:56.2853]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:ENABLE_TENSOR_PARALLEL=NO
+[04:53:56.2853]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:TBB_PARTITIONER=STATIC
+[04:53:56.2853]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:DYNAMIC_QUANTIZATION_GROUP_SIZE=32
+[04:53:56.2853]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:KV_CACHE_PRECISION=u8
+[04:53:56.2853]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:KEY_CACHE_PRECISION=u8
+[04:53:56.2853]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:VALUE_CACHE_PRECISION=u8
+[04:53:56.2853]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:KEY_CACHE_GROUP_SIZE=0
+[04:53:56.2853]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:VALUE_CACHE_GROUP_SIZE=0
+[04:53:56.2853]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:RUNTIME_REQUIREMENTS=meta=1.0;ov=2026.4.1;isa=Intel AVX-512 with Intel DL Boost and bfloat16 support
+[04:53:56.2854]I[plugin.cpp:534][AUTO] underlying hardware does not support hardware context
+[cell 29 DONE  +    8.6s]
+[cell 30 START +    8.6s] ### Get Model Information | [back to top ⬆️](#Table-of-contents:) |  | Faste
+[cell 31 START +    8.6s] model_inputs = compiled_model.inputs | model_input = compiled_model.inpu
+[cell 31 DONE  +    8.6s]
+[cell 32 START +    8.6s] ### Perform Inference | [back to top ⬆️](#Table-of-contents:) | 
+[cell 33 START +    8.6s] inference_result = compiled_model(network_input_image)
+[cell 33 DONE  +    9.0s]
+[cell 34 START +    9.0s] After model inference on the test image, object detection data can be 
+[cell 35 START +    9.0s] ( |     _, |     detection_boxes, |     detection_classes, |     _, |     detect
+[cell 35 DONE  +    9.0s]
+[cell 36 START +    9.0s] ### Inference Result Visualization | [back to top ⬆️](#Table-of-contents
+[cell 37 START +    9.0s] visualize_inference_result( |     inference_result=inference_result, |    
+[cell 37 DONE  +    9.2s]
+[cell 38 START +    9.2s] ## Instance Segmentation | [back to top ⬆️](#Table-of-contents:) |  |  | Defin
+[cell 39 START +    9.2s] # Create directories for models files | model_dir = Path("is-model") | mod
+[cell 39 DONE  +    9.2s]
+[cell 40 START +    9.2s] ### Download Model from TensorFlow Hub | [back to top ⬆️](#Table-of-cont
+[cell 41 START +    9.2s] if not (tf_model_dir / tf_model_archive_filename).exists(): |     downlo
+[cell 41 DONE  +    9.2s]
+[cell 42 START +    9.2s] Extract TensorFlow Instance Segmentation model from the downloaded arc
+[cell 43 START +    9.2s] import tarfile |  | with tarfile.open(tf_model_dir / tf_model_archive_file
+[cell 43 DONE  +   10.1s]
+[cell 44 START +   10.1s] ### Convert Model to OpenVINO IR | [back to top ⬆️](#Table-of-contents:)
+[cell 45 START +   10.1s] ov_model = ov.convert_model(tf_model_dir) |  | # Save converted OpenVINO I
+[cell 45 DONE  +   22.2s]
+[cell 46 START +   22.2s] ### Load the Model | [back to top ⬆️](#Table-of-contents:)
+[cell 47 START +   22.2s] openvino_ir_model = core.read_model(openvino_ir_path) | compiled_model =
+[04:54:10.1890]D[plugin.cpp:289][AUTO] deviceNameWithID:CPU, defaultDeviceID:, uniqueName:CPU_
+[04:54:10.1891]I[plugin.cpp:479][AUTO] device:CPU, config:LOG_LEVEL=LOG_NONE
+[04:54:10.1891]I[plugin.cpp:479][AUTO] device:CPU, config:PERFORMANCE_HINT=LATENCY
+[04:54:10.1891]I[plugin.cpp:479][AUTO] device:CPU, config:PERFORMANCE_HINT_NUM_REQUESTS=0
+[04:54:10.1891]I[plugin.cpp:479][AUTO] device:CPU, config:PERF_COUNT=NO
+[04:54:10.1891]I[plugin.cpp:484][AUTO] device:CPU, priority:0
+[04:54:10.1891]I[plugin.cpp:510][AUTO] Original device list() size to load the model: 0
+[04:54:10.1891]I[schedule.cpp:17][AUTO] scheduler starting
+[04:54:10.1892]I[auto_schedule.cpp:163][AUTO] select device:CPU
+[04:54:10.2290]I[auto_schedule.cpp:284][AUTO] Only one device or multiple devices of the same type will use passthrough compiled model
+[04:54:12.3117]I[auto_schedule.cpp:341][AUTO] Device: [CPU]: Compile model took 2082.532277 ms
+[04:54:12.3125]I[auto_schedule.cpp:118][AUTO] device:CPU compiling model finished
+[04:54:12.3126]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:SUPPORTED_PROPERTIES=SUPPORTED_PROPERTIES NETWORK_NAME OPTIMAL_NUMBER_OF_INFER_REQUESTS NUM_STREAMS INFERENCE_NUM_THREADS PERF_COUNT INFERENCE_PRECISION_HINT PERFORMANCE_HINT EXECUTION_MODE_HINT PERFORMANCE_HINT_NUM_REQUESTS ENABLE_
+[04:54:12.3126]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:NETWORK_NAME=TensorFlow_Frontend_IR
+[04:54:12.3126]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:OPTIMAL_NUMBER_OF_INFER_REQUESTS=1
+[04:54:12.3126]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:NUM_STREAMS=1
+[04:54:12.3126]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:INFERENCE_NUM_THREADS=16
+[04:54:12.3126]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:PERF_COUNT=NO
+[04:54:12.3126]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:INFERENCE_PRECISION_HINT=bf16
+[04:54:12.3126]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:PERFORMANCE_HINT=LATENCY
+[04:54:12.3126]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:EXECUTION_MODE_HINT=PERFORMANCE
+[04:54:12.3126]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:PERFORMANCE_HINT_NUM_REQUESTS=0
+[04:54:12.3126]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:ENABLE_CPU_PINNING=YES
+[04:54:12.3126]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:ENABLE_CPU_RESERVATION=NO
+[04:54:12.3126]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:SCHEDULING_CORE_TYPE=ANY_CORE
+[04:54:12.3126]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:MODEL_DISTRIBUTION_POLICY=
+[04:54:12.3126]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:ENABLE_HYPER_THREADING=NO
+[04:54:12.3126]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:EXECUTION_DEVICES=CPU
+[04:54:12.3126]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:CPU_DENORMALS_OPTIMIZATION=NO
+[04:54:12.3126]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:LOG_LEVEL=LOG_NONE
+[04:54:12.3126]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:CPU_SPARSE_WEIGHTS_DECOMPRESSION_RATE=1
+[04:54:12.3126]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:ENABLE_TENSOR_PARALLEL=NO
+[04:54:12.3126]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:TBB_PARTITIONER=STATIC
+[04:54:12.3126]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:DYNAMIC_QUANTIZATION_GROUP_SIZE=32
+[04:54:12.3126]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:KV_CACHE_PRECISION=u8
+[04:54:12.3126]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:KEY_CACHE_PRECISION=u8
+[04:54:12.3126]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:VALUE_CACHE_PRECISION=u8
+[04:54:12.3126]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:KEY_CACHE_GROUP_SIZE=0
+[04:54:12.3126]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:VALUE_CACHE_GROUP_SIZE=0
+[04:54:12.3126]D[auto_schedule.cpp:124][AUTO] device:CPU, GetConfig:RUNTIME_REQUIREMENTS=meta=1.0;ov=2026.4.1;isa=Intel AVX-512 with Intel DL Boost and bfloat16 support
+[04:54:12.3128]I[plugin.cpp:534][AUTO] underlying hardware does not support hardware context
+[cell 47 DONE  +   24.6s]
+[cell 48 START +   24.6s] ### Get Model Information | [back to top ⬆️](#Table-of-contents:) |  | Mask 
+[cell 49 START +   24.6s] model_inputs = compiled_model.inputs | model_outputs = compiled_model.ou
+[cell 49 DONE  +   24.6s]
+[cell 50 START +   24.6s] ### Perform Inference | [back to top ⬆️](#Table-of-contents:)
+[cell 51 START +   24.6s] inference_result = compiled_model(network_input_image)
+[cell 51 DONE  +   25.7s]
+[cell 52 START +   25.7s] After model inference on the test image, instance segmentation data ca
+[cell 53 START +   25.7s] detection_boxes = compiled_model.output("detection_boxes") | image_detec
+[cell 53 DONE  +   25.7s]
+[cell 54 START +   25.7s] ### Inference Result Visualization | [back to top ⬆️](#Table-of-contents
+[cell 55 START +   25.7s] visualize_inference_result( |     inference_result=inference_result, |    
+[cell 55 DONE  +   25.8s]
+[cell 56 START +   25.8s] ## Next Steps | [back to top ⬆️](#Table-of-contents:) |  | This section cont
+[04:54:13.6209]I[schedule.cpp:312][AUTO] scheduler ending
+[04:54:13.9026]I[schedule.cpp:312][AUTO] scheduler ending
+NBEXEC_RESULT={"ok": true, "n_cells": 27, "n_skipped": 0, "n_substituted": 0, "stopped_after": null, "error_cell": null, "error_type": null, "error_head": null, "duration_s": 26.55, "patch_notes": []}

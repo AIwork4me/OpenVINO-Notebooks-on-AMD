@@ -1,0 +1,4 @@
+[cell 0 START +    0.4s] # Qwen3.8 Multi-Token Prediction with OpenVINO™ |  | This experimental not
+[cell 1 START +    0.4s] ## Prerequisites | [back to top ⬆️](#Table-of-contents:) |  | Install requir
+[cell 2 START +    0.4s] %pip install -q -U --pre openvino openvino-tokenizers openvino-genai -
+NBEXEC_RESULT={"ok": false, "n_cells": 17, "n_skipped": 0, "n_substituted": 0, "stopped_after": null, "error_cell": null, "error_type": "CellTimeoutError", "error_head": "-------------------", "duration_s": 900.78, "patch_notes": []}

@@ -1,0 +1,37 @@
+[cell 0 START +    0.4s] # Classification with ConvNeXt and OpenVINO | The [`torchvision.models`]
+[cell 1 START +    0.4s] ## Prerequisites | [back to top ⬆️](#Table-of-contents:) | 
+[cell 2 START +    0.4s] %pip install -q --extra-index-url https://download.pytorch.org/whl/cpu
+[cell 2 DONE  +    1.1s]
+[cell 3 START +    1.1s] ## Get a test image | [back to top ⬆️](#Table-of-contents:) | First of all
+[cell 4 START +    1.1s] import requests | from pathlib import Path |  | from torchvision.io import r
+[cell 4 DONE  +    2.4s]
+[cell 5 START +    2.4s] ## Get a pretrained model | [back to top ⬆️](#Table-of-contents:) | Torchv
+[cell 6 START +    2.4s] import torchvision.models as models |  | # List available models | all_model
+[cell 6 DONE  +    2.4s]
+[cell 7 START +    2.4s] We will use `convnext_tiny`. To get a pretrained model just use `model
+[cell 8 START +    2.4s] model = models.convnext_tiny(weights=models.ConvNeXt_Tiny_Weights.DEFA
+[cell 8 DONE  +    2.6s]
+[cell 9 START +    2.6s] ## Define a preprocessing and prepare an input data | [back to top ⬆️](#
+[cell 10 START +    2.6s] import torch |  | preprocess = models.ConvNeXt_Tiny_Weights.DEFAULT.transf
+[cell 10 DONE  +    2.6s]
+[cell 11 START +    2.6s] ## Use the original model to run an inference | [back to top ⬆️](#Table-
+[cell 12 START +    2.6s] outputs = model(input_data)
+[cell 12 DONE  +    2.6s]
+[cell 13 START +    2.6s] And print results
+[cell 14 START +    2.6s] # download class number to class label mapping | imagenet_classes_file_p
+[cell 14 DONE  +    2.6s]
+[cell 15 START +    2.6s] print_results(outputs)
+[cell 15 DONE  +    2.6s]
+[cell 16 START +    2.6s] ## Convert the model to OpenVINO Intermediate representation format | [b
+[cell 17 START +    2.6s] from pathlib import Path |  | import openvino as ov |  | ov_model_xml_path = P
+[cell 17 DONE  +    2.7s]
+[cell 18 START +    2.7s] When the `openvino.save_model` function is used, an OpenVINO model is 
+[cell 19 START +    2.7s] Select device from dropdown list for running inference using OpenVINO
+[cell 20 START +    2.7s] from notebook_utils import device_widget |  | device = device_widget(exclu
+[cell 20 DONE  +    2.8s]
+[cell 21 START +    2.8s] core = ov.Core() |  | compiled_model = core.compile_model(ov_model_xml_pat
+[cell 21 DONE  +    2.8s]
+[cell 22 START +    2.8s] ## Use the OpenVINO IR model to run an inference | [back to top ⬆️](#Tab
+[cell 23 START +    2.8s] outputs = compiled_model(input_data)[0] | print_results(torch.from_numpy
+[cell 23 DONE  +    2.9s]
+NBEXEC_RESULT={"ok": true, "n_cells": 12, "n_skipped": 0, "n_substituted": 1, "stopped_after": null, "error_cell": null, "error_type": null, "error_head": null, "duration_s": 3.81, "patch_notes": ["substituted 1 occurrence(s) in cell 4"]}

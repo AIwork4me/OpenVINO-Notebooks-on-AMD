@@ -1,0 +1,15 @@
+[cell 0 START +    0.5s] # Text-Image to Video generation with Wan2.2 and OpenVINO |  |  Wan2.2 is 
+[cell 1 START +    0.5s] ## Prerequisites | [back to top ⬆️](#Table-of-contents:)
+[cell 2 START +    0.5s] %pip install -q "torch>=2.1" "diffusers==0.35" "transformers==4.49.0" 
+[cell 2 DONE  +    4.1s]
+[cell 3 START +    4.1s] import requests | from pathlib import Path |  | if not Path("ov_wan_helper.p
+[cell 3 DONE  +    4.2s]
+[cell 4 START +    4.2s] ## Convert model to OpenVINO Intermediate Representation | [back to top 
+[cell 5 START +    4.2s] import ipywidgets as widgets |  | # Read more about telemetry collection a
+[cell 5 DONE  +    4.2s]
+[cell 6 START +    4.2s] import nncf |  | model_dir = model_base_dir / model_format.value |  | if model
+[cell 6 DONE  +    5.5s]
+[cell 7 START +    5.5s] from ov_wan_i2v_helper import convert_pipeline |  | # Uncomment the line t
+[cell 7 DONE  +    8.1s]
+[cell 8 START +    8.1s] convert_pipeline(model_id, model_dir, compression_config=weights_compr
+NBEXEC_RESULT={"ok": false, "n_cells": 12, "n_skipped": 1, "n_substituted": 0, "stopped_after": null, "error_cell": null, "error_type": "CellTimeoutError", "error_head": "-------------------", "duration_s": 910.7, "patch_notes": ["skipped cell 18: matched skip pattern"]}

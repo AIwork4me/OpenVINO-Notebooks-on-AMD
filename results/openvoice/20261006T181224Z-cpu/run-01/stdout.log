@@ -1,0 +1,82 @@
+[cell 0 START +    0.4s] # Voice tone cloning with OpenVoice and OpenVINO |  | <img referrerpolicy=
+[cell 1 START +    0.4s] OpenVoice is a versatile instant voice tone transferring and generatin
+[cell 2 START +    0.4s] ## Clone repository and install requirements | [back to top ⬆️](#Table-o
+[cell 3 START +    0.4s] # Fetch `notebook_utils` module | import requests | from pathlib import Pa
+[cell 3 DONE  +    0.5s]
+[cell 4 START +    0.5s] from pathlib import Path |  | from cmd_helper import clone_repo | from pip_h
+[cell 4 DONE  +   21.4s]
+[cell 5 START +   21.4s] ## Download checkpoints and load PyTorch model | [back to top ⬆️](#Table
+[cell 6 START +   21.4s] import os | import torch | import openvino as ov | import ipywidgets as widg
+[cell 6 DONE  +   24.1s]
+[cell 7 START +   24.1s] CKPT_BASE_PATH = Path("checkpoints") |  | en_suffix = CKPT_BASE_PATH / "ba
+[cell 7 DONE  +   24.1s]
+[cell 8 START +   24.1s] To make notebook lightweight by default model for Chinese speech is no
+[cell 9 START +   24.1s] enable_chinese_lang = False
+[cell 9 DONE  +   24.1s]
+[cell 10 START +   24.1s] def download_from_hf_hub(filename, local_dir="./"): |     from huggingfa
+[cell 10 DONE  +   46.5s]
+[cell 11 START +   46.5s] pt_device = "cpu" |  | en_base_speaker_tts = BaseSpeakerTTS(en_suffix / "c
+[cell 11 DONE  +   48.6s]
+[cell 12 START +   48.6s] ## Convert models to OpenVINO IR | [back to top ⬆️](#Table-of-contents:)
+[cell 13 START +   48.6s] There are 2 models in OpenVoice: first one is responsible for speech g
+[cell 14 START +   48.6s] class OVOpenVoiceBase(torch.nn.Module): |     """ |     Base class for bot
+[cell 14 DONE  +   48.6s]
+[cell 15 START +   48.6s] Convert to OpenVino IR and save to IRs_path folder for the future use.
+[cell 16 START +   48.6s] import nncf |  | IRS_PATH = Path("openvino_irs/") | EN_TTS_IR = IRS_PATH / "
+[cell 16 DONE  +   64.0s]
+[cell 17 START +   64.0s] ## Inference | [back to top ⬆️](#Table-of-contents:)
+[cell 18 START +   64.0s] ### Select inference device | [back to top ⬆️](#Table-of-contents:)
+[cell 19 START +   64.0s] core = ov.Core() |  | device = device_widget("CPU", exclude=["NPU"]) | devic
+[cell 19 DONE  +   64.2s]
+[cell 20 START +   64.2s] ### Select reference tone | [back to top ⬆️](#Table-of-contents:)
+[cell 21 START +   64.2s] First of all, select the reference tone of voice to which the generate
+[cell 22 START +   64.2s] REFERENCE_VOICES_PATH = f"{repo_dir}/resources/" | reference_speakers = 
+[cell 22 DONE  +   64.2s]
+[cell 23 START +   64.2s] OUTPUT_DIR = Path("outputs/") | OUTPUT_DIR.mkdir(exist_ok=True)
+[cell 23 DONE  +   64.2s]
+[cell 24 START +   64.2s] ref_speaker_path = f"{REFERENCE_VOICES_PATH}/{ref_speaker.value}" | allo
+[cell 24 DONE  +   64.2s]
+[cell 25 START +   64.2s] Play the reference voice sample before cloning it's tone to another sp
+[cell 26 START +   64.2s] def save_audio(voice_source: widgets.FileUpload, out_path: str): |     w
+[cell 26 DONE  +   64.2s]
+[cell 27 START +   64.2s] Audio(ref_speaker_path)
+[cell 27 DONE  +   64.2s]
+[cell 28 START +   64.2s] torch_hub_local = Path("torch_hub_local/") | %env TORCH_HOME={str(torch_
+[cell 28 DONE  +   64.3s]
+[cell 29 START +   64.3s] Load speaker embeddings
+[cell 30 START +   64.3s] # second step to fix a problem with silero downloading and installing | 
+[cell 30 DONE  +  312.1s]
+[cell 31 START +  312.1s] en_source_default_se = torch.load(f"{en_suffix}/en_default_se.pth") | en
+[cell 31 DONE  +  316.0s]
+[cell 32 START +  316.0s] Replace original infer methods of `OpenVoiceBaseClass` with optimized 
+[cell 33 START +  316.0s] def get_pathched_infer(ov_model: ov.Model, device: str) -> callable: |  
+[cell 33 DONE  +  317.4s]
+[cell 34 START +  317.4s] ### Run inference | [back to top ⬆️](#Table-of-contents:)
+[cell 35 START +  317.4s] voice_source = widgets.Dropdown( |     options=["use TTS", "choose_manua
+[cell 35 DONE  +  317.5s]
+[cell 36 START +  317.5s] if voice_source.value == "choose_manually": |     upload_orig_voice = wi
+[cell 36 DONE  +  317.5s]
+[cell 37 START +  317.5s] if voice_source.value == "choose_manually": |     orig_voice_path = f"{O
+[cell 37 DONE  +  318.0s]
+[cell 38 START +  318.0s] And finally, run voice tone conversion with OpenVINO optimized model
+[cell 39 START +  318.0s] tau_slider = widgets.FloatSlider( |     value=0.3, |     min=0.01, |     max
+[cell 39 DONE  +  318.0s]
+[cell 40 START +  318.0s] resulting_voice_path = OUTPUT_DIR / "output_with_cloned_voice_tone.wav
+[cell 40 DONE  +  318.6s]
+[cell 41 START +  318.6s] Audio(orig_voice_path)
+[cell 41 DONE  +  318.6s]
+[cell 42 START +  318.6s] Audio(resulting_voice_path)
+[cell 42 DONE  +  318.6s]
+[cell 43 START +  318.6s] ## Run OpenVoice Gradio interactive demo | [back to top ⬆️](#Table-of-co
+[cell 44 START +  318.6s] We can also use [Gradio](https://www.gradio.app/) app to run TTS and v
+[cell 45 START +  318.6s] import gradio as gr | import langid |  | supported_languages = ["zh", "en"] | 
+[cell 45 DONE  +  319.7s]
+[cell 46 START +  319.7s] from functools import partial |  | predict = partial( |     predict_impl, |   
+[cell 46 DONE  +  319.7s]
+[cell 47 START +  319.7s] if not Path("gradio_helper.py").exists(): |     r = requests.get(url="ht
+[cell 48 START +  319.7s] # please uncomment and run this cell for stopping gradio interface | # d
+[cell 48 DONE  +  319.7s]
+[cell 49 START +  319.7s] ## Cleanup | [back to top ⬆️](#Table-of-contents:)
+[cell 50 START +  319.7s] # import shutil | # shutil.rmtree(CKPT_BASE_PATH) | # shutil.rmtree(IRS_PA
+[cell 50 DONE  +  319.7s]
+NBEXEC_RESULT={"ok": true, "n_cells": 31, "n_skipped": 1, "n_substituted": 0, "stopped_after": null, "error_cell": null, "error_type": null, "error_head": null, "duration_s": 321.93, "patch_notes": ["skipped cell 47: matched skip pattern"]}

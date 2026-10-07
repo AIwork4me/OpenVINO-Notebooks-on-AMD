@@ -1,0 +1,72 @@
+[IPKernelApp] WARNING | Kernel is running over TCP without encryption. All communication (including code and outputs) is sent in plain text and is susceptible to eavesdropping. Use IPC transport or launch with kernel manager-provisioned CurveZMQ keys to enable transport encryption.
+Traceback (most recent call last):
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/ov_amd/_nbexec.py", line 144, in main
+    client.execute()
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/320129a7d832b3a6/lib/python3.12/site-packages/jupyter_core/utils/__init__.py", line 165, in wrapped
+    return loop.run_until_complete(inner)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/base_events.py", line 687, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/320129a7d832b3a6/lib/python3.12/site-packages/nbclient/client.py", line 709, in async_execute
+    await self.async_execute_cell(
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/320129a7d832b3a6/lib/python3.12/site-packages/nbclient/client.py", line 1062, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/320129a7d832b3a6/lib/python3.12/site-packages/nbclient/client.py", line 918, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+from diffusers.utils import load_image, make_image_grid
+
+image_path = Path("dog.jpg")
+inpaint_path = Path("dog_mask.jpg")
+depth_path = Path("dog_depth.jpg")
+
+if not image_path.exists():
+    inpaint_image = load_image("https://ostris.com/wp-content/uploads/2025/04/dog.jpg")
+    inpaint_image.save(image_path)
+else:
+    inpaint_image = load_image(str(image_path))
+
+if not inpaint_path.exists():
+    inpaint_mask = load_image("https://ostris.com/wp-content/uploads/2025/04/dog_mask.jpg")
+    inpaint_mask.save(inpaint_path)
+else:
+    inpaint_mask = load_image(str(inpaint_path))
+
+if not depth_path.exists():
+    control_image = load_image("https://ostris.com/wp-content/uploads/2025/04/dog_depth.jpg")
+    control_image.save(depth_path)
+else:
+    control_image = load_image(str(depth_path))
+
+make_image_grid([inpaint_image, inpaint_mask, control_image], rows=1, cols=3)
+------------------
+
+
+[31m---------------------------------------------------------------------------[39m
+[31mUnidentifiedImageError[39m                    Traceback (most recent call last)
+[36mCell[39m[36m [39m[32mIn[7][39m[32m, line 8[39m
+[32m      4[39m inpaint_path = Path([33m"dog_mask.jpg"[39m)
+[32m      5[39m depth_path = Path([33m"dog_depth.jpg"[39m)
+[32m      6[39m 
+[32m      7[39m [38;5;28;01mif[39;00m [38;5;28;01mnot[39;00m image_path.exists():
+[32m----> [39m[32m8[39m     inpaint_image = load_image([33m"https://ostris.com/wp-content/uploads/2025/04/dog.jpg"[39m)
+[32m      9[39m     inpaint_image.save(image_path)
+[32m     10[39m [38;5;28;01melse[39;00m:
+[32m     11[39m     inpaint_image = load_image(str(image_path))
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/320129a7d832b3a6/lib/python3.12/site-packages/diffusers/utils/loading_utils.py:33[39m, in [36mload_image[39m[34m(image, convert_method)[39m
+[32m     31[39m [38;5;28;01mif[39;00m [38;5;28misinstance[39m(image, [38;5;28mstr[39m):
+[32m     32[39m     [38;5;28;01mif[39;00m image.startswith([33m"[39m[33mhttp://[39m[33m"[39m) [38;5;129;01mor[39;00m image.startswith([33m"[39m[33mhttps://[39m[33m"[39m):
+[32m---> [39m[32m33[39m         image = [30;43mPIL[39;49m[30;43m.[39;49m[30;43mImage[39;49m[30;43m.[39;49m[30;43mopen[39;49m[30;43m([39;49m[30;43mrequests[39;49m[30;43m.[39;49m[30;43mget[39;49m[30;43m([39;49m[30;43mimage[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mstream[39;49m[30;43m=[39;49m[30;43;01mTrue[39;49;00m[30;43m,[39;49m[30;43m [39;49m[30;43mtimeout[39;49m[30;43m=[39;49m[30;43mDIFFUSERS_REQUEST_TIMEOUT[39;49m[30;43m)[39;49m[30;43m.[39;49m[30;43mraw[39;49m[30;43m)[39;49m
+[32m     34[39m     [38;5;28;01melif[39;00m os.path.isfile(image):
+[32m     35[39m         image = PIL.Image.open(image)
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/320129a7d832b3a6/lib/python3.12/site-packages/PIL/Image.py:3580[39m, in [36mopen[39m[34m(fp, mode, formats)[39m
+[32m   3578[39m     warnings.warn(message)
+[32m   3579[39m msg = [33m"[39m[33mcannot identify image file [39m[38;5;132;01m%r[39;00m[33m"[39m % (filename [38;5;28;01mif[39;00m filename [38;5;28;01melse[39;00m fp)
+[32m-> [39m[32m3580[39m [38;5;28;01mraise[39;00m UnidentifiedImageError(msg)
+
+[31mUnidentifiedImageError[39m: cannot identify image file <_io.BytesIO object at 0x7b73e4067560>
+

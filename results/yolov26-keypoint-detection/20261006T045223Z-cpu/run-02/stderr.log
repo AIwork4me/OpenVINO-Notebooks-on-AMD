@@ -1,0 +1,54 @@
+[IPKernelApp] WARNING | Kernel is running over TCP without encryption. All communication (including code and outputs) is sent in plain text and is susceptible to eavesdropping. Use IPC transport or launch with kernel manager-provisioned CurveZMQ keys to enable transport encryption.
+Traceback (most recent call last):
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/ov_amd/_nbexec.py", line 144, in main
+    client.execute()
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/9b68ab6f5b157314/lib/python3.12/site-packages/jupyter_core/utils/__init__.py", line 165, in wrapped
+    return loop.run_until_complete(inner)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/base_events.py", line 687, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/9b68ab6f5b157314/lib/python3.12/site-packages/nbclient/client.py", line 709, in async_execute
+    await self.async_execute_cell(
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/9b68ab6f5b157314/lib/python3.12/site-packages/nbclient/client.py", line 1062, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/9b68ab6f5b157314/lib/python3.12/site-packages/nbclient/client.py", line 918, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+# Download a test sample
+IMAGE_PATH = Path("./data/bus.jpg")
+
+if not IMAGE_PATH.exists():
+    download_file(
+        url="https://ultralytics.com/images/bus.jpg",
+        filename=IMAGE_PATH.name,
+        directory=IMAGE_PATH.parent,
+    )
+------------------
+
+
+[31m---------------------------------------------------------------------------[39m
+[31mException[39m                                 Traceback (most recent call last)
+[36mCell[39m[36m [39m[32mIn[3][39m[32m, line 5[39m
+[32m      1[39m [38;5;66;03m# Download a test sample[39;00m
+[32m      2[39m IMAGE_PATH = Path([33m"./data/bus.jpg"[39m)
+[32m      3[39m 
+[32m      4[39m [38;5;28;01mif[39;00m [38;5;28;01mnot[39;00m IMAGE_PATH.exists():
+[32m----> [39m[32m5[39m     download_file(
+[32m      6[39m         url=[33m"https://ultralytics.com/images/bus.jpg"[39m,
+[32m      7[39m         filename=IMAGE_PATH.name,
+[32m      8[39m         directory=IMAGE_PATH.parent,
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/results/yolov26-keypoint-detection/workdir-cpu/notebook_utils.py:149[39m, in [36mdownload_file[39m[34m(url, filename, directory, show_progress)[39m
+[32m    147[39m     [38;5;28;01mraise[39;00m [38;5;167;01mException[39;00m(error) [38;5;28;01mfrom[39;00m[38;5;250m [39m[38;5;28;01mNone[39;00m
+[32m    148[39m [38;5;28;01mexcept[39;00m requests.exceptions.Timeout:
+[32m--> [39m[32m149[39m     [38;5;28;01mraise[39;00m [38;5;167;01mException[39;00m(
+[32m    150[39m         [33m"[39m[33mConnection timed out. If you access the internet through a proxy server, please [39m[33m"[39m
+[32m    151[39m         [33m"[39m[33mmake sure the proxy is set in the shell from where you launched Jupyter.[39m[33m"[39m
+[32m    152[39m     ) [38;5;28;01mfrom[39;00m[38;5;250m [39m[38;5;28;01mNone[39;00m
+[32m    153[39m [38;5;28;01mexcept[39;00m requests.exceptions.RequestException [38;5;28;01mas[39;00m error:
+[32m    154[39m     [38;5;28;01mraise[39;00m [38;5;167;01mException[39;00m([33mf[39m[33m"[39m[33mFile downloading failed with error: [39m[38;5;132;01m{[39;00merror[38;5;132;01m}[39;00m[33m"[39m) [38;5;28;01mfrom[39;00m[38;5;250m [39m[38;5;28;01mNone[39;00m
+
+[31mException[39m: Connection timed out. If you access the internet through a proxy server, please make sure the proxy is set in the shell from where you launched Jupyter.
+

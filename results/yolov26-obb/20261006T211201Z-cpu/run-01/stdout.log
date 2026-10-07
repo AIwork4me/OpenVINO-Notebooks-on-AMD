@@ -1,0 +1,50 @@
+[cell 0 START +    0.6s] # YOLO26 Oriented Bounding Boxes Object Detection with OpenVINO™ |  | [YOL
+[cell 1 START +    0.6s] ### Prerequisites | [back to top ⬆️](#Table-of-contents:)
+[cell 2 START +    0.6s] %pip install -qU "openvino>=2026.0.0" "nncf>=3.0.0" | %pip install -q "t
+[cell 2 DONE  +   26.1s]
+[cell 3 START +   26.1s] Import required utility functions. The lower cell will download the `n
+[cell 4 START +   26.1s] from pathlib import Path | import requests |  | if not Path("notebook_utils.
+[cell 4 DONE  +   26.2s]
+[cell 5 START +   26.2s] ### Get PyTorch model | [back to top ⬆️](#Table-of-contents:) |  | Generally
+[cell 6 START +   26.2s] import ipywidgets as widgets |  | model_id = ["yolo26n-obb", "yolo26s-obb"
+[cell 6 DONE  +   26.3s]
+[cell 7 START +   26.3s] from ultralytics import YOLO |  | OBB_MODEL_NAME = model_name.value |  | model
+[cell 7 DONE  +   27.6s]
+[cell 8 START +   27.6s] ### Prepare dataset and dataloader | [back to top ⬆️](#Table-of-contents
+[cell 9 START +   27.6s] from ultralytics.cfg import get_cfg | from ultralytics.data.utils import
+[cell 9 DONE  +   27.8s]
+[cell 10 START +   27.8s] ### Run PyTorch inference | [back to top ⬆️](#Table-of-contents:)
+[cell 11 START +   27.8s] from PIL import Image |  | res = model(example_image_path, device="cpu") | I
+[cell 11 DONE  +   28.0s]
+[cell 12 START +   28.0s] ### Convert PyTorch model to OpenVINO IR | [back to top ⬆️](#Table-of-co
+[cell 13 START +   28.0s] OV_MODEL_PATH = Path(f"{OBB_MODEL_NAME}_openvino_model/{OBB_MODEL_NAME
+[cell 13 DONE  +   28.0s]
+[cell 14 START +   28.0s] #### Select inference device | [back to top ⬆️](#Table-of-contents:) |  | Se
+[cell 15 START +   28.0s] device = device_widget() |  | device
+[cell 15 DONE  +   28.2s]
+[cell 16 START +   28.2s] #### Run OpenVINO inference | [back to top ⬆️](#Table-of-contents:) |  | We 
+[cell 17 START +   28.2s] ov_obb_model = YOLO(OV_MODEL_PATH.parent, task="obb") |  | res = ov_obb_mo
+[cell 17 DONE  +   28.5s]
+[cell 18 START +   28.5s] ### Quantization | [back to top ⬆️](#Table-of-contents:) |  | [NNCF](https:/
+[cell 19 START +   28.5s] INT8_OV_PATH = Path(f"{OBB_MODEL_NAME}_openvino_model_int8/{OBB_MODEL_
+[cell 19 DONE  +   28.5s]
+[cell 20 START +   28.5s] Let's load `skip magic` extension to skip quantization if `to_quantize
+[cell 21 START +   28.5s] # Fetch skip_kernel_extension module | if not Path("skip_kernel_extensio
+[cell 21 DONE  +   28.5s]
+[cell 22 START +   28.5s] %%skip not $to_quantize.value |  | import nncf | import torch |  |  | if validator
+[cell 22 DONE  +   29.0s]
+[cell 23 START +   29.0s] Create a quantized model from the pre-trained converted OpenVINO model
+[cell 24 START +   29.0s] The `nncf.quantize` function provides an interface for model quantizat
+[cell 25 START +   29.0s] %%skip not $to_quantize.value |  | import shutil | import openvino as ov |  | co
+[cell 25 DONE  +   29.0s]
+[cell 26 START +   29.0s] ### Validate Quantized Model | [back to top ⬆️](#Table-of-contents:) |  | Le
+[cell 27 START +   29.0s] %%skip not $to_quantize.value |  | int8_obb_model = YOLO(INT8_OV_PATH.pare
+[cell 27 DONE  +   29.4s]
+[cell 28 START +   29.4s] ### Compare inference time and model sizes | [back to top ⬆️](#Table-of-
+[cell 29 START +   29.4s] %%skip not $to_quantize.value |  | fp16_ir_model_size = OV_MODEL_PATH.with
+[cell 29 DONE  +   29.4s]
+[cell 30 START +   29.4s] # Inference FP16 model (OpenVINO IR) | !benchmark_app -m $OV_MODEL_PATH 
+[cell 30 DONE  +   45.1s]
+[cell 31 START +   45.1s] if INT8_OV_PATH.exists(): |     # Inference INT8 model (Quantized model)
+[cell 31 DONE  +   61.0s]
+NBEXEC_RESULT={"ok": true, "n_cells": 17, "n_skipped": 0, "n_substituted": 0, "stopped_after": null, "error_cell": null, "error_type": null, "error_head": null, "duration_s": 63.66, "patch_notes": []}

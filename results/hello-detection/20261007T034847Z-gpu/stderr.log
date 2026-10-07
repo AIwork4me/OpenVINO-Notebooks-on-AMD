@@ -1,0 +1,10 @@
+Traceback (most recent call last):
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/workloads/hello-detection/rocm/run.py", line 129, in <module>
+    raise SystemExit(main())
+                     ^^^^^^
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/workloads/hello-detection/rocm/run.py", line 57, in main
+    weight_source = _fetch_first(WEIGHT_URLS, weights)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/workloads/hello-detection/rocm/run.py", line 46, in _fetch_first
+    raise RuntimeError(f"all weight sources failed (last: {last})")
+RuntimeError: all weight sources failed (last: https://huggingface.co/kadirnar/yolov8n-v8.0/resolve/main/yolov8n.pt: curl 28)

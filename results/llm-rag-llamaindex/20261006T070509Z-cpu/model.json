@@ -1,0 +1,6 @@
+{
+  "schema_version": 2,
+  "declared": {},
+  "detected_hf_refs": [],
+  "notebook": "llm-rag-llamaindex.ipynb"
+}

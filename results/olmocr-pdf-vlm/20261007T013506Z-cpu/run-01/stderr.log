@@ -1,0 +1,88 @@
+[IPKernelApp] WARNING | Kernel is running over TCP without encryption. All communication (including code and outputs) is sent in plain text and is susceptible to eavesdropping. Use IPC transport or launch with kernel manager-provisioned CurveZMQ keys to enable transport encryption.
+[31mERROR: pip's dependency resolver does not currently take into account all the packages that are installed. This behaviour is the source of the following dependency conflicts.
+ace-step 0.2.0 requires diffusers>=0.33.0, but you have diffusers 0.29.0 which is incompatible.
+ace-step 0.2.0 requires librosa==0.11.0, but you have librosa 0.10.2 which is incompatible.
+ace-step 0.2.0 requires soundfile==0.13.1, but you have soundfile 0.12.1 which is incompatible.
+ace-step 0.2.0 requires transformers==4.50.0, but you have transformers 4.57.6 which is incompatible.[0m[31m
+[0m38;5;250m [39m[34;01mtorch[39;00m[34;01m.[39;00m[34;01mutils[39;00m[34;01m.[39;00m[34;01m_functools[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m cache_method
+[32m---> [39m[32m65[39m [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01m.[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m (
+[32m     66[39m     config,
+[32m     67[39m     exc,
+[32m     68[39m     graph_break_hints,
+[32m     69[39m     logging [38;5;28;01mas[39;00m torchdynamo_logging,
+[32m     70[39m     trace_rules,
+[32m     71[39m     variables,
+[32m     72[39m )
+[32m     73[39m [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01m.[39;00m[34;01mbytecode_analysis[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m (
+[32m     74[39m     get_indexof,
+[32m     75[39m     JUMP_OPNAMES,
+[32m     76[39m     livevars_analysis,
+[32m     77[39m     propagate_line_nums,
+[32m     78[39m )
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/61f5a7307753eddf/lib/python3.12/site-packages/torch/_dynamo/trace_rules.py:45[39m
+[32m     44[39m [38;5;28;01mimport[39;00m[38;5;250m [39m[34;01mtorch[39;00m
+[32m---> [39m[32m45[39m [38;5;28;01mimport[39;00m[38;5;250m [39m[34;01mtorch[39;00m[34;01m.[39;00m[34;01m_inductor[39;00m[34;01m.[39;00m[34;01mtest_operators[39;00m
+[32m     46[39m [38;5;28;01mimport[39;00m[38;5;250m [39m[34;01mtorch[39;00m[34;01m.[39;00m[34;01mdistributed[39;00m
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/61f5a7307753eddf/lib/python3.12/site-packages/torch/_inductor/__init__.py:12[39m
+[32m     10[39m [38;5;28;01mimport[39;00m[38;5;250m [39m[34;01mtorch[39;00m[34;01m.[39;00m[34;01mfx[39;00m
+[32m---> [39m[32m12[39m [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01m.[39;00m[34;01mstandalone_compile[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m (
+[32m     13[39m     compile_to_python,
+[32m     14[39m     CompiledArtifact,
+[32m     15[39m     DynamicShapesType,
+[32m     16[39m     load_from_python,
+[32m     17[39m )
+[32m     20[39m [38;5;28;01mif[39;00m TYPE_CHECKING:
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/61f5a7307753eddf/lib/python3.12/site-packages/torch/_inductor/standalone_compile.py:20[39m
+[32m     19[39m [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01mtorch[39;00m[34;01m.[39;00m[34;01m_dynamo[39;00m[34;01m.[39;00m[34;01mutils[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m dynamo_timed
+[32m---> [39m[32m20[39m [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01mtorch[39;00m[34;01m.[39;00m[34;01m_inductor[39;00m[34;01m.[39;00m[34;01mcpp_builder[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m normalize_path_separator
+[32m     21[39m [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01mtorch[39;00m[34;01m.[39;00m[34;01m_inductor[39;00m[34;01m.[39;00m[34;01mcudagraph_utils[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m BoxedDeviceIndex
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/61f5a7307753eddf/lib/python3.12/site-packages/torch/_inductor/cpp_builder.py:31[39m
+[32m     30[39m [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01mtorch[39;00m[34;01m.[39;00m[34;01m_inductor[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m config, exc
+[32m---> [39m[32m31[39m [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01mtorch[39;00m[34;01m.[39;00m[34;01m_inductor[39;00m[34;01m.[39;00m[34;01mcpu_vec_isa[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m invalid_vec_isa, VecISA
+[32m     32[39m [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01mtorch[39;00m[34;01m.[39;00m[34;01m_inductor[39;00m[34;01m.[39;00m[34;01mruntime[39;00m[34;01m.[39;00m[34;01mruntime_utils[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m cache_dir
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/61f5a7307753eddf/lib/python3.12/site-packages/torch/_inductor/cpu_vec_isa.py:15[39m
+[32m     14[39m [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01mtorch[39;00m[34;01m.[39;00m[34;01m_inductor[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m config
+[32m---> [39m[32m15[39m [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01mtorch[39;00m[34;01m.[39;00m[34;01m_inductor[39;00m[34;01m.[39;00m[34;01mutils[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m python_subprocess_env
+[32m     18[39m _IS_WINDOWS = sys.platform == [33m"[39m[33mwin32[39m[33m"[39m
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/61f5a7307753eddf/lib/python3.12/site-packages/torch/_inductor/utils.py:55[39m
+[32m     54[39m [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01mtorch[39;00m[34;01m.[39;00m[34;01m_inductor[39;00m[34;01m.[39;00m[34;01manalysis[39;00m[34;01m.[39;00m[34;01mdevice_info[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m datasheet_tops
+[32m---> [39m[32m55[39m [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01mtorch[39;00m[34;01m.[39;00m[34;01m_inductor[39;00m[34;01m.[39;00m[34;01mruntime[39;00m[34;01m.[39;00m[34;01mhints[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m DeviceProperties
+[32m     56[39m [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01mtorch[39;00m[34;01m.[39;00m[34;01mfx[39;00m[34;01m.[39;00m[34;01mpasses[39;00m[34;01m.[39;00m[34;01mregional_inductor[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m _needs_inductor_compile
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/61f5a7307753eddf/lib/python3.12/site-packages/torch/_inductor/runtime/hints.py:65[39m
+[32m     64[39m [38;5;28;01mimport[39;00m[38;5;250m [39m[34;01mtriton[39;00m
+[32m---> [39m[32m65[39m [38;5;28;01mimport[39;00m[38;5;250m [39m[34;01mtriton[39;00m[34;01m.[39;00m[34;01mbackends[39;00m[34;01m.[39;00m[34;01mcompiler[39;00m
+[32m     66[39m [38;5;28;01mimport[39;00m[38;5;250m [39m[34;01mtriton[39;00m[34;01m.[39;00m[34;01mcompiler[39;00m[34;01m.[39;00m[34;01mcompiler[39;00m
+
+[31mModuleNotFoundError[39m: No module named 'triton.backends'
+
+The above exception was the direct cause of the following exception:
+
+[31mModuleNotFoundError[39m                       Traceback (most recent call last)
+[36mCell[39m[36m [39m[32mIn[2][39m[32m, line 8[39m
+[32m      4[39m [38;5;28;01mimport[39;00m shutil
+[32m      5[39m 
+[32m      6[39m [38;5;28;01mfrom[39;00m io [38;5;28;01mimport[39;00m BytesIO
+[32m      7[39m [38;5;28;01mfrom[39;00m PIL [38;5;28;01mimport[39;00m Image
+[32m----> [39m[32m8[39m [38;5;28;01mfrom[39;00m transformers [38;5;28;01mimport[39;00m AutoProcessor, Qwen2VLForConditionalGeneration
+[32m      9[39m 
+[32m     10[39m [38;5;28;01mfrom[39;00m olmocr.prompts [38;5;28;01mimport[39;00m build_finetuning_prompt
+[32m     11[39m 
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/61f5a7307753eddf/lib/python3.12/site-packages/transformers/utils/import_utils.py:2320[39m, in [36m_LazyModule.__getattr__[39m[34m(self, name)[39m
+[32m   2318[39m         value = [38;5;28mgetattr[39m(module, name)
+[32m   2319[39m     [38;5;28;01mexcept[39;00m ([38;5;167;01mModuleNotFoundError[39;00m, [38;5;167;01mRuntimeError[39;00m) [38;5;28;01mas[39;00m e:
+[32m-> [39m[32m2320[39m         [38;5;28;01mraise[39;00m [38;5;167;01mModuleNotFoundError[39;00m(
+[32m   2321[39m             [33mf[39m[33m"[39m[33mCould not import module [39m[33m'[39m[38;5;132;01m{[39;00mname[38;5;132;01m}[39;00m[33m'[39m[33m. Are this object[39m[33m'[39m[33ms requirements defined correctly?[39m[33m"[39m
+[32m   2322[39m         ) [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01me[39;00m
+[32m   2324[39m [38;5;28;01melif[39;00m name [38;5;129;01min[39;00m [38;5;28mself[39m._modules:
+[32m   2325[39m     [38;5;28;01mtry[39;00m:
+
+[31mModuleNotFoundError[39m: Could not import module 'AutoProcessor'. Are this object's requirements defined correctly?
+

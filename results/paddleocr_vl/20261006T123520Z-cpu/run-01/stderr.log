@@ -1,0 +1,121 @@
+[IPKernelApp] WARNING | Kernel is running over TCP without encryption. All communication (including code and outputs) is sent in plain text and is susceptible to eavesdropping. Use IPC transport or launch with kernel manager-provisioned CurveZMQ keys to enable transport encryption.
+[31mERROR: pip's dependency resolver does not currently take into account all the packages that are installed. This behaviour is the source of the following dependency conflicts.
+easyocr 1.7.2 requires opencv-python-headless, which is not installed.
+ace-step 0.2.0 requires transformers==4.50.0, but you have transformers 5.18.0 which is incompatible.
+optimum-intel 1.27.0 requires transformers<4.58,>=4.45, but you have transformers 5.18.0 which is incompatible.
+sentence-transformers 5.1.2 requires transformers<5.0.0,>=4.41.0, but you have transformers 5.18.0 which is incompatible.[0m[31m
+[0m[33mWARNING: typer 0.27.2 does not provide the extra 'all'[0m[33m
+[0m[31mERROR: pip's dependency resolver does not currently take into account all the packages that are installed. This behaviour is the source of the following dependency conflicts.
+supervision 0.18.0 requires opencv-python-headless>=4.5.5.64, which is not installed.
+easyocr 1.7.2 requires opencv-python-headless, which is not installed.
+langsmith 0.14.4 requires websockets>=15.0, but you have websockets 11.0.3 which is incompatible.
+ace-step 0.2.0 requires datasets==3.4.1, but you have datasets 5.0.1 which is incompatible.
+ace-step 0.2.0 requires transformers==4.50.0, but you have transformers 4.54.0 which is incompatible.
+py3langid 0.3.0 requires numpy>=2.0.0; python_version >= "3.9", but you have numpy 1.26.4 which is incompatible.
+hf-gradio 0.4.1 requires gradio-client<3.0,>=2.0, but you have gradio-client 0.10.0 which is incompatible.
+ml-dtypes 0.6.0 requires numpy>=2.0.0, but you have numpy 1.26.4 which is incompatible.
+tifffile 2026.9.20 requires numpy>=2.1, but you have numpy 1.26.4 which is incompatible.
+omnivoice 0.2.1 requires transformers>=5.3.0, but you have transformers 4.54.0 which is incompatible.[0m[31m
+[0mTraceback (most recent call last):
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/ov_amd/_nbexec.py", line 144, in main
+    client.execute()
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages/jupyter_core/utils/__init__.py", line 165, in wrapped
+    return loop.run_until_complete(inner)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/base_events.py", line 687, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages/nbclient/client.py", line 709, in async_execute
+    await self.async_execute_cell(
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages/nbclient/client.py", line 1062, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages/nbclient/client.py", line 918, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+# Validate the end-to-end OpenVINO pipeline (inline implementation)
+# NOTE: This cell expands the logic from ov_test.py::run_openvino_test() to avoid calling it directly.
+
+import time
+
+from PIL import Image
+
+PROMPTS = {
+    "ocr": "OCR:",
+    "table": "Table Recognition:",
+    "formula": "Formula Recognition:",
+    "chart": "Chart Recognition:",
+}
+
+# Prepare a test image.
+img = None
+if img is None:
+    img = NOTEBOOK_DIR / "test.png"
+
+image_path = str(img)
+image = Image.open(image_path).convert("RGB")
+# image = image.resize((1200, 800), Image.Resampling.LANCZOS)
+
+messages = [
+    {
+        "role": "user",
+        "content": [
+            {"type": "image", "image": image},
+            {"type": "text", "text": PROMPTS[task]},
+        ],
+    }
+]
+
+print("\n" + "=" * 60)
+print("🔄 Loading OpenVINO model...")
+print("=" * 60)
+
+# OpenVINO version print
+try:
+    print("OpenVINO version:\n", ov.get_version())
+except Exception:
+    print("OpenVINO version:\n", getattr(ov, "__version__", "unknown"))
+print()
+
+generation_config = {
+    "bos_token_id": paddleocr_vl_model.tokenizer.bos_token_id,
+    "eos_token_id": paddleocr_vl_model.tokenizer.eos_token_id,
+    "pad_token_id": paddleocr_vl_model.tokenizer.pad_token_id,
+    "max_new_tokens": int(max_new_tokens),
+    "do_sample": False,
+}
+
+start = time.perf_counter()
+response, history = paddleocr_vl_model.chat(messages=messages, generation_config=generation_config)
+chat_time = time.perf_counter() - start
+
+
+print("\n" + "=" * 60)
+print(f"📄 {device.value} OpenVINO {task} result:")
+print("=" * 60)
+print(response)
+print("=" * 60)
+------------------
+
+
+[31m---------------------------------------------------------------------------[39m
+[31mFileNotFoundError[39m                         Traceback (most recent call last)
+[36mCell[39m[36m [39m[32mIn[10][39m[32m, line 21[39m
+[32m     17[39m [38;5;28;01mif[39;00m img [38;5;28;01mis[39;00m [38;5;28;01mNone[39;00m:
+[32m     18[39m     img = NOTEBOOK_DIR / [33m"test.png"[39m
+[32m     19[39m 
+[32m     20[39m image_path = str(img)
+[32m---> [39m[32m21[39m image = Image.open(image_path).convert([33m"RGB"[39m)
+[32m     22[39m [38;5;66;03m# image = image.resize((1200, 800), Image.Resampling.LANCZOS)[39;00m
+[32m     23[39m 
+[32m     24[39m messages = [
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages/PIL/Image.py:3431[39m, in [36mopen[39m[34m(fp, mode, formats)[39m
+[32m   3428[39m     filename = os.path.realpath(os.fspath(fp))
+[32m   3430[39m [38;5;28;01mif[39;00m filename:
+[32m-> [39m[32m3431[39m     fp = [30;43mbuiltins[39;49m[30;43m.[39;49m[30;43mopen[39;49m[30;43m([39;49m[30;43mfilename[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43m"[39;49m[30;43mrb[39;49m[30;43m"[39;49m[30;43m)[39;49m
+[32m   3432[39m     exclusive_fp = [38;5;28;01mTrue[39;00m
+[32m   3433[39m [38;5;28;01melse[39;00m:
+
+[31mFileNotFoundError[39m: [Errno 2] No such file or directory: '/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/paddleocr_vl/workdir-cpu/test.png'
+

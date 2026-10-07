@@ -1,0 +1,50 @@
+[cell 0 START +    0.7s] # Create ReAct Agent using OpenVINO and LangChain |  | LLM are limited to 
+[cell 1 START +    0.7s] ## Prerequisites |  | [back to top ⬆️](#Table-of-contents:) | 
+[cell 2 START +    0.7s] import requests | from pathlib import Path |  | if not Path("notebook_utils.
+[cell 2 DONE  +    0.8s]
+[cell 3 START +    0.8s] import os |  | os.environ["GIT_CLONE_PROTECTION_ACTIVE"] = "false" |  | %pip i
+[cell 3 DONE  +   88.9s]
+[cell 4 START +   88.9s] ## Create a tools |  | [back to top ⬆️](#Table-of-contents:) |  | First, we ne
+[cell 5 START +   88.9s] from langchain_core.tools import tool |  |  | @tool | def multiply(first_int: 
+[cell 5 DONE  +   89.2s]
+[cell 6 START +   89.2s] print(f"name of `multiply` tool: {multiply.name}") | print(f"description
+[cell 6 DONE  +   89.2s]
+[cell 7 START +   89.2s] Tools are interfaces that an agent, chain, or LLM can use to interact 
+[cell 8 START +   89.2s] Now that we have created all of them, and we can create a list of tool
+[cell 9 START +   89.2s] tools = [multiply, add, exponentiate]
+[cell 9 DONE  +   89.2s]
+[cell 10 START +   89.2s] ## Create prompt template |  | [back to top ⬆️](#Table-of-contents:) |  | A pr
+[cell 11 START +   89.2s] PREFIX = """Respond to the human as helpfully and accurately as possib
+[cell 11 DONE  +   89.2s]
+[cell 12 START +   89.2s] ## Create LLM |  | [back to top ⬆️](#Table-of-contents:) |  | Large Language M
+[cell 13 START +   89.2s] import ipywidgets as widgets |  | llm_model_ids = ["Qwen/Qwen2.5-7B-Instru
+[cell 13 DONE  +   89.3s]
+[cell 14 START +   89.3s] from cmd_helper import optimum_cli |  | llm_model_path = llm_model_id.valu
+[cell 14 DONE  +   89.3s]
+[cell 15 START +   89.3s] ### Select inference device for LLM |  | [back to top ⬆️](#Table-of-conten
+[cell 16 START +   89.3s] from notebook_utils import device_widget |  | device = device_widget("CPU"
+[cell 16 DONE  +   89.5s]
+[cell 17 START +   89.5s] OpenVINO models can be run locally through the `HuggingFacePipeline` c
+[cell 18 START +   89.5s] from langchain_huggingface import HuggingFacePipeline | from transformer
+[cell 18 DONE  +   93.5s]
+[cell 19 START +   93.5s] from langchain_huggingface import ChatHuggingFace |  | ov_chat = ChatHuggi
+[cell 19 DONE  +   93.7s]
+[cell 20 START +   93.7s] You can get additional inference speed improvement with [Dynamic Quant
+[cell 21 START +   93.7s] ov_config = { |     "KV_CACHE_PRECISION": "u8", |     "DYNAMIC_QUANTIZATIO
+[cell 21 DONE  +   93.7s]
+[cell 22 START +   93.7s] ## Create agent |  | [back to top ⬆️](#Table-of-contents:) |  | Now that we ha
+[cell 23 START +   93.7s] from langchain.agents import AgentExecutor, StructuredChatAgent |  | agent
+[cell 23 DONE  +   94.2s]
+[cell 24 START +   94.2s] ## Run the agent |  | [back to top ⬆️](#Table-of-contents:) |  | We can now ru
+[cell 25 START +   94.2s] agent_executor.invoke({"input": "Take 3 to the fifth power and multipl
+[cell 25 DONE  +  126.9s]
+[cell 26 START +  126.9s] ## Interactive Demo |  | [back to top ⬆️](#Table-of-contents:) |  | Let's crea
+[cell 27 START +  126.9s] ### Use built-in tools |  | [back to top ⬆️](#Table-of-contents:) |  | LangCha
+[cell 28 START +  126.9s] from langchain_community.tools import WikipediaQueryRun | from langchain
+[cell 28 DONE  +  126.9s]
+[cell 29 START +  126.9s] wikipedia.invoke({"text": "OpenVINO"})
+[cell 29 DONE  +  396.1s]
+[cell 30 START +  396.1s] ### Create customized tools |  | [back to top ⬆️](#Table-of-contents:) |  | In
+[cell 31 START +  396.1s] import urllib.parse | import json5 |  |  | @tool | def painting(prompt: str) -> 
+[cell 31 DONE  +  396.2s]
+NBEXEC_RESULT={"ok": false, "n_cells": 21, "n_skipped": 1, "n_substituted": 1, "stopped_after": null, "error_cell": null, "error_type": "CellExecutionError", "error_head": "\u001b[31mModuleNotFoundError\u001b[39m: No module named 'json5'", "duration_s": 399.28, "patch_notes": ["substituted 1 occurrence(s) in cell 3", "skipped cell 36: matched skip pattern"]}

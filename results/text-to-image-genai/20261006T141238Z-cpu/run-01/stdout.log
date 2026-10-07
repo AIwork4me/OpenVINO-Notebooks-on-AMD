@@ -1,0 +1,6 @@
+[cell 0 START +    0.4s] # Text to Image pipeline and OpenVINO with Generate API |  | [OpenVINO™ Ge
+[cell 1 START +    0.4s] ## Prerequisites | [back to top ⬆️](#Table-of-contents:)
+[cell 2 START +    0.4s] import requests | from pathlib import Path |  | if not Path("pip_helper.py")
+[cell 2 DONE  +   41.5s]
+[cell 3 START +   41.5s] ## Convert model using Optimum-CLI tool | [back to top ⬆️](#Table-of-con
+[cell 4 START +   41.5s] from pathlib import Path |  | from cmd_helper import optimum_cli |  | model_di

@@ -1,0 +1,9 @@
+{
+  "schema_version": 2,
+  "repository": "openvinotoolkit/openvino_notebooks",
+  "branch": "latest",
+  "commit": "a8809170cc4fc6aa633fbb9c22214be67ac20b47",
+  "path": "notebooks/ministral-3/ministral-3.ipynb",
+  "url": "https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/ministral-3/ministral-3.ipynb",
+  "notebook_sha256": "8cf5eb88c220312557c07c96bf44e799a5e5fb4813db7235ce474e45782f1be8"
+}

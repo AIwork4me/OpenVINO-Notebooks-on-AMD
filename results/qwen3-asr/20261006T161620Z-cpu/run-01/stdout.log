@@ -1,0 +1,14 @@
+[cell 0 START +    0.4s] # Qwen3-ASR Speech Recognition with OpenVINO™ |  | The Qwen3-ASR family in
+[cell 1 START +    0.4s] ## Prerequisites | [back to top ⬆️](#Table-of-contents:) | 
+[cell 2 START +    0.4s] import requests | from pathlib import Path |  | if not Path("notebook_utils.
+[cell 2 DONE  +    0.5s]
+[cell 3 START +    0.5s] ### Install dependencies |  | The HuggingFace-native Qwen3-ASR models (`Qw
+[cell 4 START +    0.5s] from pip_helper import pip_install |  | # 1. Base runtime dependencies | pip
+[cell 4 DONE  +  162.9s]
+[cell 5 START +  162.9s] ## Select model | [back to top ⬆️](#Table-of-contents:) |  | Select the Qwen
+[cell 6 START +  162.9s] import ipywidgets as widgets |  | model_ids = [ |     "Qwen/Qwen3-ASR-0.6B-h
+[cell 6 DONE  +  162.9s]
+[cell 7 START +  162.9s] ## Convert model to OpenVINO IR | [back to top ⬆️](#Table-of-contents:) | 
+[cell 8 START +  162.9s] from optimum.intel import OVModelForSpeechSeq2Seq |  | model_id = model_se
+[cell 8 DONE  +  167.9s]
+NBEXEC_RESULT={"ok": false, "n_cells": 10, "n_skipped": 1, "n_substituted": 1, "stopped_after": null, "error_cell": null, "error_type": "CellExecutionError", "error_head": "\u001b[31mModuleNotFoundError\u001b[39m: Could not import module 'OVModelForSpeechSeq2Seq'. Are this object's requirements defined correctly?", "duration_s": 169.57, "patch_notes": ["substituted 1 occurrence(s) in cell 4", "skipped cell 19: matched skip pattern"]}

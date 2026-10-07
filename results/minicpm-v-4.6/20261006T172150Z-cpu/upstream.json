@@ -1,0 +1,9 @@
+{
+  "schema_version": 2,
+  "repository": "openvinotoolkit/openvino_notebooks",
+  "branch": "latest",
+  "commit": "a8809170cc4fc6aa633fbb9c22214be67ac20b47",
+  "path": "notebooks/minicpm-v-4.6/minicpm-v-4.6.ipynb",
+  "url": "https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/minicpm-v-4.6/minicpm-v-4.6.ipynb",
+  "notebook_sha256": "092419b764663d6e474464166a1b059cce9955d77d8c332be08f6d342a6fa46b"
+}

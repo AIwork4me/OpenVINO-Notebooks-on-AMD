@@ -1,0 +1,20 @@
+[cell 0 START +    0.4s] # Multimodal RAG for video analytics with LlamaIndex |  | Constructing a R
+[cell 1 START +    0.4s] ## Prerequisites |  | [back to top ⬆️](#Table-of-contents:) |  | install requi
+[cell 2 START +    0.4s] %pip uninstall -q -y "moviepy" "decorator" "optimum" "optimum-intel" "
+[cell 2 DONE  +    6.2s]
+[cell 3 START +    6.2s] %pip install -q "git+https://github.com/huggingface/optimum-intel.git"
+[cell 3 DONE  +  116.0s]
+[cell 4 START +  116.0s] import os | import requests | from pathlib import Path |  | os.environ["GIT_CL
+[cell 4 DONE  +  116.1s]
+[cell 5 START +  116.1s] ## Convert and Compress models |  | [back to top ⬆️](#Table-of-contents:) | 
+[cell 6 START +  116.1s] import huggingface_hub as hf_hub |  | asr_model_id = "OpenVINO/distil-whis
+[cell 6 DONE  +  116.1s]
+[cell 7 START +  116.1s] ### CLIP model |  | [back to top ⬆️](#Table-of-contents:) |  | In this example
+[cell 8 START +  116.1s] from cmd_helper import optimum_cli |  | clip_model_id = "laion/CLIP-ViT-B-
+[cell 8 DONE  +  116.1s]
+[cell 9 START +  116.1s] ### VLM model |  | [back to top ⬆️](#Table-of-contents:) |  | Vision Language 
+[cell 10 START +  116.1s] vlm_model_id = "OpenVINO/Phi-3.5-vision-instruct-int4-ov" | vlm_model_pa
+[cell 10 DONE  +  116.1s]
+[cell 11 START +  116.1s] ## Download and process video |  | [back to top ⬆️](#Table-of-contents:) |  | 
+[cell 12 START +  116.1s] video_url = "https://github.com/user-attachments/assets/2e38afa5-ce3e-
+NBEXEC_RESULT={"ok": false, "n_cells": 24, "n_skipped": 1, "n_substituted": 0, "stopped_after": null, "error_cell": null, "error_type": "CellTimeoutError", "error_head": "-------------------", "duration_s": 1016.64, "patch_notes": ["skipped cell 39: matched skip pattern"]}

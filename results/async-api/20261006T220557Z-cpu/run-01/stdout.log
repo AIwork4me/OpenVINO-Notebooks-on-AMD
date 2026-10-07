@@ -1,0 +1,46 @@
+[cell 0 START +    0.6s] # Asynchronous Inference with OpenVINO™ | This notebook demonstrates how
+[cell 1 START +    0.6s] ## Imports | [back to top ⬆️](#Table-of-contents:) | 
+[cell 2 START +    0.6s] %pip install -q "openvino>=2023.1.0" | %pip install -q opencv-python tqd
+[cell 2 DONE  +    4.3s]
+[cell 3 START +    4.3s] import cv2 | import time | import numpy as np | import openvino as ov | from I
+[cell 3 DONE  +    4.6s]
+[cell 4 START +    4.6s] ## Prepare model and data processing | [back to top ⬆️](#Table-of-conten
+[cell 5 START +    4.6s] from pathlib import Path |  | # directory where model will be downloaded | b
+[cell 5 DONE  +    4.6s]
+[cell 6 START +    4.6s] ### Select inference device | [back to top ⬆️](#Table-of-contents:)
+[cell 7 START +    4.6s] device = utils.device_widget(default="CPU") |  | device
+[cell 7 DONE  +    4.8s]
+[cell 8 START +    4.8s] ### Load the model | [back to top ⬆️](#Table-of-contents:) | 
+[cell 9 START +    4.8s] # initialize OpenVINO runtime | core = ov.Core() |  | # read the network and
+[cell 9 DONE  +    4.9s]
+[cell 10 START +    4.9s] ### Create functions for data processing | [back to top ⬆️](#Table-of-co
+[cell 11 START +    4.9s] def preprocess(image): |     """ |     Define the preprocess function for 
+[cell 11 DONE  +    4.9s]
+[cell 12 START +    4.9s] ### Get the test video | [back to top ⬆️](#Table-of-contents:) | 
+[cell 13 START +    4.9s] video_url = "https://storage.openvinotoolkit.org/repositories/openvino
+[cell 13 DONE  +    4.9s]
+[cell 14 START +    4.9s] ## How to improve the throughput of video processing | [back to top ⬆️](
+[cell 15 START +    4.9s] def sync_api(source, flip, fps, use_popup, skip_first_frames): |     """
+[cell 15 DONE  +    4.9s]
+[cell 16 START +    4.9s] ### Test performance in Sync Mode | [back to top ⬆️](#Table-of-contents:
+[cell 17 START +    4.9s] sync_fps = sync_api(source=video_path, flip=False, fps=30, use_popup=F
+[cell 17 DONE  +   19.2s]
+[cell 18 START +   19.2s] ### Async Mode | [back to top ⬆️](#Table-of-contents:) |  | Let us see how t
+[cell 19 START +   19.2s] def async_api(source, flip, fps, use_popup, skip_first_frames): |     ""
+[cell 19 DONE  +   19.2s]
+[cell 20 START +   19.2s] ### Test the performance in Async Mode | [back to top ⬆️](#Table-of-cont
+[cell 21 START +   19.2s] async_fps = async_api(source=video_path, flip=False, fps=30, use_popup
+[cell 21 DONE  +   33.6s]
+[cell 22 START +   33.6s] ### Compare the performance | [back to top ⬆️](#Table-of-contents:) | 
+[cell 23 START +   33.6s] width = 0.4 | fontsize = 14 |  | plt.rc("font", size=fontsize) | fig, ax = plt
+[cell 23 DONE  +   33.7s]
+[cell 24 START +   33.7s] ## `AsyncInferQueue` | [back to top ⬆️](#Table-of-contents:) |  | Asynchrono
+[cell 25 START +   33.7s] ### Setting Callback | [back to top ⬆️](#Table-of-contents:) |  | When `call
+[cell 26 START +   33.7s] inferqueue_fps = 0 |  |  | def callback(infer_request, info) -> None: |     ""
+[cell 26 DONE  +   33.7s]
+[cell 27 START +   33.7s] def inferqueue(source, flip, fps, skip_first_frames) -> None: |     """ | 
+[cell 27 DONE  +   33.7s]
+[cell 28 START +   33.7s] ### Test the performance with `AsyncInferQueue` | [back to top ⬆️](#Tabl
+[cell 29 START +   33.7s] frame_number = 0 | total_time = 0 | inferqueue(source=video_path, flip=Fal
+[cell 29 DONE  +   48.1s]
+NBEXEC_RESULT={"ok": true, "n_cells": 15, "n_skipped": 0, "n_substituted": 0, "stopped_after": null, "error_cell": null, "error_type": null, "error_head": null, "duration_s": 48.3, "patch_notes": []}

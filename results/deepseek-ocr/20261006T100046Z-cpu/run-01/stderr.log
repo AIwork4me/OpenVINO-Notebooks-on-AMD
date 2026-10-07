@@ -1,0 +1,8 @@
+[IPKernelApp] WARNING | Kernel is running over TCP without encryption. All communication (including code and outputs) is sent in plain text and is susceptible to eavesdropping. Use IPC transport or launch with kernel manager-provisioned CurveZMQ keys to enable transport encryption.
+[31mERROR: pip's dependency resolver does not currently take into account all the packages that are installed. This behaviour is the source of the following dependency conflicts.
+openvino-tokenizers 2026.4.1.0 requires openvino~=2026.4.1.dev, but you have openvino 2026.5.0.dev20261005 which is incompatible.[0m[31m
+[0m[31mERROR: pip's dependency resolver does not currently take into account all the packages that are installed. This behaviour is the source of the following dependency conflicts.
+ace-step 0.2.0 requires transformers==4.50.0, but you have transformers 4.46.3 which is incompatible.
+hf-gradio 0.4.1 requires gradio-client<3.0,>=2.0, but you have gradio-client 1.14.0 which is incompatible.
+torchaudio 2.10.0+cpu requires torch==2.10.0, but you have torch 2.8.0+cpu which is incompatible.[0m[31m
+[0m

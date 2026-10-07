@@ -1,0 +1,11 @@
+[cell 0 START +    0.7s] # MedASR Medical Speech Recognition with OpenVINO |  | [MedASR](https://hu
+[cell 1 START +    0.7s] ## 1. Installation <a id="installation"></a> | [back to top ⬆️](#Table-o
+[cell 2 START +    0.7s] %pip install -q "openvino>=2026.1.0" "nncf>=3.0.0" "torch>=2.10" "tran
+[cell 2 DONE  +   40.4s]
+[cell 3 START +   40.4s] ## 2. Login to HuggingFace <a id="login-huggingface"></a> | [back to top
+[cell 4 START +   40.4s] # Login to HuggingFace Hub to get access to the pretrained model | # Unc
+[cell 4 DONE  +   40.6s]
+[cell 5 START +   40.6s] ## 3. Load Model <a id="load-model"></a> | [back to top ⬆️](#Table-of-co
+[cell 6 START +   40.6s] from transformers import pipeline | import huggingface_hub | import libros
+[cell 6 DONE  +   44.9s]
+NBEXEC_RESULT={"ok": false, "n_cells": 11, "n_skipped": 0, "n_substituted": 0, "stopped_after": null, "error_cell": null, "error_type": "CellExecutionError", "error_head": "Access to model google/medasr is restricted and you are not in the authorized list. Visit https://huggingface.co/google/medasr to ask for access.", "duration_s": 46.51, "patch_notes": []}

@@ -1,0 +1,2 @@
+{"t": "2026-10-06T19:07:48Z", "kind": "probe_installed", "openvino_version": "2026.4.1-22982-e213a147257-releases/2026/4"}
+{"t": "2026-10-06T19:07:48Z", "kind": "genai_pipeline", "pipeline": "WhisperPipeline", "device_arg": "CPU"}

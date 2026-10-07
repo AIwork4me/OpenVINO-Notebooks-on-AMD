@@ -1,0 +1,12 @@
+[cell 0 START +    0.5s] # Document parsing with GLM-OCR and OpenVINO |  | [GLM-OCR](https://huggin
+[cell 1 START +    0.5s] ## Prerequisites | [back to top ⬆️](#Table-of-contents:) |  | GLM-OCR lives 
+[cell 2 START +    0.5s] import requests | from pathlib import Path |  | if not Path("cmd_helper.py")
+[cell 2 DONE  +    0.6s]
+[cell 3 START +    0.6s] %pip uninstall -q -y optimum optimum-intel optimum-onnx |  | from notebook
+[cell 3 DONE  +  188.7s]
+[cell 4 START +  188.7s] ## Convert and Optimize model | [back to top ⬆️](#Table-of-contents:) |  | [
+[cell 5 START +  188.7s] import ipywidgets as widgets |  | model_id = "zai-org/GLM-OCR" |  | to_compres
+[cell 5 DONE  +  188.7s]
+[cell 6 START +  188.7s] from pathlib import Path |  | model_base_dir = Path(model_id.split("/")[-1
+[cell 6 DONE  +  193.8s]
+NBEXEC_RESULT={"ok": false, "n_cells": 14, "n_skipped": 1, "n_substituted": 1, "stopped_after": null, "error_cell": null, "error_type": "CellExecutionError", "error_head": "\u001b[31mCalledProcessError\u001b[39m: Command '['optimum-cli', 'export', 'openvino', '--model', 'zai-org/GLM-OCR', 'GLM-OCR/INT4', '--task', 'image-text-to-text', '--weight-format', 'int4', '--group-size', '128', '--ratio', '1.0']' returned non-zero exit status 1.", "duration_s": 194.16, "patch_notes": ["substituted 1 occurrence(s) in cell 3", "skipped cell 20: matched skip pattern"]}

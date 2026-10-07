@@ -1,0 +1,16 @@
+{
+  "platform_id": "ryzen-ai-max-395-radeon-8060s-gfx1151",
+  "cpu": {
+    "model": "AMD RYZEN AI MAX+ PRO 395 w/ Radeon 8060S",
+    "threads": 32
+  },
+  "ram_total_mb": 96322,
+  "gpu": {
+    "available": true,
+    "arch": "gfx1151",
+    "marketing_name": "AMD RYZEN AI MAX+ PRO 395 w/ Radeon 8060S",
+    "gpu_count": 1
+  },
+  "os": "Ubuntu 24.04.4 LTS",
+  "kernel": "6.17.0-1032-oem"
+}

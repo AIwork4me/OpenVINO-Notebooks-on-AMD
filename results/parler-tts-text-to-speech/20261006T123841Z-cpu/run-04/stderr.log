@@ -1,0 +1,25 @@
+[IPKernelApp] WARNING | Kernel is running over TCP without encryption. All communication (including code and outputs) is sent in plain text and is susceptible to eavesdropping. Use IPC transport or launch with kernel manager-provisioned CurveZMQ keys to enable transport encryption.
+[31mERROR: pip's dependency resolver does not currently take into account all the packages that are installed. This behaviour is the source of the following dependency conflicts.
+easyocr 1.7.2 requires opencv-python-headless, which is not installed.
+easyocr 1.7.2 requires torchvision>=0.5, which is not installed.
+ace-step 0.2.0 requires torchaudio, which is not installed.
+ace-step 0.2.0 requires torchvision, which is not installed.
+descript-audiotools 0.7.4 requires torchaudio, which is not installed.
+omnivoice 0.2.1 requires torchaudio>=2.4, which is not installed.
+timm 1.0.30 requires torchvision, which is not installed.
+ultralytics 8.3.236 requires torchvision>=0.9.0, which is not installed.
+descript-audio-codec 1.0.0 requires torchaudio, which is not installed.
+torch-stoi 0.2.3 requires torchaudio, which is not installed.
+ace-step 0.2.0 requires datasets==3.4.1, but you have datasets 5.0.1 which is incompatible.
+ace-step 0.2.0 requires transformers==4.50.0, but you have transformers 4.46.1 which is incompatible.
+omnivoice 0.2.1 requires transformers>=5.3.0, but you have transformers 4.46.1 which is incompatible.[0m[31m
+[0m[33mWARNING: typer 0.27.2 does not provide the extra 'all'[0m[33m
+[0m[31mERROR: pip's dependency resolver does not currently take into account all the packages that are installed. This behaviour is the source of the following dependency conflicts.
+ace-step 0.2.0 requires torchvision, which is not installed.
+ace-step 0.2.0 requires datasets==3.4.1, but you have datasets 5.0.1 which is incompatible.
+ace-step 0.2.0 requires transformers==4.50.0, but you have transformers 4.46.1 which is incompatible.
+omnivoice 0.2.1 requires transformers>=5.3.0, but you have transformers 4.46.1 which is incompatible.[0m[31m
+[0mhuggingface/tokenizers: The current process just got forked, after parallelism has already been used. Disabling parallelism to avoid deadlocks...
+To disable this warning, you can either:
+	- Avoid using `tokenizers` before the fork if possible
+	- Explicitly set the environment variable TOKENIZERS_PARALLELISM=(true | false)

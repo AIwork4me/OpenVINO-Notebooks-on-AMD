@@ -1,26 +1,29 @@
 # Marathon Progress (generated)
 
-Updated: 2026-10-07T01:45:51+00:00
+Updated: 2026-10-07T05:51:45+00:00
 
 - Catalog discovered: 171
-- CPU attempted: 133 (77.8% of catalog; attempt records only, NOT_TESTED excluded)
-- CPU verified: 4
-- CPU verified with limitations: 35
-- CPU failed: 83
+- CPU attempted: 171 (100.0% of catalog; attempt records only, NOT_TESTED excluded)
+- CPU verified: 25
+- CPU verified with limitations: 58
+- CPU failed: 87
 - CPU blocked/skipped: 0
-- CPU not tested: 38
+- CPU not tested: 0
 - GPU attempted: 8 (4.7%)
 - GPU verified: 8 (+0 limited)
 - Twin classification: 171/171 (100.0%)
-- Terminal attempt records: 141
-- Current workload: bernini-r-image-video
+- Terminal attempt records: 179
+- Current workload: llm-agent-react-langchain
 
 ## Top recurring CPU failure categories
 
-- UNKNOWN: 48
-- DEPENDENCY: 24
+- TIMEOUT: 20
+- DEPENDENCY: 17
+- UNKNOWN: 14
+- PACKAGE_CONFLICT: 11
+- MODEL_ACCESS: 8
+- OPENVINO_ERROR: 7
 - NETWORK: 6
-- OPENVINO_ERROR: 4
-- TIMEOUT: 4
-- MODEL_ACCESS: 3
-- PACKAGE_CONFLICT: 2
+- CORRECTNESS_ERROR: 2
+- CONVERSION_ERROR: 1
+- LICENSE_RESTRICTION: 1

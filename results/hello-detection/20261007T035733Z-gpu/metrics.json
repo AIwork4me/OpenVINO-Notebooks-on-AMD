@@ -1,0 +1,51 @@
+{
+  "schema_version": 2,
+  "twin_result": {
+    "ok": true,
+    "hip": "7.14.60850",
+    "device": "AMD Radeon 8060S Graphics",
+    "gcn_arch": "gfx1151",
+    "metrics": {
+      "model": "yolov8n.pt",
+      "task": "object detection (WORKLOAD_TWIN of hello-detection)",
+      "precision": "fp32 default",
+      "weights_source": "https://github.com/ultralytics/assets/releases/download/v8.4.0/yolov8n.pt",
+      "weights_sha256": "f59b3d833e2ff32e194b5bb8e08d211dc7c5bdf144b90d2c8412c47ccfc83b36",
+      "input_image": "intel_rnb.jpg",
+      "input_sha256": "ac52c5bdada0087b",
+      "load_s": 0.12,
+      "runs": [
+        {
+          "latency_s": 0.0851
+        },
+        {
+          "latency_s": 0.0857
+        },
+        {
+          "latency_s": 0.0847
+        },
+        {
+          "latency_s": 0.0865
+        },
+        {
+          "latency_s": 0.0852
+        }
+      ],
+      "median_latency_s": 0.0852,
+      "detections": 2,
+      "class_ids": [
+        0
+      ],
+      "conf_range": [
+        0.58,
+        0.908
+      ],
+      "device": "gfx1151 via torch.cuda",
+      "nms_postprocessing": "cpu (vendor torchvision lacks HIP nms kernel)",
+      "peak_vram_gb": 0.04,
+      "peak_rss_gb": 1.53
+    }
+  },
+  "duration_s": 123.35,
+  "exit_code": 0
+}

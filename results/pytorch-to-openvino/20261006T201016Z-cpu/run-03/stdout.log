@@ -1,0 +1,75 @@
+[cell 0 START +    0.4s] # Convert a PyTorch Model to OpenVINO™ IR |  | This tutorial demonstrates 
+[cell 1 START +    0.4s] ## Prerequisites | [back to top ⬆️](#Table-of-contents:) | 
+[cell 2 START +    0.4s] Install notebook dependencies
+[cell 3 START +    0.4s] %pip install -q "openvino>=2023.1.0" scipy Pillow torch torchvision --
+[cell 3 DONE  +    0.7s]
+[cell 4 START +    0.7s] Download input data and label map
+[cell 5 START +    0.7s] import requests | from pathlib import Path | from PIL import Image |  | if not
+[cell 5 DONE  +    0.8s]
+[cell 6 START +    0.8s] ## Load PyTorch Model | [back to top ⬆️](#Table-of-contents:) |  | Generally
+[cell 7 START +    0.8s] import torchvision |  | # get default weights using available weights Enum
+[cell 7 DONE  +    2.1s]
+[cell 8 START +    2.1s] ### Prepare Input Data | [back to top ⬆️](#Table-of-contents:) |  | The code
+[cell 9 START +    2.1s] import torch |  | # Initialize the Weight Transforms | preprocess = weights.
+[cell 9 DONE  +    2.1s]
+[cell 10 START +    2.1s] ### Run PyTorch Model Inference | [back to top ⬆️](#Table-of-contents:) | 
+[cell 11 START +    2.1s] import numpy as np | from scipy.special import softmax |  | # Perform model 
+[cell 11 DONE  +    2.3s]
+[cell 12 START +    2.3s] ### Benchmark PyTorch Model Inference | [back to top ⬆️](#Table-of-conte
+[cell 13 START +    2.3s] %%timeit |  | # Run model inference | model(input_tensor)
+[cell 13 DONE  +   11.5s]
+[cell 14 START +   11.5s] ## Convert PyTorch Model to OpenVINO Intermediate Representation | [back
+[cell 15 START +   11.5s] import openvino as ov |  | # Create OpenVINO Core object instance | core = o
+[cell 15 DONE  +   12.4s]
+[cell 16 START +   12.4s] ### Select inference device | [back to top ⬆️](#Table-of-contents:) |  | sel
+[cell 17 START +   12.4s] from notebook_utils import device_widget |  | device = device_widget(exclu
+[cell 17 DONE  +   12.6s]
+[cell 18 START +   12.6s] # Load OpenVINO model on device | compiled_model = core.compile_model(ov
+[cell 18 DONE  +   12.7s]
+[cell 19 START +   12.7s] ### Run OpenVINO Model Inference | [back to top ⬆️](#Table-of-contents:)
+[cell 20 START +   12.7s] # Run model inference | result = compiled_model(input_tensor)[0] |  | # Posp
+[cell 20 DONE  +   12.7s]
+[cell 21 START +   12.7s] ### Benchmark OpenVINO Model Inference | [back to top ⬆️](#Table-of-cont
+[cell 22 START +   12.7s] %%timeit |  | compiled_model(input_tensor)
+[cell 22 DONE  +   24.9s]
+[cell 23 START +   24.9s] ## Convert PyTorch Model with Static Input Shape | [back to top ⬆️](#Tab
+[cell 24 START +   24.9s] The default conversion path preserves dynamic input shapes, in order i
+[cell 25 START +   24.9s] # Convert model to openvino.Model object | ov_model = ov.convert_model(m
+[cell 25 DONE  +   25.7s]
+[cell 26 START +   25.7s] ### Select inference device | [back to top ⬆️](#Table-of-contents:) |  | sel
+[cell 27 START +   25.7s] device
+[cell 27 DONE  +   25.7s]
+[cell 28 START +   25.7s] # Load OpenVINO model on device | compiled_model = core.compile_model(ov
+[cell 28 DONE  +   25.8s]
+[cell 29 START +   25.8s] Now, we can see that input of our converted model is tensor of shape [
+[cell 30 START +   25.8s] ### Run OpenVINO Model Inference with Static Input Shape | [back to top 
+[cell 31 START +   25.8s] # Run model inference | result = compiled_model(input_tensor)[0] |  | # Posp
+[cell 31 DONE  +   25.8s]
+[cell 32 START +   25.8s] ### Benchmark OpenVINO Model Inference with Static Input Shape | [back t
+[cell 33 START +   25.8s] %%timeit |  | compiled_model(input_tensor)
+[cell 33 DONE  +   36.8s]
+[cell 34 START +   36.8s] ## Convert TorchScript Model to OpenVINO Intermediate Representation | [
+[cell 35 START +   36.8s] # Get model path | scripted_model_path = MODEL_DIR / f"{MODEL_NAME}_scri
+[cell 35 DONE  +   37.0s]
+[cell 36 START +   37.0s] ### Benchmark Scripted Model Inference | [back to top ⬆️](#Table-of-cont
+[cell 37 START +   37.0s] %%timeit |  | scripted_model(input_tensor)
+[cell 37 DONE  +   44.8s]
+[cell 38 START +   44.8s] ### Convert PyTorch Scripted Model to OpenVINO Intermediate Representa
+[cell 39 START +   44.8s] # Convert model to openvino.Model object | ov_model = ov.convert_model(s
+[cell 39 DONE  +   45.9s]
+[cell 40 START +   45.9s] ### Benchmark OpenVINO Model Inference Converted From Scripted Model | [
+[cell 41 START +   45.9s] %%timeit |  | compiled_model(input_tensor)
+[cell 41 DONE  +   57.7s]
+[cell 42 START +   57.7s] ### Traced Model | [back to top ⬆️](#Table-of-contents:) |  | Using `torch.j
+[cell 43 START +   57.7s] # Get model path | traced_model_path = MODEL_DIR / f"{MODEL_NAME}_traced
+[cell 43 DONE  +   57.9s]
+[cell 44 START +   57.9s] ### Benchmark Traced Model Inference | [back to top ⬆️](#Table-of-conten
+[cell 45 START +   57.9s] %%timeit |  | traced_model(input_tensor)
+[cell 45 DONE  +   64.8s]
+[cell 46 START +   64.8s] ### Convert PyTorch Traced Model to OpenVINO Intermediate Representati
+[cell 47 START +   64.8s] # Convert model to openvino.Model object | ov_model = ov.convert_model(t
+[cell 47 DONE  +   65.6s]
+[cell 48 START +   65.6s] ### Benchmark OpenVINO Model Inference Converted From Traced Model | [ba
+[cell 49 START +   65.6s] %%timeit |  | compiled_model(input_tensor)[0]
+[cell 49 DONE  +   77.3s]
+NBEXEC_RESULT={"ok": true, "n_cells": 24, "n_skipped": 0, "n_substituted": 0, "stopped_after": null, "error_cell": null, "error_type": null, "error_head": null, "duration_s": 78.38, "patch_notes": []}

@@ -1,0 +1,25 @@
+id: gemma4
+title: Gemma4
+category: LLM
+upstream:
+  repository: openvinotoolkit/openvino_notebooks
+  branch: latest
+  commit: 329562e6031d1a989017d08697b0fabe5a989492
+  path: notebooks/gemma4/gemma4.ipynb
+  url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/gemma4/gemma4.ipynb
+model:
+  name: ''
+  source: ''
+  revision: ''
+  license: ''
+cpu:
+  runtime: openvino
+  status: FAILED
+gpu:
+  runtime: ''
+  status: NOT_TESTED
+twin:
+  level: WORKLOAD_TWIN
+validation: {}
+patches: {}
+last_verified: ''

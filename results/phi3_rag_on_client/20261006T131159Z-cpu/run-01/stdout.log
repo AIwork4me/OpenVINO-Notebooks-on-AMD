@@ -1,0 +1,6 @@
+[cell 0 START +    0.4s] # Chat with your documents on Intel Meteor Lake iGPU | In this notebook 
+[cell 1 START +    0.4s] # Uncomment to install dependencies | # ! pip install langchain datasets
+[cell 1 DONE  +    0.4s]
+[cell 2 START +    0.4s] from datasets import load_dataset | from nltk.tokenize import sent_token
+[cell 2 DONE  +   27.0s]
+NBEXEC_RESULT={"ok": false, "n_cells": 19, "n_skipped": 1, "n_substituted": 1, "stopped_after": null, "error_cell": null, "error_type": "CellExecutionError", "error_head": "\u001b[31mAttributeError\u001b[39m: 'Column' object has no attribute 'dtype'", "duration_s": 30.07, "patch_notes": ["substituted 1 occurrence(s) in cell 9", "skipped cell 29: matched skip pattern"]}

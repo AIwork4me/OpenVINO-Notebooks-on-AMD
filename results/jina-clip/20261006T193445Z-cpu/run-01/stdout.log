@@ -1,0 +1,49 @@
+[cell 0 START +    0.6s] ## CLIP model with Jina CLIP and OpenVINO |  | [jina-clip-v1](https://hugg
+[cell 1 START +    0.6s] ## Prerequisites | [back to top ⬆️](#Table-of-contents:)
+[cell 2 START +    0.6s] import platform |  | %pip install -q "openvino>=2024.6.0" "datasets>=2.20,
+[cell 2 DONE  +   43.9s]
+[cell 3 START +   43.9s] ## Instantiate model | [back to top ⬆️](#Table-of-contents:) |  |  | Let's loa
+[cell 4 START +   43.9s] from transformers import AutoModel |  | model = AutoModel.from_pretrained(
+[cell 4 DONE  +   50.2s]
+[cell 5 START +   50.2s] ### Prepare input data | [back to top ⬆️](#Table-of-contents:) |  | The mode
+[cell 6 START +   50.2s] from PIL import Image | import requests | from pathlib import Path |  | if not
+[cell 6 DONE  +   50.3s]
+[cell 7 START +   50.3s] import matplotlib.pyplot as plt | import numpy as np | from PIL import Ima
+[cell 7 DONE  +   50.5s]
+[cell 8 START +   50.5s] We will use tokenizer and preprocess from jina-clip model. We will tak
+[cell 9 START +   50.5s] tokenizer = model.get_tokenizer() |  | tokenizer_kwargs = dict() | tokenizer
+[cell 9 DONE  +   51.9s]
+[cell 10 START +   51.9s] ### Run PyTorch model inference | [back to top ⬆️](#Table-of-contents:)
+[cell 11 START +   51.9s] if platform.system() == "Darwin": |     model = model.float() |     text_e
+[cell 11 DONE  +   64.1s]
+[cell 12 START +   64.1s] ## Run OpenVINO model inference | [back to top ⬆️](#Table-of-contents:)
+[cell 13 START +   64.1s] ### Convert Model to OpenVINO IR format | [back to top ⬆️](#Table-of-con
+[cell 14 START +   64.1s] import openvino as ov | from pathlib import Path |  | core = ov.Core()
+[cell 14 DONE  +   64.2s]
+[cell 15 START +   64.2s] fp16_text_model_path = Path("jina-clip-text_v1_fp16.xml") |  | if not fp16
+[cell 15 DONE  +   64.2s]
+[cell 16 START +   64.2s] fp16_vision_model_path = Path("jina-clip-vision_v1_fp16.xml") |  | if not 
+[cell 16 DONE  +   64.2s]
+[cell 17 START +   64.2s] ### Select inference device | [back to top ⬆️](#Table-of-contents:) |  | For
+[cell 18 START +   64.2s] device = device_widget(exclude=["NPU"]) | device
+[cell 18 DONE  +   64.3s]
+[cell 19 START +   64.3s] ### Compile model and run inference | [back to top ⬆️](#Table-of-content
+[cell 20 START +   64.3s] compiled_text_model = core.compile_model(fp16_text_model_path, device.
+[cell 20 DONE  +   65.2s]
+[cell 21 START +   65.2s] text_ov_res = compiled_text_model(text_inputs["input_ids"]) | vis_ov_res
+[cell 21 DONE  +   66.0s]
+[cell 22 START +   66.0s] ## Quantize model to INT8 using NNCF | [back to top ⬆️](#Table-of-conten
+[cell 23 START +   66.0s] to_quantize = quantization_widget() |  | to_quantize
+[cell 23 DONE  +   66.0s]
+[cell 24 START +   66.0s] if not Path("skip_kernel_extension.py").exists(): |     # Fetch `skip_ke
+[cell 24 DONE  +   66.1s]
+[cell 25 START +   66.1s] ### Prepare datasets | [back to top ⬆️](#Table-of-contents:) |  | The [Conce
+[cell 26 START +   66.1s] #### Dataset with text data | [back to top ⬆️](#Table-of-contents:)
+[cell 27 START +   66.1s] %%skip not $to_quantize.value |  | import torch | from datasets import load_
+[cell 27 DONE  +   66.2s]
+[cell 28 START +   66.2s] %%skip not $to_quantize.value |  | import logging | import nncf |  | if not int8
+[cell 28 DONE  +   70.8s]
+[cell 29 START +   70.8s] #### Dataset with image data | [back to top ⬆️](#Table-of-contents:)
+[cell 30 START +   70.8s] %%skip not $to_quantize.value |  |  | def get_pil_from_url(url): |     """ |    
+[cell 30 DONE  +   70.8s]
+[cell 31 START +   70.8s] %%skip not $to_quantize.value |  | if not int8_vision_model_path.exists():

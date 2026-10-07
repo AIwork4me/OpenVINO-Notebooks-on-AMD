@@ -1,0 +1,61 @@
+[cell 0 START +    0.4s] # Create a RAG system using OpenVINO GenAI and LangChain |  | **Retrieval-
+[cell 1 START +    0.4s] ## Prerequisites |  | [back to top ⬆️](#Table-of-contents:) |  | Install requi
+[cell 2 START +    0.4s] import os | import requests | from pathlib import Path |  | if not Path("noteb
+Looking in indexes: https://pypi.org/simple, https://storage.openvinotoolkit.org/simple/wheels/nightly
+Requirement already satisfied: openvino>=2025.4.0 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (2026.5.0.dev20261005)
+Requirement already satisfied: numpy<2.6.0,>=1.16.6 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (from openvino>=2025.4.0) (2.2.6)
+Requirement already satisfied: openvino-telemetry>=2023.2.1 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (from openvino>=2025.4.0) (2025.2.0)
+Looking in indexes: https://pypi.org/simple, https://storage.openvinotoolkit.org/simple/wheels/nightly
+Requirement already satisfied: openvino-tokenizers[transformers] in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (2026.5.0.0.dev20261005)
+Requirement already satisfied: openvino~=2026.5.0.dev in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (from openvino-tokenizers[transformers]) (2026.5.0.dev20261005)
+Requirement already satisfied: transformers>=4.36.0 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (from transformers[sentencepiece]>=4.36.0; extra == "transformers"->openvino-tokenizers[transformers]) (4.57.6)
+Requirement already satisfied: tiktoken>=0.3.0 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (from openvino-tokenizers[transformers]) (0.14.0)
+Requirement already satisfied: numpy<2.6.0,>=1.16.6 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (from openvino~=2026.5.0.dev->openvino-tokenizers[transformers]) (2.2.6)
+Requirement already satisfied: openvino-telemetry>=2023.2.1 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (from openvino~=2026.5.0.dev->openvino-tokenizers[transformers]) (2025.2.0)
+Requirement already satisfied: regex in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (from tiktoken>=0.3.0->openvino-tokenizers[transformers]) (2026.9.29)
+Requirement already satisfied: requests in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (from tiktoken>=0.3.0->openvino-tokenizers[transformers]) (2.34.2)
+Requirement already satisfied: filelock in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (from transformers>=4.36.0->transformers[sentencepiece]>=4.36.0; extra == "transformers"->openvino-tokenizers[transformers]) (3.32.7)
+Requirement already satisfied: huggingface-hub<1.0,>=0.34.0 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (from transformers>=4.36.0->transformers[sentencepiece]>=4.36.0; extra == "transformers"->openvino-tokenizers[transformers]) (0.36.2)
+Requirement already satisfied: packaging>=20.0 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (from transformers>=4.36.0->transformers[sentencepiece]>=4.36.0; extra == "transformers"->openvino-tokenizers[transformers]) (24.2)
+Requirement already satisfied: pyyaml>=5.1 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (from transformers>=4.36.0->transformers[sentencepiece]>=4.36.0; extra == "transformers"->openvino-tokenizers[transformers]) (6.0.3)
+Requirement already satisfied: tokenizers<=0.23.0,>=0.22.0 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (from transformers>=4.36.0->transformers[sentencepiece]>=4.36.0; extra == "transformers"->openvino-tokenizers[transformers]) (0.22.2)
+Requirement already satisfied: safetensors>=0.4.3 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (from transformers>=4.36.0->transformers[sentencepiece]>=4.36.0; extra == "transformers"->openvino-tokenizers[transformers]) (0.7.0)
+Requirement already satisfied: tqdm>=4.27 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (from transformers>=4.36.0->transformers[sentencepiece]>=4.36.0; extra == "transformers"->openvino-tokenizers[transformers]) (4.70.1)
+Requirement already satisfied: fsspec>=2023.5.0 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (from huggingface-hub<1.0,>=0.34.0->transformers>=4.36.0->transformers[sentencepiece]>=4.36.0; extra == "transformers"->openvino-tokenizers[transformers]) (2024.6.1)
+Requirement already satisfied: hf-xet<2.0.0,>=1.1.3 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (from huggingface-hub<1.0,>=0.34.0->transformers>=4.36.0->transformers[sentencepiece]>=4.36.0; extra == "transformers"->openvino-tokenizers[transformers]) (1.6.0)
+Requirement already satisfied: typing-extensions>=3.7.4.3 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (from huggingface-hub<1.0,>=0.34.0->transformers>=4.36.0->transformers[sentencepiece]>=4.36.0; extra == "transformers"->openvino-tokenizers[transformers]) (4.16.0)
+Requirement already satisfied: sentencepiece!=0.1.92,>=0.1.91 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (from transformers[sentencepiece]>=4.36.0; extra == "transformers"->openvino-tokenizers[transformers]) (0.2.2)
+Requirement already satisfied: protobuf in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (from transformers[sentencepiece]>=4.36.0; extra == "transformers"->openvino-tokenizers[transformers]) (7.36.2)
+Requirement already satisfied: charset_normalizer<4,>=2 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (from requests->tiktoken>=0.3.0->openvino-tokenizers[transformers]) (3.5.2)
+Requirement already satisfied: idna<4,>=2.5 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (from requests->tiktoken>=0.3.0->openvino-tokenizers[transformers]) (3.20)
+Requirement already satisfied: urllib3<3,>=1.26 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (from requests->tiktoken>=0.3.0->openvino-tokenizers[transformers]) (2.8.0)
+Requirement already satisfied: certifi>=2023.5.7 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (from requests->tiktoken>=0.3.0->openvino-tokenizers[transformers]) (2026.7.22)
+Looking in indexes: https://pypi.org/simple, https://storage.openvinotoolkit.org/simple/wheels/nightly
+Requirement already satisfied: openvino-genai in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (2026.5.0.0.dev20261005)
+Requirement already satisfied: openvino_tokenizers~=2026.5.0.0.dev in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (from openvino-genai) (2026.5.0.0.dev20261005)
+Requirement already satisfied: openvino~=2026.5.0.dev in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (from openvino_tokenizers~=2026.5.0.0.dev->openvino-genai) (2026.5.0.dev20261005)
+Requirement already satisfied: numpy<2.6.0,>=1.16.6 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (from openvino~=2026.5.0.dev->openvino_tokenizers~=2026.5.0.0.dev->openvino-genai) (2.2.6)
+Requirement already satisfied: openvino-telemetry>=2023.2.1 in /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages (from openvino~=2026.5.0.dev->openvino_tokenizers~=2026.5.0.0.dev->openvino-genai) (2025.2.0)
+[cell 2 DONE  +    6.9s]
+[cell 3 START +    6.9s] import os | from pathlib import Path | import requests | import shutil | impor
+[cell 3 DONE  +    7.1s]
+[cell 4 START +    7.1s] ## Select model for inference |  | [back to top ⬆️](#Table-of-contents:) |  | 
+[cell 5 START +    7.1s] from pathlib import Path | import ipywidgets as widgets
+[cell 5 DONE  +    7.1s]
+[cell 6 START +    7.1s] ## Convert model and compress model weights |  | [back to top ⬆️](#Table-o
+[cell 7 START +    7.1s] from llm_config import ( |     SUPPORTED_EMBEDDING_MODELS, |     SUPPORTED
+[cell 7 DONE  +    7.1s]
+[cell 8 START +    7.1s] llm_model_ids = [model_id for model_id, model_config in SUPPORTED_LLM_
+[cell 8 DONE  +    7.2s]
+[cell 9 START +    7.2s] llm_model_configuration = SUPPORTED_LLM_MODELS[model_language.value][l
+[cell 9 DONE  +    7.2s]
+[cell 10 START +    7.2s] 🤗 [Optimum Intel](https://huggingface.co/docs/optimum/intel/index) is 
+[cell 11 START +    7.2s] ### LLM conversion and Weights Compression using Optimum-CLI |  | [back to
+[cell 12 START +    7.2s] from IPython.display import Markdown, display |  | prepare_int4_model = wi
+[cell 12 DONE  +    7.2s]
+[cell 13 START +    7.2s] #### Weight compression with AWQ | [back to top ⬆️](#Table-of-contents:)
+[cell 14 START +    7.2s] enable_awq = widgets.Checkbox( |     value=False, |     description="Enabl
+[cell 14 DONE  +    7.2s]
+[cell 15 START +    7.2s] from cmd_helper import optimum_cli |  | pt_model_id = llm_model_configurat
+[cell 15 DONE  +    9.3s]
+NBEXEC_RESULT={"ok": false, "n_cells": 31, "n_skipped": 1, "n_substituted": 1, "stopped_after": null, "error_cell": null, "error_type": "CellExecutionError", "error_head": "\u001b[31mCalledProcessError\u001b[39m: Command '['optimum-cli', 'export', 'openvino', '--model', 'TinyLlama/TinyLlama-1.1B-Chat-v1.0', 'tiny-llama-1b-chat/INT4_compressed_weights', '--task', 'text-generation-with-past', '--weight-format', 'int4', '--group-size', '128', '--ratio', '0.8']' returned non-zero exit status 1.", "duration_s": 9.43, "patch_notes": ["substituted 1 occurrence(s) in cell 2", "skipped cell 53: matched skip pattern"]}

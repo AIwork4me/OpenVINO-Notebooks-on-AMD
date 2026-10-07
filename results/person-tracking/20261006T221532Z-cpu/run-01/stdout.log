@@ -1,0 +1,10 @@
+[cell 0 START +    0.6s] # Person Tracking with OpenVINO™ |  | This notebook demonstrates live pers
+[cell 1 START +    0.6s]  | #### Table of contents: |  | - [Imports](#Imports) | - [Download the Model]
+[cell 2 START +    0.6s] %pip install -q "openvino>=2024.0.0" | %pip install -q opencv-python req
+[cell 2 DONE  +    5.7s]
+[cell 3 START +    5.7s] ## Imports | [back to top ⬆️](#Table-of-contents:) | 
+[cell 4 START +    5.7s] import collections | from pathlib import Path | import time |  | import numpy 
+[cell 4 DONE  +    6.0s]
+[cell 5 START +    6.0s] # Import local modules | import requests |  | if not Path("./notebook_utils.
+[cell 5 DONE  +    6.2s]
+NBEXEC_RESULT={"ok": false, "n_cells": 13, "n_skipped": 0, "n_substituted": 0, "stopped_after": null, "error_cell": null, "error_type": "CellExecutionError", "error_head": "\u001b[31mModuleNotFoundError\u001b[39m: No module named 'deepsort_utils'", "duration_s": 6.42, "patch_notes": []}

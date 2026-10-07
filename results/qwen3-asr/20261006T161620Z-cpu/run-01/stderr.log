@@ -1,0 +1,110 @@
+[IPKernelApp] WARNING | Kernel is running over TCP without encryption. All communication (including code and outputs) is sent in plain text and is susceptible to eavesdropping. Use IPC transport or launch with kernel manager-provisioned CurveZMQ keys to enable transport encryption.
+[33m  WARNING: Retrying (Retry(total=4, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ConnectTimeoutError(<HTTPSConnection(host='download-r2.pytorch.org', port=443) at 0x72bb2f5cad80>, 'Connection to download-r2.pytorch.org timed out. (connect timeout=15)')': /whl/cpu/torchaudio-2.11.0%2Bcpu-cp312-cp312-manylinux_2_28_x86_64.whl.metadata[0m[33m
+[0m[31mERROR: pip's dependency resolver does not currently take into account all the packages that are installed. This behaviour is the source of the following dependency conflicts.
+easyocr 1.7.2 requires opencv-python-headless, which is not installed.
+parler-tts 0.2.2 requires transformers<=4.46.1,>=4.46.1, but you have transformers 4.51.3 which is incompatible.
+torchvision 0.18.1+cpu requires torch==2.3.1, but you have torch 2.14.1+cpu which is incompatible.
+ace-step 0.2.0 requires accelerate==1.6.0, but you have accelerate 1.15.0 which is incompatible.
+ace-step 0.2.0 requires datasets==3.4.1, but you have datasets 3.6.0 which is incompatible.
+ace-step 0.2.0 requires diffusers>=0.33.0, but you have diffusers 0.29.0 which is incompatible.
+ace-step 0.2.0 requires librosa==0.11.0, but you have librosa 0.10.2 which is incompatible.
+ace-step 0.2.0 requires matplotlib==3.10.1, but you have matplotlib 3.7.5 which is incompatible.
+ace-step 0.2.0 requires soundfile==0.13.1, but you have soundfile 0.12.1 which is incompatible.
+ace-step 0.2.0 requires transformers==4.50.0, but you have transformers 4.51.3 which is incompatible.
+descript-audiotools 0.7.4 requires protobuf!=4.24.0,<5.0.0,>=3.19.6, but you have protobuf 6.33.5 which is incompatible.
+omnivoice 0.2.1 requires transformers>=5.3.0, but you have transformers 4.51.3 which is incompatible.[0m[31m
+[0m[31mERROR: pip's dependency resolver does not currently take into account all the packages that are installed. This behaviour is the source of the following dependency conflicts.
+parler-tts 0.2.2 requires transformers<=4.46.1,>=4.46.1, but you have transformers 5.13.1 which is incompatible.
+ace-step 0.2.0 requires accelerate==1.6.0, but you have accelerate 1.15.0 which is incompatible.
+ace-step 0.2.0 requires datasets==3.4.1, but you have datasets 3.6.0 which is incompatible.
+ace-step 0.2.0 requires diffusers>=0.33.0, but you have diffusers 0.29.0 which is incompatible.
+ace-step 0.2.0 requires librosa==0.11.0, but you have librosa 0.10.2 which is incompatible.
+ace-step 0.2.0 requires matplotlib==3.10.1, but you have matplotlib 3.7.5 which is incompatible.
+ace-step 0.2.0 requires soundfile==0.13.1, but you have soundfile 0.12.1 which is incompatible.
+ace-step 0.2.0 requires transformers==4.50.0, but you have transformers 5.13.1 which is incompatible.
+sentence-transformers 5.1.2 requires transformers<5.0.0,>=4.41.0, but you have transformers 5.13.1 which is incompatible.[0m[31m
+[0m exception was the direct cause of the following exception:
+
+[31mModuleNotFoundError[39m                       Traceback (most recent call last)
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages/transformers/utils/import_utils.py:2305[39m, in [36m_LazyModule.__getattr__[39m[34m(self, name)[39m
+[32m   2304[39m [38;5;28;01mtry[39;00m:
+[32m-> [39m[32m2305[39m     module = [30;43mself[39;49m[30;43m.[39;49m[30;43m_get_module[39;49m[30;43m([39;49m[30;43mself[39;49m[30;43m.[39;49m[30;43m_class_to_module[39;49m[30;43m[[39;49m[30;43mname[39;49m[30;43m][39;49m[30;43m)[39;49m
+[32m   2306[39m     value = [38;5;28mgetattr[39m(module, name)
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages/transformers/utils/import_utils.py:2539[39m, in [36m_LazyModule._get_module[39m[34m(self, module_name)[39m
+[32m   2538[39m [38;5;28;01mexcept[39;00m [38;5;167;01mException[39;00m [38;5;28;01mas[39;00m e:
+[32m-> [39m[32m2539[39m     [38;5;28;01mraise[39;00m e
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages/transformers/utils/import_utils.py:2537[39m, in [36m_LazyModule._get_module[39m[34m(self, module_name)[39m
+[32m   2536[39m [38;5;28;01mtry[39;00m:
+[32m-> [39m[32m2537[39m     [38;5;28;01mreturn[39;00m [30;43mimportlib[39;49m[30;43m.[39;49m[30;43mimport_module[39;49m[30;43m([39;49m[30;43m"[39;49m[30;43m.[39;49m[30;43m"[39;49m[30;43m [39;49m[30;43m+[39;49m[30;43m [39;49m[30;43mmodule_name[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mself[39;49m[30;43m.[39;49m[30;43m__name__[39;49m[30;43m)[39;49m
+[32m   2538[39m [38;5;28;01mexcept[39;00m [38;5;167;01mException[39;00m [38;5;28;01mas[39;00m e:
+
+[36mFile [39m[32m/usr/lib/python3.12/importlib/__init__.py:90[39m, in [36mimport_module[39m[34m(name, package)[39m
+[32m     89[39m         level += [32m1[39m
+[32m---> [39m[32m90[39m [38;5;28;01mreturn[39;00m [30;43m_bootstrap[39;49m[30;43m.[39;49m[30;43m_gcd_import[39;49m[30;43m([39;49m[30;43mname[39;49m[30;43m[[39;49m[30;43mlevel[39;49m[30;43m:[39;49m[30;43m][39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mpackage[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mlevel[39;49m[30;43m)[39;49m
+
+[36mFile [39m[32m<frozen importlib._bootstrap>:1387[39m, in [36m_gcd_import[39m[34m(name, package, level)[39m
+
+[36mFile [39m[32m<frozen importlib._bootstrap>:1360[39m, in [36m_find_and_load[39m[34m(name, import_)[39m
+
+[36mFile [39m[32m<frozen importlib._bootstrap>:1334[39m, in [36m_find_and_load_unlocked[39m[34m(name, import_)[39m
+
+[36mFile [39m[32m<frozen importlib._bootstrap>:950[39m, in [36m_load_unlocked[39m[34m(spec)[39m
+
+[36mFile [39m[32m<frozen importlib._bootstrap_external>:995[39m, in [36m_LoaderBasics.exec_module[39m[34m(self, module)[39m
+
+[36mFile [39m[32m<frozen importlib._bootstrap>:488[39m, in [36m_call_with_frames_removed[39m[34m(f, *args, **kwds)[39m
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages/optimum/intel/openvino/__init__.py:26[39m
+[32m     18[39m [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01m.[39;00m[34;01m.[39;00m[34;01mutils[39;00m[34;01m.[39;00m[34;01mimport_utils[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m (
+[32m     19[39m     _openvino_version,
+[32m     20[39m     is_diffusers_available,
+[32m   (...)[39m[32m     24[39m     is_sentence_transformers_available,
+[32m     25[39m )
+[32m---> [39m[32m26[39m [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01m.[39;00m[34;01mutils[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m (
+[32m     27[39m     OV_DECODER_NAME,
+[32m     28[39m     OV_DECODER_WITH_PAST_NAME,
+[32m     29[39m     OV_DETOKENIZER_NAME,
+[32m     30[39m     OV_ENCODER_NAME,
+[32m     31[39m     OV_TOKENIZER_NAME,
+[32m     32[39m     OV_XML_FILE_NAME,
+[32m     33[39m )
+[32m     36[39m warnings.simplefilter(action=[33m"[39m[33mignore[39m[33m"[39m, category=[38;5;167;01mFutureWarning[39;00m)
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages/optimum/intel/openvino/utils.py:34[39m
+[32m     33[39m [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01mpackaging[39;00m[34;01m.[39;00m[34;01mversion[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m Version
+[32m---> [39m[32m34[39m [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01mtransformers[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m AutoTokenizer, CLIPTokenizer, PreTrainedTokenizer, PreTrainedTokenizerFast
+[32m     36[39m [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01moptimum[39;00m[34;01m.[39;00m[34;01mintel[39;00m[34;01m.[39;00m[34;01mutils[39;00m[34;01m.[39;00m[34;01mimport_utils[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m is_torch_version
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages/transformers/utils/import_utils.py:2393[39m, in [36m_LazyModule.__getattr__[39m[34m(self, name)[39m
+[32m   2392[39m         [38;5;28;01melse[39;00m:
+[32m-> [39m[32m2393[39m             [38;5;28;01mraise[39;00m [38;5;167;01mModuleNotFoundError[39;00m(
+[32m   2394[39m                 [33mf[39m[33m"[39m[33mCould not import module [39m[33m'[39m[38;5;132;01m{[39;00mname[38;5;132;01m}[39;00m[33m'[39m[33m. Are this object[39m[33m'[39m[33ms requirements defined correctly?[39m[33m"[39m
+[32m   2395[39m             ) [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01me[39;00m
+[32m   2397[39m [38;5;28;01melif[39;00m name [38;5;129;01min[39;00m [38;5;28mself[39m._modules:
+
+[31mModuleNotFoundError[39m: Could not import module 'AutoTokenizer'. Are this object's requirements defined correctly?
+
+The above exception was the direct cause of the following exception:
+
+[31mModuleNotFoundError[39m                       Traceback (most recent call last)
+[36mCell[39m[36m [39m[32mIn[4][39m[32m, line 1[39m
+[32m----> [39m[32m1[39m [38;5;28;01mfrom[39;00m optimum.intel [38;5;28;01mimport[39;00m OVModelForSpeechSeq2Seq
+[32m      2[39m 
+[32m      3[39m model_id = model_selector.value
+[32m      4[39m model_name = model_id.split([33m"/"[39m)[-[32m1[39m]
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages/transformers/utils/import_utils.py:2393[39m, in [36m_LazyModule.__getattr__[39m[34m(self, name)[39m
+[32m   2389[39m                     [38;5;28;01mraise[39;00m [38;5;167;01mModuleNotFoundError[39;00m(
+[32m   2390[39m                         [33mf[39m[33m"[39m[33mCould not import module [39m[33m'[39m[38;5;132;01m{[39;00mname[38;5;132;01m}[39;00m[33m'[39m[33m. Are this object[39m[33m'[39m[33ms requirements defined correctly?[39m[33m"[39m
+[32m   2391[39m                     ) [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01me[39;00m
+[32m   2392[39m         [38;5;28;01melse[39;00m:
+[32m-> [39m[32m2393[39m             [38;5;28;01mraise[39;00m [38;5;167;01mModuleNotFoundError[39;00m(
+[32m   2394[39m                 [33mf[39m[33m"[39m[33mCould not import module [39m[33m'[39m[38;5;132;01m{[39;00mname[38;5;132;01m}[39;00m[33m'[39m[33m. Are this object[39m[33m'[39m[33ms requirements defined correctly?[39m[33m"[39m
+[32m   2395[39m             ) [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01me[39;00m
+[32m   2397[39m [38;5;28;01melif[39;00m name [38;5;129;01min[39;00m [38;5;28mself[39m._modules:
+[32m   2398[39m     [38;5;28;01mtry[39;00m:
+
+[31mModuleNotFoundError[39m: Could not import module 'OVModelForSpeechSeq2Seq'. Are this object's requirements defined correctly?
+

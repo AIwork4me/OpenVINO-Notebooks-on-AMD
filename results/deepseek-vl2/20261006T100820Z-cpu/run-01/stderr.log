@@ -1,0 +1,4 @@
+[IPKernelApp] WARNING | Kernel is running over TCP without encryption. All communication (including code and outputs) is sent in plain text and is susceptible to eavesdropping. Use IPC transport or launch with kernel manager-provisioned CurveZMQ keys to enable transport encryption.
+[31mERROR: pip's dependency resolver does not currently take into account all the packages that are installed. This behaviour is the source of the following dependency conflicts.
+ace-step 0.2.0 requires transformers==4.50.0, but you have transformers 4.53.3 which is incompatible.[0m[31m
+[0m[IPKernelApp] WARNING | Parent appears to have exited, shutting down.

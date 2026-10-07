@@ -1,0 +1,9 @@
+{
+  "schema_version": 2,
+  "repository": "openvinotoolkit/openvino_notebooks",
+  "branch": "latest",
+  "commit": "a8809170cc4fc6aa633fbb9c22214be67ac20b47",
+  "path": "notebooks/ct-segmentation-quantize/ct-segmentation-quantize-nncf.ipynb",
+  "url": "https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/ct-segmentation-quantize/ct-segmentation-quantize-nncf.ipynb",
+  "notebook_sha256": "cfd891b4e7cec286abd83a20823198fafb2ac1664697bc3d607e216d5926d395"
+}

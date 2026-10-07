@@ -1,0 +1,17 @@
+{
+  "schema_version": 2,
+  "passed": true,
+  "checks": {
+    "output_contains": {
+      "throuput in sync mode: \\d+\\.\\d+ fps": true,
+      "throughput in async mode with async infer queue: \\d+\\.\\d+ fps": true
+    },
+    "output_finite_numbers": true,
+    "no_cell_error": true,
+    "skipped_cells": 0
+  },
+  "notes": [],
+  "level": "WORKLOAD_CORRECTNESS",
+  "contract_present": true,
+  "aggregate_ref": "aggregate.json"
+}

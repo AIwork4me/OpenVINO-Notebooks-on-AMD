@@ -1,0 +1,7 @@
+[IPKernelApp] WARNING | Kernel is running over TCP without encryption. All communication (including code and outputs) is sent in plain text and is susceptible to eavesdropping. Use IPC transport or launch with kernel manager-provisioned CurveZMQ keys to enable transport encryption.
+[31mERROR: pip's dependency resolver does not currently take into account all the packages that are installed. This behaviour is the source of the following dependency conflicts.
+optimum-onnx 0.1.0 requires transformers<4.58.0,>=4.36, but you have transformers 5.18.0 which is incompatible.
+ace-step 0.2.0 requires transformers==4.50.0, but you have transformers 5.18.0 which is incompatible.
+optimum-intel 1.27.0 requires transformers<4.58,>=4.45, but you have transformers 5.18.0 which is incompatible.
+sentence-transformers 5.1.2 requires transformers<5.0.0,>=4.41.0, but you have transformers 5.18.0 which is incompatible.[0m[31m
+[0m[IPKernelApp] WARNING | Parent appears to have exited, shutting down.

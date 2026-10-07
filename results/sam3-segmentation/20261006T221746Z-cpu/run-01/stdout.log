@@ -1,0 +1,95 @@
+[cell 0 START +    0.4s] # SAM 3 Image Segmentation with OpenVINO |  | [SAM 3](https://github.com/f
+[cell 1 START +    0.4s] ## Prerequisites | [back to top ⬆️](#Table-of-contents:)
+[cell 2 START +    0.4s] import requests | from pathlib import Path |  | if not Path("notebook_utils.
+[cell 2 DONE  +    2.5s]
+[cell 3 START +    2.5s] import subprocess | import sys | import types | from pathlib import Path |  | # 
+[cell 3 DONE  +    2.5s]
+[cell 4 START +    2.5s] import os | import warnings |  | import matplotlib.pyplot as plt | import nump
+[cell 4 DONE  +    3.3s]
+[cell 5 START +    3.3s] ## Load PyTorch Model | [back to top ⬆️](#Table-of-contents:)
+[cell 6 START +    3.3s] from sam3 import build_sam3_image_model | from sam3.model.sam3_image_pro
+[cell 6 DONE  +   11.5s]
+[cell 7 START +   11.5s] # Load test images | image_path = str(sam3_root / "assets" / "images" / 
+[cell 7 DONE  +   11.6s]
+[cell 8 START +   11.6s] ## PyTorch Baseline Demos | [back to top ⬆️](#Table-of-contents:) |  | Run t
+[cell 9 START +   11.6s] ### Text-Only Prompts
+[cell 10 START +   11.6s] processor = Sam3Processor(model, device="cpu", confidence_threshold=0.
+[cell 10 DONE  +   17.7s]
+[cell 11 START +   17.7s] ### Single Bounding Box Prompt
+[cell 12 START +   17.7s] # Box in xyxy pixel format [x1, y1, x2, y2] (matching HF example forma
+[cell 12 DONE  +   24.2s]
+[cell 13 START +   24.2s] ### Multiple Box Prompts (Positive and Negative)
+[cell 14 START +   24.2s] # Two boxes in xyxy format: positive (right shoe) + negative (left sho
+[cell 14 DONE  +   31.0s]
+[cell 15 START +   31.0s] ### Combined Prompts (Text + Negative Box) |  | Segment objects matching a
+[cell 16 START +   31.0s] # Combined Prompts: text "handle" + negative box to exclude oven handl
+[cell 16 DONE  +   37.9s]
+[cell 17 START +   37.9s] ### SAM3 Tracker |  | SAM3 includes a tracker model (SAM2-style) for point
+[cell 18 START +   37.9s] # SAM3 Tracker: single point click on truck image (matching HF example
+[cell 18 DONE  +   43.9s]
+[cell 19 START +   43.9s] ## Convert Models to OpenVINO | [back to top ⬆️](#Table-of-contents:) |  | W
+[cell 20 START +   43.9s] from ov_sam3_helper import ( |     patch_vit_rope, |     Sam3ImageEncoderM
+[cell 20 DONE  +   43.9s]
+[cell 21 START +   43.9s] Optionally enable **NNCF weight-only compression** (data-free, no cali
+[cell 22 START +   43.9s] from notebook_utils import quantization_widget |  | to_quantize = quantiza
+[cell 22 DONE  +   43.9s]
+[cell 23 START +   43.9s] import nncf |  | # SAM3 patches the ViT RoPE complex matmul into a real ma
+[cell 23 DONE  +   44.0s]
+[cell 24 START +   44.0s] ### Image Encoder |  | The image encoder uses a ViT backbone with Rotary P
+[cell 25 START +   44.0s] # Patch RoPE to use matrix multiplication (OpenVINO doesn't support co
+[cell 25 DONE  +   44.1s]
+[cell 26 START +   44.1s] ### Text Encoder
+[cell 27 START +   44.1s] text_encoder_wrapper = Sam3TextEncoderModel( |     text_encoder=model.ba
+[cell 27 DONE  +   44.1s]
+[cell 28 START +   44.1s] ### Transformer Encoder |  | The transformer encoder fuses image features 
+[cell 29 START +   44.1s] encoder_wrapper = Sam3TransformerEncoderModel( |     encoder=model.trans
+[cell 29 DONE  +   44.1s]
+[cell 30 START +   44.1s] ### Transformer Decoder |  | The decoder handles object query decoding wit
+[cell 31 START +   44.1s] # --- Transformer Decoder --- | decoder_wrapper = Sam3TransformerDecoder
+[cell 31 DONE  +   52.0s]
+[cell 32 START +   52.0s] ### Segmentation Head |  | The segmentation head includes a pixel decoder 
+[cell 33 START +   52.0s] num_queries = model.transformer.decoder.num_queries | num_layers = len(m
+[cell 33 DONE  +   52.1s]
+[cell 34 START +   52.1s] ### SAM2-Style Prompt Encoder (for SAM1 Task) |  | Used for point/box prom
+[cell 35 START +   52.1s] if model.inst_interactive_predictor is not None: |     tracker_model = m
+[cell 35 DONE  +   52.1s]
+[cell 36 START +   52.1s] ### SAM2-Style Mask Decoder (for SAM1 Task)
+[cell 37 START +   52.1s] if model.inst_interactive_predictor is not None: |     mask_dec_wrapper 
+[cell 37 DONE  +   52.1s]
+[cell 38 START +   52.1s] ### Geometry Encoder (Split) + SAM1 Feature Prep |  | The geometry encoder
+[cell 39 START +   52.1s] import copy | import json |  | # ===========================================
+[cell 39 DONE  +   52.3s]
+[cell 40 START +   52.3s] ### Compress heavy sub-models (optional) |  | If the **Quantize** toggle a
+[cell 41 START +   52.3s] if to_quantize.value: |     for fp_name, cp_name, mode in _COMPRESS_PLAN
+[cell 41 DONE  +   52.3s]
+[cell 42 START +   52.3s] ## OpenVINO Demos | [back to top ⬆️](#Table-of-contents:) |  | Now run the s
+[cell 43 START +   52.3s] from notebook_utils import device_widget |  | device = device_widget(defau
+[cell 43 DONE  +   52.4s]
+[cell 44 START +   52.4s] core = ov.Core() |  | # When `to_quantize` is on and a compressed *_int4.x
+[cell 44 DONE  +   55.6s]
+[cell 45 START +   55.6s] from ov_sam3_helper import OVSam3Processor | from sam3.model.tokenizer_v
+[cell 45 DONE  +   55.7s]
+[cell 46 START +   55.7s] ### Text-Only Prompts (OpenVINO)
+[cell 47 START +   55.7s] # Text-Only Prompts: "ear" on COCO image (matching HF example) | ov_stat
+[cell 47 DONE  +   59.6s]
+[cell 48 START +   59.6s] ### Single Bounding Box Prompt (OpenVINO)
+[cell 49 START +   59.6s] # Single box prompt (xyxy format, matching HF example) | ov_state = ov_p
+[cell 49 DONE  +   63.0s]
+[cell 50 START +   63.0s] ### Multiple Box Prompts (OpenVINO)
+[cell 51 START +   63.0s] # Multiple boxes: positive + negative (xyxy format) | ov_state = ov_proc
+[cell 51 DONE  +   66.6s]
+[cell 52 START +   66.6s] ### Combined Prompts (Text + Negative Box) (OpenVINO)
+[cell 53 START +   66.6s] # Combined Prompts (OV): text "handle" + negative box to exclude oven 
+[cell 53 DONE  +   69.9s]
+[cell 54 START +   69.9s] ### SAM3 Tracker (OpenVINO)
+[cell 55 START +   69.9s] # SAM3 Tracker (OV): single point click on truck image | ov_truck_state 
+[cell 55 DONE  +   73.3s]
+[cell 56 START +   73.3s] ## Testing and Verification | [back to top ⬆️](#Table-of-contents:) |  | Com
+[cell 57 START +   73.3s] from ov_sam3_helper import compare_masks |  | results = [] |  | # Test 1: Text
+[cell 57 DONE  +   73.9s]
+[cell 58 START +   73.9s] ## Performance Comparison | [back to top ⬆️](#Table-of-contents:) |  | Compa
+[cell 59 START +   73.9s] import time |  | n_runs = 3 |  | ov_full_times = [] | for _ in range(n_runs): |   
+[cell 59 DONE  +  101.2s]
+[cell 60 START +  101.2s] ## Interactive Demo | [back to top ⬆️](#Table-of-contents:) |  | Use the int
+[cell 61 START +  101.2s] import gradio as gr | import numpy as np | import torch | from PIL import Im
+NBEXEC_RESULT={"ok": true, "n_cells": 33, "n_skipped": 1, "n_substituted": 1, "stopped_after": null, "error_cell": null, "error_type": null, "error_head": null, "duration_s": 103.63, "patch_notes": ["substituted 1 occurrence(s) in cell 7", "skipped cell 61: matched skip pattern"]}

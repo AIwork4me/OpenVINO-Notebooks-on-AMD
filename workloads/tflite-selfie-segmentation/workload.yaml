@@ -4,9 +4,9 @@ category: Conversion
 upstream:
   repository: openvinotoolkit/openvino_notebooks
   branch: latest
-  commit: a8809170cc4fc6aa633fbb9c22214be67ac20b47
+  commit: 329562e6031d1a989017d08697b0fabe5a989492
   path: notebooks/tflite-selfie-segmentation/tflite-selfie-segmentation.ipynb
-  url: https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/tflite-selfie-segmentation/tflite-selfie-segmentation.ipynb
+  url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/tflite-selfie-segmentation/tflite-selfie-segmentation.ipynb
 model:
   name: ''
   source: ''
@@ -24,4 +24,4 @@ validation:
   output_contains:
   - names\[Identity\] shape\[1,256,256,6\]
 patches: {}
-last_verified: '2026-10-06T02:47:05+00:00'
+last_verified: '2026-10-06T22:26:51+00:00'

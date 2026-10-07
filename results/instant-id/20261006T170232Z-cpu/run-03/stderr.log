@@ -1,0 +1,80 @@
+[IPKernelApp] WARNING | Kernel is running over TCP without encryption. All communication (including code and outputs) is sent in plain text and is susceptible to eavesdropping. Use IPC transport or launch with kernel manager-provisioned CurveZMQ keys to enable transport encryption.
+28;01mwhile[39;00m [38;5;28;01mTrue[39;00m:
+[32m    395[39m     responses.close()
+[32m--> [39m[32m396[39m     res = [30;43m_get_response_with_retries[39;49m[30;43m([39;49m
+[32m    397[39m [30;43m        [39;49m[30;43msess[39;49m[30;43m=[39;49m[30;43msess[39;49m[30;43m,[39;49m
+[32m    398[39m [30;43m        [39;49m[30;43murl[39;49m[30;43m=[39;49m[30;43murl[39;49m[30;43m,[39;49m
+[32m    399[39m [30;43m        [39;49m[30;43mverify[39;49m[30;43m=[39;49m[30;43mverify[39;49m[30;43m,[39;49m
+[32m    400[39m [30;43m        [39;49m[30;43mtimeout[39;49m[30;43m=[39;49m[30;43mtimeout[39;49m[30;43m,[39;49m
+[32m    401[39m [30;43m        [39;49m[30;43mretry[39;49m[30;43m=[39;49m[30;43mretry[39;49m[30;43m,[39;49m
+[32m    402[39m [30;43m        [39;49m[30;43mheaders[39;49m[30;43m=[39;49m[30;43;01mNone[39;49;00m[30;43m,[39;49m
+[32m    403[39m [30;43m    [39;49m[30;43m)[39;49m
+[32m    404[39m     responses.callback(res.close)
+[32m    406[39m     [38;5;28;01mif[39;00m [38;5;129;01mnot[39;00m gdrive_file_id:
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/17c1a542e7404940/lib/python3.12/site-packages/gdown/download.py:348[39m, in [36m_get_response_with_retries[39m[34m(sess, url, verify, timeout, retry, headers)[39m
+[32m    346[39m         last_error = error
+[32m    347[39m [38;5;28;01massert[39;00m last_error [38;5;129;01mis[39;00m [38;5;129;01mnot[39;00m [38;5;28;01mNone[39;00m
+[32m--> [39m[32m348[39m [30;43m_raise_retries_exhausted[39;49m[30;43m([39;49m[30;43merror[39;49m[30;43m=[39;49m[30;43mlast_error[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mretries[39;49m[30;43m=[39;49m[30;43mretry[39;49m[30;43m.[39;49m[30;43mretries[39;49m[30;43m)[39;49m
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/17c1a542e7404940/lib/python3.12/site-packages/gdown/download.py:294[39m, in [36m_raise_retries_exhausted[39m[34m(error, retries)[39m
+[32m    290[39m [38;5;28;01mif[39;00m retries [38;5;129;01mand[39;00m [38;5;28misinstance[39m(error, requests.exceptions.RequestException):
+[32m    291[39m     [38;5;28;01mraise[39;00m DownloadError(
+[32m    292[39m         [33mf[39m[33m"[39m[33mDownload failed after [39m[38;5;132;01m{[39;00mretries[38;5;132;01m}[39;00m[33m retries: [39m[38;5;132;01m{[39;00merror[38;5;132;01m}[39;00m[33m"[39m
+[32m    293[39m     ) [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01merror[39;00m
+[32m--> [39m[32m294[39m [38;5;28;01mraise[39;00m error
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/17c1a542e7404940/lib/python3.12/site-packages/gdown/download.py:330[39m, in [36m_get_response_with_retries[39m[34m(sess, url, verify, timeout, retry, headers)[39m
+[32m    328[39m     _wait_for_retry(retry=retry, error=last_error)
+[32m    329[39m [38;5;28;01mtry[39;00m:
+[32m--> [39m[32m330[39m     [38;5;28;01mreturn[39;00m [30;43msess[39;49m[30;43m.[39;49m[30;43mget[39;49m[30;43m([39;49m
+[32m    331[39m [30;43m        [39;49m[30;43murl[39;49m[30;43m,[39;49m
+[32m    332[39m [30;43m        [39;49m[30;43mheaders[39;49m[30;43m=[39;49m[30;43mheaders[39;49m[30;43m,[39;49m
+[32m    333[39m [30;43m        [39;49m[30;43mstream[39;49m[30;43m=[39;49m[30;43;01mTrue[39;49;00m[30;43m,[39;49m
+[32m    334[39m [30;43m        [39;49m[30;43mverify[39;49m[30;43m=[39;49m[30;43mverify[39;49m[30;43m,[39;49m
+[32m    335[39m [30;43m        [39;49m[30;43mtimeout[39;49m[30;43m=[39;49m[30;43mtimeout[39;49m[30;43m,[39;49m
+[32m    336[39m [30;43m    [39;49m[30;43m)[39;49m
+[32m    337[39m [38;5;28;01mexcept[39;00m (
+[32m    338[39m     requests.exceptions.ConnectionError,
+[32m    339[39m     requests.exceptions.Timeout,
+[32m    340[39m     requests.exceptions.ChunkedEncodingError,
+[32m    341[39m ) [38;5;28;01mas[39;00m error:
+[32m    342[39m     [38;5;28;01mif[39;00m [38;5;28misinstance[39m(
+[32m    343[39m         error, (requests.exceptions.SSLError, requests.exceptions.ProxyError)
+[32m    344[39m     ):
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/17c1a542e7404940/lib/python3.12/site-packages/requests/sessions.py:671[39m, in [36mSession.get[39m[34m(self, url, params, **kwargs)[39m
+[32m    661[39m [38;5;250m[39m[33mr[39m[33;03m"""Sends a GET request. Returns :class:`Response` object.[39;00m
+[32m    662[39m 
+[32m    663[39m [33;03m:param url: URL for the new :class:`Request` object.[39;00m
+[32m   (...)[39m[32m    667[39m [33;03m:rtype: requests.Response[39;00m
+[32m    668[39m [33;03m"""[39;00m
+[32m    670[39m kwargs.setdefault([33m"[39m[33mallow_redirects[39m[33m"[39m, [38;5;28;01mTrue[39;00m)
+[32m--> [39m[32m671[39m [38;5;28;01mreturn[39;00m [30;43mself[39;49m[30;43m.[39;49m[30;43mrequest[39;49m[30;43m([39;49m[30;43m"[39;49m[30;43mGET[39;49m[30;43m"[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43murl[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mparams[39;49m[30;43m=[39;49m[30;43mparams[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43m*[39;49m[30;43m*[39;49m[30;43mkwargs[39;49m[30;43m)[39;49m
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/17c1a542e7404940/lib/python3.12/site-packages/requests/sessions.py:651[39m, in [36mSession.request[39m[34m(self, method, url, params, data, headers, cookies, files, auth, timeout, allow_redirects, proxies, hooks, stream, verify, cert, json)[39m
+[32m    646[39m send_kwargs = {
+[32m    647[39m     [33m"[39m[33mtimeout[39m[33m"[39m: timeout,
+[32m    648[39m     [33m"[39m[33mallow_redirects[39m[33m"[39m: allow_redirects,
+[32m    649[39m }
+[32m    650[39m send_kwargs.update(settings)
+[32m--> [39m[32m651[39m resp = [30;43mself[39;49m[30;43m.[39;49m[30;43msend[39;49m[30;43m([39;49m[30;43mprep[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43m*[39;49m[30;43m*[39;49m[30;43msend_kwargs[39;49m[30;43m)[39;49m
+[32m    653[39m [38;5;28;01mreturn[39;00m resp
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/17c1a542e7404940/lib/python3.12/site-packages/requests/sessions.py:784[39m, in [36mSession.send[39m[34m(self, request, **kwargs)[39m
+[32m    781[39m start = preferred_clock()
+[32m    783[39m [38;5;66;03m# Send the request[39;00m
+[32m--> [39m[32m784[39m r = [30;43madapter[39;49m[30;43m.[39;49m[30;43msend[39;49m[30;43m([39;49m[30;43mrequest[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43m*[39;49m[30;43m*[39;49m[30;43mkwargs[39;49m[30;43m)[39;49m
+[32m    786[39m [38;5;66;03m# Total elapsed time of the request (approximately)[39;00m
+[32m    787[39m elapsed = preferred_clock() - start
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/17c1a542e7404940/lib/python3.12/site-packages/requests/adapters.py:717[39m, in [36mHTTPAdapter.send[39m[34m(self, request, stream, timeout, verify, cert, proxies)[39m
+[32m    714[39m [38;5;28;01mif[39;00m [38;5;28misinstance[39m(e.reason, ConnectTimeoutError):
+[32m    715[39m     [38;5;66;03m# TODO: Remove this in 3.0.0: see #2811[39;00m
+[32m    716[39m     [38;5;28;01mif[39;00m [38;5;129;01mnot[39;00m [38;5;28misinstance[39m(e.reason, NewConnectionError):
+[32m--> [39m[32m717[39m         [38;5;28;01mraise[39;00m ConnectTimeout(e, request=request)
+[32m    719[39m [38;5;28;01mif[39;00m [38;5;28misinstance[39m(e.reason, ResponseError):
+[32m    720[39m     [38;5;28;01mraise[39;00m RetryError(e, request=request)
+
+[31mConnectTimeout[39m: HTTPSConnectionPool(host='drive.google.com', port=443): Max retries exceeded with url: /uc?id=18wEUfMNohBJ4K3Ly5wpTejPfDzp-8fI8 (Caused by ConnectTimeoutError(<HTTPSConnection(host='drive.google.com', port=443) at 0x73bf26979e20>, 'Connection to drive.google.com timed out. (connect timeout=None)'))
+

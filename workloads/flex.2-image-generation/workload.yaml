@@ -4,9 +4,9 @@ category: Image Generation
 upstream:
   repository: openvinotoolkit/openvino_notebooks
   branch: latest
-  commit: a8809170cc4fc6aa633fbb9c22214be67ac20b47
+  commit: 329562e6031d1a989017d08697b0fabe5a989492
   path: notebooks/flex.2-image-generation/flex.2-image-generation.ipynb
-  url: https://github.com/openvinotoolkit/openvino_notebooks/blob/a8809170cc4fc6aa633fbb9c22214be67ac20b47/notebooks/flex.2-image-generation/flex.2-image-generation.ipynb
+  url: https://github.com/openvinotoolkit/openvino_notebooks/blob/329562e6031d1a989017d08697b0fabe5a989492/notebooks/flex.2-image-generation/flex.2-image-generation.ipynb
 model:
   name: ''
   source: ''
@@ -14,7 +14,7 @@ model:
   license: ''
 cpu:
   runtime: openvino
-  status: FAILED
+  status: VERIFIED_WITH_LIMITATIONS
   wall_timeout_s: 3600
   repeats: 1
 gpu:
@@ -24,4 +24,4 @@ twin:
   level: WORKLOAD_TWIN
 validation: {}
 patches: {}
-last_verified: ''
+last_verified: '2026-10-07T01:10:06+00:00'

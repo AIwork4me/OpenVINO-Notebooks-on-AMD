@@ -1,0 +1,64 @@
+[IPKernelApp] WARNING | Kernel is running over TCP without encryption. All communication (including code and outputs) is sent in plain text and is susceptible to eavesdropping. Use IPC transport or launch with kernel manager-provisioned CurveZMQ keys to enable transport encryption.
+Traceback (most recent call last):
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/ov_amd/_nbexec.py", line 144, in main
+    client.execute()
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages/jupyter_core/utils/__init__.py", line 165, in wrapped
+    return loop.run_until_complete(inner)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/base_events.py", line 687, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages/nbclient/client.py", line 709, in async_execute
+    await self.async_execute_cell(
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages/nbclient/client.py", line 1062, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages/nbclient/client.py", line 918, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+from transformers import AutoProcessor, AutoModelForSpeechSeq2Seq
+
+# PyTorch Whisper
+
+whisper_model_id = "openai/whisper-large-v2"
+
+if load_whisper_model_pt.value or load_whisper_model_ov.value or load_whisper_model_ov_int8.value:
+    whisper_processor = AutoProcessor.from_pretrained(whisper_model_id)
+
+    if load_whisper_model_pt.value:
+        whisper_model_pt = AutoModelForSpeechSeq2Seq.from_pretrained(whisper_model_id).eval()
+        AVAILABLE_MODELS.append((whisper_model_pt, whisper_processor, f"Whisper large-v2 PyTorch"))
+------------------
+
+----- stderr -----
+[transformers] PyTorch was not found. Models won't be available and only tokenizers, configuration and file/data utilities can be used.
+----- stderr -----
+[transformers] PyTorch was not found. Models won't be available and only tokenizers, configuration and file/data utilities can be used.
+------------------
+
+[31m---------------------------------------------------------------------------[39m
+[31mImportError[39m                               Traceback (most recent call last)
+[36mCell[39m[36m [39m[32mIn[4][39m[32m, line 11[39m
+[32m      7[39m [38;5;28;01mif[39;00m load_whisper_model_pt.value [38;5;28;01mor[39;00m load_whisper_model_ov.value [38;5;28;01mor[39;00m load_whisper_model_ov_int8.value:
+[32m      8[39m     whisper_processor = AutoProcessor.from_pretrained(whisper_model_id)
+[32m      9[39m 
+[32m     10[39m     [38;5;28;01mif[39;00m load_whisper_model_pt.value:
+[32m---> [39m[32m11[39m         whisper_model_pt = AutoModelForSpeechSeq2Seq.from_pretrained(whisper_model_id).eval()
+[32m     12[39m         AVAILABLE_MODELS.append((whisper_model_pt, whisper_processor, f"Whisper large-v2 PyTorch"))
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages/transformers/utils/import_utils.py:2408[39m, in [36mDummyObject.__getattribute__[39m[34m(cls, key)[39m
+[32m   2406[39m [38;5;28;01mif[39;00m (key.startswith([33m"[39m[33m_[39m[33m"[39m) [38;5;129;01mand[39;00m key != [33m"[39m[33m_from_config[39m[33m"[39m) [38;5;129;01mor[39;00m key == [33m"[39m[33mis_dummy[39m[33m"[39m [38;5;129;01mor[39;00m key == [33m"[39m[33mmro[39m[33m"[39m [38;5;129;01mor[39;00m key == [33m"[39m[33mcall[39m[33m"[39m:
+[32m   2407[39m     [38;5;28;01mreturn[39;00m [38;5;28msuper[39m().[34m__getattribute__[39m(key)
+[32m-> [39m[32m2408[39m [30;43mrequires_backends[39;49m[30;43m([39;49m[30;43mcls[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mcls[39;49m[30;43m.[39;49m[30;43m_backends[39;49m[30;43m)[39;49m
+
+[36mFile [39m[32m~/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages/transformers/utils/import_utils.py:2394[39m, in [36mrequires_backends[39m[34m(obj, backends)[39m
+[32m   2391[39m         failed.append(msg.format(name))
+[32m   2393[39m [38;5;28;01mif[39;00m failed:
+[32m-> [39m[32m2394[39m     [38;5;28;01mraise[39;00m [38;5;167;01mImportError[39;00m([33m"[39m[33m"[39m.join(failed))
+
+[31mImportError[39m: 
+AutoModelForSpeechSeq2Seq requires the PyTorch library but it was not found in your environment. Check out the instructions on the
+installation page: https://pytorch.org/get-started/locally/ and follow the ones that match your environment.
+Please note that you may need to restart your runtime after installation.
+
+

@@ -1,0 +1,62 @@
+[cell 0 START +    0.4s] # Optimize Preprocessing |  | When input data does not fit the model input
+[cell 1 START +    0.4s]  | #### Table of contents: |  | - [Settings](#Settings) | - [Imports](#Imports
+[cell 2 START +    0.4s] ## Settings | [back to top ⬆️](#Table-of-contents:) | 
+[cell 3 START +    0.4s] # Install openvino package | %pip install -q "openvino>=2025.4.0" opencv
+[cell 3 DONE  +    1.6s]
+[cell 4 START +    1.6s] ## Imports | [back to top ⬆️](#Table-of-contents:) | 
+[cell 5 START +    1.6s] import time | import os | from pathlib import Path |  | os.environ["TF_CPP_MIN
+[cell 5 DONE  +    2.9s]
+[cell 6 START +    2.9s] ### Setup image and device | [back to top ⬆️](#Table-of-contents:) | 
+[cell 7 START +    2.9s] # Download the image from the openvino_notebooks storage | image_path = 
+[cell 7 DONE  +    3.0s]
+[cell 8 START +    3.0s] core = ov.Core() | device = device_widget(exclude=["NPU"]) |  | device
+[cell 8 DONE  +    3.1s]
+[cell 9 START +    3.1s] ### Downloading the model | [back to top ⬆️](#Table-of-contents:) |  | This 
+[cell 10 START +    3.1s] model_name = "InceptionResNetV2" |  | model_dir = Path("model") | model_dir.
+[cell 10 DONE  +   11.4s]
+[cell 11 START +   11.4s] ### Create core | [back to top ⬆️](#Table-of-contents:) | 
+[cell 12 START +   11.4s] core = ov.Core()
+[cell 12 DONE  +   11.4s]
+[cell 13 START +   11.4s] ### Check the original parameters of image | [back to top ⬆️](#Table-of-
+[cell 14 START +   11.4s] image = cv2.imread(image_path) | plt.imshow(cv2.cvtColor(image, cv2.COLO
+[cell 14 DONE  +   11.5s]
+[cell 15 START +   11.5s] ## Setup preprocessing steps with Preprocessing API and perform infere
+[cell 16 START +   11.5s] ### Convert model to OpenVINO IR with model conversion API | [back to to
+[cell 17 START +   11.5s] ir_path = model_dir / "ir_model" / f"{model_name}.xml" |  | ppp_model = No
+[cell 17 DONE  +   11.5s]
+[cell 18 START +   11.5s] ### Create `PrePostProcessor` Object | [back to top ⬆️](#Table-of-conten
+[cell 19 START +   11.5s] from openvino.preprocess import PrePostProcessor |  | ppp = PrePostProcess
+[cell 19 DONE  +   11.5s]
+[cell 20 START +   11.5s] ### Declare User’s Data Format | [back to top ⬆️](#Table-of-contents:) |  | 
+[cell 21 START +   11.5s] # setup formant of data | ppp.input().tensor().set_element_type(ov.Type.
+[cell 21 DONE  +   11.6s]
+[cell 22 START +   11.6s] ### Declaring Model Layout | [back to top ⬆️](#Table-of-contents:) |  | Mode
+[cell 23 START +   11.6s] input_layer_ir = next(iter(ppp_model.inputs)) | print(f"The input shape 
+[cell 23 DONE  +   11.6s]
+[cell 24 START +   11.6s] ### Preprocessing Steps | [back to top ⬆️](#Table-of-contents:) |  | Now, th
+[cell 25 START +   11.6s] from openvino.preprocess import ResizeAlgorithm |  | ppp.input().preproces
+[cell 25 DONE  +   11.6s]
+[cell 26 START +   11.6s] ### Integrating Steps into a Model | [back to top ⬆️](#Table-of-contents
+[cell 27 START +   11.6s] print(f"Dump preprocessor: {ppp}") | model_with_preprocess = ppp.build()
+[cell 27 DONE  +   11.6s]
+[cell 28 START +   11.6s] ## Load model and perform inference | [back to top ⬆️](#Table-of-content
+[cell 29 START +   11.6s] def prepare_image_api_preprocess(image_path, model=None): |     image = 
+[cell 29 DONE  +   11.7s]
+[cell 30 START +   11.7s] ## Fit image manually and perform inference | [back to top ⬆️](#Table-of
+[cell 31 START +   11.7s] ### Load the model | [back to top ⬆️](#Table-of-contents:) | 
+[cell 32 START +   11.7s] model = core.read_model(model=ir_path) | compiled_model = core.compile_m
+[cell 32 DONE  +   11.8s]
+[cell 33 START +   11.8s] ### Load image and fit it to model input | [back to top ⬆️](#Table-of-co
+[cell 34 START +   11.8s] def manual_image_preprocessing(path_to_image, compiled_model): |     inp
+[cell 34 DONE  +   11.8s]
+[cell 35 START +   11.8s] ### Perform inference | [back to top ⬆️](#Table-of-contents:) | 
+[cell 36 START +   11.8s] output_layer = compiled_model.output(0) |  | result = compiled_model(input
+[cell 36 DONE  +   11.8s]
+[cell 37 START +   11.8s] ## Compare results | [back to top ⬆️](#Table-of-contents:) | 
+[cell 38 START +   11.8s] ### Compare results on one image | [back to top ⬆️](#Table-of-contents:)
+[cell 39 START +   11.8s] def check_results(input_tensor, compiled_model, imagenet_classes): |    
+[cell 39 DONE  +   11.8s]
+[cell 40 START +   11.8s] ### Compare performance | [back to top ⬆️](#Table-of-contents:) | 
+[cell 41 START +   11.8s] def check_performance(compiled_model, preprocessing_function=None): |   
+[cell 41 DONE  +   26.6s]
+NBEXEC_RESULT={"ok": true, "n_cells": 19, "n_skipped": 0, "n_substituted": 0, "stopped_after": null, "error_cell": null, "error_type": null, "error_head": null, "duration_s": 27.93, "patch_notes": []}
