@@ -107,11 +107,12 @@ DeepSeek-R1-Distill-Qwen-7B with a captured genai_pipeline CPU proof.
 ```text
 applicable twins:   171 classified (160 WORKLOAD_TWIN)
 implemented twins:  8
-verified:           8 / 8 — PROVEN_GPU (hip 7.2.53211, authoritative
-                    gcnArchName gfx1100) + WORKLOAD_CORRECTNESS + complete v2
-                    evidence, all under the NEW pin 329562e6031d
-                    + hello-detection additionally verified on the reference
-                    machine's gfx1151 (PROVEN_GPU, this closure's final gate)
+verified:           8 / 8 — PROVEN_GPU + WORKLOAD_CORRECTNESS + complete v2
+                    evidence, all under the NEW pin 329562e6031d.
+                    Platforms: 7 verified on gfx1100 (hip 7.2.53211, secondary
+                    runner) and hello-detection additionally on the reference
+                    machine's gfx1151 — per-record platform_id + per-evidence
+                    hardware.json attribute every twin to its exact GPU.
 failed:             0
 not tested:         remaining twin implementations (classification exists;
                     implementation deliberately not promised)

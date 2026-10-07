@@ -55,7 +55,7 @@
         "device_used": "CPU",
         "device_proof": "PROVEN_CPU",
         "validation_level": "WORKLOAD_CORRECTNESS",
-        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/hello-detection/20261005T194339Z-cpu",
+        "evidence_dir": "results/hello-detection/20261005T194339Z-cpu",
         "env": {
           "backend": "cpu",
           "env_key": "244e780d61b49309",
@@ -118,7 +118,7 @@
         "device_used": "CPU",
         "device_proof": "PROVEN_CPU",
         "validation_level": "WORKLOAD_CORRECTNESS",
-        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/hello-segmentation/20261005T194349Z-cpu",
+        "evidence_dir": "results/hello-segmentation/20261005T194349Z-cpu",
         "env": {
           "backend": "cpu",
           "env_key": "244e780d61b49309",
@@ -253,7 +253,7 @@
         "device_used": "",
         "device_proof": "PROVEN_CPU",
         "validation_level": "WORKLOAD_CORRECTNESS",
-        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/animate-anyone/20261005T200805Z-cpu",
+        "evidence_dir": "results/animate-anyone/20261005T200805Z-cpu",
         "env": {
           "backend": "cpu",
           "env_key": "6c802e9d4cd93fcc",
@@ -370,7 +370,13 @@
         "notes": [
           "ok_runs=0/3: \u001b[31mHTTPError\u001b[39m: Authentication token does not exist,"
         ],
-        "updated": "2026-10-07T01:30:51+00:00"
+        "updated": "2026-10-07T01:30:51+00:00",
+        "historical_status": "FAILED",
+        "historical_evidence": "results/cosyvoice3-tts/20261001T163759Z-cpu",
+        "revalidation_reasons": [
+          "pin:a8809170cc4f->329562e6031d",
+          "upstream_notebook_changed"
+        ]
       }
     },
     "darkir-image-restoration": {
@@ -385,7 +391,7 @@
         "device_used": "CPU",
         "device_proof": "PROVEN_CPU",
         "validation_level": "WORKLOAD_CORRECTNESS",
-        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/darkir-image-restoration/20261005T201826Z-cpu",
+        "evidence_dir": "results/darkir-image-restoration/20261005T201826Z-cpu",
         "env": {
           "backend": "cpu",
           "env_key": "797b80efc2b66641",
@@ -621,7 +627,13 @@
         "device_proof": "PROVEN_GPU",
         "validation_level": "WORKLOAD_CORRECTNESS",
         "platform_id": "amd-epyc-9334-32-core-processor-gfx1100",
-        "updated": "2026-10-07T00:59:40+00:00"
+        "updated": "2026-10-07T00:59:40+00:00",
+        "historical_status": "VERIFIED",
+        "historical_evidence": "results/smolvlm2/20261006T052325Z-gpu",
+        "revalidation_reasons": [
+          "pin:a8809170cc4f->329562e6031d",
+          "upstream_notebook_changed"
+        ]
       },
       "cpu": {
         "status": "VERIFIED_WITH_LIMITATIONS",
@@ -650,7 +662,13 @@
           "repeatability_not_established: fewer than 3 successful runs (resource-bounded policy)",
           "CORE_INFERENCE_VERIFIED; INTERACTIVE_UI_NOT_TESTED (documented skip policy)"
         ],
-        "updated": "2026-10-07T01:38:16+00:00"
+        "updated": "2026-10-07T01:38:16+00:00",
+        "historical_status": "FAILED",
+        "historical_evidence": "results/smolvlm2/20261005T204227Z-cpu",
+        "revalidation_reasons": [
+          "pin:a8809170cc4f->329562e6031d",
+          "upstream_notebook_changed"
+        ]
       }
     },
     "flex.2-image-generation": {
@@ -681,7 +699,13 @@
           "EXECUTION_ONLY: no workload correctness contract (validation: {})",
           "CORE_INFERENCE_VERIFIED; INTERACTIVE_UI_NOT_TESTED (documented skip policy)"
         ],
-        "updated": "2026-10-07T01:10:06+00:00"
+        "updated": "2026-10-07T01:10:06+00:00",
+        "historical_status": "FAILED",
+        "historical_evidence": "results/flex.2-image-generation/20261001T164618Z-cpu",
+        "revalidation_reasons": [
+          "pin:a8809170cc4f->329562e6031d",
+          "upstream_notebook_changed"
+        ]
       }
     },
     "qwen3": {
@@ -847,7 +871,13 @@
         "device_proof": "PROVEN_GPU",
         "validation_level": "WORKLOAD_CORRECTNESS",
         "platform_id": "amd-epyc-9334-32-core-processor-gfx1100",
-        "updated": "2026-10-07T00:58:03+00:00"
+        "updated": "2026-10-07T00:58:03+00:00",
+        "historical_status": "VERIFIED",
+        "historical_evidence": "results/kokoro/20261006T044931Z-gpu",
+        "revalidation_reasons": [
+          "pin:a8809170cc4f->329562e6031d",
+          "upstream_notebook_changed"
+        ]
       },
       "cpu": {
         "status": "VERIFIED_WITH_LIMITATIONS",
@@ -875,7 +905,13 @@
         "notes": [
           "CORE_INFERENCE_VERIFIED; INTERACTIVE_UI_NOT_TESTED (documented skip policy)"
         ],
-        "updated": "2026-10-07T01:11:30+00:00"
+        "updated": "2026-10-07T01:11:30+00:00",
+        "historical_status": "VERIFIED_WITH_LIMITATIONS",
+        "historical_evidence": "results/kokoro/20261005T194853Z-cpu",
+        "revalidation_reasons": [
+          "pin:a8809170cc4f->329562e6031d",
+          "upstream_notebook_changed"
+        ]
       }
     },
     "glm-ocr": {
@@ -944,7 +980,7 @@
         "device_used": "CPU",
         "device_proof": "PROVEN_CPU",
         "validation_level": "WORKLOAD_CORRECTNESS",
-        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/handwritten-ocr/20261005T194844Z-cpu",
+        "evidence_dir": "results/handwritten-ocr/20261005T194844Z-cpu",
         "env": {
           "backend": "cpu",
           "env_key": "244e780d61b49309",
@@ -1453,7 +1489,7 @@
           0.67
         ],
         "device_used": "",
-        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/physical-ai-robotics/20261001T135247Z-cpu",
+        "evidence_dir": "results/physical-ai-robotics/20261001T135247Z-cpu",
         "notes": [
           "release-audit correction: notebook has zero executable code cells (markdown landing page); previous VERIFIED was invalid"
         ],
@@ -2060,7 +2096,13 @@
         "notes": [
           "ok_runs=0/1: \u001b[31mValueError\u001b[39m: Unexpected dependency in optimum-intel/setup.py: \"optimum@https://codeload.github.com/huggingface/optimum/tar.gz/HEAD\""
         ],
-        "updated": "2026-10-07T01:31:13+00:00"
+        "updated": "2026-10-07T01:31:13+00:00",
+        "historical_status": "FAILED",
+        "historical_evidence": "results/hunyuan-ocr/20261001T191339Z-cpu",
+        "revalidation_reasons": [
+          "pin:a8809170cc4f->329562e6031d",
+          "upstream_notebook_changed"
+        ]
       }
     },
     "hunyuan-translation": {
@@ -2159,7 +2201,7 @@
         "device_used": "CPU",
         "device_proof": "PROVEN_CPU",
         "validation_level": "WORKLOAD_CORRECTNESS",
-        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/llm-agent-functioncall-qwen/20261005T202354Z-cpu",
+        "evidence_dir": "results/llm-agent-functioncall-qwen/20261005T202354Z-cpu",
         "env": {
           "backend": "cpu",
           "env_key": "f35eb2b19f1ff708",
@@ -2187,7 +2229,7 @@
         "device_used": "CPU",
         "device_proof": "PROVEN_CPU",
         "validation_level": "WORKLOAD_CORRECTNESS",
-        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/llm-agent-rag-llamaindex/20261005T202852Z-cpu",
+        "evidence_dir": "results/llm-agent-rag-llamaindex/20261005T202852Z-cpu",
         "env": {
           "backend": "cpu",
           "env_key": "14c79f40de9d556c",
@@ -2273,7 +2315,7 @@
         "device_used": "CPU",
         "device_proof": "PROVEN_CPU",
         "validation_level": "WORKLOAD_CORRECTNESS",
-        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/meter-reader/20261005T203133Z-cpu",
+        "evidence_dir": "results/meter-reader/20261005T203133Z-cpu",
         "env": {
           "backend": "cpu",
           "env_key": "244e780d61b49309",
@@ -2398,7 +2440,13 @@
           "repeatability_not_established: fewer than 3 successful runs (resource-bounded policy)",
           "CORE_INFERENCE_VERIFIED; INTERACTIVE_UI_NOT_TESTED (documented skip policy)"
         ],
-        "updated": "2026-10-07T01:35:06+00:00"
+        "updated": "2026-10-07T01:35:06+00:00",
+        "historical_status": "FAILED",
+        "historical_evidence": "results/ministral-3/20261001T203043Z-cpu",
+        "revalidation_reasons": [
+          "pin:a8809170cc4f->329562e6031d",
+          "upstream_notebook_changed"
+        ]
       }
     },
     "mllama-3.2": {
@@ -2480,7 +2528,13 @@
         "notes": [
           "ok_runs=0/1: \u001b[31mModuleNotFoundError\u001b[39m: Could not import module 'AutoProcessor'. Are this object's requirements defined correctly?"
         ],
-        "updated": "2026-10-07T01:36:00+00:00"
+        "updated": "2026-10-07T01:36:00+00:00",
+        "historical_status": "FAILED",
+        "historical_evidence": "results/olmocr-pdf-vlm/20261001T180555Z-cpu",
+        "revalidation_reasons": [
+          "pin:a8809170cc4f->329562e6031d",
+          "upstream_notebook_changed"
+        ]
       }
     },
     "openvoice": {
@@ -2536,7 +2590,13 @@
         "notes": [
           "ok_runs=0/1: \u001b[31mModuleNotFoundError\u001b[39m: Could not import module 'AutoTokenizer'. Are this object's requirements defined correctly?"
         ],
-        "updated": "2026-10-07T01:37:03+00:00"
+        "updated": "2026-10-07T01:37:03+00:00",
+        "historical_status": "FAILED",
+        "historical_evidence": "results/openvoice2-and-melotts/20261001T180602Z-cpu",
+        "revalidation_reasons": [
+          "pin:a8809170cc4f->329562e6031d",
+          "upstream_notebook_changed"
+        ]
       }
     },
     "paddle-ocr-webcam": {
@@ -3315,7 +3375,13 @@
           "created": false
         },
         "notes": [],
-        "updated": "2026-10-07T01:42:31+00:00"
+        "updated": "2026-10-07T01:42:31+00:00",
+        "historical_status": "VERIFIED_WITH_LIMITATIONS",
+        "historical_evidence": "results/pointpillars/20261005T224706Z-cpu",
+        "revalidation_reasons": [
+          "pin:a8809170cc4f->329562e6031d",
+          "upstream_notebook_changed"
+        ]
       }
     },
     "pytorch-post-training-quantization-nncf": {
@@ -3428,7 +3494,13 @@
           "EXECUTION_ONLY: no workload correctness contract (validation: {})",
           "CORE_INFERENCE_VERIFIED; INTERACTIVE_UI_NOT_TESTED (documented skip policy)"
         ],
-        "updated": "2026-10-07T01:46:07+00:00"
+        "updated": "2026-10-07T01:46:07+00:00",
+        "historical_status": "FAILED",
+        "historical_evidence": "results/segment-anything-2-image/20261005T230918Z-cpu",
+        "revalidation_reasons": [
+          "pin:a8809170cc4f->329562e6031d",
+          "upstream_notebook_changed"
+        ]
       }
     },
     "siglip-zero-shot-image-classification": {
@@ -3825,7 +3897,7 @@
         "device_used": "CPU",
         "device_proof": "PROVEN_CPU",
         "validation_level": "EXECUTION_ONLY",
-        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/3d-pose-estimation/20261006T011712Z-cpu",
+        "evidence_dir": "results/3d-pose-estimation/20261006T011712Z-cpu",
         "env": {
           "backend": "cpu",
           "env_key": "e98f502f8e47967c",
@@ -3988,7 +4060,7 @@
         "device_used": "CPU",
         "device_proof": "PROVEN_CPU",
         "validation_level": "EXECUTION_ONLY",
-        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/mobileclip-video-search/20261006T013056Z-cpu",
+        "evidence_dir": "results/mobileclip-video-search/20261006T013056Z-cpu",
         "env": {
           "backend": "cpu",
           "env_key": "099abe7f7ea5bbe4",
@@ -4494,7 +4566,7 @@
         "device_used": "CPU",
         "device_proof": "PROVEN_CPU",
         "validation_level": "EXECUTION_ONLY",
-        "evidence_dir": "/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/zeroscope-text2video/20261006T050558Z-cpu",
+        "evidence_dir": "results/zeroscope-text2video/20261006T050558Z-cpu",
         "env": {
           "backend": "cpu",
           "env_key": "2b1cdc29371e6a57",

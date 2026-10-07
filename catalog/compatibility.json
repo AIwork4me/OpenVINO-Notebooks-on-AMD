@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-07T05:55:08+00:00",
+  "generated": "2026-10-07T07:01:42+00:00",
   "upstream": {
     "fetch_method": "github git-blobs API (sha1-verified); tarball transport failed on this network",
     "files_ok": 572,
@@ -359,7 +359,7 @@
       "last_tested": "2026-10-06T10:00:46+00:00",
       "evidence": "results/catvton/20261006T095954Z-cpu",
       "notes": [
-        "ok_runs=0/3: ImportError: cannot import name 'resolve_revision' from 'huggingface_hub' (.venvs/cpu/2c24bba1924a9c98/lib/python3.12/site-packages/huggingface_hub/__init__.py)"
+        "ok_runs=0/3: ImportError: cannot import name 'resolve_revision' from 'huggingface_hub' (/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/2c24bba1924a9c98/lib/python3.12/site-packages/huggingface_hub/__init__.py)"
       ]
     },
     {
@@ -911,7 +911,7 @@
       "last_tested": "2026-10-06T11:06:28+00:00",
       "evidence": "results/funasr-nano/20261006T110542Z-cpu",
       "notes": [
-        "ok_runs=0/3: cannot import name 'Qwen3VLForConditionalGeneration' from 'transformers' (.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages/transformers/__init__.py)"
+        "ok_runs=0/3: cannot import name 'Qwen3VLForConditionalGeneration' from 'transformers' (/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages/transformers/__init__.py)"
       ]
     },
     {
@@ -2138,7 +2138,7 @@
       "last_tested": "2026-10-06T22:53:36+00:00",
       "evidence": "results/multimodal-rag-llamaindex/20261006T224956Z-cpu",
       "notes": [
-        "ok_runs=0/1: Can not open file results/multimodal-rag-llamaindex/workdir-cpu/distil-whisper-large-v3-int8-ov/openvino_decoder_model.bin for mapping. Ensure that file exists and has appropriate permissions."
+        "ok_runs=0/1: Can not open file /home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/multimodal-rag-llamaindex/workdir-cpu/distil-whisper-large-v3-int8-ov/openvino_decoder_model.bin for mapping. Ensure that file exists and has appropriate permissions."
       ]
     },
     {
@@ -2560,7 +2560,7 @@
       "last_tested": "2026-10-06T12:38:41+00:00",
       "evidence": "results/paddleocr_vl/20261006T123520Z-cpu",
       "notes": [
-        "ok_runs=0/3: FileNotFoundError: [Errno 2] No such file or directory: 'results/paddleocr_vl/workdir-cpu/test.png'"
+        "ok_runs=0/3: FileNotFoundError: [Errno 2] No such file or directory: '/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/results/paddleocr_vl/workdir-cpu/test.png'"
       ]
     },
     {
@@ -4238,7 +4238,7 @@
       "last_tested": "2026-10-06T13:11:59+00:00",
       "evidence": "results/phi3_chatbot_demo/20261006T131146Z-cpu",
       "notes": [
-        "ok_runs=0/3: cannot import name 'runtime_version' from 'google.protobuf' (.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages/google/protobuf/__init__.py)"
+        "ok_runs=0/3: cannot import name 'runtime_version' from 'google.protobuf' (/home/amd/Desktop/OpenVINO-Notebooks-on-AMD/.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages/google/protobuf/__init__.py)"
       ]
     },
     {
