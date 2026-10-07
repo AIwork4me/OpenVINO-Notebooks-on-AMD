@@ -33,13 +33,17 @@ This is **an AMD validation and ROCm companion project for [OpenVINO Notebooks](
 - **Pillar C — compatibility evidence database:** every notebook carries a status, an evidence directory, and a failure category.
 
 <!-- generated:compatibility begin -->
-**171 notebooks catalogued** · Evidence Schema **v2** · upstream `329562e6031d`
+**AMD CPU Coverage: 171/171 OpenVINO Notebooks attempted on AMD Ryzen — 100.0% catalog coverage**
 
-CPU (OpenVINO, Ryzen): **171/171 attempted** (100.0%) — ✅ 25 L3 verified · 🟡 58 limited · 🔵 0 revalidation required · 🔴 87 failed · ⚫ 0 blocked/skipped · ➖ 1 n/a · ⏳ 0 not tested
+✅ 25 Verified · 🟡 60 Verified with limitations · 🚧 80 Blocked (network / model access / dependency / timeout / resource) · 🧩 5 Compatibility failures · ➖ 1 Not applicable
 
-GPU (ROCm twins, Radeon): ✅ 8 verified · 🟡 0 limited · 🔵 0 revalidation required
+> **100% coverage means every catalogued notebook has been attempted and classified on AMD Ryzen. It does not mean every notebook passed.**
 
-Twin classification: **171/171** (100.0%)
+Successful executions: **85/170** of eligible notebooks (50.0%) — ✅ 25 L3 verified · 🟡 60 with documented limitations.
+
+GPU (ROCm twins, Radeon): ✅ 8 verified · 🟡 0 limited
+
+Evidence Schema **v2** · upstream `329562e6031d` · twin classification **171/171** (100.0%)
 
 Full matrix: [catalog/compatibility.md](catalog/compatibility.md) · Methodology: [docs/validation-policy.md](docs/validation-policy.md) · [benchmarks/METHODOLOGY.md](benchmarks/METHODOLOGY.md)
 <!-- generated:compatibility end -->

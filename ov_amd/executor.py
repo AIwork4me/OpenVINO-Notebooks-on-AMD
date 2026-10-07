@@ -579,18 +579,29 @@ def _sha256(p: Path | None) -> str | None:
 
 
 def _record(state: dict[str, Any], entry: NotebookEntry, backend: str, out: AttemptOutcome) -> None:
+    from ov_amd.outcomes import derive_outcome
+    from ov_amd.state_machine import enforce_transition
+
     rec = state.setdefault("attempts", {}).setdefault(entry.id, {})
-    # Evidence references are stored repo-relative (Defect C): state files must
-    # never carry machine-local absolute paths.
+    # State-machine enforcement: terminal records must be reachable from the
+    # previous status (an attempt implicitly passes through RUNNING). Direct
+    # state surgery (audit corrections/migrations) must use force=True
+    # explicitly at its own call site.
+    old = rec.get(backend, {}).get("status")
+    enforce_transition(old, out.status.value, context=f"{entry.id}/{backend}")
     evidence_ref = None
     if out.evidence_dir is not None:
         try:
             evidence_ref = str(out.evidence_dir.relative_to(REPO_ROOT))
         except ValueError:
             evidence_ref = str(out.evidence_dir)
+    notes_text = "\n".join(out.notes)
+    outcome, reason = derive_outcome(out.status.value, out.failure_category, notes_text)
     rec[backend] = {
         "status": out.status.value,
         "failure_category": out.failure_category,
+        "compatibility_outcome": outcome.value,
+        "outcome_reason": reason,
         "ok_runs": out.ok_runs,
         "required_runs": out.required_runs,
         "durations_s": out.durations,

@@ -152,6 +152,7 @@ class ExecutionInfo:
     retry_count: int = 0
     status: str = Status.NOT_TESTED.value
     failure_category: str = ""
+    stage: str = ""  # pipeline stage at failure (e.g. TIMEOUT_CONVERSION_EXPORT)
 
     def to_dict(self) -> dict[str, Any]:
         return dataclasses.asdict(self)

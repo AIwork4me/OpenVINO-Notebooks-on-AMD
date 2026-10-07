@@ -68,6 +68,11 @@ def test_readme_block_insertion(tmp_path, monkeypatch):
                 "twin_classified": 2,
                 "twin_classification_coverage_pct": 100.0,
                 "twin_levels": {},
+                "cpu_outcomes": {"VERIFIED": 1, "FAILED": 1},
+                "gpu_outcomes": {},
+                "cpu_successful_execution_coverage": {
+                    "verified": 1, "verified_with_limitations": 0, "eligible_total": 2, "pct": 50.0
+                },
             },
             "rows": [],
         },
@@ -75,6 +80,7 @@ def test_readme_block_insertion(tmp_path, monkeypatch):
     rep.write_compatibility()
     text = readme.read_text()
     assert "old" not in text
-    assert "notebooks catalogued" in text
+    assert "AMD CPU Coverage: 2/2" in text
+    assert "does not mean every notebook passed" in text
     assert "intro" in text and "tail" in text
     assert (tmp_path / "compat.md").exists()

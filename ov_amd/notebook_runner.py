@@ -36,10 +36,20 @@ def classify_failure(stderr: str, stdout: str, timeout: bool) -> FailureCategory
     text = _ANSI_RE.sub("", f"{stderr}\n{stdout}")
     if timeout:
         return FailureCategory.TIMEOUT
+    # a per-cell timeout must outrank every log-grep rule: pip banners,
+    # "timed out" download lines and resolver warnings coexist with the real
+    # CellTimeoutError at the bottom of the log and steal the classification
+    if re.search(r"CellTimeoutError", text):
+        return FailureCategory.TIMEOUT
     rules: list[tuple[str, FailureCategory]] = [
         (r"No space left on device", FailureCategory.DISK_LIMIT),
         (r"Cannot allocate memory|out of memory|MemoryError|std::bad_alloc|OOM", FailureCategory.OOM),
         (r"Killed", FailureCategory.RAM_LIMIT),
+        # missing data resources surfaced as runtime lookups (NLTK corpora)
+        (r"Resource \w+ not found.*NLTK Downloader|LookupError:.*Resource", FailureCategory.DEPENDENCY),
+        # library API drift: notebook pins an older/newer lib than its code
+        (r"cannot import name 'runtime_version' from 'google.protobuf'", FailureCategory.DEPENDENCY),
+        (r"'Column' object has no attribute 'dtype'", FailureCategory.DEPENDENCY),
         # shell form "git clone URL" and subprocess-list form "['git', 'clone', URL]"
         # (real cases: Wav2Lip / sam2 direct clones on the throttled network)
         (
@@ -73,7 +83,6 @@ def classify_failure(stderr: str, stdout: str, timeout: bool) -> FailureCategory
         ),
         (r"403|401|Access to model|gated repo", FailureCategory.MODEL_ACCESS),
         (r"agpl|license|License", FailureCategory.LICENSE_RESTRICTION),
-        (r"CellTimeoutError", FailureCategory.TIMEOUT),
         (r"ovc|openvino\.tools|Conversion|convert model failed", FailureCategory.CONVERSION_ERROR),
         (r"openvino\.(runtime|genai)|CompiledModel|ov\.Core", FailureCategory.OPENVINO_ERROR),
     ]
@@ -189,6 +198,11 @@ def run_notebook(
 
     ok = bool(nbresult.get("ok")) and ret == 0 and not timed_out
     category = classify_failure(stderr, stdout, timed_out) if not ok else None
+    stage = ""
+    if timed_out:
+        from ov_amd.outcomes import classify_timeout_stage
+
+        stage = classify_timeout_stage(stdout, stderr)
     info = ExecutionInfo(
         start=start,
         end=_utcnow(),
@@ -197,6 +211,7 @@ def run_notebook(
         retry_count=0,
         status="OK" if ok else "ERROR",
         failure_category=category.value if category else "",
+        stage=stage,
     )
     return info, nbresult
 

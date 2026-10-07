@@ -11,7 +11,6 @@ mirrors deterministically from the sources of truth — never the reverse.
 from __future__ import annotations
 
 import json
-from pathlib import Path
 from typing import Any
 
 import yaml
