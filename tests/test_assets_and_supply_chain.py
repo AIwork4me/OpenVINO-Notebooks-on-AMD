@@ -235,6 +235,8 @@ class TestRevisionPinning:
         "paddleocr_vl", "smoldocling", "minicpm-v-4.6", "z-image-turbo", "kokoro",
         "whisper-asr-genai", "smolvlm2", "hello-detection", "stable-diffusion-text-to-image",
         "stable-diffusion-xl",
+        # v0.3.1 newly verified (Final-Reviewer-B: keep the same provenance contract)
+        "qwen3-tts", "deepseek-ocr", "florence2", "qwen3-vl-embedding",
     ]
 
     def test_every_verified_twin_pins_a_revision(self):

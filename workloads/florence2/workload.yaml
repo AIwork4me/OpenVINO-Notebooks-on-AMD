@@ -13,6 +13,10 @@ model:
   revision: f6c1a25888
   license: mit
   implementation: transformers Florence2ForConditionalGeneration trust_remote_code
+  license_source: HF model-repo license tag (verified via hf-mirror API 2026-10-08,
+    sha f6c1a25888)
+  license_revision: f6c1a25888
+  license_verification_date: '2026-10-08'
 cpu:
   runtime: openvino
   status: VERIFIED_WITH_LIMITATIONS
@@ -23,9 +27,9 @@ gpu:
   status: VERIFIED
   wall_timeout_s: 1800
   python: .venv-gpu-tf446/bin/python
-  note: "v0.3.1 RCA: Florence-2 (2024-era) remote code requires the transformers 4.4x\
-    \ generation \u2014 loads and runs cleanly on the bridged 4.46.3 env over ROCm\
-    \ torch (5.17 and 4.57 both drift). VERIFIED on gfx1100."
+  note: 'v0.3.1 RCA: Florence-2 (2024-era) remote code requires the transformers 4.4x
+    generation — loads and runs cleanly on the bridged 4.46.3 env over ROCm torch
+    (5.17 and 4.57 both drift). VERIFIED on gfx1100.'
 twin:
   level: WORKLOAD_TWIN
 validation:

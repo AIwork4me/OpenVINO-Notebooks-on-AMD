@@ -13,6 +13,10 @@ model:
   revision: aaa02f3811
   license: apache-2.0
   implementation: transformers DeepseekOcr2ForConditionalGeneration
+  license_source: HF model-repo LICENSE.txt + license tag (verified via hf-mirror
+    API 2026-10-08, sha aaa02f3811)
+  license_revision: aaa02f3811
+  license_verification_date: '2026-10-08'
 cpu:
   runtime: openvino
   status: VERIFIED_WITH_LIMITATIONS

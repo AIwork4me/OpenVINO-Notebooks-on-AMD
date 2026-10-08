@@ -13,6 +13,10 @@ model:
   revision: 85e237c12c
   license: apache-2.0
   implementation: PyTorch talker+VA via official QwenLM/Qwen3-TTS repo @1ab0dd75
+  license_source: HF model-repo license tag (verified via hf-mirror API 2026-10-08,
+    sha 85e237c12c)
+  license_revision: 85e237c12c
+  license_verification_date: '2026-10-08'
 cpu:
   runtime: openvino
   status: VERIFIED_WITH_LIMITATIONS
@@ -21,12 +25,12 @@ gpu:
   status: VERIFIED
   wall_timeout_s: 3600
   python: .venv-gpu-tf457/bin/python
-  note: "v0.3.1 RCA: the v0.3 blocker was NOT a transformers-version conflict \u2014\
-    \ the model snapshot was incomplete (speech_tokenizer/* files absent from the\
-    \ local HF cache; missing preprocessor_config.json made 4.57.3's feature-extractor\
-    \ loader fail). Completing the snapshot + notebook-exact speaker (ryan) + per-run\
-    \ seed (greedy decode still has GPU stop-time variance) => VERIFIED on gfx1100,\
-    \ deterministic_exact=true across 3 runs."
+  note: 'v0.3.1 RCA: the v0.3 blocker was NOT a transformers-version conflict — the
+    model snapshot was incomplete (speech_tokenizer/* files absent from the local
+    HF cache; missing preprocessor_config.json made 4.57.3''s feature-extractor loader
+    fail). Completing the snapshot + notebook-exact speaker (ryan) + per-run seed
+    (greedy decode still has GPU stop-time variance) => VERIFIED on gfx1100, deterministic_exact=true
+    across 3 runs.'
 twin:
   level: WORKLOAD_TWIN
 validation: {}
