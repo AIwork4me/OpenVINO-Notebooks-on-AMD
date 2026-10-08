@@ -1,16 +1,18 @@
 {
-  "generated": "2026-10-08T18:57:46+00:00",
+  "generated": "2026-10-08T19:23:55+00:00",
   "upstream": {
-    "fetch_method": "codeload tarball (576 files kept, filter ('.ipynb', '.txt', '.py', '.json', '.csv', '.yaml', '.yml', '.xml', '.md', '.png', '.jpg', '.jpeg', '.gif')); blobs API fallback available",
+    "fetch_method": "codeload tarball + surgical API delta update (2b1600de9620 -> 3c3899e68b22, 5 snapshot-relevant files applied; selector/package-lock.json skipped \u2014 not in snapshot filter)",
     "files_ok": 576,
     "files_cached": 0,
     "files_failed": 0,
     "repository": "openvinotoolkit/openvino_notebooks",
     "branch": "latest",
-    "commit": "2b1600de9620e4a2d26f1ef5c83fad64d7d76f7b",
-    "commit_date": "2026-10-07T17:58:32Z",
-    "commit_subject": "Kokoro notebook: switch default precision to fp16 (#3725)",
-    "discovered_at": "2026-10-07T22:57:47Z"
+    "commit": "3c3899e68b2269bb7fbd5755554335f33acabd5e",
+    "commit_date": "2026-10-08T10:53:22Z",
+    "commit_subject": "Update notebooks index and archived notebooks data [skip ci]",
+    "discovered_at": "2026-10-07T22:57:47Z",
+    "previous_commit": "2b1600de9620e4a2d26f1ef5c83fad64d7d76f7b",
+    "pin_switch_note": "v0.3.1 surgical sync 2b1600d -> 3c3899e (delta: vjepa-2.1 added; 0 modified catalogued notebooks; per-attempt evidence keeps its own upstream.json pin record)"
   },
   "counts": {
     "total": 174,
