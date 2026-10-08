@@ -67,8 +67,11 @@ with a verified SHA-256, license, and source URL. Resolution order:
 4. download from the declared source URLs — atomic temp file, hash-verified
    before promotion
 
-Non-redistributable assets (e.g. `courtroom.wav`) are never committed; they
-are downloaded and hash-verified at run time. Run a twin with an explicit
+Non-redistributable assets (e.g. `courtroom.wav`) are not committed under
+the current policy; they are downloaded and hash-verified at run time. (Two
+byte-identical copies of courtroom.wav exist as PRE-POLICY historical
+evidence from 2026-10-01 — disclosed in the v0.3.1 reproducibility audit;
+`.gitignore` has excluded new copies since.) Run a twin with an explicit
 asset via `OV_AMD_ASSET_COURTROOM_ASR_WAV=/path/to/courtroom.wav`.
 
 ## 5. CPU path (OpenVINO on Ryzen)
@@ -113,7 +116,7 @@ Reference validation hardware (recorded per evidence in `hardware.json`):
 AMD EPYC 9334 + Radeon gfx1100 (48 GB), ROCm 6.16.13 driver / torch
 2.9.1+hip. **Not every verified workload requires this class of hardware** —
 model memory footprints are recorded in each evidence `metrics.json`
-(`peak_gpu_memory_allocated_gb`). Conversely, a model verified here is not
+(`peak_vram_gb` — peak ALLOCATED GPU tensor memory; see the evidence `metric_semantics` block). Conversely, a model verified here is not
 guaranteed on smaller GPUs or other gfx architectures; one twin
 (hello-detection) retains evidence from gfx1151 exactly as recorded.
 
