@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-08T19:31:09+00:00",
+  "generated": "2026-10-08T20:09:07+00:00",
   "upstream": {
     "fetch_method": "codeload tarball + surgical API delta update (2b1600de9620 -> 3c3899e68b22, 5 snapshot-relevant files applied; selector/package-lock.json skipped \u2014 not in snapshot filter)",
     "files_ok": 576,
