@@ -249,7 +249,8 @@ def test_freshness_monitor_workflow_exists_and_scopes_impact() -> None:
     text = p.read_text()
     assert "schedule" in text
     assert "openvinotoolkit/openvino_notebooks" in text
-    assert "affected workloads" in text  # incremental scope, not blanket invalidation
+    assert "ov_amd.freshness" in text  # v0.3.1: structured analyzer (ADDED/REMOVED/RENAMED/shared-helper)
+    assert "issues: write" in text  # authorized issue alerts, deduplicated
 
 
 
