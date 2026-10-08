@@ -1,0 +1,15 @@
+{
+  "schema_version": 2,
+  "declared": {
+    "name": "vjepa2_1_vitl_dist_vitG_384 (V-JEPA 2.1 ViT-Large distilled from ViT-Giant, 384px)",
+    "source": "https://dl.fbaipublicfiles.com/vjepa2/vjepa2_1_vitl_dist_vitG_384.pt",
+    "revision": "notebook-pinned checkpoint asset (upstream release file, dl.fbaipublicfiles.com/vjepa2/)",
+    "license": "mit",
+    "license_source": "facebookresearch/vjepa2 repository README License section (\"The majority of V-JEPA 2 is licensed under MIT\" \u2014 includes the vjepa2_1_* distilled checkpoints table), verified 2026-10-08",
+    "license_revision": "upstream repo @latest 2026-10-08",
+    "license_verification_date": "2026-10-08",
+    "implementation": "official vjepa_helper.py (notebook-bundled) rebuilding the encoder from the released .pt checkpoint"
+  },
+  "detected_hf_refs": [],
+  "notebook": "vjepa2-video-embeddings.ipynb"
+}
