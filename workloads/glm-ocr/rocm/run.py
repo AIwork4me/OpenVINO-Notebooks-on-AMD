@@ -56,7 +56,7 @@ def main() -> int:
     t0 = time.time()
     processor = AutoProcessor.from_pretrained(MODEL, revision=REVISION)
     model = GlmOcrForConditionalGeneration.from_pretrained(
-        MODEL, torch_dtype=torch.bfloat16, device_map="cuda:0"
+        MODEL, revision=REVISION, torch_dtype=torch.bfloat16, device_map="cuda:0"
     ).eval()
     load_s = time.time() - t0
 

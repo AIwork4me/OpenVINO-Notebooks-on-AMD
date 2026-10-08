@@ -17,10 +17,10 @@ _sys.path.insert(0, str(_Path(__file__).resolve().parents[3] / "ov_amd"))  # twi
 
 import time
 
-from twin_lib import PeakMemory, emit, setup
+from twin_lib import PeakMemory, emit, resolve_asset, setup
 
 MODEL = "microsoft/Florence-2-base-ft"
-SNAPSHOT_IMG = _Path(__file__).resolve().parents[3] / ".cache" / "upstream" / "notebooks" / "vlm-chatbot" / "nyc.jpg"
+SNAPSHOT_ASSET = "nyc.jpg"  # managed asset (assets/manifests/assets.yaml)
 TASK = "<MORE_DETAILED_CAPTION>"
 
 
@@ -31,7 +31,8 @@ def main() -> int:
 
     evidence = Path(args.evidence_dir)
     img_path = evidence / "input.jpg"
-    shutil.copy2(SNAPSHOT_IMG, img_path)
+    asset = resolve_asset(SNAPSHOT_ASSET)
+    shutil.copy2(asset.path, img_path)
 
     import torch
     from PIL import Image
@@ -73,7 +74,7 @@ def main() -> int:
         "model": MODEL,
         "precision": "bf16",
         "task": TASK,
-        "input": "vlm-chatbot/nyc.jpg (pinned upstream snapshot asset; notebook demo images on blocked hosts)",
+        "input_asset": asset.record(),
         "load_s": round(load_s, 2),
         "runs": runs,
         "output": text[:400],

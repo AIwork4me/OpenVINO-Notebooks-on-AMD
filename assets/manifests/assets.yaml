@@ -62,3 +62,11 @@ assets:
     license_source: Ultralytics YOLOv8 AGPL-3.0 (upstream hello-detection notebook's chosen detector)
     committed: false
     description: YOLOv8n weights (6.2 MB) — hash matches the recorded VERIFIED evidence; not committed (AGPL-3.0 code/weights + size)
+  - id: nyc.jpg
+    sha256: a515af6ed7c9d49cdde69f34dd05db0a08eddc2d4c36aca3e90c2950e3dc4f78
+    source_urls:
+      - https://raw.githubusercontent.com/openvinotoolkit/openvino_notebooks/latest/notebooks/vlm-chatbot/nyc.jpg
+    license: apache-2.0
+    license_source: openvino_notebooks repository license (notebook-bundled demo image)
+    committed: true
+    description: NYC street photo bundled by the upstream vlm-chatbot notebook; used by the florence2 and yolov26 twins (byte-identical to pinned-snapshot copy, verified 2026-10-08)

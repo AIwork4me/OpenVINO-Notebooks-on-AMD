@@ -26,7 +26,7 @@ MODEL = "yolo26n.pt"  # ultralytics default variant used by the notebook
 # The official Ultralytics HF org mirrors the same release artifacts:
 # https://huggingface.co/Ultralytics/YOLO26 — identical official asset.
 WEIGHTS_URL = "https://huggingface.co/Ultralytics/YOLO26/resolve/main/yolo26n.pt"
-SNAPSHOT_IMG = _Path(__file__).resolve().parents[3] / ".cache" / "upstream" / "notebooks" / "vlm-chatbot" / "nyc.jpg"
+SNAPSHOT_ASSET = "nyc.jpg"  # managed asset (assets/manifests/assets.yaml)
 
 
 def main() -> int:
@@ -36,7 +36,8 @@ def main() -> int:
 
     evidence = Path(args.evidence_dir)
     img_path = evidence / "input.jpg"
-    shutil.copy2(SNAPSHOT_IMG, img_path)
+    asset = resolve_asset(SNAPSHOT_ASSET)
+    shutil.copy2(asset.path, img_path)
     weights = evidence / "yolo26n.pt"
     fetch(WEIGHTS_URL, weights)
 
@@ -107,7 +108,7 @@ def main() -> int:
     metrics = {
         "model": MODEL,
         "precision": "fp32 (ultralytics default)",
-        "input": "vlm-chatbot/nyc.jpg (pinned upstream snapshot asset; notebook's coco_bike.jpg host is proxy-blocked)",
+        "input_asset": asset.record(),
         "load_s": round(load_s, 2),
         "runs": runs,
         "n_detections": runs[0]["n_detections"],

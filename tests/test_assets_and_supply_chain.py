@@ -244,6 +244,39 @@ class TestRevisionPinning:
             has_pin = ("REVISION =" in src) or ("MS_REVISION =" in src) or ("WEIGHT_SHA256" in src)
             assert has_pin, f"{wid} run.py does not pin a model/weights revision"
 
+    def test_verified_twins_enforce_revision_at_call_sites(self):
+        """Declaration is not enforcement (Gate-2 finding): every hub-backed
+        from_pretrained / pipeline-load call site in a verified twin must carry
+        revision= (or an explicitly-operator-supplied pin)."""
+        import ast
+
+        repo = Path(__file__).resolve().parent.parent
+        for wid in self.VERIFIED:
+            path = repo / "workloads" / wid / "rocm" / "run.py"
+            tree = ast.parse(path.read_text())
+            for node in ast.walk(tree):
+                if not isinstance(node, ast.Call):
+                    continue
+                func = node.func
+                name = getattr(func, "attr", None) or getattr(func, "id", "")
+                if not isinstance(name, str) or "from_pretrained" not in name:
+                    continue
+                # skip local-directory loads (str(local) etc.) — pinned by the
+                # snapshot_download revision that produced them
+                if node.args and isinstance(node.args[0], ast.Name):
+                    continue  # variable arg: handled by the *_REVISION snapshot pins below
+                kw_names = [kw.arg for kw in node.keywords]
+                arg0 = node.args[0] if node.args else None
+                is_hub_literal = isinstance(arg0, ast.Constant) and isinstance(arg0.value, str) and "/" in arg0.value
+                if is_hub_literal:
+                    assert "revision" in kw_names, (
+                        f"{wid}: from_pretrained({getattr(arg0, 'value', '?')}) has no revision= "
+                        f"(mutable main weights)"
+                    )
+            src = path.read_text()
+            if "snapshot_download(" in src:
+                assert "revision=MS_REVISION" in src, f"{wid}: modelscope snapshot_download not pinned"
+
     def test_manifest_model_blocks_complete(self):
         repo = Path(__file__).resolve().parent.parent
         for wid in self.VERIFIED:

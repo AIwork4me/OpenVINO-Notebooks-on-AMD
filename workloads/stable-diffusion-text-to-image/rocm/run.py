@@ -39,9 +39,18 @@ def _load_pipeline(evidence: Path):
 
     t0 = time.time()
     source = MODEL
-    try:
-        pipe = StableDiffusionPipeline.from_pretrained(MODEL, torch_dtype=torch.float16)
-    except Exception:  # noqa: BLE001 - any hub failure (401/404 on this mirror) -> ModelScope fallback
+    import os
+
+    hf_rev = os.environ.get("OV_AMD_SD21_HF_REV")  # explicit operator-supplied HF pin (repo is gated: 401 via mirror)
+    if hf_rev:
+        try:
+            pipe = StableDiffusionPipeline.from_pretrained(MODEL, revision=hf_rev, torch_dtype=torch.float16)
+            source = f"{MODEL} @ {hf_rev[:12]} (HF, explicit pin)"
+        except Exception:  # noqa: BLE001 - any hub failure (401/404) -> pinned ModelScope path below
+            pipe = None
+    else:
+        pipe = None
+    if pipe is None:
         # ModelScope mirror of the same weights (AI-ModelScope/stable-diffusion-2-1)
         local = _Path(__file__).resolve().parent / "weights"  # stable cache across reruns (gitignored)
         from modelscope.hub.snapshot_download import snapshot_download
