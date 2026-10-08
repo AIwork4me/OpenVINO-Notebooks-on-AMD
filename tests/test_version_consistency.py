@@ -64,8 +64,12 @@ def test_release_tags_never_moved():
             import pytest
 
             pytest.skip("no tags available in this checkout (shallow/offline)")
-    r = subprocess.run(
-        ["git", "merge-base", "--is-ancestor", "v0.3.0", "HEAD"],
-        capture_output=True, cwd=REPO,
-    )
-    assert r.returncode == 0, "v0.3.0 tag is no longer an ancestor of HEAD — history rewrite?"
+    # ancestry needs a deep checkout (CI uses fetch-depth=1); only assert
+    # where the full history is present
+    deep = not (REPO / ".git" / "shallow").exists()
+    if deep:
+        r = subprocess.run(
+            ["git", "merge-base", "--is-ancestor", "v0.3.0", "HEAD"],
+            capture_output=True, cwd=REPO,
+        )
+        assert r.returncode == 0, "v0.3.0 tag is no longer an ancestor of HEAD — history rewrite?"
