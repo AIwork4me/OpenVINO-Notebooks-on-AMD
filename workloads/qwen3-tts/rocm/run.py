@@ -130,7 +130,9 @@ def main() -> int:
     stable = exact or (max_diff <= 300 and length_spread_pct <= 35.0 and audible)
     metrics = {
         "model": MODEL,
+        "model_revision": MODEL_REVISION,
         "repo": f"QwenLM/Qwen3-TTS@{REPO_REV}",
+        "input": "text prompt + predefined CustomVoice speaker (ryan) — no external input asset",
         "precision": "bf16",
         "speaker": SPEAKER,
         "text": TEXT,

@@ -70,7 +70,10 @@ def main() -> int:
 
     text = outs[0]
     (evidence / "caption.txt").write_text(text)
+    # the nyc.jpg fixture's distinctive content: the observation-deck
+    # binoculars — a keyword generic captions would miss
     relevant = any(k in text.lower() for k in ("street", "people", "city", "building", "new york", "traffic", "sign", "sidewalk"))
+    binoculars_seen = "binocular" in text.lower()
     metrics = {
         "model": MODEL,
         "precision": "bf16",
@@ -83,11 +86,12 @@ def main() -> int:
         "runs": runs,
         "output": text[:400],
         "nonempty_relevant_response": bool(text) and relevant,
+        "binoculars_described": binoculars_seen,
         "output_stable": len(set(outs)) == 1,
         "peak_vram_gb": round(pm.peak_vram_gb, 2),
         "peak_rss_gb": round(pm.peak_rss_gb, 2),
     }
-    ok = metrics["nonempty_relevant_response"] and metrics["output_stable"]
+    ok = metrics["nonempty_relevant_response"] and metrics["output_stable"] and binoculars_seen
     return emit(ok, evidence, metrics)
 
 

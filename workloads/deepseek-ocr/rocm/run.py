@@ -132,11 +132,12 @@ def main() -> int:
         "output_words_ge2": len(words),
         "output_preview": text[:400],
         "nonempty_text": len(words) >= 5,
+        "expected_fragments_hit": [f for f in ("ocr", "barcode") if f in text.lower()],
         "output_stable": len(set(outs)) == 1,
         "peak_vram_gb": round(pm.peak_vram_gb, 2),
         "peak_rss_gb": round(pm.peak_rss_gb, 2),
     }
-    ok = metrics["nonempty_text"] and metrics["output_stable"]
+    ok = metrics["nonempty_text"] and metrics["output_stable"] and len(metrics["expected_fragments_hit"]) == 2
     return emit(ok, evidence, metrics)
 
 
