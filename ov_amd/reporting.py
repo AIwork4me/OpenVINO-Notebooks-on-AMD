@@ -414,16 +414,6 @@ CONCISE = {
 }
 
 
-def _evidence_link(ev: str | None, label: str = "evidence") -> str:
-    if not ev:
-        return "—"
-    rel = ev if str(ev).startswith(("../", "/")) else f"../{ev}"
-    # README-relative: results/... lives at repo root, so from README drop the ../
-    if rel.startswith("../"):
-        rel = rel[3:]
-    return f"[{label}]({rel})"
-
-
 def write_featured_matrix(compat: dict[str, Any] | None = None) -> bool:
     """Render the ROCm-verified workload matrix (README).
 

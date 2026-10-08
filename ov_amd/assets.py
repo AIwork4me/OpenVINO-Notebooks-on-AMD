@@ -99,6 +99,8 @@ def load_manifests(path: Path | None = None) -> dict[str, AssetSpec]:
         )
         if not _valid_hash(spec.sha256):
             raise AssetResolutionError(f"asset {spec.id}: manifest sha256 is not a valid hex digest")
+        if spec.id != Path(spec.id).name or spec.id in {".", ".."} or "/" in spec.id or "\\" in spec.id:
+            raise AssetResolutionError(f"asset id must be a plain filename (no path separators): {spec.id!r}")
         if not spec.source_urls and not spec.committed:
             raise AssetResolutionError(f"asset {spec.id}: no source_urls and not committed — unresolvable")
         specs[spec.id] = spec
@@ -166,7 +168,7 @@ def resolve_asset(
         tried.append(f"{source}: {path} (sha256 {actual[:16]}… != manifest {spec.sha256[:16]}…)")
         if source == "cache":
             # corrupted cache: quarantine and fall through to download
-            quarantine = path.with_suffix(path.suffix + f".corrupt-{int(time.time())}")
+            quarantine = path.with_suffix(path.suffix + f".corrupt-{time.time_ns()}")
             shutil.move(str(path), str(quarantine))
             tried.append(f"cache: quarantined corrupt copy -> {quarantine.name}")
 

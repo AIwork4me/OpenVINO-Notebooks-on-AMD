@@ -15,6 +15,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Compare pin vs upstream latest (structured delta)
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
           set -eu
           python3 - <<'EOF'

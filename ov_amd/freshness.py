@@ -170,6 +170,7 @@ def analyze(
             if d in catalog_dirs:
                 rep.removed.append(workload_of_dir[d])
             continue
+        _ = prev_d  # renamed handled below
         if status == "renamed" and prev_d and prev_d != d:
             if prev_d in catalog_dirs:
                 rep.renamed.append(f"{workload_of_dir[prev_d]} -> {name}")
@@ -191,7 +192,10 @@ def analyze(
     elif helper_changed:
         rep.affected_by_shared_helper = ["(all — snapshot unavailable for precise scoping)"]
 
-    touched = set(rep.modified) | set(rep.removed) | set(rep.affected_by_shared_helper)
+    rep.modified = list(dict.fromkeys(rep.modified))
+    rep.removed = list(dict.fromkeys(rep.removed))
+    renamed_ids = {entry.split(" -> ")[0] for entry in rep.renamed}
+    touched = set(rep.modified) | set(rep.removed) | renamed_ids | set(rep.affected_by_shared_helper)
     rep.unchanged = [entry["id"] for entry in catalog.get("notebooks", []) if entry["id"] not in touched]
     return rep
 
