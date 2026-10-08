@@ -78,6 +78,7 @@ def _load_pipeline(evidence: Path):
         )
         source = "AI-ModelScope/stable-diffusion-2-1 (ModelScope mirror; HF mirror 401 for stabilityai/stable-diffusion-2-1)"
         pipe = StableDiffusionPipeline.from_pretrained(str(local), torch_dtype=torch.float16)
+        _rev_marker.write_text(MS_REVISION + "\n")  # mark the exact revision on disk
     return pipe.to("cuda:0"), time.time() - t0, source
 
 

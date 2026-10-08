@@ -265,7 +265,6 @@ class TestRevisionPinning:
                         for t in node.targets:
                             if isinstance(t, ast.Name):
                                 hub_vars[t.id] = v
-            enforced = True
             for node in ast.walk(tree):
                 if not (isinstance(node, ast.Call) and isinstance(node.func, ast.Attribute)):
                     continue
@@ -290,7 +289,6 @@ class TestRevisionPinning:
             src = path.read_text()
             if "snapshot_download(" in src:
                 assert "revision=MS_REVISION" in src, f"{wid}: modelscope snapshot_download not pinned"
-            _ = enforced
 
     def test_manifest_model_blocks_complete(self):
         repo = Path(__file__).resolve().parent.parent

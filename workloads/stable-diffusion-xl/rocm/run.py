@@ -57,6 +57,7 @@ def main() -> int:
         )
         source = f"{MS_ID} (ModelScope mirror; HF mirror 401 for stabilityai)"
         pipe = StableDiffusionXLPipeline.from_pretrained(str(local), torch_dtype=torch.float16)
+        _rev_marker.write_text(MS_REVISION + "\n")  # mark the exact revision on disk
     pipe = pipe.to("cuda:0")
     load_s = time.time() - t0
 
