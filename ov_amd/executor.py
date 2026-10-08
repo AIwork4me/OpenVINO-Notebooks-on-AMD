@@ -173,8 +173,11 @@ def _repeats_for(entry: NotebookEntry, cfg: dict[str, Any]) -> int:
 
 
 # UI-only tail cells block forever headless; skipping them is the documented
-# §22 policy (CORE_INFERENCE_VERIFIED; INTERACTIVE_UI_NOT_TESTED)
-DEFAULT_SKIP_RES = [r"demo\.launch|iface\.launch|app\.launch|\.launch\(\)"]
+# §22 policy (CORE_INFERENCE_VERIFIED; INTERACTIVE_UI_NOT_TESTED).
+# v0.3: demo.close() teardown cells after a skipped demo are included — they
+# only reference the UI object the skip policy never created (sd-xl cell 15
+# NameError'd on `demo` with core inference already verified)
+DEFAULT_SKIP_RES = [r"demo\.launch|iface\.launch|app\.launch|\.launch\(\)", r"^demo\.close\(\)\s*$"]
 
 
 def _hf_mirror_subs() -> list[Substitution]:

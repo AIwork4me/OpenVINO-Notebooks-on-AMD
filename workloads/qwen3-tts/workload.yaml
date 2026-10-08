@@ -8,16 +8,18 @@ upstream:
   path: notebooks/qwen3-tts/qwen3-tts.ipynb
   url: https://github.com/openvinotoolkit/openvino_notebooks/blob/2b1600de9620e4a2d26f1ef5c83fad64d7d76f7b/notebooks/qwen3-tts/qwen3-tts.ipynb
 model:
-  name: ''
-  source: ''
-  revision: ''
-  license: ''
+  name: Qwen/Qwen3-TTS-12Hz-0.6B-CustomVoice
+  source: https://huggingface.co/Qwen/Qwen3-TTS-12Hz-0.6B-CustomVoice
+  revision: 85e237c12c
+  license: apache-2.0
+  implementation: PyTorch talker+VA via official QwenLM/Qwen3-TTS repo @1ab0dd75
 cpu:
   runtime: openvino
   status: VERIFIED_WITH_LIMITATIONS
 gpu:
-  runtime: ''
+  runtime: pytorch-rocm
   status: NOT_TESTED
+  wall_timeout_s: 3600
 twin:
   level: WORKLOAD_TWIN
 validation: {}

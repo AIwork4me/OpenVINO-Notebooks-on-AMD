@@ -21,5 +21,20 @@ gpu:
 twin:
   level: WORKLOAD_TWIN
 validation: {}
-patches: {}
+patches:
+  cell_subs:
+  - pattern: fork_dir = clone_repo\("https://github\.com/openvino-dev-samples/optimum-intel\.git",
+      fork_revision, add_to_sys_path=False\)\nactual_revision = subprocess\.check_output\(\["git",
+      "-C", str\(fork_dir\), "rev-parse", "HEAD"\], text=True\)\.strip\(\)
+    replacement: "fork_dir = Path(\"optimum-intel-fork\")\nif not fork_dir.exists():\n\
+      \    import tarfile, urllib.request\n    with urllib.request.urlopen(\"https://codeload.github.com/openvino-dev-samples/optimum-intel/tar.gz/\"\
+      \ + fork_revision) as r, tarfile.open(fileobj=r, mode=\"r|gz\") as tf:\n   \
+      \     tf.extractall(\".\")\n    fork_dir = Path(\"optimum-intel-\" + fork_revision)\n\
+      actual_revision = fork_revision"
+  notes: ' v0.3 C1 transport substitution: the notebook git-clones the optimum-intel
+    fork at pinned rev 4085f5e8; git CONNECT to github.com is deterministically blocked
+    on this runner (clone exit 128). The substitution fetches the SAME pinned revision
+    from codeload.github.com (pure transport change, identical content) and short-circuits
+    the rev-parse equality check the notebook performs (the tarball IS the pinned
+    rev). No code changes beyond transport.'
 last_verified: ''

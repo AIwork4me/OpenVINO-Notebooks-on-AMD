@@ -8,18 +8,33 @@ upstream:
   path: notebooks/glm-ocr/glm-ocr.ipynb
   url: https://github.com/openvinotoolkit/openvino_notebooks/blob/2b1600de9620e4a2d26f1ef5c83fad64d7d76f7b/notebooks/glm-ocr/glm-ocr.ipynb
 model:
-  name: ''
-  source: ''
-  revision: ''
-  license: ''
+  name: zai-org/GLM-OCR
+  source: https://huggingface.co/zai-org/GLM-OCR
+  revision: 2e85a62840
+  license: mit
+  implementation: transformers GlmOcrForConditionalGeneration
 cpu:
   runtime: openvino
   status: FAILED
 gpu:
-  runtime: ''
+  runtime: pytorch-rocm
   status: NOT_TESTED
+  wall_timeout_s: 3600
 twin:
   level: WORKLOAD_TWIN
 validation: {}
-patches: {}
+patches:
+  cell_subs:
+  - pattern: pip_install\("-q", "(?:git\+https://github\.com/openvino-dev-samples/optimum-intel\.git@GLM-OCR|https://codeload\.github\.com/openvino-dev-samples/optimum-intel/tar\.gz/GLM-OCR)"\)
+    replacement: 'pip_install("-q", "optimum", "https://codeload.github.com/huggingface/optimum-onnx/tar.gz/transformers-v5")
+
+      pip_install("-q", "--no-deps", "https://codeload.github.com/openvino-dev-samples/optimum-intel/tar.gz/GLM-OCR")'
+  notes: ' v0.3 C1 dependency recovery: this notebook installs an optimum-intel FORK
+    whose setup.py declares optimum-onnx as a nested git+https dependency; pip''s
+    git clone to github.com is deterministically broken on this runner (proxy 503/GnuTLS).
+    Documented minimal install-order substitution: pre-satisfy optimum-onnx from the
+    codeload tarball of the SAME ref (identical content, pure transport change), then
+    install the fork with --no-deps. All other notebook installs unchanged and keep
+    providing the fork''s remaining requirements. GLM-OCR fork branch pins optimum-onnx@transformers-v5
+    (verified in its setup.py at the pinned ref).'
 last_verified: ''

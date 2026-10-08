@@ -227,6 +227,34 @@ SIBLING_DATA_EXTS = {
 SIBLING_DATA_MAX_BYTES = 64 * 1024 * 1024  # per file
 
 
+def _is_helper_package_dir(p: Path) -> bool:
+    """True for small pure-code sibling directories (helper packages like
+    deepsort_utils/): only .py/.json/.yaml/.txt files, total <= 4 MB, at
+    least one .py. Never copies model/asset directories."""
+
+    try:
+        entries = list(p.rglob("*"))
+    except OSError:
+        return False
+    total = 0
+    has_py = False
+    for e in entries:
+        if e.is_dir():
+            if e.name == "__pycache__":
+                continue
+            continue
+        if not e.is_file() or e.is_symlink():
+            return False
+        if e.suffix not in (".py", ".json", ".yaml", ".yml", ".txt"):
+            return False
+        if e.suffix == ".py":
+            has_py = True
+        total += e.stat().st_size
+        if total > 4 * 1024 * 1024:
+            return False
+    return has_py
+
+
 def _preseed_helpers(cwd: Path, nb_path: Path | None = None) -> list[str]:
     """Copy helper modules and data assets into the execution dir, with
     documented patches.
@@ -323,6 +351,21 @@ def _preseed_helpers(cwd: Path, nb_path: Path | None = None) -> list[str]:
                         )
                 except OSError:
                     pass
+            elif (
+                sibling.is_dir()
+                and not sibling.is_symlink()
+                and sibling.name not in ("__pycache__", "_cache")
+                and not (cwd / sibling.name).exists()
+                and _is_helper_package_dir(sibling)
+            ):
+                # sibling PYTHON PACKAGE directories (e.g. person-tracking's
+                # deepsort_utils/): notebooks import them from their own
+                # folder; the file-only preseed above missed them entirely
+                # (v0.3 Defect C6 — ModuleNotFoundError: deepsort_utils)
+                shutil.copytree(sibling, cwd / sibling.name, dirs_exist_ok=True)
+                patches.append(
+                    f"preseeded sibling helper package directory {sibling.name} (kernel cwd differs from notebook dir)"
+                )
         # cross-notebook assets fetched from OUR OWN pinned repo via
         # raw.githubusercontent.com (e.g. vlm-chatbot/nyc.jpg referenced by
         # muse-glimmer): satisfy them from the sha-verified snapshot — pure
@@ -356,17 +399,35 @@ def _preseed_snapshot_raw_assets(cwd: Path, nb_path: Path, root: Path) -> list[s
             continue
         seen.add(rel)
         src = root / rel
-        dst = cwd / Path(rel).name
-        if not src.is_file() or dst.exists():
+        if not src.is_file():
             continue
+        # destination candidates, in preference order:
+        # 1. notebook-folder-relative (the fetch destination when the URL
+        #    points inside the notebook's own folder, e.g. model/u2net.py)
+        # 2. repo-relative mirror of the URL path
+        # 3. flat file name (legacy behavior)
+        # v0.3 defect fix: the flat-only copy left subdir fetches attempting
+        # the unreachable raw CDN (vision-background-removal model/u2net.py)
         try:
-            shutil.copy2(src, dst)
-            notes.append(
-                f"preseeded snapshot asset {rel} (notebook fetches it from raw.githubusercontent.com; "
-                "identical sha-verified snapshot content, transport substitution)"
-            )
-        except OSError:
-            continue
+            nb_rel = nb_path.parent.relative_to(root)
+        except ValueError:
+            nb_rel = None
+        cands: list[Path] = []
+        if nb_rel and rel.startswith(nb_rel.as_posix() + "/"):
+            cands.append(cwd / Path(rel).relative_to(nb_rel))
+        cands += [cwd / Path(rel), cwd / Path(rel).name]
+        for dst in cands:
+            if dst.exists():
+                continue
+            try:
+                dst.parent.mkdir(parents=True, exist_ok=True)
+                shutil.copy2(src, dst)
+                notes.append(
+                    f"preseeded snapshot asset {rel} -> {dst.relative_to(cwd)} (notebook fetches it from "
+                    "raw.githubusercontent.com; identical sha-verified snapshot content, transport substitution)"
+                )
+            except OSError:
+                continue
     return notes
 
 

@@ -52,6 +52,32 @@ Full matrix: [catalog/compatibility.md](catalog/compatibility.md) · Methodology
 100% catalog coverage  ≠  100% pass rate
 ```
 
+### Two AMD paths, two coverage models
+
+| Path | Coverage model |
+|---|---|
+| **AMD Ryzen CPU (OpenVINO)** | 100% catalog coverage — every pinned notebook has a recorded outcome (verified / limited / blocked / compatibility-failure / N-A) |
+| **AMD Radeon GPU (ROCm)** | A growing set of verified high-value workload references — explicitly **not** a 100% sweep |
+
+The CPU and GPU columns never mix: OpenVINO CPU on Ryzen, ROCm/PyTorch on Radeon are distinct execution paths with separate evidence.
+
+<!-- generated:featured begin -->
+| Workload | Ryzen / OpenVINO | Radeon / ROCm | Twin |
+|---|---|---|---|
+| [deepseek-r1](https://github.com/openvinotoolkit/openvino_notebooks/blob/2b1600de9620e4a2d26f1ef5c83fad64d7d76f7b/notebooks/deepseek-r1/deepseek-r1.ipynb) | 🟡 VERIFIED_WITH_LIMITATIONS | ✅ VERIFIED | WORKLOAD_TWIN |
+| [hello-detection](https://github.com/openvinotoolkit/openvino_notebooks/blob/2b1600de9620e4a2d26f1ef5c83fad64d7d76f7b/notebooks/hello-detection/hello-detection.ipynb) | ✅ VERIFIED | ✅ VERIFIED | WORKLOAD_TWIN |
+| [kokoro](https://github.com/openvinotoolkit/openvino_notebooks/blob/2b1600de9620e4a2d26f1ef5c83fad64d7d76f7b/notebooks/kokoro/kokoro.ipynb) | 🟡 VERIFIED_WITH_LIMITATIONS | ✅ VERIFIED | WORKLOAD_TWIN |
+| [qwen3](https://github.com/openvinotoolkit/openvino_notebooks/blob/2b1600de9620e4a2d26f1ef5c83fad64d7d76f7b/supplementary_materials/notebooks/qwen-3/qwen3.ipynb) | 🟡 VERIFIED_WITH_LIMITATIONS | ✅ VERIFIED | WORKLOAD_TWIN |
+| [smolvlm2](https://github.com/openvinotoolkit/openvino_notebooks/blob/2b1600de9620e4a2d26f1ef5c83fad64d7d76f7b/notebooks/smolvlm2/smolvlm2.ipynb) | 🟡 VERIFIED_WITH_LIMITATIONS | ✅ VERIFIED | WORKLOAD_TWIN |
+| [stable-diffusion-text-to-image](https://github.com/openvinotoolkit/openvino_notebooks/blob/2b1600de9620e4a2d26f1ef5c83fad64d7d76f7b/notebooks/stable-diffusion-text-to-image/stable-diffusion-text-to-image.ipynb) | ⏳ BLOCKED_TIMEOUT (TIMEOUT_INFERENCE) | ✅ VERIFIED | WORKLOAD_TWIN |
+| [stable-diffusion-xl](https://github.com/openvinotoolkit/openvino_notebooks/blob/2b1600de9620e4a2d26f1ef5c83fad64d7d76f7b/notebooks/stable-diffusion-xl/stable-diffusion-xl.ipynb) | ⏳ BLOCKED_DEPENDENCY (INTERACTIVE_UI_TEARDOWN_AFTER_SKIP) | ✅ VERIFIED | WORKLOAD_TWIN |
+| [whisper-asr-genai](https://github.com/openvinotoolkit/openvino_notebooks/blob/2b1600de9620e4a2d26f1ef5c83fad64d7d76f7b/notebooks/whisper-asr-genai/whisper-asr-genai.ipynb) | ⏳ BLOCKED_NETWORK (EXTERNAL_HOST_UNREACHABLE) | ✅ VERIFIED | WORKLOAD_TWIN |
+<!-- generated:featured end -->
+
+#### High-value workload matrix (generated)
+
+The table above lists every Radeon/ROCm-verified twin next to its Ryzen/OpenVINO outcome. The full 173-row matrix lives in [catalog/compatibility.md](catalog/compatibility.md).
+
 - **Coverage** — every OpenVINO Notebook in the pinned catalog has a recorded AMD CPU validation outcome (evidence directory, device proof, classification).
 - **Verified** — inference ran on AMD Ryzen with positive CPU device proof and workload-correctness evidence, repeatable per policy.
 - **Verified with limitations** — ran successfully under a documented limitation (single repeatability run, skipped UI-only cells, execution-only without a correctness contract).

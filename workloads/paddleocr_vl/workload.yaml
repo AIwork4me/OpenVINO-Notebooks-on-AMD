@@ -8,16 +8,18 @@ upstream:
   path: notebooks/paddleocr_vl/paddleocr_vl.ipynb
   url: https://github.com/openvinotoolkit/openvino_notebooks/blob/2b1600de9620e4a2d26f1ef5c83fad64d7d76f7b/notebooks/paddleocr_vl/paddleocr_vl.ipynb
 model:
-  name: ''
-  source: ''
-  revision: ''
-  license: ''
+  name: PaddlePaddle/PaddleOCR-VL
+  source: https://huggingface.co/PaddlePaddle/PaddleOCR-VL
+  revision: 7fa00a8c55
+  license: apache-2.0
+  implementation: transformers PaddleOCRVLForConditionalGeneration
 cpu:
   runtime: openvino
   status: FAILED
 gpu:
-  runtime: ''
+  runtime: pytorch-rocm
   status: NOT_TESTED
+  wall_timeout_s: 3600
 twin:
   level: WORKLOAD_TWIN
 validation: {}

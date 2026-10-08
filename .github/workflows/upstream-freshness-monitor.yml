@@ -1,0 +1,62 @@
+name: upstream-freshness-monitor
+
+on:
+  schedule:
+    - cron: "17 5 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Compare pin vs upstream latest
+        run: |
+          set -eu
+          PIN=$(python3 -c "import json;print(json.load(open('upstream/openvino-notebooks.json'))['commit'])")
+          HEAD=$(curl -sSfL "https://api.github.com/repos/openvinotoolkit/openvino_notebooks/commits/latest" | python3 -c "import json,sys;print(json.load(sys.stdin)['sha'])")
+          echo "pin=$PIN"
+          echo "head=$HEAD"
+          if [ "$PIN" = "$HEAD" ]; then
+            echo "CURRENT — pin matches upstream latest"
+            exit 0
+          fi
+          echo "UPSTREAM_ADVANCED — pin $PIN -> $HEAD"
+          curl -sSfL "https://api.github.com/repos/openvinotoolkit/openvino_notebooks/compare/${PIN}...${HEAD}" \
+            | python3 -c '
+          import json, sys
+          d = json.load(sys.stdin)
+          print(f"commits: {d[\"total_commits\"]}")
+          for f in d["files"]:
+              print(f"{f[\"status\"]:10s} {f[\"filename\"]} +{f[\"additions\"]}/-{f[\"deletions\"]}")
+          ' > upstream-delta.txt || true
+          cat upstream-delta.txt || true
+          # affected workload scope: notebooks/<dir>/* changed => that dir's workload needs revalidation
+          python3 - <<'EOF'
+          import re, yaml, pathlib
+          delta = pathlib.Path("upstream-delta.txt").read_text() if pathlib.Path("upstream-delta.txt").exists() else ""
+          changed = set(re.findall(r"notebooks/([\w.-]+)/", delta))
+          cat = yaml.safe_load(pathlib.Path("catalog/notebooks.yaml").read_text())
+          ids = {n["id"]: n["upstream_path"] for n in cat["notebooks"]}
+          impacted = [i for i, p in ids.items() if any(f"notebooks/{d}/" in p for d in changed)]
+          print("affected workloads:", ", ".join(sorted(impacted)) or "(none in catalog)")
+          pathlib.Path("/tmp/impacted").write_text("\n".join(sorted(impacted)))
+          EOF
+          {
+            echo "### Upstream advanced: revalidation needed"
+            echo
+            echo '```'
+            echo "old pin : $PIN"
+            echo "new head: $HEAD"
+            cat upstream-delta.txt 2>/dev/null || echo "(delta unavailable)"
+            echo '```'
+            echo
+            echo "**Affected workloads:** $(cat /tmp/impacted 2>/dev/null | tr '\n' ' ')"
+            echo
+            echo "Revalidation scope is ONLY the affected workloads above (incremental policy — the other rows remain valid at their recorded, content-identical pins)."
+          } >> "$GITHUB_STEP_SUMMARY"
+          echo "::error::OpenVINO Notebooks upstream advanced ($PIN -> $HEAD); incremental revalidation required"
+          exit 1

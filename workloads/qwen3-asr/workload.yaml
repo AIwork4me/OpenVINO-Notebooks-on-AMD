@@ -8,16 +8,18 @@ upstream:
   path: notebooks/qwen3-asr/qwen3-asr.ipynb
   url: https://github.com/openvinotoolkit/openvino_notebooks/blob/2b1600de9620e4a2d26f1ef5c83fad64d7d76f7b/notebooks/qwen3-asr/qwen3-asr.ipynb
 model:
-  name: ''
-  source: ''
-  revision: ''
-  license: ''
+  name: Qwen/Qwen3-ASR-0.6B-hf
+  source: https://huggingface.co/Qwen/Qwen3-ASR-0.6B-hf
+  revision: 7f1569a48a
+  license: apache-2.0
+  implementation: transformers Qwen3ASRForConditionalGeneration
 cpu:
   runtime: openvino
   status: FAILED
 gpu:
-  runtime: ''
+  runtime: pytorch-rocm
   status: NOT_TESTED
+  wall_timeout_s: 1800
 twin:
   level: WORKLOAD_TWIN
 validation: {}

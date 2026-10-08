@@ -48,9 +48,30 @@ def adjudicate_whisper_cpu(state: dict) -> dict | None:
     return {"workload": "whisper-asr-genai", "backend": "cpu", "action": "note+reason-refresh"}
 
 
+def adjudicate_gemma4(state: dict) -> dict | None:
+    rec = state.get("attempts", {}).get("gemma4", {}).get("cpu")
+    if not rec:
+        return None
+    if any("v0.3 resource adjudication" in n for n in rec.get("notes", [])):
+        return None
+    note = (
+        "v0.3 resource adjudication: the 2b1600d-pin rerun progressed past dependency install "
+        "(optimum-intel master resolved via codeload transport) into the Gemma-4-E2B OpenVINO "
+        "export when the validation disk hit 100% utilization (sibling campaign workloads); the "
+        "operator killed the export kernel to protect the shared disk and the recorded "
+        "AssertionError is the interrupted-export artifact, not a model verdict. Honest outcome: "
+        "BLOCKED_RESOURCE (insufficient disk headroom for the ~14GB export on this runner during "
+        "the v0.3 window). Dependency root cause from v0.2.2 is RESOLVED (installs complete)."
+    )
+    rec.setdefault("notes", []).append(note)
+    rec["outcome_reason"] = "DISK_EXHAUSTED_DURING_EXPORT_OPERATOR_HALTED"
+    rec["compatibility_outcome"] = "BLOCKED_RESOURCE"
+    return {"workload": "gemma4", "backend": "cpu", "action": "resource-note+outcome"}
+
+
 def main() -> int:
     state = load_state()
-    applied = [r for r in (adjudicate_whisper_cpu(state),) if r]
+    applied = [r for r in (adjudicate_whisper_cpu(state), adjudicate_gemma4(state)) if r]
     if applied:
         save_state(state)
     for r in applied:
