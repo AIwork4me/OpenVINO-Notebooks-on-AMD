@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "ov-amd"
-version = "0.2.0"
+version = "0.3.1"
 description = "Validate and run OpenVINO Notebooks on AMD Ryzen CPUs, with matching ROCm-powered references for AMD Radeon GPUs."
 readme = "README.md"
 requires-python = ">=3.11"
