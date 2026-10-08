@@ -149,7 +149,7 @@ uv pip install --python .venv-cpu/bin/python -e ".[dev]"
 .venv-cpu/bin/python scripts/run_marathon.py   # unattended, resumable campaign
 ```
 
-Notebook *execution* additionally needs the notebook stack (jupyter, openvino, torch-cpu) — see [docs/getting-started.md](docs/getting-started.md). The commands above verify the harness and catalog immediately.
+Notebook *execution* additionally needs the notebook stack (jupyter, openvino, torch-cpu) and the pinned upstream snapshot (`.venv-cpu/bin/python scripts/fetch_upstream.py`) — see [docs/getting-started.md](docs/getting-started.md). The commands above verify the harness and catalog immediately.
 
 ## Status semantics (short form)
 
@@ -160,7 +160,7 @@ Notebook *execution* additionally needs the notebook stack (jupyter, openvino, t
 | **Blocked** | An external or setup condition prevented completion (network / gated model / dependency / timeout / resource) — **not** necessarily an AMD CPU incompatibility |
 | **Compatibility failure** | A validated runtime/model incompatibility was reproduced on a valid environment |
 
-Full state machine and evidence contract: [docs/validation-policy.md](docs/validation-policy.md).
+Full state machine and evidence contract: [docs/validation-policy.md](docs/validation-policy.md). Further reading: [FAQ](docs/faq.md) · [CPU vs GPU paths](docs/cpu-vs-gpu.md) · [engineering decisions](docs/engineering-decisions.md).
 
 ## Status model (two dimensions)
 

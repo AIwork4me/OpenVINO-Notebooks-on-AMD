@@ -18,7 +18,7 @@ Thanks for improving **OpenVINO Notebooks on AMD**!
 ```bash
 uv venv .venv-cpu --python 3.12
 uv pip install --python .venv-cpu/bin/python -e ".[dev]"
-python -m pytest          # must pass
+.venv-cpu/bin/python -m pytest          # must pass
 ruff check .              # must pass
 ```
 

@@ -44,8 +44,8 @@ python scripts/discover_upstream.py     # writes upstream/ + catalog/notebooks.y
 .venv-cpu/bin/python -m ov_amd run <workload> --device cpu
 .venv-cpu/bin/python -m ov_amd run <workload> --device gpu
 python -m ov_amd compare <workload>     # CPU vs GPU metrics
-python -m ov_amd report                 # regenerate catalog/compatibility.*
-python scripts/run_marathon.py --resume # unattended campaign
+.venv-cpu/bin/python -m ov_amd report                 # regenerate catalog/compatibility.*
+.venv-cpu/bin/python scripts/run_marathon.py --resume # unattended campaign
 ```
 
 ## Network notes

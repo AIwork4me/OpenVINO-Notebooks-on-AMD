@@ -601,6 +601,7 @@ def _summary_md(entry: NotebookEntry, out: AttemptOutcome, last_info: dict[str, 
         f"- successful runs: {out.ok_runs}/{out.required_runs} (see aggregate.json)",
         f"- last duration: {exec_info.get('duration_s', '-')}s",
         f"- failure: {out.failure_category or '-'}",
+        f"- compatibility outcome: {out.compatibility_outcome or '-'} (the developer-facing classification; see docs/validation-policy.md)",
         f"- environment: `.venvs/cpu/{out.env_info.get('env_key', '-')}` (reused={out.env_info.get('reused')})",
     ]
     for n in out.notes:
