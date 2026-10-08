@@ -62,7 +62,7 @@ Full matrix: [catalog/compatibility.md](catalog/compatibility.md) · Methodology
 The CPU and GPU columns never mix: OpenVINO CPU on Ryzen, ROCm/PyTorch on Radeon are distinct execution paths with separate evidence.
 
 <!-- generated:featured begin -->
-| Workload | Ryzen / OpenVINO | Radeon / ROCm | Twin |
+| Workload | Ryzen CPU(OpenVINO) | Radeon GPU(ROCm) | Twin |
 |---|---|---|---|
 | [deepseek-r1](https://github.com/openvinotoolkit/openvino_notebooks/blob/2b1600de9620e4a2d26f1ef5c83fad64d7d76f7b/notebooks/deepseek-r1/deepseek-r1.ipynb) | 🟡 VERIFIED_WITH_LIMITATIONS | ✅ VERIFIED | WORKLOAD_TWIN |
 | [glm-ocr](https://github.com/openvinotoolkit/openvino_notebooks/blob/2b1600de9620e4a2d26f1ef5c83fad64d7d76f7b/notebooks/glm-ocr/glm-ocr.ipynb) | ⏳ BLOCKED_NETWORK (EXTERNAL_HOST_UNREACHABLE) | ✅ VERIFIED | WORKLOAD_TWIN |
