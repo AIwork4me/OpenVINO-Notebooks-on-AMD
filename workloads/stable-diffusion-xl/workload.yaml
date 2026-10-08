@@ -19,3 +19,12 @@ twin:
 validation: {}
 patches: {}
 last_verified: ''
+model:
+  name: stabilityai/stable-diffusion-xl-base-1.0
+  source: https://huggingface.co/stabilityai/stable-diffusion-xl-base-1.0
+  revision: 4621659840 (ModelScope mirror commit 257e42edb75d recorded)
+  license: openrail++
+  license_source: ModelScope repo License field / HF OpenRAIL++ (verified 2026-10-08)
+  license_revision: 4621659840 (ModelScope mirror commit 257e42edb75d recorded)
+  license_verification_date: '2026-10-08'
+  implementation: transformers built-in or official package

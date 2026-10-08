@@ -18,6 +18,8 @@ import time
 from twin_lib import PeakMemory, emit, setup
 
 HF_ID = "stabilityai/stable-diffusion-xl-base-1.0"
+REVISION = "4621659840"  # HF revision (verified live 2026-10-08)
+MS_REVISION = "257e42edb75d808219311d1e15b01f85b99ff36d"  # ModelScope mirror commit (2023-10-08; weights unchanged since)
 MS_ID = "AI-ModelScope/stable-diffusion-xl-base-1.0"
 PROMPT = "a photo of an astronaut riding a horse on mars"
 STEPS = 20
@@ -36,13 +38,13 @@ def main() -> int:
     t0 = time.time()
     source = HF_ID
     try:
-        pipe = StableDiffusionXLPipeline.from_pretrained(HF_ID, torch_dtype=torch.float16)
+        pipe = StableDiffusionXLPipeline.from_pretrained(HF_ID, revision=REVISION, torch_dtype=torch.float16)
     except Exception:  # noqa: BLE001 - mirror 401 -> ModelScope
         from modelscope.hub.snapshot_download import snapshot_download
 
         local = _Path(__file__).resolve().parent / "weights"
         snapshot_download(
-            MS_ID, local_dir=str(local),
+            MS_ID, revision=MS_REVISION, local_dir=str(local),
             allow_patterns=["model_index.json", "*/config.json", "*/tokenizer*", "*/scheduler_config.json",
                             "*/diffusion_pytorch_model.safetensors", "*/diffusion_pytorch_model.fp16.safetensors", "*/model.safetensors",
                             "*/preprocessor_config.json", "*/vocab.json", "*/merges.txt", "*/special_tokens_map.json"],
@@ -84,6 +86,7 @@ def main() -> int:
     not_blank = float(np.abs(a0).mean()) > 5.0
     metrics = {
         "model": HF_ID,
+        "model_revision": REVISION,
         "weights_source": source,
         "precision": "fp16",
         "prompt": PROMPT,

@@ -11,7 +11,10 @@ model:
   name: openbmb/MiniCPM-V-4.6
   source: https://huggingface.co/openbmb/MiniCPM-V-4.6
   revision: 36f34a661a
-  license: apache-2.0 (non-commercial)
+  license: apache-2.0
+  license_source: HF model-repo card/license tag (verified via hf-mirror API 2026-10-08)
+  license_revision: 36f34a661a
+  license_verification_date: '2026-10-08'
   implementation: official repo AutoModel trust_remote_code
 cpu:
   runtime: openvino

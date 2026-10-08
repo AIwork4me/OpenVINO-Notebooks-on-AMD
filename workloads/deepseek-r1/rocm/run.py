@@ -18,6 +18,8 @@ import time
 from twin_lib import PeakMemory, emit, setup
 
 HF_ID = "deepseek-ai/DeepSeek-R1-Distill-Llama-8B"
+REVISION = "6a6f4aa419"  # HF revision (verified live 2026-10-08)
+MS_REVISION = "21e2cfdbe904bf48ae7336612272291c3285d0fc"  # ModelScope mirror commit (2025-02-24, weights-identical mirror of 6a6f4aa419)
 MS_ID = "deepseek-ai/DeepSeek-R1-Distill-Llama-8B"
 PROMPT = "What is 17 * 23? Think briefly and answer."
 MAX_NEW_TOKENS = 96
@@ -35,13 +37,13 @@ def _load():
         from modelscope.hub.api import HubApi  # noqa: F401
 
         local = _Path(__file__).resolve().parent / "weights"
-        snapshot_download(MS_ID, local_dir=str(local))
+        snapshot_download(MS_ID, revision=MS_REVISION, local_dir=str(local))
         source = f"{MS_ID} (ModelScope mirror; HF mirror stalls on deepseek-ai files)"
         tok = AutoTokenizer.from_pretrained(str(local))
         model = AutoModelForCausalLM.from_pretrained(str(local), torch_dtype=torch.bfloat16, device_map="cuda:0")
     except Exception:  # noqa: BLE001 - ModelScope miss -> HF mirror
-        tok = AutoTokenizer.from_pretrained(HF_ID)
-        model = AutoModelForCausalLM.from_pretrained(HF_ID, torch_dtype=torch.bfloat16, device_map="cuda:0")
+        tok = AutoTokenizer.from_pretrained(HF_ID, revision=REVISION)
+        model = AutoModelForCausalLM.from_pretrained(HF_ID, revision=REVISION, torch_dtype=torch.bfloat16, device_map="cuda:0")
     return tok, model.eval(), source
 
 
@@ -85,6 +87,7 @@ def main() -> int:
     (evidence / "output.txt").write_text(combined)
     metrics = {
         "model": HF_ID,
+        "model_revision": REVISION,
         "weights_source": source,
         "precision": "bf16",
         "load_s": round(load_s, 2),

@@ -16,10 +16,10 @@ _sys.path.insert(0, str(_Path(__file__).resolve().parents[3] / "ov_amd"))  # twi
 
 import time
 
-from twin_lib import PeakMemory, emit, setup
+from twin_lib import PeakMemory, emit, resolve_asset, setup
 
 MODEL = "PaddlePaddle/PaddleOCR-VL"
-SNAPSHOT_IMG = _Path(__file__).resolve().parents[3] / ".cache" / "upstream" / "notebooks" / "paddleocr_vl" / "test.png"
+REVISION = "7fa00a8c55"  # validated revision (evidence 20261008T063244Z-gpu)
 
 
 def main() -> int:
@@ -29,16 +29,17 @@ def main() -> int:
 
     evidence = Path(args.evidence_dir)
     img_path = evidence / "input.png"
-    shutil.copy2(SNAPSHOT_IMG, img_path)
+    asset = resolve_asset("paddleocr-vl-test.png")
+    shutil.copy2(asset.path, img_path)
 
     import torch
     from PIL import Image
     from transformers import AutoProcessor, PaddleOCRVLForConditionalGeneration
 
     t0 = time.time()
-    processor = AutoProcessor.from_pretrained(MODEL)
+    processor = AutoProcessor.from_pretrained(MODEL, revision=REVISION)
     model = PaddleOCRVLForConditionalGeneration.from_pretrained(
-        MODEL, torch_dtype=torch.bfloat16, device_map="cuda:0"
+        MODEL, revision=REVISION, torch_dtype=torch.bfloat16, device_map="cuda:0"
     ).eval()
     load_s = time.time() - t0
 
@@ -74,8 +75,9 @@ def main() -> int:
     words = [w for w in text.split() if len(w) >= 2]
     metrics = {
         "model": MODEL,
+        "model_revision": REVISION,
+        "input_asset": asset.record(),
         "precision": "bf16",
-        "input": "paddleocr_vl/test.png (pinned upstream snapshot asset)",
         "load_s": round(load_s, 2),
         "runs": runs,
         "output_chars": len(text),

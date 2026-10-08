@@ -10,9 +10,12 @@ upstream:
 model:
   name: ds4sd/SmolDocling-256M-preview
   source: https://huggingface.co/ds4sd/SmolDocling-256M-preview
-  revision: f9a9dd95
-  license: apache-2.0
-  implementation: transformers AutoModelForImageTextToText trust_remote_code
+  revision: ce51f56c4e
+  license: cdla-permissive-2.0
+  license_source: HF model-repo card/license tag (verified via hf-mirror API 2026-10-08)
+  license_revision: ce51f56c4e
+  license_verification_date: '2026-10-08'
+  implementation: official repo AutoModel trust_remote_code
 cpu:
   runtime: openvino
   status: VERIFIED_WITH_LIMITATIONS

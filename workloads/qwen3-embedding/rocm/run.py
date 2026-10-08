@@ -19,6 +19,7 @@ import time
 from twin_lib import PeakMemory, emit, setup
 
 MODEL = "Qwen/Qwen3-Embedding-0.6B"
+REVISION = "97b0c614be"  # validated revision (verified live 2026-10-08)
 QUERY = "What is the capital of France?"
 DOC_RELEVANT = "The capital of France is Paris."
 DOC_IRRELEVANT = "Photosynthesis converts sunlight into chemical energy in plants."
@@ -35,8 +36,8 @@ def main() -> int:
     from transformers import AutoModel, AutoTokenizer
 
     t0 = time.time()
-    tok = AutoTokenizer.from_pretrained(MODEL)
-    model = AutoModel.from_pretrained(MODEL, torch_dtype=torch.bfloat16, device_map="cuda:0").eval()
+    tok = AutoTokenizer.from_pretrained(MODEL, revision=REVISION)
+    model = AutoModel.from_pretrained(MODEL, revision=REVISION, torch_dtype=torch.bfloat16, device_map="cuda:0").eval()
     load_s = time.time() - t0
 
     def _embed(texts: list[str]):
@@ -73,6 +74,7 @@ def main() -> int:
     stable = all(abs(sims[i][0] - sims[0][0]) < 1e-3 and abs(sims[i][1] - sims[0][1]) < 1e-3 for i in range(1, len(sims)))
     metrics = {
         "model": MODEL,
+        "model_revision": REVISION,
         "precision": "bf16",
         "load_s": round(load_s, 2),
         "runs": runs,

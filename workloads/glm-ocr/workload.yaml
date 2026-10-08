@@ -12,7 +12,10 @@ model:
   source: https://huggingface.co/zai-org/GLM-OCR
   revision: 2e85a62840
   license: mit
-  implementation: transformers GlmOcrForConditionalGeneration
+  license_source: HF model-repo card/license tag (verified via hf-mirror API 2026-10-08)
+  license_revision: 2e85a62840
+  license_verification_date: '2026-10-08'
+  implementation: transformers built-in or official package
 cpu:
   runtime: openvino
   status: FAILED

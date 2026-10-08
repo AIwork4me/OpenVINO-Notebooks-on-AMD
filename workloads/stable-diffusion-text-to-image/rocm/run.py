@@ -18,6 +18,12 @@ from pathlib import Path
 from twin_lib import PeakMemory, emit, setup
 
 MODEL = "stabilityai/stable-diffusion-2-1"
+MS_MODEL = "AI-ModelScope/stable-diffusion-2-1"
+# The HF repo is gated (401 via this runner's HF mirror): weights come from the
+# recorded ModelScope mirror substitution, pinned to its immutable commit below
+# (latest repo commit 2023-12-05; weights unchanged since 2023 — validation ran
+# 2026-10, i.e. on exactly this content).
+MS_REVISION = "e68d85a790bc000dc42b89ba6a826ac132982e21"
 PROMPT = "a photo of an astronaut riding a horse on mars"
 STEPS = 20
 SEED = 42
@@ -43,7 +49,8 @@ def _load_pipeline(evidence: Path):
         # the mirror repo carries every weight format (>30GB); fetch only what
         # the diffusers pipeline needs
         snapshot_download(
-            "AI-ModelScope/stable-diffusion-2-1",
+            MS_MODEL,
+            revision=MS_REVISION,
             local_dir=str(local),
             allow_patterns=[
                 "model_index.json", "*/config.json", "*/preprocessor_config.json",
@@ -105,6 +112,7 @@ def main() -> int:
     max_diff = max(int(np.abs(a0 - _arr(i)).max()) for i in (1, 2))
     metrics = {
         "model": MODEL,
+        "model_revision": f"ModelScope {MS_MODEL} @ {MS_REVISION[:12]} (HF gated 401 via mirror)",
         "weights_source": source,
         "precision": "fp16",
         "prompt": PROMPT,

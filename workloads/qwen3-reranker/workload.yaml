@@ -12,7 +12,10 @@ model:
   source: https://huggingface.co/Qwen/Qwen3-Reranker-0.6B
   revision: e61197ed45
   license: apache-2.0
-  implementation: transformers AutoModelForCausalLM, yes/no logits
+  license_source: HF model-repo card/license tag (verified via hf-mirror API 2026-10-08)
+  license_revision: e61197ed45
+  license_verification_date: '2026-10-08'
+  implementation: transformers built-in or official package
 cpu:
   runtime: openvino
   status: VERIFIED_WITH_LIMITATIONS

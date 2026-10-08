@@ -14,13 +14,11 @@ from __future__ import annotations
 import shutil
 import subprocess
 import sys as _sys
-import tarfile
 import tempfile
 from pathlib import Path as _Path
 
 _sys.path.insert(0, str(_Path(__file__).resolve().parents[3] / "ov_amd"))  # twin_lib location
 
-import io
 import time
 
 from twin_lib import PeakMemory, emit, setup
@@ -32,7 +30,7 @@ TEXT = "The quick brown fox jumps over the lazy dog."
 SPEAKER = "Cherry"  # predefined CustomVoice speaker used by the notebook
 
 
-def _ensure_repo(dest: Path) -> None:
+def _ensure_repo(dest: _Path) -> None:
     marker = dest / ".repo-rev"
     if marker.exists() and marker.read_text().strip() == REPO_REV:
         return
@@ -43,19 +41,21 @@ def _ensure_repo(dest: Path) -> None:
     )
     if r.returncode != 0:
         raise RuntimeError(f"codeload fetch failed: {r.returncode}")
-    with tarfile.open(fileobj=io.BytesIO(r.stdout), mode="r:gz") as tf:
-        inner = tf.getnames()[0].split("/", 1)[0]
-        tf.extractall(dest.parent)  # extracts Qwen3-TTS-<rev>/
-    src = dest.parent / f"Qwen3-TTS-{REPO_REV[:12]}"
-    # the tarball prefix uses the full rev; find what actually got extracted
-    if not src.exists():
-        cands = [p for p in dest.parent.iterdir() if p.is_dir() and p.name.startswith("Qwen3-TTS-")]
-        if not cands:
-            raise RuntimeError("extracted repo dir not found")
-        src = cands[0]
-    if dest.exists():
-        shutil.rmtree(dest)
-    shutil.move(str(src), str(dest))
+    # v0.3.1: safe extraction — member names validated (no absolute paths,
+    # no parent traversal, no symlink members), size/member caps enforced
+    from ov_amd.assets import safe_extract_tar
+
+    with tempfile.TemporaryDirectory() as td:
+        tar_path = _Path(td) / "repo.tar.gz"
+        tar_path.write_bytes(r.stdout)
+        safe_extract_tar(tar_path, _Path(td) / "x")
+        extracted = [p for p in (_Path(td) / "x").iterdir() if p.is_dir()]
+        if not extracted:
+            raise RuntimeError("tarball contained no top-level directory")
+        src = extracted[0]
+        if dest.exists():
+            shutil.rmtree(dest)
+        shutil.move(str(src), str(dest))
     marker.write_text(REPO_REV + "\n")
 
 

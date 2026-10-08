@@ -15,15 +15,12 @@ _sys.path.insert(0, str(_Path(__file__).resolve().parents[3] / "ov_amd"))  # twi
 
 import time
 
-from twin_lib import PeakMemory, emit, fetch, setup
+from twin_lib import PeakMemory, emit, resolve_asset, setup
 
 MODEL = "HuggingFaceTB/SmolVLM2-2.2B-Instruct"
-# input substitution (recorded): the notebook's default image lives on a CDN
-# blocked from some validation runners; the user-images.githubusercontent.com
-# copy (official notebook-asset host, reachable there) is the primary, the
-# storage.openvinotoolkit.org canonical copy the fallback
-IMG_URL = "https://user-images.githubusercontent.com/36741649/127172572-1cdab941-df5f-42e2-a367-2b334a3db6d8.jpg"
-IMG_FALLBACK = "https://storage.openvinotoolkit.org/repositories/openvino_notebooks/data/data/image/coco.jpg"
+REVISION = "482adb537c"  # validated revision (evidence 20261007T005844Z-gpu)
+# input: coco.jpg — the OpenVINO Notebooks project's own data asset (Apache-2.0),
+# resolved through the managed asset manifest (SHA-256 enforced)
 PROMPT = "Describe this image in one sentence."
 
 
@@ -34,14 +31,17 @@ def main() -> int:
 
     evidence = Path(args.evidence_dir)
     img_path = evidence / "input.png"
-    fetch(IMG_URL, img_path, fallbacks=[IMG_FALLBACK])
+    asset = resolve_asset("coco.jpg")
+    import shutil
+
+    shutil.copy2(asset.path, img_path)
 
     import torch
     from transformers import AutoModelForImageTextToText, AutoProcessor
 
     t0 = time.time()
-    processor = AutoProcessor.from_pretrained(MODEL)
-    model = AutoModelForImageTextToText.from_pretrained(MODEL, torch_dtype=torch.bfloat16, device_map="cuda:0").eval()
+    processor = AutoProcessor.from_pretrained(MODEL, revision=REVISION)
+    model = AutoModelForImageTextToText.from_pretrained(MODEL, revision=REVISION, torch_dtype=torch.bfloat16, device_map="cuda:0").eval()
     load_s = time.time() - t0
 
     from PIL import Image
@@ -73,6 +73,9 @@ def main() -> int:
 
     metrics = {
         "model": MODEL,
+        "model_revision": REVISION,
+        "input": "coco.jpg (managed asset; upstream notebook data asset)",
+        "input_asset": asset.record(),
         "precision": "bf16",
         "load_s": round(load_s, 2),
         "runs": runs,

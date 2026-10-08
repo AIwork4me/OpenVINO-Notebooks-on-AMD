@@ -15,10 +15,10 @@ _sys.path.insert(0, str(_Path(__file__).resolve().parents[3] / "ov_amd"))  # twi
 
 import time
 
-from twin_lib import PeakMemory, emit, fetch, setup
+from twin_lib import PeakMemory, emit, resolve_asset, setup
 
 MODEL = "openai/whisper-base"
-AUDIO_URL = "https://hf-mirror.com/datasets/Xenova/transformers.js-docs/resolve/main/courtroom.wav"
+REVISION = "e37978b90c"  # validated revision (evidence 20261007T230927Z-gpu)
 
 
 def main() -> int:
@@ -28,14 +28,17 @@ def main() -> int:
 
     evidence = Path(args.evidence_dir)
     wav = evidence / "courtroom.wav"
-    fetch(AUDIO_URL.replace("https://hf-mirror.com", "https://hf-mirror.com"), wav)
+    asset = resolve_asset("courtroom-asr.wav")
+    import shutil
+
+    shutil.copy2(asset.path, wav)
 
     import torch
     from transformers import AutoProcessor, WhisperForConditionalGeneration
 
     t0 = time.time()
-    processor = AutoProcessor.from_pretrained(MODEL)
-    model = WhisperForConditionalGeneration.from_pretrained(MODEL, torch_dtype=torch.float32).to("cuda:0")
+    processor = AutoProcessor.from_pretrained(MODEL, revision=REVISION)
+    model = WhisperForConditionalGeneration.from_pretrained(MODEL, revision=REVISION, torch_dtype=torch.float32).to("cuda:0")
     model.eval()
     load_s = time.time() - t0
 
@@ -64,6 +67,9 @@ def main() -> int:
 
     metrics = {
         "model": MODEL,
+        "model_revision": REVISION,
+        "input": "courtroom.wav (managed asset courtroom-asr.wav; notebook's own sample)",
+        "input_asset": asset.record(),
         "precision": "fp32",
         "audio_seconds": round(duration_s, 2),
         "load_s": round(load_s, 2),

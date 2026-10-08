@@ -12,7 +12,10 @@ model:
   source: https://huggingface.co/Qwen/Qwen3-ASR-0.6B-hf
   revision: 7f1569a48a
   license: apache-2.0
-  implementation: transformers Qwen3ASRForConditionalGeneration
+  license_source: HF model-repo card/license tag (verified via hf-mirror API 2026-10-08)
+  license_revision: 7f1569a48a
+  license_verification_date: '2026-10-08'
+  implementation: transformers built-in or official package
 cpu:
   runtime: openvino
   status: FAILED

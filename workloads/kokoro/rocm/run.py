@@ -18,6 +18,7 @@ import time
 from twin_lib import PeakMemory, emit, setup
 
 MODEL = "hexgrad/Kokoro-82M"
+REVISION = "f3ff357179"  # validated revision (verified live 2026-10-08)
 TEXT = "The quick brown fox jumps over the lazy dog."
 
 
@@ -33,7 +34,7 @@ def main() -> int:
     from kokoro import KPipeline
 
     t0 = time.time()
-    pipe = KPipeline(lang_code="a", repo_id=MODEL)  # official package path
+    pipe = KPipeline(lang_code="a", repo_id=MODEL, revision=REVISION)  # official package path
     pipe.model.to("cuda:0").eval()
     load_s = time.time() - t0
 
@@ -74,6 +75,7 @@ def main() -> int:
     stable = exact or max_diff <= 300
     metrics = {
         "model": MODEL,
+        "model_revision": REVISION,
         "precision": "default (model dtype)",
         "load_s": round(load_s, 2),
         "runs": runs,

@@ -8,10 +8,17 @@ upstream:
   path: notebooks/deepseek-r1/deepseek-r1.ipynb
   url: https://github.com/openvinotoolkit/openvino_notebooks/blob/2b1600de9620e4a2d26f1ef5c83fad64d7d76f7b/notebooks/deepseek-r1/deepseek-r1.ipynb
 model:
-  name: deepseek-ai/DeepSeek-R1-Distill-Qwen-7B
-  source: OpenVINO/DeepSeek-R1-Distill-Qwen-7B-int4-ov (preconverted INT4)
-  revision: ''
-  license: MIT (DeepSeek-R1 series)
+  name: deepseek-ai/DeepSeek-R1-Distill-Llama-8B
+  source: https://huggingface.co/deepseek-ai/DeepSeek-R1-Distill-Llama-8B
+  revision: 6a6f4aa419
+  license: mit
+  license_source: HF model-repo card/license tag (verified via hf-mirror API 2026-10-08)
+  license_revision: 6a6f4aa419
+  license_verification_date: '2026-10-08'
+  implementation: transformers built-in or official package
+  note: 'GPU twin: Llama-8B distill @6a6f4aa419 (ModelScope mirror commit 21e2cfdbe904
+    recorded when HF stalls). The CPU path validates the int4 OV export of the Qwen-7B
+    distill per the upstream notebook.'
 cpu:
   runtime: openvino
   status: VERIFIED_WITH_LIMITATIONS
