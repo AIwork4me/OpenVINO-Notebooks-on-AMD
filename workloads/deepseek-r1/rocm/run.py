@@ -87,6 +87,8 @@ def main() -> int:
     (evidence / "output.txt").write_text(combined)
     metrics = {
         "model": HF_ID,
+        "correctness_level": "STRUCTURAL",
+        "correctness_contract": "nonempty full-length reasoning output + determinism",
         "model_revision": REVISION,
         "weights_source": source,
         "precision": "bf16",

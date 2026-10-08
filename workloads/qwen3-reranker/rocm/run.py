@@ -87,6 +87,8 @@ def main() -> int:
     stable = all(abs(scores[i][0] - scores[0][0]) < 0.05 and abs(scores[i][1] - scores[0][1]) < 0.05 for i in range(1, len(scores)))
     metrics = {
         "model": MODEL,
+        "correctness_level": "TASK_SEMANTIC",
+        "correctness_contract": "finite scores + relevant > irrelevant ranking",
         "model_revision": REVISION,
         "precision": "bf16",
         "load_s": round(load_s, 2),

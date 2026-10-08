@@ -93,6 +93,8 @@ def main() -> int:
     not_blank = float(np.abs(a0).mean()) > 5.0
     metrics = {
         "model": HF_ID,
+        "correctness_level": "STRUCTURAL",
+        "correctness_contract": "3 valid 1024px nonblank images + repeatability",
         "model_revision": REVISION,
         "weights_source": source,
         "precision": "fp16",

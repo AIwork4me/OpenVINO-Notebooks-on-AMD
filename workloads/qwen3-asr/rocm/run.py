@@ -112,6 +112,8 @@ def main() -> int:
     cer = _cer(ref.lower(), hyp_clean.lower())
     metrics = {
         "model": MODEL,
+        "correctness_level": "TASK_SEMANTIC",
+        "correctness_contract": "expected transcript fragment + CER vs loose clip-script reference (not word-level ground truth)",
         "model_revision": REVISION,
         "precision": "bf16",
         "input": "courtroom.wav (managed asset courtroom-asr.wav; notebook's qianwen-res.oss host is proxy-blocked)",

@@ -128,6 +128,8 @@ def main() -> int:
     max_diff = max(int(np.abs(a0 - _arr(i)).max()) for i in (1, 2))
     metrics = {
         "model": MODEL,
+        "correctness_level": "STRUCTURAL",
+        "correctness_contract": "3 valid nontrivial images + bounded pixel diff under fixed seed",
         "model_revision": f"ModelScope {MS_MODEL} @ {MS_REVISION[:12]} (HF gated 401 via mirror)",
         "weights_source": source,
         "precision": "fp16",

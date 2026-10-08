@@ -62,11 +62,19 @@ def main() -> int:
             torch.cuda.synchronize()
             total = time.time() - t1
             text = processor.batch_decode(ids, skip_special_tokens=True)[0]
-            runs.append({"latency_s": round(total, 3), "rtf": round(duration_s / total, 2)})
+            # ASR RTF = inference time / input audio duration (lower is better);
+            # the inverse (dur/total) is reported separately as realtime_speed_factor
+            runs.append({
+                "latency_s": round(total, 3),
+                "rtf": round(total / duration_s, 4),
+                "realtime_speed_factor": round(duration_s / total, 2),
+            })
             texts.append(text.strip())
 
     metrics = {
         "model": MODEL,
+        "correctness_level": "SMOKE",
+        "correctness_contract": "nonempty stable transcription (no transcript-content verification)",
         "model_revision": REVISION,
         "input": "courtroom.wav (managed asset courtroom-asr.wav; notebook's own sample)",
         "input_asset": asset.record(),

@@ -123,6 +123,24 @@ def emit(ok: bool, evidence_dir: Path, metrics: dict, extra: dict | None = None)
         result.update(extra)
     if not ok or not info["hip"] or not info["cuda_available"]:
         result["ok"] = False
+    # v0.3.1 metric-semantics block (additive, Evidence Schema v2 compatible):
+    # names exactly what the numbers measure so no reader over-reads them.
+    result["metric_semantics"] = {
+        "peak_vram_gb": (
+            "torch.cuda.max_memory_allocated() — peak ALLOCATED GPU tensor memory via "
+            "PyTorch's caching allocator. NOT total physical VRAM usage (driver/runtime "
+            "reservations and other processes are excluded)."
+        ),
+        "peak_rss_gb": "process resident high-water mark (VmHWM from /proc/self/status)",
+        "latency_s": "wall time of one full workload invocation including torch.cuda.synchronize()",
+        "load_s": "wall time of model+processor construction (from_pretrained/pipeline load)",
+        "rtf": "standard RTF = inference_time / generated_or_input_audio_duration (lower is faster; <1 is real-time capable)",
+        "realtime_speed_factor": "inverse RTF = audio_duration / inference_time (higher is faster) — reported separately, never mixed with rtf",
+    }
+    if "correctness_level" not in metrics:
+        result["metric_semantics"]["correctness_level"] = (
+            "absent for this evidence — legacy twin predates v0.3.1 correctness grading"
+        )
     evidence_dir.mkdir(parents=True, exist_ok=True)
     (evidence_dir / "metrics.json").write_text(json.dumps(result, indent=2))
     print(TWIN_RESULT_KEY + json.dumps(result))

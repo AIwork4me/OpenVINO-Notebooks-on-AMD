@@ -118,6 +118,8 @@ def main() -> int:
     gpu = gpu_ready()
     metrics = {
         "model": MODEL,
+        "correctness_level": "STRUCTURAL",
+        "correctness_contract": ">=1 detection with valid confidences + repeatability (no class verification)",
         "model_revision": "ultralytics release v8.4.0 asset",
         "input_asset": asset.record(),
         "task": "object detection (WORKLOAD_TWIN of hello-detection)",

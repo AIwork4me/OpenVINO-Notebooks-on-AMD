@@ -67,6 +67,8 @@ def main() -> int:
     combined = "\n".join(outputs)
     metrics = {
         "model": MODEL,
+        "correctness_level": "STRUCTURAL",
+        "correctness_contract": "nonempty bounded generation + 3-run determinism",
         "model_revision": REVISION,
         "precision": "bf16",
         "load_s": round(load_s, 2),

@@ -77,6 +77,8 @@ def main() -> int:
     (evidence / "doctags_output.txt").write_text(text)
     metrics = {
         "model": MODEL,
+        "correctness_level": "STRUCTURAL",
+        "correctness_contract": "nonempty DocTags-structured output + stability",
         "model_revision": REVISION,
         "precision": "bf16",
         "input": "doc_markdown.png (managed asset; notebook inputs on blocked hosts)",

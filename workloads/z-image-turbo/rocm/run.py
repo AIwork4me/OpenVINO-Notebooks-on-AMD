@@ -68,6 +68,8 @@ def main() -> int:
     seed_stable = len(set(hashes)) == 1
     metrics = {
         "model": MODEL,
+        "correctness_level": "STRUCTURAL",
+        "correctness_contract": "valid >=512px finite image + seed stability across runs",
         "model_revision": REVISION,
         "precision": "bf16",
         "prompt": PROMPT,

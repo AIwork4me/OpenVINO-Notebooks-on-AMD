@@ -59,7 +59,14 @@ def main() -> int:
             torch.cuda.synchronize()
             total = time.time() - t1
             dur = len(wav) / sr
-            runs.append({"latency_s": round(total, 3), "audio_s": round(dur, 2), "rtf": round(dur / total, 2)})
+            # standard RTF = inference time / audio duration (lower is better);
+            # the inverse (dur/total) is reported as realtime_speed_factor only
+            runs.append({
+                "latency_s": round(total, 3),
+                "audio_s": round(dur, 2),
+                "rtf": round(total / dur, 4),
+                "realtime_speed_factor": round(dur / total, 2),
+            })
             wavs.append(wav)
 
     out = evidence / "out.wav"
@@ -75,6 +82,8 @@ def main() -> int:
     stable = exact or max_diff <= 300
     metrics = {
         "model": MODEL,
+        "correctness_level": "STRUCTURAL",
+        "correctness_contract": "finite waveform + generation stability",
         "model_revision": REVISION,
         "precision": "default (model dtype)",
         "load_s": round(load_s, 2),

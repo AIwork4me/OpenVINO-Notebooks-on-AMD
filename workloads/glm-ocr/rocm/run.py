@@ -94,6 +94,8 @@ def main() -> int:
     hits = sum(1 for w in fragment_words if w in low)
     metrics = {
         "model": MODEL,
+        "correctness_level": "GROUND_TRUTH",
+        "correctness_contract": "deterministic typewritten fixture with known content read back (>=6/7 expected words incl. all key words)",
         "model_revision": REVISION,
         "precision": "bf16",
         "input": "deterministic typewritten PIL fixture (upstream sample images on blocked GitHub-attachment host)",

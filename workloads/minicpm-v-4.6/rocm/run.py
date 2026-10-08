@@ -77,6 +77,8 @@ def main() -> int:
     relevant = any(k in text.lower() for k in ("ocr", "barcode", "document", "text", "image", "recognition", "pdf"))
     metrics = {
         "model": MODEL,
+        "correctness_level": "TASK_SEMANTIC",
+        "correctness_contract": "topically relevant one-sentence description (keyword relevance) + stability",
         "model_revision": REVISION,
         "precision": "bf16",
         "input": "doc_markdown.png (managed asset; recorded input for this model)",

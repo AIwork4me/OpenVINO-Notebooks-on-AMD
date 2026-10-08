@@ -75,6 +75,8 @@ def main() -> int:
     words = [w for w in text.split() if len(w) >= 2]
     metrics = {
         "model": MODEL,
+        "correctness_level": "SMOKE",
+        "correctness_contract": "nonempty OCR text (>=5 words) + stability",
         "model_revision": REVISION,
         "input_asset": asset.record(),
         "precision": "bf16",

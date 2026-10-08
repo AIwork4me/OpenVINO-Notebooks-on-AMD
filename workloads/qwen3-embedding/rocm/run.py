@@ -74,6 +74,8 @@ def main() -> int:
     stable = all(abs(sims[i][0] - sims[0][0]) < 1e-3 and abs(sims[i][1] - sims[0][1]) < 1e-3 for i in range(1, len(sims)))
     metrics = {
         "model": MODEL,
+        "correctness_level": "TASK_SEMANTIC",
+        "correctness_contract": "embedding shapes/finite + cosine ranking sanity (relevant > irrelevant)",
         "model_revision": REVISION,
         "precision": "bf16",
         "load_s": round(load_s, 2),

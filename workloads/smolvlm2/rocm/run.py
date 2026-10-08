@@ -73,6 +73,8 @@ def main() -> int:
 
     metrics = {
         "model": MODEL,
+        "correctness_level": "SMOKE",
+        "correctness_contract": "nonempty stable caption (no content verification)",
         "model_revision": REVISION,
         "input": "coco.jpg (managed asset; upstream notebook data asset)",
         "input_asset": asset.record(),

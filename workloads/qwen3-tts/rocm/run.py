@@ -100,7 +100,13 @@ def main() -> int:
             torch.cuda.synchronize()
             total = time.time() - t1
             dur = len(wav) / sr
-            runs.append({"latency_s": round(total, 3), "audio_s": round(dur, 2), "rtf": round(dur / total, 2)})
+            # standard RTF = inference time / generated audio duration (lower is better)
+            runs.append({
+                "latency_s": round(total, 3),
+                "audio_s": round(dur, 2),
+                "rtf": round(total / dur, 4),
+                "realtime_speed_factor": round(dur / total, 2),
+            })
             wavs.append(wav)
 
     import soundfile as sf
