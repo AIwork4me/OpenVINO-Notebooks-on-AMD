@@ -16,6 +16,8 @@ model:
   license_revision: ce51f56c4e
   license_verification_date: '2026-10-08'
   implementation: official repo AutoModel trust_remote_code
+  note: canonical repo now docling-project/SmolDocling-256M-preview (307 redirect
+    from ds4sd/; pin + license verified at the ds4sd path 2026-10-08)
 cpu:
   runtime: openvino
   status: VERIFIED_WITH_LIMITATIONS

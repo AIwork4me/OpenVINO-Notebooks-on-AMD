@@ -139,7 +139,7 @@ def emit(ok: bool, evidence_dir: Path, metrics: dict, extra: dict | None = None)
     }
     if "correctness_level" not in metrics:
         result["metric_semantics"]["correctness_level"] = (
-            "absent for this evidence — legacy twin predates v0.3.1 correctness grading"
+            "not recorded for this evidence (add correctness_level to the twin metrics to grade it)"
         )
     evidence_dir.mkdir(parents=True, exist_ok=True)
     (evidence_dir / "metrics.json").write_text(json.dumps(result, indent=2))
