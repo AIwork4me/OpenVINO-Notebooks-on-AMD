@@ -1,0 +1,44 @@
+[IPKernelApp] WARNING | Kernel is running over TCP without encryption. All communication (including code and outputs) is sent in plain text and is susceptible to eavesdropping. Use IPC transport or launch with kernel manager-provisioned CurveZMQ keys to enable transport encryption.
+[31mERROR: pip's dependency resolver does not currently take into account all the packages that are installed. This behaviour is the source of the following dependency conflicts.
+hf-gradio 0.4.1 requires gradio-client<3.0,>=2.0, but you have gradio-client 1.14.0 which is incompatible.[0m[31m
+[0m[31mERROR: pip's dependency resolver does not currently take into account all the packages that are installed. This behaviour is the source of the following dependency conflicts.
+nncf 3.4.0 requires numpy<2.5.0,>=1.24.0, but you have numpy 2.5.3 which is incompatible.[0m[31m
+[0m.12/site-packages/huggingface_hub/file_download.py:805: UserWarning: Not enough free disk space to download the file. The expected file size is: 253.81 MB. The target location /workspace/.cache/huggingface/hub/models--Qwen--Qwen-Image-2512/blobs only has 0.00 MB free disk space.
+  warnings.warn(
+Fetching 27 files:  78%|███████▊  | 21/27 [01:08<00:19,  3.27s/it]Fetching 27 files:  81%|████████▏ | 22/27 [01:09<00:15,  3.14s/it]Fetching 27 files:  85%|████████▌ | 23/27 [01:09<00:12,  3.02s/it]Fetching 27 files:  93%|█████████▎| 25/27 [01:09<00:05,  2.78s/it]Fetching 27 files:  93%|█████████▎| 25/27 [01:09<00:05,  2.78s/it]
+Traceback (most recent call last):
+  File "/workspace/.venvs/cpu/0e3c03443623f289/bin/optimum-cli", line 6, in <module>
+    sys.exit(main())
+             ^^^^^^
+  File "/workspace/.venvs/cpu/0e3c03443623f289/lib/python3.12/site-packages/optimum/commands/optimum_cli.py", line 219, in main
+    service.run()
+  File "/workspace/.venvs/cpu/0e3c03443623f289/lib/python3.12/site-packages/optimum/commands/export/openvino.py", line 408, in run
+    main_export(
+  File "/workspace/.venvs/cpu/0e3c03443623f289/lib/python3.12/site-packages/optimum/exporters/openvino/__main__.py", line 496, in main_export
+    dtype = deduce_diffusers_dtype(
+            ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/.venvs/cpu/0e3c03443623f289/lib/python3.12/site-packages/optimum/exporters/openvino/utils.py", line 332, in deduce_diffusers_dtype
+    path = Path(DiffusionPipeline.download(model_name_or_path, **loading_kwargs))
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/.venvs/cpu/0e3c03443623f289/lib/python3.12/site-packages/huggingface_hub/utils/_validators.py", line 114, in _inner_fn
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/workspace/.venvs/cpu/0e3c03443623f289/lib/python3.12/site-packages/diffusers/pipelines/pipeline_utils.py", line 1747, in download
+    cached_folder = snapshot_download(
+                    ^^^^^^^^^^^^^^^^^^
+  File "/workspace/.venvs/cpu/0e3c03443623f289/lib/python3.12/site-packages/huggingface_hub/utils/_validators.py", line 114, in _inner_fn
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/workspace/.venvs/cpu/0e3c03443623f289/lib/python3.12/site-packages/huggingface_hub/_snapshot_download.py", line 332, in snapshot_download
+    thread_map(
+  File "/workspace/.venvs/cpu/0e3c03443623f289/lib/python3.12/site-packages/tqdm/contrib/concurrent.py", line 191, in thread_map
+    return _executor_map(ThreadPoolExecutor, fn, *iterables, **tqdm_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/.venvs/cpu/0e3c03443623f289/lib/python3.12/site-packages/tqdm/contrib/concurrent.py", line 163, in _executor_map
+    return list(ex.map(
+           ^^^^^^^^^^^^
+  File "/usr/lib/python3.12/concurrent/futures/_base.py", line 619, in result_iterator
+    yield _result_or_cancel(fs.pop())
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/concurrent/futures/_base.py", line 317, in _result_or_cancel
+    return fut.result(timeout)

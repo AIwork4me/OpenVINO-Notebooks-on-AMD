@@ -1,0 +1,78 @@
+Loading weights:   0%|          | 0/779 [00:00<?, ?it/s]Loading weights:   8%|▊         | 65/779 [00:00<00:01, 626.34it/s]Loading weights:  16%|█▋        | 128/779 [00:00<00:01, 610.08it/s]Loading weights:  24%|██▍       | 190/779 [00:00<00:01, 576.48it/s]Loading weights:  32%|███▏      | 248/779 [00:00<00:00, 566.94it/s]Loading weights:  39%|███▉      | 305/779 [00:00<00:00, 555.82it/s]Loading weights:  46%|████▋     | 361/779 [00:00<00:00, 554.31it/s]Loading weights:  57%|█████▋    | 447/779 [00:00<00:00, 641.94it/s]Loading weights:  70%|██████▉   | 542/779 [00:00<00:00, 727.41it/s]Loading weights:  81%|████████  | 629/779 [00:00<00:00, 770.14it/s]Loading weights:  92%|█████████▏| 719/779 [00:01<00:00, 807.28it/s]Loading weights: 100%|██████████| 779/779 [00:01<00:00, 647.61it/s]
+Traceback (most recent call last):
+  File "/workspace/workloads/minicpm-v-4.6/rocm/run.py", line 93, in <module>
+    raise SystemExit(main())
+                     ^^^^^^
+  File "/workspace/workloads/minicpm-v-4.6/rocm/run.py", line 58, in main
+    _gen()  # warmup
+    ^^^^^^
+  File "/workspace/workloads/minicpm-v-4.6/rocm/run.py", line 55, in _gen
+    out = model.generate(**inputs, max_new_tokens=64, do_sample=False)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/venv/lib/python3.12/site-packages/torch/utils/_contextlib.py", line 120, in decorate_context
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/.venv-gpu/lib/python3.12/site-packages/transformers/generation/utils.py", line 2802, in generate
+    result = decoding_method(
+             ^^^^^^^^^^^^^^^^
+  File "/workspace/.venv-gpu/lib/python3.12/site-packages/transformers/generation/utils.py", line 3002, in _sample
+    outputs = self._prefill(
+              ^^^^^^^^^^^^^^
+  File "/workspace/.venv-gpu/lib/python3.12/site-packages/transformers/generation/utils.py", line 4109, in _prefill
+    return self(**model_inputs, return_dict=True)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/.venv-gpu/lib/python3.12/site-packages/transformers/utils/generic.py", line 939, in wrapper
+    output = func(self, *args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/.venv-gpu/lib/python3.12/site-packages/transformers/models/minicpmv4_6/modeling_minicpmv4_6.py", line 801, in forward
+    outputs = self.model(
+              ^^^^^^^^^^^
+  File "/opt/venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/.venv-gpu/lib/python3.12/site-packages/transformers/utils/generic.py", line 939, in wrapper
+    output = func(self, *args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/.venv-gpu/lib/python3.12/site-packages/transformers/models/minicpmv4_6/modeling_minicpmv4_6.py", line 700, in forward
+    vision_output = self.get_image_features(pixel_values[:1], target_sizes, downsample_mode=downsample_mode)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/.venv-gpu/lib/python3.12/site-packages/transformers/utils/generic.py", line 939, in wrapper
+    output = func(self, *args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/.venv-gpu/lib/python3.12/site-packages/transformers/models/minicpmv4_6/modeling_minicpmv4_6.py", line 624, in get_image_features
+    vision_output = self.vision_tower(
+                    ^^^^^^^^^^^^^^^^^^
+  File "/opt/venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/.venv-gpu/lib/python3.12/site-packages/transformers/utils/generic.py", line 1068, in wrapper
+    output = func(self, *args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/.venv-gpu/lib/python3.12/site-packages/transformers/utils/output_capturing.py", line 286, in wrapper
+    outputs = func(self, *args, **kwargs)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/.venv-gpu/lib/python3.12/site-packages/transformers/models/minicpmv4_6/modeling_minicpmv4_6.py", line 482, in forward
+    hidden_states = self.vit_merger(hidden_states, target_sizes, **kwargs)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1775, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1786, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/.venv-gpu/lib/python3.12/site-packages/transformers/models/minicpmv4_6/modeling_minicpmv4_6.py", line 384, in forward
+    patch = hidden_states.view(batch_size, seq_per_img, embed_dim)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: shape '[7, 1037, 1152]' is invalid for input of size 8368128

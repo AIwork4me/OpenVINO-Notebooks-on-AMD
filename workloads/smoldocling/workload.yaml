@@ -4,22 +4,24 @@ category: OCR
 upstream:
   repository: openvinotoolkit/openvino_notebooks
   branch: latest
-  commit: 5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b
+  commit: 2b1600de9620e4a2d26f1ef5c83fad64d7d76f7b
   path: notebooks/smoldocling/smoldocling.ipynb
-  url: https://github.com/openvinotoolkit/openvino_notebooks/blob/5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b/notebooks/smoldocling/smoldocling.ipynb
+  url: https://github.com/openvinotoolkit/openvino_notebooks/blob/2b1600de9620e4a2d26f1ef5c83fad64d7d76f7b/notebooks/smoldocling/smoldocling.ipynb
 model:
-  name: ''
-  source: ''
-  revision: ''
-  license: ''
+  name: ds4sd/SmolDocling-256M-preview
+  source: https://huggingface.co/ds4sd/SmolDocling-256M-preview
+  revision: f9a9dd95
+  license: apache-2.0
+  implementation: transformers AutoModelForImageTextToText trust_remote_code
 cpu:
   runtime: openvino
   status: VERIFIED_WITH_LIMITATIONS
 gpu:
-  runtime: ''
-  status: NOT_TESTED
+  runtime: pytorch-rocm
+  status: VERIFIED
+  wall_timeout_s: 1800
 twin:
   level: WORKLOAD_TWIN
 validation: {}
 patches: {}
-last_verified: '2026-10-06T13:42:20+00:00'
+last_verified: '2026-10-08T03:28:29+00:00'

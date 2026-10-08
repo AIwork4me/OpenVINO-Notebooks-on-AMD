@@ -1,0 +1,12 @@
+Loading weights:   0%|          | 0/611 [00:00<?, ?it/s]Loading weights:  22%|██▏       | 135/611 [00:00<00:00, 1314.47it/s]Loading weights:  44%|████▎     | 267/611 [00:00<00:00, 1295.99it/s]Loading weights:  65%|██████▍   | 397/611 [00:00<00:00, 617.66it/s] Loading weights:  79%|███████▉  | 485/611 [00:00<00:00, 597.89it/s]Loading weights:  92%|█████████▏| 561/611 [00:00<00:00, 583.75it/s]Loading weights: 100%|██████████| 611/611 [00:00<00:00, 655.13it/s]
+Traceback (most recent call last):
+  File "/workspace/workloads/qwen3-asr/rocm/run.py", line 110, in <module>
+    raise SystemExit(main())
+                     ^^^^^^
+  File "/workspace/workloads/qwen3-asr/rocm/run.py", line 73, in main
+    _gen()  # warmup
+    ^^^^^^
+  File "/workspace/workloads/qwen3-asr/rocm/run.py", line 67, in _gen
+    inputs = processor(audio=speech, sampling_rate=sr, return_tensors="pt")
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: Qwen3ASRProcessor.__call__() missing 1 required positional argument: 'text'

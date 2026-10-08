@@ -1,0 +1,10 @@
+{
+  "schema_version": 2,
+  "declared": {
+    "name": "ds4sd/SmolDocling-256M-preview",
+    "source": "https://huggingface.co/ds4sd/SmolDocling-256M-preview",
+    "revision": "f9a9dd95",
+    "license": "apache-2.0",
+    "implementation": "transformers AutoModelForImageTextToText trust_remote_code"
+  }
+}

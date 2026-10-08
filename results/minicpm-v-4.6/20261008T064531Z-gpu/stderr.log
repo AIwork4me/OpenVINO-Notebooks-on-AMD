@@ -1,0 +1,15 @@
+[transformers] `torch_dtype` is deprecated! Use `dtype` instead!
+Loading weights:   0%|          | 0/779 [00:00<?, ?it/s]Loading weights:   9%|▊         | 67/779 [00:00<00:01, 648.19it/s]Loading weights:  17%|█▋        | 134/779 [00:00<00:00, 648.89it/s]Loading weights:  26%|██▌       | 201/779 [00:00<00:00, 651.64it/s]Loading weights:  35%|███▌      | 273/779 [00:00<00:00, 666.37it/s]Loading weights:  44%|████▎     | 340/779 [00:00<00:00, 633.22it/s]Loading weights:  57%|█████▋    | 445/779 [00:00<00:00, 757.18it/s]Loading weights:  71%|███████   | 551/779 [00:00<00:00, 848.71it/s]Loading weights:  84%|████████▍ | 657/779 [00:00<00:00, 900.80it/s]Loading weights:  98%|█████████▊| 767/779 [00:01<00:00, 802.97it/s]Loading weights: 100%|██████████| 779/779 [00:01<00:00, 759.13it/s]
+Traceback (most recent call last):
+  File "/workspace/workloads/minicpm-v-4.6/rocm/run.py", line 94, in <module>
+    raise SystemExit(main())
+                     ^^^^^^
+  File "/workspace/workloads/minicpm-v-4.6/rocm/run.py", line 59, in main
+    _gen()  # warmup
+    ^^^^^^
+  File "/workspace/workloads/minicpm-v-4.6/rocm/run.py", line 50, in _gen
+    answer = model.chat(
+             ^^^^^^^^^^
+  File "/opt/venv/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1964, in __getattr__
+    raise AttributeError(
+AttributeError: 'MiniCPMV4_6Model' object has no attribute 'chat'

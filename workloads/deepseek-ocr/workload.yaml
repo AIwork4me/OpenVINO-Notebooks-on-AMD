@@ -4,22 +4,24 @@ category: OCR
 upstream:
   repository: openvinotoolkit/openvino_notebooks
   branch: latest
-  commit: 5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b
+  commit: 2b1600de9620e4a2d26f1ef5c83fad64d7d76f7b
   path: notebooks/deepseek-ocr/deepseek-ocr.ipynb
-  url: https://github.com/openvinotoolkit/openvino_notebooks/blob/5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b/notebooks/deepseek-ocr/deepseek-ocr.ipynb
+  url: https://github.com/openvinotoolkit/openvino_notebooks/blob/2b1600de9620e4a2d26f1ef5c83fad64d7d76f7b/notebooks/deepseek-ocr/deepseek-ocr.ipynb
 model:
-  name: ''
-  source: ''
-  revision: ''
-  license: ''
+  name: deepseek-ai/DeepSeek-OCR-2
+  source: https://huggingface.co/deepseek-ai/DeepSeek-OCR-2
+  revision: aaa02f3811
+  license: apache-2.0
+  implementation: transformers DeepseekOcr2ForConditionalGeneration
 cpu:
   runtime: openvino
   status: VERIFIED_WITH_LIMITATIONS
   wall_timeout_s: 2700
   repeats: 1
 gpu:
-  runtime: ''
-  status: NOT_TESTED
+  runtime: pytorch-rocm
+  status: FAILED
+  wall_timeout_s: 5400
 twin:
   level: WORKLOAD_TWIN
 validation: {}

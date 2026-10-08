@@ -1,0 +1,5 @@
+[cell 0 START +    0.5s] # LLM Code Assistant with OpenVINO™ |  | This notebook demonstrates how to
+[cell 1 START +    0.5s] ## Installation | [back to top ⬆️](#Table-of-contents:) |  | Install the req
+[cell 2 START +    0.5s] import os | import shutil | import requests | from pathlib import Path |  | os.e
+[cell 2 DONE  +   70.6s]
+NBEXEC_RESULT={"ok": false, "n_cells": 12, "n_skipped": 1, "n_substituted": 0, "stopped_after": null, "error_cell": null, "error_type": "CellExecutionError", "error_head": "\u001b[31mCalledProcessError\u001b[39m: Command '['/workspace/.venvs/cpu/0e3c03443623f289/bin/python', '-m', 'pip', 'install', '-q', '-U', 'gradio>=6.0.0', 'huggingface_hub', 'git+https://github.com/huggingface/optimum-intel.git', 'nncf>=2.18.0', 'torch==2.8', 'datasets<4.0.0', 'accelerate', 'transformers>=4.55', '--extra-index-url', 'https://download.pytorch.org/whl/cpu']' returned non-zero exit status 1.", "duration_s": 70.78, "patch_notes": ["skipped cell 21: matched skip pattern"]}

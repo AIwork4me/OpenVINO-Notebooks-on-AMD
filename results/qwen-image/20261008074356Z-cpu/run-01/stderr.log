@@ -1,0 +1,54 @@
+[IPKernelApp] WARNING | Kernel is running over TCP without encryption. All communication (including code and outputs) is sent in plain text and is susceptible to eavesdropping. Use IPC transport or launch with kernel manager-provisioned CurveZMQ keys to enable transport encryption.
+ages/huggingface_hub/file_download.py:805: UserWarning: Not enough free disk space to download the file. The expected file size is: 4946.45 MB. The target location /workspace/.cache/huggingface/hub/models--Qwen--Qwen-Image-2512/blobs only has 0.00 MB free disk space.
+  warnings.warn(
+/workspace/.venvs/cpu/0e3c03443623f289/lib/python3.12/site-packages/huggingface_hub/file_download.py:805: UserWarning: Not enough free disk space to download the file. The expected file size is: 1170.92 MB. The target location /workspace/.cache/huggingface/hub/models--Qwen--Qwen-Image-2512/blobs only has 0.00 MB free disk space.
+  warnings.warn(
+Traceback (most recent call last):
+  File "/workspace/.venvs/cpu/0e3c03443623f289/bin/optimum-cli", line 6, in <module>
+    sys.exit(main())
+             ^^^^^^
+  File "/workspace/.venvs/cpu/0e3c03443623f289/lib/python3.12/site-packages/optimum/commands/optimum_cli.py", line 219, in main
+    service.run()
+  File "/workspace/.venvs/cpu/0e3c03443623f289/lib/python3.12/site-packages/optimum/commands/export/openvino.py", line 408, in run
+    main_export(
+  File "/workspace/.venvs/cpu/0e3c03443623f289/lib/python3.12/site-packages/optimum/exporters/openvino/__main__.py", line 496, in main_export
+    dtype = deduce_diffusers_dtype(
+            ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/.venvs/cpu/0e3c03443623f289/lib/python3.12/site-packages/optimum/exporters/openvino/utils.py", line 332, in deduce_diffusers_dtype
+    path = Path(DiffusionPipeline.download(model_name_or_path, **loading_kwargs))
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/.venvs/cpu/0e3c03443623f289/lib/python3.12/site-packages/huggingface_hub/utils/_validators.py", line 114, in _inner_fn
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/workspace/.venvs/cpu/0e3c03443623f289/lib/python3.12/site-packages/diffusers/pipelines/pipeline_utils.py", line 1747, in download
+    cached_folder = snapshot_download(
+                    ^^^^^^^^^^^^^^^^^^
+  File "/workspace/.venvs/cpu/0e3c03443623f289/lib/python3.12/site-packages/huggingface_hub/utils/_validators.py", line 114, in _inner_fn
+    return fn(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/workspace/.venvs/cpu/0e3c03443623f289/lib/python3.12/site-packages/huggingface_hub/_snapshot_download.py", line 332, in snapshot_download
+    thread_map(
+  File "/workspace/.venvs/cpu/0e3c03443623f289/lib/python3.12/site-packages/tqdm/contrib/concurrent.py", line 191, in thread_map
+    return _executor_map(ThreadPoolExecutor, fn, *iterables, **tqdm_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/.venvs/cpu/0e3c03443623f289/lib/python3.12/site-packages/tqdm/contrib/concurrent.py", line 163, in _executor_map
+    return list(ex.map(
+           ^^^^^^^^^^^^
+  File "/usr/lib/python3.12/concurrent/futures/_base.py", line 619, in result_iterator
+    yield _result_or_cancel(fs.pop())
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/concurrent/futures/_base.py", line 317, in _result_or_cancel
+    return fut.result(timeout)
+           ^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/concurrent/futures/_base.py", line 456, in result
+    return self.__get_result()
+           ^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/concurrent/futures/_base.py", line 401, in __get_result
+    raise self._exception
+  File "/usr/lib/python3.12/concurrent/futures/thread.py", line 58, in run
+    result = self.fn(*self.args, **self.kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/.venvs/cpu/0e3c03443623f289/lib/python3.12/site-packages/huggingface_hub/_snapshot_download.py", line 306, in _inner_hf_hub_download
+    return hf_hub_download(
+           ^^^^^^^^^^^^^^^^
+  File "/works

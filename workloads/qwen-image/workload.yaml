@@ -4,9 +4,9 @@ category: LLM
 upstream:
   repository: openvinotoolkit/openvino_notebooks
   branch: latest
-  commit: 5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b
+  commit: 2b1600de9620e4a2d26f1ef5c83fad64d7d76f7b
   path: notebooks/qwen-image/qwen-image.ipynb
-  url: https://github.com/openvinotoolkit/openvino_notebooks/blob/5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b/notebooks/qwen-image/qwen-image.ipynb
+  url: https://github.com/openvinotoolkit/openvino_notebooks/blob/2b1600de9620e4a2d26f1ef5c83fad64d7d76f7b/notebooks/qwen-image/qwen-image.ipynb
 model:
   name: ''
   source: ''
@@ -21,5 +21,17 @@ gpu:
 twin:
   level: WORKLOAD_TWIN
 validation: {}
-patches: {}
+patches:
+  cell_subs:
+  - pattern: pip_install\("-q", "(?:git\+https://github\.com/openvino-dev-samples/optimum-intel\.git@qwen-image|https://codeload\.github\.com/openvino-dev-samples/optimum-intel/tar\.gz/qwen-image)"\)
+    replacement: 'pip_install("-q", "optimum", "https://codeload.github.com/huggingface/optimum-onnx/tar.gz/main")
+
+      pip_install("-q", "--no-deps", "https://codeload.github.com/openvino-dev-samples/optimum-intel/tar.gz/qwen-image")'
+  notes: ' v0.3 C1 dependency recovery: this notebook installs an optimum-intel FORK
+    whose setup.py declares optimum-onnx as a nested git+https dependency; pip''s
+    git clone to github.com is deterministically broken on this runner (proxy 503/GnuTLS).
+    Documented minimal install-order substitution: pre-satisfy optimum-onnx from the
+    codeload tarball of the SAME ref (identical content, pure transport change), then
+    install the fork with --no-deps. All other notebook installs unchanged and keep
+    providing the fork''s remaining requirements. '
 last_verified: ''

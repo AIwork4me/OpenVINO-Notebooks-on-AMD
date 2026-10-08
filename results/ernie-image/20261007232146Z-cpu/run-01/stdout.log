@@ -1,0 +1,12 @@
+[cell 0 START +    0.5s] # Text-to-Image Generation with ERNIE-Image-Turbo and OpenVINO |  | [ERNIE
+[cell 1 START +    0.5s] ## Prerequisites | [back to top ⬆️](#Table-of-contents:)
+[cell 2 START +    0.5s] import requests | from pathlib import Path |  | if not Path("cmd_helper.py")
+[cell 2 DONE  +   64.1s]
+[cell 3 START +   64.1s] ## Convert model with OpenVINO | [back to top ⬆️](#Table-of-contents:) |  | 
+[cell 4 START +   64.1s] import ipywidgets as widgets |  | model_id = "baidu/ERNIE-Image-Turbo" |  | to
+[cell 4 DONE  +   64.1s]
+[cell 5 START +   64.1s] ### Export model using Optimum Intel | [back to top ⬆️](#Table-of-conten
+[cell 6 START +   64.1s] from pathlib import Path |  | model_base_dir = Path(model_id.split("/")[-1
+[cell 6 DONE  +   64.1s]
+[cell 7 START +   64.1s] from cmd_helper import optimum_cli |  | if not model_dir.exists(): |     opt
+[cell 7 DONE  +  477.4s]

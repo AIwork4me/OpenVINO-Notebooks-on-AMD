@@ -1,0 +1,38 @@
+{
+  "schema_version": 2,
+  "twin_result": {
+    "ok": true,
+    "hip": "7.2.53211-e1a6bc5663",
+    "device": "AMD Radeon Graphics",
+    "gcn_arch": "gfx1100",
+    "metrics": {
+      "model": "ds4sd/SmolDocling-256M-preview",
+      "precision": "bf16",
+      "input": "DeepSeek-OCR-DEMO space doc_markdown.png (public official demo asset; notebook inputs on blocked hosts)",
+      "load_s": 42.49,
+      "runs": [
+        {
+          "latency_s": 8.55,
+          "chars": 1195
+        },
+        {
+          "latency_s": 9.615,
+          "chars": 1195
+        },
+        {
+          "latency_s": 8.801,
+          "chars": 1195
+        }
+      ],
+      "output_chars": 1194,
+      "has_doctags_structure": true,
+      "output_preview": "User:\n\n\n\n\nConvert this page to docling.\nAssistant: 1>66>37>313>50>Asprise OCR and Barcode Recognition1>\n<text>66>55>427>72>High performance, royalty-free OCR and barcode recognition on Windows, Linux, Mac OS and Unix.</text>\n<text>66>78>427>123>Asprise OCR (optical character recognition) and barcode",
+      "nonempty_output": true,
+      "output_stable": true,
+      "peak_vram_gb": 0.87,
+      "peak_rss_gb": 2.23
+    }
+  },
+  "duration_s": 111.51,
+  "exit_code": 0
+}

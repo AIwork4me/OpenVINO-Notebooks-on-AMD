@@ -1,0 +1,8 @@
+{
+  "schema_version": 2,
+  "repository": "openvinotoolkit/openvino_notebooks",
+  "branch": "latest",
+  "commit": "2b1600de9620e4a2d26f1ef5c83fad64d7d76f7b",
+  "path": "notebooks/florence2/florence2.ipynb",
+  "url": "https://github.com/openvinotoolkit/openvino_notebooks/blob/2b1600de9620e4a2d26f1ef5c83fad64d7d76f7b/notebooks/florence2/florence2.ipynb"
+}

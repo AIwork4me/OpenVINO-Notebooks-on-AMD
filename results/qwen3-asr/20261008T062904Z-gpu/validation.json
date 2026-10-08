@@ -1,0 +1,23 @@
+{
+  "schema_version": 2,
+  "passed": false,
+  "level": "EXECUTION_ONLY",
+  "contract_present": true,
+  "contract": "twin self-check (workload-specific checks in workloads/qwen3-asr/rocm/run.py; ok flag is their conjunction)",
+  "checks": [
+    {
+      "name": "twin_self_check",
+      "passed": false
+    },
+    {
+      "name": "hip_available",
+      "passed": false
+    },
+    {
+      "name": "amd_device_visible",
+      "passed": false
+    }
+  ],
+  "runs_ok": 0,
+  "aggregate_ref": "aggregate.json"
+}

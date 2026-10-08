@@ -89,7 +89,10 @@ def resolve_git_transport() -> dict[str, object]:
         probe = "skipped (override)"
     else:
         # probe with what pip actually does: a shallow clone through the
-        # runner's git (including any site git-wrapper that forces proxies)
+        # runner's git (including any site git-wrapper that forces proxies).
+        # v0.3 defect fix: a clone that exits 0 but materializes an EMPTY
+        # worktree (observed with a wrapper's http fallback dying mid-fetch)
+        # must NOT count as "direct works" — verify the checkout has content.
         import tempfile
 
         try:
@@ -99,8 +102,16 @@ def resolve_git_transport() -> dict[str, object]:
                      "https://github.com/octocat/Hello-World.git", td + "/probe"],
                     capture_output=True, text=True, timeout=60,
                 )
-                direct_ok = r.returncode == 0
-                probe = f"clone exit {r.returncode}: {(r.stderr or '').strip().splitlines()[-1][:120] if r.stderr else 'ok'}"
+                materialized = False
+                try:
+                    materialized = any((Path(td) / "probe").iterdir())
+                except OSError:
+                    materialized = False
+                direct_ok = r.returncode == 0 and materialized
+                probe = (
+                    f"clone exit {r.returncode} worktree={'ok' if materialized else 'EMPTY'}: "
+                    f"{(r.stderr or '').strip().splitlines()[-1][:100] if r.stderr else 'ok'}"
+                )
         except (OSError, _sp.TimeoutExpired) as e:
             direct_ok = False
             probe = f"clone failed ({type(e).__name__})"

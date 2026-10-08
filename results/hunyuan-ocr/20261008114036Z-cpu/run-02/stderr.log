@@ -1,0 +1,134 @@
+[IPKernelApp] WARNING | Kernel is running over TCP without encryption. All communication (including code and outputs) is sent in plain text and is susceptible to eavesdropping. Use IPC transport or launch with kernel manager-provisioned CurveZMQ keys to enable transport encryption.
+  [1;31merror[0m: [1msubprocess-exited-with-error[0m
+  
+  [31m×[0m [32mgit clone --[0m[32mfilter[0m[32m=[0m[32mblob[0m[32m:none --quiet [0m[4;32mhttps://github.com/huggingface/transformers.git[0m[32m [0m[32m/tmp/[0m[32mpip-req-build-rvii6ga_[0m did not run successfully.
+  [31m│[0m exit code: [1;36m128[0m
+  [31m╰─>[0m [31m[8 lines of output][0m
+  [31m   [0m [git-wrapper] cloning GitHub repo via gh-proxy.org
+  [31m   [0m fatal: unable to access 'https://gh-proxy.org/https://github.com/huggingface/transformers.git/': CONNECT tunnel failed, response 403
+  [31m   [0m [git-wrapper] gh-proxy clone failed, retrying via http://github.com
+  [31m   [0m error: RPC failed; curl 56 GnuTLS recv error (-9): Error decoding the received TLS packet.
+  [31m   [0m error: 4675 bytes of body are still expected
+  [31m   [0m fetch-pack: unexpected disconnect while reading sideband packet
+  [31m   [0m fatal: early EOF
+  [31m   [0m fatal: fetch-pack: invalid index-pack output
+  [31m   [0m [31m[end of output][0m
+  
+  [1;35mnote[0m: This error originates from a subprocess, and is likely not a problem with pip.
+[31mERROR: Failed to build 'git+https://github.com/huggingface/transformers.git@5d063058dc2ddae5e31e4fab1985701d5cf50133' when git clone --filter=blob:none --quiet https://github.com/huggingface/transformers.git /tmp/pip-req-build-rvii6ga_[0m[31m
+[0mTraceback (most recent call last):
+  File "/workspace/ov_amd/_nbexec.py", line 144, in main
+    client.execute()
+  File "/workspace/.venvs/cpu/0e3c03443623f289/lib/python3.12/site-packages/jupyter_core/utils/__init__.py", line 165, in wrapped
+    return loop.run_until_complete(inner)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/base_events.py", line 687, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/workspace/.venvs/cpu/0e3c03443623f289/lib/python3.12/site-packages/nbclient/client.py", line 709, in async_execute
+    await self.async_execute_cell(
+  File "/workspace/.venvs/cpu/0e3c03443623f289/lib/python3.12/site-packages/nbclient/client.py", line 1062, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/workspace/.venvs/cpu/0e3c03443623f289/lib/python3.12/site-packages/nbclient/client.py", line 918, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+%pip uninstall -q -y optimum optimum-intel optimum-onnx
+
+import subprocess
+import sys
+
+from notebook_utils import pip_install
+from cmd_helper import clone_repo
+
+pip_install("-q", "torch>=2.8", "torchvision", "--extra-index-url", "https://download.pytorch.org/whl/cpu")
+pip_install("-q", "transformers<5")
+fork_revision = "4085f5e80fb92c6c0eecd0c7f09bcb9d5fe07b14"
+fork_dir = Path("optimum-intel-fork")
+if not fork_dir.exists():
+    import tarfile, urllib.request
+    with urllib.request.urlopen("https://codeload.github.com/openvino-dev-samples/optimum-intel/tar.gz/" + fork_revision) as r, tarfile.open(fileobj=r, mode="r|gz") as tf:
+        tf.extractall(".")
+    fork_dir = Path("optimum-intel-" + fork_revision)
+actual_revision = fork_revision
+if actual_revision != fork_revision:
+    raise RuntimeError(f"Expected {fork_revision} in {fork_dir}, got {actual_revision}")
+setup_path = fork_dir / "setup.py"
+setup_text = setup_path.read_text(encoding="utf-8")
+# Pin Optimum before its Hub requirement changed; allow safetensors 0.8 for hunyuan_vl.
+dependencies = {
+    '"optimum@git+https://github.com/huggingface/optimum.git"': '"optimum@https://codeload.github.com/huggingface/optimum/tar.gz/52367da7f2d227d82db26d0de10f44c297b8c1eb"',
+    '"safetensors<0.8.0"': '"safetensors>=0.8.0,<0.9.0"',
+}
+for original, pinned in dependencies.items():
+    if setup_text.count(original) == 1:
+        setup_text = setup_text.replace(original, pinned)
+    elif setup_text.count(pinned) != 1:
+        raise ValueError(f"Unexpected dependency in {setup_path}: {original}")
+setup_path.write_text(setup_text, encoding="utf-8")
+# The fork supports transformers<5.14; this revision adds hunyuan_vl and still satisfies that bound.
+subprocess.run(
+    [
+        sys.executable,
+        "-m",
+        "pip",
+        "install",
+        "-q",
+        str(fork_dir.resolve()),
+        "git+https://github.com/huggingface/transformers.git@5d063058dc2ddae5e31e4fab1985701d5cf50133",
+    ],
+    check=True,
+)
+pip_install("-q", "openvino>=2026.2.0", "nncf>=2.17.0")
+pip_install("-q", "gradio>=5.25.0", "Pillow>=10")
+------------------
+
+----- stdout -----
+[33mWARNING: Skipping optimum as it is not installed.[0m[33m
+[0m[33mWARNING: Skipping optimum-intel as it is not installed.[0m[33m
+[0m[33mWARNING: Skipping optimum-onnx as it is not installed.[0m[33m
+[0m
+----- stdout -----
+Note: you may need to restart the kernel to use updated packages.
+----- stderr -----
+  [1;31merror[0m: [1msubprocess-exited-with-error[0m
+  
+  [31m×[0m [32mgit clone --[0m[32mfilter[0m[32m=[0m[32mblob[0m[32m:none --quiet [0m[4;32mhttps://github.com/huggingface/transformers.git[0m[32m [0m[32m/tmp/[0m[32mpip-req-build-rvii6ga_[0m did not run successfully.
+  [31m│[0m exit code: [1;36m128[0m
+  [31m╰─>[0m [31m[8 lines of output][0m
+  [31m   [0m [git-wrapper] cloning GitHub repo via gh-proxy.org
+  [31m   [0m fatal: unable to access 'https://gh-proxy.org/https://github.com/huggingface/transformers.git/': CONNECT tunnel failed, response 403
+  [31m   [0m [git-wrapper] gh-proxy clone failed, retrying via http://github.com
+  [31m   [0m error: RPC failed; curl 56 GnuTLS recv error (-9): Error decoding the received TLS packet.
+  [31m   [0m error: 4675 bytes of body are still expected
+  [31m   [0m fetch-pack: unexpected disconnect while reading sideband packet
+  [31m   [0m fatal: early EOF
+  [31m   [0m fatal: fetch-pack: invalid index-pack output
+  [31m   [0m [31m[end of output][0m
+  
+  [1;35mnote[0m: This error originates from a subprocess, and is likely not a problem with pip.
+[31mERROR: Failed to build 'git+https://github.com/huggingface/transformers.git@5d063058dc2ddae5e31e4fab1985701d5cf50133' when git clone --filter=blob:none --quiet https://github.com/huggingface/transformers.git /tmp/pip-req-build-rvii6ga_[0m[31m
+[0m
+------------------
+
+[31m---------------------------------------------------------------------------[39m
+[31mCalledProcessError[39m                        Traceback (most recent call last)
+[36mCell[39m[36m [39m[32mIn[2][39m[32m, line 35[39m
+[32m     31[39m     [38;5;28;01melif[39;00m setup_text.count(pinned) != [32m1[39m:
+[32m     32[39m         [38;5;28;01mraise[39;00m ValueError(f"Unexpected dependency in {setup_path}: {original}")
+[32m     33[39m setup_path.write_text(setup_text, encoding=[33m"utf-8"[39m)
+[32m     34[39m [38;5;66;03m# The fork supports transformers<5.14; this revision adds hunyuan_vl and still satisfies that bound.[39;00m
+[32m---> [39m[32m35[39m subprocess.run(
+[32m     36[39m     [
+[32m     37[39m         sys.executable,
+[32m     38[39m         [33m"-m"[39m,
+
+[36mFile [39m[32m/usr/lib/python3.12/subprocess.py:571[39m, in [36mrun[39m[34m(input, capture_output, timeout, check, *popenargs, **kwargs)[39m
+[32m    569[39m     retcode = process.poll()
+[32m    570[39m     [38;5;28;01mif[39;00m check [38;5;129;01mand[39;00m retcode:
+[32m--> [39m[32m571[39m         [38;5;28;01mraise[39;00m CalledProcessError(retcode, process.args,
+[32m    572[39m                                  output=stdout, stderr=stderr)
+[32m    573[39m [38;5;28;01mreturn[39;00m CompletedProcess(process.args, retcode, stdout, stderr)
+
+[31mCalledProcessError[39m: Command '['/workspace/.venvs/cpu/0e3c03443623f289/bin/python', '-m', 'pip', 'install', '-q', '/workspace/results/hunyuan-ocr/workdir-cpu/optimum-intel-4085f5e80fb92c6c0eecd0c7f09bcb9d5fe07b14', 'git+https://github.com/huggingface/transformers.git@5d063058dc2ddae5e31e4fab1985701d5cf50133']' returned non-zero exit status 1.
+

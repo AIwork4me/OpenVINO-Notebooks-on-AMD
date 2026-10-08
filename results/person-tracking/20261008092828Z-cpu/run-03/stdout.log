@@ -1,0 +1,13 @@
+[cell 0 START +    0.5s] # Person Tracking with OpenVINO™ |  | This notebook demonstrates live pers
+[cell 1 START +    0.5s]  | #### Table of contents: |  | - [Imports](#Imports) | - [Download the Model]
+[cell 2 START +    0.5s] %pip install -q "openvino>=2024.0.0" | %pip install -q opencv-python req
+[cell 2 DONE  +    1.4s]
+[cell 3 START +    1.4s] ## Imports | [back to top ⬆️](#Table-of-contents:) | 
+[cell 4 START +    1.4s] import collections | from pathlib import Path | import time |  | import numpy 
+[cell 4 DONE  +    1.9s]
+[cell 5 START +    1.9s] # Import local modules | import requests |  | if not Path("./notebook_utils.
+[cell 5 DONE  +    2.2s]
+[cell 6 START +    2.2s] ## Download the Model | [back to top ⬆️](#Table-of-contents:) |  | We will u
+[cell 7 START +    2.2s] from notebook_utils import download_ir_model |  | # A directory where the 
+[cell 7 DONE  +    2.4s]
+NBEXEC_RESULT={"ok": false, "n_cells": 13, "n_skipped": 0, "n_substituted": 0, "stopped_after": null, "error_cell": null, "error_type": "CellExecutionError", "error_head": "\u001b[31mException\u001b[39m: File downloading failed with error: HTTPSConnectionPool(host='storage.openvinotoolkit.org', port=443): Max retries exceeded with url: /repositories/open_model_zoo/2023.0/models_bin/1/person-detection-0202/FP16/person-detection-0202.xml (Caused by ProxyError('Unable to connect to proxy', OSError('Tunnel connection failed: 403 Forbidden')))", "duration_s": 2.72, "patch_notes": []}

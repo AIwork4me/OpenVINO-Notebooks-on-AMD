@@ -1,0 +1,17 @@
+[cell 0 START +    0.8s] # Image generation with Stable Diffusion XL and OpenVINO |  | Stable Diffu
+[cell 1 START +    0.8s]  | #### Table of contents: |  | - [Install prerequisites](#Install-prerequis
+[cell 2 START +    0.8s] ## Install prerequisites | [back to top ⬆️](#Table-of-contents:) | 
+[cell 3 START +    0.8s] %pip uninstall -q -y optimum optimum-intel optimum-onnx | %pip install -
+[cell 3 DONE  +  368.3s]
+[cell 4 START +  368.3s] ## SDXL Base model | [back to top ⬆️](#Table-of-contents:) |  | We will star
+[cell 5 START +  368.3s] from pathlib import Path | import openvino_genai as ov_genai | import gc |  | 
+[cell 5 DONE  +  368.6s]
+[cell 6 START +  368.6s] ### Select inference device SDXL Base model | [back to top ⬆️](#Table-of
+[cell 7 START +  368.6s] from notebook_utils import device_widget |  | device = device_widget(exclu
+[cell 7 DONE  +  368.8s]
+[cell 8 START +  368.8s] Please select below whether you would like to use weight compression t
+[cell 9 START +  368.8s] import ipywidgets as widgets |  | compress_weights = widgets.Checkbox( |    
+[cell 9 DONE  +  368.8s]
+[cell 10 START +  368.8s] from cmd_helper import optimum_cli |  | additional_args = {} |  | if compress_
+[cell 10 DONE  +  568.0s]
+NBEXEC_RESULT={"ok": false, "n_cells": 12, "n_skipped": 2, "n_substituted": 1, "stopped_after": null, "error_cell": null, "error_type": "CellExecutionError", "error_head": "\u001b[31mCalledProcessError\u001b[39m: Command '['optimum-cli', 'export', 'openvino', '--model', 'stabilityai/stable-diffusion-xl-base-1.0', 'openvino-sd-xl-base-1.0/INT8', '--weight-format', 'int8']' returned non-zero exit status 1.", "duration_s": 568.27, "patch_notes": ["substituted 1 occurrence(s) in cell 3", "skipped cell 14: matched skip pattern", "skipped cell 22: matched skip pattern"]}

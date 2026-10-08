@@ -1,0 +1,87 @@
+Traceback (most recent call last):
+  File "/workspace/.venv-gpu/lib/python3.12/site-packages/urllib3/connectionpool.py", line 779, in urlopen
+    self._prepare_proxy(conn)
+  File "/workspace/.venv-gpu/lib/python3.12/site-packages/urllib3/connectionpool.py", line 1074, in _prepare_proxy
+    conn.connect()
+  File "/workspace/.venv-gpu/lib/python3.12/site-packages/urllib3/connection.py", line 844, in connect
+    self._tunnel()
+  File "/workspace/.venv-gpu/lib/python3.12/site-packages/urllib3/connection.py", line 380, in _tunnel
+    version, code, message = response._read_status()  # type: ignore[attr-defined]
+                             ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/http/client.py", line 297, in _read_status
+    line = str(self.fp.readline(_MAXLINE + 1), "iso-8859-1")
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/socket.py", line 707, in readinto
+    return self._sock.recv_into(b)
+           ^^^^^^^^^^^^^^^^^^^^^^^
+TimeoutError: timed out
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/workspace/.venv-gpu/lib/python3.12/site-packages/requests/adapters.py", line 696, in send
+    resp = conn.urlopen(
+           ^^^^^^^^^^^^^
+  File "/workspace/.venv-gpu/lib/python3.12/site-packages/urllib3/connectionpool.py", line 847, in urlopen
+    retries = retries.increment(
+              ^^^^^^^^^^^^^^^^^^
+  File "/workspace/.venv-gpu/lib/python3.12/site-packages/urllib3/util/retry.py", line 510, in increment
+    raise reraise(type(error), error, _stacktrace)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/.venv-gpu/lib/python3.12/site-packages/urllib3/util/util.py", line 39, in reraise
+    raise value
+  File "/workspace/.venv-gpu/lib/python3.12/site-packages/urllib3/connectionpool.py", line 781, in urlopen
+    self._raise_timeout(
+  File "/workspace/.venv-gpu/lib/python3.12/site-packages/urllib3/connectionpool.py", line 373, in _raise_timeout
+    raise ReadTimeoutError(
+urllib3.exceptions.ReadTimeoutError: HTTPSConnectionPool(host='github.com', port=443): Read timed out. (read timeout=30)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/workspace/.venv-gpu/lib/python3.12/site-packages/ultralytics/utils/downloads.py", line 405, in safe_download
+    with requests.get(url, stream=True, headers=headers, timeout=(30, 300)) as response:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/.venv-gpu/lib/python3.12/site-packages/requests/api.py", line 87, in get
+    return request("get", url, params=params, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/.venv-gpu/lib/python3.12/site-packages/requests/api.py", line 71, in request
+    return session.request(method=method, url=url, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/.venv-gpu/lib/python3.12/site-packages/requests/sessions.py", line 651, in request
+    resp = self.send(prep, **send_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/.venv-gpu/lib/python3.12/site-packages/requests/sessions.py", line 784, in send
+    r = adapter.send(request, **kwargs)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/.venv-gpu/lib/python3.12/site-packages/requests/adapters.py", line 742, in send
+    raise ReadTimeout(e, request=request)
+requests.exceptions.ReadTimeout: HTTPSConnectionPool(host='github.com', port=443): Read timed out. (read timeout=30)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/workspace/workloads/yolov26-object-detection/rocm/run.py", line 99, in <module>
+    raise SystemExit(main())
+                     ^^^^^^
+  File "/workspace/workloads/yolov26-object-detection/rocm/run.py", line 39, in main
+    model = YOLO(MODEL)  # downloads the official ultralytics release weights
+            ^^^^^^^^^^^
+  File "/workspace/.venv-gpu/lib/python3.12/site-packages/ultralytics/models/yolo/model.py", line 84, in __init__
+    super().__init__(model=model, task=task, verbose=verbose)
+  File "/workspace/.venv-gpu/lib/python3.12/site-packages/ultralytics/engine/model.py", line 135, in __init__
+    self._load(model, task=task)
+  File "/workspace/.venv-gpu/lib/python3.12/site-packages/ultralytics/engine/model.py", line 250, in _load
+    self.model, self.ckpt = load_checkpoint(weights)
+                            ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/.venv-gpu/lib/python3.12/site-packages/ultralytics/nn/tasks.py", line 1996, in load_checkpoint
+    ckpt, weight = torch_safe_load(weight)  # load ckpt
+                   ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/.venv-gpu/lib/python3.12/site-packages/ultralytics/nn/tasks.py", line 1862, in torch_safe_load
+    file = attempt_download_asset(weight)  # search online if missing locally
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/.venv-gpu/lib/python3.12/site-packages/ultralytics/utils/downloads.py", line 622, in attempt_download_asset
+    safe_download(url=f"{download_url}/{release}/{name}", file=file, min_bytes=1e5, **kwargs)
+  File "/workspace/.venv-gpu/lib/python3.12/site-packages/ultralytics/utils/downloads.py", line 479, in safe_download
+    raise ConnectionError(
+ConnectionError: ❌  Download failure for https://github.com/ultralytics/assets/releases/download/v8.4.0/yolo26n.pt. Environment may be offline.

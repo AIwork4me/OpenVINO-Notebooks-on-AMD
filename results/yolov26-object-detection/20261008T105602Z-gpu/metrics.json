@@ -1,0 +1,37 @@
+{
+  "schema_version": 2,
+  "twin_result": {
+    "ok": false,
+    "hip": "7.2.53211-e1a6bc5663",
+    "device": "AMD Radeon Graphics",
+    "gcn_arch": "gfx1100",
+    "metrics": {
+      "model": "yolo26n.pt",
+      "precision": "fp32 (ultralytics default)",
+      "input": "vlm-chatbot/nyc.jpg (pinned upstream snapshot asset; notebook's coco_bike.jpg host is proxy-blocked)",
+      "load_s": 0.21,
+      "runs": [
+        {
+          "latency_s": 0.019,
+          "n_detections": 0
+        },
+        {
+          "latency_s": 0.017,
+          "n_detections": 0
+        },
+        {
+          "latency_s": 0.018,
+          "n_detections": 0
+        }
+      ],
+      "n_detections": 0,
+      "classes_detected": [],
+      "valid_boxes_classes_confidences": false,
+      "stable_count": true,
+      "peak_vram_gb": 0.12,
+      "peak_rss_gb": 1.26
+    }
+  },
+  "duration_s": 49.86,
+  "exit_code": 1
+}

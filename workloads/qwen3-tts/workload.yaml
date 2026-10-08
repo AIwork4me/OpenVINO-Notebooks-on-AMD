@@ -4,20 +4,26 @@ category: TTS
 upstream:
   repository: openvinotoolkit/openvino_notebooks
   branch: latest
-  commit: 5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b
+  commit: 2b1600de9620e4a2d26f1ef5c83fad64d7d76f7b
   path: notebooks/qwen3-tts/qwen3-tts.ipynb
-  url: https://github.com/openvinotoolkit/openvino_notebooks/blob/5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b/notebooks/qwen3-tts/qwen3-tts.ipynb
+  url: https://github.com/openvinotoolkit/openvino_notebooks/blob/2b1600de9620e4a2d26f1ef5c83fad64d7d76f7b/notebooks/qwen3-tts/qwen3-tts.ipynb
 model:
-  name: ''
-  source: ''
-  revision: ''
-  license: ''
+  name: Qwen/Qwen3-TTS-12Hz-0.6B-CustomVoice
+  source: https://huggingface.co/Qwen/Qwen3-TTS-12Hz-0.6B-CustomVoice
+  revision: 85e237c12c
+  license: apache-2.0
+  implementation: PyTorch talker+VA via official QwenLM/Qwen3-TTS repo @1ab0dd75
 cpu:
   runtime: openvino
   status: VERIFIED_WITH_LIMITATIONS
 gpu:
-  runtime: ''
-  status: NOT_TESTED
+  runtime: pytorch-rocm
+  status: FAILED
+  wall_timeout_s: 3600
+  python: .venv-gpu-tf457/bin/python
+  note: official qwen-tts package requires transformers==4.57.3 (its check_model_inputs
+    decorator targets that generation); runs in the bridged .venv-gpu-tf457 over the
+    system ROCm torch
 twin:
   level: WORKLOAD_TWIN
 validation: {}

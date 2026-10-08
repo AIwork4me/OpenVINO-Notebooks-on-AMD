@@ -1,0 +1,8 @@
+{
+  "schema_version": 2,
+  "state": "UNKNOWN",
+  "requested_backend": "gpu",
+  "hip": null,
+  "device": null,
+  "gcn_arch": null
+}

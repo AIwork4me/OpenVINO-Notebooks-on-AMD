@@ -1,0 +1,12 @@
+Traceback (most recent call last):
+  File "/workspace/workloads/paddleocr_vl/rocm/run.py", line 94, in <module>
+    raise SystemExit(main())
+                     ^^^^^^
+  File "/workspace/workloads/paddleocr_vl/rocm/run.py", line 32, in main
+    shutil.copy2(SNAPSHOT_IMG, img_path)
+  File "/usr/lib/python3.12/shutil.py", line 475, in copy2
+    copyfile(src, dst, follow_symlinks=follow_symlinks)
+  File "/usr/lib/python3.12/shutil.py", line 260, in copyfile
+    with open(src, 'rb') as fsrc:
+         ^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/.cache/upstream/notebooks/paddleocr_vl/test.png'

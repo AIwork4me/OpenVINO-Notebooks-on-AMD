@@ -1,0 +1,85 @@
+[IPKernelApp] WARNING | Kernel is running over TCP without encryption. All communication (including code and outputs) is sent in plain text and is susceptible to eavesdropping. Use IPC transport or launch with kernel manager-provisioned CurveZMQ keys to enable transport encryption.
+Traceback (most recent call last):
+  File "/workspace/ov_amd/_nbexec.py", line 144, in main
+    client.execute()
+  File "/workspace/.venvs/cpu/0e3c03443623f289/lib/python3.12/site-packages/jupyter_core/utils/__init__.py", line 165, in wrapped
+    return loop.run_until_complete(inner)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/base_events.py", line 687, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/workspace/.venvs/cpu/0e3c03443623f289/lib/python3.12/site-packages/nbclient/client.py", line 709, in async_execute
+    await self.async_execute_cell(
+  File "/workspace/.venvs/cpu/0e3c03443623f289/lib/python3.12/site-packages/nbclient/client.py", line 1062, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/workspace/.venvs/cpu/0e3c03443623f289/lib/python3.12/site-packages/nbclient/client.py", line 918, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+%pip uninstall -q -y optimum optimum-intel optimum-onnx
+
+import subprocess
+import sys
+
+from notebook_utils import pip_install
+from cmd_helper import clone_repo
+
+pip_install("-q", "torch>=2.8", "torchvision", "--extra-index-url", "https://download.pytorch.org/whl/cpu")
+fork_revision = "4085f5e80fb92c6c0eecd0c7f09bcb9d5fe07b14"
+fork_dir = Path("optimum-intel-fork")
+if not fork_dir.exists():
+    import tarfile, urllib.request
+    with urllib.request.urlopen("https://codeload.github.com/openvino-dev-samples/optimum-intel/tar.gz/" + fork_revision) as r, tarfile.open(fileobj=r, mode="r|gz") as tf:
+        tf.extractall(".")
+    fork_dir = Path("optimum-intel-" + fork_revision)
+actual_revision = fork_revision
+if actual_revision != fork_revision:
+    raise RuntimeError(f"Expected {fork_revision} in {fork_dir}, got {actual_revision}")
+setup_path = fork_dir / "setup.py"
+setup_text = setup_path.read_text(encoding="utf-8")
+# Pin Optimum before its Hub requirement changed; allow safetensors 0.8 for hunyuan_vl.
+dependencies = {
+    '"optimum@https://codeload.github.com/huggingface/optimum/tar.gz/HEAD"': '"optimum@https://codeload.github.com/huggingface/optimum/tar.gz/52367da7f2d227d82db26d0de10f44c297b8c1eb"',
+    '"safetensors<0.8.0"': '"safetensors>=0.8.0,<0.9.0"',
+}
+for original, pinned in dependencies.items():
+    if setup_text.count(original) == 1:
+        setup_text = setup_text.replace(original, pinned)
+    elif setup_text.count(pinned) != 1:
+        raise ValueError(f"Unexpected dependency in {setup_path}: {original}")
+setup_path.write_text(setup_text, encoding="utf-8")
+# The fork supports transformers<5.14; this revision adds hunyuan_vl and still satisfies that bound.
+subprocess.run(
+    [
+        sys.executable,
+        "-m",
+        "pip",
+        "install",
+        "-q",
+        str(fork_dir.resolve()),
+        "https://codeload.github.com/huggingface/transformers/tar.gz/5d063058dc2ddae5e31e4fab1985701d5cf50133",
+    ],
+    check=True,
+)
+pip_install("-q", "openvino>=2026.2.0", "nncf>=2.17.0")
+pip_install("-q", "gradio>=5.25.0", "Pillow>=10")
+------------------
+
+----- stdout -----
+Note: you may need to restart the kernel to use updated packages.
+------------------
+
+[31m---------------------------------------------------------------------------[39m
+[31mValueError[39m                                Traceback (most recent call last)
+[36mCell[39m[36m [39m[32mIn[2][39m[32m, line 31[39m
+[32m     27[39m [38;5;28;01mfor[39;00m original, pinned [38;5;28;01min[39;00m dependencies.items():
+[32m     28[39m     [38;5;28;01mif[39;00m setup_text.count(original) == [32m1[39m:
+[32m     29[39m         setup_text = setup_text.replace(original, pinned)
+[32m     30[39m     [38;5;28;01melif[39;00m setup_text.count(pinned) != [32m1[39m:
+[32m---> [39m[32m31[39m         [38;5;28;01mraise[39;00m ValueError(f"Unexpected dependency in {setup_path}: {original}")
+[32m     32[39m setup_path.write_text(setup_text, encoding=[33m"utf-8"[39m)
+[32m     33[39m [38;5;66;03m# The fork supports transformers<5.14; this revision adds hunyuan_vl and still satisfies that bound.[39;00m
+[32m     34[39m subprocess.run(
+
+[31mValueError[39m: Unexpected dependency in optimum-intel-4085f5e80fb92c6c0eecd0c7f09bcb9d5fe07b14/setup.py: "optimum@https://codeload.github.com/huggingface/optimum/tar.gz/HEAD"
+

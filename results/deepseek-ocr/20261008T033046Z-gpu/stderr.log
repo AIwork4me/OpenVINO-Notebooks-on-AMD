@@ -1,0 +1,25 @@
+[transformers] You are using a model of type `deepseek_vl_v2` to instantiate a model of type ``. This may be expected if you are loading a checkpoint that shares a subset of the architecture (e.g., loading a `sam2_video` checkpoint into `Sam2Model`), but is otherwise not supported and can yield errors. Please verify that the checkpoint is compatible with the model you are instantiating.
+[transformers] You are using a model of type `deepseek_vl_v2` to instantiate a model of type `deepseek_ocr2`. This may be expected if you are loading a checkpoint that shares a subset of the architecture (e.g., loading a `sam2_video` checkpoint into `Sam2Model`), but is otherwise not supported and can yield errors. Please verify that the checkpoint is compatible with the model you are instantiating.
+Traceback (most recent call last):
+  File "/workspace/workloads/deepseek-ocr/rocm/run.py", line 94, in <module>
+    raise SystemExit(main())
+                     ^^^^^^
+  File "/workspace/workloads/deepseek-ocr/rocm/run.py", line 40, in main
+    model = DeepseekOcr2ForConditionalGeneration.from_pretrained(
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/.venv-gpu/lib/python3.12/site-packages/transformers/modeling_utils.py", line 4267, in from_pretrained
+    model = cls(config, *model_args, **model_kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/.venv-gpu/lib/python3.12/site-packages/transformers/models/deepseek_ocr2/modeling_deepseek_ocr2.py", line 1563, in __init__
+    self.model = DeepseekOcr2Model(config)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/.venv-gpu/lib/python3.12/site-packages/transformers/models/deepseek_ocr2/modeling_deepseek_ocr2.py", line 1419, in __init__
+    self.language_model = DeepseekOcr2TextModel(config.text_config)
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/.venv-gpu/lib/python3.12/site-packages/transformers/models/deepseek_ocr2/modeling_deepseek_ocr2.py", line 1335, in __init__
+    [DeepseekOcr2TextDecoderLayer(config, layer_idx) for layer_idx in range(config.num_hidden_layers)]
+     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/.venv-gpu/lib/python3.12/site-packages/transformers/models/deepseek_ocr2/modeling_deepseek_ocr2.py", line 1259, in __init__
+    if config.mlp_layer_types[layer_idx] == "sparse"
+       ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^
+TypeError: 'NoneType' object is not subscriptable

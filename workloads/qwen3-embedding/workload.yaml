@@ -4,22 +4,24 @@ category: LLM
 upstream:
   repository: openvinotoolkit/openvino_notebooks
   branch: latest
-  commit: 5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b
+  commit: 2b1600de9620e4a2d26f1ef5c83fad64d7d76f7b
   path: notebooks/qwen3-embedding/qwen3-embedding.ipynb
-  url: https://github.com/openvinotoolkit/openvino_notebooks/blob/5f0b2b5f63fd84e91f5c4e87f9bf9d13141a1e9b/notebooks/qwen3-embedding/qwen3-embedding.ipynb
+  url: https://github.com/openvinotoolkit/openvino_notebooks/blob/2b1600de9620e4a2d26f1ef5c83fad64d7d76f7b/notebooks/qwen3-embedding/qwen3-embedding.ipynb
 model:
-  name: ''
-  source: ''
-  revision: ''
-  license: ''
+  name: Qwen/Qwen3-Embedding-0.6B
+  source: https://huggingface.co/Qwen/Qwen3-Embedding-0.6B
+  revision: 97b0c614be
+  license: apache-2.0
+  implementation: transformers AutoModel, last-token pooling
 cpu:
   runtime: openvino
   status: VERIFIED_WITH_LIMITATIONS
 gpu:
-  runtime: ''
-  status: NOT_TESTED
+  runtime: pytorch-rocm
+  status: VERIFIED
+  wall_timeout_s: 1800
 twin:
   level: WORKLOAD_TWIN
 validation: {}
 patches: {}
-last_verified: '2026-10-06T18:42:04+00:00'
+last_verified: '2026-10-08T04:59:36+00:00'

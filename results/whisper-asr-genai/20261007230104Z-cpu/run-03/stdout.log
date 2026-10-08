@@ -1,0 +1,162 @@
+[cell 0 START +    0.5s] # Automatic Speech Recognition using Whisper and OpenVINO with Generat
+[cell 1 START +    0.5s] ## Prerequisites | [back to top ⬆️](#Table-of-contents:) | 
+[cell 2 START +    0.5s] %pip install -U --pre "openvino>=2026.5.0.dev20261005" "openvino-token
+[cell 2 DONE  +   69.1s]
+[cell 3 START +   69.1s] import requests | from pathlib import Path |  | if not Path("notebook_utils.
+[cell 3 DONE  +   69.1s]
+[cell 4 START +   69.1s] ## Select model and download | [back to top ⬆️](#Table-of-contents:) |  | ##
+[cell 5 START +   69.1s] import ipywidgets as widgets |  | model_ids = { |     "Multilingual models":
+[cell 5 DONE  +   69.1s]
+[cell 6 START +   69.1s] model_id = widgets.Dropdown( |     options=model_ids[model_type.value], | 
+[cell 6 DONE  +   69.1s]
+[cell 7 START +   69.1s] precision = widgets.Dropdown( |     options=["FP16", "INT8", "INT4"], |   
+[cell 7 DONE  +   69.1s]
+[cell 8 START +   69.1s] ### Download or convert model | [back to top ⬆️](#Table-of-contents:) |  | M
+[cell 9 START +   69.1s] import re |  |  | def get_ov_model_id(hf_model_id: str, prec: str = "fp16") 
+[cell 9 DONE  +   69.2s]
+[cell 10 START +   69.2s] ## Run inference with WhisperPipeline | [back to top ⬆️](#Table-of-conte
+[cell 11 START +   69.2s] from notebook_utils import device_widget |  | device = device_widget(defau
+[cell 11 DONE  +   69.4s]
+[cell 12 START +   69.4s] import openvino_genai as ov_genai |  | ov_pipe = ov_genai.WhisperPipeline(
+Model: OV Tokenizer
+  NETWORK_NAME: tokenizer
+  OPTIMAL_NUMBER_OF_INFER_REQUESTS: 1
+  NUM_STREAMS: 1
+  INFERENCE_NUM_THREADS: 32
+  PERF_COUNT: NO
+  INFERENCE_PRECISION_HINT: bf16
+  PERFORMANCE_HINT: LATENCY
+  EXECUTION_MODE_HINT: PERFORMANCE
+  PERFORMANCE_HINT_NUM_REQUESTS: 0
+  ENABLE_CPU_PINNING: YES
+  ENABLE_CPU_RESERVATION: NO
+  SCHEDULING_CORE_TYPE: ANY_CORE
+  MODEL_DISTRIBUTION_POLICY: 
+  ENABLE_HYPER_THREADING: NO
+  EXECUTION_DEVICES: CPU
+  CPU_DENORMALS_OPTIMIZATION: NO
+  LOG_LEVEL: LOG_NONE
+  CPU_SPARSE_WEIGHTS_DECOMPRESSION_RATE: 1
+  ENABLE_TENSOR_PARALLEL: NO
+  TBB_PARTITIONER: STATIC
+  DYNAMIC_QUANTIZATION_GROUP_SIZE: 32
+  KV_CACHE_PRECISION: u8
+  KEY_CACHE_PRECISION: u8
+  VALUE_CACHE_PRECISION: u8
+  KEY_CACHE_GROUP_SIZE: 0
+  VALUE_CACHE_GROUP_SIZE: 0
+  RUNTIME_REQUIREMENTS: meta=1.0;ov=2026.4.1;isa=Intel AVX-512 with Intel DL Boost and bfloat16 support
+EXECUTION_DEVICES:
+ CPU: AMD EPYC 9334 32-Core Processor                
+Model: OV Detokenizer
+  NETWORK_NAME: detokenizer
+  OPTIMAL_NUMBER_OF_INFER_REQUESTS: 1
+  NUM_STREAMS: 1
+  INFERENCE_NUM_THREADS: 32
+  PERF_COUNT: NO
+  INFERENCE_PRECISION_HINT: bf16
+  PERFORMANCE_HINT: LATENCY
+  EXECUTION_MODE_HINT: PERFORMANCE
+  PERFORMANCE_HINT_NUM_REQUESTS: 0
+  ENABLE_CPU_PINNING: YES
+  ENABLE_CPU_RESERVATION: NO
+  SCHEDULING_CORE_TYPE: ANY_CORE
+  MODEL_DISTRIBUTION_POLICY: 
+  ENABLE_HYPER_THREADING: NO
+  EXECUTION_DEVICES: CPU
+  CPU_DENORMALS_OPTIMIZATION: NO
+  LOG_LEVEL: LOG_NONE
+  CPU_SPARSE_WEIGHTS_DECOMPRESSION_RATE: 1
+  ENABLE_TENSOR_PARALLEL: NO
+  TBB_PARTITIONER: STATIC
+  DYNAMIC_QUANTIZATION_GROUP_SIZE: 32
+  KV_CACHE_PRECISION: u8
+  KEY_CACHE_PRECISION: u8
+  VALUE_CACHE_PRECISION: u8
+  KEY_CACHE_GROUP_SIZE: 0
+  VALUE_CACHE_GROUP_SIZE: 0
+  RUNTIME_REQUIREMENTS: meta=1.0;ov=2026.4.1;isa=Intel AVX-512 with Intel DL Boost and bfloat16 support
+EXECUTION_DEVICES:
+ CPU: AMD EPYC 9334 32-Core Processor                
+Model: whisper encoder model
+  NETWORK_NAME: Model0
+  OPTIMAL_NUMBER_OF_INFER_REQUESTS: 1
+  NUM_STREAMS: 1
+  INFERENCE_NUM_THREADS: 32
+  PERF_COUNT: NO
+  INFERENCE_PRECISION_HINT: bf16
+  PERFORMANCE_HINT: LATENCY
+  EXECUTION_MODE_HINT: PERFORMANCE
+  PERFORMANCE_HINT_NUM_REQUESTS: 0
+  ENABLE_CPU_PINNING: YES
+  ENABLE_CPU_RESERVATION: NO
+  SCHEDULING_CORE_TYPE: ANY_CORE
+  MODEL_DISTRIBUTION_POLICY: 
+  ENABLE_HYPER_THREADING: NO
+  EXECUTION_DEVICES: CPU
+  CPU_DENORMALS_OPTIMIZATION: NO
+  LOG_LEVEL: LOG_NONE
+  CPU_SPARSE_WEIGHTS_DECOMPRESSION_RATE: 1
+  ENABLE_TENSOR_PARALLEL: NO
+  TBB_PARTITIONER: STATIC
+  DYNAMIC_QUANTIZATION_GROUP_SIZE: 32
+  KV_CACHE_PRECISION: u8
+  KEY_CACHE_PRECISION: u8
+  VALUE_CACHE_PRECISION: u8
+  KEY_CACHE_GROUP_SIZE: 0
+  VALUE_CACHE_GROUP_SIZE: 0
+  RUNTIME_REQUIREMENTS: meta=1.0;ov=2026.4.1;isa=Intel AVX-512 with Intel DL Boost and bfloat16 support
+EXECUTION_DEVICES:
+ CPU: AMD EPYC 9334 32-Core Processor                
+Model: whisper decoder model
+  NETWORK_NAME: Model3
+  OPTIMAL_NUMBER_OF_INFER_REQUESTS: 1
+  NUM_STREAMS: 1
+  INFERENCE_NUM_THREADS: 32
+  PERF_COUNT: NO
+  INFERENCE_PRECISION_HINT: bf16
+  PERFORMANCE_HINT: LATENCY
+  EXECUTION_MODE_HINT: PERFORMANCE
+  PERFORMANCE_HINT_NUM_REQUESTS: 0
+  ENABLE_CPU_PINNING: YES
+  ENABLE_CPU_RESERVATION: NO
+  SCHEDULING_CORE_TYPE: ANY_CORE
+  MODEL_DISTRIBUTION_POLICY: 
+  ENABLE_HYPER_THREADING: NO
+  EXECUTION_DEVICES: CPU
+  CPU_DENORMALS_OPTIMIZATION: NO
+  LOG_LEVEL: LOG_NONE
+  CPU_SPARSE_WEIGHTS_DECOMPRESSION_RATE: 1
+  ENABLE_TENSOR_PARALLEL: NO
+  TBB_PARTITIONER: STATIC
+  DYNAMIC_QUANTIZATION_GROUP_SIZE: 32
+  KV_CACHE_PRECISION: f16
+  KEY_CACHE_PRECISION: f16
+  VALUE_CACHE_PRECISION: f16
+  KEY_CACHE_GROUP_SIZE: 0
+  VALUE_CACHE_GROUP_SIZE: 0
+  RUNTIME_REQUIREMENTS: meta=1.0;ov=2026.4.1;isa=Intel AVX-512 with Intel DL Boost and bfloat16 support
+EXECUTION_DEVICES:
+ CPU: AMD EPYC 9334 32-Core Processor                
+[cell 12 DONE  +   69.8s]
+[cell 13 START +   69.8s] ### Audio transcription | [back to top ⬆️](#Table-of-contents:) |  | Let's s
+[cell 14 START +   69.8s] from notebook_utils import download_file |  | en_example_short = Path("dat
+[cell 14 DONE  +   69.8s]
+[cell 15 START +   69.8s] import librosa | import IPython.display as ipd |  | en_raw_speech, samplerat
+[cell 15 DONE  +   70.6s]
+[cell 16 START +   70.6s] ### Transcription with timestamps | [back to top ⬆️](#Table-of-contents:
+[cell 17 START +   70.6s] genai_result_timestamps = ov_pipe.generate(en_raw_speech, return_times
+[cell 17 DONE  +   71.3s]
+[cell 18 START +   71.3s] import numpy as np |  |  | def print_perf_metrics(perf_metrics): |     print(f
+[cell 18 DONE  +   71.3s]
+[cell 19 START +   71.3s] ### Multilingual speech translation | [back to top ⬆️](#Table-of-content
+[cell 20 START +   71.3s] languages = {"japanese": "ja_jp", "dutch": "da_dk", "french": "fr_fr",
+[cell 20 DONE  +   71.3s]
+[cell 21 START +   71.3s] from datasets import load_dataset |  | mls_dataset = None | if model_type.va
+[cell 21 DONE  +   86.1s]
+[cell 22 START +   86.1s] if model_type.value == "Multilingual models": |     sample = mls_example
+[cell 22 DONE  +   86.3s]
+[cell 23 START +   86.3s] ## Video subtitle generation | [back to top ⬆️](#Table-of-contents:) |  | Wh
+[cell 24 START +   86.3s] from notebook_utils import download_file |  | video_file = Path("downloade
+[cell 24 DONE  +   94.5s]
+NBEXEC_RESULT={"ok": false, "n_cells": 21, "n_skipped": 1, "n_substituted": 1, "stopped_after": null, "error_cell": null, "error_type": "CellExecutionError", "error_head": "\u001b[31mException\u001b[39m: File downloading failed with error: HTTPSConnectionPool(host='storage.openvinotoolkit.org', port=443): Max retries exceeded with url: /repositories/openvino_notebooks/data/data/video/Sheldon%20Cooper%20Jim%20Parsons%20at%20Intels%20Lab.mp4 (Caused by ProxyError('Unable to connect to proxy', OSError('Tunnel connection failed: 403 Forbidden')))", "duration_s": 95.64, "patch_notes": ["substituted 1 occurrence(s) in cell 14", "skipped cell 30: matched skip pattern"]}

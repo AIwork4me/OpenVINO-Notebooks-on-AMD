@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "/workspace/workloads/yolov26-object-detection/rocm/run.py", line 123, in <module>
+    raise SystemExit(main())
+                     ^^^^^^
+  File "/workspace/workloads/yolov26-object-detection/rocm/run.py", line 60, in main
+    _unms.torchvision.ops.nms = _nms_maybe_cpu
+    ^^^^^^^^^^^^^^^^^
+AttributeError: module 'ultralytics.utils.nms' has no attribute 'torchvision'

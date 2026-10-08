@@ -1,0 +1,10 @@
+{
+  "schema_version": 2,
+  "declared": {
+    "name": "PaddlePaddle/PaddleOCR-VL",
+    "source": "https://huggingface.co/PaddlePaddle/PaddleOCR-VL",
+    "revision": "7fa00a8c55",
+    "license": "apache-2.0",
+    "implementation": "transformers PaddleOCRVLForConditionalGeneration"
+  }
+}

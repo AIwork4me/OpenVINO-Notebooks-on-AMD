@@ -166,12 +166,18 @@ def test_discovery_preserves_audited_classification() -> None:
 def test_changed_notebook_old_pin_evidence_is_not_current() -> None:
     """For every .ipynb that changed between the old and new pin, the current
     dataset row must point at evidence recorded on the NEW pin (or an explicit
-    revalidation marker) — old-pin evidence must not masquerade as current."""
+    revalidation marker) — old-pin evidence must not masquerade as current.
+
+    Snapshot-scoped to the LATEST pin sync: v0.2.2 checked the 329562e->5f0b2b5
+    delta (llm-chatbot x2, openvino-tokenizers; all revalidated then). v0.3
+    moved the pin 5f0b2b5->2b1600d with exactly two changed notebooks
+    (kokoro fp16 default, whisper-asr-genai nightly/NPU prep); those two must
+    carry new-pin evidence. Notebooks unchanged in a delta legitimately keep
+    evidence recorded at the earlier, content-identical pin."""
 
     changed = {
-        "notebooks/llm-chatbot/llm-chatbot.ipynb",
-        "notebooks/llm-chatbot/llm-chatbot-generate-api.ipynb",
-        "notebooks/openvino-tokenizers/openvino-tokenizers.ipynb",
+        "notebooks/kokoro/kokoro.ipynb",
+        "notebooks/whisper-asr-genai/whisper-asr-genai.ipynb",
     }
     pin = json.loads((REPO / "upstream" / "openvino-notebooks.json").read_text())["commit"]
     cat = yaml.safe_load((REPO / "catalog" / "notebooks.yaml").read_text())

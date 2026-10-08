@@ -379,6 +379,50 @@ def write_compatibility() -> dict[str, Any]:
     return compat
 
 
+FEATURED_BEGIN = "<!-- generated:featured begin -->"
+FEATURED_END = "<!-- generated:featured end -->"
+
+
+def write_featured_matrix(compat: dict[str, Any] | None = None) -> bool:
+    """Render the compact high-value workload matrix (README §top).
+
+    Rows: every GPU-verified ROCm twin plus its AMD CPU/OpenVINO outcome and
+    twin level. All cells machine-generated from catalog/compatibility.json —
+    no hand-maintained claims. The full 173-row matrix stays in
+    catalog/compatibility.md."""
+
+    compat = compat if compat is not None else build_compatibility()
+
+    def _cell(outcome: str, reason: str) -> str:
+        icon = _icon(outcome)
+        return f"{icon} {outcome}" + (f" ({reason})" if reason and outcome.startswith("BLOCKED") else "")
+
+    rows = [r for r in compat["rows"] if r["gpu_compatibility_outcome"] in ("VERIFIED", "VERIFIED_WITH_LIMITATIONS")]
+    if not rows:
+        return False
+    lines = [
+        "| Workload | Ryzen / OpenVINO | Radeon / ROCm | Twin |",
+        "|---|---|---|---|",
+    ]
+    order = {"VERIFIED": 0, "VERIFIED_WITH_LIMITATIONS": 1}
+    for r in sorted(rows, key=lambda r: (order.get(r["gpu_compatibility_outcome"], 9), r["id"])):
+        lines.append(
+            f"| [{r['id']}]({r['upstream_url']}) "
+            f"| {_cell(r['cpu_compatibility_outcome'], r['cpu_outcome_reason'])} "
+            f"| {_cell(r['gpu_compatibility_outcome'], r['gpu_outcome_reason'])} "
+            f"| {r['twin_level']} |"
+        )
+    if README.exists():
+        text = README.read_text()
+        block = "\n".join(lines)
+        if FEATURED_BEGIN in text and FEATURED_END in text:
+            pre, _, rest = text.partition(FEATURED_BEGIN)
+            _, _, post = rest.partition(FEATURED_END)
+            README.write_text(pre + FEATURED_BEGIN + "\n" + block + "\n" + FEATURED_END + post)
+            return True
+    return False
+
+
 def write_progress(state: dict[str, Any] | None = None, current: str | None = None) -> None:
     state = state if state is not None else load_state()
     compat = build_compatibility(state=state)

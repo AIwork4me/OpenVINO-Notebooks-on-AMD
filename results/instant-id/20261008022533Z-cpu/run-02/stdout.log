@@ -1,0 +1,14 @@
+[cell 0 START +    0.5s] # InstantID: Zero-shot Identity-Preserving Generation using OpenVINO |  | 
+[cell 1 START +    0.5s] ## Prerequisites | [back to top ⬆️](#Table-of-contents:)
+[cell 2 START +    0.5s] import requests | from pathlib import Path |  | if not Path("notebook_utils.
+[cell 2 DONE  +    0.6s]
+[cell 3 START +    0.6s] from cmd_helper import clone_repo |  | clone_repo("https://github.com/Inst
+[cell 3 DONE  +    0.6s]
+[cell 4 START +    0.6s] %pip install -q "openvino>=2025.3.0" opencv-python "transformers==4.53
+[cell 4 DONE  +  144.4s]
+[cell 5 START +  144.4s] ## Convert and prepare Face IdentityNet | [back to top ⬆️](#Table-of-con
+[cell 6 START +  144.4s] from pathlib import Path |  | MODELS_DIR = Path("models") | face_detector_pa
+[cell 6 DONE  +  144.4s]
+[cell 7 START +  144.4s] from zipfile import ZipFile | import gdown |  | archive_file = Path("antelop
+[cell 7 DONE  +  204.4s]
+NBEXEC_RESULT={"ok": false, "n_cells": 51, "n_skipped": 1, "n_substituted": 2, "stopped_after": null, "error_cell": null, "error_type": "CellExecutionError", "error_head": "\u001b[31mProxyError\u001b[39m: HTTPSConnectionPool(host='drive.google.com', port=443): Max retries exceeded with url: /uc?id=18wEUfMNohBJ4K3Ly5wpTejPfDzp-8fI8 (Caused by ProxyError('Unable to connect to proxy', OSError('Tunnel connection failed: 503 Service Unavailable')))", "duration_s": 204.68, "patch_notes": ["substituted 1 occurrence(s) in cell 15", "substituted 14 occurrence(s) in cell 33", "skipped cell 78: matched skip pattern"]}

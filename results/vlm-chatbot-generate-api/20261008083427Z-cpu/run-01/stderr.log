@@ -1,0 +1,117 @@
+[IPKernelApp] WARNING | Kernel is running over TCP without encryption. All communication (including code and outputs) is sent in plain text and is susceptible to eavesdropping. Use IPC transport or launch with kernel manager-provisioned CurveZMQ keys to enable transport encryption.
+[transformers] `torch_dtype` is deprecated! Use `dtype` instead!
+Loading weights:   0%|          | 0/625 [00:00<?, ?it/s]Loading weights: 100%|██████████| 625/625 [00:00<00:00, 12348.10it/s]
+[transformers] `loss_type=None` was set in the config but it is unrecognized. Using the default loss: `ForCausalLMLoss`.
+/workspace/.venvs/cpu/554a3c6a31169bc4/lib/python3.12/site-packages/transformers/models/qwen3_vl/modeling_qwen3_vl.py:804: TracerWarning: Converting a tensor to a Python boolean might cause the trace to be incorrect. We can't record the data flow of Python values, so this value will be treated as a constant in the future. This means that the trace might not generalize to other inputs!
+  if position_ids.ndim == 3 and position_ids.shape[0] == 4:
+/workspace/.venvs/cpu/554a3c6a31169bc4/lib/python3.12/site-packages/transformers/cache_utils.py:155: TracerWarning: Converting a tensor to a Python boolean might cause the trace to be incorrect. We can't record the data flow of Python values, so this value will be treated as a constant in the future. This means that the trace might not generalize to other inputs!
+  if not self.is_initialized or self.keys.numel() == 0:
+/workspace/.venvs/cpu/554a3c6a31169bc4/lib/python3.12/site-packages/transformers/masking_utils.py:208: TracerWarning: Converting a tensor to a Python boolean might cause the trace to be incorrect. We can't record the data flow of Python values, so this value will be treated as a constant in the future. This means that the trace might not generalize to other inputs!
+  if (padding_length := kv_length + kv_offset - attention_mask.shape[-1]) > 0:
+/workspace/.venvs/cpu/554a3c6a31169bc4/lib/python3.12/site-packages/optimum/exporters/openvino/patching_utils.py:247: TracerWarning: torch.tensor results are registered as constants in the trace. You can safely ignore this warning if you use this function to create tensors out of constant variables that would be the same every time you call this function. In any other case, this might cause the trace to be incorrect.
+  torch.tensor(0.0, device=mask.device, dtype=dtype),
+/workspace/.venvs/cpu/554a3c6a31169bc4/lib/python3.12/site-packages/optimum/exporters/openvino/patching_utils.py:248: TracerWarning: torch.tensor results are registered as constants in the trace. You can safely ignore this warning if you use this function to create tensors out of constant variables that would be the same every time you call this function. In any other case, this might cause the trace to be incorrect.
+  torch.tensor(torch.finfo(torch.float16).min, device=mask.device, dtype=dtype),
+/workspace/.venvs/cpu/554a3c6a31169bc4/lib/python3.12/site-packages/transformers/integrations/sdpa_attention.py:77: TracerWarning: Converting a tensor to a Python boolean might cause the trace to be incorrect. We can't record the data flow of Python values, so this value will be treated as a constant in the future. This means that the trace might not generalize to other inputs!
+  is_causal = query.shape[2] > 1 and attention_mask is None and is_causal
+Traceback (most recent call last):
+  File "/workspace/.venvs/cpu/554a3c6a31169bc4/bin/optimum-cli", line 6, in <module>
+    sys.exit(main())
+             ^^^^^^
+  File "/workspace/.venvs/cpu/554a3c6a31169bc4/lib/python3.12/site-packages/optimum/commands/optimum_cli.py", line 219, in main
+    service.run()
+  File "/workspace/.venvs/cpu/554a3c6a31169bc4/lib/python3.12/site-packages/optimum/commands/export/openvino.py", line 469, in run
+    main_export(
+  File "/workspace/.venvs/cpu/554a3c6a31169bc4/lib/python3.12/site-packages/optimum/exporters/openvino/__main__.py", line 712, in main_export
+    submodel_paths = export_from_model(
+                     ^^^^^^^^^^^^^^^^^^
+  File "/workspace/.venvs/cpu/554a3c6a31169bc4/lib/python3.12/site-packages/optimum/exporters/openvino/convert.py", line 932, in export_from_model
+    export_models(
+  File "/workspace/.venvs/cpu/554a3c6a31169bc4/lib/python3.12/site-packages/optimum/exporters/openvino/convert.py", line 498, in export_models
+    export(
+  File "/workspace/.venvs/cpu/554a3c6a31169bc4/lib/python3.12/site-packages/optimum/exporters/openvino/convert.py", line 248, in export
+    return export_pytorch(
+           ^^^^^^^^^^^^^^^
+  File "/workspace/.venvs/cpu/554a3c6a31169bc4/lib/python3.12/site-packages/optimum/exporters/openvino/convert.py", line 430, in export_pytorch
+    _save_model(
+  File "/workspace/.venvs/cpu/554a3c6a31169bc4/lib/python3.12/site-packages/optimum/exporters/openvino/convert.py", line 172, in _save_model
+    save_model(model, path, compress_to_fp16)
+RuntimeError: basic_ios::clear: iostream error
+_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+from llm_config import convert_and_compress_vlm
+
+model_dir = convert_and_compress_vlm(model_id, model_configuration, compression_variant.value, preconverted_checkbox.value)
+------------------
+
+----- stdout -----
+⌛ Qwen3-VL-2B-Instruct VLM conversion to INT4 started. It may takes some time.
+----- stderr -----
+[transformers] `torch_dtype` is deprecated! Use `dtype` instead!
+----- stderr -----
+Loading weights:   0%|          | 0/625 [00:00<?, ?it/s]Loading weights: 100%|██████████| 625/625 [00:00<00:00, 12348.10it/s]
+----- stderr -----
+[transformers] `loss_type=None` was set in the config but it is unrecognized. Using the default loss: `ForCausalLMLoss`.
+----- stderr -----
+/workspace/.venvs/cpu/554a3c6a31169bc4/lib/python3.12/site-packages/transformers/models/qwen3_vl/modeling_qwen3_vl.py:804: TracerWarning: Converting a tensor to a Python boolean might cause the trace to be incorrect. We can't record the data flow of Python values, so this value will be treated as a constant in the future. This means that the trace might not generalize to other inputs!
+  if position_ids.ndim == 3 and position_ids.shape[0] == 4:
+/workspace/.venvs/cpu/554a3c6a31169bc4/lib/python3.12/site-packages/transformers/cache_utils.py:155: TracerWarning: Converting a tensor to a Python boolean might cause the trace to be incorrect. We can't record the data flow of Python values, so this value will be treated as a constant in the future. This means that the trace might not generalize to other inputs!
+  if not self.is_initialized or self.keys.numel() == 0:
+/workspace/.venvs/cpu/554a3c6a31169bc4/lib/python3.12/site-packages/transformers/masking_utils.py:208: TracerWarning: Converting a tensor to a Python boolean might cause the trace to be incorrect. We can't record the data flow of Python values, so this value will be treated as a constant in the future. This means that the trace might not generalize to other inputs!
+  if (padding_length := kv_length + kv_offset - attention_mask.shape[-1]) > 0:
+/workspace/.venvs/cpu/554a3c6a31169bc4/lib/python3.12/site-packages/optimum/exporters/openvino/patching_utils.py:247: TracerWarning: torch.tensor results are registered as constants in the trace. You can safely ignore this warning if you use this function to create tensors out of constant variables that would be the same every time you call this function. In any other case, this might cause the trace to be incorrect.
+  torch.tensor(0.0, device=mask.device, dtype=dtype),
+/workspace/.venvs/cpu/554a3c6a31169bc4/lib/python3.12/site-packages/optimum/exporters/openvino/patching_utils.py:248: TracerWarning: torch.tensor results are registered as constants in the trace. You can safely ignore this warning if you use this function to create tensors out of constant variables that would be the same every time you call this function. In any other case, this might cause the trace to be incorrect.
+  torch.tensor(torch.finfo(torch.float16).min, device=mask.device, dtype=dtype),
+/workspace/.venvs/cpu/554a3c6a31169bc4/lib/python3.12/site-packages/transformers/integrations/sdpa_attention.py:77: TracerWarning: Converting a tensor to a Python boolean might cause the trace to be incorrect. We can't record the data flow of Python values, so this value will be treated as a constant in the future. This means that the trace might not generalize to other inputs!
+  is_causal = query.shape[2] > 1 and attention_mask is None and is_causal
+----- stderr -----
+Traceback (most recent call last):
+  File "/workspace/.venvs/cpu/554a3c6a31169bc4/bin/optimum-cli", line 6, in <module>
+    sys.exit(main())
+             ^^^^^^
+  File "/workspace/.venvs/cpu/554a3c6a31169bc4/lib/python3.12/site-packages/optimum/commands/optimum_cli.py", line 219, in main
+    service.run()
+  File "/workspace/.venvs/cpu/554a3c6a31169bc4/lib/python3.12/site-packages/optimum/commands/export/openvino.py", line 469, in run
+    main_export(
+  File "/workspace/.venvs/cpu/554a3c6a31169bc4/lib/python3.12/site-packages/optimum/exporters/openvino/__main__.py", line 712, in main_export
+    submodel_paths = export_from_model(
+                     ^^^^^^^^^^^^^^^^^^
+  File "/workspace/.venvs/cpu/554a3c6a31169bc4/lib/python3.12/site-packages/optimum/exporters/openvino/convert.py", line 932, in export_from_model
+    export_models(
+  File "/workspace/.venvs/cpu/554a3c6a31169bc4/lib/python3.12/site-packages/optimum/exporters/openvino/convert.py", line 498, in export_models
+    export(
+  File "/workspace/.venvs/cpu/554a3c6a31169bc4/lib/python3.12/site-packages/optimum/exporters/openvino/convert.py", line 248, in export
+    return export_pytorch(
+           ^^^^^^^^^^^^^^^
+  File "/workspace/.venvs/cpu/554a3c6a31169bc4/lib/python3.12/site-packages/optimum/exporters/openvino/convert.py", line 430, in export_pytorch
+    _save_model(
+  File "/workspace/.venvs/cpu/554a3c6a31169bc4/lib/python3.12/site-packages/optimum/exporters/openvino/convert.py", line 172, in _save_model
+    save_model(model, path, compress_to_fp16)
+RuntimeError: basic_ios::clear: iostream error
+------------------
+
+[31m---------------------------------------------------------------------------[39m
+[31mCalledProcessError[39m                        Traceback (most recent call last)
+[36mCell[39m[36m [39m[32mIn[8][39m[32m, line 3[39m
+[32m      1[39m [38;5;28;01mfrom[39;00m llm_config [38;5;28;01mimport[39;00m convert_and_compress_vlm
+[32m      2[39m 
+[32m----> [39m[32m3[39m model_dir = convert_and_compress_vlm(model_id, model_configuration, compression_variant.value, preconverted_checkbox.value)
+
+[36mFile [39m[32m/workspace/results/vlm-chatbot-generate-api/workdir-cpu/llm_config.py:1622[39m, in [36mconvert_and_compress_vlm[39m[34m(model_id, model_config, precision, use_preconverted)[39m
+[32m   1619[39m [38;5;28;01mimport[39;00m[38;5;250m [39m[34;01mshlex[39;00m
+[32m   1621[39m args = shlex.split(optimum_cli_command) [38;5;28;01mif[39;00m platform.system() != [33m"[39m[33mWindows[39m[33m"[39m [38;5;28;01melse[39;00m optimum_cli_command
+[32m-> [39m[32m1622[39m [30;43msubprocess[39;49m[30;43m.[39;49m[30;43mrun[39;49m[30;43m([39;49m[30;43margs[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mshell[39;49m[30;43m=[39;49m[30;43m([39;49m[30;43mplatform[39;49m[30;43m.[39;49m[30;43msystem[39;49m[30;43m([39;49m[30;43m)[39;49m[30;43m [39;49m[30;43m==[39;49m[30;43m [39;49m[30;43m"[39;49m[30;43mWindows[39;49m[30;43m"[39;49m[30;43m)[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mcheck[39;49m[30;43m=[39;49m[30;43;01mTrue[39;49;00m[30;43m)[39;49m
+[32m   1623[39m [38;5;28mprint[39m([33mf[39m[33m"[39m[33m✅ [39m[38;5;132;01m{[39;00mprecision[38;5;132;01m}[39;00m[33m [39m[38;5;132;01m{[39;00mmodel_id[38;5;132;01m}[39;00m[33m VLM model converted and can be found in [39m[38;5;132;01m{[39;00mmodel_dir[38;5;132;01m}[39;00m[33m"[39m)
+[32m   1625[39m [38;5;66;03m# Patch missing chat_template (e.g. LLaVA-NeXT-Video tokenizer lacks it)[39;00m
+
+[36mFile [39m[32m/usr/lib/python3.12/subprocess.py:571[39m, in [36mrun[39m[34m(input, capture_output, timeout, check, *popenargs, **kwargs)[39m
+[32m    569[39m     retcode = process.poll()
+[32m    570[39m     [38;5;28;01mif[39;00m check [38;5;129;01mand[39;00m retcode:
+[32m--> [39m[32m571[39m         [38;5;28;01mraise[39;00m CalledProcessError(retcode, process.args,
+[32m    572[39m                                  output=stdout, stderr=stderr)
+[32m    573[39m [38;5;28;01mreturn[39;00m CompletedProcess(process.args, retcode, stdout, stderr)
+
+[31mCalledProcessError[39m: Command '['optimum-cli', 'export', 'openvino', '--model', 'Qwen/Qwen3-VL-2B-Instruct', '--task', 'image-text-to-text', '--weight-format', 'int4', 'Qwen3-VL-2B-Instruct/INT4_compressed_weights']' returned non-zero exit status 1.
+

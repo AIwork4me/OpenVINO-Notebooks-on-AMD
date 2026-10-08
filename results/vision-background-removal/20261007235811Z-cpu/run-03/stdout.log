@@ -1,0 +1,10 @@
+[cell 0 START +    0.5s] # Image Background Removal with U^2-Net and OpenVINO™ |  | This notebook d
+[cell 1 START +    0.5s] ## Preparation | [back to top ⬆️](#Table-of-contents:) |  | ### Install requ
+[cell 2 START +    0.5s] %pip install -q "openvino>=2023.1.0" | %pip install -q --extra-index-url
+[cell 2 DONE  +    2.3s]
+[cell 3 START +    2.3s] ### Import the PyTorch Library and U$^2$-Net | [back to top ⬆️](#Table-o
+[cell 4 START +    2.3s] import os | import time | from collections import namedtuple | from pathlib 
+[cell 4 DONE  +    3.6s]
+[cell 5 START +    3.6s] # Import local modules | import requests |  | if not Path("./notebook_utils.
+[cell 5 DONE  +    3.9s]
+NBEXEC_RESULT={"ok": false, "n_cells": 13, "n_skipped": 0, "n_substituted": 0, "stopped_after": null, "error_cell": null, "error_type": "CellExecutionError", "error_head": "\u001b[31mException\u001b[39m: File downloading failed with error: HTTPSConnectionPool(host='raw.githubusercontent.com', port=443): Max retries exceeded with url: /openvinotoolkit/openvino_notebooks/latest/notebooks/vision-background-removal/model/u2net.py (Caused by SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1000)')))", "duration_s": 4.41, "patch_notes": []}

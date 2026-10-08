@@ -2,26 +2,29 @@
 
 Grouped by developer-facing compatibility outcome. BLOCKED_* outcomes are environment/network/model-access blockers — not AMD/OpenVINO compatibility failures. FAILED_COMPATIBILITY rows carry a reason identifying the failing layer.
 
-Total non-green attempts: 83
+Total non-green attempts: 87
+
+## 🌐 cpu · BLOCKED_NETWORK · EXTERNAL_HOST_UNREACHABLE — external host unreachable — 8 workload(s)
+
+- **whisper-asr-genai** — v0.3 network adjudication: upstream 2b1600d makes the notebook require OpenVINO nightly >=2026.5.0.dev20261005 from storage.openvinotoolkit.org (NPU-oriented; index unreachable via runner egress, 403) and its sample vide (evidence: results/whisper-asr-genai/20261007230104Z-cpu)
+- **glm-ocr** — v0.3 adjudication: the v0.2.2 optimum-export dependency blocker is RESOLVED (nested optimum-onnx@transformers-v5 satisfied via codeload, fork installs --no-deps); the remaining sole blocker is the notebook's sample image (evidence: results/glm-ocr/20261007231614Z-cpu)
+- **instant-id** — v0.3 adjudication: environment remediation (gdown) landed and the run reached the weights stage; the InsightFace antelopev2 weights are hosted on drive.google.com, which this runner's egress proxy blocks (503 tunnel). Re (evidence: results/instant-id/20261008022533Z-cpu)
+- **qwen3_agent** — ok_runs=0/1: Connection error. (evidence: results/qwen3_agent/20261007234631Z-cpu)
+- **wav2lip** — v0.3 adjudication: fresh run fails fetching helper/data files from raw.githubusercontent.com (proxy-blocked). BLOCKED_NETWORK (external host). (evidence: results/wav2lip/20261008031418Z-cpu)
+- **3d-segmentation-point-clouds** — v0.3 adjudication: the headless-rerun NameError (point_data undefined) was a scoping artifact that is now resolved; the fresh current-pin run proceeds into the data stage and fails on storage.openvinotoolkit.org (proxy 4 (evidence: results/3d-segmentation-point-clouds/20261008074221Z-cpu)
+- **action-recognition-webcam** — v0.3 adjudication: same as 3d-segmentation — the vocab_file_path NameError was a rerun-scoping artifact; the fresh run fails downloading the Kinetics labels from storage.openvinotoolkit.org (proxy 403). Reclassified BLOC (evidence: results/action-recognition-webcam/20261008074330Z-cpu)
+- **llm-code-assistant** — v0.3 adjudication: fresh run confirms deterministic git-transport block — the notebook pip-installs from git+https://github.com (optimum-intel et al.) whose clones cannot pass this runner's proxy. BLOCKED_NETWORK (extern (evidence: results/llm-code-assistant/20261008024819Z-cpu)
 
 ## 🌐 cpu · BLOCKED_NETWORK · NETWORK_UNREACHABLE — network unreachable — 8 workload(s)
 
 - **freevc-voice-conversion** — ok_runs=0/3: Exception: File downloading failed with error: HTTPSConnectionPool(host='storage.openvinotoolkit.org', port=443): Max retries exceeded with url: /repositories/openvino_notebooks/models/freevc/freevc.pth (Cau (evidence: results/freevc-voice-conversion/20261007194447Z-cpu)
-- **wav2lip** — ok_runs=0/1: Exception: Connection timed out. If you access the internet through a proxy server, please make sure the proxy is set in the shell from where you launched Jupyter. (evidence: results/wav2lip/20261006T190203Z-cpu)
+- **llm-agent-mcp** — ok_runs=0/3: ProxyError: HTTPSConnectionPool(host='cdn-avatars.huggingface.co', port=443): Max retries exceeded with url: /v1/production/uploads/1671615670447-6346651be2dcb5422bcd13dd.png (Caused by ProxyError('Unable to (evidence: results/llm-agent-mcp/20261007235034Z-cpu)
+- **vision-background-removal** — ok_runs=0/3: Exception: File downloading failed with error: HTTPSConnectionPool(host='raw.githubusercontent.com', port=443): Max retries exceeded with url: /openvinotoolkit/openvino_notebooks/latest/notebooks/vision-back (evidence: results/vision-background-removal/20261007235811Z-cpu)
 - **ct-segmentation-quantize-nncf** — ok_runs=0/3: Exception: File downloading failed with error: HTTPSConnectionPool(host='storage.openvinotoolkit.org', port=443): Max retries exceeded with url: /repositories/openvino_notebooks/models/kidney-segmentation-ki (evidence: results/ct-segmentation-quantize-nncf/20261007200934Z-cpu)
+- **person-tracking** — ok_runs=0/1: Exception: File downloading failed with error: HTTPSConnectionPool(host='storage.openvinotoolkit.org', port=443): Max retries exceeded with url: /repositories/open_model_zoo/2023.0/models_bin/1/person-detect (evidence: results/person-tracking/20261008092828Z-cpu)
 - **yoloe-26-open-vocabulary** — ok_runs=0/1: Exception: File downloading failed with error: HTTPSConnectionPool(host='storage.openvinotoolkit.org', port=443): Max retries exceeded with url: /repositories/openvino_notebooks/data/data/image/coco_bike.jpg (evidence: results/yoloe-26-open-vocabulary/20261007200536Z-cpu)
-- **gemma4** — ok_runs=0/1: ProxyError: HTTPSConnectionPool(host='github-production-user-asset-6210df.s3.amazonaws.com', port=443): Max retries exceeded with url: /29454499/319483352-d5fbbd1a-d484-415c-88cb-9986625b7b11.jpg?X-Amz-Algor (evidence: results/gemma4/20261007193418Z-cpu)
-- **llm-code-assistant** — ok_runs=0/1: CalledProcessError: Command '['/workspace/.venvs/cpu/b5474a66a7540a14/bin/python', '-m', 'pip', 'install', '-q', '-U', 'gradio>=6.0.0', 'huggingface_hub', 'git+https://github.com/huggingface/optimum-intel.gi (evidence: results/llm-code-assistant/20261007183204Z-cpu)
 - **muse-glimmer** — ok_runs=0/1: Exception: File downloading failed with error: HTTPSConnectionPool(host='storage.openvinotoolkit.org', port=443): Max retries exceeded with url: /repositories/openvino_notebooks/data/data/video/Coco%20Walkin (evidence: results/muse-glimmer/20261007201115Z-cpu)
-- **qwen3.8-mtp** — ok_runs=0/1: URLError: <urlopen error Tunnel connection failed: 403 Forbidden> (evidence: results/qwen3.8-mtp/20261007191855Z-cpu)
-
-## 🌐 cpu · BLOCKED_NETWORK · EXTERNAL_HOST_UNREACHABLE — external host unreachable — 5 workload(s)
-
-- **whisper-asr-genai** — ok_runs=0/1: ConnectTimeout: HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /spaces/distil-whisper/whisper-vs-distil-whisper/resolve/main/assets/example_1.wav (Caused by ConnectTimeo (evidence: results/whisper-asr-genai/20261006T190640Z-cpu)
-- **llm-agent-mcp** — ok_runs=0/3: ConnectTimeout: HTTPSConnectionPool(host='cdn-avatars.huggingface.co', port=443): Max retries exceeded with url: /v1/production/uploads/1671615670447-6346651be2dcb5422bcd13dd.png (Caused by ConnectTimeoutErr (evidence: results/llm-agent-mcp/20261006T113948Z-cpu)
-- **vision-background-removal** — execution category corrected by comprehensive audit: UNKNOWN -> NETWORK (host unreachable; original UNKNOWN hid the network cause) (evidence: results/vision-background-removal/20261006T143506Z-cpu)
-- **instant-id** — ok_runs=0/1: ConnectTimeout: HTTPSConnectionPool(host='drive.google.com', port=443): Max retries exceeded with url: /uc?id=18wEUfMNohBJ4K3Ly5wpTejPfDzp-8fI8 (Caused by ConnectTimeoutError(<HTTPSConnection(host='drive.goo (evidence: results/instant-id/20261006T170232Z-cpu)
-- **qwen3_agent** — ok_runs=0/1: Connection error. (evidence: results/qwen3_agent/20261006T185231Z-cpu)
+- **qwen3.8-mtp** — ok_runs=0/1: URLError: <urlopen error Tunnel connection failed: 403 Forbidden> (evidence: results/qwen3.8-mtp/20261007235921Z-cpu)
 
 ## 🔐 cpu · BLOCKED_MODEL_ACCESS · GATED_OR_RESTRICTED_MODEL — gated or restricted model — 9 workload(s)
 
@@ -35,53 +38,48 @@ Total non-green attempts: 83
 - **pyannote-audio** — ok_runs=0/3: Access to model pyannote/speaker-diarization-community-1 is restricted and you are not in the authorized list. Visit https://huggingface.co/pyannote/speaker-diarization-community-1 to ask for access. (evidence: results/pyannote-audio/20261007151313Z-cpu)
 - **pyannote-embedding** — ok_runs=0/3: Access to model pyannote/embedding is restricted and you are not in the authorized list. Visit https://huggingface.co/pyannote/embedding to ask for access. (evidence: results/pyannote-embedding/20261007154612Z-cpu)
 
-## 📦 cpu · BLOCKED_DEPENDENCY · MISSING_OR_BROKEN_DEPENDENCY — missing or broken dependency — 16 workload(s)
+## 📦 cpu · BLOCKED_DEPENDENCY · MISSING_OR_BROKEN_DEPENDENCY — missing or broken dependency — 13 workload(s)
 
 - **001-whisper-evaluation** — ok_runs=0/3: Please note that you may need to restart your runtime after installation. (evidence: results/001-whisper-evaluation/20261006T090407Z-cpu)
 - **catvton** — ok_runs=0/3: ImportError: cannot import name 'resolve_revision' from 'huggingface_hub' (.venvs/cpu/2c24bba1924a9c98/lib/python3.12/site-packages/huggingface_hub/__init__.py) (evidence: results/catvton/20261006T095954Z-cpu)
-- **glm-ocr** — ok_runs=0/3: CalledProcessError: Command '['optimum-cli', 'export', 'openvino', '--model', 'zai-org/GLM-OCR', 'GLM-OCR/INT4', '--task', 'image-text-to-text', '--weight-format', 'int4', '--group-size', '128', '--ratio', ' (evidence: results/glm-ocr/20261006T110628Z-cpu)
 - **llm-rag-langchain-eval** — ok_runs=0/3: ModuleNotFoundError: Could not import module 'OVModelForCausalLM'. Are this object's requirements defined correctly? (evidence: results/llm-rag-langchain-eval/20261006T115949Z-cpu)
 - **phi3_chatbot_demo** — execution category corrected by comprehensive audit: LICENSE_RESTRICTION -> DEPENDENCY (protobuf API drift, not a license restriction) (evidence: results/phi3_chatbot_demo/20261006T131146Z-cpu)
 - **qwen3-asr** — ok_runs=0/3: ModuleNotFoundError: Could not import module 'OVModelForSpeechSeq2Seq'. Are this object's requirements defined correctly? (evidence: results/qwen3-asr/20261006T161620Z-cpu)
 - **olmocr-pdf-vlm** — ok_runs=0/1: ModuleNotFoundError: Could not import module 'AutoProcessor'. Are this object's requirements defined correctly? (evidence: results/olmocr-pdf-vlm/20261007T013506Z-cpu)
 - **openvoice2-and-melotts** — ok_runs=0/1: ModuleNotFoundError: Could not import module 'AutoTokenizer'. Are this object's requirements defined correctly? (evidence: results/openvoice2-and-melotts/20261007T013600Z-cpu)
 - **qwen2.5-omni-chatbot** — ok_runs=0/1: AttributeError: type object 'openvino._pyopenvino.Type' has no attribute 'u2' (evidence: results/qwen2.5-omni-chatbot/20261006T183850Z-cpu)
-- **clip-zero-shot-classification** — ok_runs=0/3: Please note that you may need to restart your runtime after installation. (evidence: results/clip-zero-shot-classification/20261006T192037Z-cpu)
 - **convert-to-openvino** — ok_runs=0/3: ModuleNotFoundError: Could not import module 'AutoModelForSequenceClassification'. Are this object's requirements defined correctly? (evidence: results/convert-to-openvino/20261006T192100Z-cpu)
 - **rf-detr-object-detection** — ok_runs=0/3: ModuleNotFoundError: No module named 'triton.backends' (evidence: results/rf-detr-object-detection/20261006T201434Z-cpu)
 - **z-image-turbo** — ok_runs=0/3: CalledProcessError: Command '['optimum-cli', 'export', 'openvino', '--model', 'Tongyi-MAI/Z-Image-Turbo', 'Z-Image-Turbo/INT4', '--task', 'text-to-image', '--weight-format', 'int4', '--group-size', '64', '-- (evidence: results/z-image-turbo/20261006T211426Z-cpu)
-- **person-tracking** — ok_runs=0/1: ModuleNotFoundError: No module named 'deepsort_utils' (evidence: results/person-tracking/20261006T221532Z-cpu)
 - **llm-rag-langchain-genai** — ok_runs=0/1: CalledProcessError: Command '['optimum-cli', 'export', 'openvino', '--model', 'TinyLlama/TinyLlama-1.1B-Chat-v1.0', 'tiny-llama-1b-chat/INT4_compressed_weights', '--task', 'text-generation-with-past', '--wei (evidence: results/llm-rag-langchain-genai/20261006T223956Z-cpu)
 - **llm-rag-llamaindex** — execution category corrected by comprehensive audit: PACKAGE_CONFLICT -> DEPENDENCY (missing NLTK data resource, not a package conflict) (evidence: results/llm-rag-llamaindex/20261006T224033Z-cpu)
 
-## 📦 cpu · BLOCKED_DEPENDENCY · PACKAGE_RESOLUTION_CONFLICT — package resolution conflict — 6 workload(s)
+## 📦 cpu · BLOCKED_DEPENDENCY · PACKAGE_RESOLUTION_CONFLICT — package resolution conflict — 5 workload(s)
 
 - **ernie-image** — ok_runs=0/3: CalledProcessError: Command '['optimum-cli', 'export', 'openvino', '--model', 'baidu/ERNIE-Image-Turbo', 'ERNIE-Image-Turbo/INT4', '--task', 'text-to-image', '--weight-format', 'int4', '--ratio', '0.8']' ret (evidence: results/ernie-image/20261006T101823Z-cpu)
 - **funasr-nano** — ok_runs=0/3: cannot import name 'Qwen3VLForConditionalGeneration' from 'transformers' (.venvs/cpu/0e02466db943f1d6/lib/python3.12/site-packages/transformers/__init__.py) (evidence: results/funasr-nano/20261006T110542Z-cpu)
 - **omniparser** — ok_runs=0/3: Exception: Connection timed out. If you access the internet through a proxy server, please make sure the proxy is set in the shell from where you launched Jupyter. (evidence: results/omniparser/20261006T122239Z-cpu)
-- **qwen-image** — ok_runs=0/3: CalledProcessError: Command '['optimum-cli', 'export', 'openvino', '--model', 'Qwen/Qwen-Image-2512', 'Qwen-Image-2512/INT8', '--weight-format', 'int8']' returned non-zero exit status 1. (evidence: results/qwen-image/20261006T131310Z-cpu)
 - **text-to-speech-genai** — ok_runs=0/3: CalledProcessError: Command '['optimum-cli', 'export', 'openvino', '--model', 'microsoft/speecht5_tts', 'speecht5_tts', '--model-kwargs', '{"vocoder":"microsoft/speecht5_hifigan"}']' returned non-zero exit s (evidence: results/text-to-speech-genai/20261006T142245Z-cpu)
 - **flux.2-klein** — ok_runs=0/1: CalledProcessError: Command '['optimum-cli', 'export', 'openvino', '--model', 'black-forest-labs/FLUX.2-klein-4B', 'FLUX.2-klein-4B/INT4', '--task', 'text-to-image', '--weight-format', 'int4', '--group-size' (evidence: results/flux.2-klein/20261006T165448Z-cpu)
 
-## 📦 cpu · BLOCKED_DEPENDENCY · OPTIMUM_CLI_MISSING_OR_BROKEN — optimum cli missing or broken — 3 workload(s)
+## 📦 gpu · BLOCKED_DEPENDENCY · TRANSFORMERS_GENERATION_CONTRACT — transformers generation contract — 2 workload(s)
 
-- **hunyuan-ocr** — ok_runs=0/1: ValueError: Unexpected dependency in optimum-intel/setup.py: "optimum@https://codeload.github.com/huggingface/optimum/tar.gz/HEAD" (evidence: results/hunyuan-ocr/20261007T013051Z-cpu)
+- **deepseek-ocr** — v0.3 GPU adjudication: DeepSeek-OCR-2's remote code targets transformers 4.x (imports LlamaFlashAttention2, removed in 5.x) and its checkpoint config does not match the 5.17 built-in DeepseekOcr2 class. Requires the pinn (evidence: results/deepseek-ocr/20261008T033046Z-gpu)
+- **florence2** — v0.3 GPU adjudication: Florence-2 remote code drifts across transformers generations (forced_bos_token_id config default, RobertaTokenizer additional_special_tokens, PreTrainedModel._supports_sdpa) — fails on both 5.17 a (evidence: results/florence2/20261008T063206Z-gpu)
+
+## 📦 gpu · BLOCKED_DEPENDENCY · UPSTREAM_PACKAGE_CONTRACT — upstream package contract — 2 workload(s)
+
+- **qwen3-tts** — v0.3 GPU adjudication: qwen-tts requires transformers==4.57.3 (and torchaudio/sox); in the bridged 4.57.3 env the loader cannot read the Qwen3-TTS feature-extractor artifact (5.x-era repo format), and in the 5.17 env the (evidence: results/qwen3-tts/20261008T105424Z-gpu)
+- **yolov26-object-detection** — v0.3 GPU adjudication: the official ultralytics release host (github releases) is blocked on this runner; the Ultralytics HF org mirror of yolo26n.pt loads and runs on the GPU (0.02s inference, device-proof captured) but (evidence: results/yolov26-object-detection/20261008T105602Z-gpu)
+
+## 📦 cpu · BLOCKED_DEPENDENCY · OPTIMUM_CLI_MISSING_OR_BROKEN — optimum cli missing or broken — 2 workload(s)
+
 - **ltx-video** — notebook changed upstream after this attempt (pre-repin evidence; content sha differs from pinned snapshot); revalidation queued with failure-retry remediation (evidence: results/ltx-video/20261006T221001Z-cpu)
 - **llm-rag-langchain** — notebook changed upstream after this attempt (pre-repin evidence; content sha differs from pinned snapshot); revalidation queued with failure-retry remediation (evidence: results/llm-rag-langchain/20261006T223902Z-cpu)
 
-## 📦 cpu · BLOCKED_DEPENDENCY · HARNESS_NOTEBOOK_RELATIVE_ASSET — harness notebook relative asset — 2 workload(s)
+## 📦 cpu · BLOCKED_DEPENDENCY · HARNESS_NOTEBOOK_RELATIVE_ASSET — harness notebook relative asset — 1 workload(s)
 
 - **paddleocr_vl** — adjudicated (HARNESS_NOTEBOOK_RELATIVE_ASSET): Notebook expects sibling asset test.png; same harness notebook-relative-asset defect (fixed this closure — revalidation queued). (evidence: results/paddleocr_vl/20261006T123520Z-cpu)
-- **vlm-chatbot-generate-api** — adjudicated (HARNESS_NOTEBOOK_RELATIVE_ASSET): Notebook expects sibling asset nyc.jpg; the headless kernel cwd lacked notebook-dir data files (harness defect at validation time; fixed this closure — revalidation queued). (evidence: results/vlm-chatbot-generate-api/20261006T190053Z-cpu)
-
-## 📦 cpu · BLOCKED_DEPENDENCY · UPSTREAM_NOTEBOOK_RERUN_SCOPING — upstream notebook rerun scoping — 2 workload(s)
-
-- **3d-segmentation-point-clouds** — execution category corrected by comprehensive audit: OPENVINO_ERROR -> DEPENDENCY (NameError from upstream rerun-scoping bug, not an OpenVINO runtime error) (evidence: results/3d-segmentation-point-clouds/20261006T191359Z-cpu)
-- **action-recognition-webcam** — execution category corrected by comprehensive audit: UNKNOWN -> DEPENDENCY (NameError from upstream rerun-scoping bug, not an OpenVINO runtime error) (evidence: results/action-recognition-webcam/20261006T220552Z-cpu)
-
-## 📦 cpu · BLOCKED_DEPENDENCY · INTERACTIVE_UI_TEARDOWN_AFTER_SKIP — interactive ui teardown after skip — 1 workload(s)
-
-- **stable-diffusion-xl** — ok_runs=0/3: NameError: name 'demo' is not defined (evidence: results/stable-diffusion-xl/20261006T140920Z-cpu)
 
 ## 📦 cpu · BLOCKED_DEPENDENCY · DATASETS_API_DRIFT — datasets api drift — 1 workload(s)
 
@@ -91,9 +89,17 @@ Total non-green attempts: 83
 
 - **glm4.1-v-thinking** — adjudicated (OPTIMUM_EXPORT_FAILED_ROOT_CAUSE_NOT_CAPTURED): optimum-cli was present and ran; the export subprocess failed (exit 1) with its stderr swallowed by cmd_helper's capture_output (upstream helper limitation, fi (evidence: results/glm4.1-v-thinking/20261006T165509Z-cpu)
 
+## 📦 cpu · BLOCKED_DEPENDENCY · FORK_EXPORT_INCOMPATIBILITY — fork export incompatibility — 1 workload(s)
+
+- **hunyuan-ocr** — v0.3 final adjudication: the full dependency chain is now RESOLVED on this pin (fork from codeload at pinned rev; nested optimum pin via codeload tarball of the notebook's own 52367da7 revision; transformers from the not (evidence: results/hunyuan-ocr/20261008123128Z-cpu)
+
 ## 📦 cpu · BLOCKED_DEPENDENCY · TRANSFORMERS_API_DRIFT — transformers api drift — 1 workload(s)
 
 - **minicpm-o-4.5** — execution category corrected by comprehensive audit: PACKAGE_CONFLICT -> DEPENDENCY (transformers API drift, not a package conflict) (evidence: results/minicpm-o-4.5/20261006T171910Z-cpu)
+
+## 📦 cpu · BLOCKED_DEPENDENCY · GIT_TRANSPORT_INSTALL_BLOCKED — git transport install blocked — 1 workload(s)
+
+- **clip-zero-shot-classification** — v0.3 adjudication: root cause unchanged in kind but now precisely bounded: the install cell's `git+https://github.com/huggingface/optimum-intel.git` (floating master) declares a nested optimum-onnx git dependency whose c (evidence: results/clip-zero-shot-classification/20261008073512Z-cpu)
 
 ## ⏱️ cpu · BLOCKED_TIMEOUT · TIMEOUT_INFERENCE — timeout inference — 10 workload(s)
 
@@ -126,6 +132,11 @@ Total non-green attempts: 83
 - **unlimited-ocr** — ok_runs=0/3: (evidence: results/unlimited-ocr/20261006T142458Z-cpu)
 - **voxcpm2-tts** — ok_runs=0/3: (evidence: results/voxcpm2-tts/20261006T144007Z-cpu)
 
+## 💾 cpu · BLOCKED_RESOURCE · IR_EXPORT_WRITE_IOSTREAM_ERROR — ir export write iostream error — 2 workload(s)
+
+- **stable-diffusion-xl** — v0.3 adjudication: optimum-cli OpenVINO IR export fails in ov save_model with RuntimeError: basic_ios::clear (iostream error) — the same IR-write signature family as the v0.2.2 minicpm-o adjudication (BLOCKED_RESOURCE), (evidence: results/stable-diffusion-xl/20261008082930Z-cpu)
+- **vlm-chatbot-generate-api** — v0.3 adjudication: optimum-cli OpenVINO IR export fails in ov save_model with RuntimeError: basic_ios::clear (iostream error) — the same IR-write signature family as the v0.2.2 minicpm-o adjudication (BLOCKED_RESOURCE), (evidence: results/vlm-chatbot-generate-api/20261008083427Z-cpu)
+
 ## 💾 cpu · BLOCKED_RESOURCE · MODEL_ARTIFACT_INCOMPLETE_OR_CORRUPT — model artifact incomplete or corrupt — 2 workload(s)
 
 - **bernini-r-image-video** — ok_runs=0/3: KeyError: 'blocks.0.attn1.to_q.weight' (evidence: results/bernini-r-image-video/20261006T211512Z-cpu)
@@ -139,9 +150,17 @@ Total non-green attempts: 83
 
 - **fastdraft_deepseek** — execution category corrected by comprehensive audit: OPENVINO_ERROR -> MODEL_ACCESS (model artifact absent at load time, not a runtime error) (evidence: results/fastdraft_deepseek/20261006T164655Z-cpu)
 
+## 💾 cpu · BLOCKED_RESOURCE · DISK_BUDGET_EXCEEDED — disk budget exceeded — 1 workload(s)
+
+- **qwen-image** — v0.3 adjudication: dependency root cause from v0.2.2 is FIXED on this pin (codeload transport + --no-deps fork install land; installs complete), but the workload needs ~26GB of Qwen-Image-2512 weights plus a large IR exp (evidence: results/qwen-image/20261007233531Z-cpu)
+
 ## 💾 cpu · BLOCKED_RESOURCE · MODEL_FILE_IO_FAILURE_SAVE_OR_LOAD — model file io failure save or load — 1 workload(s)
 
 - **minicpm-o-omnimodal-chatbot** — v0.2.2 Gate-5-corrected adjudication: the basic_ios::clear iostream error was raised from ov.save_model(...) (IR WRITE path) after core.read_model and nncf.compress_weights had succeeded on the freshly downloaded ~17.4GB (evidence: results/minicpm-o-omnimodal-chatbot/20261007204800Z-cpu)
+
+## 💾 cpu · BLOCKED_RESOURCE · DISK_EXHAUSTED_DURING_EXPORT_OPERATOR_HALTED — disk exhausted during export operator halted — 1 workload(s)
+
+- **gemma4** — v0.3 resource adjudication: the 2b1600d-pin rerun progressed past dependency install (optimum-intel master resolved via codeload transport) into the Gemma-4-E2B OpenVINO export when the validation disk hit 100% utilizati (evidence: results/gemma4/20261008000709Z-cpu)
 
 ## 🧩 cpu · FAILED_COMPATIBILITY · OPENVINO_RUNTIME — openvino runtime — 1 workload(s)
 

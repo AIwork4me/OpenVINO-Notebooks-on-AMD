@@ -1,0 +1,41 @@
+[IPKernelApp] WARNING | Kernel is running over TCP without encryption. All communication (including code and outputs) is sent in plain text and is susceptible to eavesdropping. Use IPC transport or launch with kernel manager-provisioned CurveZMQ keys to enable transport encryption.
+[31mERROR: pip's dependency resolver does not currently take into account all the packages that are installed. This behaviour is the source of the following dependency conflicts.
+hf-gradio 0.4.1 requires gradio-client<3.0,>=2.0, but you have gradio-client 1.14.0 which is incompatible.[0m[31m
+[0mes:  89%|████████▉ | 8/9 [00:00<00:00, 13.86it/s]Fetching 9 files: 100%|██████████| 9/9 [00:00<00:00, 14.61it/s]
+`torch_dtype` is deprecated! Use `dtype` instead!
+The tokenizer class you load from this checkpoint is not the same type as the class this function is called from. It may result in unexpected tokenization. 
+The tokenizer class you load from this checkpoint is 'TokenizersBackend'. 
+The class this function is called from is 'PreTrainedTokenizerFast'.
+/workspace/.venvs/cpu/0e3c03443623f289/lib/python3.12/site-packages/huggingface_hub/file_download.py:805: UserWarning: Not enough free disk space to download the file. The expected file size is: 0.00 MB. The target location /workspace/.cache/huggingface/transformers/models--baidu--ERNIE-Image-Turbo/blobs only has 0.00 MB free disk space.
+  warnings.warn(
+/workspace/.venvs/cpu/0e3c03443623f289/lib/python3.12/site-packages/huggingface_hub/file_download.py:805: UserWarning: Not enough free disk space to download the file. The expected file size is: 7698.24 MB. The target location /workspace/.cache/huggingface/transformers/models--baidu--ERNIE-Image-Turbo/blobs only has 0.00 MB free disk space.
+  warnings.warn(
+Traceback (most recent call last):
+  File "/workspace/.venvs/cpu/0e3c03443623f289/bin/optimum-cli", line 6, in <module>
+    sys.exit(main())
+             ^^^^^^
+  File "/workspace/.venvs/cpu/0e3c03443623f289/lib/python3.12/site-packages/optimum/commands/optimum_cli.py", line 219, in main
+    service.run()
+  File "/workspace/.venvs/cpu/0e3c03443623f289/lib/python3.12/site-packages/optimum/commands/export/openvino.py", line 468, in run
+    main_export(
+  File "/workspace/.venvs/cpu/0e3c03443623f289/lib/python3.12/site-packages/optimum/exporters/openvino/__main__.py", line 571, in main_export
+    text_encoder=AutoModel.from_pretrained(**_sub("text_encoder"), **_dtype_kwarg),
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/.venvs/cpu/0e3c03443623f289/lib/python3.12/site-packages/transformers/models/auto/auto_factory.py", line 604, in from_pretrained
+    return model_class.from_pretrained(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/.venvs/cpu/0e3c03443623f289/lib/python3.12/site-packages/transformers/modeling_utils.py", line 277, in _wrapper
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/.venvs/cpu/0e3c03443623f289/lib/python3.12/site-packages/transformers/modeling_utils.py", line 4900, in from_pretrained
+    checkpoint_files, sharded_metadata = _get_resolved_checkpoint_files(
+                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/.venvs/cpu/0e3c03443623f289/lib/python3.12/site-packages/transformers/modeling_utils.py", line 1037, in _get_resolved_checkpoint_files
+    resolved_archive_file = cached_file(pretrained_model_name_or_path, filename, **cached_file_kwargs)
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/.venvs/cpu/0e3c03443623f289/lib/python3.12/site-packages/transformers/utils/hub.py", line 322, in cached_file
+    file = cached_files(path_or_repo_id=path_or_repo_id, filenames=[filename], **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/.venvs/cpu/0e3c03443623f289/lib/python3.12/site-packages/transformers/utils/hub.py", line 567, in cached_files
+    raise e
+  File "/w

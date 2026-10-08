@@ -1,0 +1,37 @@
+/workspace/.venv-gpu-tf457/lib/python3.12/site-packages/transformers/utils/hub.py:110: FutureWarning: Using `TRANSFORMERS_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.
+  warnings.warn(
+`torch_dtype` is deprecated! Use `dtype` instead!
+Fetching 4 files:   0%|                                                                                                            | 0/4 [00:00<?, ?it/s]Fetching 4 files:  25%|█████████████████████████                                                                           | 1/4 [00:00<00:01,  1.74it/s]Fetching 4 files:  50%|██████████████████████████████████████████████████                                                  | 2/4 [00:00<00:00,  3.05it/s]Fetching 4 files:  75%|███████████████████████████████████████████████████████████████████████████                         | 3/4 [00:09<00:04,  4.28s/it]Fetching 4 files: 100%|████████████████████████████████████████████████████████████████████████████████████████████████████| 4/4 [00:09<00:00,  2.43s/it]
+Traceback (most recent call last):
+  File "/workspace/.venv-gpu-tf457/lib/python3.12/site-packages/transformers/feature_extraction_utils.py", line 529, in get_feature_extractor_dict
+    resolved_feature_extractor_file = resolved_feature_extractor_files[0]
+                                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^
+IndexError: list index out of range
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/workspace/workloads/qwen3-tts/rocm/run.py", line 135, in <module>
+    raise SystemExit(main())
+                     ^^^^^^
+  File "/workspace/workloads/qwen3-tts/rocm/run.py", line 78, in main
+    model = Qwen3TTSModel.from_pretrained(MODEL, torch_dtype=torch.bfloat16, device_map="cuda:0")
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/results/qwen3-tts/20261008T105424Z-gpu/Qwen3-TTS-repo/qwen_tts/inference/qwen3_tts_model.py", line 112, in from_pretrained
+    model = AutoModel.from_pretrained(pretrained_model_name_or_path, **kwargs)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/.venv-gpu-tf457/lib/python3.12/site-packages/transformers/models/auto/auto_factory.py", line 604, in from_pretrained
+    return model_class.from_pretrained(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/results/qwen3-tts/20261008T105424Z-gpu/Qwen3-TTS-repo/qwen_tts/core/models/modeling_qwen3_tts.py", line 1915, in from_pretrained
+    speech_tokenizer = Qwen3TTSTokenizer.from_pretrained(
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/results/qwen3-tts/20261008T105424Z-gpu/Qwen3-TTS-repo/qwen_tts/inference/qwen3_tts_tokenizer.py", line 87, in from_pretrained
+    inst.feature_extractor = AutoFeatureExtractor.from_pretrained(pretrained_model_name_or_path)
+                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/.venv-gpu-tf457/lib/python3.12/site-packages/transformers/models/auto/feature_extraction_auto.py", line 358, in from_pretrained
+    config_dict, _ = FeatureExtractionMixin.get_feature_extractor_dict(pretrained_model_name_or_path, **kwargs)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/.venv-gpu-tf457/lib/python3.12/site-packages/transformers/feature_extraction_utils.py", line 536, in get_feature_extractor_dict
+    raise OSError(
+OSError: Can't load feature extractor for '/workspace/.cache/huggingface/transformers/models--Qwen--Qwen3-TTS-12Hz-0.6B-CustomVoice/snapshots/85e237c12c027371202489a0ec509ded67b5e4b5/speech_tokenizer'. If you were trying to load it from 'https://huggingface.co/models', make sure you don't have a local directory with the same name. Otherwise, make sure '/workspace/.cache/huggingface/transformers/models--Qwen--Qwen3-TTS-12Hz-0.6B-CustomVoice/snapshots/85e237c12c027371202489a0ec509ded67b5e4b5/speech_tokenizer' is the correct path to a directory containing a preprocessor_config.json file

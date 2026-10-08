@@ -1,0 +1,10 @@
+[cell 0 START +    0.5s] # Wav2Lip: Accurately Lip-syncing Videos and OpenVINO |  | Lip sync techno
+[cell 1 START +    0.5s] ## Prerequisites | [back to top ⬆️](#Table-of-contents:)
+[cell 2 START +    0.5s] import requests | from pathlib import Path |  | if not Path("notebook_utils.
+[cell 2 DONE  +    1.9s]
+[cell 3 START +    1.9s] from cmd_helper import clone_repo |  | clone_repo("https://github.com/Rudr
+[cell 3 DONE  +    1.9s]
+[cell 4 START +    1.9s] Download example files.
+[cell 5 START +    1.9s] from notebook_utils import download_file |  | download_file("https://githu
+[cell 5 DONE  +    2.4s]
+NBEXEC_RESULT={"ok": false, "n_cells": 10, "n_skipped": 1, "n_substituted": 0, "stopped_after": null, "error_cell": null, "error_type": "CellExecutionError", "error_head": "\u001b[31mException\u001b[39m: File downloading failed with error: HTTPSConnectionPool(host='raw.githubusercontent.com', port=443): Max retries exceeded with url: /sammysun0711/openvino_aigc_samples/refs/heads/main/Wav2Lip/data_audio_sun_5s.wav (Caused by SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1000)')))", "duration_s": 2.59, "patch_notes": ["skipped cell 19: matched skip pattern"]}

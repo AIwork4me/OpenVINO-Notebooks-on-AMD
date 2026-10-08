@@ -1,0 +1,19 @@
+/workspace/.venv-gpu/lib/python3.12/site-packages/huggingface_hub/utils/_validators.py:206: UserWarning: The `local_dir_use_symlinks` argument is deprecated and ignored in `hf_hub_download`. Downloading to a local directory does not use symlinks anymore.
+  warnings.warn(
+/workspace/.venv-gpu/lib/python3.12/site-packages/diffusers/utils/deprecation_utils.py:23: FutureWarning: `torch_dtype` is deprecated and will be removed in version 1.0.0. Please use `dtype` instead.
+  deprecate("torch_dtype", "1.0.0", _TORCH_DTYPE_DEPRECATION_MESSAGE)
+Fetching 18 files:   0%|          | 0/18 [00:00<?, ?it/s]Fetching 18 files:  11%|█         | 2/18 [00:00<00:03,  4.29it/s]Fetching 18 files:  17%|█▋        | 3/18 [00:00<00:04,  3.09it/s]Fetching 18 files:  33%|███▎      | 6/18 [00:01<00:02,  5.01it/s]Fetching 18 files:  39%|███▉      | 7/18 [00:01<00:02,  5.00it/s]Fetching 18 files:  44%|████▍     | 8/18 [00:02<00:04,  2.25it/s]Fetching 18 files:  56%|█████▌    | 10/18 [00:03<00:02,  2.81it/s]Fetching 18 files:  61%|██████    | 11/18 [00:03<00:02,  3.02it/s]Fetching 18 files:  67%|██████▋   | 12/18 [00:03<00:02,  2.72it/s]Fetching 18 files:  72%|███████▏  | 13/18 [00:07<00:05,  1.12s/it]Fetching 18 files:  78%|███████▊  | 14/18 [01:23<01:26, 21.61s/it]Fetching 18 files:  83%|████████▎ | 15/18 [01:34<00:56, 18.69s/it]Fetching 18 files:  89%|████████▉ | 16/18 [01:48<00:34, 17.11s/it]Fetching 18 files:  94%|█████████▍| 17/18 [03:03<00:33, 33.87s/it]Fetching 18 files: 100%|██████████| 18/18 [03:38<00:00, 34.25s/it]Fetching 18 files: 100%|██████████| 18/18 [03:38<00:00, 12.12s/it]
+Loading pipeline components...:   0%|          | 0/5 [00:00<?, ?it/s]
+Loading weights:   0%|          | 0/398 [00:00<?, ?it/s][ALoading weights: 100%|██████████| 398/398 [00:00<00:00, 6558.05it/s]
+Loading pipeline components...:  40%|████      | 2/5 [00:00<00:00, 10.11it/s]
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s][A
+Loading checkpoint shards:  33%|███▎      | 1/3 [00:03<00:07,  3.75s/it][A
+Loading checkpoint shards:  67%|██████▋   | 2/3 [00:09<00:04,  4.66s/it][ALoading pipeline components...:  40%|████      | 2/5 [00:11<00:00, 10.11it/s]
+Loading checkpoint shards: 100%|██████████| 3/3 [00:14<00:00,  5.20s/it][ALoading checkpoint shards: 100%|██████████| 3/3 [00:14<00:00,  4.96s/it]
+Loading pipeline components...:  80%|████████  | 4/5 [00:15<00:04,  4.59s/it]Loading pipeline components...: 100%|██████████| 5/5 [00:15<00:00,  3.13s/it]
+/workspace/.venv-gpu/lib/python3.12/site-packages/transformers/integrations/sdpa_attention.py:158: UserWarning: Using AOTriton backend for Efficient Attention forward... (Triggered internally at /app/pytorch/aten/src/ATen/native/transformers/hip/attention.hip:1452.)
+  attn_output = torch.nn.functional.scaled_dot_product_attention(
+  0%|          | 0/8 [00:00<?, ?it/s] 25%|██▌       | 2/8 [00:00<00:00, 19.10it/s] 62%|██████▎   | 5/8 [00:01<00:01,  2.75it/s] 75%|███████▌  | 6/8 [00:03<00:01,  1.25it/s] 88%|████████▊ | 7/8 [00:06<00:01,  1.37s/it]100%|██████████| 8/8 [00:08<00:00,  1.58s/it]100%|██████████| 8/8 [00:08<00:00,  1.11s/it]
+  0%|          | 0/8 [00:00<?, ?it/s] 50%|█████     | 4/8 [00:00<00:00, 32.92it/s]100%|██████████| 8/8 [00:09<00:00,  1.33s/it]100%|██████████| 8/8 [00:09<00:00,  1.14s/it]
+  0%|          | 0/8 [00:00<?, ?it/s] 50%|█████     | 4/8 [00:00<00:00, 31.91it/s] 88%|████████▊ | 7/8 [00:10<00:00, 31.91it/s]100%|██████████| 8/8 [00:11<00:00,  1.64s/it]100%|██████████| 8/8 [00:11<00:00,  1.40s/it]
+  0%|          | 0/8 [00:00<?, ?it/s] 50%|█████     | 4/8 [00:00<00:00, 32.50it/s]100%|██████████| 8/8 [00:10<00:00,  1.57s/it]100%|██████████| 8/8 [00:10<00:00,  1.34s/it]
