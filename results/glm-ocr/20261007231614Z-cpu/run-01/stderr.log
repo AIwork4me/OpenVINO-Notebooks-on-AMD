@@ -1,0 +1,84 @@
+[IPKernelApp] WARNING | Kernel is running over TCP without encryption. All communication (including code and outputs) is sent in plain text and is susceptible to eavesdropping. Use IPC transport or launch with kernel manager-provisioned CurveZMQ keys to enable transport encryption.
+[31mERROR: pip's dependency resolver does not currently take into account all the packages that are installed. This behaviour is the source of the following dependency conflicts.
+optimum-intel 1.27.0.dev0+ffc9fd3 requires transformers<5.1,>=4.45, but you have transformers 5.5.4 which is incompatible.[0m[31m
+[0mTraceback (most recent call last):
+  File "/workspace/ov_amd/_nbexec.py", line 144, in main
+    client.execute()
+  File "/workspace/.venvs/cpu/0e3c03443623f289/lib/python3.12/site-packages/jupyter_core/utils/__init__.py", line 165, in wrapped
+    return loop.run_until_complete(inner)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/base_events.py", line 687, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/workspace/.venvs/cpu/0e3c03443623f289/lib/python3.12/site-packages/nbclient/client.py", line 709, in async_execute
+    await self.async_execute_cell(
+  File "/workspace/.venvs/cpu/0e3c03443623f289/lib/python3.12/site-packages/nbclient/client.py", line 1062, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/workspace/.venvs/cpu/0e3c03443623f289/lib/python3.12/site-packages/nbclient/client.py", line 918, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+%pip uninstall -q -y optimum optimum-intel optimum-onnx
+
+from notebook_utils import pip_install
+
+pip_install("-q", "torch>=2.8", "torchvision", "--extra-index-url", "https://download.pytorch.org/whl/cpu")
+pip_install("-q", "git+https://github.com/openvino-dev-samples/optimum-intel.git@GLM-OCR")
+pip_install("-q", "transformers==5.5.4")
+pip_install("-q", "openvino>=2026.1.0", "nncf>=2.17.0")
+pip_install("-q", "gradio>=5.25.0", "Pillow>=10")
+
+# Fetch the sample OCR images used in the OCR inference and pipeline cells.
+# They are hosted as GitHub user-attachments rather than bundled in the repo.
+from gradio_helper import download_example_assets
+
+download_example_assets()
+------------------
+
+----- stdout -----
+[33mWARNING: Skipping optimum as it is not installed.[0m[33m
+[0m[33mWARNING: Skipping optimum-intel as it is not installed.[0m[33m
+[0m[33mWARNING: Skipping optimum-onnx as it is not installed.[0m[33m
+[0m
+----- stdout -----
+Note: you may need to restart the kernel to use updated packages.
+----- stderr -----
+[31mERROR: pip's dependency resolver does not currently take into account all the packages that are installed. This behaviour is the source of the following dependency conflicts.
+optimum-intel 1.27.0.dev0+ffc9fd3 requires transformers<5.1,>=4.45, but you have transformers 5.5.4 which is incompatible.[0m[31m
+[0m
+------------------
+
+[31m---------------------------------------------------------------------------[39m
+[31mException[39m                                 Traceback (most recent call last)
+[36mCell[39m[36m [39m[32mIn[2][39m[32m, line 15[39m
+[32m     11[39m [38;5;66;03m# Fetch the sample OCR images used in the OCR inference and pipeline cells.[39;00m
+[32m     12[39m [38;5;66;03m# They are hosted as GitHub user-attachments rather than bundled in the repo.[39;00m
+[32m     13[39m [38;5;28;01mfrom[39;00m gradio_helper [38;5;28;01mimport[39;00m download_example_assets
+[32m     14[39m 
+[32m---> [39m[32m15[39m download_example_assets()
+
+[36mFile [39m[32m/workspace/results/glm-ocr/workdir-cpu/gradio_helper.py:204[39m, in [36mdownload_example_assets[39m[34m()[39m
+[32m    195[39m [38;5;250m[39m[33;03m"""Download example images from their canonical GitHub user-attachment URLs.[39;00m
+[32m    196[39m 
+[32m    197[39m [33;03mUses :func:`notebook_utils.download_file`, which already handles the[39;00m
+[32m   (...)[39m[32m    200[39m [33;03mfetched into).[39;00m
+[32m    201[39m [33;03m"""[39;00m
+[32m    202[39m [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01mnotebook_utils[39;00m[38;5;250m [39m[38;5;28;01mimport[39;00m download_file
+[32m--> [39m[32m204[39m [38;5;28;01mreturn[39;00m [[30;43mdownload_file[39;49m[30;43m([39;49m[30;43murl[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mfilename[39;49m[30;43m=[39;49m[30;43mname[39;49m[30;43m)[39;49m [38;5;28;01mfor[39;00m name, url [38;5;129;01min[39;00m EXAMPLE_ASSET_URLS.items()]
+
+[36mFile [39m[32m/workspace/results/glm-ocr/workdir-cpu/notebook_utils.py:154[39m, in [36mdownload_file[39m[34m(url, filename, directory, show_progress)[39m
+[32m    149[39m     [38;5;28;01mraise[39;00m [38;5;167;01mException[39;00m(
+[32m    150[39m         [33m"[39m[33mConnection timed out. If you access the internet through a proxy server, please [39m[33m"[39m
+[32m    151[39m         [33m"[39m[33mmake sure the proxy is set in the shell from where you launched Jupyter.[39m[33m"[39m
+[32m    152[39m     ) [38;5;28;01mfrom[39;00m[38;5;250m [39m[38;5;28;01mNone[39;00m
+[32m    153[39m [38;5;28;01mexcept[39;00m requests.exceptions.RequestException [38;5;28;01mas[39;00m error:
+[32m--> [39m[32m154[39m     [38;5;28;01mraise[39;00m [38;5;167;01mException[39;00m([33mf[39m[33m"[39m[33mFile downloading failed with error: [39m[38;5;132;01m{[39;00merror[38;5;132;01m}[39;00m[33m"[39m) [38;5;28;01mfrom[39;00m[38;5;250m [39m[38;5;28;01mNone[39;00m
+[32m    156[39m filesize = [38;5;28mint[39m(response.headers.get([33m"[39m[33mContent-length[39m[33m"[39m, [32m0[39m))
+[32m    157[39m [38;5;66;03m# Let urllib3 verify we actually received as many bytes as the server[39;00m
+[32m    158[39m [38;5;66;03m# declared, at the raw transport level, before any gzip/deflate decoding[39;00m
+[32m    159[39m [38;5;66;03m# happens. iter_content() yields decompressed bytes, so counting those[39;00m
+[32m    160[39m [38;5;66;03m# ourselves and comparing to Content-length breaks for compressed[39;00m
+[32m    161[39m [38;5;66;03m# responses, since Content-length reflects the compressed size on the wire.[39;00m
+
+[31mException[39m: File downloading failed with error: HTTPSConnectionPool(host='github-production-user-asset-6210df.s3.amazonaws.com', port=443): Max retries exceeded with url: /91237924/585170821-fda2c6f6-bbba-4ece-b90b-c42bca60e525.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAVCODYLSA53PQK4ZA%2F20261007%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20261007T231724Z&X-Amz-Expires=300&X-Amz-Signature=28cf4fd784d7d79b6bc25a3672ebae5cd8c39d44a748e8aed5f032fd4bfe9323&X-Amz-SignedHeaders=host&response-content-type=image%2Fpng (Caused by ProxyError('Unable to connect to proxy', OSError('Tunnel connection failed: 403 Forbidden')))
+

@@ -1,0 +1,9 @@
+{
+  "schema_version": 2,
+  "repository": "openvinotoolkit/openvino_notebooks",
+  "branch": "latest",
+  "commit": "2b1600de9620e4a2d26f1ef5c83fad64d7d76f7b",
+  "path": "notebooks/qwen-image/qwen-image.ipynb",
+  "url": "https://github.com/openvinotoolkit/openvino_notebooks/blob/2b1600de9620e4a2d26f1ef5c83fad64d7d76f7b/notebooks/qwen-image/qwen-image.ipynb",
+  "notebook_sha256": "a09466eef75e4df57e74d716bfd9a5874766d8848a973e2b9ea19606553f8f79"
+}

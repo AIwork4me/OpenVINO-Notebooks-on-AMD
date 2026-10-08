@@ -1,0 +1,19 @@
+[cell 0 START +    0.5s] # Part Segmentation of 3D Point Clouds with OpenVINO™   |  | This notebook
+[cell 1 START +    0.5s] %pip install -q "openvino>=2023.1.0" "tqdm" "matplotlib>=3.4"
+[cell 1 DONE  +    1.0s]
+[cell 2 START +    1.0s] ## Imports | [back to top ⬆️](#Table-of-contents:) | 
+[cell 3 START +    1.0s] from pathlib import Path | from typing import Union | import numpy as np | i
+[cell 3 DONE  +    1.4s]
+[cell 4 START +    1.4s] ## Prepare the Model | [back to top ⬆️](#Table-of-contents:) |  | Download t
+[cell 5 START +    1.4s] # Set the data and model directories, model source URL and model filen
+[cell 5 DONE  +    4.5s]
+[cell 6 START +    4.5s] Convert the ONNX model to OpenVINO IR. An OpenVINO IR (Intermediate Re
+[cell 7 START +    4.5s] ir_model_xml = onnx_model_path.with_suffix(".xml") |  | core = ov.Core() |  | 
+[cell 7 DONE  +    4.7s]
+[cell 8 START +    4.7s] ## Data Processing Module | [back to top ⬆️](#Table-of-contents:) | 
+[cell 9 START +    4.7s] def load_data(point_file: Union[str, Path]): |     """ |     Load the poin
+[cell 9 DONE  +    4.7s]
+[cell 10 START +    4.7s] ## Visualize the original 3D data | [back to top ⬆️](#Table-of-contents:
+[cell 11 START +    4.7s] # Download data from the openvino_notebooks storage | point_data_path = 
+[cell 11 DONE  +    7.1s]
+NBEXEC_RESULT={"ok": false, "n_cells": 9, "n_skipped": 0, "n_substituted": 0, "stopped_after": null, "error_cell": null, "error_type": "CellExecutionError", "error_head": "\u001b[31mException\u001b[39m: File downloading failed with error: HTTPSConnectionPool(host='storage.openvinotoolkit.org', port=443): Max retries exceeded with url: /repositories/openvino_notebooks/data/data/pts/chair.pts (Caused by ProxyError('Unable to connect to proxy', OSError('Tunnel connection failed: 403 Forbidden')))", "duration_s": 7.35, "patch_notes": []}

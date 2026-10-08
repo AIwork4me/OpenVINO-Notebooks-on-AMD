@@ -1,0 +1,10 @@
+{
+  "schema_version": 2,
+  "declared": {
+    "name": "Qwen/Qwen3-Reranker-0.6B",
+    "source": "https://huggingface.co/Qwen/Qwen3-Reranker-0.6B",
+    "revision": "e61197ed45",
+    "license": "apache-2.0",
+    "implementation": "transformers AutoModelForCausalLM, yes/no logits"
+  }
+}

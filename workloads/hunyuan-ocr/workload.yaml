@@ -15,6 +15,8 @@ model:
 cpu:
   runtime: openvino
   status: FAILED
+  per_cell_timeout_s: 2400
+  wall_timeout_s: 10800
 gpu:
   runtime: ''
   status: NOT_TESTED
@@ -31,10 +33,43 @@ patches:
       \ + fork_revision) as r, tarfile.open(fileobj=r, mode=\"r|gz\") as tf:\n   \
       \     tf.extractall(\".\")\n    fork_dir = Path(\"optimum-intel-\" + fork_revision)\n\
       actual_revision = fork_revision"
+  - pattern: 'dependencies = \{\n\s*\"\\\"optimum@(?:git\+https://github\.com/huggingface/optimum\.git|https://codeload\.github\.com/huggingface/optimum/tar\.gz/HEAD)\\\"'':
+      ''\\\"optimum@(?:git\+https://github\.com/huggingface/optimum\.git@52367da7f2d227d82db26d0de10f44c297b8c1eb|https://codeload\.github\.com/huggingface/optimum/tar\.gz/52367da7f2d227d82db26d0de10f44c297b8c1eb)\\\"'',\n\s*\"\\\"safetensors<0\.8\.0\\\"'':
+      ''\\\"safetensors>=0\.8\.0,<0\.9\.0\\\"'',\n\s*\}'
+    replacement: "dependencies = {\n    '\"optimum@git+https://github.com/huggingface/optimum.git\"\
+      ': '\"optimum@https://codeload.github.com/huggingface/optimum/tar.gz/52367da7f2d227d82db26d0de10f44c297b8c1eb\"\
+      ',\n    '\"safetensors<0.8.0\"': '\"safetensors>=0.8.0,<0.9.0\"',\n}"
+  - pattern: 'dependencies = \{\n\s*''\"optimum@(?:git\+https://github\.com/huggingface/optimum\.git|https://codeload\.github\.com/huggingface/optimum/tar\.gz/HEAD)\"'':
+      ''\"optimum@(?:git\+https://github\.com/huggingface/optimum\.git@52367da7f2d227d82db26d0de10f44c297b8c1eb|https://codeload\.github\.com/huggingface/optimum/tar\.gz/52367da7f2d227d82db26d0de10f44c297b8c1eb)\"'',\n\s*''\"safetensors<0\.8\.0\"'':
+      ''\"safetensors>=0\.8\.0,<0\.9\.0\"'',\n\s*\}'
+    replacement: "dependencies = {\n    '\"optimum@git+https://github.com/huggingface/optimum.git\"\
+      ': '\"optimum@https://codeload.github.com/huggingface/optimum/tar.gz/52367da7f2d227d82db26d0de10f44c297b8c1eb\"\
+      ',\n    '\"safetensors<0.8.0\"': '\"safetensors>=0.8.0,<0.9.0\"',\n}"
+  - pattern: pip_install\("-q", "torch>=2\.8", "torchvision", "--extra-index-url",
+      "https://download\.pytorch\.org/whl/cpu"\)
+    replacement: 'pip_install("-q", "torch>=2.8", "torchvision", "--extra-index-url",
+      "https://download.pytorch.org/whl/cpu")
+
+      pip_install("-q", "transformers<5")'
+  - pattern: git\+https://github\.com/huggingface/transformers\.git@5d063058dc2ddae5e31e4fab1985701d5cf50133
+    replacement: https://codeload.github.com/huggingface/transformers/tar.gz/5d063058dc2ddae5e31e4fab1985701d5cf50133
   notes: ' v0.3 C1 transport substitution: the notebook git-clones the optimum-intel
     fork at pinned rev 4085f5e8; git CONNECT to github.com is deterministically blocked
     on this runner (clone exit 128). The substitution fetches the SAME pinned revision
     from codeload.github.com (pure transport change, identical content) and short-circuits
     the rev-parse equality check the notebook performs (the tarball IS the pinned
-    rev). No code changes beyond transport.'
+    rev). No code changes beyond transport. v0.3 fix-up: the harness git-transport
+    rewrite also rewrites git+ URLs inside the notebook''s setup.py patch-dict, so
+    the original dict no longer matches the fork''s on-disk setup.py (ValueError:
+    Unexpected dependency). This substitution restores a transport-coherent mapping:
+    match the fork''s original git-form optimum pin on disk, replace it with the codeload
+    tarball of the SAME pinned rev (52367da7) the notebook intends — pip can actually
+    fetch codeload here. v0.3 C4 fix: the export path loads diffusers'' hunyuandit
+    pipeline, which imports MT5Tokenizer from transformers — removed in transformers
+    5.x that the open-ended resolution otherwise installs. Bounded to transformers<5
+    (the 4.x series the pipeline was written against); minimal, documented dependency
+    bound. v0.3: the notebook installs transformers from a pinned git commit; on this
+    runner git clone is unreliable (the transport probe can select ''direct'' while
+    large clones still die). This substitution pins the SAME commit via the codeload
+    tarball deterministically (transport-only).'
 last_verified: ''

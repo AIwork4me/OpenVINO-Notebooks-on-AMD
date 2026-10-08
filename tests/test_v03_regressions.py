@@ -251,3 +251,27 @@ def test_freshness_monitor_workflow_exists_and_scopes_impact() -> None:
     assert "openvinotoolkit/openvino_notebooks" in text
     assert "affected workloads" in text  # incremental scope, not blanket invalidation
 
+
+
+def test_raw_asset_preseed_rejects_path_traversal(tmp_path, monkeypatch) -> None:
+    """Gate-7 finding: a crafted ../ in a raw.githubusercontent URL path must
+    never read outside the snapshot or write outside the kernel cwd."""
+    import sys as _s
+
+    _s.path.insert(0, str(REPO))
+    from ov_amd import notebook_runner
+    from ov_amd.notebook_runner import _preseed_helpers
+
+    root = tmp_path / "upstream"
+    nb_dir = root / "notebooks" / "x"
+    nb_dir.mkdir(parents=True)
+    nb = nb_dir / "x.ipynb"
+    nb.write_text(json.dumps({"cells": [{"cell_type": "code", "source": [
+        'download_file(url="https://raw.githubusercontent.com/openvinotoolkit/openvino_notebooks/latest/../../evil.py")\n',
+    ]}]}))
+    monkeypatch.setattr(notebook_runner, "upstream_root", lambda: root)
+    cwd = tmp_path / "workdir"
+    cwd.mkdir()
+    _preseed_helpers(cwd, nb)
+    assert not (tmp_path / "evil.py").exists(), "traversal escaped the workdir"
+    assert not (tmp_path / "upstream" / "evil.py").exists()

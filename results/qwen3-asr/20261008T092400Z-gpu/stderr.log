@@ -1,0 +1,5 @@
+Loading weights:   0%|          | 0/611 [00:00<?, ?it/s]Loading weights:  21%|██        | 127/611 [00:00<00:00, 1268.15it/s]Loading weights:  42%|████▏     | 254/611 [00:00<00:00, 1268.63it/s]Loading weights:  62%|██████▏   | 381/611 [00:00<00:00, 637.27it/s] Loading weights:  77%|███████▋  | 469/611 [00:00<00:00, 646.86it/s]Loading weights:  90%|████████▉ | 549/611 [00:00<00:00, 654.64it/s]Loading weights: 100%|██████████| 611/611 [00:00<00:00, 718.72it/s]
+[transformers] Kwargs passed to `processor.__call__` have to be in `processor_kwargs` dict, not in `**kwargs`
+[transformers] Kwargs passed to `processor.__call__` have to be in `processor_kwargs` dict, not in `**kwargs`
+[transformers] Kwargs passed to `processor.__call__` have to be in `processor_kwargs` dict, not in `**kwargs`
+[transformers] Kwargs passed to `processor.__call__` have to be in `processor_kwargs` dict, not in `**kwargs`

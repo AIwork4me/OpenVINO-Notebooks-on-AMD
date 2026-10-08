@@ -18,7 +18,7 @@ cpu:
   status: FAILED
 gpu:
   runtime: pytorch-rocm
-  status: NOT_TESTED
+  status: VERIFIED
   wall_timeout_s: 3600
 twin:
   level: WORKLOAD_TWIN
@@ -37,4 +37,4 @@ patches:
     install the fork with --no-deps. All other notebook installs unchanged and keep
     providing the fork''s remaining requirements. GLM-OCR fork branch pins optimum-onnx@transformers-v5
     (verified in its setup.py at the pinned ref).'
-last_verified: ''
+last_verified: '2026-10-08T03:30:13+00:00'

@@ -1,0 +1,17 @@
+User:
+
+
+
+
+Convert this page to docling.
+Assistant: 1>66>37>313>50>Asprise OCR and Barcode Recognition1>
+<text>66>55>427>72>High performance, royalty-free OCR and barcode recognition on Windows, Linux, Mac OS and Unix.</text>
+<text>66>78>427>123>Asprise OCR (optical character recognition) and barcode recognition SDK offers a high performance library for you to equip your Java applications (Java applets, web applications, Swing/JavaFX components, JEE enterprise applications), C#/VB.NET applications, and C/C++/Python applications with functionality of extracting text and barcode information from scanned documents.</text>
+1>66>132>245>141>Convert Images To Searchable PDF1>
+<text>66>147>435>164>With a few lines of code, you can convert various formats of images such as JPEG, PNG, and TIFF into searchable PDF.</text>
+66>170>435>197>PDF Output FormatsRemarksPDFNormal PDFPDF/AISO 19005
+1>66>204>214>213>All Popular Barcode Formats1>
+<text>66>219>416>236>All popular barcode formats are supported: EAN-8, EAN-13, UPC-A, UPC-E, ISBN-10, ISBN-13, Interleaved 2 of 5, Code 39, Code 128, PDF417, and QR Code.</text>
+71>257>198>280><bar_chart>
+288>257>383>327><qr_code>
+288>379>383>444><qr_code>

@@ -39,7 +39,7 @@ Coverage is measured against the pinned OpenVINO Notebooks snapshot `2b1600de962
 
 Successful executions: **88/171** of eligible notebooks (51.5%; 2 N/A excluded) — ✅ 25 L3 verified · 🟡 63 with documented limitations.
 
-GPU (ROCm twins, Radeon): ✅ 8 verified · 🟡 0 limited · attempted 8/173
+GPU (ROCm twins, Radeon): ✅ 16 verified · 🟡 0 limited · attempted 20/173
 
 Evidence Schema **v2** · upstream `2b1600de9620` · twin classification **173/173** (100.0%)
 
@@ -65,13 +65,21 @@ The CPU and GPU columns never mix: OpenVINO CPU on Ryzen, ROCm/PyTorch on Radeon
 | Workload | Ryzen / OpenVINO | Radeon / ROCm | Twin |
 |---|---|---|---|
 | [deepseek-r1](https://github.com/openvinotoolkit/openvino_notebooks/blob/2b1600de9620e4a2d26f1ef5c83fad64d7d76f7b/notebooks/deepseek-r1/deepseek-r1.ipynb) | 🟡 VERIFIED_WITH_LIMITATIONS | ✅ VERIFIED | WORKLOAD_TWIN |
+| [glm-ocr](https://github.com/openvinotoolkit/openvino_notebooks/blob/2b1600de9620e4a2d26f1ef5c83fad64d7d76f7b/notebooks/glm-ocr/glm-ocr.ipynb) | ⏳ BLOCKED_NETWORK (EXTERNAL_HOST_UNREACHABLE) | ✅ VERIFIED | WORKLOAD_TWIN |
 | [hello-detection](https://github.com/openvinotoolkit/openvino_notebooks/blob/2b1600de9620e4a2d26f1ef5c83fad64d7d76f7b/notebooks/hello-detection/hello-detection.ipynb) | ✅ VERIFIED | ✅ VERIFIED | WORKLOAD_TWIN |
 | [kokoro](https://github.com/openvinotoolkit/openvino_notebooks/blob/2b1600de9620e4a2d26f1ef5c83fad64d7d76f7b/notebooks/kokoro/kokoro.ipynb) | 🟡 VERIFIED_WITH_LIMITATIONS | ✅ VERIFIED | WORKLOAD_TWIN |
+| [minicpm-v-4.6](https://github.com/openvinotoolkit/openvino_notebooks/blob/2b1600de9620e4a2d26f1ef5c83fad64d7d76f7b/notebooks/minicpm-v-4.6/minicpm-v-4.6.ipynb) | 🟡 VERIFIED_WITH_LIMITATIONS | ✅ VERIFIED | WORKLOAD_TWIN |
+| [paddleocr_vl](https://github.com/openvinotoolkit/openvino_notebooks/blob/2b1600de9620e4a2d26f1ef5c83fad64d7d76f7b/notebooks/paddleocr_vl/paddleocr_vl.ipynb) | ⏳ BLOCKED_DEPENDENCY (HARNESS_NOTEBOOK_RELATIVE_ASSET) | ✅ VERIFIED | WORKLOAD_TWIN |
 | [qwen3](https://github.com/openvinotoolkit/openvino_notebooks/blob/2b1600de9620e4a2d26f1ef5c83fad64d7d76f7b/supplementary_materials/notebooks/qwen-3/qwen3.ipynb) | 🟡 VERIFIED_WITH_LIMITATIONS | ✅ VERIFIED | WORKLOAD_TWIN |
+| [qwen3-asr](https://github.com/openvinotoolkit/openvino_notebooks/blob/2b1600de9620e4a2d26f1ef5c83fad64d7d76f7b/notebooks/qwen3-asr/qwen3-asr.ipynb) | ⏳ BLOCKED_DEPENDENCY (MISSING_OR_BROKEN_DEPENDENCY) | ✅ VERIFIED | WORKLOAD_TWIN |
+| [qwen3-embedding](https://github.com/openvinotoolkit/openvino_notebooks/blob/2b1600de9620e4a2d26f1ef5c83fad64d7d76f7b/notebooks/qwen3-embedding/qwen3-embedding.ipynb) | 🟡 VERIFIED_WITH_LIMITATIONS | ✅ VERIFIED | WORKLOAD_TWIN |
+| [qwen3-reranker](https://github.com/openvinotoolkit/openvino_notebooks/blob/2b1600de9620e4a2d26f1ef5c83fad64d7d76f7b/notebooks/qwen3-embedding/qwen3-reranker.ipynb) | 🟡 VERIFIED_WITH_LIMITATIONS | ✅ VERIFIED | WORKLOAD_TWIN |
+| [smoldocling](https://github.com/openvinotoolkit/openvino_notebooks/blob/2b1600de9620e4a2d26f1ef5c83fad64d7d76f7b/notebooks/smoldocling/smoldocling.ipynb) | 🟡 VERIFIED_WITH_LIMITATIONS | ✅ VERIFIED | WORKLOAD_TWIN |
 | [smolvlm2](https://github.com/openvinotoolkit/openvino_notebooks/blob/2b1600de9620e4a2d26f1ef5c83fad64d7d76f7b/notebooks/smolvlm2/smolvlm2.ipynb) | 🟡 VERIFIED_WITH_LIMITATIONS | ✅ VERIFIED | WORKLOAD_TWIN |
 | [stable-diffusion-text-to-image](https://github.com/openvinotoolkit/openvino_notebooks/blob/2b1600de9620e4a2d26f1ef5c83fad64d7d76f7b/notebooks/stable-diffusion-text-to-image/stable-diffusion-text-to-image.ipynb) | ⏳ BLOCKED_TIMEOUT (TIMEOUT_INFERENCE) | ✅ VERIFIED | WORKLOAD_TWIN |
-| [stable-diffusion-xl](https://github.com/openvinotoolkit/openvino_notebooks/blob/2b1600de9620e4a2d26f1ef5c83fad64d7d76f7b/notebooks/stable-diffusion-xl/stable-diffusion-xl.ipynb) | ⏳ BLOCKED_DEPENDENCY (INTERACTIVE_UI_TEARDOWN_AFTER_SKIP) | ✅ VERIFIED | WORKLOAD_TWIN |
+| [stable-diffusion-xl](https://github.com/openvinotoolkit/openvino_notebooks/blob/2b1600de9620e4a2d26f1ef5c83fad64d7d76f7b/notebooks/stable-diffusion-xl/stable-diffusion-xl.ipynb) | ⏳ BLOCKED_RESOURCE (IR_EXPORT_WRITE_IOSTREAM_ERROR) | ✅ VERIFIED | WORKLOAD_TWIN |
 | [whisper-asr-genai](https://github.com/openvinotoolkit/openvino_notebooks/blob/2b1600de9620e4a2d26f1ef5c83fad64d7d76f7b/notebooks/whisper-asr-genai/whisper-asr-genai.ipynb) | ⏳ BLOCKED_NETWORK (EXTERNAL_HOST_UNREACHABLE) | ✅ VERIFIED | WORKLOAD_TWIN |
+| [z-image-turbo](https://github.com/openvinotoolkit/openvino_notebooks/blob/2b1600de9620e4a2d26f1ef5c83fad64d7d76f7b/notebooks/z-image-turbo/z-image-turbo.ipynb) | ⏳ BLOCKED_DEPENDENCY (MISSING_OR_BROKEN_DEPENDENCY) | ✅ VERIFIED | WORKLOAD_TWIN |
 <!-- generated:featured end -->
 
 #### High-value workload matrix (generated)

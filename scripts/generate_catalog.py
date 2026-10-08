@@ -6,11 +6,17 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
-from ov_amd.reporting import write_compatibility, write_failures, write_progress  # noqa: E402
+from ov_amd.reporting import (  # noqa: E402
+    write_compatibility,
+    write_failures,
+    write_featured_matrix,
+    write_progress,
+)
 
 
 def main() -> int:
     compat = write_compatibility()
+    write_featured_matrix(compat)
     write_progress()
     write_failures()
     print(

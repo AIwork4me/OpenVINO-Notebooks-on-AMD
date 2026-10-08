@@ -1,0 +1,10 @@
+{
+  "schema_version": 2,
+  "declared": {
+    "name": "Qwen/Qwen3-TTS-12Hz-0.6B-CustomVoice",
+    "source": "https://huggingface.co/Qwen/Qwen3-TTS-12Hz-0.6B-CustomVoice",
+    "revision": "85e237c12c",
+    "license": "apache-2.0",
+    "implementation": "PyTorch talker+VA via official QwenLM/Qwen3-TTS repo @1ab0dd75"
+  }
+}

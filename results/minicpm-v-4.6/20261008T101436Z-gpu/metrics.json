@@ -1,0 +1,37 @@
+{
+  "schema_version": 2,
+  "twin_result": {
+    "ok": true,
+    "hip": "7.2.53211-e1a6bc5663",
+    "device": "AMD Radeon Graphics",
+    "gcn_arch": "gfx1100",
+    "metrics": {
+      "model": "openbmb/MiniCPM-V-4.6",
+      "precision": "bf16",
+      "input": "DeepSeek-OCR-DEMO space doc_markdown.png (public official demo asset; verified input for this model)",
+      "prompt": "Describe this image in one sentence.",
+      "load_s": 20.86,
+      "runs": [
+        {
+          "latency_s": 1.203,
+          "chars": 299
+        },
+        {
+          "latency_s": 1.172,
+          "chars": 299
+        },
+        {
+          "latency_s": 1.21,
+          "chars": 299
+        }
+      ],
+      "output": "user\n0\n\n\nDescribe this image in one sentence.\nassistant\n<think>\n\n</think>\n\nThe image showcases information about Aspire OCR and Barcode Recognition, including its high-performance OCR and barcode recognition capabilities, and options to convert images to searchable PDFs and popular barcode formats.",
+      "nonempty_relevant_response": true,
+      "output_stable": true,
+      "peak_vram_gb": 2.88,
+      "peak_rss_gb": 3.75
+    }
+  },
+  "duration_s": 60.72,
+  "exit_code": 0
+}

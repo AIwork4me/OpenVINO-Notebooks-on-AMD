@@ -1,0 +1,7 @@
+[cell 0 START +    0.5s] # Zero-shot Image Classification with OpenAI CLIP and OpenVINO™ |  | Zero-
+[cell 1 START +    0.5s] ## Instantiate model | [back to top ⬆️](#Table-of-contents:) |  | CLIP (Cont
+[cell 2 START +    0.5s] %pip install -q --extra-index-url https://download.pytorch.org/whl/cpu
+[cell 2 DONE  +   19.2s]
+[cell 3 START +   19.2s] from transformers import CLIPProcessor, CLIPModel |  | # load pre-trained 
+[cell 3 DONE  +   20.5s]
+NBEXEC_RESULT={"ok": false, "n_cells": 10, "n_skipped": 1, "n_substituted": 1, "stopped_after": null, "error_cell": null, "error_type": "CellExecutionError", "error_head": "Please note that you may need to restart your runtime after installation.", "duration_s": 20.73, "patch_notes": ["substituted 1 occurrence(s) in cell 2", "skipped cell 18: matched skip pattern"]}

@@ -64,11 +64,14 @@ def main() -> int:
     speech, sr = librosa.load(str(audio), sr=16000, mono=True)
 
     def _gen() -> str:
-        inputs = processor(audio=speech, sampling_rate=sr, return_tensors="pt")
-        inputs = {k: v.to("cuda:0") if hasattr(v, "to") else v for k, v in inputs.items()}
+        # official processor API used by the upstream notebook
+        inputs = processor.apply_transcription_request(audio=speech, sampling_rate=sr)
+        inputs = inputs.to("cuda:0", torch.bfloat16)
         with torch.inference_mode():
             ids = model.generate(**inputs, max_new_tokens=256)
-        return processor.batch_decode(ids, skip_special_tokens=True)[0]
+        ids = ids[:, inputs["input_ids"].shape[1] :]
+        parsed = processor.decode(ids, return_format="parsed")[0]
+        return f"{parsed.get('transcription','')} [lang={parsed.get('language','?')}]"
 
     _gen()  # warmup
     torch.cuda.synchronize()
@@ -86,7 +89,13 @@ def main() -> int:
 
     transcript = outs[0]
     (evidence / "transcript.txt").write_text(transcript)
-    ref = "I think I'm entitled. You want answers? I want the truth! You can't handle the truth!"
+    # reference: the known script of the clip (A Few Good Men courtroom scene
+    # — the sample's ground-truth dialogue); CER measures ASR recognition error
+    ref = (
+        "Colonel Jessep, did you order the Code Red? You don't have to answer that question. "
+        "I'll answer the question. You want answers? I think I'm entitled. You want answers? "
+        "I want the truth. You can't handle the truth."
+    )
     cer = _cer(ref.lower(), transcript.lower())
     metrics = {
         "model": MODEL,
@@ -102,7 +111,7 @@ def main() -> int:
         "peak_vram_gb": round(pm.peak_vram_gb, 2),
         "peak_rss_gb": round(pm.peak_rss_gb, 2),
     }
-    ok = bool(transcript) and metrics["fragment_found"] and metrics["output_stable"] and cer < 0.5
+    ok = bool(transcript) and metrics["fragment_found"] and metrics["output_stable"] and cer < 0.35
     return emit(ok, evidence, metrics)
 
 

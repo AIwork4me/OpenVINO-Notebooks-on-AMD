@@ -1,0 +1,33 @@
+{
+  "python": "/workspace/.venvs/cpu/eb7faf8fd8a0b2df/bin/python",
+  "packages": {
+    "openvino": {
+      "installed": true,
+      "version": "2026.4.1"
+    },
+    "optimum": {
+      "installed": false
+    },
+    "optimum-intel": {
+      "installed": false
+    },
+    "transformers": {
+      "installed": false
+    },
+    "huggingface_hub": {
+      "installed": true,
+      "version": "2.1.1"
+    }
+  },
+  "cli": {
+    "path": null,
+    "help_exit_code": 127,
+    "help_ok": false
+  },
+  "diagnosis": "OPTIMUM_PACKAGES_MISSING",
+  "remediation": {
+    "attempted": true,
+    "ok": false,
+    "log_tail": "\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501 6.3/6.3 MB 16.4 MB/s  0:00:00\nCollecting jinja2 (from torch>=2.1->optimum-intel)\n  Downloading jinja2-3.1.6-py3-none-any.whl (134 kB)\nCollecting cuda-toolkit==13.0.3 (from cuda-toolkit[cublas,cudart,cufft,cufile,cupti,curand,cusolver,cusparse,nvjitlink,nvrtc,nvtx]==13.0.3; platform_system == \"Linux\"->torch>=2.1->optimum-intel)\n  Downloading cuda_toolkit-13.0.3.0-py2.py3-none-any.whl (2.5 kB)\nCollecting cuda-bindings<14,>=13.0.3 (from torch>=2.1->optimum-intel)\n  Downloading cuda_bindings-13.4.3-cp312-cp312-manylinux_2_24_x86_64.manylinux_2_28_x86_64.whl (7.2 MB)\n     \u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501 7.2/7.2 MB 17.2 MB/s  0:00:00\nCollecting nvidia-cudnn-cu13==9.24.0.43 (from torch>=2.1->optimum-intel)\n  Downloading nvidia_cudnn_cu13-9.24.0.43-py3-none-manylinux_2_27_x86_64.whl (553.1 MB)\n     \u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501                  319.8/553.1 MB 12.9 MB/s eta 0:00:19\nERROR: Could not install packages due to an OSError: [Errno 28] No space left on device\n\n"
+  }
+}

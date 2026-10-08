@@ -1,0 +1,14 @@
+[cell 0 START +    0.5s] # InstantID: Zero-shot Identity-Preserving Generation using OpenVINO |  | 
+[cell 1 START +    0.5s] ## Prerequisites | [back to top ⬆️](#Table-of-contents:)
+[cell 2 START +    0.5s] import requests | from pathlib import Path |  | if not Path("notebook_utils.
+[cell 2 DONE  +    0.6s]
+[cell 3 START +    0.6s] from cmd_helper import clone_repo |  | clone_repo("https://github.com/Inst
+[cell 3 DONE  +   10.7s]
+[cell 4 START +   10.7s] %pip install -q "openvino>=2025.3.0" opencv-python "transformers==4.53
+[cell 4 DONE  +   35.7s]
+[cell 5 START +   35.7s] ## Convert and prepare Face IdentityNet | [back to top ⬆️](#Table-of-con
+[cell 6 START +   35.7s] from pathlib import Path |  | MODELS_DIR = Path("models") | face_detector_pa
+[cell 6 DONE  +   35.7s]
+[cell 7 START +   35.7s] from zipfile import ZipFile | import gdown |  | archive_file = Path("antelop
+[cell 7 DONE  +   35.8s]
+NBEXEC_RESULT={"ok": false, "n_cells": 51, "n_skipped": 1, "n_substituted": 2, "stopped_after": null, "error_cell": null, "error_type": "CellExecutionError", "error_head": "\u001b[31mModuleNotFoundError\u001b[39m: No module named 'gdown'", "duration_s": 35.96, "patch_notes": ["substituted 1 occurrence(s) in cell 15", "substituted 14 occurrence(s) in cell 33", "skipped cell 78: matched skip pattern"]}

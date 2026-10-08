@@ -1,0 +1,7 @@
+[cell 0 START +    0.5s] # Document parsing with GLM-OCR and OpenVINO |  | [GLM-OCR](https://huggin
+[cell 1 START +    0.5s] ## Prerequisites | [back to top ⬆️](#Table-of-contents:) |  | GLM-OCR lives 
+[cell 2 START +    0.5s] import requests | from pathlib import Path |  | if not Path("cmd_helper.py")
+[cell 2 DONE  +    0.6s]
+[cell 3 START +    0.6s] %pip uninstall -q -y optimum optimum-intel optimum-onnx |  | from notebook
+[cell 3 DONE  +   59.5s]
+NBEXEC_RESULT={"ok": false, "n_cells": 14, "n_skipped": 1, "n_substituted": 0, "stopped_after": null, "error_cell": null, "error_type": "CellExecutionError", "error_head": "\u001b[31mException\u001b[39m: File downloading failed with error: HTTPSConnectionPool(host='github-production-user-asset-6210df.s3.amazonaws.com', port=443): Max retries exceeded with url: /91237924/585170821-fda2c6f6-bbba-4ece-b90b-c42bca60e525.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAVCODYLSA53PQK4ZA%2F20261007%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20261007T231724Z&X-Amz-Expires=300&X-Amz-Signature=28cf4fd784d7d79b6bc25a3672ebae5cd8c39d44a748e8aed5f032fd4bfe9323&X-Amz-SignedHeader", "duration_s": 59.89, "patch_notes": ["skipped cell 20: matched skip pattern"]}

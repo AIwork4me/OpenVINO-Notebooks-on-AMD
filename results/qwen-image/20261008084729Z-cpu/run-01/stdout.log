@@ -1,0 +1,15 @@
+[cell 0 START +    0.5s] # Text-to-image generation with Qwen-Image and OpenVINO |  | Qwen-Image, a
+[cell 1 START +    0.5s] ## Prerequisites | [back to top ⬆️](#Table-of-contents:)
+[cell 2 START +    0.5s] import requests | from pathlib import Path |  | if not Path("cmd_helper.py")
+[cell 2 DONE  +   22.6s]
+[cell 3 START +   22.6s] ## Select model | [back to top ⬆️](#Table-of-contents:)
+[cell 4 START +   22.6s] import ipywidgets as widgets |  | model_ids = ["Qwen/Qwen-Image-2512", "Qw
+[cell 4 DONE  +   22.6s]
+[cell 5 START +   22.6s] ## Convert model with OpenVINO | [back to top ⬆️](#Table-of-contents:) |  | 
+[cell 6 START +   22.6s] to_compress = widgets.Checkbox( |     value=True, |     description="Weigh
+[cell 6 DONE  +   22.6s]
+[cell 7 START +   22.6s] >**Note**: Weight compression will impact the quality of the generated
+[cell 8 START +   22.6s] from pathlib import Path |  | model_id = model_selector.value |  | model_base_
+[cell 8 DONE  +   22.6s]
+[cell 9 START +   22.6s] from cmd_helper import optimum_cli |  | if not model_dir.exists(): |     opt
+[cell 9 DONE  +  108.1s]

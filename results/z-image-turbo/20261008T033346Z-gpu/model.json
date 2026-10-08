@@ -1,0 +1,10 @@
+{
+  "schema_version": 2,
+  "declared": {
+    "name": "Tongyi-MAI/Z-Image-Turbo",
+    "source": "https://huggingface.co/Tongyi-MAI/Z-Image-Turbo",
+    "revision": "f332072aa7",
+    "license": "apache-2.0",
+    "implementation": "diffusers AutoPipelineForText2Image"
+  }
+}

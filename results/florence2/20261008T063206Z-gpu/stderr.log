@@ -1,0 +1,46 @@
+<unknown>:499: SyntaxWarning: invalid escape sequence '\d'
+[transformers] `Florence2Processor` defines `image_processor_class = 'CLIPImageProcessor'`, which is deprecated. Register the correct mapping in `AutoImageProcessor` instead.
+Traceback (most recent call last):
+  File "/workspace/workloads/florence2/rocm/run.py", line 90, in <module>
+    raise SystemExit(main())
+                     ^^^^^^
+  File "/workspace/workloads/florence2/rocm/run.py", line 41, in main
+    processor = AutoProcessor.from_pretrained(MODEL, trust_remote_code=True)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/.venv-gpu/lib/python3.12/site-packages/transformers/models/auto/processing_auto.py", line 326, in from_pretrained
+    return processor_class.from_pretrained(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/.venv-gpu/lib/python3.12/site-packages/transformers/processing_utils.py", line 1736, in from_pretrained
+    args = cls._get_arguments_from_pretrained(pretrained_model_name_or_path, processor_dict, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/.venv-gpu/lib/python3.12/site-packages/transformers/processing_utils.py", line 1861, in _get_arguments_from_pretrained
+    tokenizer = cls._load_tokenizer_from_pretrained(
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/.venv-gpu/lib/python3.12/site-packages/transformers/processing_utils.py", line 1797, in _load_tokenizer_from_pretrained
+    tokenizer = auto_processor_class.from_pretrained(
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/.venv-gpu/lib/python3.12/site-packages/transformers/models/auto/tokenization_auto.py", line 785, in from_pretrained
+    config = AutoConfig.from_pretrained(
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/.venv-gpu/lib/python3.12/site-packages/transformers/models/auto/configuration_auto.py", line 409, in from_pretrained
+    return config_class.from_pretrained(pretrained_model_name_or_path, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/.venv-gpu/lib/python3.12/site-packages/transformers/configuration_utils.py", line 727, in from_pretrained
+    return cls.from_dict(config_dict, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/.venv-gpu/lib/python3.12/site-packages/transformers/configuration_utils.py", line 912, in from_dict
+    config = cls(**config_dict)
+             ^^^^^^^^^^^^^^^^^^
+  File "/workspace/.cache/huggingface/modules/transformers_modules/microsoft/Florence_hyphen_2_hyphen_base_hyphen_ft/f6c1a25888ffc1d945ee8a1a77ac833c7303d46e/configuration_florence2.py", line 336, in __init__
+    self.text_config = Florence2LanguageConfig(**text_config)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/.cache/huggingface/modules/transformers_modules/microsoft/Florence_hyphen_2_hyphen_base_hyphen_ft/f6c1a25888ffc1d945ee8a1a77ac833c7303d46e/configuration_florence2.py", line 265, in __init__
+    if self.forced_bos_token_id is None and kwargs.get("force_bos_token_to_be_generated", False):
+       ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/.venv-gpu/lib/python3.12/site-packages/transformers/configuration_utils.py", line 484, in __getattribute__
+    return super().__getattribute__(key)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/.venv-gpu/lib/python3.12/site-packages/transformers/integrations/heterogeneity/configuration_utils.py", line 312, in __getattribute__
+    return super().__getattribute__(key)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'Florence2LanguageConfig' object has no attribute 'forced_bos_token_id'

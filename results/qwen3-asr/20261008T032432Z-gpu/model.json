@@ -1,0 +1,10 @@
+{
+  "schema_version": 2,
+  "declared": {
+    "name": "Qwen/Qwen3-ASR-0.6B-hf",
+    "source": "https://huggingface.co/Qwen/Qwen3-ASR-0.6B-hf",
+    "revision": "7f1569a48a",
+    "license": "apache-2.0",
+    "implementation": "transformers Qwen3ASRForConditionalGeneration"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "schema_version": 2,
+  "declared": {
+    "name": "zai-org/GLM-OCR",
+    "source": "https://huggingface.co/zai-org/GLM-OCR",
+    "revision": "2e85a62840",
+    "license": "mit",
+    "implementation": "transformers GlmOcrForConditionalGeneration"
+  }
+}

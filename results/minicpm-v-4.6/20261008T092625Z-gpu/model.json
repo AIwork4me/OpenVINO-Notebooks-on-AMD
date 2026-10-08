@@ -1,0 +1,10 @@
+{
+  "schema_version": 2,
+  "declared": {
+    "name": "openbmb/MiniCPM-V-4.6",
+    "source": "https://huggingface.co/openbmb/MiniCPM-V-4.6",
+    "revision": "36f34a661a",
+    "license": "apache-2.0 (non-commercial)",
+    "implementation": "official repo AutoModel trust_remote_code"
+  }
+}

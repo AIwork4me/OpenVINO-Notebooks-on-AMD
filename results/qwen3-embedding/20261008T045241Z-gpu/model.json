@@ -1,0 +1,10 @@
+{
+  "schema_version": 2,
+  "declared": {
+    "name": "Qwen/Qwen3-Embedding-0.6B",
+    "source": "https://huggingface.co/Qwen/Qwen3-Embedding-0.6B",
+    "revision": "97b0c614be",
+    "license": "apache-2.0",
+    "implementation": "transformers AutoModel, last-token pooling"
+  }
+}

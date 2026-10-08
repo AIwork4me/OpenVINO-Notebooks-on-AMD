@@ -322,6 +322,21 @@ def _preseed_helpers(cwd: Path, nb_path: Path | None = None) -> list[str]:
     if nb_path is not None and nb_path.parent != root:
         for sibling in sorted(nb_path.parent.iterdir()):
             dst = cwd / sibling.name
+            if sibling.is_dir() and not sibling.is_symlink():
+                # sibling PYTHON PACKAGE directories (e.g. person-tracking's
+                # deepsort_utils/): notebooks import them from their own
+                # folder; the file-only preseed below missed them entirely
+                # (v0.3 Defect C6 — ModuleNotFoundError: deepsort_utils)
+                if (
+                    sibling.name not in ("__pycache__", "_cache")
+                    and not dst.exists()
+                    and _is_helper_package_dir(sibling)
+                ):
+                    shutil.copytree(sibling, dst, dirs_exist_ok=True)
+                    patches.append(
+                        f"preseeded sibling helper package directory {sibling.name} (kernel cwd differs from notebook dir)"
+                    )
+                continue
             if not sibling.is_file() or sibling.is_symlink():
                 continue
             if sibling.suffix == ".py":
@@ -351,21 +366,6 @@ def _preseed_helpers(cwd: Path, nb_path: Path | None = None) -> list[str]:
                         )
                 except OSError:
                     pass
-            elif (
-                sibling.is_dir()
-                and not sibling.is_symlink()
-                and sibling.name not in ("__pycache__", "_cache")
-                and not (cwd / sibling.name).exists()
-                and _is_helper_package_dir(sibling)
-            ):
-                # sibling PYTHON PACKAGE directories (e.g. person-tracking's
-                # deepsort_utils/): notebooks import them from their own
-                # folder; the file-only preseed above missed them entirely
-                # (v0.3 Defect C6 — ModuleNotFoundError: deepsort_utils)
-                shutil.copytree(sibling, cwd / sibling.name, dirs_exist_ok=True)
-                patches.append(
-                    f"preseeded sibling helper package directory {sibling.name} (kernel cwd differs from notebook dir)"
-                )
         # cross-notebook assets fetched from OUR OWN pinned repo via
         # raw.githubusercontent.com (e.g. vlm-chatbot/nyc.jpg referenced by
         # muse-glimmer): satisfy them from the sha-verified snapshot — pure
@@ -398,6 +398,13 @@ def _preseed_snapshot_raw_assets(cwd: Path, nb_path: Path, root: Path) -> list[s
         if not rel or rel in seen:
             continue
         seen.add(rel)
+        # security guard (Gate-7 finding): the captured URL path must stay a
+        # real child of the snapshot root and of the notebook-adjacent tree —
+        # a crafted `../` in a raw URL must never read outside the snapshot
+        # or write outside the kernel cwd
+        rel_path = Path(rel)
+        if rel_path.is_absolute() or ".." in rel_path.parts:
+            continue
         src = root / rel
         if not src.is_file():
             continue

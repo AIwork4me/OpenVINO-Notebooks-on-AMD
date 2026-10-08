@@ -19,7 +19,7 @@ import time
 from twin_lib import PeakMemory, emit, setup
 
 MODEL = "PaddlePaddle/PaddleOCR-VL"
-SNAPSHOT_IMG = _Path(__file__).resolve().parents[4] / ".cache" / "upstream" / "notebooks" / "paddleocr_vl" / "test.png"
+SNAPSHOT_IMG = _Path(__file__).resolve().parents[3] / ".cache" / "upstream" / "notebooks" / "paddleocr_vl" / "test.png"
 
 
 def main() -> int:
@@ -46,11 +46,11 @@ def main() -> int:
 
     def _gen() -> str:
         msgs = [{"role": "user", "content": [
-            {"type": "image", "image": image},
+            {"type": "image"},
             {"type": "text", "text": "OCR:"},
         ]}]
-        text = processor.apply_chat_template(msgs, tokenize=True, add_generation_prompt=True)
-        inputs = processor(images=[image], text=text, return_tensors="pt").to("cuda:0", torch.bfloat16)
+        text = processor.apply_chat_template(msgs, tokenize=False, add_generation_prompt=True)
+        inputs = processor(images=[image], text=[text], return_tensors="pt").to("cuda:0", torch.bfloat16)
         with torch.inference_mode():
             out = model.generate(**inputs, max_new_tokens=512, do_sample=False)
         return processor.batch_decode(out, skip_special_tokens=True)[0]

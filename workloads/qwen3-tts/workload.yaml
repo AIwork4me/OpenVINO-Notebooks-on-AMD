@@ -18,8 +18,12 @@ cpu:
   status: VERIFIED_WITH_LIMITATIONS
 gpu:
   runtime: pytorch-rocm
-  status: NOT_TESTED
+  status: FAILED
   wall_timeout_s: 3600
+  python: .venv-gpu-tf457/bin/python
+  note: official qwen-tts package requires transformers==4.57.3 (its check_model_inputs
+    decorator targets that generation); runs in the bridged .venv-gpu-tf457 over the
+    system ROCm torch
 twin:
   level: WORKLOAD_TWIN
 validation: {}

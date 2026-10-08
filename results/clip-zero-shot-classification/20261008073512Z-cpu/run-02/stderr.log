@@ -1,0 +1,58 @@
+[IPKernelApp] WARNING | Kernel is running over TCP without encryption. All communication (including code and outputs) is sent in plain text and is susceptible to eavesdropping. Use IPC transport or launch with kernel manager-provisioned CurveZMQ keys to enable transport encryption.
+Traceback (most recent call last):
+  File "/workspace/ov_amd/_nbexec.py", line 144, in main
+    client.execute()
+  File "/workspace/.venvs/cpu/eb7faf8fd8a0b2df/lib/python3.12/site-packages/jupyter_core/utils/__init__.py", line 165, in wrapped
+    return loop.run_until_complete(inner)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/base_events.py", line 687, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/workspace/.venvs/cpu/eb7faf8fd8a0b2df/lib/python3.12/site-packages/nbclient/client.py", line 709, in async_execute
+    await self.async_execute_cell(
+  File "/workspace/.venvs/cpu/eb7faf8fd8a0b2df/lib/python3.12/site-packages/nbclient/client.py", line 1062, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/workspace/.venvs/cpu/eb7faf8fd8a0b2df/lib/python3.12/site-packages/nbclient/client.py", line 918, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+from transformers import CLIPProcessor, CLIPModel
+
+# load pre-trained model
+model = CLIPModel.from_pretrained("openai/clip-vit-base-patch16")
+# load preprocessor for model input
+processor = CLIPProcessor.from_pretrained("openai/clip-vit-base-patch16")
+------------------
+
+----- stderr -----
+[transformers] PyTorch was not found. Models won't be available and only tokenizers, configuration and file/data utilities can be used.
+----- stderr -----
+[transformers] PyTorch was not found. Models won't be available and only tokenizers, configuration and file/data utilities can be used.
+------------------
+
+[31m---------------------------------------------------------------------------[39m
+[31mImportError[39m                               Traceback (most recent call last)
+[36mCell[39m[36m [39m[32mIn[2][39m[32m, line 4[39m
+[32m      1[39m [38;5;28;01mfrom[39;00m transformers [38;5;28;01mimport[39;00m CLIPProcessor, CLIPModel
+[32m      2[39m 
+[32m      3[39m [38;5;66;03m# load pre-trained model[39;00m
+[32m----> [39m[32m4[39m model = CLIPModel.from_pretrained([33m"openai/clip-vit-base-patch16"[39m)
+[32m      5[39m [38;5;66;03m# load preprocessor for model input[39;00m
+[32m      6[39m processor = CLIPProcessor.from_pretrained([33m"openai/clip-vit-base-patch16"[39m)
+
+[36mFile [39m[32m/workspace/.venvs/cpu/eb7faf8fd8a0b2df/lib/python3.12/site-packages/transformers/utils/import_utils.py:2413[39m, in [36mDummyObject.__getattribute__[39m[34m(cls, key)[39m
+[32m   2411[39m [38;5;28;01mif[39;00m (key.startswith([33m"[39m[33m_[39m[33m"[39m) [38;5;129;01mand[39;00m key != [33m"[39m[33m_from_config[39m[33m"[39m) [38;5;129;01mor[39;00m key == [33m"[39m[33mis_dummy[39m[33m"[39m [38;5;129;01mor[39;00m key == [33m"[39m[33mmro[39m[33m"[39m [38;5;129;01mor[39;00m key == [33m"[39m[33mcall[39m[33m"[39m:
+[32m   2412[39m     [38;5;28;01mreturn[39;00m [38;5;28msuper[39m().[34m__getattribute__[39m(key)
+[32m-> [39m[32m2413[39m [30;43mrequires_backends[39;49m[30;43m([39;49m[30;43mcls[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mcls[39;49m[30;43m.[39;49m[30;43m_backends[39;49m[30;43m)[39;49m
+
+[36mFile [39m[32m/workspace/.venvs/cpu/eb7faf8fd8a0b2df/lib/python3.12/site-packages/transformers/utils/import_utils.py:2399[39m, in [36mrequires_backends[39m[34m(obj, backends)[39m
+[32m   2396[39m         failed.append(msg.format(name))
+[32m   2398[39m [38;5;28;01mif[39;00m failed:
+[32m-> [39m[32m2399[39m     [38;5;28;01mraise[39;00m [38;5;167;01mImportError[39;00m([33m"[39m[33m"[39m.join(failed))
+
+[31mImportError[39m: 
+CLIPModel requires the PyTorch library but it was not found in your environment. Check out the instructions on the
+installation page: https://pytorch.org/get-started/locally/ and follow the ones that match your environment.
+Please note that you may need to restart your runtime after installation.
+
+

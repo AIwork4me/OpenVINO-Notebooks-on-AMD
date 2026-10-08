@@ -1,0 +1,82 @@
+[IPKernelApp] WARNING | Kernel is running over TCP without encryption. All communication (including code and outputs) is sent in plain text and is susceptible to eavesdropping. Use IPC transport or launch with kernel manager-provisioned CurveZMQ keys to enable transport encryption.
+el_dir, device.value)
+------------------
+
+----- stderr -----
+Command failed with exit code 1
+----- stderr -----
+STDERR:
+/workspace/.venvs/cpu/0186456dc2f2e805/lib/python3.12/site-packages/transformers/utils/hub.py:110: FutureWarning: Using `TRANSFORMERS_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.
+  warnings.warn(
+Multiple distributions found for package optimum. Picked distribution: optimum-intel
+/workspace/.venvs/cpu/0186456dc2f2e805/lib/python3.12/site-packages/torch/jit/_script.py:1491: FutureWarning: `torch.jit.script` is deprecated. Please switch to `torch.compile` or `torch.export`.
+  warnings.warn(
+Fetching 19 files:   0%|          | 0/19 [00:00<?, ?it/s]Fetching 19 files:  42%|████▏     | 8/19 [00:01<00:01,  5.86it/s]Fetching 19 files:  84%|████████▍ | 16/19 [00:07<00:01,  2.24it/s]Fetching 19 files:  89%|████████▉ | 17/19 [00:19<00:02,  1.16s/it]Fetching 19 files:  95%|█████████▍| 18/19 [00:37<00:02,  2.08s/it]Fetching 19 files: 100%|██████████| 19/19 [02:33<00:00,  8.07s/it]Fetching 19 files: 100%|██████████| 19/19 [02:33<00:00,  8.07s/it]
+Keyword arguments {'subfolder': ''} are not expected by StableDiffusionXLPipeline and will be ignored.
+Loading pipeline components...:   0%|          | 0/7 [00:00<?, ?it/s]Loading pipeline components...:  14%|█▍        | 1/7 [00:00<00:01,  4.16it/s]Loading pipeline components...:  43%|████▎     | 3/7 [00:00<00:00,  8.63it/s]Loading pipeline components...:  86%|████████▌ | 6/7 [00:00<00:00,  7.74it/s]Loading pipeline components...: 100%|██████████| 7/7 [00:00<00:00,  8.20it/s]
+`loss_type=None` was set in the config but it is unrecognized. Using the default loss: `ForCausalLMLoss`.
+/workspace/.venvs/cpu/0186456dc2f2e805/lib/python3.12/site-packages/transformers/models/clip/modeling_clip.py:236: TracerWarning: Converting a tensor to a Python boolean might cause the trace to be incorrect. We can't record the data flow of Python values, so this value will be treated as a constant in the future. This means that the trace might not generalize to other inputs!
+  if seq_length > max_position_embedding:
+/workspace/.venvs/cpu/0186456dc2f2e805/lib/python3.12/site-packages/transformers/modeling_attn_mask_utils.py:94: TracerWarning: Converting a tensor to a Python boolean might cause the trace to be incorrect. We can't record the data flow of Python values, so this value will be treated as a constant in the future. This means that the trace might not generalize to other inputs!
+  if input_shape[-1] > 1 or self.sliding_window is not None:
+/workspace/.venvs/cpu/0186456dc2f2e805/lib/python3.12/site-packages/transformers/modeling_attn_mask_utils.py:170: TracerWarning: Converting a tensor to a Python boolean might cause the trace to be incorrect. We can't record the data flow of Python values, so this value will be treated as a constant in the future. This means that the trace might not generalize to other inputs!
+  if past_key_values_length > 0:
+Traceback (most recent call last):
+  File "/workspace/.venvs/cpu/0186456dc2f2e805/bin/optimum-cli", line 6, in <module>
+    sys.exit(main())
+             ^^^^^^
+  File "/workspace/.venvs/cpu/0186456dc2f2e805/lib/python3.12/site-packages/optimum/commands/optimum_cli.py", line 219, in main
+    service.run()
+  File "/workspace/.venvs/cpu/0186456dc2f2e805/lib/python3.12/site-packages/optimum/commands/export/openvino.py", line 469, in run
+    main_export(
+  File "/workspace/.venvs/cpu/0186456dc2f2e805/lib/python3.12/site-packages/optimum/exporters/openvino/__main__.py", line 712, in main_export
+    submodel_paths = export_from_model(
+                     ^^^^^^^^^^^^^^^^^^
+  File "/workspace/.venvs/cpu/0186456dc2f2e805/lib/python3.12/site-packages/optimum/exporters/openvino/convert.py", line 932, in export_from_model
+    export_models(
+  File "/workspace/.venvs/cpu/0186456dc2f2e805/lib/python3.12/site-packages/optimum/exporters/openvino/convert.py", line 498, in export_models
+    export(
+  File "/workspace/.venvs/cpu/0186456dc2f2e805/lib/python3.12/site-packages/optimum/exporters/openvino/convert.py", line 248, in export
+    return export_pytorch(
+           ^^^^^^^^^^^^^^^
+  File "/workspace/.venvs/cpu/0186456dc2f2e805/lib/python3.12/site-packages/optimum/exporters/openvino/convert.py", line 430, in export_pytorch
+    _save_model(
+  File "/workspace/.venvs/cpu/0186456dc2f2e805/lib/python3.12/site-packages/optimum/exporters/openvino/convert.py", line 172, in _save_model
+    save_model(model, path, compress_to_fp16)
+RuntimeError: basic_ios::clear: iostream error
+------------------
+
+[31m---------------------------------------------------------------------------[39m
+[31mCalledProcessError[39m                        Traceback (most recent call last)
+[36mCell[39m[36m [39m[32mIn[5][39m[32m, line 13[39m
+[32m      9[39m     model_dir = model_dir / [33m"FP16"[39m
+[32m     10[39m     additional_args.update({[33m"weight-format"[39m: [33m"fp16"[39m})
+[32m     11[39m 
+[32m     12[39m [38;5;28;01mif[39;00m [38;5;28;01mnot[39;00m model_dir.exists():
+[32m---> [39m[32m13[39m     optimum_cli(model_id, model_dir, additional_args=additional_args)
+[32m     14[39m 
+[32m     15[39m text2image_pipe = ov_genai.Text2ImagePipeline(model_dir, device.value)
+
+[36mFile [39m[32m/workspace/results/stable-diffusion-xl/workdir-cpu/cmd_helper.py:62[39m, in [36moptimum_cli[39m[34m(model_id, output_dir, show_command, additional_args, debug_logs)[39m
+[32m     60[39m     [38;5;28;01mif[39;00m transofrmers_loglevel [38;5;129;01mis[39;00m [38;5;129;01mnot[39;00m [38;5;28;01mNone[39;00m:
+[32m     61[39m         os.environ[[33m"[39m[33mTRANSFORMERS_VERBOSITY[39m[33m"[39m] = transofrmers_loglevel
+[32m---> [39m[32m62[39m     [38;5;28;01mraise[39;00m exc
+[32m     63[39m [38;5;28;01mfinally[39;00m:
+[32m     64[39m     [38;5;28;01mif[39;00m transofrmers_loglevel [38;5;129;01mis[39;00m [38;5;129;01mnot[39;00m [38;5;28;01mNone[39;00m:
+
+[36mFile [39m[32m/workspace/results/stable-diffusion-xl/workdir-cpu/cmd_helper.py:49[39m, in [36moptimum_cli[39m[34m(model_id, output_dir, show_command, additional_args, debug_logs)[39m
+[32m     46[39m     os.environ[[33m"[39m[33mTRANSFORMERS_VERBOSITY[39m[33m"[39m] = [33m"[39m[33mdebug[39m[33m"[39m
+[32m     48[39m [38;5;28;01mtry[39;00m:
+[32m---> [39m[32m49[39m     [30;43msubprocess[39;49m[30;43m.[39;49m[30;43mrun[39;49m[30;43m([39;49m[30;43mexport_command[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mshell[39;49m[30;43m=[39;49m[30;43m([39;49m[30;43mplatform[39;49m[30;43m.[39;49m[30;43msystem[39;49m[30;43m([39;49m[30;43m)[39;49m[30;43m [39;49m[30;43m==[39;49m[30;43m [39;49m[30;43m"[39;49m[30;43mWindows[39;49m[30;43m"[39;49m[30;43m)[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mcheck[39;49m[30;43m=[39;49m[30;43;01mTrue[39;49;00m[30;43m,[39;49m[30;43m [39;49m[30;43mcapture_output[39;49m[30;43m=[39;49m[30;43;01mTrue[39;49;00m[30;43m)[39;49m
+[32m     50[39m [38;5;28;01mexcept[39;00m subprocess.CalledProcessError [38;5;28;01mas[39;00m exc:
+[32m     51[39m     logger = logging.getLogger()
+
+[36mFile [39m[32m/usr/lib/python3.12/subprocess.py:571[39m, in [36mrun[39m[34m(input, capture_output, timeout, check, *popenargs, **kwargs)[39m
+[32m    569[39m     retcode = process.poll()
+[32m    570[39m     [38;5;28;01mif[39;00m check [38;5;129;01mand[39;00m retcode:
+[32m--> [39m[32m571[39m         [38;5;28;01mraise[39;00m CalledProcessError(retcode, process.args,
+[32m    572[39m                                  output=stdout, stderr=stderr)
+[32m    573[39m [38;5;28;01mreturn[39;00m CompletedProcess(process.args, retcode, stdout, stderr)
+
+[31mCalledProcessError[39m: Command '['optimum-cli', 'export', 'openvino', '--model', 'stabilityai/stable-diffusion-xl-base-1.0', 'openvino-sd-xl-base-1.0/INT8', '--weight-format', 'int8']' returned non-zero exit status 1.
+

@@ -18,7 +18,7 @@ cpu:
   status: VERIFIED_WITH_LIMITATIONS
 gpu:
   runtime: pytorch-rocm
-  status: NOT_TESTED
+  status: FAILED
   wall_timeout_s: 1800
 twin:
   level: WORKLOAD_TWIN

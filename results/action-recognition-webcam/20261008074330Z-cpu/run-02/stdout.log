@@ -1,0 +1,10 @@
+[cell 0 START +    0.5s] # Human Action Recognition with OpenVINO™ |  | This notebook demonstrates 
+[cell 1 START +    0.5s] %pip install -q "openvino>=2024.0.0" "opencv-python" "tqdm"
+[cell 1 DONE  +    1.0s]
+[cell 2 START +    1.0s] ## Imports | [back to top ⬆️](#Table-of-contents:) | 
+[cell 3 START +    1.0s] import collections | import os | import time |  | from pathlib import Path |  | im
+[cell 3 DONE  +    1.3s]
+[cell 4 START +    1.3s] ## The models | [back to top ⬆️](#Table-of-contents:) |  | ### Download the 
+[cell 5 START +    1.3s] # A directory where the model will be downloaded. | base_model_dir = "mo
+[cell 5 DONE  +    1.4s]
+NBEXEC_RESULT={"ok": false, "n_cells": 11, "n_skipped": 0, "n_substituted": 1, "stopped_after": null, "error_cell": null, "error_type": "CellExecutionError", "error_head": "\u001b[31mException\u001b[39m: File downloading failed with error: HTTPSConnectionPool(host='storage.openvinotoolkit.org', port=443): Max retries exceeded with url: /repositories/open_model_zoo/temp/action-recognition-0001/action-recognition-0001-decoder/FP16/action-recognition-0001-decoder.xml (Caused by ProxyError('Unable to connect to proxy', OSError('Tunnel connection failed: 403 Forbidden')))", "duration_s": 1.69, "patch_notes": ["substituted 1 occurrence(s) in cell 22"]}

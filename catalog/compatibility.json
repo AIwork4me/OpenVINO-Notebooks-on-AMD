@@ -1,5 +1,5 @@
 {
-  "generated": "2026-10-07T23:10:35+00:00",
+  "generated": "2026-10-08T12:35:02+00:00",
   "upstream": {
     "fetch_method": "codeload tarball (576 files kept, filter ('.ipynb', '.txt', '.py', '.json', '.csv', '.yaml', '.yml', '.xml', '.md', '.png', '.jpg', '.jpeg', '.gif')); blobs API fallback available",
     "files_ok": 576,
@@ -21,8 +21,9 @@
       "NOT_APPLICABLE": 2
     },
     "gpu": {
-      "NOT_TESTED": 165,
-      "VERIFIED": 8
+      "NOT_TESTED": 153,
+      "FAILED": 4,
+      "VERIFIED": 16
     },
     "twin_levels": {
       "WORKLOAD_TWIN": 162,
@@ -32,22 +33,23 @@
     "cpu_outcomes": {
       "VERIFIED": 25,
       "VERIFIED_WITH_LIMITATIONS": 63,
-      "BLOCKED_DEPENDENCY": 33,
+      "BLOCKED_NETWORK": 16,
       "BLOCKED_TIMEOUT": 22,
-      "BLOCKED_RESOURCE": 5,
+      "BLOCKED_RESOURCE": 9,
+      "BLOCKED_DEPENDENCY": 26,
       "BLOCKED_MODEL_ACCESS": 9,
-      "BLOCKED_NETWORK": 13,
       "NOT_APPLICABLE": 2,
       "FAILED_COMPATIBILITY": 1
     },
     "gpu_outcomes": {
-      "NOT_TESTED": 165,
-      "VERIFIED": 8
+      "NOT_TESTED": 153,
+      "BLOCKED_DEPENDENCY": 4,
+      "VERIFIED": 16
     },
     "cpu_attempted": 173,
     "cpu_attempt_coverage_pct": 100.0,
-    "gpu_attempted": 8,
-    "gpu_attempt_coverage_pct": 4.6,
+    "gpu_attempted": 20,
+    "gpu_attempt_coverage_pct": 11.6,
     "twin_classified": 173,
     "twin_classification_coverage_pct": 100.0,
     "cpu_successful_execution_coverage": {
@@ -128,11 +130,11 @@
       "upstream_url": "https://github.com/openvinotoolkit/openvino_notebooks/blob/2b1600de9620e4a2d26f1ef5c83fad64d7d76f7b/notebooks/3D-segmentation-point-clouds/3D-segmentation-point-clouds.ipynb",
       "priority": 2,
       "cpu_status": "FAILED",
-      "cpu_failure_category": "DEPENDENCY",
-      "cpu_compatibility_outcome": "BLOCKED_DEPENDENCY",
-      "cpu_outcome_reason": "UPSTREAM_NOTEBOOK_RERUN_SCOPING",
+      "cpu_failure_category": "NETWORK",
+      "cpu_compatibility_outcome": "BLOCKED_NETWORK",
+      "cpu_outcome_reason": "EXTERNAL_HOST_UNREACHABLE",
       "cpu_limitation_codes": [],
-      "cpu_evidence": "results/3d-segmentation-point-clouds/20261006T191359Z-cpu",
+      "cpu_evidence": "results/3d-segmentation-point-clouds/20261008074221Z-cpu",
       "cpu_validation_level": "",
       "cpu_device_proof": "NOT_INFERENCE",
       "gpu_status": "NOT_TESTED",
@@ -144,12 +146,11 @@
       "gpu_device_proof": "",
       "twin_level": "WORKLOAD_TWIN",
       "device_used": "AUTO",
-      "last_tested": "2026-10-06T19:14:06+00:00",
-      "evidence": "results/3d-segmentation-point-clouds/20261006T191359Z-cpu",
+      "last_tested": "2026-10-08T07:43:13+00:00",
+      "evidence": "results/3d-segmentation-point-clouds/20261008074221Z-cpu",
       "notes": [
-        "ok_runs=0/3: NameError: name 'point_data' is not defined",
-        "adjudicated (UPSTREAM_NOTEBOOK_RERUN_SCOPING): point_data is assigned only inside `if not point_data_path.exists()`; with data/chair.pts cached from an earlier partial run the variable is undefined (NameError cell 11). Upstream notebook rerun bug, not an OpenVINO/AMD failure.",
-        "execution category corrected by comprehensive audit: OPENVINO_ERROR -> DEPENDENCY (NameError from upstream rerun-scoping bug, not an OpenVINO runtime error)"
+        "ok_runs=0/3: Exception: File downloading failed with error: HTTPSConnectionPool(host='storage.openvinotoolkit.org', port=443): Max retries exceeded with url: /repositories/openvino_notebooks/data/data/pts/chair.pts (Caused by ProxyError('Unable to connect to proxy', OSError('Tunnel connection failed: 4",
+        "v0.3 adjudication: the headless-rerun NameError (point_data undefined) was a scoping artifact that is now resolved; the fresh current-pin run proceeds into the data stage and fails on storage.openvinotoolkit.org (proxy 403), the notebook's only data host. Reclassified BLOCKED_DEPENDENCY -> BLOCKED_NETWORK (external host); not a compatibility verdict."
       ]
     },
     {
@@ -192,11 +193,11 @@
       "upstream_url": "https://github.com/openvinotoolkit/openvino_notebooks/blob/2b1600de9620e4a2d26f1ef5c83fad64d7d76f7b/notebooks/action-recognition-webcam/action-recognition-webcam.ipynb",
       "priority": 3,
       "cpu_status": "FAILED",
-      "cpu_failure_category": "DEPENDENCY",
-      "cpu_compatibility_outcome": "BLOCKED_DEPENDENCY",
-      "cpu_outcome_reason": "UPSTREAM_NOTEBOOK_RERUN_SCOPING",
+      "cpu_failure_category": "NETWORK",
+      "cpu_compatibility_outcome": "BLOCKED_NETWORK",
+      "cpu_outcome_reason": "EXTERNAL_HOST_UNREACHABLE",
       "cpu_limitation_codes": [],
-      "cpu_evidence": "results/action-recognition-webcam/20261006T220552Z-cpu",
+      "cpu_evidence": "results/action-recognition-webcam/20261008074330Z-cpu",
       "cpu_validation_level": "",
       "cpu_device_proof": "NOT_INFERENCE",
       "gpu_status": "NOT_TESTED",
@@ -208,12 +209,11 @@
       "gpu_device_proof": "",
       "twin_level": "WORKLOAD_TWIN",
       "device_used": "",
-      "last_tested": "2026-10-06T22:05:57+00:00",
-      "evidence": "results/action-recognition-webcam/20261006T220552Z-cpu",
+      "last_tested": "2026-10-08T07:43:42+00:00",
+      "evidence": "results/action-recognition-webcam/20261008074330Z-cpu",
       "notes": [
-        "ok_runs=0/1: NameError: name 'vocab_file_path' is not defined",
-        "adjudicated (UPSTREAM_NOTEBOOK_RERUN_SCOPING): vocab_file_path is assigned only inside a conditional in the upstream notebook; with the data file already cached (resumable workdir) the variable is undefined. Upstream notebook bug, not an OpenVINO/AMD failure.",
-        "execution category corrected by comprehensive audit: UNKNOWN -> DEPENDENCY (NameError from upstream rerun-scoping bug, not an OpenVINO runtime error)"
+        "ok_runs=0/1: Exception: File downloading failed with error: HTTPSConnectionPool(host='storage.openvinotoolkit.org', port=443): Max retries exceeded with url: /repositories/open_model_zoo/temp/action-recognition-0001/action-recognition-0001-decoder/FP16/action-recognition-0001-decoder.xml (Caused by Pro",
+        "v0.3 adjudication: same as 3d-segmentation \u2014 the vocab_file_path NameError was a rerun-scoping artifact; the fresh run fails downloading the Kinetics labels from storage.openvinotoolkit.org (proxy 403). Reclassified BLOCKED_DEPENDENCY -> BLOCKED_NETWORK (external host)."
       ]
     },
     {
@@ -474,9 +474,9 @@
       "cpu_status": "FAILED",
       "cpu_failure_category": "DEPENDENCY",
       "cpu_compatibility_outcome": "BLOCKED_DEPENDENCY",
-      "cpu_outcome_reason": "MISSING_OR_BROKEN_DEPENDENCY",
+      "cpu_outcome_reason": "GIT_TRANSPORT_INSTALL_BLOCKED",
       "cpu_limitation_codes": [],
-      "cpu_evidence": "results/clip-zero-shot-classification/20261006T192037Z-cpu",
+      "cpu_evidence": "results/clip-zero-shot-classification/20261008073512Z-cpu",
       "cpu_validation_level": "",
       "cpu_device_proof": "UNKNOWN",
       "gpu_status": "NOT_TESTED",
@@ -488,10 +488,12 @@
       "gpu_device_proof": "",
       "twin_level": "WORKLOAD_TWIN",
       "device_used": "AUTO",
-      "last_tested": "2026-10-06T19:21:00+00:00",
-      "evidence": "results/clip-zero-shot-classification/20261006T192037Z-cpu",
+      "last_tested": "2026-10-08T07:42:05+00:00",
+      "evidence": "results/clip-zero-shot-classification/20261008073512Z-cpu",
       "notes": [
-        "ok_runs=0/3: Please note that you may need to restart your runtime after installation."
+        "optimum-cli health after bounded remediation: OPTIMUM_PACKAGES_MISSING",
+        "ok_runs=0/3: Please note that you may need to restart your runtime after installation.",
+        "v0.3 adjudication: root cause unchanged in kind but now precisely bounded: the install cell's `git+https://github.com/huggingface/optimum-intel.git` (floating master) declares a nested optimum-onnx git dependency whose clone is deterministically blocked on this runner; the whole pip cell fails, leaving transformers/torch uninstalled. BLOCKED_DEPENDENCY (git-transport install); not a model compatibility verdict."
       ]
     },
     {
@@ -667,11 +669,11 @@
       "cpu_evidence": "results/deepseek-ocr/20261006T100046Z-cpu",
       "cpu_validation_level": "EXECUTION_ONLY",
       "cpu_device_proof": "PROVEN_CPU",
-      "gpu_status": "NOT_TESTED",
-      "gpu_failure_category": "",
-      "gpu_compatibility_outcome": "NOT_TESTED",
-      "gpu_outcome_reason": "",
-      "gpu_evidence": null,
+      "gpu_status": "FAILED",
+      "gpu_failure_category": "UNKNOWN",
+      "gpu_compatibility_outcome": "BLOCKED_DEPENDENCY",
+      "gpu_outcome_reason": "TRANSFORMERS_GENERATION_CONTRACT",
+      "gpu_evidence": "results/deepseek-ocr/20261008T033046Z-gpu",
       "gpu_validation_level": "",
       "gpu_device_proof": "",
       "twin_level": "WORKLOAD_TWIN",
@@ -680,7 +682,11 @@
       "evidence": "results/deepseek-ocr/20261006T100046Z-cpu",
       "notes": [
         "EXECUTION_ONLY: no workload correctness contract (validation: {})",
-        "CORE_INFERENCE_VERIFIED; INTERACTIVE_UI_NOT_TESTED (documented skip policy)"
+        "CORE_INFERENCE_VERIFIED; INTERACTIVE_UI_NOT_TESTED (documented skip policy)",
+        "exit=1 duration=116s",
+        "TypeError: 'NoneType' object is not subscriptable",
+        "v0.3 GPU adjudication: the DeepSeek-OCR-2 model repo's remote code targets transformers 4.x (imports LlamaFlashAttention2, removed in 5.x) and its checkpoint config does not match the transformers-5.17 built-in DeepseekOcr2 class (mlp_layer_types schema). A dedicated transformers-4.46.3 bridged env (as the upstream notebook pins) plus a port of the notebook-side preprocessing is required \u2014 deferred beyond v0.3. Current GPU outcome: BLOCKED_DEPENDENCY (library-generation contract), not a model/ROCm verdict.",
+        "v0.3 GPU adjudication: DeepSeek-OCR-2's remote code targets transformers 4.x (imports LlamaFlashAttention2, removed in 5.x) and its checkpoint config does not match the 5.17 built-in DeepseekOcr2 class. Requires the pinned transformers-4.46.3 bridged env plus a port of the notebook-side preprocessing \u2014 deferred beyond v0.3. BLOCKED_DEPENDENCY (library-generation contract), not a model/ROCm verdict."
       ]
     },
     {
@@ -950,11 +956,11 @@
       "cpu_evidence": "results/florence2/20261007T011006Z-cpu",
       "cpu_validation_level": "WORKLOAD_CORRECTNESS",
       "cpu_device_proof": "PROVEN_CPU",
-      "gpu_status": "NOT_TESTED",
-      "gpu_failure_category": "",
-      "gpu_compatibility_outcome": "NOT_TESTED",
-      "gpu_outcome_reason": "",
-      "gpu_evidence": null,
+      "gpu_status": "FAILED",
+      "gpu_failure_category": "UNKNOWN",
+      "gpu_compatibility_outcome": "BLOCKED_DEPENDENCY",
+      "gpu_outcome_reason": "TRANSFORMERS_GENERATION_CONTRACT",
+      "gpu_evidence": "results/florence2/20261008T063206Z-gpu",
       "gpu_validation_level": "",
       "gpu_device_proof": "",
       "twin_level": "WORKLOAD_TWIN",
@@ -962,7 +968,10 @@
       "last_tested": "2026-10-07T01:11:13+00:00",
       "evidence": "results/florence2/20261007T011006Z-cpu",
       "notes": [
-        "CORE_INFERENCE_VERIFIED; INTERACTIVE_UI_NOT_TESTED (documented skip policy)"
+        "CORE_INFERENCE_VERIFIED; INTERACTIVE_UI_NOT_TESTED (documented skip policy)",
+        "exit=1 duration=35s",
+        "AttributeError: 'Florence2LanguageConfig' object has no attribute 'forced_bos_token_id'",
+        "v0.3 GPU adjudication: Florence-2 remote code drifts across transformers generations (forced_bos_token_id config default, RobertaTokenizer additional_special_tokens, PreTrainedModel._supports_sdpa) \u2014 fails on both 5.17 and 4.57 without the exact-era 4.4x env. Requires the same pinned-env treatment as deepseek-ocr; deferred beyond v0.3. BLOCKED_DEPENDENCY (library-generation contract)."
       ]
     },
     {
@@ -1160,13 +1169,13 @@
       "upstream_url": "https://github.com/openvinotoolkit/openvino_notebooks/blob/2b1600de9620e4a2d26f1ef5c83fad64d7d76f7b/notebooks/gemma4/gemma4.ipynb",
       "priority": 4,
       "cpu_status": "FAILED",
-      "cpu_failure_category": "NETWORK",
-      "cpu_compatibility_outcome": "BLOCKED_NETWORK",
-      "cpu_outcome_reason": "NETWORK_UNREACHABLE",
+      "cpu_failure_category": "UNKNOWN",
+      "cpu_compatibility_outcome": "BLOCKED_RESOURCE",
+      "cpu_outcome_reason": "DISK_EXHAUSTED_DURING_EXPORT_OPERATOR_HALTED",
       "cpu_limitation_codes": [],
-      "cpu_evidence": "results/gemma4/20261007193418Z-cpu",
+      "cpu_evidence": "results/gemma4/20261008000709Z-cpu",
       "cpu_validation_level": "",
-      "cpu_device_proof": "NOT_INFERENCE",
+      "cpu_device_proof": "UNKNOWN",
       "gpu_status": "NOT_TESTED",
       "gpu_failure_category": "",
       "gpu_compatibility_outcome": "NOT_TESTED",
@@ -1176,11 +1185,12 @@
       "gpu_device_proof": "",
       "twin_level": "WORKLOAD_TWIN",
       "device_used": "AUTO",
-      "last_tested": "2026-10-07T19:44:26+00:00",
-      "evidence": "results/gemma4/20261007193418Z-cpu",
+      "last_tested": "2026-10-08T00:14:57+00:00",
+      "evidence": "results/gemma4/20261008000709Z-cpu",
       "notes": [
         "optimum-cli health after bounded remediation: OPTIMUM_PACKAGES_MISSING",
-        "ok_runs=0/1: ProxyError: HTTPSConnectionPool(host='github-production-user-asset-6210df.s3.amazonaws.com', port=443): Max retries exceeded with url: /29454499/319483352-d5fbbd1a-d484-415c-88cb-9986625b7b11.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAVCODYLSA53PQK4ZA%2F20261007%2Fus-east-1%"
+        "ok_runs=0/1: AssertionError",
+        "v0.3 resource adjudication: the 2b1600d-pin rerun progressed past dependency install (optimum-intel master resolved via codeload transport) into the Gemma-4-E2B OpenVINO export when the validation disk hit 100% utilization (sibling campaign workloads); the operator killed the export kernel to protect the shared disk and the recorded AssertionError is the interrupted-export artifact, not a model verdict. Honest outcome: BLOCKED_RESOURCE (insufficient disk headroom for the ~14GB export on this runner during the v0.3 window). Dependency root cause from v0.2.2 is RESOLVED (installs complete)."
       ]
     },
     {
@@ -1192,25 +1202,27 @@
       "priority": 1,
       "cpu_status": "FAILED",
       "cpu_failure_category": "DEPENDENCY",
-      "cpu_compatibility_outcome": "BLOCKED_DEPENDENCY",
-      "cpu_outcome_reason": "MISSING_OR_BROKEN_DEPENDENCY",
+      "cpu_compatibility_outcome": "BLOCKED_NETWORK",
+      "cpu_outcome_reason": "EXTERNAL_HOST_UNREACHABLE",
       "cpu_limitation_codes": [],
-      "cpu_evidence": "results/glm-ocr/20261006T110628Z-cpu",
+      "cpu_evidence": "results/glm-ocr/20261007231614Z-cpu",
       "cpu_validation_level": "",
       "cpu_device_proof": "UNKNOWN",
-      "gpu_status": "NOT_TESTED",
+      "gpu_status": "VERIFIED",
       "gpu_failure_category": "",
-      "gpu_compatibility_outcome": "NOT_TESTED",
+      "gpu_compatibility_outcome": "VERIFIED",
       "gpu_outcome_reason": "",
-      "gpu_evidence": null,
-      "gpu_validation_level": "",
-      "gpu_device_proof": "",
+      "gpu_evidence": "results/glm-ocr/20261008T032829Z-gpu",
+      "gpu_validation_level": "WORKLOAD_CORRECTNESS",
+      "gpu_device_proof": "PROVEN_GPU",
       "twin_level": "WORKLOAD_TWIN",
       "device_used": "CPU",
-      "last_tested": "2026-10-06T11:16:44+00:00",
-      "evidence": "results/glm-ocr/20261006T110628Z-cpu",
+      "last_tested": "2026-10-07T23:17:27+00:00",
+      "evidence": "results/glm-ocr/20261008T032829Z-gpu",
       "notes": [
-        "ok_runs=0/3: CalledProcessError: Command '['optimum-cli', 'export', 'openvino', '--model', 'zai-org/GLM-OCR', 'GLM-OCR/INT4', '--task', 'image-text-to-text', '--weight-format', 'int4', '--group-size', '128', '--ratio', '1.0']' returned non-zero exit status 1."
+        "optimum-cli health after bounded remediation: OPTIMUM_PACKAGES_MISSING",
+        "ok_runs=0/3: Exception: File downloading failed with error: HTTPSConnectionPool(host='github-production-user-asset-6210df.s3.amazonaws.com', port=443): Max retries exceeded with url: /91237924/585170821-fda2c6f6-bbba-4ece-b90b-c42bca60e525.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAVCODY",
+        "v0.3 adjudication: the v0.2.2 optimum-export dependency blocker is RESOLVED (nested optimum-onnx@transformers-v5 satisfied via codeload, fork installs --no-deps); the remaining sole blocker is the notebook's sample images on GitHub user-attachment S3 (github-production-user-asset-*.s3.amazonaws.com), proxy-blocked on this runner. Reclassified BLOCKED_DEPENDENCY -> BLOCKED_NETWORK (external asset host); the GLM-OCR ROCm twin is VERIFIED with a deterministic typewritten fixture input."
       ]
     },
     {
@@ -1491,13 +1503,13 @@
       "upstream_url": "https://github.com/openvinotoolkit/openvino_notebooks/blob/2b1600de9620e4a2d26f1ef5c83fad64d7d76f7b/notebooks/hunyuan-ocr/hunyuan-ocr.ipynb",
       "priority": 1,
       "cpu_status": "FAILED",
-      "cpu_failure_category": "DEPENDENCY",
+      "cpu_failure_category": "UNKNOWN",
       "cpu_compatibility_outcome": "BLOCKED_DEPENDENCY",
-      "cpu_outcome_reason": "OPTIMUM_CLI_MISSING_OR_BROKEN",
+      "cpu_outcome_reason": "FORK_EXPORT_INCOMPATIBILITY",
       "cpu_limitation_codes": [],
-      "cpu_evidence": "results/hunyuan-ocr/20261007T013051Z-cpu",
+      "cpu_evidence": "results/hunyuan-ocr/20261008123128Z-cpu",
       "cpu_validation_level": "",
-      "cpu_device_proof": "UNKNOWN",
+      "cpu_device_proof": "NOT_INFERENCE",
       "gpu_status": "NOT_TESTED",
       "gpu_failure_category": "",
       "gpu_compatibility_outcome": "NOT_TESTED",
@@ -1507,10 +1519,11 @@
       "gpu_device_proof": "",
       "twin_level": "WORKLOAD_TWIN",
       "device_used": "",
-      "last_tested": "2026-10-07T01:31:13+00:00",
-      "evidence": "results/hunyuan-ocr/20261007T013051Z-cpu",
+      "last_tested": "2026-10-08T12:33:42+00:00",
+      "evidence": "results/hunyuan-ocr/20261008123128Z-cpu",
       "notes": [
-        "ok_runs=0/1: ValueError: Unexpected dependency in optimum-intel/setup.py: \"optimum@https://codeload.github.com/huggingface/optimum/tar.gz/HEAD\""
+        "ok_runs=0/1: CalledProcessError: Command '['optimum-cli', 'export', 'openvino', '--model', 'tencent/HunyuanOCR', 'HunyuanOCR/INT8', '--task', 'image-text-to-text', '--weight-format', 'fp32']' returned non-zero exit status 1.",
+        "v0.3 final adjudication: the full dependency chain is now RESOLVED on this pin (fork from codeload at pinned rev; nested optimum pin via codeload tarball of the notebook's own 52367da7 revision; transformers from the notebook's pinned git commit via codeload; install cell completes under a 2400s per-cell bound). The remaining failure is optimum-cli's OpenVINO export of tencent/HunyuanOCR itself (exit 1 inside the fork's exporter against this model) \u2014 an upstream fork/model contract issue, not an environment block. BLOCKED_DEPENDENCY (exporter); candidate for an upstream issue once minimized."
       ]
     },
     {
@@ -1647,11 +1660,11 @@
       "upstream_url": "https://github.com/openvinotoolkit/openvino_notebooks/blob/2b1600de9620e4a2d26f1ef5c83fad64d7d76f7b/notebooks/instant-id/instant-id.ipynb",
       "priority": 1,
       "cpu_status": "FAILED",
-      "cpu_failure_category": "NETWORK",
+      "cpu_failure_category": "TIMEOUT",
       "cpu_compatibility_outcome": "BLOCKED_NETWORK",
       "cpu_outcome_reason": "EXTERNAL_HOST_UNREACHABLE",
       "cpu_limitation_codes": [],
-      "cpu_evidence": "results/instant-id/20261006T170232Z-cpu",
+      "cpu_evidence": "results/instant-id/20261008022533Z-cpu",
       "cpu_validation_level": "",
       "cpu_device_proof": "UNKNOWN",
       "gpu_status": "NOT_TESTED",
@@ -1663,10 +1676,11 @@
       "gpu_device_proof": "",
       "twin_level": "WORKLOAD_TWIN",
       "device_used": "AUTO",
-      "last_tested": "2026-10-06T17:17:02+00:00",
-      "evidence": "results/instant-id/20261006T170232Z-cpu",
+      "last_tested": "2026-10-08T02:48:02+00:00",
+      "evidence": "results/instant-id/20261008022533Z-cpu",
       "notes": [
-        "ok_runs=0/1: ConnectTimeout: HTTPSConnectionPool(host='drive.google.com', port=443): Max retries exceeded with url: /uc?id=18wEUfMNohBJ4K3Ly5wpTejPfDzp-8fI8 (Caused by ConnectTimeoutError(<HTTPSConnection(host='drive.google.com', port=443) at 0x73bf26979e20>, 'Connection to drive.google.com timed out. "
+        "ok_runs=0/1: -------------------",
+        "v0.3 adjudication: environment remediation (gdown) landed and the run reached the weights stage; the InsightFace antelopev2 weights are hosted on drive.google.com, which this runner's egress proxy blocks (503 tunnel). Reclassified to BLOCKED_NETWORK (external weights host)."
       ]
     },
     {
@@ -1831,11 +1845,11 @@
       "cpu_status": "FAILED",
       "cpu_failure_category": "NETWORK",
       "cpu_compatibility_outcome": "BLOCKED_NETWORK",
-      "cpu_outcome_reason": "EXTERNAL_HOST_UNREACHABLE",
+      "cpu_outcome_reason": "NETWORK_UNREACHABLE",
       "cpu_limitation_codes": [],
-      "cpu_evidence": "results/llm-agent-mcp/20261006T113948Z-cpu",
+      "cpu_evidence": "results/llm-agent-mcp/20261007235034Z-cpu",
       "cpu_validation_level": "",
-      "cpu_device_proof": "NOT_INFERENCE",
+      "cpu_device_proof": "PROVEN_CPU",
       "gpu_status": "NOT_TESTED",
       "gpu_failure_category": "",
       "gpu_compatibility_outcome": "NOT_TESTED",
@@ -1845,10 +1859,11 @@
       "gpu_device_proof": "",
       "twin_level": "WORKLOAD_TWIN",
       "device_used": "CPU",
-      "last_tested": "2026-10-06T11:49:38+00:00",
-      "evidence": "results/llm-agent-mcp/20261006T113948Z-cpu",
+      "last_tested": "2026-10-07T23:57:54+00:00",
+      "evidence": "results/llm-agent-mcp/20261007235034Z-cpu",
       "notes": [
-        "ok_runs=0/3: ConnectTimeout: HTTPSConnectionPool(host='cdn-avatars.huggingface.co', port=443): Max retries exceeded with url: /v1/production/uploads/1671615670447-6346651be2dcb5422bcd13dd.png (Caused by ConnectTimeoutError(<HTTPSConnection(host='cdn-avatars.huggingface.co', port=443) at 0x73d8c4de6360>"
+        "optimum-cli health after bounded remediation: OPTIMUM_PACKAGES_MISSING",
+        "ok_runs=0/3: ProxyError: HTTPSConnectionPool(host='cdn-avatars.huggingface.co', port=443): Max retries exceeded with url: /v1/production/uploads/1671615670447-6346651be2dcb5422bcd13dd.png (Caused by ProxyError('Unable to connect to proxy', OSError('Tunnel connection failed: 503 Service Unavailable')))"
       ]
     },
     {
@@ -1997,9 +2012,9 @@
       "cpu_status": "FAILED",
       "cpu_failure_category": "NETWORK",
       "cpu_compatibility_outcome": "BLOCKED_NETWORK",
-      "cpu_outcome_reason": "NETWORK_UNREACHABLE",
+      "cpu_outcome_reason": "EXTERNAL_HOST_UNREACHABLE",
       "cpu_limitation_codes": [],
-      "cpu_evidence": "results/llm-code-assistant/20261007183204Z-cpu",
+      "cpu_evidence": "results/llm-code-assistant/20261008024819Z-cpu",
       "cpu_validation_level": "",
       "cpu_device_proof": "UNKNOWN",
       "gpu_status": "NOT_TESTED",
@@ -2011,10 +2026,11 @@
       "gpu_device_proof": "",
       "twin_level": "WORKLOAD_TWIN",
       "device_used": "AUTO",
-      "last_tested": "2026-10-07T18:58:49+00:00",
-      "evidence": "results/llm-code-assistant/20261007183204Z-cpu",
+      "last_tested": "2026-10-08T03:13:05+00:00",
+      "evidence": "results/llm-code-assistant/20261008024819Z-cpu",
       "notes": [
-        "ok_runs=0/1: CalledProcessError: Command '['/workspace/.venvs/cpu/b5474a66a7540a14/bin/python', '-m', 'pip', 'install', '-q', '-U', 'gradio>=6.0.0', 'huggingface_hub', 'git+https://github.com/huggingface/optimum-intel.git', 'nncf>=2.18.0', 'torch==2.8', 'datasets<4.0.0', 'accelerate', 'transformers>=4."
+        "ok_runs=0/1: CalledProcessError: Command '['/workspace/.venvs/cpu/0e3c03443623f289/bin/python', '-m', 'pip', 'install', '-q', '-U', 'gradio>=6.0.0', 'huggingface_hub', 'git+https://github.com/huggingface/optimum-intel.git', 'nncf>=2.18.0', 'torch==2.8', 'datasets<4.0.0', 'accelerate', 'transformers>=4.",
+        "v0.3 adjudication: fresh run confirms deterministic git-transport block \u2014 the notebook pip-installs from git+https://github.com (optimum-intel et al.) whose clones cannot pass this runner's proxy. BLOCKED_NETWORK (external git host)."
       ]
     },
     {
@@ -2412,17 +2428,17 @@
       "cpu_evidence": "results/minicpm-v-4.6/20261006T172150Z-cpu",
       "cpu_validation_level": "EXECUTION_ONLY",
       "cpu_device_proof": "PROVEN_CPU",
-      "gpu_status": "NOT_TESTED",
+      "gpu_status": "VERIFIED",
       "gpu_failure_category": "",
-      "gpu_compatibility_outcome": "NOT_TESTED",
+      "gpu_compatibility_outcome": "VERIFIED",
       "gpu_outcome_reason": "",
-      "gpu_evidence": null,
-      "gpu_validation_level": "",
-      "gpu_device_proof": "",
+      "gpu_evidence": "results/minicpm-v-4.6/20261008T101436Z-gpu",
+      "gpu_validation_level": "WORKLOAD_CORRECTNESS",
+      "gpu_device_proof": "PROVEN_GPU",
       "twin_level": "WORKLOAD_TWIN",
       "device_used": "AUTO",
       "last_tested": "2026-10-06T17:31:35+00:00",
-      "evidence": "results/minicpm-v-4.6/20261006T172150Z-cpu",
+      "evidence": "results/minicpm-v-4.6/20261008T101436Z-gpu",
       "notes": [
         "EXECUTION_ONLY: no workload correctness contract (validation: {})",
         "repeatability_not_established: fewer than 3 successful runs (resource-bounded policy)",
@@ -3198,17 +3214,17 @@
       "cpu_evidence": "results/paddleocr_vl/20261006T123520Z-cpu",
       "cpu_validation_level": "",
       "cpu_device_proof": "PROVEN_CPU",
-      "gpu_status": "NOT_TESTED",
+      "gpu_status": "VERIFIED",
       "gpu_failure_category": "",
-      "gpu_compatibility_outcome": "NOT_TESTED",
+      "gpu_compatibility_outcome": "VERIFIED",
       "gpu_outcome_reason": "",
-      "gpu_evidence": null,
-      "gpu_validation_level": "",
-      "gpu_device_proof": "",
+      "gpu_evidence": "results/paddleocr_vl/20261008T063244Z-gpu",
+      "gpu_validation_level": "WORKLOAD_CORRECTNESS",
+      "gpu_device_proof": "PROVEN_GPU",
       "twin_level": "WORKLOAD_TWIN",
       "device_used": "",
       "last_tested": "2026-10-06T12:38:41+00:00",
-      "evidence": "results/paddleocr_vl/20261006T123520Z-cpu",
+      "evidence": "results/paddleocr_vl/20261008T063244Z-gpu",
       "notes": [
         "ok_runs=0/3: FileNotFoundError: [Errno 2] No such file or directory: 'results/paddleocr_vl/workdir-cpu/test.png'",
         "adjudicated (HARNESS_NOTEBOOK_RELATIVE_ASSET): Notebook expects sibling asset test.png; same harness notebook-relative-asset defect (fixed this closure \u2014 revalidation queued)."
@@ -3288,11 +3304,11 @@
       "upstream_url": "https://github.com/openvinotoolkit/openvino_notebooks/blob/2b1600de9620e4a2d26f1ef5c83fad64d7d76f7b/notebooks/person-tracking-webcam/person-tracking.ipynb",
       "priority": 3,
       "cpu_status": "FAILED",
-      "cpu_failure_category": "DEPENDENCY",
-      "cpu_compatibility_outcome": "BLOCKED_DEPENDENCY",
-      "cpu_outcome_reason": "MISSING_OR_BROKEN_DEPENDENCY",
+      "cpu_failure_category": "NETWORK",
+      "cpu_compatibility_outcome": "BLOCKED_NETWORK",
+      "cpu_outcome_reason": "NETWORK_UNREACHABLE",
       "cpu_limitation_codes": [],
-      "cpu_evidence": "results/person-tracking/20261006T221532Z-cpu",
+      "cpu_evidence": "results/person-tracking/20261008092828Z-cpu",
       "cpu_validation_level": "",
       "cpu_device_proof": "NOT_INFERENCE",
       "gpu_status": "NOT_TESTED",
@@ -3304,10 +3320,10 @@
       "gpu_device_proof": "",
       "twin_level": "WORKLOAD_TWIN",
       "device_used": "",
-      "last_tested": "2026-10-06T22:16:41+00:00",
-      "evidence": "results/person-tracking/20261006T221532Z-cpu",
+      "last_tested": "2026-10-08T09:28:44+00:00",
+      "evidence": "results/person-tracking/20261008092828Z-cpu",
       "notes": [
-        "ok_runs=0/1: ModuleNotFoundError: No module named 'deepsort_utils'"
+        "ok_runs=0/1: Exception: File downloading failed with error: HTTPSConnectionPool(host='storage.openvinotoolkit.org', port=443): Max retries exceeded with url: /repositories/open_model_zoo/2023.0/models_bin/1/person-detection-0202/FP16/person-detection-0202.xml (Caused by ProxyError('Unable to connect to"
       ]
     },
     {
@@ -3556,11 +3572,11 @@
       "upstream_url": "https://github.com/openvinotoolkit/openvino_notebooks/blob/2b1600de9620e4a2d26f1ef5c83fad64d7d76f7b/notebooks/qwen-image/qwen-image.ipynb",
       "priority": 1,
       "cpu_status": "FAILED",
-      "cpu_failure_category": "PACKAGE_CONFLICT",
-      "cpu_compatibility_outcome": "BLOCKED_DEPENDENCY",
-      "cpu_outcome_reason": "PACKAGE_RESOLUTION_CONFLICT",
+      "cpu_failure_category": "NETWORK",
+      "cpu_compatibility_outcome": "BLOCKED_RESOURCE",
+      "cpu_outcome_reason": "DISK_BUDGET_EXCEEDED",
       "cpu_limitation_codes": [],
-      "cpu_evidence": "results/qwen-image/20261006T131310Z-cpu",
+      "cpu_evidence": "results/qwen-image/20261007233531Z-cpu",
       "cpu_validation_level": "",
       "cpu_device_proof": "UNKNOWN",
       "gpu_status": "NOT_TESTED",
@@ -3572,10 +3588,11 @@
       "gpu_device_proof": "",
       "twin_level": "WORKLOAD_TWIN",
       "device_used": "CPU",
-      "last_tested": "2026-10-06T13:20:40+00:00",
-      "evidence": "results/qwen-image/20261006T131310Z-cpu",
+      "last_tested": "2026-10-07T23:39:34+00:00",
+      "evidence": "results/qwen-image/20261007233531Z-cpu",
       "notes": [
-        "ok_runs=0/3: CalledProcessError: Command '['optimum-cli', 'export', 'openvino', '--model', 'Qwen/Qwen-Image-2512', 'Qwen-Image-2512/INT8', '--weight-format', 'int8']' returned non-zero exit status 1."
+        "ok_runs=0/3: CalledProcessError: Command '['/workspace/.venvs/cpu/0e3c03443623f289/bin/python', '-m', 'pip', 'install', '-q', 'https://codeload.github.com/openvino-dev-samples/optimum-intel/tar.gz/qwen-image']' returned non-zero exit status 1.",
+        "v0.3 adjudication: dependency root cause from v0.2.2 is FIXED on this pin (codeload transport + --no-deps fork install land; installs complete), but the workload needs ~26GB of Qwen-Image-2512 weights plus a large IR export; the shared 98GB validation disk cannot host it alongside the campaign's other downloads. Honest outcome for this window: BLOCKED_RESOURCE (DISK_BUDGET_EXCEEDED); not a compatibility verdict."
       ]
     },
     {
@@ -3689,17 +3706,17 @@
       "cpu_evidence": "results/qwen3-asr/20261006T161620Z-cpu",
       "cpu_validation_level": "",
       "cpu_device_proof": "UNKNOWN",
-      "gpu_status": "NOT_TESTED",
+      "gpu_status": "VERIFIED",
       "gpu_failure_category": "",
-      "gpu_compatibility_outcome": "NOT_TESTED",
+      "gpu_compatibility_outcome": "VERIFIED",
       "gpu_outcome_reason": "",
-      "gpu_evidence": null,
-      "gpu_validation_level": "",
-      "gpu_device_proof": "",
+      "gpu_evidence": "results/qwen3-asr/20261008T092400Z-gpu",
+      "gpu_validation_level": "WORKLOAD_CORRECTNESS",
+      "gpu_device_proof": "PROVEN_GPU",
       "twin_level": "WORKLOAD_TWIN",
       "device_used": "",
       "last_tested": "2026-10-06T16:19:13+00:00",
-      "evidence": "results/qwen3-asr/20261006T161620Z-cpu",
+      "evidence": "results/qwen3-asr/20261008T092400Z-gpu",
       "notes": [
         "ok_runs=0/3: ModuleNotFoundError: Could not import module 'OVModelForSpeechSeq2Seq'. Are this object's requirements defined correctly?"
       ]
@@ -3722,17 +3739,17 @@
       "cpu_evidence": "results/qwen3-embedding/20261006T183935Z-cpu",
       "cpu_validation_level": "EXECUTION_ONLY",
       "cpu_device_proof": "PROVEN_CPU",
-      "gpu_status": "NOT_TESTED",
+      "gpu_status": "VERIFIED",
       "gpu_failure_category": "",
-      "gpu_compatibility_outcome": "NOT_TESTED",
+      "gpu_compatibility_outcome": "VERIFIED",
       "gpu_outcome_reason": "",
-      "gpu_evidence": null,
-      "gpu_validation_level": "",
-      "gpu_device_proof": "",
+      "gpu_evidence": "results/qwen3-embedding/20261008T045854Z-gpu",
+      "gpu_validation_level": "WORKLOAD_CORRECTNESS",
+      "gpu_device_proof": "PROVEN_GPU",
       "twin_level": "WORKLOAD_TWIN",
       "device_used": "CPU",
       "last_tested": "2026-10-06T18:42:04+00:00",
-      "evidence": "results/qwen3-embedding/20261006T183935Z-cpu",
+      "evidence": "results/qwen3-embedding/20261008T045854Z-gpu",
       "notes": [
         "EXECUTION_ONLY: no workload correctness contract (validation: {})",
         "repeatability_not_established: fewer than 3 successful runs (resource-bounded policy)"
@@ -3756,17 +3773,17 @@
       "cpu_evidence": "results/qwen3-reranker/20261006T184204Z-cpu",
       "cpu_validation_level": "EXECUTION_ONLY",
       "cpu_device_proof": "PROVEN_CPU",
-      "gpu_status": "NOT_TESTED",
+      "gpu_status": "VERIFIED",
       "gpu_failure_category": "",
-      "gpu_compatibility_outcome": "NOT_TESTED",
+      "gpu_compatibility_outcome": "VERIFIED",
       "gpu_outcome_reason": "",
-      "gpu_evidence": null,
-      "gpu_validation_level": "",
-      "gpu_device_proof": "",
+      "gpu_evidence": "results/qwen3-reranker/20261008T032329Z-gpu",
+      "gpu_validation_level": "WORKLOAD_CORRECTNESS",
+      "gpu_device_proof": "PROVEN_GPU",
       "twin_level": "WORKLOAD_TWIN",
       "device_used": "CPU",
       "last_tested": "2026-10-06T18:43:55+00:00",
-      "evidence": "results/qwen3-reranker/20261006T184204Z-cpu",
+      "evidence": "results/qwen3-reranker/20261008T032329Z-gpu",
       "notes": [
         "EXECUTION_ONLY: no workload correctness contract (validation: {})",
         "repeatability_not_established: fewer than 3 successful runs (resource-bounded policy)"
@@ -3790,11 +3807,11 @@
       "cpu_evidence": "results/qwen3-tts/20261006T161913Z-cpu",
       "cpu_validation_level": "EXECUTION_ONLY",
       "cpu_device_proof": "PROVEN_CPU",
-      "gpu_status": "NOT_TESTED",
-      "gpu_failure_category": "",
-      "gpu_compatibility_outcome": "NOT_TESTED",
-      "gpu_outcome_reason": "",
-      "gpu_evidence": null,
+      "gpu_status": "FAILED",
+      "gpu_failure_category": "UNKNOWN",
+      "gpu_compatibility_outcome": "BLOCKED_DEPENDENCY",
+      "gpu_outcome_reason": "UPSTREAM_PACKAGE_CONTRACT",
+      "gpu_evidence": "results/qwen3-tts/20261008T105424Z-gpu",
       "gpu_validation_level": "",
       "gpu_device_proof": "",
       "twin_level": "WORKLOAD_TWIN",
@@ -3803,7 +3820,10 @@
       "evidence": "results/qwen3-tts/20261006T161913Z-cpu",
       "notes": [
         "EXECUTION_ONLY: no workload correctness contract (validation: {})",
-        "CORE_INFERENCE_VERIFIED; INTERACTIVE_UI_NOT_TESTED (documented skip policy)"
+        "CORE_INFERENCE_VERIFIED; INTERACTIVE_UI_NOT_TESTED (documented skip policy)",
+        "exit=1 duration=95s",
+        "OSError: Can't load feature extractor for '/workspace/.cache/huggingface/transformers/models--Qwen--Qwen3-TTS-12Hz-0.6B-CustomVoice/snapshots/85e237c12c027371202489a0ec509ded67b5e4b5/speech_tokenizer'. If you were trying to load it from 'https://huggingface.co/models', make sure you don't have a loc",
+        "v0.3 GPU adjudication: qwen-tts requires transformers==4.57.3 (and torchaudio/sox); in the bridged 4.57.3 env the loader cannot read the Qwen3-TTS feature-extractor artifact (5.x-era repo format), and in the 5.17 env the package's check_model_inputs decorator breaks. The package/model-repo pair spans two transformers generations without a satisfiable env on this stack; deferred pending an upstream-compatible release. BLOCKED_DEPENDENCY (library contract)."
       ]
     },
     {
@@ -3886,7 +3906,7 @@
       "cpu_compatibility_outcome": "BLOCKED_NETWORK",
       "cpu_outcome_reason": "NETWORK_UNREACHABLE",
       "cpu_limitation_codes": [],
-      "cpu_evidence": "results/qwen3.8-mtp/20261007191855Z-cpu",
+      "cpu_evidence": "results/qwen3.8-mtp/20261007235921Z-cpu",
       "cpu_validation_level": "",
       "cpu_device_proof": "NOT_INFERENCE",
       "gpu_status": "NOT_TESTED",
@@ -3898,8 +3918,8 @@
       "gpu_device_proof": "",
       "twin_level": "WORKLOAD_TWIN",
       "device_used": "CPU",
-      "last_tested": "2026-10-07T19:34:05+00:00",
-      "evidence": "results/qwen3.8-mtp/20261007191855Z-cpu",
+      "last_tested": "2026-10-08T00:06:54+00:00",
+      "evidence": "results/qwen3.8-mtp/20261007235921Z-cpu",
       "notes": [
         "optimum-cli health after bounded remediation: OPTIMUM_PACKAGES_MISSING",
         "ok_runs=0/1: URLError: <urlopen error Tunnel connection failed: 403 Forbidden>"
@@ -4121,17 +4141,17 @@
       "cpu_evidence": "results/smoldocling/20261006T133210Z-cpu",
       "cpu_validation_level": "EXECUTION_ONLY",
       "cpu_device_proof": "UNKNOWN",
-      "gpu_status": "NOT_TESTED",
+      "gpu_status": "VERIFIED",
       "gpu_failure_category": "",
-      "gpu_compatibility_outcome": "NOT_TESTED",
+      "gpu_compatibility_outcome": "VERIFIED",
       "gpu_outcome_reason": "",
-      "gpu_evidence": null,
-      "gpu_validation_level": "",
-      "gpu_device_proof": "",
+      "gpu_evidence": "results/smoldocling/20261008T032635Z-gpu",
+      "gpu_validation_level": "WORKLOAD_CORRECTNESS",
+      "gpu_device_proof": "PROVEN_GPU",
       "twin_level": "WORKLOAD_TWIN",
       "device_used": "AUTO",
       "last_tested": "2026-10-06T13:42:20+00:00",
-      "evidence": "results/smoldocling/20261006T133210Z-cpu",
+      "evidence": "results/smoldocling/20261008T032635Z-gpu",
       "notes": [
         "EXECUTION_ONLY: no workload correctness contract (validation: {})",
         "DEVICE_PROOF_INCOMPLETE: device proof state UNKNOWN",
@@ -4337,12 +4357,12 @@
       "priority": 1,
       "cpu_status": "FAILED",
       "cpu_failure_category": "UNKNOWN",
-      "cpu_compatibility_outcome": "BLOCKED_DEPENDENCY",
-      "cpu_outcome_reason": "INTERACTIVE_UI_TEARDOWN_AFTER_SKIP",
+      "cpu_compatibility_outcome": "BLOCKED_RESOURCE",
+      "cpu_outcome_reason": "IR_EXPORT_WRITE_IOSTREAM_ERROR",
       "cpu_limitation_codes": [],
-      "cpu_evidence": "results/stable-diffusion-xl/20261006T140920Z-cpu",
+      "cpu_evidence": "results/stable-diffusion-xl/20261008082930Z-cpu",
       "cpu_validation_level": "",
-      "cpu_device_proof": "PROVEN_CPU",
+      "cpu_device_proof": "NOT_INFERENCE",
       "gpu_status": "VERIFIED",
       "gpu_failure_category": "",
       "gpu_compatibility_outcome": "VERIFIED",
@@ -4352,10 +4372,11 @@
       "gpu_device_proof": "PROVEN_GPU",
       "twin_level": "WORKLOAD_TWIN",
       "device_used": "AUTO",
-      "last_tested": "2026-10-06T14:12:38+00:00",
+      "last_tested": "2026-10-08T08:33:15+00:00",
       "evidence": "results/stable-diffusion-xl/20261007T010006Z-gpu",
       "notes": [
-        "ok_runs=0/3: NameError: name 'demo' is not defined"
+        "ok_runs=0/3: CalledProcessError: Command '['optimum-cli', 'export', 'openvino', '--model', 'stabilityai/stable-diffusion-xl-base-1.0', 'openvino-sd-xl-base-1.0/INT8', '--weight-format', 'int8']' returned non-zero exit status 1.",
+        "v0.3 adjudication: optimum-cli OpenVINO IR export fails in ov save_model with RuntimeError: basic_ios::clear (iostream error) \u2014 the same IR-write signature family as the v0.2.2 minicpm-o adjudication (BLOCKED_RESOURCE), observed here with a valid environment and the model fully downloaded. Environment/install root causes from v0.2.2 are resolved (installs complete on the current pin). Classified BLOCKED_RESOURCE (IR export write failure), not a compatibility verdict; the workload's ROCm twin remains VERIFIED."
       ]
     },
     {
@@ -4695,9 +4716,9 @@
       "cpu_status": "FAILED",
       "cpu_failure_category": "NETWORK",
       "cpu_compatibility_outcome": "BLOCKED_NETWORK",
-      "cpu_outcome_reason": "EXTERNAL_HOST_UNREACHABLE",
+      "cpu_outcome_reason": "NETWORK_UNREACHABLE",
       "cpu_limitation_codes": [],
-      "cpu_evidence": "results/vision-background-removal/20261006T143506Z-cpu",
+      "cpu_evidence": "results/vision-background-removal/20261007235811Z-cpu",
       "cpu_validation_level": "",
       "cpu_device_proof": "NOT_INFERENCE",
       "gpu_status": "NOT_TESTED",
@@ -4709,12 +4730,10 @@
       "gpu_device_proof": "",
       "twin_level": "WORKLOAD_TWIN",
       "device_used": "AUTO",
-      "last_tested": "2026-10-06T14:40:07+00:00",
-      "evidence": "results/vision-background-removal/20261006T143506Z-cpu",
+      "last_tested": "2026-10-07T23:58:59+00:00",
+      "evidence": "results/vision-background-removal/20261007235811Z-cpu",
       "notes": [
-        "ok_runs=0/3: EOFError:",
-        "adjudicated (EXTERNAL_HOST_UNREACHABLE): model host drive.google.com unreachable from the reference network (run-01 ConnectTimeout); run-02 EOFError is the truncated gdown download of the same unreachable artifact.",
-        "execution category corrected by comprehensive audit: UNKNOWN -> NETWORK (host unreachable; original UNKNOWN hid the network cause)"
+        "ok_runs=0/3: Exception: File downloading failed with error: HTTPSConnectionPool(host='raw.githubusercontent.com', port=443): Max retries exceeded with url: /openvinotoolkit/openvino_notebooks/latest/notebooks/vision-background-removal/model/u2net.py (Caused by SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_"
       ]
     },
     {
@@ -4758,12 +4777,12 @@
       "priority": 1,
       "cpu_status": "FAILED",
       "cpu_failure_category": "UNKNOWN",
-      "cpu_compatibility_outcome": "BLOCKED_DEPENDENCY",
-      "cpu_outcome_reason": "HARNESS_NOTEBOOK_RELATIVE_ASSET",
+      "cpu_compatibility_outcome": "BLOCKED_RESOURCE",
+      "cpu_outcome_reason": "IR_EXPORT_WRITE_IOSTREAM_ERROR",
       "cpu_limitation_codes": [],
-      "cpu_evidence": "results/vlm-chatbot-generate-api/20261006T190053Z-cpu",
+      "cpu_evidence": "results/vlm-chatbot-generate-api/20261008083427Z-cpu",
       "cpu_validation_level": "",
-      "cpu_device_proof": "PROVEN_CPU",
+      "cpu_device_proof": "NOT_INFERENCE",
       "gpu_status": "NOT_TESTED",
       "gpu_failure_category": "",
       "gpu_compatibility_outcome": "NOT_TESTED",
@@ -4773,11 +4792,12 @@
       "gpu_device_proof": "",
       "twin_level": "WORKLOAD_TWIN",
       "device_used": "CPU",
-      "last_tested": "2026-10-06T19:02:02+00:00",
-      "evidence": "results/vlm-chatbot-generate-api/20261006T190053Z-cpu",
+      "last_tested": "2026-10-08T08:46:16+00:00",
+      "evidence": "results/vlm-chatbot-generate-api/20261008083427Z-cpu",
       "notes": [
-        "ok_runs=0/1: FileNotFoundError: [Errno 2] No such file or directory: 'nyc.jpg'",
-        "adjudicated (HARNESS_NOTEBOOK_RELATIVE_ASSET): Notebook expects sibling asset nyc.jpg; the headless kernel cwd lacked notebook-dir data files (harness defect at validation time; fixed this closure \u2014 revalidation queued)."
+        "optimum-cli health after bounded remediation: OPTIMUM_PACKAGES_MISSING",
+        "ok_runs=0/1: CalledProcessError: Command '['optimum-cli', 'export', 'openvino', '--model', 'Qwen/Qwen3-VL-2B-Instruct', '--task', 'image-text-to-text', '--weight-format', 'int4', 'Qwen3-VL-2B-Instruct/INT4_compressed_weights']' returned non-zero exit status 1.",
+        "v0.3 adjudication: optimum-cli OpenVINO IR export fails in ov save_model with RuntimeError: basic_ios::clear (iostream error) \u2014 the same IR-write signature family as the v0.2.2 minicpm-o adjudication (BLOCKED_RESOURCE), observed here with a valid environment and the model fully downloaded. Environment/install root causes from v0.2.2 are resolved (installs complete on the current pin). Classified BLOCKED_RESOURCE (IR export write failure), not a compatibility verdict; the workload's ROCm twin remains VERIFIED."
       ]
     },
     {
@@ -4885,9 +4905,9 @@
       "cpu_status": "FAILED",
       "cpu_failure_category": "NETWORK",
       "cpu_compatibility_outcome": "BLOCKED_NETWORK",
-      "cpu_outcome_reason": "NETWORK_UNREACHABLE",
+      "cpu_outcome_reason": "EXTERNAL_HOST_UNREACHABLE",
       "cpu_limitation_codes": [],
-      "cpu_evidence": "results/wav2lip/20261006T190203Z-cpu",
+      "cpu_evidence": "results/wav2lip/20261008031418Z-cpu",
       "cpu_validation_level": "",
       "cpu_device_proof": "UNKNOWN",
       "gpu_status": "NOT_TESTED",
@@ -4899,10 +4919,11 @@
       "gpu_device_proof": "",
       "twin_level": "WORKLOAD_TWIN",
       "device_used": "AUTO",
-      "last_tested": "2026-10-06T19:06:40+00:00",
-      "evidence": "results/wav2lip/20261006T190203Z-cpu",
+      "last_tested": "2026-10-08T03:16:14+00:00",
+      "evidence": "results/wav2lip/20261008031418Z-cpu",
       "notes": [
-        "ok_runs=0/1: Exception: Connection timed out. If you access the internet through a proxy server, please make sure the proxy is set in the shell from where you launched Jupyter."
+        "ok_runs=0/1: Exception: File downloading failed with error: HTTPSConnectionPool(host='raw.githubusercontent.com', port=443): Max retries exceeded with url: /sammysun0711/openvino_aigc_samples/refs/heads/main/Wav2Lip/data_audio_sun_5s.wav (Caused by SSLError(SSLEOFError(8, '[SSL: UNEXPECTED_EOF_WHILE_RE",
+        "v0.3 adjudication: fresh run fails fetching helper/data files from raw.githubusercontent.com (proxy-blocked). BLOCKED_NETWORK (external host)."
       ]
     },
     {
@@ -5205,11 +5226,11 @@
       "cpu_evidence": "results/yolov26-object-detection/20261007T014941Z-cpu",
       "cpu_validation_level": "WORKLOAD_CORRECTNESS",
       "cpu_device_proof": "PROVEN_CPU",
-      "gpu_status": "NOT_TESTED",
-      "gpu_failure_category": "",
-      "gpu_compatibility_outcome": "NOT_TESTED",
-      "gpu_outcome_reason": "",
-      "gpu_evidence": null,
+      "gpu_status": "FAILED",
+      "gpu_failure_category": "CORRECTNESS_ERROR",
+      "gpu_compatibility_outcome": "BLOCKED_DEPENDENCY",
+      "gpu_outcome_reason": "UPSTREAM_PACKAGE_CONTRACT",
+      "gpu_evidence": "results/yolov26-object-detection/20261008T105602Z-gpu",
       "gpu_validation_level": "",
       "gpu_device_proof": "",
       "twin_level": "WORKLOAD_TWIN",
@@ -5217,7 +5238,9 @@
       "last_tested": "2026-10-07T01:50:39+00:00",
       "evidence": "results/yolov26-object-detection/20261007T014941Z-cpu",
       "notes": [
-        "repeatability_not_established: fewer than 3 successful runs (resource-bounded policy)"
+        "repeatability_not_established: fewer than 3 successful runs (resource-bounded policy)",
+        "twin self-check failed; metrics={\"model\": \"yolo26n.pt\", \"precision\": \"fp32 (ultralytics default)\", \"input\": \"vlm-chatbot/nyc.jpg (pinned upstream snapshot asset; notebook's coco_bike.jpg host is proxy-blocked)\", \"load_s\": 0.21, \"runs\": [{\"latency_s\": 0.019, \"n_detections\": 0}, {\"latency_s\": 0.017, \"n_detections\": 0}, {\"latency_s\": 0.018, \"n_detections\": 0}], \"n_detections\": 0, \"classes_detected\": [], \"valid_boxes_classes_confide",
+        "v0.3 GPU adjudication: the official ultralytics release host (github releases) is blocked on this runner; the Ultralytics HF org mirror of yolo26n.pt loads and runs on the GPU (0.02s inference, device-proof captured) but produces no detections on any available input even at conf 0.01 on CPU \u2014 the mirrored artifact behaves differently from the release build. BLOCKED_DEPENDENCY (weights-artifact mismatch on the only reachable mirror); NOT a ROCm/torch verdict; GPU compute path proven (metrics.json runs)."
       ]
     },
     {
@@ -5235,17 +5258,17 @@
       "cpu_evidence": "results/z-image-turbo/20261006T211426Z-cpu",
       "cpu_validation_level": "",
       "cpu_device_proof": "UNKNOWN",
-      "gpu_status": "NOT_TESTED",
+      "gpu_status": "VERIFIED",
       "gpu_failure_category": "",
-      "gpu_compatibility_outcome": "NOT_TESTED",
+      "gpu_compatibility_outcome": "VERIFIED",
       "gpu_outcome_reason": "",
-      "gpu_evidence": null,
-      "gpu_validation_level": "",
-      "gpu_device_proof": "",
+      "gpu_evidence": "results/z-image-turbo/20261008T063439Z-gpu",
+      "gpu_validation_level": "WORKLOAD_CORRECTNESS",
+      "gpu_device_proof": "PROVEN_GPU",
       "twin_level": "WORKLOAD_TWIN",
       "device_used": "CPU",
       "last_tested": "2026-10-06T21:15:11+00:00",
-      "evidence": "results/z-image-turbo/20261006T211426Z-cpu",
+      "evidence": "results/z-image-turbo/20261008T063439Z-gpu",
       "notes": [
         "ok_runs=0/3: CalledProcessError: Command '['optimum-cli', 'export', 'openvino', '--model', 'Tongyi-MAI/Z-Image-Turbo', 'Z-Image-Turbo/INT4', '--task', 'text-to-image', '--weight-format', 'int4', '--group-size', '64', '--ratio', '1.0']' returned non-zero exit status 1."
       ]
@@ -5455,7 +5478,7 @@
       "cpu_compatibility_outcome": "BLOCKED_NETWORK",
       "cpu_outcome_reason": "EXTERNAL_HOST_UNREACHABLE",
       "cpu_limitation_codes": [],
-      "cpu_evidence": "results/qwen3_agent/20261006T185231Z-cpu",
+      "cpu_evidence": "results/qwen3_agent/20261007234631Z-cpu",
       "cpu_validation_level": "",
       "cpu_device_proof": "PROVEN_GPU",
       "gpu_status": "NOT_TESTED",
@@ -5467,8 +5490,8 @@
       "gpu_device_proof": "",
       "twin_level": "WORKLOAD_TWIN",
       "device_used": "GPU",
-      "last_tested": "2026-10-06T18:55:20+00:00",
-      "evidence": "results/qwen3_agent/20261006T185231Z-cpu",
+      "last_tested": "2026-10-07T23:50:19+00:00",
+      "evidence": "results/qwen3_agent/20261007234631Z-cpu",
       "notes": [
         "ok_runs=0/1: Connection error."
       ]

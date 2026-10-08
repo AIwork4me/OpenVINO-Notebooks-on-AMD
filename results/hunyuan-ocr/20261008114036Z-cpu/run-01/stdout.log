@@ -1,0 +1,7 @@
+[cell 0 START +    0.5s] # Document parsing with HunyuanOCR and OpenVINO |  | [HunyuanOCR](https://
+[cell 1 START +    0.5s] ## Prerequisites | [back to top ⬆️](#Table-of-contents:) |  | HunyuanOCR shi
+[cell 2 START +    0.5s] import requests | from pathlib import Path | from shutil import copyfile |  | 
+[cell 2 DONE  +    0.6s]
+[cell 3 START +    0.6s] %pip uninstall -q -y optimum optimum-intel optimum-onnx |  | import subpro
+[cell 3 DONE  + 1186.7s]
+NBEXEC_RESULT={"ok": false, "n_cells": 11, "n_skipped": 1, "n_substituted": 1, "stopped_after": null, "error_cell": null, "error_type": "CellExecutionError", "error_head": "\u001b[31mCalledProcessError\u001b[39m: Command '['/workspace/.venvs/cpu/0e3c03443623f289/bin/python', '-m', 'pip', 'install', '-q', '/workspace/results/hunyuan-ocr/workdir-cpu/optimum-intel-4085f5e80fb92c6c0eecd0c7f09bcb9d5fe07b14', 'git+https://github.com/huggingface/transformers.git@5d063058dc2ddae5e31e4fab1985701d5cf50133']' returned non-zero exit status 1.", "duration_s": 1186.84, "patch_notes": ["substituted 3 occurrence(s) in cell 3", "skipped cell 16: matched skip pattern"]}

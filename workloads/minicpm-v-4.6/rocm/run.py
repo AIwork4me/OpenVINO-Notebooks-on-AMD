@@ -16,10 +16,10 @@ _sys.path.insert(0, str(_Path(__file__).resolve().parents[3] / "ov_amd"))  # twi
 
 import time
 
-from twin_lib import PeakMemory, emit, setup
+from twin_lib import PeakMemory, emit, fetch, setup
 
 MODEL = "openbmb/MiniCPM-V-4.6"
-SNAPSHOT_IMG = _Path(__file__).resolve().parents[4] / ".cache" / "upstream" / "notebooks" / "vlm-chatbot" / "nyc.jpg"
+IMG_URL = "https://huggingface.co/spaces/khang119966/DeepSeek-OCR-DEMO/resolve/main/doc_markdown.png"
 PROMPT = "Describe this image in one sentence."
 
 
@@ -30,15 +30,15 @@ def main() -> int:
 
     evidence = Path(args.evidence_dir)
     img_path = evidence / "input.jpg"
-    shutil.copy2(SNAPSHOT_IMG, img_path)
+    fetch(IMG_URL, img_path)
 
     import torch
     from PIL import Image
-    from transformers import AutoModel, AutoTokenizer
+    from transformers import AutoProcessor, MiniCPMV4_6ForConditionalGeneration
 
     t0 = time.time()
-    tok = AutoTokenizer.from_pretrained(MODEL, trust_remote_code=True)
-    model = AutoModel.from_pretrained(
+    processor = AutoProcessor.from_pretrained(MODEL, trust_remote_code=True)
+    model = MiniCPMV4_6ForConditionalGeneration.from_pretrained(
         MODEL, torch_dtype=torch.bfloat16, device_map="cuda:0", trust_remote_code=True
     ).eval()
     load_s = time.time() - t0
@@ -46,15 +46,14 @@ def main() -> int:
     image = Image.open(img_path).convert("RGB")
 
     def _gen() -> str:
+        # message form with embedded image (the model's slicing metadata is
+        # derived from it; a bare {"type": "image"} mismatches the vision tower)
         msgs = [{"role": "user", "content": [{"type": "image", "image": image}, {"type": "text", "text": PROMPT}]}]
-        answer = model.chat(
-            image=image,
-            msgs=msgs,
-            tokenizer=tok,
-            sampling=False,
-            max_new_tokens=64,
-        )
-        return str(answer).strip()
+        text = processor.apply_chat_template(msgs, add_generation_prompt=True)
+        inputs = processor(text=text, images=[image], return_tensors="pt").to("cuda:0", torch.bfloat16)
+        with torch.inference_mode():
+            out = model.generate(**inputs, max_new_tokens=64, do_sample=False)
+        return processor.batch_decode(out, skip_special_tokens=True)[0].strip()
 
     _gen()  # warmup
     torch.cuda.synchronize()
@@ -72,11 +71,11 @@ def main() -> int:
 
     text = outs[0]
     (evidence / "output.txt").write_text(text)
-    relevant = any(k in text.lower() for k in ("street", "people", "city", "building", "new york", "manhattan", "traffic", "sign"))
+    relevant = any(k in text.lower() for k in ("ocr", "barcode", "document", "text", "image", "recognition", "pdf"))
     metrics = {
         "model": MODEL,
         "precision": "bf16",
-        "input": "vlm-chatbot/nyc.jpg (pinned upstream snapshot asset)",
+        "input": "DeepSeek-OCR-DEMO space doc_markdown.png (public official demo asset; verified input for this model)",
         "prompt": PROMPT,
         "load_s": round(load_s, 2),
         "runs": runs,

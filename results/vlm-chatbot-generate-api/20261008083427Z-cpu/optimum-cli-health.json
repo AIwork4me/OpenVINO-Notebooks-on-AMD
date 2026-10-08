@@ -1,0 +1,33 @@
+{
+  "python": "/workspace/.venvs/cpu/554a3c6a31169bc4/bin/python",
+  "packages": {
+    "openvino": {
+      "installed": true,
+      "version": "2026.4.1"
+    },
+    "optimum": {
+      "installed": false
+    },
+    "optimum-intel": {
+      "installed": false
+    },
+    "transformers": {
+      "installed": false
+    },
+    "huggingface_hub": {
+      "installed": true,
+      "version": "2.1.1"
+    }
+  },
+  "cli": {
+    "path": null,
+    "help_exit_code": 127,
+    "help_ok": false
+  },
+  "diagnosis": "OPTIMUM_PACKAGES_MISSING",
+  "remediation": {
+    "attempted": true,
+    "ok": false,
+    "log_tail": "nterrupted while downloading.\n  WARNING: Attempting to resume incomplete download (319.8 MB/553.1 MB, attempt 2)\n  WARNING: Connection interrupted while downloading.\n  WARNING: Attempting to resume incomplete download (319.8 MB/553.1 MB, attempt 3)\n  WARNING: Connection interrupted while downloading.\n  WARNING: Attempting to resume incomplete download (319.8 MB/553.1 MB, attempt 4)\n  WARNING: Connection interrupted while downloading.\n  WARNING: Attempting to resume incomplete download (319.8 MB/553.1 MB, attempt 5)\n  WARNING: Connection interrupted while downloading.\nerror: incomplete-download\n\n\u00d7 Download failed after 6 attempts because not enough bytes were received (319.8 MB/553.1 MB)\n\u2570\u2500> URL: https://pypi.tuna.tsinghua.edu.cn/packages/5c/ba/791cffd048fe5b044e620df55267e3e95c0e6e07d50b41e377c03dfc910f/nvidia_cudnn_cu13-9.24.0.43-py3-none-manylinux_2_27_x86_64.whl\n\nnote: This is an issue with network connectivity, not pip.\nhint: Use --resume-retries to configure resume attempt limit.\n"
+  }
+}

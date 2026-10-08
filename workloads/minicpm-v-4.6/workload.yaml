@@ -18,10 +18,10 @@ cpu:
   status: VERIFIED_WITH_LIMITATIONS
 gpu:
   runtime: pytorch-rocm
-  status: NOT_TESTED
+  status: VERIFIED
   wall_timeout_s: 5400
 twin:
   level: WORKLOAD_TWIN
 validation: {}
 patches: {}
-last_verified: '2026-10-06T17:31:35+00:00'
+last_verified: '2026-10-08T10:15:39+00:00'

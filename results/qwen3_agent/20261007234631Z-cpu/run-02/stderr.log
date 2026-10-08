@@ -1,0 +1,114 @@
+[IPKernelApp] WARNING | Kernel is running over TCP without encryption. All communication (including code and outputs) is sent in plain text and is susceptible to eavesdropping. Use IPC transport or launch with kernel manager-provisioned CurveZMQ keys to enable transport encryption.
+/workspace/.venvs/cpu/41ea242693c05248/lib/python3.12/site-packages/openvino/runtime/__init__.py:10: DeprecationWarning: The `openvino.runtime` module is deprecated and will be removed in the 2026.0 release. Please replace `openvino.runtime` with `openvino`.
+  warnings.warn(
+/workspace/.venvs/cpu/41ea242693c05248/lib/python3.12/site-packages/transformers/utils/hub.py:110: FutureWarning: Using `TRANSFORMERS_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.
+  warnings.warn(
+2026-10-07 23:48:31,665 INFO __main__ Starting OpenVINO GenAI Server
+2026-10-07 23:48:31,665 INFO __main__ Model: ./qwen3-8b-int4-ov, Device: GPU, Host: localhost, Port: 8000
+2026-10-07 23:48:31,665 INFO __main__ Initializing OV Server with model: ./qwen3-8b-int4-ov, device: GPU, host: localhost, port: 8000
+2026-10-07 23:48:31,665 INFO __main__ Loading draft model from ./qwen3-pruned-6l-from-0.6b-int8-ov
+2026-10-07 23:48:31,665 INFO __main__ Loading draft model from ./qwen3-pruned-6l-from-0.6b-int8-ov
+2026-10-07 23:48:33,247 INFO __main__ Loading LLM pipeline from ./qwen3-8b-int4-ov on GPU with draft model
+2026-10-07 23:48:34,956 ERROR __main__ Failed to initialize OV Server: Exception from src/inference/src/cpp/core.cpp:109:
+Check '!m_device_map.empty()' failed at src/plugins/intel_gpu/src/plugin/plugin.cpp:436:
+[GPU] Can't get PERFORMANCE_HINT property as no supported devices found or an error happened during devices query.
+[GPU] Please check OpenVINO documentation for GPU drivers setup guide.
+
+
+
+2026-10-07 23:48:34,956 ERROR __main__ Server failed to start: Exception from src/inference/src/cpp/core.cpp:109:
+Check '!m_device_map.empty()' failed at src/plugins/intel_gpu/src/plugin/plugin.cpp:436:
+[GPU] Can't get PERFORMANCE_HINT property as no supported devices found or an error happened during devices query.
+[GPU] Please check OpenVINO documentation for GPU drivers setup guide.
+
+
+
+Traceback (most recent call last):
+  File "/workspace/results/qwen3_agent/workdir-cpu/server.py", line 339, in <module>
+    main(**vars(args))
+  File "/workspace/results/qwen3_agent/workdir-cpu/server.py", line 314, in main
+    server = OVServer(
+             ^^^^^^^^^
+  File "/workspace/results/qwen3_agent/workdir-cpu/server.py", line 65, in __init__
+    self.model = ovgenai.LLMPipeline(self.model_path, self.device, draft_model=draft_model, scheduler_config=scheduler_config)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/.venvs/cpu/41ea242693c05248/lib/python3.12/site-packages/ov_amd_device_probe.py", line 186, in __init__
+    return orig(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: Exception from src/inference/src/cpp/core.cpp:109:
+Check '!m_device_map.empty()' failed at src/plugins/intel_gpu/src/plugin/plugin.cpp:436:
+[GPU] Can't get PERFORMANCE_HINT property as no supported devices found or an error happened during devices query.
+[GPU] Please check OpenVINO documentation for GPU drivers setup guide.
+
+
+
+[30;43m    [39;49m[30;43m)[39;49m[30;43m,[39;49m
+[32m   1364[39m [30;43m    [39;49m[30;43moptions[39;49m[30;43m=[39;49m[30;43mmake_request_options[39;49m[30;43m([39;49m
+[32m   1365[39m [30;43m        [39;49m[30;43mextra_headers[39;49m[30;43m=[39;49m[30;43mextra_headers[39;49m[30;43m,[39;49m
+[32m   1366[39m [30;43m        [39;49m[30;43mextra_query[39;49m[30;43m=[39;49m[30;43mextra_query[39;49m[30;43m,[39;49m
+[32m   1367[39m [30;43m        [39;49m[30;43mextra_body[39;49m[30;43m=[39;49m[30;43mextra_body[39;49m[30;43m,[39;49m
+[32m   1368[39m [30;43m        [39;49m[30;43mtimeout[39;49m[30;43m=[39;49m[30;43mtimeout[39;49m[30;43m,[39;49m
+[32m   1369[39m [30;43m        [39;49m[30;43msecurity[39;49m[30;43m=[39;49m[30;43m{[39;49m[30;43m"[39;49m[30;43mbearer_auth[39;49m[30;43m"[39;49m[30;43m:[39;49m[30;43m [39;49m[30;43;01mTrue[39;49;00m[30;43m}[39;49m[30;43m,[39;49m
+[32m   1370[39m [30;43m    [39;49m[30;43m)[39;49m[30;43m,[39;49m
+[32m   1371[39m [30;43m    [39;49m[30;43mcast_to[39;49m[30;43m=[39;49m[30;43mChatCompletion[39;49m[30;43m,[39;49m
+[32m   1372[39m [30;43m    [39;49m[30;43mstream[39;49m[30;43m=[39;49m[30;43mstream[39;49m[30;43m [39;49m[30;43;01mor[39;49;00m[30;43m [39;49m[30;43;01mFalse[39;49;00m[30;43m,[39;49m
+[32m   1373[39m [30;43m    [39;49m[30;43mstream_cls[39;49m[30;43m=[39;49m[30;43mStream[39;49m[30;43m[[39;49m[30;43mChatCompletionChunk[39;49m[30;43m][39;49m[30;43m,[39;49m
+[32m   1374[39m [30;43m[39;49m[30;43m)[39;49m
+
+[36mFile [39m[32m/workspace/.venvs/cpu/41ea242693c05248/lib/python3.12/site-packages/openai/_base_client.py:1440[39m, in [36mSyncAPIClient.post[39m[34m(self, path, cast_to, body, content, options, files, stream, stream_cls)[39m
+[32m   1437[39m opts = FinalRequestOptions.construct(
+[32m   1438[39m     method=[33m"[39m[33mpost[39m[33m"[39m, url=path, json_data=body, content=content, files=to_httpx_files(files), **options
+[32m   1439[39m )
+[32m-> [39m[32m1440[39m [38;5;28;01mreturn[39;00m cast(ResponseT, [30;43mself[39;49m[30;43m.[39;49m[30;43mrequest[39;49m[30;43m([39;49m[30;43mcast_to[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mopts[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mstream[39;49m[30;43m=[39;49m[30;43mstream[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mstream_cls[39;49m[30;43m=[39;49m[30;43mstream_cls[39;49m[30;43m)[39;49m)
+
+[36mFile [39m[32m/workspace/.venvs/cpu/41ea242693c05248/lib/python3.12/site-packages/openai/_base_client.py:1183[39m, in [36mSyncAPIClient.request[39m[34m(self, cast_to, options, stream, stream_cls)[39m
+[32m   1182[39m     log.debug([33m"[39m[33mRaising connection error[39m[33m"[39m)
+[32m-> [39m[32m1183[39m     [38;5;28;01mraise[39;00m APIConnectionError(request=request) [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01merr[39;00m
+[32m   1185[39m log.debug(
+[32m   1186[39m     [33m"[39m[33mHTTP Response: [39m[38;5;132;01m%s[39;00m[33m [39m[38;5;132;01m%i[39;00m[33m"[39m,
+[32m   1187[39m     get_http_method_for_logging(request.method),
+[32m   1188[39m     response.status_code,
+[32m   1189[39m )
+
+[31mAPIConnectionError[39m: Connection error.
+
+The above exception was the direct cause of the following exception:
+
+[31mAgentGenerationError[39m                      Traceback (most recent call last)
+[36mCell[39m[36m [39m[32mIn[8][39m[32m, line 1[39m
+[32m----> [39m[32m1[39m agent.run([33m"What is OpenVINO GenAI? What are the latest features?"[39m, reset=[38;5;28;01mTrue[39;00m)
+
+[36mFile [39m[32m/workspace/.venvs/cpu/41ea242693c05248/lib/python3.12/site-packages/smolagents/agents.py:499[39m, in [36mMultiStepAgent.run[39m[34m(self, task, stream, reset, images, additional_args, max_steps, return_full_result)[39m
+[32m    496[39m     [38;5;28;01mreturn[39;00m [38;5;28mself[39m._run_stream(task=[38;5;28mself[39m.task, max_steps=max_steps, images=images)
+[32m    498[39m run_start_time = time.time()
+[32m--> [39m[32m499[39m steps = [30;43mlist[39;49m[30;43m([39;49m[30;43mself[39;49m[30;43m.[39;49m[30;43m_run_stream[39;49m[30;43m([39;49m[30;43mtask[39;49m[30;43m=[39;49m[30;43mself[39;49m[30;43m.[39;49m[30;43mtask[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mmax_steps[39;49m[30;43m=[39;49m[30;43mmax_steps[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mimages[39;49m[30;43m=[39;49m[30;43mimages[39;49m[30;43m)[39;49m[30;43m)[39;49m
+[32m    501[39m [38;5;66;03m# Outputs are returned only at the end. We only look at the last step.[39;00m
+[32m    502[39m [38;5;28;01massert[39;00m [38;5;28misinstance[39m(steps[-[32m1[39m], FinalAnswerStep)
+
+[36mFile [39m[32m/workspace/.venvs/cpu/41ea242693c05248/lib/python3.12/site-packages/smolagents/agents.py:596[39m, in [36mMultiStepAgent._run_stream[39m[34m(self, task, max_steps, images)[39m
+[32m    592[39m             action_step.is_final_answer = [38;5;28;01mTrue[39;00m
+[32m    594[39m [38;5;28;01mexcept[39;00m AgentGenerationError [38;5;28;01mas[39;00m e:
+[32m    595[39m     [38;5;66;03m# Agent generation errors are not caused by a Model error but an implementation error: so we should raise them and exit.[39;00m
+[32m--> [39m[32m596[39m     [38;5;28;01mraise[39;00m e
+[32m    597[39m [38;5;28;01mexcept[39;00m AgentError [38;5;28;01mas[39;00m e:
+[32m    598[39m     [38;5;66;03m# Other AgentError types are caused by the Model, so we should log them and iterate.[39;00m
+[32m    599[39m     action_step.error = e
+
+[36mFile [39m[32m/workspace/.venvs/cpu/41ea242693c05248/lib/python3.12/site-packages/smolagents/agents.py:578[39m, in [36mMultiStepAgent._run_stream[39m[34m(self, task, max_steps, images)[39m
+[32m    576[39m [38;5;28mself[39m.logger.log_rule([33mf[39m[33m"[39m[33mStep [39m[38;5;132;01m{[39;00m[38;5;28mself[39m.step_number[38;5;132;01m}[39;00m[33m"[39m, level=LogLevel.INFO)
+[32m    577[39m [38;5;28;01mtry[39;00m:
+[32m--> [39m[32m578[39m [30;43m    [39;49m[30;43;01mfor[39;49;00m[30;43m [39;49m[30;43moutput[39;49m[30;43m [39;49m[30;43;01min[39;49;00m[30;43m [39;49m[30;43mself[39;49m[30;43m.[39;49m[30;43m_step_stream[39;49m[30;43m([39;49m[30;43maction_step[39;49m[30;43m)[39;49m[30;43m:[39;49m
+[32m    579[39m [30;43m        [39;49m[30;43;03m# Yield all[39;49;00m
+[32m    580[39m [30;43m        [39;49m[30;43;01myield[39;49;00m[30;43m [39;49m[30;43moutput[39;49m
+[32m    582[39m [30;43m        [39;49m[30;43;01mif[39;49;00m[30;43m [39;49m[30;43misinstance[39;49m[30;43m([39;49m[30;43moutput[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mActionOutput[39;49m[30;43m)[39;49m[30;43m [39;49m[30;43;01mand[39;49;00m[30;43m [39;49m[30;43moutput[39;49m[30;43m.[39;49m[30;43mis_final_answer[39;49m[30;43m:[39;49m
+
+[36mFile [39m[32m/workspace/.venvs/cpu/41ea242693c05248/lib/python3.12/site-packages/smolagents/agents.py:1325[39m, in [36mToolCallingAgent._step_stream[39m[34m(self, memory_step)[39m
+[32m   1323[39m     memory_step.token_usage = chat_message.token_usage
+[32m   1324[39m [38;5;28;01mexcept[39;00m [38;5;167;01mException[39;00m [38;5;28;01mas[39;00m e:
+[32m-> [39m[32m1325[39m     [38;5;28;01mraise[39;00m AgentGenerationError([33mf[39m[33m"[39m[33mError while generating output:[39m[38;5;130;01m\n[39;00m[38;5;132;01m{[39;00me[38;5;132;01m}[39;00m[33m"[39m, [38;5;28mself[39m.logger) [38;5;28;01mfrom[39;00m[38;5;250m [39m[34;01me[39;00m
+[32m   1327[39m [38;5;28;01mif[39;00m chat_message.tool_calls [38;5;129;01mis[39;00m [38;5;28;01mNone[39;00m [38;5;129;01mor[39;00m [38;5;28mlen[39m(chat_message.tool_calls) == [32m0[39m:
+[32m   1328[39m     [38;5;28;01mtry[39;00m:
+
+[31mAgentGenerationError[39m: Error while generating output:
+Connection error.
+

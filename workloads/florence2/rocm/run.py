@@ -20,7 +20,7 @@ import time
 from twin_lib import PeakMemory, emit, setup
 
 MODEL = "microsoft/Florence-2-base-ft"
-SNAPSHOT_IMG = _Path(__file__).resolve().parents[4] / ".cache" / "upstream" / "notebooks" / "vlm-chatbot" / "nyc.jpg"
+SNAPSHOT_IMG = _Path(__file__).resolve().parents[3] / ".cache" / "upstream" / "notebooks" / "vlm-chatbot" / "nyc.jpg"
 TASK = "<MORE_DETAILED_CAPTION>"
 
 

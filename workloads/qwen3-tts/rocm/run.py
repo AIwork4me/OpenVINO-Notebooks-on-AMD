@@ -72,19 +72,18 @@ def main() -> int:
     import numpy as np
     import torch
 
-    from qwen3_tts import Qwen3TTSModel  # official repo modeling code
+    from qwen_tts import Qwen3TTSModel  # official repo modeling code (package: qwen_tts)
 
     t0 = time.time()
-    model = Qwen3TTSModel.from_pretrained(MODEL, torch_dtype=torch.bfloat16)
-    model = model.to("cuda:0").eval()
+    model = Qwen3TTSModel.from_pretrained(MODEL, torch_dtype=torch.bfloat16, device_map="cuda:0")
     load_s = time.time() - t0
 
     def _gen() -> tuple:
-        wav = model.generate(text=TEXT, speaker=SPEAKER)
-        if isinstance(wav, torch.Tensor):
-            wav = wav.detach().float().cpu().numpy()
-        wav = np.asarray(wav).reshape(-1)
-        return wav, 24000  # Qwen3-TTS native rate
+        wavs, sr = model.generate_custom_voice(
+            text=[TEXT], speaker=[SPEAKER], non_streaming_mode=True, do_sample=False
+        )
+        wav = np.asarray(wavs[0]).reshape(-1)
+        return wav, int(sr)
 
     with torch.inference_mode():
         _gen()  # warmup

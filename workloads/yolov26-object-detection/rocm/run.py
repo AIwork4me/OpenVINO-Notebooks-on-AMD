@@ -18,10 +18,15 @@ _sys.path.insert(0, str(_Path(__file__).resolve().parents[3] / "ov_amd"))  # twi
 
 import time
 
-from twin_lib import PeakMemory, emit, setup
+from twin_lib import PeakMemory, emit, fetch, setup
 
 MODEL = "yolo26n.pt"  # ultralytics default variant used by the notebook
-SNAPSHOT_IMG = _Path(__file__).resolve().parents[4] / ".cache" / "upstream" / "notebooks" / "vlm-chatbot" / "nyc.jpg"
+# Weights provenance (transport substitution, recorded): ultralytics' primary
+# release host is github.com/.../releases/download (blocked on this runner).
+# The official Ultralytics HF org mirrors the same release artifacts:
+# https://huggingface.co/Ultralytics/YOLO26 — identical official asset.
+WEIGHTS_URL = "https://huggingface.co/Ultralytics/YOLO26/resolve/main/yolo26n.pt"
+SNAPSHOT_IMG = _Path(__file__).resolve().parents[3] / ".cache" / "upstream" / "notebooks" / "vlm-chatbot" / "nyc.jpg"
 
 
 def main() -> int:
@@ -32,11 +37,32 @@ def main() -> int:
     evidence = Path(args.evidence_dir)
     img_path = evidence / "input.jpg"
     shutil.copy2(SNAPSHOT_IMG, img_path)
+    weights = evidence / "yolo26n.pt"
+    fetch(WEIGHTS_URL, weights)
 
     from ultralytics import YOLO
 
+    # The system torchvision (bridged into this venv) lacks the CUDA/ROCm
+    # build of torchvision::nms; run NMS on CPU tensors (recorded limitation —
+    # backbone inference is GPU; only the box-suppression op moves to CPU).
+    import torchvision.ops as _tops
+
+    _nms_cpu = _tops.nms
+
+    def _nms_maybe_cpu(boxes, scores, iou_threshold):
+        if boxes.is_cuda:
+            return _nms_cpu(boxes.cpu(), scores.cpu(), iou_threshold).to(boxes.device)
+        return _nms_cpu(boxes, scores, iou_threshold)
+
+    _tops.nms = _nms_maybe_cpu
+    import sys as _sys_m
+
+    if "torchvision" not in _sys_m.modules:
+        import torchvision  # noqa: F401 - ultralytics only uses it if already imported
+    _tops.nms = _nms_maybe_cpu  # rebind after the guaranteed import
+
     t0 = time.time()
-    model = YOLO(MODEL)  # downloads the official ultralytics release weights
+    model = YOLO(str(weights))  # official ultralytics release weights (HF org mirror)
     model.to("cuda:0")
     load_s = time.time() - t0
 

@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "/workspace/workloads/yolov26-object-detection/rocm/run.py", line 106, in <module>
+    raise SystemExit(main())
+                     ^^^^^^
+  File "/workspace/workloads/yolov26-object-detection/rocm/run.py", line 41, in main
+    fetch(WEIGHTS_URL, weights)
+    ^^^^^
+NameError: name 'fetch' is not defined

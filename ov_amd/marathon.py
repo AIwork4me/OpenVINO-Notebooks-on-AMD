@@ -6,6 +6,7 @@ import json
 import subprocess
 import time
 from datetime import datetime, timezone
+from pathlib import Path
 from pathlib import Path as _Path
 from typing import Any
 
@@ -109,13 +110,29 @@ def run_gpu_twin(entry, state: dict[str, Any]) -> None:
     import yaml
 
     wf = REPO_ROOT / "workloads" / entry.id / "workload.yaml"
+    gpu_cfg: dict = {}
     if wf.exists():
         try:
             cfg = yaml.safe_load(wf.read_text()) or {}
-            wall = int((cfg.get("gpu") or {}).get("wall_timeout_s", wall))
+            gpu_cfg = cfg.get("gpu") or {}
+            wall = int(gpu_cfg.get("wall_timeout_s", wall))
         except (OSError, yaml.YAMLError, ValueError):
             pass
-    cmd = [str(venv_python("gpu")), str(script), "--evidence-dir", str(ev)]
+    # per-twin python override (recorded): twins whose official model code
+    # requires a different library generation than the shared GPU venv run in
+    # their own bridged venv (e.g. DeepSeek-OCR-2 remote code needs
+    # transformers 4.46.3 per the upstream notebook pin)
+    py = venv_python("gpu")
+    override = str(gpu_cfg.get("python") or "")
+    if override:
+        cand = REPO_ROOT / override if not override.startswith("/") else Path(override)
+        if cand.exists():
+            py = cand
+        else:
+            _record_gpu(state, entry, Status.BLOCKED, FailureCategory.ROCM_UNAVAILABLE.value,
+                        notes=[f"configured gpu python {override} not present"])
+            return
+    cmd = [str(py), str(script), "--evidence-dir", str(ev)]
     t0 = time.time()
     start_ts = datetime.now(timezone.utc).isoformat(timespec="seconds")
     timed_out = False
@@ -154,7 +171,7 @@ def run_gpu_twin(entry, state: dict[str, Any]) -> None:
     from ov_amd.executor import load_upstream_meta as _meta
 
     meta = _meta()
-    _hw.snapshot(ev, str(venv_python("gpu")))
+    _hw.snapshot(ev, str(py))
     _ev2.write_json(
         ev / "upstream.json",
         {

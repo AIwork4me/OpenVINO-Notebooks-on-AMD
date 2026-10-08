@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "/workspace/workloads/qwen3-tts/rocm/run.py", line 136, in <module>
+    raise SystemExit(main())
+                     ^^^^^^
+  File "/workspace/workloads/qwen3-tts/rocm/run.py", line 75, in main
+    from qwen3_tts import Qwen3TTSModel  # official repo modeling code
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ModuleNotFoundError: No module named 'qwen3_tts'

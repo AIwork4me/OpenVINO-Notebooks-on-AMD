@@ -1,0 +1,22 @@
+[cell 0 START +    0.9s] # Create VLM-powered Chatbot using OpenVINO Generate API |  | In the rapid
+[cell 1 START +    0.9s] ## Prerequisites | [back to top ⬆️](#Table-of-contents:) |  | Install requir
+[cell 2 START +    0.9s] import os |  | os.environ["GIT_CLONE_PROTECTION_ACTIVE"] = "false" |  | %pip i
+[cell 2 DONE  +  527.8s]
+[cell 3 START +  527.8s] import os | from pathlib import Path | import requests | import shutil |  | # fe
+[cell 3 DONE  +  527.9s]
+[cell 4 START +  527.9s] import ipywidgets as widgets | from IPython.display import display |  | tran
+[cell 4 DONE  +  528.0s]
+[cell 5 START +  528.0s] from notebook_utils import pip_install |  | if transformers_variant.value 
+[cell 5 DONE  +  528.0s]
+[cell 6 START +  528.0s] ## Select device for inference | [back to top ⬆️](#Table-of-contents:)
+[cell 7 START +  528.0s] from notebook_utils import device_widget |  | device = device_widget(defau
+[cell 7 DONE  +  528.3s]
+[cell 8 START +  528.3s] ## Select model for inference | [back to top ⬆️](#Table-of-contents:) |  | T
+[cell 9 START +  528.3s] import importlib | import llm_config |  | importlib.reload(llm_config) | from 
+[cell 9 DONE  +  528.3s]
+[cell 10 START +  528.3s] model_configuration = model_widget.value | model_id = model_widget.label
+[cell 10 DONE  +  528.3s]
+[cell 11 START +  528.3s] ## Convert model using Optimum-CLI tool | [back to top ⬆️](#Table-of-con
+[cell 12 START +  528.3s] from llm_config import convert_and_compress_vlm |  | model_dir = convert_a
+[cell 12 DONE  +  626.1s]
+NBEXEC_RESULT={"ok": false, "n_cells": 12, "n_skipped": 1, "n_substituted": 1, "stopped_after": null, "error_cell": null, "error_type": "CellExecutionError", "error_head": "\u001b[31mCalledProcessError\u001b[39m: Command '['optimum-cli', 'export', 'openvino', '--model', 'Qwen/Qwen3-VL-2B-Instruct', '--task', 'image-text-to-text', '--weight-format', 'int4', 'Qwen3-VL-2B-Instruct/INT4_compressed_weights']' returned non-zero exit status 1.", "duration_s": 626.39, "patch_notes": ["substituted 1 occurrence(s) in cell 2", "skipped cell 21: matched skip pattern"]}

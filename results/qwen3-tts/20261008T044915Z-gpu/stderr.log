@@ -1,0 +1,18 @@
+Traceback (most recent call last):
+  File "/workspace/workloads/qwen3-tts/rocm/run.py", line 135, in <module>
+    raise SystemExit(main())
+                     ^^^^^^
+  File "/workspace/workloads/qwen3-tts/rocm/run.py", line 75, in main
+    from qwen_tts import Qwen3TTSModel  # official repo modeling code (package: qwen_tts)
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/results/qwen3-tts/20261008T044915Z-gpu/Qwen3-TTS-repo/qwen_tts/__init__.py", line 21, in <module>
+    from .inference.qwen3_tts_model import Qwen3TTSModel, VoiceClonePromptItem
+  File "/workspace/results/qwen3-tts/20261008T044915Z-gpu/Qwen3-TTS-repo/qwen_tts/inference/qwen3_tts_model.py", line 29, in <module>
+    from ..core.models import Qwen3TTSConfig, Qwen3TTSForConditionalGeneration, Qwen3TTSProcessor
+  File "/workspace/results/qwen3-tts/20261008T044915Z-gpu/Qwen3-TTS-repo/qwen_tts/core/__init__.py", line 17, in <module>
+    from .tokenizer_25hz.modeling_qwen3_tts_tokenizer_v1 import Qwen3TTSTokenizerV1Model
+  File "/workspace/results/qwen3-tts/20261008T044915Z-gpu/Qwen3-TTS-repo/qwen_tts/core/tokenizer_25hz/modeling_qwen3_tts_tokenizer_v1.py", line 33, in <module>
+    from .vq.speech_vq import WhisperEncoderVQ, XVectorExtractor
+  File "/workspace/results/qwen3-tts/20261008T044915Z-gpu/Qwen3-TTS-repo/qwen_tts/core/tokenizer_25hz/vq/speech_vq.py", line 16, in <module>
+    import sox
+ModuleNotFoundError: No module named 'sox'

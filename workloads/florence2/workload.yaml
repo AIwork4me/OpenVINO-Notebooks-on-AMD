@@ -20,7 +20,7 @@ cpu:
   repeats: 1
 gpu:
   runtime: pytorch-rocm
-  status: NOT_TESTED
+  status: FAILED
   wall_timeout_s: 1800
 twin:
   level: WORKLOAD_TWIN

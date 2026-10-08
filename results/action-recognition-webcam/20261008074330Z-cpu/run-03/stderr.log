@@ -1,0 +1,74 @@
+[IPKernelApp] WARNING | Kernel is running over TCP without encryption. All communication (including code and outputs) is sent in plain text and is susceptible to eavesdropping. Use IPC transport or launch with kernel manager-provisioned CurveZMQ keys to enable transport encryption.
+Traceback (most recent call last):
+  File "/workspace/ov_amd/_nbexec.py", line 144, in main
+    client.execute()
+  File "/workspace/.venvs/cpu/b7021d4f1a2fd405/lib/python3.12/site-packages/jupyter_core/utils/__init__.py", line 165, in wrapped
+    return loop.run_until_complete(inner)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/asyncio/base_events.py", line 687, in run_until_complete
+    return future.result()
+           ^^^^^^^^^^^^^^^
+  File "/workspace/.venvs/cpu/b7021d4f1a2fd405/lib/python3.12/site-packages/nbclient/client.py", line 709, in async_execute
+    await self.async_execute_cell(
+  File "/workspace/.venvs/cpu/b7021d4f1a2fd405/lib/python3.12/site-packages/nbclient/client.py", line 1062, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/workspace/.venvs/cpu/b7021d4f1a2fd405/lib/python3.12/site-packages/nbclient/client.py", line 918, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+# A directory where the model will be downloaded.
+base_model_dir = "model"
+# The name of the model from Open Model Zoo.
+model_name = "action-recognition-0001"
+# Selected precision (FP32, FP16, FP16-INT8).
+precision = "FP16"
+model_path_decoder = f"model/intel/{model_name}/{model_name}-decoder/{precision}/{model_name}-decoder.xml"
+model_path_encoder = f"model/intel/{model_name}/{model_name}-encoder/{precision}/{model_name}-encoder.xml"
+encoder_url = f"https://storage.openvinotoolkit.org/repositories/open_model_zoo/temp/{model_name}/{model_name}-encoder/{precision}/{model_name}-encoder.xml"
+decoder_url = f"https://storage.openvinotoolkit.org/repositories/open_model_zoo/temp/{model_name}/{model_name}-decoder/{precision}/{model_name}-decoder.xml"
+
+if not os.path.exists(model_path_decoder):
+    utils.download_ir_model(decoder_url, Path(model_path_decoder).parent)
+if not os.path.exists(model_path_encoder):
+    utils.download_ir_model(encoder_url, Path(model_path_encoder).parent)
+------------------
+
+
+[31m---------------------------------------------------------------------------[39m
+[31mException[39m                                 Traceback (most recent call last)
+[36mCell[39m[36m [39m[32mIn[3][39m[32m, line 13[39m
+[32m      9[39m encoder_url = f"https://storage.openvinotoolkit.org/repositories/open_model_zoo/temp/{model_name}/{model_name}-encoder/{precision}/{model_name}-encoder.xml"
+[32m     10[39m decoder_url = f"https://storage.openvinotoolkit.org/repositories/open_model_zoo/temp/{model_name}/{model_name}-decoder/{precision}/{model_name}-decoder.xml"
+[32m     11[39m 
+[32m     12[39m [38;5;28;01mif[39;00m [38;5;28;01mnot[39;00m os.path.exists(model_path_decoder):
+[32m---> [39m[32m13[39m     utils.download_ir_model(decoder_url, Path(model_path_decoder).parent)
+[32m     14[39m [38;5;28;01mif[39;00m [38;5;28;01mnot[39;00m os.path.exists(model_path_encoder):
+[32m     15[39m     utils.download_ir_model(encoder_url, Path(model_path_encoder).parent)
+
+[36mFile [39m[32m/workspace/results/action-recognition-webcam/workdir-cpu/notebook_utils.py:201[39m, in [36mdownload_ir_model[39m[34m(model_xml_url, destination_folder)[39m
+[32m    191[39m [38;5;250m[39m[33;03m"""[39;00m
+[32m    192[39m [33;03mDownload IR model from `model_xml_url`. Downloads model xml and bin file; the weights file is[39;00m
+[32m    193[39m [33;03massumed to exist at the same location and name as model_xml_url with a ".bin" extension.[39;00m
+[32m   (...)[39m[32m    198[39m [33;03m:return: path to downloaded xml model file[39;00m
+[32m    199[39m [33;03m"""[39;00m
+[32m    200[39m model_bin_url = model_xml_url[:-[32m4[39m] + [33m"[39m[33m.bin[39m[33m"[39m
+[32m--> [39m[32m201[39m model_xml_path = [30;43mdownload_file[39;49m[30;43m([39;49m[30;43mmodel_xml_url[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mdirectory[39;49m[30;43m=[39;49m[30;43mdestination_folder[39;49m[30;43m,[39;49m[30;43m [39;49m[30;43mshow_progress[39;49m[30;43m=[39;49m[30;43;01mFalse[39;49;00m[30;43m)[39;49m
+[32m    202[39m download_file(model_bin_url, directory=destination_folder)
+[32m    203[39m [38;5;28;01mreturn[39;00m model_xml_path
+
+[36mFile [39m[32m/workspace/results/action-recognition-webcam/workdir-cpu/notebook_utils.py:154[39m, in [36mdownload_file[39m[34m(url, filename, directory, show_progress)[39m
+[32m    149[39m     [38;5;28;01mraise[39;00m [38;5;167;01mException[39;00m(
+[32m    150[39m         [33m"[39m[33mConnection timed out. If you access the internet through a proxy server, please [39m[33m"[39m
+[32m    151[39m         [33m"[39m[33mmake sure the proxy is set in the shell from where you launched Jupyter.[39m[33m"[39m
+[32m    152[39m     ) [38;5;28;01mfrom[39;00m[38;5;250m [39m[38;5;28;01mNone[39;00m
+[32m    153[39m [38;5;28;01mexcept[39;00m requests.exceptions.RequestException [38;5;28;01mas[39;00m error:
+[32m--> [39m[32m154[39m     [38;5;28;01mraise[39;00m [38;5;167;01mException[39;00m([33mf[39m[33m"[39m[33mFile downloading failed with error: [39m[38;5;132;01m{[39;00merror[38;5;132;01m}[39;00m[33m"[39m) [38;5;28;01mfrom[39;00m[38;5;250m [39m[38;5;28;01mNone[39;00m
+[32m    156[39m filesize = [38;5;28mint[39m(response.headers.get([33m"[39m[33mContent-length[39m[33m"[39m, [32m0[39m))
+[32m    157[39m [38;5;66;03m# Let urllib3 verify we actually received as many bytes as the server[39;00m
+[32m    158[39m [38;5;66;03m# declared, at the raw transport level, before any gzip/deflate decoding[39;00m
+[32m    159[39m [38;5;66;03m# happens. iter_content() yields decompressed bytes, so counting those[39;00m
+[32m    160[39m [38;5;66;03m# ourselves and comparing to Content-length breaks for compressed[39;00m
+[32m    161[39m [38;5;66;03m# responses, since Content-length reflects the compressed size on the wire.[39;00m
+
+[31mException[39m: File downloading failed with error: HTTPSConnectionPool(host='storage.openvinotoolkit.org', port=443): Max retries exceeded with url: /repositories/open_model_zoo/temp/action-recognition-0001/action-recognition-0001-decoder/FP16/action-recognition-0001-decoder.xml (Caused by ProxyError('Unable to connect to proxy', OSError('Tunnel connection failed: 403 Forbidden')))
+

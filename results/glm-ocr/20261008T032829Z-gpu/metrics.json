@@ -1,0 +1,35 @@
+{
+  "schema_version": 2,
+  "twin_result": {
+    "ok": true,
+    "hip": "7.2.53211-e1a6bc5663",
+    "device": "AMD Radeon Graphics",
+    "gcn_arch": "gfx1100",
+    "metrics": {
+      "model": "zai-org/GLM-OCR",
+      "precision": "bf16",
+      "input": "deterministic typewritten PIL fixture (upstream sample images on blocked GitHub-attachment host)",
+      "load_s": 49.94,
+      "runs": [
+        {
+          "latency_s": 0.314
+        },
+        {
+          "latency_s": 0.311
+        },
+        {
+          "latency_s": 0.311
+        }
+      ],
+      "output": "<|image|><|image|><|image|><|image|><|image|><|image|><|image|><|image|><|image|><|image|><|image|><|image|><|image|><|image|><|image|><|image|><|image|><|image|><|image|><|image|><|image|><|image|><|image|><|image|><|image|><|image|><|image|><|image|><|image|><|image|><|image|><|image|><|image|><|i",
+      "expected_fragment": "The quick brown fox jumps over the lazy dog",
+      "fragment_word_hits": "7/7",
+      "fragment_ok": true,
+      "output_stable": true,
+      "peak_vram_gb": 2.16,
+      "peak_rss_gb": 3.21
+    }
+  },
+  "duration_s": 102.08,
+  "exit_code": 0
+}
