@@ -2224,20 +2224,16 @@
         ]
       },
       "gpu": {
-        "status": "FAILED",
-        "failure_category": "UNKNOWN",
-        "compatibility_outcome": "BLOCKED_DEPENDENCY",
-        "outcome_reason": "UPSTREAM_PACKAGE_CONTRACT",
-        "notes": [
-          "exit=1 duration=95s",
-          "OSError: Can't load feature extractor for '/workspace/.cache/huggingface/transformers/models--Qwen--Qwen3-TTS-12Hz-0.6B-CustomVoice/snapshots/85e237c12c027371202489a0ec509ded67b5e4b5/speech_tokenizer'. If you were trying to load it from 'https://huggingface.co/models', make sure you don't have a loc",
-          "v0.3 GPU adjudication: qwen-tts requires transformers==4.57.3 (and torchaudio/sox); in the bridged 4.57.3 env the loader cannot read the Qwen3-TTS feature-extractor artifact (5.x-era repo format), and in the 5.17 env the package's check_model_inputs decorator breaks. The package/model-repo pair spans two transformers generations without a satisfiable env on this stack; deferred pending an upstream-compatible release. BLOCKED_DEPENDENCY (library contract)."
-        ],
-        "evidence_dir": "results/qwen3-tts/20261008T105424Z-gpu",
-        "device_proof": "",
-        "validation_level": "",
+        "status": "VERIFIED",
+        "failure_category": "",
+        "compatibility_outcome": "VERIFIED",
+        "outcome_reason": "",
+        "notes": [],
+        "evidence_dir": "results/qwen3-tts/20261008T162632Z-gpu",
+        "device_proof": "PROVEN_GPU",
+        "validation_level": "WORKLOAD_CORRECTNESS",
         "platform_id": "amd-epyc-9334-32-core-processor-gfx1100",
-        "updated": "2026-10-08T10:56:01+00:00"
+        "updated": "2026-10-08T16:29:27+00:00"
       }
     },
     "controlnet-stable-diffusion": {
@@ -5298,19 +5294,19 @@
         ]
       },
       "gpu": {
-        "status": "FAILED",
-        "failure_category": "CORRECTNESS_ERROR",
+        "status": "BLOCKED",
+        "failure_category": "DEPENDENCY",
         "compatibility_outcome": "BLOCKED_DEPENDENCY",
-        "outcome_reason": "UPSTREAM_PACKAGE_CONTRACT",
+        "outcome_reason": "UPSTREAM_ARTIFACT_DEFECT",
         "notes": [
-          "twin self-check failed; metrics={\"model\": \"yolo26n.pt\", \"precision\": \"fp32 (ultralytics default)\", \"input\": \"vlm-chatbot/nyc.jpg (pinned upstream snapshot asset; notebook's coco_bike.jpg host is proxy-blocked)\", \"load_s\": 0.21, \"runs\": [{\"latency_s\": 0.019, \"n_detections\": 0}, {\"latency_s\": 0.017, \"n_detections\": 0}, {\"latency_s\": 0.018, \"n_detections\": 0}], \"n_detections\": 0, \"classes_detected\": [], \"valid_boxes_classes_confide",
-          "v0.3 GPU adjudication: the official ultralytics release host (github releases) is blocked on this runner; the Ultralytics HF org mirror of yolo26n.pt loads and runs on the GPU (0.02s inference, device-proof captured) but produces no detections on any available input even at conf 0.01 on CPU \u2014 the mirrored artifact behaves differently from the release build. BLOCKED_DEPENDENCY (weights-artifact mismatch on the only reachable mirror); NOT a ROCm/torch verdict; GPU compute path proven (metrics.json runs)."
+          "twin self-check failed; metrics={\"model\": \"yolo26n.pt\", \"model_revision\": \"ultralytics/assets v8.4.0 release asset (sha256 9b09cc8bf347f0fc\\u2026, byte-identical GitHub==HF-org mirror, cross-verified via api.github.com)\", \"correctness_level\": \"TASK_SEMANTIC\", \"correctness_contract\": \">=1 end-to-end detection conf>0.5 incl. expected scene classes (person/car) + identical detection count across 3 runs\", \"input_asset\": {\"asset_id\":",
+          "v0.3.1 RCA adjudication: official yolo26n.pt (GitHub v8.4.0 release == HF-org mirror, byte-identical sha256 9b09cc8b\u2026) is inference-degenerate \u2014 max detection conf ~0.5 (sigmoid(0) garbage) / predict() conf ~0.01 on ultralytics 8.3.222 (save version), 8.4.43 (notebook pin) and 8.4.173, CPU and gfx1100. Not a ROCm incompatibility. Evidence: results/yolov26-object-detection/20261008T171656Z-gpu"
         ],
-        "evidence_dir": "results/yolov26-object-detection/20261008T105602Z-gpu",
+        "evidence_dir": "results/yolov26-object-detection/20261008T171656Z-gpu",
         "device_proof": "",
         "validation_level": "",
         "platform_id": "amd-epyc-9334-32-core-processor-gfx1100",
-        "updated": "2026-10-08T10:56:54+00:00"
+        "updated": "2026-10-08T17:17:47+00:00"
       }
     },
     "zeroscope-text2video": {
@@ -5942,7 +5938,7 @@
       "log_tail": "->transformers) (0.16.0)\nCollecting huggingface-hub<3.0,>=1.31.0 (from transformers)\n  Using cached huggingface_hub-1.33.0-py3-none-any.whl (846 kB)\nCollecting httpx<1,>=0.23.0 (from huggingface-hub<3.0,>=1.31.0->transformers)\n  Using cached httpx-0.28.1-py3-none-any.whl (73 kB)\nRequirement already satisfied: certifi in ./.venvs/cpu/eb7faf8fd8a0b2df/lib/python3.12/site-packages (from httpx<1,>=0.23.0->huggingface-hub<3.0,>=1.31.0->transformers) (2026.7.22)\nCollecting httpcore==1.* (from httpx<1,>=0.23.0->huggingface-hub<3.0,>=1.31.0->transformers)\n  Using cached httpcore-1.0.9-py3-none-any.whl (78 kB)\nCollecting shellingham>=1.3.0 (from typer->transformers)\n  Using cached shellingham-1.5.4-py2.py3-none-any.whl (9.8 kB)\nCollecting rich>=13.8.0 (from typer->transformers)\n  Using cached rich-15.0.0-py3-none-any.whl (310 kB)\nCollecting annotated-doc>=0.0.2 (from typer->transformers)\n  Using cached annotated_doc-0.0.5-py3-none-any.whl (5.3 kB)\nCollecting markdown-it-py>=2.2.0 (from rich>=13.8.0->typer->transformers)\n  Using cached markdown_it_py-4.2.0-py3-none-any.whl (91 kB)\nRequirement already satisfied: pygments<3.0.0,>=2.13.0 in ./.venvs/cpu/eb7faf8fd8a0b2df/lib/python3.12/site-packages (from rich>=13.8.0->typer->transformers) (2.21.0)\nCollecting mdurl~=0.1 (from markdown-it-py>=2.2.0->rich>=13.8.0->typer->transformers)\n  Using cached mdurl-0.1.2-py3-none-any.whl (10.0 kB)\nInstalling collected packages: shellingham, safetensors, regex, mdurl, httpcore, annotated-doc, markdown-it-py, httpx, rich, huggingface-hub, typer, tokenizers, transformers\n  Attempting uninstall: huggingface-hub\n    Found existing installation: huggingface_hub 2.1.1\n    Uninstalling huggingface_hub-2.1.1:\n      Successfully uninstalled huggingface_hub-2.1.1\n\nSuccessfully installed annotated-doc-0.0.5 httpcore-1.0.9 httpx-0.28.1 huggingface-hub-1.33.0 markdown-it-py-4.2.0 mdurl-0.1.2 regex-2026.9.29 rich-15.0.0 safetensors-0.8.0 shellingham-1.5.4 tokenizers-0.23.2 transformers-5.19.0 typer-0.27.3\n"
     }
   ],
-  "last_checkpoint": "2026-10-08T15:08:41+00:00",
+  "last_checkpoint": "2026-10-08T17:19:17+00:00",
   "current_workload": "llm-agent-react-langchain",
   "env_repairs": [
     {

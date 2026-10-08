@@ -1,0 +1,8 @@
+{
+  "schema_version": 2,
+  "repository": "openvinotoolkit/openvino_notebooks",
+  "branch": "latest",
+  "commit": "3c3899e68b2269bb7fbd5755554335f33acabd5e",
+  "path": "notebooks/yolov26-optimization/yolov26-object-detection.ipynb",
+  "url": "https://github.com/openvinotoolkit/openvino_notebooks/blob/3c3899e68b2269bb7fbd5755554335f33acabd5e/notebooks/yolov26-optimization/yolov26-object-detection.ipynb"
+}

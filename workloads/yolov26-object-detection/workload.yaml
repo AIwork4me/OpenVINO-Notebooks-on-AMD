@@ -18,8 +18,13 @@ cpu:
   status: VERIFIED_WITH_LIMITATIONS
 gpu:
   runtime: pytorch-rocm
-  status: FAILED
+  status: BLOCKED
   wall_timeout_s: 1800
+  note: 'v0.3.1 RCA complete: official yolo26n.pt artifact is inference-degenerate
+    on every runtime tested (ultralytics 8.3.222/8.4.43/8.4.173, CPU + gfx1100, predict()
+    and native e2e decode) — max conf ~0.5 garbage / ~0.01 via predict; weights byte-identical
+    across GitHub release and HF-org mirror (sha256 9b09cc8b…). BLOCKED_DEPENDENCY
+    (upstream artifact defect, not ROCm). RCA evidence: results/yolov26-object-detection/20261008T171656Z-gpu'
 twin:
   level: WORKLOAD_TWIN
 validation:
@@ -28,4 +33,4 @@ validation:
   - Source ended
   output_finite_numbers: true
 patches: {}
-last_verified: '2026-10-07T01:50:39+00:00'
+last_verified: '2026-10-08T17:16:56+00:00'
