@@ -313,8 +313,17 @@ def write_compatibility() -> dict[str, Any]:
     for r in compat["rows"]:
         # links are relative to catalog/compatibility.md (../results/...) so
         # they resolve in the GitHub web UI, not only from the repo root
-        ev_link = f"../{r['evidence']}" if r["evidence"] and not str(r["evidence"]).startswith(("../", "/")) else r["evidence"]
-        ev = f"[link]({ev_link})" if r["evidence"] else "-"
+        def _rel_link(ev: str | None, label: str) -> str:
+            if not ev:
+                return ""
+            rel = ev if str(ev).startswith(("../", "/")) else f"../{ev}"
+            return f" · [{label}]({rel})"
+
+        # independent per-backend links: CPU + GPU evidence each resolve to
+        # their own directory (blocked/failed GPU rows link their failure
+        # evidence too — a non-verified outcome still has evidence)
+        ev = _rel_link(r.get("cpu_evidence"), "cpu").lstrip(" · ") or "-"
+        ev += _rel_link(r.get("gpu_evidence"), "gpu")
         rca_link = rca.get(r["id"])
         if r["cpu_compatibility_outcome"] == "FAILED_COMPATIBILITY" and rca_link:
             ev += f" · [rca](../{rca_link})"
