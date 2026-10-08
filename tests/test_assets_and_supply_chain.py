@@ -246,36 +246,51 @@ class TestRevisionPinning:
 
     def test_verified_twins_enforce_revision_at_call_sites(self):
         """Declaration is not enforcement (Gate-2 finding): every hub-backed
-        from_pretrained / pipeline-load call site in a verified twin must carry
-        revision= (or an explicitly-operator-supplied pin)."""
+        from_pretrained call site in a verified twin must carry revision= (or an
+        explicitly-operator-supplied pin). Hub identity is resolved through
+        module-level constant assignments so from_pretrained(MODEL, ...) without
+        revision= is caught — reverting a real pin must fail this test."""
         import ast
 
         repo = Path(__file__).resolve().parent.parent
         for wid in self.VERIFIED:
             path = repo / "workloads" / wid / "rocm" / "run.py"
             tree = ast.parse(path.read_text())
+            # module-level constants that hold hub repo ids ("org/name")
+            hub_vars: dict[str, str] = {}
+            for node in tree.body:
+                if isinstance(node, ast.Assign) and isinstance(node.value, ast.Constant) and isinstance(node.value.value, str):
+                    v = node.value.value
+                    if "/" in v and not v.startswith((".", "/", "http")) and " " not in v:
+                        for t in node.targets:
+                            if isinstance(t, ast.Name):
+                                hub_vars[t.id] = v
+            enforced = True
             for node in ast.walk(tree):
-                if not isinstance(node, ast.Call):
+                if not (isinstance(node, ast.Call) and isinstance(node.func, ast.Attribute)):
                     continue
-                func = node.func
-                name = getattr(func, "attr", None) or getattr(func, "id", "")
-                if not isinstance(name, str) or "from_pretrained" not in name:
+                if "from_pretrained" not in (node.func.attr or ""):
                     continue
-                # skip local-directory loads (str(local) etc.) — pinned by the
-                # snapshot_download revision that produced them
-                if node.args and isinstance(node.args[0], ast.Name):
-                    continue  # variable arg: handled by the *_REVISION snapshot pins below
-                kw_names = [kw.arg for kw in node.keywords]
                 arg0 = node.args[0] if node.args else None
-                is_hub_literal = isinstance(arg0, ast.Constant) and isinstance(arg0.value, str) and "/" in arg0.value
-                if is_hub_literal:
-                    assert "revision" in kw_names, (
-                        f"{wid}: from_pretrained({getattr(arg0, 'value', '?')}) has no revision= "
-                        f"(mutable main weights)"
-                    )
+                hub_id = None
+                if isinstance(arg0, ast.Constant) and isinstance(arg0.value, str):
+                    v = arg0.value
+                    if "/" in v and not v.startswith((".", "/", "http")) and " " not in v:
+                        hub_id = v
+                elif isinstance(arg0, ast.Name) and arg0.id in hub_vars:
+                    hub_id = hub_vars[arg0.id]
+                # ast.Call args (str(local)) are local-dir loads from pinned
+                # snapshot downloads — verified via the revision=MS_REVISION check below
+                if hub_id is not None:
+                    kw_names = [kw.arg for kw in node.keywords]
+                    if "revision" not in kw_names:
+                        raise AssertionError(
+                            f"{wid}: from_pretrained({hub_id}) has no revision= (mutable main weights)"
+                        )
             src = path.read_text()
             if "snapshot_download(" in src:
                 assert "revision=MS_REVISION" in src, f"{wid}: modelscope snapshot_download not pinned"
+            _ = enforced
 
     def test_manifest_model_blocks_complete(self):
         repo = Path(__file__).resolve().parent.parent

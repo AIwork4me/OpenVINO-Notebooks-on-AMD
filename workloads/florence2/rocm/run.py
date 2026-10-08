@@ -20,6 +20,7 @@ import time
 from twin_lib import PeakMemory, emit, resolve_asset, setup
 
 MODEL = "microsoft/Florence-2-base-ft"
+REVISION = "f6c1a25888"  # declared model revision (workload.yaml)
 SNAPSHOT_ASSET = "nyc.jpg"  # managed asset (assets/manifests/assets.yaml)
 TASK = "<MORE_DETAILED_CAPTION>"
 
@@ -39,9 +40,9 @@ def main() -> int:
     from transformers import AutoModelForCausalLM, AutoProcessor
 
     t0 = time.time()
-    processor = AutoProcessor.from_pretrained(MODEL, trust_remote_code=True)
+    processor = AutoProcessor.from_pretrained(MODEL, revision=REVISION, trust_remote_code=True)
     model = AutoModelForCausalLM.from_pretrained(
-        MODEL, torch_dtype=torch.bfloat16, device_map="cuda:0", trust_remote_code=True
+        MODEL, revision=REVISION, torch_dtype=torch.bfloat16, device_map="cuda:0", trust_remote_code=True
     ).eval()
     load_s = time.time() - t0
 

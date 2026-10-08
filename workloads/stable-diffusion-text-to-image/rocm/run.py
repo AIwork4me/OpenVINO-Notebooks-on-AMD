@@ -52,7 +52,13 @@ def _load_pipeline(evidence: Path):
         pipe = None
     if pipe is None:
         # ModelScope mirror of the same weights (AI-ModelScope/stable-diffusion-2-1)
-        local = _Path(__file__).resolve().parent / "weights"  # stable cache across reruns (gitignored)
+        local = _Path(__file__).resolve().parent / "weights"
+        _rev_marker = local.parent / ".weights-rev"
+        if _rev_marker.exists() and _rev_marker.read_text().strip() != MS_REVISION:
+            import shutil as _sh
+
+            _sh.rmtree(local, ignore_errors=True)  # never mix revisions in the local dir
+        local.mkdir(parents=True, exist_ok=True)  # stable cache across reruns (gitignored)
         from modelscope.hub.snapshot_download import snapshot_download
 
         # the mirror repo carries every weight format (>30GB); fetch only what

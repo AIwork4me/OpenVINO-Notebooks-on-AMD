@@ -24,6 +24,7 @@ import time
 from twin_lib import PeakMemory, emit, setup
 
 MODEL = "Qwen/Qwen3-TTS-12Hz-0.6B-CustomVoice"
+MODEL_REVISION = "85e237c12c"  # declared model revision (workload.yaml)
 REPO = "https://codeload.github.com/QwenLM/Qwen3-TTS/tar.gz/1ab0dd75353392f28a0d05d9ca960c9954b13c83"
 REPO_REV = "1ab0dd75353392f28a0d05d9ca960c9954b13c83"
 TEXT = "The quick brown fox jumps over the lazy dog."
@@ -75,7 +76,7 @@ def main() -> int:
     from qwen_tts import Qwen3TTSModel  # official repo modeling code (package: qwen_tts)
 
     t0 = time.time()
-    model = Qwen3TTSModel.from_pretrained(MODEL, torch_dtype=torch.bfloat16, device_map="cuda:0")
+    model = Qwen3TTSModel.from_pretrained(MODEL, revision=MODEL_REVISION, torch_dtype=torch.bfloat16, device_map="cuda:0")
     load_s = time.time() - t0
 
     def _gen() -> tuple:

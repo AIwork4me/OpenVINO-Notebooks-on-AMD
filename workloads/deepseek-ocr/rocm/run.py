@@ -26,6 +26,7 @@ import time
 from twin_lib import PeakMemory, emit, fetch, setup
 
 MODEL = "deepseek-ai/DeepSeek-OCR-2"
+REVISION = "aaa02f3811"  # declared model revision (6.8B config verified in v0.3 evidence)
 IMG_URL = "https://huggingface.co/spaces/khang119966/DeepSeek-OCR-DEMO/resolve/main/doc_markdown.png"
 
 
@@ -42,9 +43,9 @@ def main() -> int:
     from transformers import AutoModel, AutoTokenizer
 
     t0 = time.time()
-    tokenizer = AutoTokenizer.from_pretrained(MODEL, trust_remote_code=True)
+    tokenizer = AutoTokenizer.from_pretrained(MODEL, revision=REVISION, trust_remote_code=True)
     model = AutoModel.from_pretrained(
-        MODEL, trust_remote_code=True, torch_dtype=torch.bfloat16, device_map="cuda:0", use_safetensors=True
+        MODEL, revision=REVISION, trust_remote_code=True, torch_dtype=torch.bfloat16, device_map="cuda:0", use_safetensors=True
     ).eval()
     load_s = time.time() - t0
 
