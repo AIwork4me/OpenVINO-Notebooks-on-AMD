@@ -322,7 +322,8 @@ def write_compatibility() -> dict[str, Any]:
         # independent per-backend links: CPU + GPU evidence each resolve to
         # their own directory (blocked/failed GPU rows link their failure
         # evidence too — a non-verified outcome still has evidence)
-        ev = _rel_link(r.get("cpu_evidence"), "cpu").lstrip(" · ") or "-"
+        cpu_ev = _rel_link(r.get("cpu_evidence"), "cpu")
+        ev = cpu_ev.removeprefix(" · ") if cpu_ev else "-"
         ev += _rel_link(r.get("gpu_evidence"), "gpu")
         rca_link = rca.get(r["id"])
         if r["cpu_compatibility_outcome"] == "FAILED_COMPATIBILITY" and rca_link:

@@ -1,6 +1,6 @@
 # Compatibility Matrix (generated)
 
-Generated: 2026-10-08T19:30:27+00:00 — do not edit by hand; run `python -m ov_amd report`.
+Generated: 2026-10-08T19:31:09+00:00 — do not edit by hand; run `python -m ov_amd report`.
 
 Total notebooks: **174** — AMD CPU catalog coverage **174/174** (100.0%). Coverage means every notebook has an AMD CPU validation outcome; it does not mean every notebook passed.
 
