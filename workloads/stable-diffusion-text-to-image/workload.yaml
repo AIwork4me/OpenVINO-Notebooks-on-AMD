@@ -4,14 +4,20 @@ category: Image Generation
 upstream:
   repository: openvinotoolkit/openvino_notebooks
   branch: latest
-  commit: 2b1600de9620e4a2d26f1ef5c83fad64d7d76f7b
+  commit: 3c3899e68b2269bb7fbd5755554335f33acabd5e
   path: notebooks/stable-diffusion-text-to-image/stable-diffusion-text-to-image.ipynb
-  url: https://github.com/openvinotoolkit/openvino_notebooks/blob/2b1600de9620e4a2d26f1ef5c83fad64d7d76f7b/notebooks/stable-diffusion-text-to-image/stable-diffusion-text-to-image.ipynb
+  url: https://github.com/openvinotoolkit/openvino_notebooks/blob/3c3899e68b2269bb7fbd5755554335f33acabd5e/notebooks/stable-diffusion-text-to-image/stable-diffusion-text-to-image.ipynb
 model:
-  name: ''
-  source: ''
-  revision: ''
-  license: ''
+  name: stabilityai/stable-diffusion-2-1
+  source: https://huggingface.co/stabilityai/stable-diffusion-2-1
+  revision: ModelScope mirror AI-ModelScope/stable-diffusion-2-1 @e68d85a790bc (HF
+    gated 401 via runner mirror)
+  license: openrail++
+  license_source: ModelScope repo License field / HF OpenRAIL++ (verified 2026-10-08)
+  license_revision: ModelScope mirror AI-ModelScope/stable-diffusion-2-1 @e68d85a790bc
+    (HF gated 401 via runner mirror)
+  license_verification_date: '2026-10-08'
+  implementation: transformers built-in or official package
 cpu:
   runtime: openvino
   status: FAILED

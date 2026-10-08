@@ -230,10 +230,18 @@ def cmd_marathon(args: argparse.Namespace) -> int:
 
 def cmd_report(args: argparse.Namespace) -> int:
     from ov_amd.manifest_sync import sync_manifests
-    from ov_amd.reporting import write_compatibility, write_failures, write_progress
+    from ov_amd.reporting import (
+        write_compatibility,
+        write_cpu_showcase,
+        write_failures,
+        write_featured_matrix,
+        write_progress,
+    )
 
     sync_manifests()
     compat = write_compatibility()
+    write_featured_matrix(compat)
+    write_cpu_showcase(compat)
     write_progress()
     write_failures()
     print(json.dumps(compat["counts"], indent=2))

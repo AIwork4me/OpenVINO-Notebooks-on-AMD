@@ -1,0 +1,55 @@
+{
+  "schema_version": 2,
+  "twin_result": {
+    "ok": true,
+    "hip": "7.2.53211-e1a6bc5663",
+    "device": "AMD Radeon Graphics",
+    "gcn_arch": "gfx1100",
+    "metrics": {
+      "model": "microsoft/Florence-2-base-ft",
+      "precision": "bf16",
+      "task": "<MORE_DETAILED_CAPTION>",
+      "correctness_level": "TASK_SEMANTIC",
+      "correctness_contract": "detailed scene caption correctly describing the fixed nyc.jpg content (city view, binoculars, buildings, sky)",
+      "model_revision": "f6c1a25888",
+      "input_asset": {
+        "asset_id": "nyc.jpg",
+        "sha256": "a515af6ed7c9d49cdde69f34dd05db0a08eddc2d4c36aca3e90c2950e3dc4f78",
+        "resolved_from": "fixture",
+        "license": "apache-2.0",
+        "license_source": "openvino_notebooks repository license (notebook-bundled demo image)",
+        "description": "NYC street photo bundled by the upstream vlm-chatbot notebook; used by the florence2 and yolov26 twins (byte-identical to pinned-snapshot copy, verified 2026-10-08)"
+      },
+      "load_s": 7.09,
+      "runs": [
+        {
+          "latency_s": 0.263,
+          "chars": 190
+        },
+        {
+          "latency_s": 0.254,
+          "chars": 190
+        },
+        {
+          "latency_s": 0.254,
+          "chars": 190
+        }
+      ],
+      "output": "A view of a city from the top of a building. There is a large silver binoculars on a metal stand. There are many tall buildings in the city. The sky above the city is blue with white clouds.",
+      "nonempty_relevant_response": true,
+      "output_stable": true,
+      "peak_vram_gb": 0.67,
+      "peak_rss_gb": 1.65
+    },
+    "metric_semantics": {
+      "peak_vram_gb": "torch.cuda.max_memory_allocated() \u2014 peak ALLOCATED GPU tensor memory via PyTorch's caching allocator. NOT total physical VRAM usage (driver/runtime reservations and other processes are excluded).",
+      "peak_rss_gb": "process resident high-water mark (VmHWM from /proc/self/status)",
+      "latency_s": "wall time of one full workload invocation including torch.cuda.synchronize()",
+      "load_s": "wall time of model+processor construction (from_pretrained/pipeline load)",
+      "rtf": "standard RTF = inference_time / generated_or_input_audio_duration (lower is faster; <1 is real-time capable)",
+      "realtime_speed_factor": "inverse RTF = audio_duration / inference_time (higher is faster) \u2014 reported separately, never mixed with rtf"
+    }
+  },
+  "duration_s": 43.24,
+  "exit_code": 0
+}

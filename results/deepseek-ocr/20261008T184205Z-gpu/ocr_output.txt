@@ -1,0 +1,28 @@
+<|ref|>sub_title<|/ref|><|det|>[[128, 73, 625, 98]]<|/det|>
+## Aspire OCR and Barcode Recognition
+
+<|ref|>text<|/ref|><|det|>[[127, 109, 853, 145]]<|/det|>
+High performance, royalty-free OCR and barcode recognition on Windows, Linux, Mac OS and Unix.
+
+<|ref|>text<|/ref|><|det|>[[127, 155, 853, 246]]<|/det|>
+Aspire OCR (optical character recognition) and barcode recognition SDK offers a high performance library for you to equip your Java applications (Java applets, web applications, Swing/JavaFX components, JEE enterprise applications), C#/VB.NET applications, and C/C++/Python applications with functionality of extracting text and barcode information from scanned documents.
+
+<|ref|>sub_title<|/ref|><|det|>[[128, 262, 486, 281]]<|/det|>
+## Convert Images To Searchable PDF
+
+<|ref|>text<|/ref|><|det|>[[127, 291, 869, 327]]<|/det|>
+With a few lines of code, you can convert various formats of images such as JPEG, PNG, and TIFF into searchable PDF.
+
+<|ref|>table<|/ref|><|det|>[[130, 336, 869, 390]]<|/det|>
+<table><tr><td>PDF Output Formats</td><td>Remarks</td></tr><tr><td>PDF</td><td>Normal PDF</td></tr><tr><td>PDF/A</td><td>ISO 19005</td></tr></table>
+
+<|ref|>sub_title<|/ref|><|det|>[[128, 407, 424, 426]]<|/det|>
+## All Popular Barcode Formats
+
+<|ref|>text<|/ref|><|det|>[[127, 436, 832, 473]]<|/det|>
+All popular barcode formats are supported: EAN-8, EAN-13, UPC-A, UPC-E, ISBN-10, ISBN-13, Interleaved 2 of 5, Code 39, Code 128, PDF417, and QR Code.
+
+<|ref|>image<|/ref|><|det|>[[135, 510, 398, 565]]<|/det|>
+
+
+<|ref|>image<|/ref|><|det|>[[578, 510, 768, 653]]<|/det|>

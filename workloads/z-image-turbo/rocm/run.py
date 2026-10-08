@@ -18,6 +18,7 @@ import time
 from twin_lib import PeakMemory, emit, setup
 
 MODEL = "Tongyi-MAI/Z-Image-Turbo"
+REVISION = "f332072aa7"  # validated revision (verified live 2026-10-08)
 PROMPT = "A cat holding a sign that says 'AMD ROCm', watercolor style."
 SEED = 42
 
@@ -33,7 +34,7 @@ def main() -> int:
     from diffusers import AutoPipelineForText2Image
 
     t0 = time.time()
-    pipe = AutoPipelineForText2Image.from_pretrained(MODEL, torch_dtype=torch.bfloat16)
+    pipe = AutoPipelineForText2Image.from_pretrained(MODEL, revision=REVISION, torch_dtype=torch.bfloat16)
     pipe = pipe.to("cuda:0")
     load_s = time.time() - t0
 
@@ -67,6 +68,9 @@ def main() -> int:
     seed_stable = len(set(hashes)) == 1
     metrics = {
         "model": MODEL,
+        "correctness_level": "STRUCTURAL",
+        "correctness_contract": "valid >=512px finite image + seed stability across runs",
+        "model_revision": REVISION,
         "precision": "bf16",
         "prompt": PROMPT,
         "seed": SEED,

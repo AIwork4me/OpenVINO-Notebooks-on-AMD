@@ -1,0 +1,9 @@
+{
+  "schema_version": 2,
+  "repository": "openvinotoolkit/openvino_notebooks",
+  "branch": "latest",
+  "commit": "3c3899e68b2269bb7fbd5755554335f33acabd5e",
+  "path": "notebooks/vjepa-2.1/vjepa2-video-embeddings.ipynb",
+  "url": "https://github.com/openvinotoolkit/openvino_notebooks/blob/3c3899e68b2269bb7fbd5755554335f33acabd5e/notebooks/vjepa-2.1/vjepa2-video-embeddings.ipynb",
+  "notebook_sha256": "c2539d628a45309e5e2690f7fe8ed43bb7151b3036b131672bee40f184267083"
+}

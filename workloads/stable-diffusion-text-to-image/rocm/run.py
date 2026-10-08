@@ -18,6 +18,12 @@ from pathlib import Path
 from twin_lib import PeakMemory, emit, setup
 
 MODEL = "stabilityai/stable-diffusion-2-1"
+MS_MODEL = "AI-ModelScope/stable-diffusion-2-1"
+# The HF repo is gated (401 via this runner's HF mirror): weights come from the
+# recorded ModelScope mirror substitution, pinned to its immutable commit below
+# (latest repo commit 2023-12-05; weights unchanged since 2023 — validation ran
+# 2026-10, i.e. on exactly this content).
+MS_REVISION = "e68d85a790bc000dc42b89ba6a826ac132982e21"
 PROMPT = "a photo of an astronaut riding a horse on mars"
 STEPS = 20
 SEED = 42
@@ -33,17 +39,33 @@ def _load_pipeline(evidence: Path):
 
     t0 = time.time()
     source = MODEL
-    try:
-        pipe = StableDiffusionPipeline.from_pretrained(MODEL, torch_dtype=torch.float16)
-    except Exception:  # noqa: BLE001 - any hub failure (401/404 on this mirror) -> ModelScope fallback
+    import os
+
+    hf_rev = os.environ.get("OV_AMD_SD21_HF_REV")  # explicit operator-supplied HF pin (repo is gated: 401 via mirror)
+    if hf_rev:
+        try:
+            pipe = StableDiffusionPipeline.from_pretrained(MODEL, revision=hf_rev, torch_dtype=torch.float16)
+            source = f"{MODEL} @ {hf_rev[:12]} (HF, explicit pin)"
+        except Exception:  # noqa: BLE001 - any hub failure (401/404) -> pinned ModelScope path below
+            pipe = None
+    else:
+        pipe = None
+    if pipe is None:
         # ModelScope mirror of the same weights (AI-ModelScope/stable-diffusion-2-1)
-        local = _Path(__file__).resolve().parent / "weights"  # stable cache across reruns (gitignored)
+        local = _Path(__file__).resolve().parent / "weights"
+        _rev_marker = local.parent / ".weights-rev"
+        if _rev_marker.exists() and _rev_marker.read_text().strip() != MS_REVISION:
+            import shutil as _sh
+
+            _sh.rmtree(local, ignore_errors=True)  # never mix revisions in the local dir
+        local.mkdir(parents=True, exist_ok=True)  # stable cache across reruns (gitignored)
         from modelscope.hub.snapshot_download import snapshot_download
 
         # the mirror repo carries every weight format (>30GB); fetch only what
         # the diffusers pipeline needs
         snapshot_download(
-            "AI-ModelScope/stable-diffusion-2-1",
+            MS_MODEL,
+            revision=MS_REVISION,
             local_dir=str(local),
             allow_patterns=[
                 "model_index.json", "*/config.json", "*/preprocessor_config.json",
@@ -56,6 +78,7 @@ def _load_pipeline(evidence: Path):
         )
         source = "AI-ModelScope/stable-diffusion-2-1 (ModelScope mirror; HF mirror 401 for stabilityai/stable-diffusion-2-1)"
         pipe = StableDiffusionPipeline.from_pretrained(str(local), torch_dtype=torch.float16)
+        _rev_marker.write_text(MS_REVISION + "\n")  # mark the exact revision on disk
     return pipe.to("cuda:0"), time.time() - t0, source
 
 
@@ -105,6 +128,9 @@ def main() -> int:
     max_diff = max(int(np.abs(a0 - _arr(i)).max()) for i in (1, 2))
     metrics = {
         "model": MODEL,
+        "correctness_level": "STRUCTURAL",
+        "correctness_contract": "3 valid nontrivial images + bounded pixel diff under fixed seed",
+        "model_revision": f"ModelScope {MS_MODEL} @ {MS_REVISION[:12]} (HF gated 401 via mirror)",
         "weights_source": source,
         "precision": "fp16",
         "prompt": PROMPT,

@@ -313,8 +313,18 @@ def write_compatibility() -> dict[str, Any]:
     for r in compat["rows"]:
         # links are relative to catalog/compatibility.md (../results/...) so
         # they resolve in the GitHub web UI, not only from the repo root
-        ev_link = f"../{r['evidence']}" if r["evidence"] and not str(r["evidence"]).startswith(("../", "/")) else r["evidence"]
-        ev = f"[link]({ev_link})" if r["evidence"] else "-"
+        def _rel_link(ev: str | None, label: str) -> str:
+            if not ev:
+                return ""
+            rel = ev if str(ev).startswith(("../", "/")) else f"../{ev}"
+            return f" · [{label}]({rel})"
+
+        # independent per-backend links: CPU + GPU evidence each resolve to
+        # their own directory (blocked/failed GPU rows link their failure
+        # evidence too — a non-verified outcome still has evidence)
+        cpu_ev = _rel_link(r.get("cpu_evidence"), "cpu")
+        ev = cpu_ev.removeprefix(" · ") if cpu_ev else "-"
+        ev += _rel_link(r.get("gpu_evidence"), "gpu")
         rca_link = rca.get(r["id"])
         if r["cpu_compatibility_outcome"] == "FAILED_COMPATIBILITY" and rca_link:
             ev += f" · [rca](../{rca_link})"
@@ -342,28 +352,35 @@ def write_compatibility() -> dict[str, Any]:
     freshness = _freshness_line(meta.get("commit", ""))
 
     block = [
-        f"**AMD CPU Coverage: {compat['counts']['cpu_attempted']}/{compat['counts']['total']} OpenVINO Notebooks "
-        f"attempted on AMD Ryzen — {compat['counts']['cpu_attempt_coverage_pct']}% catalog coverage**",
+        "**AMD Ryzen CPU / OpenVINO**",
         "",
-        f"Coverage is measured against the pinned OpenVINO Notebooks snapshot "
-        f"`{str(meta.get('commit', ''))[:12]}`. Upstream freshness: {freshness}",
+        f"### {compat['counts']['cpu_attempted']} / {compat['counts']['total']} — "
+        f"{compat['counts']['cpu_attempt_coverage_pct']}% Catalog Coverage",
         "",
-        f"✅ {oc.get('VERIFIED', 0)} Verified · 🟡 {oc.get('VERIFIED_WITH_LIMITATIONS', 0)} Verified with limitations · "
+        "> **Coverage means every notebook in the pinned snapshot has a recorded AMD CPU "
+        "validation outcome. It does NOT mean every notebook passed.**",
+        "",
+        f"Outcome totals: ✅ {oc.get('VERIFIED', 0)} Verified · "
+        f"🟡 {oc.get('VERIFIED_WITH_LIMITATIONS', 0)} Verified with limitations · "
         f"🚧 {blocked_total} Blocked (network / model access / dependency / timeout / resource) · "
-        f"🧩 {oc.get('FAILED_COMPATIBILITY', 0)} Compatibility failures · ➖ {oc.get('NOT_APPLICABLE', 0)} Not applicable",
-        "",
-        "> **100% coverage means every catalogued notebook has been attempted and classified on AMD Ryzen. "
-        "It does not mean every notebook passed.**",
+        f"🧩 {oc.get('FAILED_COMPATIBILITY', 0)} Compatibility failures · "
+        f"➖ {oc.get('NOT_APPLICABLE', 0)} Not applicable",
         "",
         f"Successful executions: **{sec['verified'] + sec['verified_with_limitations']}/{sec['eligible_total']}** "
-        f"of eligible notebooks ({sec['pct']}%; {na} N/A excluded) — ✅ {sec['verified']} L3 verified · "
+        f"of eligible notebooks ({sec['pct']}%; {na} N/A excluded) — ✅ {sec['verified']} verified · "
         f"🟡 {sec['verified_with_limitations']} with documented limitations.",
         "",
-        f"GPU (ROCm twins, Radeon): ✅ {gpu.get('VERIFIED', 0)} verified · 🟡 {gpu.get('VERIFIED_WITH_LIMITATIONS', 0)} limited "
-        f"· attempted {compat['counts']['gpu_attempted']}/{compat['counts']['total']}",
+        "**AMD Radeon GPU / ROCm · PyTorch**",
         "",
-        f"Evidence Schema **v2** · upstream `{str(meta.get('commit', ''))[:12]}` · "
-        f"twin classification **{compat['counts']['twin_classified']}/{compat['counts']['total']}** "
+        f"### {gpu.get('VERIFIED', 0)} verified high-value workload references",
+        "",
+        f"A growing, deliberately-curated set — explicitly **not** a catalog-wide sweep "
+        f"(attempted {compat['counts']['gpu_attempted']}/{compat['counts']['total']}). "
+        "The two numbers above have different denominators and different meanings.",
+        "",
+        f"Pinned snapshot `{str(meta.get('commit', ''))[:12]}` · freshness: {freshness} · "
+        f"Evidence Schema **v2** · twin classification "
+        f"**{compat['counts']['twin_classified']}/{compat['counts']['total']}** "
         f"({compat['counts']['twin_classification_coverage_pct']}%)",
         "",
         "Full matrix: [catalog/compatibility.md](catalog/compatibility.md) · "
@@ -383,34 +400,50 @@ FEATURED_BEGIN = "<!-- generated:featured begin -->"
 FEATURED_END = "<!-- generated:featured end -->"
 
 
-def write_featured_matrix(compat: dict[str, Any] | None = None) -> bool:
-    """Render the compact high-value workload matrix (README §top).
+CONCISE = {
+    "VERIFIED": "✅ Verified",
+    "VERIFIED_WITH_LIMITATIONS": "🟡 Limited",
+    "BLOCKED_NETWORK": "🌐 Network blocked",
+    "BLOCKED_MODEL_ACCESS": "🔐 Model access",
+    "BLOCKED_DEPENDENCY": "📦 Dependency blocked",
+    "BLOCKED_TIMEOUT": "⏱ Timeout",
+    "BLOCKED_RESOURCE": "💾 Resource blocked",
+    "FAILED_COMPATIBILITY": "🧩 Compat failure",
+    "NOT_APPLICABLE": "➖ N/A",
+    "NOT_TESTED": "⏳ Not tested",
+}
 
-    Rows: every GPU-verified ROCm twin plus its AMD CPU/OpenVINO outcome and
-    twin level. All cells machine-generated from catalog/compatibility.json —
-    no hand-maintained claims. The full 173-row matrix stays in
-    catalog/compatibility.md."""
+
+def write_featured_matrix(compat: dict[str, Any] | None = None) -> bool:
+    """Render the ROCm-verified workload matrix (README).
+
+    Selection criterion (stated ABOVE the table): rows are the workloads
+    VERIFIED on AMD Radeon GPUs via ROCm; the AMD Ryzen CPU column reports
+    INDEPENDENT OpenVINO validation results for the same workload. The CPU
+    outcome may be Verified, Limited, or Blocked — a Blocked result is not
+    necessarily an AMD CPU compatibility failure."""
 
     compat = compat if compat is not None else build_compatibility()
-
-    def _cell(outcome: str, reason: str) -> str:
-        icon = _icon(outcome)
-        return f"{icon} {outcome}" + (f" ({reason})" if reason and outcome.startswith("BLOCKED") else "")
-
     rows = [r for r in compat["rows"] if r["gpu_compatibility_outcome"] in ("VERIFIED", "VERIFIED_WITH_LIMITATIONS")]
     if not rows:
         return False
     lines = [
-        "| Workload | Ryzen / OpenVINO | Radeon / ROCm | Twin |",
+        "This table intentionally selects workloads **verified on AMD Radeon GPUs using ROCm**. "
+        "The **Ryzen CPU column reports independent OpenVINO validation results** for the same workload — "
+        "CPU results may be Verified, Limited, or Blocked. A blocked result is not necessarily an AMD CPU "
+        "compatibility failure. Each status links to its own evidence.",
+        "",
+        "| Workload | Ryzen CPU · OpenVINO | Radeon GPU · ROCm | Twin type |",
         "|---|---|---|---|",
     ]
     order = {"VERIFIED": 0, "VERIFIED_WITH_LIMITATIONS": 1}
     for r in sorted(rows, key=lambda r: (order.get(r["gpu_compatibility_outcome"], 9), r["id"])):
+        cpu = CONCISE.get(r["cpu_compatibility_outcome"], r["cpu_compatibility_outcome"])
+        gpu = CONCISE.get(r["gpu_compatibility_outcome"], r["gpu_compatibility_outcome"])
+        cpu_cell = f"{cpu}" + (f" ([evidence]({r['cpu_evidence']}))" if r.get("cpu_evidence") else "")
+        gpu_cell = f"{gpu}" + (f" ([evidence]({r['gpu_evidence']}))" if r.get("gpu_evidence") else "")
         lines.append(
-            f"| [{r['id']}]({r['upstream_url']}) "
-            f"| {_cell(r['cpu_compatibility_outcome'], r['cpu_outcome_reason'])} "
-            f"| {_cell(r['gpu_compatibility_outcome'], r['gpu_outcome_reason'])} "
-            f"| {r['twin_level']} |"
+            f"| [{r['id']}]({r['upstream_url']}) | {cpu_cell} | {gpu_cell} | {r['twin_level']} |"
         )
     if README.exists():
         text = README.read_text()
@@ -419,6 +452,55 @@ def write_featured_matrix(compat: dict[str, Any] | None = None) -> bool:
             pre, _, rest = text.partition(FEATURED_BEGIN)
             _, _, post = rest.partition(FEATURED_END)
             README.write_text(pre + FEATURED_BEGIN + "\n" + block + "\n" + FEATURED_END + post)
+            return True
+    return False
+
+
+CPU_SHOWCASE_BEGIN = "<!-- generated:cpu-showcase begin -->"
+CPU_SHOWCASE_END = "<!-- generated:cpu-showcase end -->"
+
+
+def write_cpu_showcase(compat: dict[str, Any] | None = None, limit: int = 12) -> bool:
+    """Independent AMD-CPU success showcase (mission Step 6.5).
+
+    Selected from cpu_compatibility_outcome == VERIFIED (never GPU-selected),
+    preferring high-value non-trivial categories. Full list: the compatibility
+    matrix's VERIFIED filter."""
+
+    compat = compat if compat is not None else build_compatibility()
+    verified = [r for r in compat["rows"] if r["cpu_compatibility_outcome"] == "VERIFIED"]
+    if not verified:
+        return False
+    high_value = ("LLM", "VLM", "Image Generation", "Video", "OCR", "TTS", "ASR", "Vision", "Detection")
+    ranked = sorted(
+        verified,
+        key=lambda r: (0 if r["category"] in high_value else 1, r["id"]),
+    )
+    lines = [
+        "Selected AMD-Ryzen-VERIFIED notebooks (CPU results only — this table is **not** "
+        "GPU-selected; every row passed its validation contract on OpenVINO/CPU):",
+        "",
+        "| Workload | CPU status | Category | Evidence |",
+        "|---|---|---|---|",
+    ]
+    for r in ranked[:limit]:
+        ev = f"[evidence]({r['cpu_evidence']})" if r.get("cpu_evidence") else "—"
+        lines.append(
+            f"| [{r['id']}]({r['upstream_url']}) | ✅ Verified | {r['category']} | {ev} |"
+        )
+    lines += [
+        "",
+        f"…plus {len(verified) - min(limit, len(verified))} more VERIFIED rows in the "
+        "[full compatibility matrix](catalog/compatibility.md).",
+    ]
+    if README.exists():
+        text = README.read_text()
+        if CPU_SHOWCASE_BEGIN in text and CPU_SHOWCASE_END in text:
+            pre, _, rest = text.partition(CPU_SHOWCASE_BEGIN)
+            _, _, post = rest.partition(CPU_SHOWCASE_END)
+            README.write_text(
+                pre + CPU_SHOWCASE_BEGIN + "\n" + "\n".join(lines) + "\n" + CPU_SHOWCASE_END + post
+            )
             return True
     return False
 

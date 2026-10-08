@@ -4,9 +4,9 @@ category: Vision
 upstream:
   repository: openvinotoolkit/openvino_notebooks
   branch: latest
-  commit: 2b1600de9620e4a2d26f1ef5c83fad64d7d76f7b
+  commit: 3c3899e68b2269bb7fbd5755554335f33acabd5e
   path: notebooks/yolov26-optimization/yolov26-object-detection.ipynb
-  url: https://github.com/openvinotoolkit/openvino_notebooks/blob/2b1600de9620e4a2d26f1ef5c83fad64d7d76f7b/notebooks/yolov26-optimization/yolov26-object-detection.ipynb
+  url: https://github.com/openvinotoolkit/openvino_notebooks/blob/3c3899e68b2269bb7fbd5755554335f33acabd5e/notebooks/yolov26-optimization/yolov26-object-detection.ipynb
 model:
   name: ultralytics yolo26n
   source: https://docs.ultralytics.com/models/yolo26/
@@ -18,8 +18,13 @@ cpu:
   status: VERIFIED_WITH_LIMITATIONS
 gpu:
   runtime: pytorch-rocm
-  status: FAILED
+  status: BLOCKED
   wall_timeout_s: 1800
+  note: "v0.3.1 RCA complete: official yolo26n.pt artifact is inference-degenerate\
+    \ on every runtime tested (ultralytics 8.3.222/8.4.43/8.4.173, CPU + gfx1100,\
+    \ predict() and native e2e decode) \u2014 max conf ~0.5 garbage / ~0.01 via predict;\
+    \ weights byte-identical across GitHub release and HF-org mirror (sha256 9b09cc8b\u2026\
+    ). BLOCKED_DEPENDENCY (upstream artifact defect, not ROCm). RCA evidence: results/yolov26-object-detection/20261008T171656Z-gpu"
 twin:
   level: WORKLOAD_TWIN
 validation:
@@ -28,4 +33,4 @@ validation:
   - Source ended
   output_finite_numbers: true
 patches: {}
-last_verified: '2026-10-07T01:50:39+00:00'
+last_verified: '2026-10-08T17:16:56+00:00'

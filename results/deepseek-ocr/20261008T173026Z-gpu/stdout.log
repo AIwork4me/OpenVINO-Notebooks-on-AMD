@@ -1,0 +1,17 @@
+=====================
+BASE:  torch.Size([1, 256, 1280])
+PATCHES:  torch.Size([6, 144, 1280])
+=====================
+=====================
+BASE:  torch.Size([1, 256, 1280])
+PATCHES:  torch.Size([6, 144, 1280])
+=====================
+=====================
+BASE:  torch.Size([1, 256, 1280])
+PATCHES:  torch.Size([6, 144, 1280])
+=====================
+=====================
+BASE:  torch.Size([1, 256, 1280])
+PATCHES:  torch.Size([6, 144, 1280])
+=====================
+TWIN_RESULT={"ok": true, "hip": "7.2.53211-e1a6bc5663", "device": "AMD Radeon Graphics", "gcn_arch": "gfx1100", "metrics": {"model": "deepseek-ai/DeepSeek-OCR-2", "model_revision": "aaa02f3811", "correctness_level": "TASK_SEMANTIC", "correctness_contract": "OCR output contains expected document text fragments (markdown headings from the fixed doc_markdown.png fixture)", "input_asset": {"asset_id": "doc-markdown.png", "sha256": "10019a6734a95a4aa9f8480dd729b2b6fe85ce8d1095e3d68174479c9a6ec37a", "resolved_from": "fixture", "license": "mit", "license_source": "khang119966/DeepSeek-OCR-DEMO space README front-matter (license: mit), verified 2026-10-08", "description": "Markdown-rendered document screenshot used by the smoldocling and minicpm-v-4.6 twins"}, "precision": "bf16", "loading_contract": "AutoModel trust_remote_code=True (repo's own modeling code, as upstream)", "transformers": "4.46.3", "input": "DeepSeek-OCR-DEMO space doc_markdown.png (public official demo asset)", "load_s": 14.65, "runs": [{"latency_s": 10.47, "chars": 1584}, {"latency_s": 10.417, "chars": 1584}, {"latency_s": 10.652, "chars": 1584}], "output_chars": 1584, "output_words_ge2": 165, "output_preview": "<|ref|>sub_title<|/ref|><|det|>[[128, 73, 625, 98]]<|/det|>\n## Aspire OCR and Barcode Recognition\n\n<|ref|>text<|/ref|><|det|>[[127, 109, 853, 145]]<|/det|>\nHigh performance, royalty-free OCR and barcode recognition on Windows, Linux, Mac OS and Unix.\n\n<|ref|>text<|/ref|><|det|>[[127, 155, 853, 246]]<|/det|>\nAspire OCR (optical character recognition) and barcode recognition SDK offers a high perfor", "nonempty_text": true, "output_stable": true, "peak_vram_gb": 7.66, "peak_rss_gb": 7.29}, "metric_semantics": {"peak_vram_gb": "torch.cuda.max_memory_allocated() \u2014 peak ALLOCATED GPU tensor memory via PyTorch's caching allocator. NOT total physical VRAM usage (driver/runtime reservations and other processes are excluded).", "peak_rss_gb": "process resident high-water mark (VmHWM from /proc/self/status)", "latency_s": "wall time of one full workload invocation including torch.cuda.synchronize()", "load_s": "wall time of model+processor construction (from_pretrained/pipeline load)", "rtf": "standard RTF = inference_time / generated_or_input_audio_duration (lower is faster; <1 is real-time capable)", "realtime_speed_factor": "inverse RTF = audio_duration / inference_time (higher is faster) \u2014 reported separately, never mixed with rtf"}}

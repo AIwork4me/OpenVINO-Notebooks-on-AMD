@@ -23,6 +23,7 @@ import time
 from twin_lib import PeakMemory, emit, setup
 
 MODEL = "zai-org/GLM-OCR"
+REVISION = "2e85a62840"  # validated revision (verified live 2026-10-08)
 EXPECTED = "The quick brown fox jumps over the lazy dog"
 
 
@@ -53,9 +54,9 @@ def main() -> int:
     from transformers import AutoProcessor, GlmOcrForConditionalGeneration
 
     t0 = time.time()
-    processor = AutoProcessor.from_pretrained(MODEL)
+    processor = AutoProcessor.from_pretrained(MODEL, revision=REVISION)
     model = GlmOcrForConditionalGeneration.from_pretrained(
-        MODEL, torch_dtype=torch.bfloat16, device_map="cuda:0"
+        MODEL, revision=REVISION, torch_dtype=torch.bfloat16, device_map="cuda:0"
     ).eval()
     load_s = time.time() - t0
 
@@ -93,6 +94,9 @@ def main() -> int:
     hits = sum(1 for w in fragment_words if w in low)
     metrics = {
         "model": MODEL,
+        "correctness_level": "GROUND_TRUTH",
+        "correctness_contract": "deterministic typewritten fixture with known content read back (>=6/7 expected words incl. all key words)",
+        "model_revision": REVISION,
         "precision": "bf16",
         "input": "deterministic typewritten PIL fixture (upstream sample images on blocked GitHub-attachment host)",
         "load_s": round(load_s, 2),

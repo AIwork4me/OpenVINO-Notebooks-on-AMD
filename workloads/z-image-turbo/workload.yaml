@@ -4,15 +4,18 @@ category: Other
 upstream:
   repository: openvinotoolkit/openvino_notebooks
   branch: latest
-  commit: 2b1600de9620e4a2d26f1ef5c83fad64d7d76f7b
+  commit: 3c3899e68b2269bb7fbd5755554335f33acabd5e
   path: notebooks/z-image-turbo/z-image-turbo.ipynb
-  url: https://github.com/openvinotoolkit/openvino_notebooks/blob/2b1600de9620e4a2d26f1ef5c83fad64d7d76f7b/notebooks/z-image-turbo/z-image-turbo.ipynb
+  url: https://github.com/openvinotoolkit/openvino_notebooks/blob/3c3899e68b2269bb7fbd5755554335f33acabd5e/notebooks/z-image-turbo/z-image-turbo.ipynb
 model:
   name: Tongyi-MAI/Z-Image-Turbo
   source: https://huggingface.co/Tongyi-MAI/Z-Image-Turbo
   revision: f332072aa7
   license: apache-2.0
-  implementation: diffusers AutoPipelineForText2Image
+  license_source: HF model-repo card/license tag (verified via hf-mirror API 2026-10-08)
+  license_revision: f332072aa7
+  license_verification_date: '2026-10-08'
+  implementation: transformers built-in or official package
 cpu:
   runtime: openvino
   status: FAILED

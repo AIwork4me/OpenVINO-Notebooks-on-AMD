@@ -21,15 +21,16 @@ def test_readme_generated_block_is_current() -> None:
     blocked = sum(oc.get(k, 0) for k in
                   ("BLOCKED_NETWORK", "BLOCKED_MODEL_ACCESS", "BLOCKED_DEPENDENCY", "BLOCKED_TIMEOUT", "BLOCKED_RESOURCE"))
     expected_fragments = [
-        f"AMD CPU Coverage: {c['cpu_attempted']}/{c['total']} OpenVINO Notebooks attempted on AMD Ryzen",
-        f"{c['cpu_attempt_coverage_pct']}% catalog coverage",
+        # v0.3.1 two-path presentation: CPU coverage block + GPU verified count
+        f"### {c['cpu_attempted']} / {c['total']} — {c['cpu_attempt_coverage_pct']}% Catalog Coverage",
+        f"### {c['gpu_outcomes'].get('VERIFIED', 0)} verified high-value workload references",
+        "It does NOT mean every notebook passed",
         f"✅ {oc.get('VERIFIED', 0)} Verified",
         f"🟡 {oc.get('VERIFIED_WITH_LIMITATIONS', 0)} Verified with limitations",
         f"🚧 {blocked} Blocked",
         f"🧩 {oc.get('FAILED_COMPATIBILITY', 0)} Compatibility failures",
         f"➖ {oc.get('NOT_APPLICABLE', 0)} Not applicable",
         f"**{sec['verified'] + sec['verified_with_limitations']}/{sec['eligible_total']}** of eligible notebooks ({sec['pct']}%",
-        "It does not mean every notebook passed",
     ]
     missing = [f for f in expected_fragments if f not in block]
     assert not missing, f"README generated block stale; missing: {missing} — run `python -m ov_amd report`"
@@ -51,9 +52,11 @@ def test_readme_quickstart_commands_resolve() -> None:
 def test_readme_heading_matches_coverage_pct() -> None:
     """The static H2 'AMD CPU Coverage: 100%' must match the computed coverage."""
     compat = build_compatibility()
-    pct = int(compat["counts"]["cpu_attempt_coverage_pct"])
+    pct = compat["counts"]["cpu_attempt_coverage_pct"]
     text = README.read_text()
-    assert f"## AMD CPU Coverage: {pct}%" in text, "coverage heading drifted from the data"
+    assert f"### {compat['counts']['cpu_attempted']} / {compat['counts']['total']} — {pct}% Catalog Coverage" in text, (
+        "coverage heading drifted from the data"
+    )
 
 
 def test_readme_has_no_hand_typed_catalog_total() -> None:

@@ -16,7 +16,7 @@ _sys.path.insert(0, str(_Path(__file__).resolve().parents[3] / "ov_amd"))  # twi
 
 import time
 
-from twin_lib import PeakMemory, emit, fetch, setup
+from twin_lib import PeakMemory, emit, resolve_asset, setup
 
 MODEL = "yolov8n.pt"
 # Weight provenance chain: the official ultralytics release CDN first; on
@@ -31,11 +31,12 @@ WEIGHT_URLS = [
     "https://huggingface.co/kadirnar/yolov8n-v8.0/resolve/main/yolov8n.pt",
     "https://hf-mirror.com/kadirnar/yolov8n-v8.0/resolve/main/yolov8n.pt",
 ]
-IMG_URL = "https://user-images.githubusercontent.com/36741649/128489933-bf215a3f-06fa-4918-8833-cb0bf9fb1cc7.jpg"
-IMG_FALLBACK = "https://storage.openvinotoolkit.org/repositories/openvino_notebooks/data/data/image/intel_rnb.jpg"
+WEIGHT_SHA256 = "f59b3d833e2ff32e194b5bb8e08d211dc7c5bdf144b90d2c8412c47ccfc83b36"
 
 
-def _fetch_first(urls: list[str], dest: _Path) -> str:
+def _fetch_first(urls: list[str], dest: _Path, sha256: str) -> str:
+    # v0.3.1: every source is hash-verified before use (no unverified mirror
+    # artifacts can enter the evidence chain)
     import subprocess
 
     last = ""
@@ -44,7 +45,14 @@ def _fetch_first(urls: list[str], dest: _Path) -> str:
             ["curl", "-sSfL", "--max-time", "300", u, "-o", str(dest)], capture_output=True
         )
         if r.returncode == 0 and dest.exists() and dest.stat().st_size > 0:
-            return u
+            import hashlib
+
+            h = hashlib.sha256(dest.read_bytes()).hexdigest()
+            if h == sha256:
+                return u
+            last = f"{u}: sha256 {h[:16]}… != {sha256[:16]}…"
+            dest.unlink()
+            continue
         last = f"{u}: curl {r.returncode}"
     raise RuntimeError(f"all weight sources failed (last: {last})")
 
@@ -55,9 +63,12 @@ def main() -> int:
     evidence = _Path(args.evidence_dir)
     evidence.mkdir(parents=True, exist_ok=True)
     img = evidence / "intel_rnb.jpg"
-    fetch(IMG_URL, img, fallbacks=[IMG_FALLBACK])
+    asset = resolve_asset("intel-rnb.jpg")
+    import shutil
+
+    shutil.copy2(asset.path, img)
     weights = evidence / MODEL
-    weight_source = _fetch_first(WEIGHT_URLS, weights)
+    weight_source = _fetch_first(WEIGHT_URLS, weights, WEIGHT_SHA256)
 
     import hashlib
 
@@ -107,6 +118,10 @@ def main() -> int:
     gpu = gpu_ready()
     metrics = {
         "model": MODEL,
+        "correctness_level": "STRUCTURAL",
+        "correctness_contract": ">=1 detection with valid confidences + repeatability (no class verification)",
+        "model_revision": "ultralytics release v8.4.0 asset",
+        "input_asset": asset.record(),
         "task": "object detection (WORKLOAD_TWIN of hello-detection)",
         "precision": "fp32 default",
         "weights_source": weight_source,

@@ -179,7 +179,11 @@ def test_changed_notebook_old_pin_evidence_is_not_current() -> None:
         "notebooks/kokoro/kokoro.ipynb",
         "notebooks/whisper-asr-genai/whisper-asr-genai.ipynb",
     }
-    pin = json.loads((REPO / "upstream" / "openvino-notebooks.json").read_text())["commit"]
+    # this snapshot-scoped test pins the DELTA's target (2b1600d), not the
+    # current repo pin (which has since advanced to 3c3899e with no further
+    # changes to these two notebooks — their evidence remains valid at the
+    # content-identical pin it was recorded on)
+    pin = "2b1600de9620e4a2d26f1ef5c83fad64d7d76f7b"
     cat = yaml.safe_load((REPO / "catalog" / "notebooks.yaml").read_text())
     by_path = {e["upstream_path"]: e["id"] for e in cat["notebooks"]}
     state = json.loads((REPO / "results" / "marathon-state.json").read_text())

@@ -80,7 +80,9 @@ def test_readme_block_insertion(tmp_path, monkeypatch):
     rep.write_compatibility()
     text = readme.read_text()
     assert "old" not in text
-    assert "AMD CPU Coverage: 2/2" in text
-    assert "does not mean every notebook passed" in text
+    # v0.3.1 two-path presentation
+    assert "### 2 / 2 — 100.0% Catalog Coverage" in text
+    assert "It does NOT mean every notebook passed" in text
+    assert "verified high-value workload references" in text
     assert "intro" in text and "tail" in text
     assert (tmp_path / "compat.md").exists()

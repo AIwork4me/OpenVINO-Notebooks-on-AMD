@@ -64,7 +64,7 @@ Example: CPU path runs OpenVINO model A, GPU twin runs YOLOv8n for the same
 task but a different model object → WORKLOAD_TWIN → side-by-side only; any
 direct speedup claim for such rows is a reporting bug and fails review.
 
-No EXACT_TWIN exists in the current dataset (twin levels: 160 WORKLOAD_TWIN,
+No EXACT_TWIN exists in the current dataset (twin levels: 163 WORKLOAD_TWIN / 10 OPENVINO_SPECIFIC / 1 CONCEPT_MAPPING (174 at the v0.3.1 pin — regenerate with `python -m ov_amd report`; never hand-maintain this count)
 10 OPENVINO_SPECIFIC, 1 CONCEPT_MAPPING) — therefore **CPU and GPU results in
 this repository are deployment references, not direct benchmark comparisons**.
 

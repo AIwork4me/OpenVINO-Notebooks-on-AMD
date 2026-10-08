@@ -1,0 +1,10 @@
+{
+  "schema_version": 2,
+  "declared": {
+    "name": "ultralytics yolo26n",
+    "source": "https://docs.ultralytics.com/models/yolo26/",
+    "revision": "yolo26n.pt",
+    "license": "AGPL-3.0",
+    "implementation": "ultralytics package on torch.cuda (same as notebook)"
+  }
+}

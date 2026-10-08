@@ -2,10 +2,15 @@
 
 ## Prerequisites
 
-- Linux x86_64, Python 3.10+
+- Linux x86_64, **Python 3.11+** (3.12 is the validated reference; the current
+  upstream notebook stack also requires ≥3.11 — 3.10 is NOT supported)
 - [uv](https://docs.astral.sh/uv/) (or plain pip/venv)
-- For GPU twins: a ROCm installation with a supported AMD GPU (this campaign:
-  ROCm 7.2.1, gfx1151 / Radeon 8060S)
+- For GPU twins: a ROCm installation with a supported AMD GPU. Results in this
+  repository were recorded on two platforms, each pinned in the evidence's
+  `hardware.json`: gfx1100 (Radeon, 48 GB; ROCm 6.16.13 driver, torch
+  2.9.1+hip) for 19 of the 20 verified twins and gfx1151 (Radeon 8060S) for
+  hello-detection. A model verified on one gfx architecture is not guaranteed
+  on another — every row records the platform it actually ran on.
 
 ## Set up the CPU validation environment
 
@@ -33,14 +38,14 @@ python scripts/discover_upstream.py     # writes upstream/ + catalog/notebooks.y
 ## Daily commands
 
 ```bash
-python -m ov_amd doctor                 # audit hardware, venvs, upstream pin
-python -m ov_amd list                   # every catalog entry + status
-python -m ov_amd info <workload>        # entry, config, attempts, evidence
-python -m ov_amd run <workload> --device cpu
-python -m ov_amd run <workload> --device gpu
+.venv-cpu/bin/python -m ov_amd doctor   # audit hardware, venvs, upstream pin
+.venv-cpu/bin/python -m ov_amd list                   # every catalog entry + status
+.venv-cpu/bin/python -m ov_amd info <workload>        # entry, config, attempts, evidence
+.venv-cpu/bin/python -m ov_amd run <workload> --device cpu
+.venv-cpu/bin/python -m ov_amd run <workload> --device gpu
 python -m ov_amd compare <workload>     # CPU vs GPU metrics
-python -m ov_amd report                 # regenerate catalog/compatibility.*
-python scripts/run_marathon.py --resume # unattended campaign
+.venv-cpu/bin/python -m ov_amd report                 # regenerate catalog/compatibility.*
+.venv-cpu/bin/python scripts/run_marathon.py --resume # unattended campaign
 ```
 
 ## Network notes

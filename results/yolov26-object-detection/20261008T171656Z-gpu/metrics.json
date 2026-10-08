@@ -1,0 +1,202 @@
+{
+  "schema_version": 2,
+  "twin_result": {
+    "ok": false,
+    "hip": "7.2.53211-e1a6bc5663",
+    "device": "AMD Radeon Graphics",
+    "gcn_arch": "gfx1100",
+    "metrics": {
+      "model": "yolo26n.pt",
+      "model_revision": "ultralytics/assets v8.4.0 release asset (sha256 9b09cc8bf347f0fc\u2026, byte-identical GitHub==HF-org mirror, cross-verified via api.github.com)",
+      "correctness_level": "TASK_SEMANTIC",
+      "correctness_contract": ">=1 end-to-end detection conf>0.5 incl. expected scene classes (person/car) + identical detection count across 3 runs",
+      "input_asset": {
+        "asset_id": "nyc.jpg",
+        "sha256": "a515af6ed7c9d49cdde69f34dd05db0a08eddc2d4c36aca3e90c2950e3dc4f78",
+        "resolved_from": "fixture",
+        "license": "apache-2.0",
+        "license_source": "openvino_notebooks repository license (notebook-bundled demo image)",
+        "description": "NYC street photo bundled by the upstream vlm-chatbot notebook; used by the florence2 and yolov26 twins (byte-identical to pinned-snapshot copy, verified 2026-10-08)"
+      },
+      "inference_path": "native end-to-end head output (1, 300, 6) with ultralytics LetterBox preprocessing \u2014 the same e2e output the notebook's OpenVINO export(end2end=True) serves; legacy predict() decode is broken for this artifact (RCA on file)",
+      "e2e_output_shape": [
+        1,
+        84,
+        8400
+      ],
+      "conf_threshold": 0.5,
+      "runs": [
+        {
+          "latency_s": 0.144,
+          "n_detections": 6589
+        },
+        {
+          "latency_s": 0.14,
+          "n_detections": 6589
+        },
+        {
+          "latency_s": 0.14,
+          "n_detections": 6589
+        }
+      ],
+      "n_detections": 6589,
+      "top_conf": 0.5065,
+      "max_raw_conf": 0.5065,
+      "classes_detected": [
+        "airplane",
+        "apple",
+        "banana",
+        "baseball bat",
+        "bear",
+        "bench",
+        "bicycle",
+        "bird",
+        "boat",
+        "book",
+        "bottle",
+        "bowl",
+        "broccoli",
+        "bus",
+        "cake",
+        "car",
+        "carrot",
+        "cat",
+        "chair",
+        "clock",
+        "cup",
+        "dining table",
+        "donut",
+        "elephant",
+        "fork",
+        "giraffe",
+        "handbag",
+        "horse",
+        "knife",
+        "laptop",
+        "orange",
+        "oven",
+        "parking meter",
+        "person",
+        "pizza",
+        "potted plant",
+        "refrigerator",
+        "sandwich",
+        "sheep",
+        "sink",
+        "skis",
+        "spoon",
+        "stop sign",
+        "suitcase",
+        "surfboard",
+        "traffic light",
+        "train",
+        "truck",
+        "tv",
+        "umbrella",
+        "vase",
+        "wine glass",
+        "zebra"
+      ],
+      "expected_classes_seen": [
+        "car",
+        "person"
+      ],
+      "detections_preview": [
+        {
+          "box_xywh": [
+            11.1,
+            -191.4,
+            20.8,
+            16.7
+          ],
+          "conf": 0.5,
+          "cls": "fork"
+        },
+        {
+          "box_xywh": [
+            25.0,
+            -194.4,
+            45.3,
+            11.1
+          ],
+          "conf": 0.5,
+          "cls": "fork"
+        },
+        {
+          "box_xywh": [
+            33.6,
+            -194.3,
+            63.3,
+            11.4
+          ],
+          "conf": 0.5,
+          "cls": "fork"
+        },
+        {
+          "box_xywh": [
+            41.7,
+            -193.5,
+            82.5,
+            13.0
+          ],
+          "conf": 0.5,
+          "cls": "banana"
+        },
+        {
+          "box_xywh": [
+            50.1,
+            -192.4,
+            99.0,
+            15.1
+          ],
+          "conf": 0.5,
+          "cls": "banana"
+        },
+        {
+          "box_xywh": [
+            60.9,
+            -192.5,
+            112.4,
+            15.2
+          ],
+          "conf": 0.5,
+          "cls": "banana"
+        },
+        {
+          "box_xywh": [
+            78.0,
+            -192.8,
+            113.5,
+            14.6
+          ],
+          "conf": 0.5,
+          "cls": "banana"
+        },
+        {
+          "box_xywh": [
+            99.7,
+            -193.1,
+            102.5,
+            13.9
+          ],
+          "conf": 0.5,
+          "cls": "banana"
+        }
+      ],
+      "stable_count": true,
+      "rca_note": "official yolo26n.pt artifact (GitHub v8.4.0 release == HF-org mirror, byte-identical, sha256-verified) is inference-degenerate: max detection confidence ~0.01-0.05 on every runtime tested (ultralytics 8.3.222 save-version / 8.4.43 notebook-pin / 8.4.173, CPU and gfx1100 GPU, predict() and native e2e decode) \u2014 upstream artifact defect, NOT a ROCm incompatibility; full RCA in reports/v0.3.1-final-report.md",
+      "peak_vram_gb": 0.12,
+      "peak_rss_gb": 1.04
+    },
+    "metric_semantics": {
+      "peak_vram_gb": "torch.cuda.max_memory_allocated() \u2014 peak ALLOCATED GPU tensor memory via PyTorch's caching allocator. NOT total physical VRAM usage (driver/runtime reservations and other processes are excluded).",
+      "peak_rss_gb": "process resident high-water mark (VmHWM from /proc/self/status)",
+      "latency_s": "wall time of one full workload invocation including torch.cuda.synchronize()",
+      "load_s": "wall time of model+processor construction (from_pretrained/pipeline load)",
+      "rtf": "standard RTF = inference_time / generated_or_input_audio_duration (lower is faster; <1 is real-time capable)",
+      "realtime_speed_factor": "inverse RTF = audio_duration / inference_time (higher is faster) \u2014 reported separately, never mixed with rtf"
+    }
+  },
+  "duration_s": 49.01,
+  "exit_code": 1
+}

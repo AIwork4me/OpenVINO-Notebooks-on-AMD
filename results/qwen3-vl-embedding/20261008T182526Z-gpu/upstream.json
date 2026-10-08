@@ -1,0 +1,8 @@
+{
+  "schema_version": 2,
+  "repository": "openvinotoolkit/openvino_notebooks",
+  "branch": "latest",
+  "commit": "3c3899e68b2269bb7fbd5755554335f33acabd5e",
+  "path": "notebooks/qwen3-vl-embedding/qwen3-vl-embedding.ipynb",
+  "url": "https://github.com/openvinotoolkit/openvino_notebooks/blob/3c3899e68b2269bb7fbd5755554335f33acabd5e/notebooks/qwen3-vl-embedding/qwen3-vl-embedding.ipynb"
+}

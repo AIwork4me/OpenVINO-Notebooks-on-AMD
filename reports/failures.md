@@ -2,7 +2,19 @@
 
 Grouped by developer-facing compatibility outcome. BLOCKED_* outcomes are environment/network/model-access blockers — not AMD/OpenVINO compatibility failures. FAILED_COMPATIBILITY rows carry a reason identifying the failing layer.
 
-Total non-green attempts: 87
+Total non-green attempts: 86
+
+## 🌐 cpu · BLOCKED_NETWORK · NETWORK_UNREACHABLE — network unreachable — 9 workload(s)
+
+- **freevc-voice-conversion** — ok_runs=0/3: Exception: File downloading failed with error: HTTPSConnectionPool(host='storage.openvinotoolkit.org', port=443): Max retries exceeded with url: /repositories/openvino_notebooks/models/freevc/freevc.pth (Cau (evidence: results/freevc-voice-conversion/20261007194447Z-cpu)
+- **llm-agent-mcp** — ok_runs=0/3: ProxyError: HTTPSConnectionPool(host='cdn-avatars.huggingface.co', port=443): Max retries exceeded with url: /v1/production/uploads/1671615670447-6346651be2dcb5422bcd13dd.png (Caused by ProxyError('Unable to (evidence: results/llm-agent-mcp/20261007235034Z-cpu)
+- **vision-background-removal** — ok_runs=0/3: Exception: File downloading failed with error: HTTPSConnectionPool(host='raw.githubusercontent.com', port=443): Max retries exceeded with url: /openvinotoolkit/openvino_notebooks/latest/notebooks/vision-back (evidence: results/vision-background-removal/20261007235811Z-cpu)
+- **ct-segmentation-quantize-nncf** — ok_runs=0/3: Exception: File downloading failed with error: HTTPSConnectionPool(host='storage.openvinotoolkit.org', port=443): Max retries exceeded with url: /repositories/openvino_notebooks/models/kidney-segmentation-ki (evidence: results/ct-segmentation-quantize-nncf/20261007200934Z-cpu)
+- **person-tracking** — ok_runs=0/1: Exception: File downloading failed with error: HTTPSConnectionPool(host='storage.openvinotoolkit.org', port=443): Max retries exceeded with url: /repositories/open_model_zoo/2023.0/models_bin/1/person-detect (evidence: results/person-tracking/20261008092828Z-cpu)
+- **yoloe-26-open-vocabulary** — ok_runs=0/1: Exception: File downloading failed with error: HTTPSConnectionPool(host='storage.openvinotoolkit.org', port=443): Max retries exceeded with url: /repositories/openvino_notebooks/data/data/image/coco_bike.jpg (evidence: results/yoloe-26-open-vocabulary/20261007200536Z-cpu)
+- **muse-glimmer** — ok_runs=0/1: Exception: File downloading failed with error: HTTPSConnectionPool(host='storage.openvinotoolkit.org', port=443): Max retries exceeded with url: /repositories/openvino_notebooks/data/data/video/Coco%20Walkin (evidence: results/muse-glimmer/20261007201115Z-cpu)
+- **qwen3.8-mtp** — ok_runs=0/1: URLError: <urlopen error Tunnel connection failed: 403 Forbidden> (evidence: results/qwen3.8-mtp/20261007235921Z-cpu)
+- **vjepa2-video-embeddings** — ok_runs=0/1: URLError: <urlopen error Tunnel connection failed: 403 Forbidden> (evidence: results/vjepa2-video-embeddings/20261008150728Z-cpu)
 
 ## 🌐 cpu · BLOCKED_NETWORK · EXTERNAL_HOST_UNREACHABLE — external host unreachable — 8 workload(s)
 
@@ -14,17 +26,6 @@ Total non-green attempts: 87
 - **3d-segmentation-point-clouds** — v0.3 adjudication: the headless-rerun NameError (point_data undefined) was a scoping artifact that is now resolved; the fresh current-pin run proceeds into the data stage and fails on storage.openvinotoolkit.org (proxy 4 (evidence: results/3d-segmentation-point-clouds/20261008074221Z-cpu)
 - **action-recognition-webcam** — v0.3 adjudication: same as 3d-segmentation — the vocab_file_path NameError was a rerun-scoping artifact; the fresh run fails downloading the Kinetics labels from storage.openvinotoolkit.org (proxy 403). Reclassified BLOC (evidence: results/action-recognition-webcam/20261008074330Z-cpu)
 - **llm-code-assistant** — v0.3 adjudication: fresh run confirms deterministic git-transport block — the notebook pip-installs from git+https://github.com (optimum-intel et al.) whose clones cannot pass this runner's proxy. BLOCKED_NETWORK (extern (evidence: results/llm-code-assistant/20261008024819Z-cpu)
-
-## 🌐 cpu · BLOCKED_NETWORK · NETWORK_UNREACHABLE — network unreachable — 8 workload(s)
-
-- **freevc-voice-conversion** — ok_runs=0/3: Exception: File downloading failed with error: HTTPSConnectionPool(host='storage.openvinotoolkit.org', port=443): Max retries exceeded with url: /repositories/openvino_notebooks/models/freevc/freevc.pth (Cau (evidence: results/freevc-voice-conversion/20261007194447Z-cpu)
-- **llm-agent-mcp** — ok_runs=0/3: ProxyError: HTTPSConnectionPool(host='cdn-avatars.huggingface.co', port=443): Max retries exceeded with url: /v1/production/uploads/1671615670447-6346651be2dcb5422bcd13dd.png (Caused by ProxyError('Unable to (evidence: results/llm-agent-mcp/20261007235034Z-cpu)
-- **vision-background-removal** — ok_runs=0/3: Exception: File downloading failed with error: HTTPSConnectionPool(host='raw.githubusercontent.com', port=443): Max retries exceeded with url: /openvinotoolkit/openvino_notebooks/latest/notebooks/vision-back (evidence: results/vision-background-removal/20261007235811Z-cpu)
-- **ct-segmentation-quantize-nncf** — ok_runs=0/3: Exception: File downloading failed with error: HTTPSConnectionPool(host='storage.openvinotoolkit.org', port=443): Max retries exceeded with url: /repositories/openvino_notebooks/models/kidney-segmentation-ki (evidence: results/ct-segmentation-quantize-nncf/20261007200934Z-cpu)
-- **person-tracking** — ok_runs=0/1: Exception: File downloading failed with error: HTTPSConnectionPool(host='storage.openvinotoolkit.org', port=443): Max retries exceeded with url: /repositories/open_model_zoo/2023.0/models_bin/1/person-detect (evidence: results/person-tracking/20261008092828Z-cpu)
-- **yoloe-26-open-vocabulary** — ok_runs=0/1: Exception: File downloading failed with error: HTTPSConnectionPool(host='storage.openvinotoolkit.org', port=443): Max retries exceeded with url: /repositories/openvino_notebooks/data/data/image/coco_bike.jpg (evidence: results/yoloe-26-open-vocabulary/20261007200536Z-cpu)
-- **muse-glimmer** — ok_runs=0/1: Exception: File downloading failed with error: HTTPSConnectionPool(host='storage.openvinotoolkit.org', port=443): Max retries exceeded with url: /repositories/openvino_notebooks/data/data/video/Coco%20Walkin (evidence: results/muse-glimmer/20261007201115Z-cpu)
-- **qwen3.8-mtp** — ok_runs=0/1: URLError: <urlopen error Tunnel connection failed: 403 Forbidden> (evidence: results/qwen3.8-mtp/20261007235921Z-cpu)
 
 ## 🔐 cpu · BLOCKED_MODEL_ACCESS · GATED_OR_RESTRICTED_MODEL — gated or restricted model — 9 workload(s)
 
@@ -62,16 +63,6 @@ Total non-green attempts: 87
 - **text-to-speech-genai** — ok_runs=0/3: CalledProcessError: Command '['optimum-cli', 'export', 'openvino', '--model', 'microsoft/speecht5_tts', 'speecht5_tts', '--model-kwargs', '{"vocoder":"microsoft/speecht5_hifigan"}']' returned non-zero exit s (evidence: results/text-to-speech-genai/20261006T142245Z-cpu)
 - **flux.2-klein** — ok_runs=0/1: CalledProcessError: Command '['optimum-cli', 'export', 'openvino', '--model', 'black-forest-labs/FLUX.2-klein-4B', 'FLUX.2-klein-4B/INT4', '--task', 'text-to-image', '--weight-format', 'int4', '--group-size' (evidence: results/flux.2-klein/20261006T165448Z-cpu)
 
-## 📦 gpu · BLOCKED_DEPENDENCY · TRANSFORMERS_GENERATION_CONTRACT — transformers generation contract — 2 workload(s)
-
-- **deepseek-ocr** — v0.3 GPU adjudication: DeepSeek-OCR-2's remote code targets transformers 4.x (imports LlamaFlashAttention2, removed in 5.x) and its checkpoint config does not match the 5.17 built-in DeepseekOcr2 class. Requires the pinn (evidence: results/deepseek-ocr/20261008T033046Z-gpu)
-- **florence2** — v0.3 GPU adjudication: Florence-2 remote code drifts across transformers generations (forced_bos_token_id config default, RobertaTokenizer additional_special_tokens, PreTrainedModel._supports_sdpa) — fails on both 5.17 a (evidence: results/florence2/20261008T063206Z-gpu)
-
-## 📦 gpu · BLOCKED_DEPENDENCY · UPSTREAM_PACKAGE_CONTRACT — upstream package contract — 2 workload(s)
-
-- **qwen3-tts** — v0.3 GPU adjudication: qwen-tts requires transformers==4.57.3 (and torchaudio/sox); in the bridged 4.57.3 env the loader cannot read the Qwen3-TTS feature-extractor artifact (5.x-era repo format), and in the 5.17 env the (evidence: results/qwen3-tts/20261008T105424Z-gpu)
-- **yolov26-object-detection** — v0.3 GPU adjudication: the official ultralytics release host (github releases) is blocked on this runner; the Ultralytics HF org mirror of yolo26n.pt loads and runs on the GPU (0.02s inference, device-proof captured) but (evidence: results/yolov26-object-detection/20261008T105602Z-gpu)
-
 ## 📦 cpu · BLOCKED_DEPENDENCY · OPTIMUM_CLI_MISSING_OR_BROKEN — optimum cli missing or broken — 2 workload(s)
 
 - **ltx-video** — notebook changed upstream after this attempt (pre-repin evidence; content sha differs from pinned snapshot); revalidation queued with failure-retry remediation (evidence: results/ltx-video/20261006T221001Z-cpu)
@@ -100,6 +91,10 @@ Total non-green attempts: 87
 ## 📦 cpu · BLOCKED_DEPENDENCY · GIT_TRANSPORT_INSTALL_BLOCKED — git transport install blocked — 1 workload(s)
 
 - **clip-zero-shot-classification** — v0.3 adjudication: root cause unchanged in kind but now precisely bounded: the install cell's `git+https://github.com/huggingface/optimum-intel.git` (floating master) declares a nested optimum-onnx git dependency whose c (evidence: results/clip-zero-shot-classification/20261008073512Z-cpu)
+
+## 📦 gpu · BLOCKED_DEPENDENCY · UPSTREAM_ARTIFACT_DEFECT — upstream artifact defect — 1 workload(s)
+
+- **yolov26-object-detection** — v0.3.1 RCA adjudication: official yolo26n.pt (GitHub v8.4.0 release == HF-org mirror, byte-identical sha256 9b09cc8b…) is inference-degenerate — max detection conf ~0.5 (sigmoid(0) garbage) / predict() conf ~0.01 on ultr (evidence: results/yolov26-object-detection/20261008T171656Z-gpu)
 
 ## ⏱️ cpu · BLOCKED_TIMEOUT · TIMEOUT_INFERENCE — timeout inference — 10 workload(s)
 
@@ -161,6 +156,10 @@ Total non-green attempts: 87
 ## 💾 cpu · BLOCKED_RESOURCE · DISK_EXHAUSTED_DURING_EXPORT_OPERATOR_HALTED — disk exhausted during export operator halted — 1 workload(s)
 
 - **gemma4** — v0.3 resource adjudication: the 2b1600d-pin rerun progressed past dependency install (optimum-intel master resolved via codeload transport) into the Gemma-4-E2B OpenVINO export when the validation disk hit 100% utilizati (evidence: results/gemma4/20261008000709Z-cpu)
+
+## 🧩 gpu · FAILED_COMPATIBILITY · CORRECTNESS — correctness — 1 workload(s)
+
+- **hunyuan-ocr** — twin self-check failed; metrics={"model": "tencent/HunyuanOCR", "model_revision": "47644ecc4f", "correctness_level": "TASK_SEMANTIC", "correctness_contract": "OCR output contains the fixture document's actual content (as (evidence: results/hunyuan-ocr/20261008T182608Z-gpu)
 
 ## 🧩 cpu · FAILED_COMPATIBILITY · OPENVINO_RUNTIME — openvino runtime — 1 workload(s)
 

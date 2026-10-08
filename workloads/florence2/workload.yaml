@@ -4,15 +4,19 @@ category: VLM
 upstream:
   repository: openvinotoolkit/openvino_notebooks
   branch: latest
-  commit: 2b1600de9620e4a2d26f1ef5c83fad64d7d76f7b
+  commit: 3c3899e68b2269bb7fbd5755554335f33acabd5e
   path: notebooks/florence2/florence2.ipynb
-  url: https://github.com/openvinotoolkit/openvino_notebooks/blob/2b1600de9620e4a2d26f1ef5c83fad64d7d76f7b/notebooks/florence2/florence2.ipynb
+  url: https://github.com/openvinotoolkit/openvino_notebooks/blob/3c3899e68b2269bb7fbd5755554335f33acabd5e/notebooks/florence2/florence2.ipynb
 model:
   name: microsoft/Florence-2-base-ft
   source: https://huggingface.co/microsoft/Florence-2-base-ft
   revision: f6c1a25888
   license: mit
   implementation: transformers Florence2ForConditionalGeneration trust_remote_code
+  license_source: HF model-repo license tag (verified via hf-mirror API 2026-10-08,
+    sha f6c1a25888)
+  license_revision: f6c1a25888
+  license_verification_date: '2026-10-08'
 cpu:
   runtime: openvino
   status: VERIFIED_WITH_LIMITATIONS
@@ -20,8 +24,12 @@ cpu:
   repeats: 1
 gpu:
   runtime: pytorch-rocm
-  status: FAILED
+  status: VERIFIED
   wall_timeout_s: 1800
+  python: .venv-gpu-tf446/bin/python
+  note: 'v0.3.1 RCA: Florence-2 (2024-era) remote code requires the transformers 4.4x
+    generation — loads and runs cleanly on the bridged 4.46.3 env over ROCm torch
+    (5.17 and 4.57 both drift). VERIFIED on gfx1100.'
 twin:
   level: WORKLOAD_TWIN
 validation:
@@ -29,4 +37,4 @@ validation:
   - already converted and can be found in Florence-2-base-ft
   - size=640x480
 patches: {}
-last_verified: '2026-10-07T01:11:13+00:00'
+last_verified: '2026-10-08T18:42:05+00:00'

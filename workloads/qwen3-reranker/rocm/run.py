@@ -19,6 +19,7 @@ import time
 from twin_lib import PeakMemory, emit, setup
 
 MODEL = "Qwen/Qwen3-Reranker-0.6B"
+REVISION = "e61197ed45"  # validated revision (verified live 2026-10-08)
 QUERY = "What is the capital of France?"
 DOC_RELEVANT = "The capital of France is Paris."
 DOC_IRRELEVANT = "Photosynthesis converts sunlight into chemical energy in plants."
@@ -50,8 +51,8 @@ def main() -> int:
     token_no = torch.tensor([11]).to("cuda:0")
 
     t0 = time.time()
-    tok = AutoTokenizer.from_pretrained(MODEL, padding_side="left")
-    model = AutoModelForCausalLM.from_pretrained(MODEL, torch_dtype=torch.bfloat16, device_map="cuda:0").eval()
+    tok = AutoTokenizer.from_pretrained(MODEL, revision=REVISION, padding_side="left")
+    model = AutoModelForCausalLM.from_pretrained(MODEL, revision=REVISION, torch_dtype=torch.bfloat16, device_map="cuda:0").eval()
     load_s = time.time() - t0
 
     yes_id = tok("yes", add_special_tokens=False)["input_ids"][0]
@@ -86,6 +87,9 @@ def main() -> int:
     stable = all(abs(scores[i][0] - scores[0][0]) < 0.05 and abs(scores[i][1] - scores[0][1]) < 0.05 for i in range(1, len(scores)))
     metrics = {
         "model": MODEL,
+        "correctness_level": "TASK_SEMANTIC",
+        "correctness_contract": "finite scores + relevant > irrelevant ranking",
+        "model_revision": REVISION,
         "precision": "bf16",
         "load_s": round(load_s, 2),
         "runs": runs,

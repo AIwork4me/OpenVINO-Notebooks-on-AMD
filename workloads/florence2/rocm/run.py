@@ -17,10 +17,11 @@ _sys.path.insert(0, str(_Path(__file__).resolve().parents[3] / "ov_amd"))  # twi
 
 import time
 
-from twin_lib import PeakMemory, emit, setup
+from twin_lib import PeakMemory, emit, resolve_asset, setup
 
 MODEL = "microsoft/Florence-2-base-ft"
-SNAPSHOT_IMG = _Path(__file__).resolve().parents[3] / ".cache" / "upstream" / "notebooks" / "vlm-chatbot" / "nyc.jpg"
+REVISION = "f6c1a25888"  # declared model revision (workload.yaml)
+SNAPSHOT_ASSET = "nyc.jpg"  # managed asset (assets/manifests/assets.yaml)
 TASK = "<MORE_DETAILED_CAPTION>"
 
 
@@ -31,16 +32,17 @@ def main() -> int:
 
     evidence = Path(args.evidence_dir)
     img_path = evidence / "input.jpg"
-    shutil.copy2(SNAPSHOT_IMG, img_path)
+    asset = resolve_asset(SNAPSHOT_ASSET)
+    shutil.copy2(asset.path, img_path)
 
     import torch
     from PIL import Image
     from transformers import AutoModelForCausalLM, AutoProcessor
 
     t0 = time.time()
-    processor = AutoProcessor.from_pretrained(MODEL, trust_remote_code=True)
+    processor = AutoProcessor.from_pretrained(MODEL, revision=REVISION, trust_remote_code=True)
     model = AutoModelForCausalLM.from_pretrained(
-        MODEL, torch_dtype=torch.bfloat16, device_map="cuda:0", trust_remote_code=True
+        MODEL, revision=REVISION, torch_dtype=torch.bfloat16, device_map="cuda:0", trust_remote_code=True
     ).eval()
     load_s = time.time() - t0
 
@@ -68,21 +70,28 @@ def main() -> int:
 
     text = outs[0]
     (evidence / "caption.txt").write_text(text)
+    # the nyc.jpg fixture's distinctive content: the observation-deck
+    # binoculars — a keyword generic captions would miss
     relevant = any(k in text.lower() for k in ("street", "people", "city", "building", "new york", "traffic", "sign", "sidewalk"))
+    binoculars_seen = "binocular" in text.lower()
     metrics = {
         "model": MODEL,
         "precision": "bf16",
         "task": TASK,
-        "input": "vlm-chatbot/nyc.jpg (pinned upstream snapshot asset; notebook demo images on blocked hosts)",
+        "correctness_level": "TASK_SEMANTIC",
+        "correctness_contract": "detailed scene caption correctly describing the fixed nyc.jpg content (city view, binoculars, buildings, sky)",
+        "model_revision": REVISION,
+        "input_asset": asset.record(),
         "load_s": round(load_s, 2),
         "runs": runs,
         "output": text[:400],
         "nonempty_relevant_response": bool(text) and relevant,
+        "binoculars_described": binoculars_seen,
         "output_stable": len(set(outs)) == 1,
         "peak_vram_gb": round(pm.peak_vram_gb, 2),
         "peak_rss_gb": round(pm.peak_rss_gb, 2),
     }
-    ok = metrics["nonempty_relevant_response"] and metrics["output_stable"]
+    ok = metrics["nonempty_relevant_response"] and metrics["output_stable"] and binoculars_seen
     return emit(ok, evidence, metrics)
 
 

@@ -4,9 +4,9 @@ category: Vision
 upstream:
   repository: openvinotoolkit/openvino_notebooks
   branch: latest
-  commit: 2b1600de9620e4a2d26f1ef5c83fad64d7d76f7b
+  commit: 3c3899e68b2269bb7fbd5755554335f33acabd5e
   path: notebooks/yolov11-optimization/yolov11-object-detection.ipynb
-  url: https://github.com/openvinotoolkit/openvino_notebooks/blob/2b1600de9620e4a2d26f1ef5c83fad64d7d76f7b/notebooks/yolov11-optimization/yolov11-object-detection.ipynb
+  url: https://github.com/openvinotoolkit/openvino_notebooks/blob/3c3899e68b2269bb7fbd5755554335f33acabd5e/notebooks/yolov11-optimization/yolov11-object-detection.ipynb
 model:
   name: ''
   source: ''

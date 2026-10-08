@@ -7,56 +7,67 @@ on:
 
 permissions:
   contents: read
+  issues: write
 
 jobs:
   check:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Compare pin vs upstream latest
+      - name: Compare pin vs upstream latest (structured delta)
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
           set -eu
-          PIN=$(python3 -c "import json;print(json.load(open('upstream/openvino-notebooks.json'))['commit'])")
-          HEAD=$(curl -sSfL "https://api.github.com/repos/openvinotoolkit/openvino_notebooks/commits/latest" | python3 -c "import json,sys;print(json.load(sys.stdin)['sha'])")
-          echo "pin=$PIN"
-          echo "head=$HEAD"
-          if [ "$PIN" = "$HEAD" ]; then
-            echo "CURRENT — pin matches upstream latest"
+          python3 - <<'EOF'
+          import json, subprocess, sys
+          sys.path.insert(0, ".")
+          from pathlib import Path
+          from ov_amd.freshness import analyze, load_catalog, fetch_compare
+
+          meta = json.loads(Path("upstream/openvino-notebooks.json").read_text())
+          pin = meta["commit"]
+          r = subprocess.run(
+              ["curl", "-sSfL", "https://api.github.com/repos/openvinotoolkit/openvino_notebooks/commits/latest"],
+              capture_output=True, text=True, timeout=120, check=True)
+          head = json.loads(r.stdout)["sha"]
+          print(f"pin={pin}")
+          print(f"head={head}")
+          Path("/tmp/pin_head").write_text(f"{pin} {head}")
+
+          if pin == head:
+              report = analyze(pin, head, {"total_commits": 0, "files": []}, load_catalog(Path("catalog/notebooks.yaml")))
+          else:
+              compare = fetch_compare(pin, head)
+              report = analyze(pin, head, compare, load_catalog(Path("catalog/notebooks.yaml")))
+          Path("/tmp/report.md").write_text(report.markdown())
+          print(report.markdown())
+          EOF
+          cat /tmp/report.md >> "$GITHUB_STEP_SUMMARY"
+          read -r PIN HEAD < /tmp/pin_head
+          if [ "$PIN" != "$HEAD" ]; then
+            echo "::error::OpenVINO Notebooks upstream advanced ($PIN -> $HEAD); see structured delta in the step summary"
+            exit 1
+          fi
+          echo "CURRENT — pin matches upstream latest"
+
+      - name: Open or update tracking issue (only when advanced)
+        if: failure()
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+        run: |
+          set -eu
+          read -r PIN HEAD < /tmp/pin_head
+          TITLE="upstream advanced: pin ${PIN:0:12} -> ${HEAD:0:12} (revalidation required)"
+          # dedup: never file a second open issue for the same head
+          EXISTING=$(gh issue list --repo "$REPO" --state open --search "in:title ${HEAD:0:12}" --json number,title --jq ".[] | select(.title | contains(\"${HEAD:0:12}\")) | .number")
+          if [ -n "$EXISTING" ]; then
+            echo "open issue #$EXISTING already tracks head ${HEAD:0:12} — commenting instead of duplicating"
+            gh issue comment "$EXISTING" --repo "$REPO" --body "Scheduled check re-detected the same advanced head (${HEAD:0:12}). See latest workflow summary: $GITHUB_SERVER_URL/$REPO/actions/runs/$GITHUB_RUN_ID"
             exit 0
           fi
-          echo "UPSTREAM_ADVANCED — pin $PIN -> $HEAD"
-          curl -sSfL "https://api.github.com/repos/openvinotoolkit/openvino_notebooks/compare/${PIN}...${HEAD}" \
-            | python3 -c '
-          import json, sys
-          d = json.load(sys.stdin)
-          print(f"commits: {d[\"total_commits\"]}")
-          for f in d["files"]:
-              print(f"{f[\"status\"]:10s} {f[\"filename\"]} +{f[\"additions\"]}/-{f[\"deletions\"]}")
-          ' > upstream-delta.txt || true
-          cat upstream-delta.txt || true
-          # affected workload scope: notebooks/<dir>/* changed => that dir's workload needs revalidation
-          python3 - <<'EOF'
-          import re, yaml, pathlib
-          delta = pathlib.Path("upstream-delta.txt").read_text() if pathlib.Path("upstream-delta.txt").exists() else ""
-          changed = set(re.findall(r"notebooks/([\w.-]+)/", delta))
-          cat = yaml.safe_load(pathlib.Path("catalog/notebooks.yaml").read_text())
-          ids = {n["id"]: n["upstream_path"] for n in cat["notebooks"]}
-          impacted = [i for i, p in ids.items() if any(f"notebooks/{d}/" in p for d in changed)]
-          print("affected workloads:", ", ".join(sorted(impacted)) or "(none in catalog)")
-          pathlib.Path("/tmp/impacted").write_text("\n".join(sorted(impacted)))
-          EOF
-          {
-            echo "### Upstream advanced: revalidation needed"
-            echo
-            echo '```'
-            echo "old pin : $PIN"
-            echo "new head: $HEAD"
-            cat upstream-delta.txt 2>/dev/null || echo "(delta unavailable)"
-            echo '```'
-            echo
-            echo "**Affected workloads:** $(cat /tmp/impacted 2>/dev/null | tr '\n' ' ')"
-            echo
-            echo "Revalidation scope is ONLY the affected workloads above (incremental policy — the other rows remain valid at their recorded, content-identical pins)."
-          } >> "$GITHUB_STEP_SUMMARY"
-          echo "::error::OpenVINO Notebooks upstream advanced ($PIN -> $HEAD); incremental revalidation required"
-          exit 1
+          gh issue create --repo "$REPO" \
+            --title "$TITLE" \
+            --label "upstream-freshness" \
+            --body-file /tmp/report.md

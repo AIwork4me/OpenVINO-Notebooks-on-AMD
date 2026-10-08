@@ -18,6 +18,7 @@ import time
 from twin_lib import PeakMemory, emit, setup
 
 MODEL = "Qwen/Qwen3-0.6B"
+REVISION = "c1899de289"  # validated revision (verified live 2026-10-08)
 PROMPT = "Give me a short introduction to large language models."
 MAX_NEW_TOKENS = 64
 
@@ -33,8 +34,8 @@ def main() -> int:
     from transformers import AutoModelForCausalLM, AutoTokenizer
 
     t0 = time.time()
-    tok = AutoTokenizer.from_pretrained(MODEL)
-    model = AutoModelForCausalLM.from_pretrained(MODEL, torch_dtype=torch.bfloat16, device_map="cuda:0")
+    tok = AutoTokenizer.from_pretrained(MODEL, revision=REVISION)
+    model = AutoModelForCausalLM.from_pretrained(MODEL, revision=REVISION, torch_dtype=torch.bfloat16, device_map="cuda:0")
     model.eval()
     load_s = time.time() - t0
 
@@ -66,6 +67,9 @@ def main() -> int:
     combined = "\n".join(outputs)
     metrics = {
         "model": MODEL,
+        "correctness_level": "STRUCTURAL",
+        "correctness_contract": "nonempty bounded generation + 3-run determinism",
+        "model_revision": REVISION,
         "precision": "bf16",
         "load_s": round(load_s, 2),
         "runs": runs,

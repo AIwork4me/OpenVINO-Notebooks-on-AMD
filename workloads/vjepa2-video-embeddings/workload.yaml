@@ -1,0 +1,37 @@
+id: vjepa2-video-embeddings
+title: Vjepa2 Video Embeddings
+category: Video
+upstream:
+  repository: openvinotoolkit/openvino_notebooks
+  branch: latest
+  commit: 3c3899e68b2269bb7fbd5755554335f33acabd5e
+  path: notebooks/vjepa-2.1/vjepa2-video-embeddings.ipynb
+  url: https://github.com/openvinotoolkit/openvino_notebooks/blob/3c3899e68b2269bb7fbd5755554335f33acabd5e/notebooks/vjepa-2.1/vjepa2-video-embeddings.ipynb
+model:
+  name: vjepa2_1_vitl_dist_vitG_384 (V-JEPA 2.1 ViT-Large distilled from ViT-Giant,
+    384px)
+  source: https://dl.fbaipublicfiles.com/vjepa2/vjepa2_1_vitl_dist_vitG_384.pt
+  revision: notebook-pinned checkpoint asset (upstream release file, dl.fbaipublicfiles.com/vjepa2/)
+  license: mit
+  license_source: "facebookresearch/vjepa2 repository README License section (\"The\
+    \ majority of V-JEPA 2 is licensed under MIT\" \u2014 includes the vjepa2_1_*\
+    \ distilled checkpoints table), verified 2026-10-08"
+  license_revision: upstream repo @latest 2026-10-08
+  license_verification_date: '2026-10-08'
+  implementation: official vjepa_helper.py (notebook-bundled) rebuilding the encoder
+    from the released .pt checkpoint
+cpu:
+  runtime: openvino
+  status: FAILED
+gpu:
+  runtime: ''
+  status: NOT_TESTED
+twin:
+  level: WORKLOAD_TWIN
+validation:
+  expected_embedding_shape: (1, t*h_patches*w_patches, hidden) finite float patch
+    embeddings
+  numeric_check: torch-vs-OpenVINO conversion fidelity + INT8 quantization sanity
+    per notebook
+patches: {}
+last_verified: ''

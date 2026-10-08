@@ -68,6 +68,13 @@ def gh_token() -> str:
 TOKEN = os.environ.get("GH_TOKEN") or gh_token()
 
 
+def _read_committed_commit() -> str | None:
+    try:
+        return json.loads(META_PATH.read_text()).get("commit")
+    except (OSError, ValueError):
+        return None
+
+
 def snapshot_complete() -> bool:
     """A snapshot counts as complete when its meta records zero failed files
     and the directory still exists (resume support for the blobs route)."""
@@ -209,6 +216,14 @@ def fetch_one(path: str, blob_sha: str, size: int) -> tuple[str, str]:
 
 
 def main() -> int:
+    if "--help" in sys.argv or "-h" in sys.argv:
+        print(
+            "usage: fetch_upstream.py [--commit SHA] [--if-missing]\n"
+            "  Fetch the pinned openvino_notebooks snapshot into .cache/upstream\n"
+            "  and update upstream/openvino-notebooks.json.\n"
+            "  --if-missing: no-op when the snapshot is already complete."
+        )
+        return 0
     if "--if-missing" in sys.argv and snapshot_complete():
         print("upstream snapshot already complete; skipping fetch")
         return 0
@@ -271,22 +286,27 @@ def main() -> int:
             }
         )
 
-    meta.update(
-        {
-            "repository": REPO,
-            "branch": BRANCH,
-            "commit": commit,
-            "commit_date": commit_date,
-            "commit_subject": commit_subject,
-            "discovered_at": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
+    # idempotency: when the pin is unchanged AND the snapshot is complete,
+    # do not rewrite volatile fields (discovered_at/fetch stats churn would
+    # dirty the tracked tree on every documented reproducibility rerun)
+    pin_unchanged = snapshot_complete() and _read_committed_commit() == commit
+    if not pin_unchanged:
+        meta.update(
+            {
+                "repository": REPO,
+                "branch": BRANCH,
+                "commit": commit,
+                "commit_date": commit_date,
+                "commit_subject": commit_subject,
+                "discovered_at": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime()),
             # repo-relative on purpose: the manifest is published and shared
             # across validation machines, and upstream_root() resolves relative
             # paths against the repo root — an absolute path works only on the
             # machine that ran the fetch (the reference machine's all-23-BLOCKED
             # pass-3 launch was exactly this)
-            "local_path": str(DEST.relative_to(REPO_ROOT)),
-        }
-    )
+                "local_path": str(DEST.relative_to(REPO_ROOT)),
+            }
+        )
     META_PATH.parent.mkdir(parents=True, exist_ok=True)
     META_PATH.write_text(json.dumps(meta, indent=2))
 

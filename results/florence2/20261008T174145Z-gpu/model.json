@@ -1,0 +1,10 @@
+{
+  "schema_version": 2,
+  "declared": {
+    "name": "microsoft/Florence-2-base-ft",
+    "source": "https://huggingface.co/microsoft/Florence-2-base-ft",
+    "revision": "f6c1a25888",
+    "license": "mit",
+    "implementation": "transformers Florence2ForConditionalGeneration trust_remote_code"
+  }
+}

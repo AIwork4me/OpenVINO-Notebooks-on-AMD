@@ -4,14 +4,19 @@ category: Vision
 upstream:
   repository: openvinotoolkit/openvino_notebooks
   branch: latest
-  commit: 2b1600de9620e4a2d26f1ef5c83fad64d7d76f7b
+  commit: 3c3899e68b2269bb7fbd5755554335f33acabd5e
   path: notebooks/hello-detection/hello-detection.ipynb
-  url: https://github.com/openvinotoolkit/openvino_notebooks/blob/2b1600de9620e4a2d26f1ef5c83fad64d7d76f7b/notebooks/hello-detection/hello-detection.ipynb
+  url: https://github.com/openvinotoolkit/openvino_notebooks/blob/3c3899e68b2269bb7fbd5755554335f33acabd5e/notebooks/hello-detection/hello-detection.ipynb
 model:
-  name: ''
-  source: ''
-  revision: ''
-  license: ''
+  name: yolov8n (ultralytics release v8.4.0)
+  source: https://github.com/ultralytics/assets/releases/download/v8.4.0/yolov8n.pt
+  revision: v8.4.0 asset (sha256 f59b3d833e2ff32e194b5bb8e08d211dc7c5bdf144b90d2c8412c47ccfc83b36)
+  license: agpl-3.0
+  license_source: Ultralytics AGPL-3.0 licensing for YOLOv8 assets (recorded; weights
+    not redistributed by this repo)
+  license_revision: v8.4.0 asset (sha256 f59b3d833e2ff32e194b5bb8e08d211dc7c5bdf144b90d2c8412c47ccfc83b36)
+  license_verification_date: '2026-10-08'
+  implementation: transformers built-in or official package
 cpu:
   runtime: openvino
   status: VERIFIED

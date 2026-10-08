@@ -123,34 +123,86 @@ def emit(ok: bool, evidence_dir: Path, metrics: dict, extra: dict | None = None)
         result.update(extra)
     if not ok or not info["hip"] or not info["cuda_available"]:
         result["ok"] = False
+    # v0.3.1 metric-semantics block (additive, Evidence Schema v2 compatible):
+    # names exactly what the numbers measure so no reader over-reads them.
+    result["metric_semantics"] = {
+        "peak_vram_gb": (
+            "torch.cuda.max_memory_allocated() — peak ALLOCATED GPU tensor memory via "
+            "PyTorch's caching allocator. NOT total physical VRAM usage (driver/runtime "
+            "reservations and other processes are excluded)."
+        ),
+        "peak_rss_gb": "process resident high-water mark (VmHWM from /proc/self/status)",
+        "latency_s": "wall time of one full workload invocation including torch.cuda.synchronize()",
+        "load_s": "wall time of model+processor construction (from_pretrained/pipeline load)",
+        "rtf": "standard RTF = inference_time / generated_or_input_audio_duration (lower is faster; <1 is real-time capable)",
+        "realtime_speed_factor": "inverse RTF = audio_duration / inference_time (higher is faster) — reported separately, never mixed with rtf",
+    }
+    if "correctness_level" not in metrics:
+        result["metric_semantics"]["correctness_level"] = (
+            "not recorded for this evidence (add correctness_level to the twin metrics to grade it)"
+        )
     evidence_dir.mkdir(parents=True, exist_ok=True)
     (evidence_dir / "metrics.json").write_text(json.dumps(result, indent=2))
     print(TWIN_RESULT_KEY + json.dumps(result))
     return 0 if result["ok"] else 1
 
 
-def fetch(url: str, dest: Path, tries: int = 3, fallbacks: list[str] | None = None) -> Path:
+def fetch(url: str, dest: Path, tries: int = 3, fallbacks: list[str] | None = None, sha256: str | None = None) -> Path:
     """curl-based fetch (python http stack is IPv6-fragile on some networks).
 
-    `fallbacks` are alternative URLs for the same official asset (e.g. the
-    user-images.githubusercontent.com copy of an image whose canonical host is
-    storage.openvinotoolkit.org); the URL that actually served the file is
-    recorded by the caller in its metrics for input provenance.
+    v0.3.1 hardening: downloads are written to an atomic temp file and moved into
+    place only after the size check AND (when provided) the SHA-256 check pass.
+    `fallbacks` are alternative URLs for the same official asset; the URL that
+    actually served the file is recorded by the caller in its metrics for input
+    provenance. When `sha256` is given, an existing dest that fails verification
+    is deleted and re-downloaded (cache-corruption recovery).
     """
 
-    import shutil
+    import hashlib
+    import shutil as _shutil
     import subprocess
 
-    if dest.exists() and dest.stat().st_size > 0:
+    def _ok(p: Path) -> bool:
+        if not p.exists() or p.stat().st_size == 0:
+            return False
+        if sha256:
+            h = hashlib.sha256()
+            with open(p, "rb") as fh:
+                for chunk in iter(lambda: fh.read(1 << 20), b""):
+                    h.update(chunk)
+            return h.hexdigest() == sha256.lower()
+        return True
+
+    if dest.exists() and _ok(dest):
         return dest
-    curl = shutil.which("curl") or "/usr/bin/curl"
+    if dest.exists():
+        dest.unlink()  # corrupt or unverified existing file — recover by re-download
+    curl = _shutil.which("curl") or "/usr/bin/curl"
     candidates = [url] + list(fallbacks or [])
     last_err = ""
     for cand in candidates:
         for i in range(tries):
-            r = subprocess.run([curl, "-sSfL", "--max-time", "300", cand, "-o", str(dest)], capture_output=True)
-            if r.returncode == 0 and dest.exists() and dest.stat().st_size > 0:
+            tmp = dest.with_suffix(dest.suffix + ".part")
+            r = subprocess.run([curl, "-sSfL", "--max-time", "300", cand, "-o", str(tmp)], capture_output=True)
+            if r.returncode == 0 and tmp.exists() and tmp.stat().st_size > 0 and _ok(tmp):
+                tmp.replace(dest)
                 return dest
-            last_err = f"{cand}: curl {r.returncode}"
+            if tmp.exists():
+                tmp.unlink()
+            last_err = f"{cand}: curl {r.returncode}" + ("" if r.returncode != 0 else " (hash mismatch)")
             time.sleep(5 * (i + 1))
     raise RuntimeError(f"download failed (last: {last_err})")
+
+
+def resolve_asset(asset_id: str, explicit: str | None = None):
+    """Managed asset resolution (see ov_amd/assets.py). Re-exported here because
+    twin scripts import twin_lib as a top-level module from the ov_amd directory."""
+    from ov_amd import assets as _assets
+
+    return _assets.resolve_asset(asset_id, explicit=explicit)
+
+
+def asset_record(resolved) -> dict:
+    from ov_amd import assets as _assets
+
+    return _assets.ResolvedAsset.record(resolved)

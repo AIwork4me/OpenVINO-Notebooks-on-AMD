@@ -17,10 +17,10 @@ _sys.path.insert(0, str(_Path(__file__).resolve().parents[3] / "ov_amd"))  # twi
 
 import time
 
-from twin_lib import PeakMemory, emit, fetch, setup
+from twin_lib import PeakMemory, emit, resolve_asset, setup
 
 MODEL = "ds4sd/SmolDocling-256M-preview"
-IMG_URL = "https://huggingface.co/spaces/khang119966/DeepSeek-OCR-DEMO/resolve/main/doc_markdown.png"
+REVISION = "ce51f56c4e"  # validated revision (evidence 20261008T032635Z-gpu)
 
 
 def main() -> int:
@@ -30,16 +30,19 @@ def main() -> int:
 
     evidence = Path(args.evidence_dir)
     img_path = evidence / "input.png"
-    fetch(IMG_URL, img_path)
+    asset = resolve_asset("doc-markdown.png")
+    import shutil
+
+    shutil.copy2(asset.path, img_path)
 
     import torch
     from PIL import Image
     from transformers import AutoModelForImageTextToText, AutoProcessor
 
     t0 = time.time()
-    processor = AutoProcessor.from_pretrained(MODEL)
+    processor = AutoProcessor.from_pretrained(MODEL, revision=REVISION)
     model = AutoModelForImageTextToText.from_pretrained(
-        MODEL, torch_dtype=torch.bfloat16, device_map="cuda:0", trust_remote_code=True
+        MODEL, revision=REVISION, torch_dtype=torch.bfloat16, device_map="cuda:0", trust_remote_code=True
     ).eval()
     load_s = time.time() - t0
 
@@ -74,8 +77,12 @@ def main() -> int:
     (evidence / "doctags_output.txt").write_text(text)
     metrics = {
         "model": MODEL,
+        "correctness_level": "STRUCTURAL",
+        "correctness_contract": "nonempty DocTags-structured output + stability",
+        "model_revision": REVISION,
         "precision": "bf16",
-        "input": "DeepSeek-OCR-DEMO space doc_markdown.png (public official demo asset; notebook inputs on blocked hosts)",
+        "input": "doc_markdown.png (managed asset; notebook inputs on blocked hosts)",
+        "input_asset": asset.record(),
         "load_s": round(load_s, 2),
         "runs": runs,
         "output_chars": len(text),

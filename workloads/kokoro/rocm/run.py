@@ -18,6 +18,7 @@ import time
 from twin_lib import PeakMemory, emit, setup
 
 MODEL = "hexgrad/Kokoro-82M"
+REVISION = "f3ff357179"  # validated revision (verified live 2026-10-08)
 TEXT = "The quick brown fox jumps over the lazy dog."
 
 
@@ -33,7 +34,7 @@ def main() -> int:
     from kokoro import KPipeline
 
     t0 = time.time()
-    pipe = KPipeline(lang_code="a", repo_id=MODEL)  # official package path
+    pipe = KPipeline(lang_code="a", repo_id=MODEL, revision=REVISION)  # official package path
     pipe.model.to("cuda:0").eval()
     load_s = time.time() - t0
 
@@ -58,7 +59,14 @@ def main() -> int:
             torch.cuda.synchronize()
             total = time.time() - t1
             dur = len(wav) / sr
-            runs.append({"latency_s": round(total, 3), "audio_s": round(dur, 2), "rtf": round(dur / total, 2)})
+            # standard RTF = inference time / audio duration (lower is better);
+            # the inverse (dur/total) is reported as realtime_speed_factor only
+            runs.append({
+                "latency_s": round(total, 3),
+                "audio_s": round(dur, 2),
+                "rtf": round(total / dur, 4),
+                "realtime_speed_factor": round(dur / total, 2),
+            })
             wavs.append(wav)
 
     out = evidence / "out.wav"
@@ -74,6 +82,9 @@ def main() -> int:
     stable = exact or max_diff <= 300
     metrics = {
         "model": MODEL,
+        "correctness_level": "STRUCTURAL",
+        "correctness_contract": "finite waveform + generation stability",
+        "model_revision": REVISION,
         "precision": "default (model dtype)",
         "load_s": round(load_s, 2),
         "runs": runs,

@@ -3,7 +3,7 @@
 
 Same model as the upstream notebook (openbmb/MiniCPM-V-4.6), official repo
 loading contract (AutoModel trust_remote_code — identical to the notebook) on
-PyTorch ROCm. Input: the project's pinned snapshot nyc.jpg.
+PyTorch ROCm. Input: doc_markdown.png managed asset (MIT-licensed DeepSeek-OCR-DEMO space sample).
 """
 
 from __future__ import annotations
@@ -16,10 +16,10 @@ _sys.path.insert(0, str(_Path(__file__).resolve().parents[3] / "ov_amd"))  # twi
 
 import time
 
-from twin_lib import PeakMemory, emit, fetch, setup
+from twin_lib import PeakMemory, emit, resolve_asset, setup
 
 MODEL = "openbmb/MiniCPM-V-4.6"
-IMG_URL = "https://huggingface.co/spaces/khang119966/DeepSeek-OCR-DEMO/resolve/main/doc_markdown.png"
+REVISION = "36f34a661a"  # validated revision (evidence 20261008T101436Z-gpu)
 PROMPT = "Describe this image in one sentence."
 
 
@@ -30,16 +30,19 @@ def main() -> int:
 
     evidence = Path(args.evidence_dir)
     img_path = evidence / "input.jpg"
-    fetch(IMG_URL, img_path)
+    asset = resolve_asset("doc-markdown.png")
+    import shutil
+
+    shutil.copy2(asset.path, img_path)
 
     import torch
     from PIL import Image
     from transformers import AutoProcessor, MiniCPMV4_6ForConditionalGeneration
 
     t0 = time.time()
-    processor = AutoProcessor.from_pretrained(MODEL, trust_remote_code=True)
+    processor = AutoProcessor.from_pretrained(MODEL, revision=REVISION, trust_remote_code=True)
     model = MiniCPMV4_6ForConditionalGeneration.from_pretrained(
-        MODEL, torch_dtype=torch.bfloat16, device_map="cuda:0", trust_remote_code=True
+        MODEL, revision=REVISION, torch_dtype=torch.bfloat16, device_map="cuda:0", trust_remote_code=True
     ).eval()
     load_s = time.time() - t0
 
@@ -74,8 +77,12 @@ def main() -> int:
     relevant = any(k in text.lower() for k in ("ocr", "barcode", "document", "text", "image", "recognition", "pdf"))
     metrics = {
         "model": MODEL,
+        "correctness_level": "TASK_SEMANTIC",
+        "correctness_contract": "topically relevant one-sentence description (keyword relevance) + stability",
+        "model_revision": REVISION,
         "precision": "bf16",
-        "input": "DeepSeek-OCR-DEMO space doc_markdown.png (public official demo asset; verified input for this model)",
+        "input": "doc_markdown.png (managed asset; recorded input for this model)",
+        "input_asset": asset.record(),
         "prompt": PROMPT,
         "load_s": round(load_s, 2),
         "runs": runs,

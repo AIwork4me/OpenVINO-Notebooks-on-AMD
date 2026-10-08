@@ -4,15 +4,18 @@ category: LLM
 upstream:
   repository: openvinotoolkit/openvino_notebooks
   branch: latest
-  commit: 2b1600de9620e4a2d26f1ef5c83fad64d7d76f7b
+  commit: 3c3899e68b2269bb7fbd5755554335f33acabd5e
   path: notebooks/qwen3-embedding/qwen3-reranker.ipynb
-  url: https://github.com/openvinotoolkit/openvino_notebooks/blob/2b1600de9620e4a2d26f1ef5c83fad64d7d76f7b/notebooks/qwen3-embedding/qwen3-reranker.ipynb
+  url: https://github.com/openvinotoolkit/openvino_notebooks/blob/3c3899e68b2269bb7fbd5755554335f33acabd5e/notebooks/qwen3-embedding/qwen3-reranker.ipynb
 model:
   name: Qwen/Qwen3-Reranker-0.6B
   source: https://huggingface.co/Qwen/Qwen3-Reranker-0.6B
   revision: e61197ed45
   license: apache-2.0
-  implementation: transformers AutoModelForCausalLM, yes/no logits
+  license_source: HF model-repo card/license tag (verified via hf-mirror API 2026-10-08)
+  license_revision: e61197ed45
+  license_verification_date: '2026-10-08'
+  implementation: transformers built-in or official package
 cpu:
   runtime: openvino
   status: VERIFIED_WITH_LIMITATIONS

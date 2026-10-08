@@ -14,7 +14,7 @@ from ov_amd.schemas import (
     transition_ok,
 )
 
-__version__ = "0.1.0"
+__version__ = "0.3.1"
 
 __all__ = [
     "AttemptRecord",

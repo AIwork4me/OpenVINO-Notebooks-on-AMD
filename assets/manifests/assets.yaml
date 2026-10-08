@@ -1,0 +1,72 @@
+# Managed input assets for ROCm twins (v0.3.1).
+# Every value verified against the real artifact on 2026-10-08; sources recorded in
+# reports/v0.3.1-all-rocm-reproducibility-audit.md. Do not guess hashes or licenses.
+
+assets:
+  - id: courtroom-asr.wav
+    sha256: 1a0db8c5aefc826e4a2c4493879e54af967eb53cde429456995bc59347328699
+    source_urls:
+      - https://hf-mirror.com/datasets/Xenova/transformers.js-docs/resolve/main/courtroom.wav
+      - https://huggingface.co/datasets/Xenova/transformers.js-docs/resolve/main/courtroom.wav
+    license: unspecified (source dataset repo carries no license tag)
+    license_source: hf-mirror.com/api/datasets/Xenova/transformers.js-docs (no license tag, verified 2026-10-08)
+    committed: false
+    description: 14.02 s / 16 kHz WAV, "A Few Good Men" courtroom clip; the whisper-asr-genai and qwen3-asr notebooks' own sample input
+    expected_sample_rate: 16000
+
+  - id: doc-markdown.png
+    sha256: 10019a6734a95a4aa9f8480dd729b2b6fe85ce8d1095e3d68174479c9a6ec37a
+    source_urls:
+      - https://hf-mirror.com/spaces/khang119966/DeepSeek-OCR-DEMO/resolve/main/doc_markdown.png
+      - https://huggingface.co/spaces/khang119966/DeepSeek-OCR-DEMO/resolve/main/doc_markdown.png
+    license: mit
+    license_source: "khang119966/DeepSeek-OCR-DEMO space README front-matter (license: mit), verified 2026-10-08"
+    committed: true
+    description: Markdown-rendered document screenshot used by the smoldocling and minicpm-v-4.6 twins
+
+  - id: paddleocr-vl-test.png
+    sha256: 2cb64a6b6849e5d16bb9509f2f7f022da193fc2a0405f277c035de9f02fbcad0
+    source_urls:
+      - https://raw.githubusercontent.com/openvinotoolkit/openvino_notebooks/latest/notebooks/paddleocr_vl/test.png
+    license: apache-2.0
+    license_source: openvino_notebooks repository license (asset bundled in notebooks/paddleocr_vl/ at pinned snapshot)
+    committed: true
+    description: test.png bundled by the upstream paddleocr_vl notebook (byte-identical to pinned-snapshot copy, verified 2026-10-08)
+
+  - id: coco.jpg
+    sha256: 30311db136b3f6b34c88d7497ea72a659d0290c4160042ce56e7737520a90a20
+    source_urls:
+      - https://user-images.githubusercontent.com/36741649/127172572-1cdab941-df5f-42e2-a367-2b334a3db6d8.jpg
+      - https://storage.openvinotoolkit.org/repositories/openvino_notebooks/data/data/image/coco.jpg
+    license: apache-2.0
+    license_source: openvino_notebooks repository license (data asset distributed by the upstream project)
+    committed: true
+    description: COCO street scene used by the smolvlm2 twin (upstream notebook data asset)
+
+  - id: intel-rnb.jpg
+    sha256: ac52c5bdada0087b0dd492d25f6195f487c2864b1c249f9d1316bcdb30b32e4e
+    source_urls:
+      - https://user-images.githubusercontent.com/36741649/128489933-bf215a3f-06fa-4918-8833-cb0bf9fb1cc7.jpg
+      - https://storage.openvinotoolkit.org/repositories/openvino_notebooks/data/data/image/intel_rnb.jpg
+    license: apache-2.0
+    license_source: openvino_notebooks repository license (data asset distributed by the upstream project)
+    committed: true
+    description: Retail shelf image used by the hello-detection twin; evidence recorded the hash prefix ac52c5bdada0087b — the committed bytes (fetched from the same URL the VERIFIED run used, 2026-10-08) match that prefix in full
+
+  - id: yolov8n.pt
+    sha256: f59b3d833e2ff32e194b5bb8e08d211dc7c5bdf144b90d2c8412c47ccfc83b36
+    source_urls:
+      - https://github.com/ultralytics/assets/releases/download/v8.4.0/yolov8n.pt
+      - https://hf-mirror.com/kadirnar/yolov8n-v8.0/resolve/main/yolov8n.pt
+    license: agpl-3.0
+    license_source: Ultralytics YOLOv8 AGPL-3.0 (upstream hello-detection notebook's chosen detector)
+    committed: false
+    description: YOLOv8n weights (6.2 MB) — hash matches the recorded VERIFIED evidence; not committed (AGPL-3.0 code/weights + size)
+  - id: nyc.jpg
+    sha256: a515af6ed7c9d49cdde69f34dd05db0a08eddc2d4c36aca3e90c2950e3dc4f78
+    source_urls:
+      - https://raw.githubusercontent.com/openvinotoolkit/openvino_notebooks/latest/notebooks/vlm-chatbot/nyc.jpg
+    license: apache-2.0
+    license_source: openvino_notebooks repository license (notebook-bundled demo image)
+    committed: true
+    description: NYC street photo bundled by the upstream vlm-chatbot notebook; used by the florence2 and yolov26 twins (byte-identical to pinned-snapshot copy, verified 2026-10-08)

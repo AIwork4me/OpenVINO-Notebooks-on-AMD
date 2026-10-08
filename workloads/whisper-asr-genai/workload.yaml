@@ -4,14 +4,18 @@ category: ASR
 upstream:
   repository: openvinotoolkit/openvino_notebooks
   branch: latest
-  commit: 2b1600de9620e4a2d26f1ef5c83fad64d7d76f7b
+  commit: 3c3899e68b2269bb7fbd5755554335f33acabd5e
   path: notebooks/whisper-asr-genai/whisper-asr-genai.ipynb
-  url: https://github.com/openvinotoolkit/openvino_notebooks/blob/2b1600de9620e4a2d26f1ef5c83fad64d7d76f7b/notebooks/whisper-asr-genai/whisper-asr-genai.ipynb
+  url: https://github.com/openvinotoolkit/openvino_notebooks/blob/3c3899e68b2269bb7fbd5755554335f33acabd5e/notebooks/whisper-asr-genai/whisper-asr-genai.ipynb
 model:
-  name: ''
-  source: ''
-  revision: ''
-  license: ''
+  name: openai/whisper-base
+  source: https://huggingface.co/openai/whisper-base
+  revision: e37978b90c
+  license: apache-2.0
+  license_source: HF model-repo card/license tag (verified via hf-mirror API 2026-10-08)
+  license_revision: e37978b90c
+  license_verification_date: '2026-10-08'
+  implementation: transformers built-in or official package
 cpu:
   runtime: openvino
   status: FAILED

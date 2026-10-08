@@ -1,0 +1,11 @@
+[cell 0 START +    0.5s] # Video understanding with V-JEPA 2.1 and OpenVINO |  | [V-JEPA 2](https:/
+[cell 1 START +    0.5s] ## Prerequisites | [back to top ⬆️](#Table-of-contents:)
+[cell 2 START +    0.5s] %pip install -q "openvino>=2024.4.0" "nncf>=2.14.0" | %pip install -q "t
+[cell 2 DONE  +    2.0s]
+[cell 3 START +    2.0s] The encoder definition, checkpoint loader and video preprocessing live
+[cell 4 START +    2.0s] from pathlib import Path |  | import numpy as np | import torch | import openv
+[cell 4 DONE  +    3.4s]
+[cell 5 START +    3.4s] Next we need a V-JEPA 2.1 encoder checkpoint (a `.pt` file such as `vj
+[cell 6 START +    3.4s] CHECKPOINT_PATH = Path("vjepa2_1_vitl_dist_vitG_384.pt") |  | if not CHECK
+[cell 6 DONE  +    3.7s]
+NBEXEC_RESULT={"ok": false, "n_cells": 14, "n_skipped": 0, "n_substituted": 1, "stopped_after": null, "error_cell": null, "error_type": "CellExecutionError", "error_head": "\u001b[31mURLError\u001b[39m: <urlopen error Tunnel connection failed: 403 Forbidden>", "duration_s": 4.6, "patch_notes": ["substituted 1 occurrence(s) in cell 7"]}
