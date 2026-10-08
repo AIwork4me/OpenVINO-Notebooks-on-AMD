@@ -71,8 +71,6 @@ class TestGPUMemoryLabeling:
         from twin_lib import emit
 
         metrics_file = tmp_path / "metrics.json"
-        import types
-
         # emit() calls gpu_ready() which imports torch; stub it for a no-GPU test
         import twin_lib as TL
 
