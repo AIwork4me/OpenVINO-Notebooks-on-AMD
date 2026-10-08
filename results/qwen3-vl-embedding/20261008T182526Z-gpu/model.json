@@ -1,0 +1,13 @@
+{
+  "schema_version": 2,
+  "declared": {
+    "name": "Qwen/Qwen3-VL-Embedding-2B",
+    "source": "https://huggingface.co/Qwen/Qwen3-VL-Embedding-2B",
+    "revision": "9f2f7e710d",
+    "license": "apache-2.0",
+    "license_source": "HF model-repo license tag (verified via hf-mirror API 2026-10-08)",
+    "license_revision": "9f2f7e710d",
+    "license_verification_date": "2026-10-08",
+    "implementation": "official repo Qwen3VLEmbedder (scripts/qwen3_vl_embedding.py @8ffa74a1\u2026)"
+  }
+}

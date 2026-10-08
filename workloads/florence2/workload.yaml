@@ -20,8 +20,12 @@ cpu:
   repeats: 1
 gpu:
   runtime: pytorch-rocm
-  status: FAILED
+  status: VERIFIED
   wall_timeout_s: 1800
+  python: .venv-gpu-tf446/bin/python
+  note: "v0.3.1 RCA: Florence-2 (2024-era) remote code requires the transformers 4.4x\
+    \ generation \u2014 loads and runs cleanly on the bridged 4.46.3 env over ROCm\
+    \ torch (5.17 and 4.57 both drift). VERIFIED on gfx1100."
 twin:
   level: WORKLOAD_TWIN
 validation:
@@ -29,4 +33,4 @@ validation:
   - already converted and can be found in Florence-2-base-ft
   - size=640x480
 patches: {}
-last_verified: '2026-10-07T01:11:13+00:00'
+last_verified: '2026-10-08T17:42:31+00:00'

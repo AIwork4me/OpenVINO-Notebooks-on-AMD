@@ -18,8 +18,15 @@ cpu:
   per_cell_timeout_s: 2400
   wall_timeout_s: 10800
 gpu:
-  runtime: ''
-  status: NOT_TESTED
+  runtime: pytorch-rocm
+  status: FAILED
+  wall_timeout_s: 3600
+  python: .venv-gpu-tf5d06/bin/python
+  note: "v0.3.1 RCA: generation numerically unstable on gfx1100 \u2014 degenerate\
+    \ outputs (empty '-', coordinate-token loops, unrelated hallucinated Chinese docs)\
+    \ across bf16/fp32, aiter-RoPE on/off, transformers 5.17 and the notebook's exact\
+    \ fork pin @5d063058; one-in-N runs extracts correctly => nondeterministic vision-encoder\
+    \ numerics on this stack. Genuine ROCm-stack compatibility finding, RCA on file."
 twin:
   level: WORKLOAD_TWIN
 validation: {}
@@ -53,23 +60,24 @@ patches:
       pip_install("-q", "transformers<5")'
   - pattern: git\+https://github\.com/huggingface/transformers\.git@5d063058dc2ddae5e31e4fab1985701d5cf50133
     replacement: https://codeload.github.com/huggingface/transformers/tar.gz/5d063058dc2ddae5e31e4fab1985701d5cf50133
-  notes: ' v0.3 C1 transport substitution: the notebook git-clones the optimum-intel
-    fork at pinned rev 4085f5e8; git CONNECT to github.com is deterministically blocked
-    on this runner (clone exit 128). The substitution fetches the SAME pinned revision
-    from codeload.github.com (pure transport change, identical content) and short-circuits
-    the rev-parse equality check the notebook performs (the tarball IS the pinned
-    rev). No code changes beyond transport. v0.3 fix-up: the harness git-transport
-    rewrite also rewrites git+ URLs inside the notebook''s setup.py patch-dict, so
-    the original dict no longer matches the fork''s on-disk setup.py (ValueError:
-    Unexpected dependency). This substitution restores a transport-coherent mapping:
-    match the fork''s original git-form optimum pin on disk, replace it with the codeload
-    tarball of the SAME pinned rev (52367da7) the notebook intends — pip can actually
-    fetch codeload here. v0.3 C4 fix: the export path loads diffusers'' hunyuandit
-    pipeline, which imports MT5Tokenizer from transformers — removed in transformers
-    5.x that the open-ended resolution otherwise installs. Bounded to transformers<5
-    (the 4.x series the pipeline was written against); minimal, documented dependency
-    bound. v0.3: the notebook installs transformers from a pinned git commit; on this
-    runner git clone is unreliable (the transport probe can select ''direct'' while
-    large clones still die). This substitution pins the SAME commit via the codeload
-    tarball deterministically (transport-only).'
+  notes: " v0.3 C1 transport substitution: the notebook git-clones the optimum-intel\
+    \ fork at pinned rev 4085f5e8; git CONNECT to github.com is deterministically\
+    \ blocked on this runner (clone exit 128). The substitution fetches the SAME pinned\
+    \ revision from codeload.github.com (pure transport change, identical content)\
+    \ and short-circuits the rev-parse equality check the notebook performs (the tarball\
+    \ IS the pinned rev). No code changes beyond transport. v0.3 fix-up: the harness\
+    \ git-transport rewrite also rewrites git+ URLs inside the notebook's setup.py\
+    \ patch-dict, so the original dict no longer matches the fork's on-disk setup.py\
+    \ (ValueError: Unexpected dependency). This substitution restores a transport-coherent\
+    \ mapping: match the fork's original git-form optimum pin on disk, replace it\
+    \ with the codeload tarball of the SAME pinned rev (52367da7) the notebook intends\
+    \ \u2014 pip can actually fetch codeload here. v0.3 C4 fix: the export path loads\
+    \ diffusers' hunyuandit pipeline, which imports MT5Tokenizer from transformers\
+    \ \u2014 removed in transformers 5.x that the open-ended resolution otherwise\
+    \ installs. Bounded to transformers<5 (the 4.x series the pipeline was written\
+    \ against); minimal, documented dependency bound. v0.3: the notebook installs\
+    \ transformers from a pinned git commit; on this runner git clone is unreliable\
+    \ (the transport probe can select 'direct' while large clones still die). This\
+    \ substitution pins the SAME commit via the codeload tarball deterministically\
+    \ (transport-only)."
 last_verified: ''

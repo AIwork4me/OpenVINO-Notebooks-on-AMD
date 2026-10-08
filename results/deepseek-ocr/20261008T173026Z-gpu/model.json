@@ -1,0 +1,10 @@
+{
+  "schema_version": 2,
+  "declared": {
+    "name": "deepseek-ai/DeepSeek-OCR-2",
+    "source": "https://huggingface.co/deepseek-ai/DeepSeek-OCR-2",
+    "revision": "aaa02f3811",
+    "license": "apache-2.0",
+    "implementation": "transformers DeepseekOcr2ForConditionalGeneration"
+  }
+}

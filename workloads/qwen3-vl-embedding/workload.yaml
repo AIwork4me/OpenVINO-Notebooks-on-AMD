@@ -8,18 +8,27 @@ upstream:
   path: notebooks/qwen3-vl-embedding/qwen3-vl-embedding.ipynb
   url: https://github.com/openvinotoolkit/openvino_notebooks/blob/2b1600de9620e4a2d26f1ef5c83fad64d7d76f7b/notebooks/qwen3-vl-embedding/qwen3-vl-embedding.ipynb
 model:
-  name: ''
-  source: ''
-  revision: ''
-  license: ''
+  name: Qwen/Qwen3-VL-Embedding-2B
+  source: https://huggingface.co/Qwen/Qwen3-VL-Embedding-2B
+  revision: 9f2f7e710d
+  license: apache-2.0
+  license_source: HF model-repo license tag (verified via hf-mirror API 2026-10-08)
+  license_revision: 9f2f7e710d
+  license_verification_date: '2026-10-08'
+  implementation: "official repo Qwen3VLEmbedder (scripts/qwen3_vl_embedding.py @8ffa74a1\u2026\
+    )"
 cpu:
   runtime: openvino
   status: VERIFIED_WITH_LIMITATIONS
 gpu:
-  runtime: ''
-  status: NOT_TESTED
+  runtime: pytorch-rocm
+  status: VERIFIED
+  wall_timeout_s: 3600
+  python: .venv-gpu-tf457/bin/python
+  note: official Qwen3VLEmbedder remote code (hash-pinned) over the notebook's declared
+    transformers range; TASK_SEMANTIC image-text retrieval contract
 twin:
   level: WORKLOAD_TWIN
 validation: {}
 patches: {}
-last_verified: '2026-10-06T18:49:54+00:00'
+last_verified: '2026-10-08T18:26:08+00:00'

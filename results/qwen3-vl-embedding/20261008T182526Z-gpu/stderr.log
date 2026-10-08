@@ -1,0 +1,5 @@
+/workspace/.venv-gpu-tf457/lib/python3.12/site-packages/transformers/utils/hub.py:110: FutureWarning: Using `TRANSFORMERS_CACHE` is deprecated and will be removed in v5 of Transformers. Use `HF_HOME` instead.
+  warnings.warn(
+`torch_dtype` is deprecated! Use `dtype` instead!
+/workspace/.venv-gpu-tf457/lib/python3.12/site-packages/transformers/integrations/sdpa_attention.py:96: UserWarning: Using AOTriton backend for Efficient Attention forward... (Triggered internally at /app/pytorch/aten/src/ATen/native/transformers/hip/attention.hip:1452.)
+  attn_output = torch.nn.functional.scaled_dot_product_attention(

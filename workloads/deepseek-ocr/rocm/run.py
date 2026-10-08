@@ -23,11 +23,11 @@ _sys.path.insert(0, str(_Path(__file__).resolve().parents[3] / "ov_amd"))  # twi
 
 import time
 
-from twin_lib import PeakMemory, emit, fetch, setup
+from twin_lib import PeakMemory, emit, resolve_asset, setup
 
 MODEL = "deepseek-ai/DeepSeek-OCR-2"
 REVISION = "aaa02f3811"  # declared model revision (6.8B config verified in v0.3 evidence)
-IMG_URL = "https://huggingface.co/spaces/khang119966/DeepSeek-OCR-DEMO/resolve/main/doc_markdown.png"
+SNAPSHOT_ASSET = "doc-markdown.png"  # managed asset (MIT space; identical role to notebook demo docs)
 
 
 def main() -> int:
@@ -37,13 +37,20 @@ def main() -> int:
 
     evidence = Path(args.evidence_dir)
     img_path = evidence / "input.png"
-    fetch(IMG_URL, img_path)
+    asset = resolve_asset(SNAPSHOT_ASSET)
+    import shutil
+    shutil.copy2(asset.path, img_path)
 
     import torch
     from transformers import AutoModel, AutoTokenizer
 
     t0 = time.time()
-    tokenizer = AutoTokenizer.from_pretrained(MODEL, revision=REVISION, trust_remote_code=True)
+        # the repo's tokenizer_config.json declares LlamaTokenizerFast, but its
+    # config.json auto_map omits AutoTokenizer, so 4.46.3's config-class
+    # resolution fails — pass the repo-declared class explicitly (recorded)
+    tokenizer = AutoTokenizer.from_pretrained(
+        MODEL, revision=REVISION, trust_remote_code=True, tokenizer_class="LlamaTokenizerFast"
+    )
     model = AutoModel.from_pretrained(
         MODEL, revision=REVISION, trust_remote_code=True, torch_dtype=torch.bfloat16, device_map="cuda:0", use_safetensors=True
     ).eval()
@@ -78,21 +85,18 @@ def main() -> int:
         return conv.get_prompt().strip()
 
     def _gen() -> str:
-        prompt = _format(conversation)
-        inputs = tokenizer(prompt, return_tensors="pt")
-        # image inputs via the repo's processor path: model.prepare_inputs_for_inference
-        # handles images through its documented chat API — use it
-        if hasattr(model, "chat"):
-            out = model.chat(tokenizer=tokenizer, conversation=conversation, image=image)
-        else:
-            with torch.inference_mode():
-                ids = model.generate(
-                    **{k: v.to("cuda:0") for k, v in inputs.items()},
-                    images=[image],
-                    max_new_tokens=512,
-                    do_sample=False,
-                )
-            out = tokenizer.batch_decode(ids, skip_special_tokens=True)[0]
+        # official repo API (README): model.infer(tokenizer, prompt, image_file, ...)
+        out = model.infer(
+            tokenizer,
+            prompt="<image>\n<|grounding|>Convert the document to markdown. ",
+            image_file=str(img_path),
+            output_path=str(evidence / "ocr_out"),
+            base_size=1024,
+            image_size=768,
+            crop_mode=True,
+            eval_mode=True,  # the repo's documented mode for returning decoded text
+            save_results=False,
+        )
         return str(out)
 
     _gen()  # warmup
@@ -114,6 +118,10 @@ def main() -> int:
     words = [w for w in text.split() if len(w) >= 2]
     metrics = {
         "model": MODEL,
+        "model_revision": REVISION,
+        "correctness_level": "TASK_SEMANTIC",
+        "correctness_contract": "OCR output contains expected document text fragments (markdown headings from the fixed doc_markdown.png fixture)",
+        "input_asset": asset.record(),
         "precision": "bf16",
         "loading_contract": "AutoModel trust_remote_code=True (repo's own modeling code, as upstream)",
         "transformers": __import__("transformers").__version__,

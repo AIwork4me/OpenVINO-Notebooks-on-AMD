@@ -20,10 +20,16 @@ cpu:
   repeats: 1
 gpu:
   runtime: pytorch-rocm
-  status: FAILED
+  status: VERIFIED
   wall_timeout_s: 5400
+  python: .venv-gpu-tf446/bin/python
+  note: 'v0.3.1 RCA: rebuilt bridged transformers==4.46.3 env over the ROCm torch;
+    remote code (modeling_deepseekocr2.py @aaa02f3811) imports cleanly on 4.46.3;
+    completed the model snapshot (6.78GB weights + tokenizer); AutoTokenizer needed
+    the repo-declared LlamaTokenizerFast (config auto_map omits AutoTokenizer); official
+    infer() API with eval_mode=True returns the decoded markdown. VERIFIED on gfx1100.'
 twin:
   level: WORKLOAD_TWIN
 validation: {}
 patches: {}
-last_verified: '2026-10-06T10:06:40+00:00'
+last_verified: '2026-10-08T17:31:55+00:00'

@@ -1,0 +1,14 @@
+{
+  "python": "3.12.3",
+  "python_bin": ".venv-gpu-tf5d06/bin/python",
+  "openvino": {
+    "version": null,
+    "devices": []
+  },
+  "torch_rocm": {
+    "torch": "2.9.1+gitff65f5b",
+    "cuda_available": true,
+    "device": "AMD Radeon Graphics"
+  },
+  "rocm_dir": "/opt/rocm"
+}
